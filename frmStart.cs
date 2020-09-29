@@ -5,6 +5,8 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 using System.Media;
+using System.Globalization;
+using System.Threading;
 using FSUIPC;
 using Microsoft.VisualBasic;
 using Microsoft.Win32;
@@ -1395,6 +1397,14 @@ namespace SBuilderX
 
         private void FormLoad()
         {
+            CultureInfo culture;
+            // The following have to be precise
+            culture = CultureInfo.CreateSpecificCulture("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+
             ToolStrip.Cursor = Cursors.Arrow;
             MenuStrip.Cursor = Cursors.Arrow;
             if (moduleMAIN.BitmapBuffer is null)
