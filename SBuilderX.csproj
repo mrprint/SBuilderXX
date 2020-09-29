@@ -453,6 +453,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="modulePOPUP.cs" />
+    <Compile Include="utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmArcGisMap.resx">

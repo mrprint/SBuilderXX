@@ -99,7 +99,7 @@ namespace SBuilderX
                     C = C + 1;
                     if (B == 13)
                         break;
-                    S = B.ToString() + reader.ReadChars(10);
+                    S = ((char)B).ToString() + new string(reader.ReadChars(10));
                     Fields[NoOfFields].Name = S.Substring(0, S.IndexOf("\0"));
                     S = reader.ReadChar().ToString();
                     if (S == "C")

@@ -1,5 +1,4 @@
 ﻿using FSUIPC;
-using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using ScruffyDuck.Flightsim.Scenery.SceneryFile;
 using System;
@@ -1924,9 +1923,10 @@ namespace SBuilderX
             string TerrainFile = moduleMAIN.FSPath + "terrain.cfg";
             string A;
             bool IsOK = true;
-            FileSystem.FileOpen(2, TerrainFile, OpenMode.Input);
-            A = FileSystem.LineInput(2);
-            FileSystem.FileClose();
+            using (var file = File.OpenText(TerrainFile))
+            {
+                A = file.ReadLine();
+            }
             if (A != "//------------------------------------------------------------------------")
                 IsOK = false;
             if (IsOK)
@@ -1939,7 +1939,7 @@ namespace SBuilderX
             if (MessageBox.Show(A, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 A = "Enter a filename to store the original terrain.cfg.";
-                string BackUpFile = Interaction.InputBox(A, DefaultResponse: "terrain_original.cfg");
+                string BackUpFile = Utilities.InputBox("", A, "terrain_original.cfg");
                 if (string.IsNullOrEmpty(BackUpFile))
                     return;
                 BackUpFile = moduleMAIN.FSPath + BackUpFile;
@@ -4973,64 +4973,61 @@ namespace SBuilderX
 
         private void SetLineTypes()
         {
-            string A, B, C, File;
-            int Marker, N, K;
+            string A, B, C, fileName;
+            int K;
             moduleLINES.LineTypes = new moduleLINES.LineType[2001];
 
             try
             {
-                File = My.MyProject.Application.Info.DirectoryPath + @"\Tools\Lines.txt";
-                FileSystem.FileOpen(2, File, OpenMode.Input);
-                N = (int)FileSystem.LOF(2);
-                Marker = 0;
-                K = 0;
-                while (Marker < N)
+                fileName = My.MyProject.Application.Info.DirectoryPath + @"\Tools\Lines.txt";
+                using (var file = File.OpenText(fileName))
                 {
-                    A = FileSystem.LineInput(2);
-                    Marker = Marker + A.Length + 2;
-                    if (A.Length < 4)
-                        continue;
-                    B = A.Substring(0, 4).Trim();
-                    if (B == "[Tex")
+                    K = 0;
+                    while ((A = file.ReadLine()) != null)
                     {
-                        K = K + 1;
-                        C = A.Substring(9).Trim();
-                        C = C.Replace("]", "");
-                        moduleLINES.LineTypes[K].TerrainIndex = Convert.ToInt32(C);
-                    }
+                        if (A.Length < 4)
+                            continue;
+                        B = A.Substring(0, 4).Trim();
+                        if (B == "[Tex")
+                        {
+                            K = K + 1;
+                            C = A.Substring(9).Trim();
+                            C = C.Replace("]", "");
+                            moduleLINES.LineTypes[K].TerrainIndex = Convert.ToInt32(C);
+                        }
 
-                    if (B == "Name")
-                    {
-                        C = A.Substring(5).Trim();
-                        moduleLINES.LineTypes[K].Name = C;
-                    }
+                        if (B == "Name")
+                        {
+                            C = A.Substring(5).Trim();
+                            moduleLINES.LineTypes[K].Name = C;
+                        }
 
-                    if (B == "Colo")
-                    {
-                        C = A.Substring(6).Trim();
-                        moduleLINES.LineTypes[K].Color = Color.FromArgb(Convert.ToInt32(C, 16));
-                    }
+                        if (B == "Colo")
+                        {
+                            C = A.Substring(6).Trim();
+                            moduleLINES.LineTypes[K].Color = Color.FromArgb(Convert.ToInt32(C, 16));
+                        }
 
-                    if (B == "Text")
-                    {
-                        C = A.Substring(9).Trim();
-                        moduleLINES.LineTypes[K].Texture = C;
-                    }
+                        if (B == "Text")
+                        {
+                            C = A.Substring(9).Trim();
+                            moduleLINES.LineTypes[K].Texture = C;
+                        }
 
-                    if (B == "Guid")
-                    {
-                        C = A.Substring(5).Trim();
-                        moduleLINES.LineTypes[K].Guid = C;
-                    }
+                        if (B == "Guid")
+                        {
+                            C = A.Substring(5).Trim();
+                            moduleLINES.LineTypes[K].Guid = C;
+                        }
 
-                    if (B == "Type")
-                    {
-                        C = (A.Length < 8) ? "" : A.Substring(5, 3).Trim(); // ''' skip legacy
-                        moduleLINES.LineTypes[K].Type = C;
+                        if (B == "Type")
+                        {
+                            C = (A.Length < 8) ? "" : A.Substring(5, 3).Trim(); // ''' skip legacy
+                            moduleLINES.LineTypes[K].Type = C;
+                        }
                     }
                 }
 
-                FileSystem.FileClose();
                 moduleLINES.DefaultLineNoneGuid = moduleLINES.LineTypes[1].Guid;
                 moduleLINES.DefaultLineFS9Guid = moduleLINES.LineTypes[2].Guid;
                 moduleLINES.NoOfLineTypes = K;
@@ -5039,72 +5036,68 @@ namespace SBuilderX
             }
             catch (Exception)
             {
-                FileSystem.FileClose();
                 MessageBox.Show("Check your Lines.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
         private void SetPolyTypes()
         {
-            string A, B, C, File;
-            int Marker, N, K;
+            string A, B, C, fileName;
+            int K;
 
             try
             {
                 modulePOLYS.PolyTypes = new modulePOLYS.PolyType[2001];
-                File = My.MyProject.Application.Info.DirectoryPath + @"\tools\Polys.txt";
-                FileSystem.FileOpen(2, File, OpenMode.Input);
-                N = (int)FileSystem.LOF(2);
-                Marker = 0;
-                K = 0;
-                while (Marker < N)
+                fileName = My.MyProject.Application.Info.DirectoryPath + @"\tools\Polys.txt";
+                using (var file = File.OpenText(fileName))
                 {
-                    A = FileSystem.LineInput(2);
-                    Marker = Marker + A.Length + 2;
-                    if (A.Length < 4)
-                        continue;
-                    B = A.Substring(0, 4).Trim().ToUpper();
-                    if (B == "[TEX")
+                    K = 0;
+                    while ((A = file.ReadLine()) != null)
                     {
-                        K = K + 1;
-                        C = A.Substring(9).Trim();
-                        C = C.Replace("]", "");
-                        modulePOLYS.PolyTypes[K].TerrainIndex = Convert.ToInt32(C);
-                    }
+                        if (A.Length < 4)
+                            continue;
+                        B = A.Substring(0, 4).Trim().ToUpper();
+                        if (B == "[TEX")
+                        {
+                            K = K + 1;
+                            C = A.Substring(9).Trim();
+                            C = C.Replace("]", "");
+                            modulePOLYS.PolyTypes[K].TerrainIndex = Convert.ToInt32(C);
+                        }
 
-                    if (B == "NAME")
-                    {
-                        C = A.Substring(5).Trim();
-                        modulePOLYS.PolyTypes[K].Name = C;
-                    }
+                        if (B == "NAME")
+                        {
+                            C = A.Substring(5).Trim();
+                            modulePOLYS.PolyTypes[K].Name = C;
+                        }
 
-                    if (B == "COLO")
-                    {
-                        C = A.Substring(6).Trim();
-                        modulePOLYS.PolyTypes[K].Color = Color.FromArgb(Convert.ToInt32(C, 16));
-                    }
+                        if (B == "COLO")
+                        {
+                            C = A.Substring(6).Trim();
+                            modulePOLYS.PolyTypes[K].Color = Color.FromArgb(Convert.ToInt32(C, 16));
+                        }
 
-                    if (B == "TEXT")
-                    {
-                        C = A.Substring(9).Trim();
-                        modulePOLYS.PolyTypes[K].Texture = C;
-                    }
+                        if (B == "TEXT")
+                        {
+                            C = A.Substring(9).Trim();
+                            modulePOLYS.PolyTypes[K].Texture = C;
+                        }
 
-                    if (B == "GUID")
-                    {
-                        C = A.Substring(5).Trim();
-                        modulePOLYS.PolyTypes[K].Guid = C;
-                    }
+                        if (B == "GUID")
+                        {
+                            C = A.Substring(5).Trim();
+                            modulePOLYS.PolyTypes[K].Guid = C;
+                        }
 
-                    if (B == "TYPE")
-                    {
-                        C = (A.Length < 8) ? "" : A.Substring(5, 3).Trim(); // ''' landclasses
-                                                                            // C = Mid(C, 1, 3)
-                        modulePOLYS.PolyTypes[K].Type = C;
+                        if (B == "TYPE")
+                        {
+                            C = (A.Length < 8) ? "" : A.Substring(5, 3).Trim(); // ''' landclasses
+                                                                                // C = Mid(C, 1, 3)
+                            modulePOLYS.PolyTypes[K].Type = C;
+                        }
                     }
                 }
 
-                FileSystem.FileClose();
                 modulePOLYS.DefaultPolyNoneGuid = modulePOLYS.PolyTypes[1].Guid;
                 modulePOLYS.DefaultPolyFS9Guid = modulePOLYS.PolyTypes[2].Guid;
                 modulePOLYS.DefaultPolyGPSGuid = modulePOLYS.PolyTypes[3].Guid;
@@ -5114,54 +5107,50 @@ namespace SBuilderX
             }
             catch (Exception)
             {
-                FileSystem.FileClose();
                 MessageBox.Show("Check your Polys.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
         private void SetLandTypes()
         {
-            string A, B, C, File;
-            int N, Marker, K;
+            string A, B, C, fileName;
+            int K;
 
             try
             {
                 // ReDim LC(255) we do that in the declaration
 
-                File = My.MyProject.Application.Info.DirectoryPath + @"\tools\lands.txt";
-                FileSystem.FileOpen(2, File, OpenMode.Input);
-                N = (int)FileSystem.LOF(2);
-                Marker = 0;
-                K = 0;
-                while (Marker < N)
+                fileName = My.MyProject.Application.Info.DirectoryPath + @"\tools\lands.txt";
+                using (var file = File.OpenText(fileName))
                 {
-                    A = FileSystem.LineInput(2);
-                    Marker = Marker + A.Length + 2;
-                    if (A.Length < 4)
-                        continue;
-                    B = A.Substring(0, 4).Trim().ToUpper();
-                    if (B == "NAME")
+                    K = 0;
+                    while ((A = file.ReadLine()) != null)
                     {
-                        K = K + 1;
-                        C = A.Substring(5).Trim();
-                        moduleCLASSES.LC[K].Index = Convert.ToByte(C.Substring(0, 3));
-                        moduleCLASSES.LC[K].Caption = C;
-                    }
+                        if (A.Length < 4)
+                            continue;
+                        B = A.Substring(0, 4).Trim().ToUpper();
+                        if (B == "NAME")
+                        {
+                            K = K + 1;
+                            C = A.Substring(5).Trim();
+                            moduleCLASSES.LC[K].Index = Convert.ToByte(C.Substring(0, 3));
+                            moduleCLASSES.LC[K].Caption = C;
+                        }
 
-                    if (B == "TEXT")
-                    {
-                        C = A.Substring(9).Trim();
-                        moduleCLASSES.LC[K].Texture = C;
-                    }
+                        if (B == "TEXT")
+                        {
+                            C = A.Substring(9).Trim();
+                            moduleCLASSES.LC[K].Texture = C;
+                        }
 
-                    if (B == "COLO")
-                    {
-                        C = A.Substring(6).Trim();
-                        moduleCLASSES.LC[K].Color = Color.FromArgb(Convert.ToInt32(C, 16));
+                        if (B == "COLO")
+                        {
+                            C = A.Substring(6).Trim();
+                            moduleCLASSES.LC[K].Color = Color.FromArgb(Convert.ToInt32(C, 16));
+                        }
                     }
                 }
 
-                FileSystem.FileClose();
                 moduleCLASSES.NoOfLCs = K;
                 B = "sel";
                 int loopTo = moduleCLASSES.NoOfLCs;
@@ -5177,53 +5166,49 @@ namespace SBuilderX
             }
             catch (Exception)
             {
-                FileSystem.FileClose();
                 MessageBox.Show("Check your Lands.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
         private void SetWaterTypes()
         {
-            string A, B, C, File;
-            int N, Marker, K;
+            string A, B, C, fileName;
+            int K;
 
             try
             {
                 moduleCLASSES.WC = new moduleCLASSES.LWClass[256];
-                File = My.MyProject.Application.Info.DirectoryPath + @"\tools\Waters.txt";
-                FileSystem.FileOpen(2, File, OpenMode.Input);
-                N = (int)FileSystem.LOF(2);
-                Marker = 0;
-                K = 0;
-                while (Marker < N)
+                fileName = My.MyProject.Application.Info.DirectoryPath + @"\tools\Waters.txt";
+                using (var file = File.OpenText(fileName))
                 {
-                    A = FileSystem.LineInput(2);
-                    Marker = Marker + A.Length + 2;
-                    if (A.Length < 4)
-                        continue;
-                    B = A.Substring(0, 4).Trim().ToUpper();
-                    if (B == "NAME")
+                    K = 0;
+                    while ((A = file.ReadLine()) != null)
                     {
-                        K = K + 1;
-                        C = A.Substring(5).Trim();
-                        moduleCLASSES.WC[K].Index = Convert.ToByte(C.Substring(0, 3));
-                        moduleCLASSES.WC[K].Caption = C;
-                    }
+                        if (A.Length < 4)
+                            continue;
+                        B = A.Substring(0, 4).Trim().ToUpper();
+                        if (B == "NAME")
+                        {
+                            K = K + 1;
+                            C = A.Substring(5).Trim();
+                            moduleCLASSES.WC[K].Index = Convert.ToByte(C.Substring(0, 3));
+                            moduleCLASSES.WC[K].Caption = C;
+                        }
 
-                    if (B == "TEXT")
-                    {
-                        C = A.Substring(9).Trim();
-                        moduleCLASSES.WC[K].Texture = C;
-                    }
+                        if (B == "TEXT")
+                        {
+                            C = A.Substring(9).Trim();
+                            moduleCLASSES.WC[K].Texture = C;
+                        }
 
-                    if (B == "COLO")
-                    {
-                        C = A.Substring(6).Trim();
-                        moduleCLASSES.WC[K].Color = Color.FromArgb(Convert.ToInt32(C, 16));
+                        if (B == "COLO")
+                        {
+                            C = A.Substring(6).Trim();
+                            moduleCLASSES.WC[K].Color = Color.FromArgb(Convert.ToInt32(C, 16));
+                        }
                     }
                 }
 
-                FileSystem.FileClose();
                 moduleCLASSES.NoOfWCs = K;
                 B = "sel";
                 int loopTo = moduleCLASSES.NoOfLCs;
@@ -5239,71 +5224,66 @@ namespace SBuilderX
             }
             catch (Exception)
             {
-                FileSystem.FileClose();
                 MessageBox.Show("Check your Waters.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
         private void SetExtrusionsTypes()
         {
-            string A, B, File;
-            int N, Marker, K;
+            string A, B, fileName;
+            int K;
 
             try
             {
                 moduleLINES.ExtrusionTypes = new moduleLINES.ExtrusionType[256];
-                File = My.MyProject.Application.Info.DirectoryPath + @"\Tools\Bridges.txt";
-                FileSystem.FileOpen(2, File, OpenMode.Input);
-                N = (int)FileSystem.LOF(2);
-                Marker = 0;
-                K = 0;
-                while (Marker < N)
+                fileName = My.MyProject.Application.Info.DirectoryPath + @"\Tools\Bridges.txt";
+                using (var file = File.OpenText(fileName))
                 {
-                    A = FileSystem.LineInput(2);
-                    Marker = Marker + A.Length + 2;
-                    if (A.Length < 3)
-                        continue;
-                    B = A.Substring(0, 3).Trim().ToUpper();
-                    if (B == "NAM")
+                    K = 0;
+                    while ((A = file.ReadLine()) != null)
                     {
-                        K = K + 1;
-                        moduleLINES.ExtrusionTypes[K].Name = A.Substring(5).Trim();
-                    }
+                        if (A.Length < 3)
+                            continue;
+                        B = A.Substring(0, 3).Trim().ToUpper();
+                        if (B == "NAM")
+                        {
+                            K = K + 1;
+                            moduleLINES.ExtrusionTypes[K].Name = A.Substring(5).Trim();
+                        }
 
-                    if (B == "COL")
-                    {
-                        moduleLINES.ExtrusionTypes[K].Color = ColorFromArgb(A.Substring(6).Trim());
-                    }
+                        if (B == "COL")
+                        {
+                            moduleLINES.ExtrusionTypes[K].Color = ColorFromArgb(A.Substring(6).Trim());
+                        }
 
-                    if (B == "WID")
-                    {
-                        moduleLINES.ExtrusionTypes[K].Width = Convert.ToDouble(A.Substring(6).Trim());
-                    }
+                        if (B == "WID")
+                        {
+                            moduleLINES.ExtrusionTypes[K].Width = Convert.ToDouble(A.Substring(6).Trim());
+                        }
 
-                    if (B == "PRO")
-                    {
-                        moduleLINES.ExtrusionTypes[K].Profile = A.Substring(8).Trim();
-                    }
+                        if (B == "PRO")
+                        {
+                            moduleLINES.ExtrusionTypes[K].Profile = A.Substring(8).Trim();
+                        }
 
-                    if (B == "MAT")
-                    {
-                        moduleLINES.ExtrusionTypes[K].Material = A.Substring(9).Trim();
-                    }
+                        if (B == "MAT")
+                        {
+                            moduleLINES.ExtrusionTypes[K].Material = A.Substring(9).Trim();
+                        }
 
-                    if (B == "PYL")
-                    {
-                        moduleLINES.ExtrusionTypes[K].Pylon = A.Substring(6).Trim();
+                        if (B == "PYL")
+                        {
+                            moduleLINES.ExtrusionTypes[K].Pylon = A.Substring(6).Trim();
+                        }
                     }
                 }
 
-                FileSystem.FileClose();
                 moduleLINES.NoOfExtrusionTypes = K;
                 Array.Resize(ref moduleLINES.ExtrusionTypes, K + 1);
                 return;
             }
             catch (Exception)
             {
-                FileSystem.FileClose();
                 MessageBox.Show("Check your Bridges.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
@@ -5353,7 +5333,7 @@ namespace SBuilderX
 
                         FileTarget = BmpFolder + moduleCLASSES.WC[K].Texture + bmp;
                         FileSource = moduleMAIN.FSTextureFolder + moduleCLASSES.WC[K].Texture + bmp;
-                        FileSystem.FileCopy(FileSource, FileTarget);
+                        File.Copy(FileSource, FileTarget);
                         Command = ImageTool + Flags1 + moduleCLASSES.WC[K].Texture + bmp;
                         moduleMAIN.ExecCmd(Command);
                         if (ShowWait)
@@ -5385,7 +5365,7 @@ namespace SBuilderX
 
                         FileTarget = BmpFolder + moduleCLASSES.LC[K].Texture + bmp;
                         FileSource = moduleMAIN.FSTextureFolder + moduleCLASSES.LC[K].Texture + bmp;
-                        FileSystem.FileCopy(FileSource, FileTarget);
+                        File.Copy(FileSource, FileTarget);
                         Command = ImageTool + Flags1 + moduleCLASSES.LC[K].Texture + bmp;
                         moduleMAIN.ExecCmd(Command);
                         if (ShowWait)
@@ -5415,7 +5395,7 @@ namespace SBuilderX
 
                         FileTarget = BmpFolder + moduleLINES.LineTypes[K].Texture + bmp;
                         FileSource = moduleMAIN.FSTextureFolder + moduleLINES.LineTypes[K].Texture + bmp;
-                        FileSystem.FileCopy(FileSource, FileTarget);
+                        File.Copy(FileSource, FileTarget);
                         Command = ImageTool + Flags1 + moduleLINES.LineTypes[K].Texture + bmp;
                         moduleMAIN.ExecCmd(Command);
                         if (ShowWait)
@@ -5442,7 +5422,7 @@ namespace SBuilderX
 
                         FileTarget = BmpFolder + modulePOLYS.PolyTypes[K].Texture + bmp;
                         FileSource = moduleMAIN.FSTextureFolder + modulePOLYS.PolyTypes[K].Texture + bmp;
-                        FileSystem.FileCopy(FileSource, FileTarget);
+                        File.Copy(FileSource, FileTarget);
                         Command = ImageTool + Flags1 + modulePOLYS.PolyTypes[K].Texture + bmp;
                         moduleMAIN.ExecCmd(Command);
                         if (ShowWait)
@@ -5906,7 +5886,7 @@ namespace SBuilderX
                                             Download = true;
                                             TileTemp = moduleMAIN.AppPath + @"\Tiles" + TileName;
                                             moduleTILES.TilesDownloading.Add(TileName);
-                                            moduleTILES.TilesToCome = moduleTILES.TilesToCome + 1;
+                                            moduleTILES.TilesToCome += 1;
                                             moduleTILES.TileHasArrived(moduleTILES.TilesToCome);
                                             myTileHandlerState.handler = myDownloadTileHandler;
                                             myTileHandlerState.tile = TileName;

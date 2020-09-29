@@ -56,10 +56,10 @@ namespace SBuilderX
             NameValue = "";
             try
             {
-                if (reader.ReadChars(4).ToString() != "RIFF")
+                if (new string(reader.ReadChars(4)) != "RIFF")
                     return ReadRet;
                 reader.ReadBytes(4);
-                R = reader.ReadChars(4).ToString();
+                R = new string(reader.ReadChars(4));
                 if (R == "MDLX")
                 {
                     TypeValue = 2;
@@ -73,14 +73,14 @@ namespace SBuilderX
                     return ReadRet;
                 }
 
-                R = reader.ReadChars(4).ToString();
+                R = new string(reader.ReadChars(4));
                 if (R != "MDLH")
                     return ReadRet;
                 N = (int)reader.ReadUInt32();
                 reader.ReadBytes(N);
                 do
                 {
-                    R = reader.ReadChars(4).ToString();
+                    R = new string(reader.ReadChars(4));
                     if (R == "MDLG")  // only happens in FSX
                     {
                         reader.ReadBytes(4);
@@ -92,7 +92,7 @@ namespace SBuilderX
                     else if (R == "MDLN") // only happens in FSX
                     {
                         N = (int)reader.ReadUInt32();
-                        NameValue = reader.ReadChars(N).ToString();
+                        NameValue = new string(reader.ReadChars(N));
                         NameValue = NameValue.Substring(0, N - 1);
                         NameOK = true;
                     }
