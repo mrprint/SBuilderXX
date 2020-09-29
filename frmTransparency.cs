@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -145,7 +144,7 @@ namespace SBuilderX
                 return;
             try
             {
-                Alpha = Conversions.ToInteger(txtA.Text);
+                Alpha = Convert.ToInt32(txtA.Text);
                 if (Alpha < 0)
                     Alpha = 0;
                 if (Alpha > 255)
@@ -166,7 +165,7 @@ namespace SBuilderX
                 return;
             try
             {
-                Red = Conversions.ToInteger(txtR.Text);
+                Red = Convert.ToInt32(txtR.Text);
                 if (Red < 0)
                     Red = 0;
                 if (Red > 255)
@@ -187,7 +186,7 @@ namespace SBuilderX
             int EC = Green;
             try
             {
-                Green = Conversions.ToInteger(txtG.Text);
+                Green = Convert.ToInt32(txtG.Text);
                 if (Green < 0)
                     Green = 0;
                 if (Green > 255)
@@ -208,7 +207,7 @@ namespace SBuilderX
             int EC = Blue;
             try
             {
-                Blue = Conversions.ToInteger(txtB.Text);
+                Blue = Convert.ToInt32(txtB.Text);
                 if (Blue < 0)
                     Blue = 0;
                 if (Blue > 255)

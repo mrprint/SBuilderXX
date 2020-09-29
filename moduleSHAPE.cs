@@ -2,8 +2,6 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -137,9 +135,9 @@ namespace SBuilderX
                 moduleMAIN.RebuildDisplay();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("SBuilderX can not append this Shapefile!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("SBuilderX can not append this Shapefile!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -157,7 +155,7 @@ namespace SBuilderX
             var DBF = new DBFReader();
             if (!DBF.FileReader(filename))
             {
-                Interaction.MsgBox("SBuilderX can not read the database Shapefile!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("SBuilderX can not read the database Shapefile!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -165,7 +163,7 @@ namespace SBuilderX
             NoOfFields = DBF.FieldCount;
             if (recCount != NoOfItems)
             {
-                Interaction.MsgBox("The number of records in database is different from the number of shapes!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("The number of records in database is different from the number of shapes!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -220,7 +218,7 @@ namespace SBuilderX
                 {
                     A = "Field " + FieldNames[ShapeLineNameField - 1] + " is not a string and will be ignored!";
                     ShapeLineNameField = 0;
-                    Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                    MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
 
@@ -230,7 +228,7 @@ namespace SBuilderX
                 {
                     A = "Field " + FieldNames[ShapeLineGuidField - 1] + " is not a string and will be ignored!";
                     ShapeLineGuidField = 0;
-                    Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                    MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
 
@@ -240,7 +238,7 @@ namespace SBuilderX
                 {
                     A = "Field " + FieldNames[ShapeLineWidthField - 1] + " is not a double precision number and will be ignored!";
                     ShapeLineWidthField = 0;
-                    Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                    MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
 
@@ -252,7 +250,7 @@ namespace SBuilderX
                     {
                         A = "Field " + FieldNames[ShapeLineAltitudeField - 2] + " is not a double precision number and will be ignored!";
                         ShapeLineAltitudeField = 0;
-                        Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                        MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
             }
@@ -262,7 +260,7 @@ namespace SBuilderX
                 {
                     A = "Field " + FieldNames[ShapeLineAltitudeField - 1] + " is not a double precision number and will be ignored!";
                     ShapeLineAltitudeField = 0;
-                    Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                    MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
 
@@ -272,7 +270,7 @@ namespace SBuilderX
                 {
                     A = "Field " + FieldNames[ShapeLineAltitudeField - 2] + " is not a double precision number and will be ignored!";
                     ShapeLineAltitudeField = 0;
-                    Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                    MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
 
@@ -282,7 +280,7 @@ namespace SBuilderX
                 {
                     A = "Field " + FieldNames[ShapeLineColorField - 1] + " is not an integer number and will be ignored!";
                     ShapeLineColorField = 0;
-                    Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                    MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
 
@@ -326,7 +324,7 @@ namespace SBuilderX
                 {
                     A = DBF.Attribute(N, LanesField);
                     if (!string.IsNullOrEmpty(A))
-                        myLanes[N] = Conversions.ToByte(A);
+                        myLanes[N] = Convert.ToByte(A);
                     else
                         myLanes[N] = DefaultNoOfLanes;
                 }
@@ -375,7 +373,7 @@ namespace SBuilderX
                     A = DBF.Attribute(N, ShapeLineColorField - 1);
                     if (!string.IsNullOrEmpty(A))
                     {
-                        myLines[N].Color = Color.FromArgb(Conversions.ToInteger(A));
+                        myLines[N].Color = Color.FromArgb(Convert.ToInt32(A));
                     }
                     else
                     {
@@ -392,7 +390,7 @@ namespace SBuilderX
                     A = DBF.Attribute(N, ShapeLineWidthField - 1);
                     if (!string.IsNullOrEmpty(A))
                     {
-                        myWidths[N] = Conversions.ToDouble(A);
+                        myWidths[N] = Convert.ToDouble(A);
                     }
                     else
                     {
@@ -411,7 +409,7 @@ namespace SBuilderX
                         A = DBF.Attribute(N, ShapeLineAltitudeField - 2);
                         if (!string.IsNullOrEmpty(A))
                         {
-                            myAltitudes[N] = Conversions.ToDouble(A);
+                            myAltitudes[N] = Convert.ToDouble(A);
                         }
                         else
                         {
@@ -428,7 +426,7 @@ namespace SBuilderX
                     A = DBF.Attribute(N, ShapeLineAltitudeField - 1);
                     if (!string.IsNullOrEmpty(A))
                     {
-                        myAltitudes[N] = Conversions.ToDouble(A);
+                        myAltitudes[N] = Convert.ToDouble(A);
                     }
                     else
                     {
@@ -484,9 +482,9 @@ namespace SBuilderX
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("SBuilderX can not Append " + filename + " !", MsgBoxStyle.Exclamation);
+                MessageBox.Show("SBuilderX can not Append " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
         }
@@ -530,7 +528,7 @@ namespace SBuilderX
             var DBF = new DBFReader();
             if (!DBF.FileReader(filename))
             {
-                Interaction.MsgBox("SBuilderX can not read the database Shapefile!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("SBuilderX can not read the database Shapefile!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -538,7 +536,7 @@ namespace SBuilderX
             NoOfFields = DBF.FieldCount;
             if (recCount != NoOfItems)
             {
-                Interaction.MsgBox("The number of records in database is different from the number of shapes!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("The number of records in database is different from the number of shapes!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -569,7 +567,7 @@ namespace SBuilderX
                 {
                     A = "Field \"" + FieldNames[ShapePolyNameField - 1] + "\" is not a string and will be ignored!";
                     ShapePolyNameField = 0;
-                    Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                    MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
 
@@ -579,7 +577,7 @@ namespace SBuilderX
                 {
                     A = "Field \"" + FieldNames[ShapePolyGuidField - 1] + "\" is not a string and will be ignored!";
                     ShapePolyGuidField = 0;
-                    Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                    MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
 
@@ -591,7 +589,7 @@ namespace SBuilderX
                     {
                         A = "Field \"" + FieldNames[ShapePolyAltitudeField - 2] + "\" is not a double precision number and will be ignored!";
                         ShapePolyAltitudeField = 0;
-                        Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                        MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
             }
@@ -601,7 +599,7 @@ namespace SBuilderX
                 {
                     A = "Field \"" + FieldNames[ShapePolyAltitudeField - 1] + "\" is not a double precision number and will be ignored!";
                     ShapePolyAltitudeField = 0;
-                    Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                    MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
 
@@ -611,7 +609,7 @@ namespace SBuilderX
                 {
                     A = "Field \"" + FieldNames[ShapePolyColorField - 1] + "\" is not a integer number and will be ignored!";
                     ShapePolyColorField = 0;
-                    Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                    MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
 
@@ -667,7 +665,7 @@ namespace SBuilderX
                     A = DBF.Attribute(N, ShapePolyColorField - 1);
                     if (!string.IsNullOrEmpty(A))  // '''
                     {
-                        myColors[N] = Color.FromArgb(Conversions.ToInteger(A));
+                        myColors[N] = Color.FromArgb(Convert.ToInt32(A));
                     }
                     else
                     {
@@ -686,7 +684,7 @@ namespace SBuilderX
                         A = DBF.Attribute(N, ShapePolyAltitudeField - 2);
                         if (!string.IsNullOrEmpty(A))
                         {
-                            myAltitudes[N] = Conversions.ToDouble(A);
+                            myAltitudes[N] = Convert.ToDouble(A);
                         }
                         else
                         {
@@ -703,7 +701,7 @@ namespace SBuilderX
                     A = DBF.Attribute(N, ShapePolyAltitudeField - 1);
                     if (!string.IsNullOrEmpty(A))
                     {
-                        myAltitudes[N] = Conversions.ToDouble(A);
+                        myAltitudes[N] = Convert.ToDouble(A);
                     }
                     else
                     {
@@ -840,9 +838,9 @@ namespace SBuilderX
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("SBuilderX can not Append " + filename + " !", MsgBoxStyle.Exclamation);
+                MessageBox.Show("SBuilderX can not Append " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
         }
@@ -908,9 +906,9 @@ namespace SBuilderX
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("SBuilderX can not Export " + filename + " !", MsgBoxStyle.Exclamation);
+                MessageBox.Show("SBuilderX can not Export " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
         }
@@ -965,9 +963,9 @@ namespace SBuilderX
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("SBuilderX can not Export " + filename + " !", MsgBoxStyle.Exclamation);
+                MessageBox.Show("SBuilderX can not Export " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
         }
@@ -1029,7 +1027,7 @@ namespace SBuilderX
                 {
                     if (modulePOLYS.Polys[N].NoOfChilds >= 0)
                     {
-                        if (type == "ALL" | (type ?? "") == (Strings.Mid(modulePOLYS.Polys[N].Type, 1, 3) ?? ""))
+                        if (type == "ALL" | (type ?? "") == ((modulePOLYS.Polys[N].Type.Length >= 3) ? modulePOLYS.Polys[N].Type.Substring(0, 3) : ""))
                         {
                             // new record 
                             REC = REC + 1;
@@ -1233,9 +1231,9 @@ namespace SBuilderX
                 CreateShpAndShxFilesFromPolysRet = true;
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("SBuilderX can not Export " + filename + " !", MsgBoxStyle.Exclamation);
+                MessageBox.Show("SBuilderX can not Export " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
             return CreateShpAndShxFilesFromPolysRet;
@@ -1296,7 +1294,7 @@ namespace SBuilderX
                 var loopTo = moduleLINES.NoOfLines;
                 for (N = 1; N <= loopTo; N++)
                 {
-                    if (type == "ALL" | (type ?? "") == (Strings.Mid(moduleLINES.Lines[N].Type, 1, 3) ?? ""))
+                    if (type == "ALL" | (type ?? "") == ((moduleLINES.Lines[N].Type.Length >= 3) ? moduleLINES.Lines[N].Type.Substring(0, 3) : ""))
                     {
                         // new record 
                         REC = REC + 1;
@@ -1433,9 +1431,9 @@ namespace SBuilderX
                 CreateShpAndShxFilesFromLinesRet = true;
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("SBuilderX can not Export " + filename + " !", MsgBoxStyle.Exclamation);
+                MessageBox.Show("SBuilderX can not Export " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
             return CreateShpAndShxFilesFromLinesRet;
@@ -1468,7 +1466,7 @@ namespace SBuilderX
             {
                 if (moduleLINES.Lines[N].Selected)
                 {
-                    if ((Strings.Mid(moduleLINES.Lines[N].Type, 1, 3) ?? "") == (type ?? ""))
+                    if (((moduleLINES.Lines[N].Type.Length >= 3) ? moduleLINES.Lines[N].Type.Substring(0, 3) : "") == (type ?? ""))
                     {
                         NumberOfRecordsInSelectedLinesRet = NumberOfRecordsInSelectedLinesRet + 1;
                     }
@@ -1507,7 +1505,7 @@ namespace SBuilderX
                 {
                     if (modulePOLYS.Polys[N].NoOfChilds >= 0)
                     {
-                        if ((Strings.Mid(modulePOLYS.Polys[N].Type, 1, 3) ?? "") == (type ?? ""))
+                        if (((modulePOLYS.Polys[N].Type.Length >= 3) ? modulePOLYS.Polys[N].Type.Substring(0, 3) : "") == (type ?? ""))
                         {
                             NumberOfRecordsInSelectedPolysRet = NumberOfRecordsInSelectedPolysRet + 1;
                         }
@@ -1560,7 +1558,8 @@ namespace SBuilderX
             // UiidTrail = "-0000-0000-0000-000000000000}"
             Guid myGuid;
             myGuid = Guid.NewGuid();
-            UiidTrail = Strings.Right(myGuid.ToString("B"), 29).ToUpper();
+            var GS = myGuid.ToString("B");
+            UiidTrail = GS.Substring(GS.Length - 29).ToUpper();
 
             // populate the fields
             K = 0;
@@ -1571,11 +1570,11 @@ namespace SBuilderX
                 {
                     if (modulePOLYS.Polys[N].NoOfChilds >= 0)
                     {
-                        thisType = Strings.Mid(modulePOLYS.Polys[N].Type, 1, 3);
+                        thisType = modulePOLYS.Polys[N].Type.Length >= 3 ? modulePOLYS.Polys[N].Type.Substring(0, 3) : "";
                         if ((thisType ?? "") == (type ?? "") | thisType == "XXX" & type == "EXX")
                         {
                             K = K + 1;
-                            Uiid = Strings.Format(K, "{00000000") + UiidTrail;
+                            Uiid = K.ToString("{00000000") + UiidTrail;
                             DBF.AddRecord(K, 1, Uiid);
                             if (type != "HGX")
                             {
@@ -1772,7 +1771,8 @@ namespace SBuilderX
             // UiidTrail = "-0000-0000-0000-000000000000}"
             Guid myGuid;
             myGuid = Guid.NewGuid();
-            UiidTrail = Strings.Right(myGuid.ToString("B"), 29).ToUpper();
+            var GS = myGuid.ToString("B");
+            UiidTrail = GS.Substring(GS.Length - 29).ToUpper();
 
             // populate the fields
             K = 1;
@@ -1781,9 +1781,9 @@ namespace SBuilderX
             {
                 if (moduleLINES.Lines[N].Selected)
                 {
-                    if ((Strings.Mid(moduleLINES.Lines[N].Type, 1, 3) ?? "") == (type ?? ""))
+                    if (((moduleLINES.Lines[N].Type.Length >= 3) ? moduleLINES.Lines[N].Type.Substring(0, 3) : "") == (type ?? ""))
                     {
-                        Uiid = Strings.Format(K, "{00000000") + UiidTrail;
+                        Uiid = K.ToString("{00000000") + UiidTrail;
                         DBF.AddRecord(K, 1, Uiid);
                         // DBF.AddRecord(K, 2, Lines(N).Guid)
                         if (type != "FWX")
@@ -1801,14 +1801,14 @@ namespace SBuilderX
                             // If Mid(Lines(N).Type, 4, 1) = "" Then Lanes = 2 Else Lanes = CByte(Mid(Lines(N).Type, 4, 1))   ' change from Cint() to CByte() in November 2017
                             // If Mid(Lines(N).Type, 5, 1) = "" Then DirT = "F" Else DirT = Mid(Lines(N).Type, 5, 1)
                             // then changed by Luis
-                            if (string.IsNullOrEmpty(Strings.Mid(moduleLINES.Lines[N].Type, 4, 1)))
+                            if (moduleLINES.Lines[N].Type.Length < 4)
                                 Lanes = DefaultNoOfLanes;
                             else
-                                Lanes = Conversions.ToByte(Strings.Mid(moduleLINES.Lines[N].Type, 4, 1));   // change from Cint() to CByte() in November 2017
-                            if (string.IsNullOrEmpty(Strings.Mid(moduleLINES.Lines[N].Type, 5, 1)))
+                                Lanes = Convert.ToByte(moduleLINES.Lines[N].Type.Substring(3, 1));   // change from Cint() to CByte() in November 2017
+                            if (moduleLINES.Lines[N].Type.Length < 5)
                                 DirT = DefaultTrafficDir;
                             else
-                                DirT = Strings.Mid(moduleLINES.Lines[N].Type, 5, 1);
+                                DirT = moduleLINES.Lines[N].Type.Substring(4, 1);
                             DBF.AddRecord(K, 2, Lanes.ToString());
                             DBF.AddRecord(K, 3, DirT);
                         }

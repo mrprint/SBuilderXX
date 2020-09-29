@@ -1,6 +1,5 @@
 ﻿using System;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -123,17 +122,17 @@ namespace SBuilderX
 
         private void CmdOK_Click(object sender, EventArgs e)
         {
-            moduleMAIN.SampleDistance = Conversions.ToDouble(txtDistance.Text);
+            moduleMAIN.SampleDistance = Convert.ToDouble(txtDistance.Text);
             string argPutKey = "Main";
             string argPutVariable = "SampleDistance";
-            string argPutValue = Conversion.Str(moduleMAIN.SampleDistance);
+            string argPutValue = moduleMAIN.SampleDistance.ToString();
             moduleFILE_IO.WriteIniValue(ref moduleMAIN.AppIni, ref argPutKey, ref argPutVariable, ref argPutValue);
             Dispose();
         }
 
         private void TxtDistance_Click(object sender, EventArgs e)
         {
-            moduleMAIN.SampleDistance = Conversions.ToDouble(txtDistance.Text);
+            moduleMAIN.SampleDistance = Convert.ToDouble(txtDistance.Text);
             SquareSampleDistance = moduleMAIN.SampleDistance * moduleMAIN.SampleDistance;
         }
 
@@ -273,7 +272,7 @@ namespace SBuilderX
             Array.Resize(ref auxPoly.GPoints, K + 1);
             if (K < 3)
             {
-                Interaction.MsgBox("Poly # " + Conversion.Str(Pl) + " has 2 points!", MsgBoxStyle.Critical);
+                MessageBox.Show("Poly # " + Pl + " has 2 points!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 // Exit Sub
             }
 

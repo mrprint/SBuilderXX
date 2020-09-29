@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -38,7 +36,7 @@ namespace SBuilderX
         {
             string a;
             a = "SBuilderX - Set Tying Points for Texture ";
-            a = a + Strings.UCase(modulePOLYS.PolyTex);
+            a = a + modulePOLYS.PolyTex.ToUpper();
             Text = a;
             string BmpPath = moduleMAIN.AppPath + @"\Tools\Work\temp.bmp";
             var bmp = Image.FromFile(BmpPath);
@@ -61,12 +59,12 @@ namespace SBuilderX
             var loopTo = NoOfPts;
             for (N = 1; N <= loopTo; N++)
             {
-                K = Strings.InStr(1, a, "//");
-                b = Strings.Mid(a, 1, K - 1);
-                a = Strings.Mid(a, K + 2);
-                K = Strings.InStr(1, b, ",");
-                Pts[N].X = 2 * Conversions.ToInteger(Strings.Mid(b, 1, K - 1));
-                Pts[N].Y = 512 - 2 * Conversions.ToInteger(Strings.Mid(b, K + 1));
+                K = a.IndexOf("//");
+                b = a.Substring(0, K);
+                a = a.Substring(K + 2);
+                K = b.IndexOf(",");
+                Pts[N].X = 2 * Convert.ToInt32(b.Substring(0, K));
+                Pts[N].Y = 512 - 2 * Convert.ToInt32(b.Substring(K + 1));
             }
         }
 
@@ -78,7 +76,7 @@ namespace SBuilderX
         private void DoDD()
         {
             int N;
-            N = Conversions.ToInteger(txtPY.Text);
+            N = Convert.ToInt32(txtPY.Text);
             N = N - 1;
             if (N < 0)
                 N = 0;
@@ -103,7 +101,7 @@ namespace SBuilderX
         private void DoLL()
         {
             int N;
-            N = Conversions.ToInteger(txtPX.Text);
+            N = Convert.ToInt32(txtPX.Text);
             N = N - 1;
             if (N < 0)
                 N = 0;
@@ -150,7 +148,7 @@ namespace SBuilderX
         private void DoRR()
         {
             int N;
-            N = Conversions.ToInteger(txtPX.Text);
+            N = Convert.ToInt32(txtPX.Text);
             N = N + 1;
             if (N > 256)
                 N = 256;
@@ -162,7 +160,7 @@ namespace SBuilderX
         private void DoUU()
         {
             int N;
-            N = Conversions.ToInteger(txtPY.Text);
+            N = Convert.ToInt32(txtPY.Text);
             N = N + 1;
             if (N > 256)
                 N = 256;
@@ -371,16 +369,14 @@ namespace SBuilderX
             for (N = 1; N <= loopTo; N++)
             {
                 if (Math.Abs(PX - Pts[N].X) > 3)
-                    goto next_N;
+                    continue;
                 if (Math.Abs(PY - Pts[N].Y) > 3)
-                    goto next_N;
+                    continue;
                 MoveON = true;
                 SelPt = N;
                 DisplayPoly();
                 ShowCoordinates();
                 return;
-            next_N:
-                ;
             }
         }
 
@@ -423,7 +419,7 @@ namespace SBuilderX
 
             try
             {
-                N = Conversions.ToInteger(txtPX.Text);
+                N = Convert.ToInt32(txtPX.Text);
                 if (N > 256)
                     N = 256;
                 if (N < 0)
@@ -433,7 +429,7 @@ namespace SBuilderX
                 ShowCoordinates();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 Pts[SelPt].X = N0;
                 txtPX.Text = Pt2X(SelPt).ToString();
@@ -449,7 +445,7 @@ namespace SBuilderX
 
             try
             {
-                N = Conversions.ToInteger(txtPY.Text);
+                N = Convert.ToInt32(txtPY.Text);
                 if (N > 256)
                     N = 256;
                 if (N < 0)
@@ -459,7 +455,7 @@ namespace SBuilderX
                 ShowCoordinates();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 Pts[SelPt].Y = N0;
                 txtPY.Text = Pt2Y(SelPt).ToString();

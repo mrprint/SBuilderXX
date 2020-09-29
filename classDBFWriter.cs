@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using Microsoft.VisualBasic;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -45,7 +45,7 @@ namespace SBuilderX
                     File.Delete(DBFile);
                 fs = new FileStream(DBFile, FileMode.Create);
                 bw = new BinaryWriter(fs);
-                var today = DateAndTime.Now;
+                var today = DateTime.Now;
                 bw.Write((byte)3);
                 bw.Write((byte)(today.Year - 1900));
                 bw.Write((byte)today.Month);
@@ -62,7 +62,7 @@ namespace SBuilderX
             }
             catch (Exception e)
             {
-                Interaction.MsgBox("Could not create database file!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Could not create database file!", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 fileIsOpened = false;
                 bw.Close();
                 fs.Close();
@@ -100,11 +100,11 @@ namespace SBuilderX
 
                 // now start the writing
                 int ptr = (nFields + 1) * 32;
-                name = Strings.Trim(name);           // remove any trailing or leading spaces
+                name = name.Trim();           // remove any trailing or leading spaces
                 N = name.Length;
                 if (N > 11)
                 {
-                    name = Strings.Left(name, 11);
+                    name = name.Substring(0, 11);
                     N = 11;
                 }
 
@@ -128,7 +128,7 @@ namespace SBuilderX
             }
             catch (Exception e)
             {
-                Interaction.MsgBox("Could not create database field: " + name + "!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Could not create database field: " + name + "!", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 CreateFieldRet = false;
             }
             return CreateFieldRet;
@@ -153,7 +153,7 @@ namespace SBuilderX
                 bw.Seek(NoOfBytesInHeader - 1, SeekOrigin.Begin);
                 bw.Write((byte)13);  // add the terminator for the header
                                      // fill the table with spaces
-                string mySpaces = Strings.Space(NoOfRecords * nBytesInRecord);
+                string mySpaces = new string(' ', NoOfRecords * nBytesInRecord);
                 byte[] b;      // binary.writer(string) also rights the len of string :-(
                 b = System.Text.Encoding.UTF8.GetBytes(mySpaces);   // so transform string into array of bytes
                 bw.Write(b);
@@ -166,7 +166,7 @@ namespace SBuilderX
             }
             catch (Exception e)
             {
-                Interaction.MsgBox("Could not append database fields!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Could not append database fields!", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 AppendFieldsRet = false;
                 headerDone = false;
                 return AppendFieldsRet;
@@ -192,8 +192,8 @@ namespace SBuilderX
                 int myLen = Fields[field].Lenght;
                 int ptr = NoOfBytesInHeader + nBytesInRecord * (record - 1) + FieldStart[field];
                 bw.Seek(ptr, SeekOrigin.Begin);
-                value = Strings.Trim(value);
-                value = Strings.Left(value, myLen);   // just to make sure the string can go to the allocated space
+                value = value.Trim();
+                value = value.Substring(0, myLen);   // just to make sure the string can go to the allocated space
                 b = System.Text.Encoding.UTF8.GetBytes(value);   // transform string into array of bytes
                 bw.Write(b);
                 AddRecordRet = true;

@@ -1,6 +1,4 @@
 ﻿using System;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -31,7 +29,7 @@ namespace SBuilderX
                 return;
             }
 
-            txtHeight.Text = Conversion.Str(GetHeight());
+            txtHeight.Text = GetHeight().ToString();
         }
 
         private double GetHeight()
@@ -108,7 +106,7 @@ namespace SBuilderX
             for (K = 2; K <= loopTo; K++)
                 L[K] = L[K - 1] + GetDistanceP1P2(modulePOPUP.POPIndex, K - 1, K);
             double W = L[NP] / 2d;
-            double H = Conversion.Val(txtHeight.Text);
+            double H = Convert.ToDouble(txtHeight.Text);
             double W3 = W * W * W;
             double K1 = 6d * H / W3;
             double K2 = -K1 / 3d;
@@ -133,8 +131,8 @@ namespace SBuilderX
             My.MyProject.Forms.FrmLinesP.ProfileGuid = txtProfileGuid.Text;
             My.MyProject.Forms.FrmLinesP.MaterialGuid = txtMaterialGuid.Text;
             My.MyProject.Forms.FrmLinesP.PylonGuid = txtPylonGuid.Text;
-            My.MyProject.Forms.FrmLinesP.ExtrusionWidth = Conversions.ToDouble(txtWidth.Text);
-            My.MyProject.Forms.FrmLinesP.ExtrusionProbability = Conversions.ToDouble(txtProbability.Text);
+            My.MyProject.Forms.FrmLinesP.ExtrusionWidth = Convert.ToDouble(txtWidth.Text);
+            My.MyProject.Forms.FrmLinesP.ExtrusionProbability = Convert.ToDouble(txtProbability.Text);
             My.MyProject.Forms.FrmLinesP.SuppressPlatform = false;
             if (ckSuppress.Checked)
                 My.MyProject.Forms.FrmLinesP.SuppressPlatform = true;

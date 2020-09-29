@@ -5,8 +5,6 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 using FSUIPC;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -236,12 +234,12 @@ namespace SBuilderX
             N = lstMacro.SelectedIndex + 1;
             K = cmbMacroCat.SelectedIndex + 1;
             b = moduleMACROS.MacroCategories[K].MacroObjects[N].File;
-            a = Strings.Right(b, 3);
+            a = b.Substring(b.Length - 3);
             if (a == "API")
                 a = moduleMACROS.MacroAPIPath + @"\";
             if (a == "SCM")
                 a = moduleMACROS.MacroASDPath + @"\";
-            FileSystem.ChDir(a);
+            Directory.SetCurrentDirectory(a);
             b = a + b;
             a = "notepad.exe " + b;
             N = moduleMAIN.ExecCmd(a);
@@ -257,13 +255,13 @@ namespace SBuilderX
 
                 moduleOBJECTS.Objects[N].Width = 10f;
                 moduleOBJECTS.Objects[N].Length = 10f;
-                moduleOBJECTS.Objects[N].Heading = Conversions.ToSingle(txtHeading.Text);
-                moduleOBJECTS.Objects[N].Pitch = Conversions.ToSingle(txtPitch.Text);
-                moduleOBJECTS.Objects[N].Bank = Conversions.ToSingle(txtBank.Text);
-                moduleOBJECTS.Objects[N].BiasX = Conversions.ToSingle(txtBiasX.Text);
-                moduleOBJECTS.Objects[N].BiasY = Conversions.ToSingle(txtBiasY.Text);
-                moduleOBJECTS.Objects[N].BiasZ = Conversions.ToSingle(txtBiasZ.Text);
-                moduleOBJECTS.Objects[N].Altitude = Conversions.ToSingle(txtAltitude.Text);
+                moduleOBJECTS.Objects[N].Heading = Convert.ToSingle(txtHeading.Text);
+                moduleOBJECTS.Objects[N].Pitch = Convert.ToSingle(txtPitch.Text);
+                moduleOBJECTS.Objects[N].Bank = Convert.ToSingle(txtBank.Text);
+                moduleOBJECTS.Objects[N].BiasX = Convert.ToSingle(txtBiasX.Text);
+                moduleOBJECTS.Objects[N].BiasY = Convert.ToSingle(txtBiasY.Text);
+                moduleOBJECTS.Objects[N].BiasZ = Convert.ToSingle(txtBiasZ.Text);
+                moduleOBJECTS.Objects[N].Altitude = Convert.ToSingle(txtAltitude.Text);
                 moduleOBJECTS.Objects[N].AGL = (int)ckAGL.CheckState;
                 if (opVSparse.Checked)
                     moduleOBJECTS.Objects[N].Complexity = 0;
@@ -293,40 +291,40 @@ namespace SBuilderX
                     }
 
                     moduleOBJECTS.ObjLibID = txtLibID.Text;
-                    moduleOBJECTS.ObjLibScale = Conversions.ToSingle(txtLibScale.Text);
-                    moduleOBJECTS.ObjLibV1 = Conversions.ToSingle(txtV1.Text);
-                    moduleOBJECTS.ObjLibV2 = Conversions.ToSingle(txtV2.Text);
-                    moduleOBJECTS.Objects[N].Width = Conversions.ToSingle(txtLibWidth.Text);
-                    moduleOBJECTS.Objects[N].Length = Conversions.ToSingle(txtLibLength.Text);
+                    moduleOBJECTS.ObjLibScale = Convert.ToSingle(txtLibScale.Text);
+                    moduleOBJECTS.ObjLibV1 = Convert.ToSingle(txtV1.Text);
+                    moduleOBJECTS.ObjLibV2 = Convert.ToSingle(txtV2.Text);
+                    moduleOBJECTS.Objects[N].Width = Convert.ToSingle(txtLibWidth.Text);
+                    moduleOBJECTS.Objects[N].Length = Convert.ToSingle(txtLibLength.Text);
                 }
 
                 if (optRwy12.Checked)
                 {
                     moduleOBJECTS.Objects[N].Type = 3;
                     moduleOBJECTS.ObjLibID = txtRwy12ID.Text;
-                    moduleOBJECTS.ObjLibScale = Conversions.ToSingle(txtRwy12Scale.Text);
-                    moduleOBJECTS.Objects[N].Width = Conversions.ToSingle(txtRwy12Width.Text);
-                    moduleOBJECTS.Objects[N].Length = Conversions.ToSingle(txtRwy12Length.Text);
+                    moduleOBJECTS.ObjLibScale = Convert.ToSingle(txtRwy12Scale.Text);
+                    moduleOBJECTS.Objects[N].Width = Convert.ToSingle(txtRwy12Width.Text);
+                    moduleOBJECTS.Objects[N].Length = Convert.ToSingle(txtRwy12Length.Text);
                 }
 
                 Macro = "";
                 if (optMacro.Checked)
                 {
-                    if (Strings.Right(moduleMACROS.MacroID, 3) == "API")
+                    if (moduleMACROS.MacroID.Substring(moduleMACROS.MacroID.Length - 3) == "API")
                         Macro = "API";
-                    if (Strings.Right(moduleMACROS.MacroID, 3) == "SCM")
+                    if (moduleMACROS.MacroID.Substring(moduleMACROS.MacroID.Length - 3) == "SCM")
                         Macro = "ASD";
                 }
 
                 if (Macro == "API")
                 {
                     moduleOBJECTS.Objects[N].Type = 4;
-                    moduleOBJECTS.Objects[N].Width = Conversions.ToSingle(txtMacroWidth.Text);
-                    moduleOBJECTS.Objects[N].Length = Conversions.ToSingle(txtMacroLength.Text);
-                    moduleMACROS.MacroScale = Conversions.ToSingle(txtMacroScale.Text);
-                    moduleMACROS.MacroRange = Conversions.ToInteger(txtMacroRange.Text);
-                    moduleMACROS.MacroVisibility = Conversions.ToSingle(txtV1.Text);
-                    moduleMACROS.MacroV2Value = Conversions.ToSingle(txtV2.Text);
+                    moduleOBJECTS.Objects[N].Width = Convert.ToSingle(txtMacroWidth.Text);
+                    moduleOBJECTS.Objects[N].Length = Convert.ToSingle(txtMacroLength.Text);
+                    moduleMACROS.MacroScale = Convert.ToSingle(txtMacroScale.Text);
+                    moduleMACROS.MacroRange = Convert.ToInt32(txtMacroRange.Text);
+                    moduleMACROS.MacroVisibility = Convert.ToSingle(txtV1.Text);
+                    moduleMACROS.MacroV2Value = Convert.ToSingle(txtV2.Text);
                     moduleMACROS.MacroP6Value = txtP6.Text;
                     moduleMACROS.MacroP7Value = txtP7.Text;
                     moduleMACROS.MacroP8Value = txtP8.Text;
@@ -336,11 +334,11 @@ namespace SBuilderX
                 if (Macro == "ASD")
                 {
                     moduleOBJECTS.Objects[N].Type = 5;
-                    moduleOBJECTS.Objects[N].Width = Conversions.ToSingle(txtMacroWidth.Text);
-                    moduleOBJECTS.Objects[N].Length = Conversions.ToSingle(txtMacroLength.Text);
-                    moduleMACROS.MacroScale = Conversions.ToSingle(txtMacroScale.Text);
-                    moduleMACROS.MacroRange = Conversions.ToInteger(txtMacroRange.Text);
-                    moduleMACROS.MacroVisibility = Conversions.ToSingle(txtV1.Text);
+                    moduleOBJECTS.Objects[N].Width = Convert.ToSingle(txtMacroWidth.Text);
+                    moduleOBJECTS.Objects[N].Length = Convert.ToSingle(txtMacroLength.Text);
+                    moduleMACROS.MacroScale = Convert.ToSingle(txtMacroScale.Text);
+                    moduleMACROS.MacroRange = Convert.ToInt32(txtMacroRange.Text);
+                    moduleMACROS.MacroVisibility = Convert.ToSingle(txtV1.Text);
                     moduleMACROS.MacroP6Value = txtP6.Text;
                     moduleMACROS.MacroP7Value = txtP7.Text;
                     moduleMACROS.MacroP8Value = txtP8.Text;
@@ -351,7 +349,7 @@ namespace SBuilderX
                 if (optTaxiwaySign.Checked)
                 {
                     moduleOBJECTS.Objects[N].Type = 8;
-                    moduleOBJECTS.ObjTaxSize = Conversions.ToInteger(combTaxiwaySize.Text);
+                    moduleOBJECTS.ObjTaxSize = Convert.ToInt32(combTaxiwaySize.Text);
                     moduleOBJECTS.ObjTaxJust = combTaxiwayJustification.Text;
                     moduleOBJECTS.ObjTaxLabel = txtTaxiwayText.Text;
                 }
@@ -389,21 +387,21 @@ namespace SBuilderX
                     moduleOBJECTS.ObjWinLight = 0;
                     if ((int)ckWindsockLight.CheckState == 1)
                         moduleOBJECTS.ObjWinLight = 1;
-                    moduleOBJECTS.ObjWinLength = Conversions.ToSingle(txtWindsockLength.Text);
-                    moduleOBJECTS.ObjWinHeight = Conversions.ToSingle(txtWindsockHeight.Text);
+                    moduleOBJECTS.ObjWinLength = Convert.ToSingle(txtWindsockLength.Text);
+                    moduleOBJECTS.ObjWinHeight = Convert.ToSingle(txtWindsockHeight.Text);
                     moduleOBJECTS.ObjWindPoleColor = ColorTranslator.ToOle(txtWindsockHeight.BackColor);
                     moduleOBJECTS.ObjWindSockColor = ColorTranslator.ToOle(txtWindsockLength.BackColor);
                 }
 
                 if (optMDL.Checked)
                 {
-                    moduleOBJECTS.Objects[N].Width = Conversions.ToSingle(txtMDLWidth.Text);
-                    moduleOBJECTS.Objects[N].Length = Conversions.ToSingle(txtMDLLength.Text);
+                    moduleOBJECTS.Objects[N].Width = Convert.ToSingle(txtMDLWidth.Text);
+                    moduleOBJECTS.Objects[N].Length = Convert.ToSingle(txtMDLLength.Text);
                     moduleOBJECTS.ObjMDLFile = txtMDLFile.Text;
                     moduleOBJECTS.ObjMDLGuid = labelMDLguid.Text;
-                    moduleOBJECTS.ObjMDLScale = (float)Conversion.Val(txtMDLscale.Text);
+                    moduleOBJECTS.ObjMDLScale = Convert.ToSingle(txtMDLscale.Text);
                     moduleOBJECTS.ObjMDLName = labelMDLName.Text;
-                    if (Strings.Mid(moduleOBJECTS.ObjMDLGuid, 1, 1) == "{")
+                    if (moduleOBJECTS.ObjMDLGuid.Substring(0, 1) == "{")
                     {
                         moduleOBJECTS.Objects[N].Type = 128;  // FSX type
                     }
@@ -434,9 +432,9 @@ namespace SBuilderX
 
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Could not set object properties!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Could not set object properties!", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -469,7 +467,7 @@ namespace SBuilderX
                 moduleOBJECTS.Objects[N].lat = moduleMAIN.Str2Lat(txtLat.Text);
                 moduleOBJECTS.Objects[N].lon = moduleMAIN.Str2Lon(txtLon.Text);
                 moduleOBJECTS.ObjComment = txtComment.Text;
-                moduleOBJECTS.ObjComment = Strings.Replace(moduleOBJECTS.ObjComment, " ", "_");
+                moduleOBJECTS.ObjComment = moduleOBJECTS.ObjComment.Replace(" ", "_");
                 moduleOBJECTS.Objects[N].Description = moduleOBJECTS.MakeDescription(N);
                 moduleOBJECTS.AddLatLonToObjects(N);
             }
@@ -526,7 +524,7 @@ namespace SBuilderX
         {
             if (moduleOBJECTS.NoOfObjects < 2)
             {
-                Interaction.MsgBox("At least 2 objects must exist!", MsgBoxStyle.Information);
+                MessageBox.Show("At least 2 objects must exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -569,16 +567,16 @@ namespace SBuilderX
             catch (Exception ex)
             {
                 FSUIPCConnection.Close();
-                Interaction.MsgBox("Error communicating with FSUIPC!", MsgBoxStyle.Information);
+                MessageBox.Show("Error communicating with FSUIPC!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             txtLon.Text = moduleMAIN.Lon2Str(Lon);
             txtLat.Text = moduleMAIN.Lat2Str(Lat);
-            txtAltitude.Text = Strings.Format(Altitude, "0.000");
-            txtBank.Text = Strings.Format(Bank, "0.000");
-            txtPitch.Text = Strings.Format(Pitch, "0.000");
-            txtHeading.Text = Strings.Format(Heading, "0.000");
+            txtAltitude.Text = Altitude.ToString("0.000");
+            txtBank.Text = Bank.ToString("0.000");
+            txtPitch.Text = Pitch.ToString("0.000");
+            txtHeading.Text = Heading.ToString("0.000");
         }
 
         private void CmdTaxiwayHelp_Click(object eventSender, EventArgs eventArgs)
@@ -677,8 +675,8 @@ namespace SBuilderX
                     optLib.Checked = true;
                     SetEnableLib(true);
                     a = moduleOBJECTS.Objects[N].Description;
-                    K = Strings.InStr(1, a, "|");
-                    moduleOBJECTS.ObjLibID = Strings.Mid(a, 1, K - 1);
+                    K = a.IndexOf("|");
+                    moduleOBJECTS.ObjLibID = a.Substring(0, K);
                     FillLibList();
                     moduleOBJECTS.ObjLibType = 2;
                     moduleOBJECTS.AnalyseLibObject(N);
@@ -697,8 +695,8 @@ namespace SBuilderX
                     optLib.Checked = true;
                     SetEnableLib(true);
                     a = moduleOBJECTS.Objects[N].Description;
-                    K = Strings.InStr(1, a, "|");
-                    moduleOBJECTS.ObjLibID = Strings.Mid(a, 1, K - 1);
+                    K = a.IndexOf("|");
+                    moduleOBJECTS.ObjLibID = a.Substring(0, K);
                     FillLibList();
                     moduleOBJECTS.ObjLibType = 0;
                     moduleOBJECTS.AnalyseLibObject(N);
@@ -717,8 +715,8 @@ namespace SBuilderX
                     optLib.Checked = true;
                     SetEnableLib(true);
                     a = moduleOBJECTS.Objects[N].Description;
-                    K = Strings.InStr(1, a, "|");
-                    moduleOBJECTS.ObjLibID = Strings.Mid(a, 1, K - 1);
+                    K = a.IndexOf("|");
+                    moduleOBJECTS.ObjLibID = a.Substring(0, K);
                     FillLibList();
                     moduleOBJECTS.ObjLibType = 1;
                     moduleOBJECTS.AnalyseLibObject(N);
@@ -739,8 +737,8 @@ namespace SBuilderX
                         optRwy12.Checked = true;
                         SetEnableRwy12(true);
                         a = moduleOBJECTS.Objects[N].Description;
-                        K = Strings.InStr(1, a, "|");
-                        moduleOBJECTS.ObjLibID = Strings.Mid(a, 1, K - 1);
+                        K = a.IndexOf("|");
+                        moduleOBJECTS.ObjLibID = a.Substring(0, K);
                         FillRwy12List();
                         moduleOBJECTS.ObjLibType = 1;
                         moduleOBJECTS.AnalyseLibObject(N);
@@ -752,12 +750,12 @@ namespace SBuilderX
                     }
                     else
                     {
-                        Interaction.MsgBox("You can not edit this object as a Rwy12 object!", MsgBoxStyle.Exclamation);
+                        MessageBox.Show("You can not edit this object as a Rwy12 object!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         optLib.Checked = true;
                         SetEnableLib(true);
                         a = moduleOBJECTS.Objects[N].Description;
-                        K = Strings.InStr(1, a, "|");
-                        moduleOBJECTS.ObjLibID = Strings.Mid(a, 1, K - 1);
+                        K = a.IndexOf("|");
+                        moduleOBJECTS.ObjLibID = a.Substring(0, K);
                         FillLibList();
                         moduleOBJECTS.ObjLibType = 1;
                         moduleOBJECTS.AnalyseLibObject(N);
@@ -777,8 +775,8 @@ namespace SBuilderX
                         optMacro.Checked = true;
                         SetEnableMacro(true);
                         a = moduleOBJECTS.Objects[N].Description;
-                        K = Strings.InStr(1, a, "|");
-                        moduleMACROS.MacroID = Strings.Mid(a, 1, K - 1);
+                        K = a.IndexOf("|");
+                        moduleMACROS.MacroID = a.Substring(0, K);
                         FillMacroList(); // uses MacroID
                         moduleMACROS.AnalyseAPIMacro(N);
                         txtMacroScale.Text = moduleMACROS.MacroScale.ToString();
@@ -795,7 +793,7 @@ namespace SBuilderX
                     }
                     else
                     {
-                        Interaction.MsgBox("You can not edit this object as an API macro!", MsgBoxStyle.Exclamation);
+                        MessageBox.Show("You can not edit this object as an API macro!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
 
@@ -806,8 +804,8 @@ namespace SBuilderX
                         optMacro.Checked = true;
                         SetEnableMacro(true);
                         a = moduleOBJECTS.Objects[N].Description;
-                        K = Strings.InStr(1, a, "|");
-                        moduleMACROS.MacroID = Strings.Mid(a, 1, K - 1);
+                        K = a.IndexOf("|");
+                        moduleMACROS.MacroID = a.Substring(0, K);
                         FillMacroList(); // uses MacroID
                         moduleMACROS.AnalyseASDMacro(N);
                         txtMacroScale.Text = moduleMACROS.MacroScale.ToString();
@@ -823,7 +821,7 @@ namespace SBuilderX
                     }
                     else
                     {
-                        Interaction.MsgBox("You can not edit this object as an ASD macro!", MsgBoxStyle.Exclamation);
+                        MessageBox.Show("You can not edit this object as an ASD macro!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
 
@@ -1220,7 +1218,7 @@ namespace SBuilderX
 
         private void OptMacro_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if (Conversions.ToBoolean(eventSender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1236,7 +1234,7 @@ namespace SBuilderX
 
         private void OptEffect_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if (Conversions.ToBoolean(eventSender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1250,7 +1248,7 @@ namespace SBuilderX
 
         private void OptLib_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if (Conversions.ToBoolean(eventSender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1264,7 +1262,7 @@ namespace SBuilderX
 
         private void OptRwy12_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if (Conversions.ToBoolean(eventSender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1280,7 +1278,7 @@ namespace SBuilderX
 
         private void OptBeacon_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if (Conversions.ToBoolean(eventSender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1293,7 +1291,7 @@ namespace SBuilderX
 
         private void OptTaxiwaySign_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if (Conversions.ToBoolean(eventSender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1307,7 +1305,7 @@ namespace SBuilderX
 
         private void OptWindSock_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if (Conversions.ToBoolean(eventSender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1321,7 +1319,7 @@ namespace SBuilderX
 
         private void OptMDL_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if (Conversions.ToBoolean(eventSender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1335,7 +1333,7 @@ namespace SBuilderX
 
         private void OptGenB_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if (Conversions.ToBoolean(eventSender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1411,7 +1409,7 @@ namespace SBuilderX
                     foreach (var currentG in moduleOBJECTS.LibCategories[K].Objs)
                     {
                         g = currentG;
-                        if (Conversions.ToBoolean(Operators.ConditionalCompareObjectEqual(g.ID, moduleOBJECTS.ObjLibID, false)))
+                        if (g.ID == moduleOBJECTS.ObjLibID)
                         {
                             myLibObj = g;
                             Found = true;
@@ -1623,7 +1621,8 @@ namespace SBuilderX
         private void ShowMacro(int C, int M)
         {
             string a;
-            a = Strings.Right(moduleMACROS.MacroCategories[C].MacroObjects[M].File, 3);
+            a = moduleMACROS.MacroCategories[C].MacroObjects[M].File;
+            a = a.Substring(a.Length - 3);
 
             // after 205
             txtComment.Text = moduleMACROS.MacroCategories[C].MacroObjects[M].Name;
@@ -1797,7 +1796,7 @@ namespace SBuilderX
             }
             else
             {
-                Interaction.MsgBox("Not a valid MDL");
+                MessageBox.Show("Not a valid MDL");
             }
 
             // should I realy comment the following? October 2017
@@ -1919,9 +1918,9 @@ namespace SBuilderX
             myObj.ID = moduleOBJECTS.LibCategories[K].Objs[N].ID;
             myObj.Name = txtLibName.Text;
             myObj.Type = moduleOBJECTS.LibCategories[K].Objs[N].Type;
-            myObj.Width = (float)Conversion.Val(txtLibWidth.Text);
-            myObj.Length = (float)Conversion.Val(txtLibLength.Text);
-            myObj.Scaling = (float)Conversion.Val(txtLibScale.Text);
+            myObj.Width = Convert.ToSingle(txtLibWidth.Text);
+            myObj.Length = Convert.ToSingle(txtLibLength.Text);
+            myObj.Scaling = Convert.ToSingle(txtLibScale.Text);
             moduleOBJECTS.LibCategories[K].Objs[N] = myObj;
             lstLib.Items.Clear();
             moduleOBJECTS.LibObject g;
@@ -1941,7 +1940,7 @@ namespace SBuilderX
             foreach (var currentG1 in moduleOBJECTS.LibCategories[K].Objs)
             {
                 g = currentG1;
-                A = Conversions.ToString(Operators.ConcatenateObject(Operators.ConcatenateObject(Operators.ConcatenateObject(Operators.ConcatenateObject(Operators.ConcatenateObject(Operators.ConcatenateObject(Operators.ConcatenateObject(Operators.ConcatenateObject(Operators.ConcatenateObject(Operators.ConcatenateObject(g.ID, " "), g.Type), " "), g.Width), " "), g.Length), " "), g.Scaling), " "), g.Name));
+                A = g.ID + " " + g.Type + " " + g.Width + " " + g.Length + " " + g.Scaling + " " + g.Name;
                 fileWriter.WriteLine(A);
             }
 
@@ -1985,7 +1984,7 @@ namespace SBuilderX
                 }
                 catch (Exception ex)
                 {
-                    Interaction.MsgBox("Could not save the image!", MsgBoxStyle.Information);
+                    MessageBox.Show("Could not save the image!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
 
@@ -1997,8 +1996,8 @@ namespace SBuilderX
         private void ImgRwy12_MouseDown(object sender, MouseEventArgs e)
         {
             short Button = (short)((int)e.Button / 0x100000);
-            int N = Strings.InStrRev(moduleMAIN.ImageFileName, @"\");
-            string A = Strings.UCase(Strings.Mid(moduleMAIN.ImageFileName, N + 1));
+            int N = moduleMAIN.ImageFileName.LastIndexOf(@"\");
+            string A = moduleMAIN.ImageFileName.Substring(N + 1).ToUpper();
             if (Button == 1)
             {
                 if (A != "NA.JPG")
@@ -2025,8 +2024,8 @@ namespace SBuilderX
         private void ImgMacro_MouseDown(object sender, MouseEventArgs e)
         {
             short Button = (short)((int)e.Button / 0x100000);
-            int N = Strings.InStrRev(moduleMAIN.ImageFileName, @"\");
-            string A = Strings.UCase(Strings.Mid(moduleMAIN.ImageFileName, N + 1));
+            int N = moduleMAIN.ImageFileName.LastIndexOf(@"\");
+            string A = moduleMAIN.ImageFileName.Substring(N + 1).ToUpper();
             if (Button == 1)
             {
                 if (A != "NA.JPG")
@@ -2053,8 +2052,8 @@ namespace SBuilderX
         private void ImgLib_MouseDown(object sender, MouseEventArgs e)
         {
             short Button = (short)((int)e.Button / 0x100000);
-            int N = Strings.InStrRev(moduleMAIN.ImageFileName, @"\");
-            string A = Strings.UCase(Strings.Mid(moduleMAIN.ImageFileName, N + 1));
+            int N = moduleMAIN.ImageFileName.LastIndexOf(@"\");
+            string A = moduleMAIN.ImageFileName.Substring(N + 1).ToUpper();
             if (A == "UNKNOWN.JPG")
             {
                 ShowPopUpMenu(false);
@@ -2131,9 +2130,9 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                string a = "Could not delete the file:" + Constants.vbCrLf;
+                string a = "Could not delete the file:" + Environment.NewLine;
                 a = a + moduleMAIN.ImageFileNameTrue;
-                Interaction.MsgBox(a, MsgBoxStyle.Information);
+                MessageBox.Show(a, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -2177,16 +2176,16 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                a = "The file can not be used as a thumbnail" + Constants.vbCrLf;
-                Interaction.MsgBox(a, MsgBoxStyle.Information);
+                a = "The file can not be used as a thumbnail" + Environment.NewLine;
+                MessageBox.Show(a, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void PurgePopUPMenuItem_Click(object sender, EventArgs e)
         {
-            string A = "Do you want to delete unused Thumbnail Jpegs" + Constants.vbCrLf;
+            string A = "Do you want to delete unused Thumbnail Jpegs" + Environment.NewLine;
             A = A + "found in the directory for this category of objects ?";
-            if (Interaction.MsgBox(A, MsgBoxStyle.OkCancel) == MsgBoxResult.Cancel)
+            if (MessageBox.Show(A, "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
             {
                 return;
             }
@@ -2291,9 +2290,9 @@ namespace SBuilderX
                 type = 260;
             if (optGbMultiSided.Checked)
                 type = 261;
-            string width = Strings.Trim(Conversion.Str(nUPsizeX.Value));
-            string lenght = Strings.Trim(Conversion.Str(nUPsizeZ.Value));
-            string scale = Strings.Trim(Conversion.Str(nUPscale.Value));
+            string width = nUPsizeX.Value.ToString().Trim();
+            string lenght = nUPsizeZ.Value.ToString().Trim();
+            string scale = nUPscale.Value.ToString().Trim();
 
             // bottomTexture = nUPbottomTexture.Value
             // roofTexture = nUProofTexture.Value
@@ -2303,10 +2302,10 @@ namespace SBuilderX
             string textures = moduleOBJECTS.MakeGBTextures();
             string indexes = moduleOBJECTS.MakeGBIndexes(type);
             string name = txtComment.Text;
-            name = Strings.Replace(name, " ", "_");
+            name = name.Replace(" ", "_");
             if (string.IsNullOrEmpty(name))
                 name = "Generic_Building_No_Name";
-            string myLine = type.ToString() + " " + width + " " + lenght + " " + scale + " " + textures + " " + indexes + " " + name + Constants.vbCrLf;
+            string myLine = type.ToString() + " " + width + " " + lenght + " " + scale + " " + textures + " " + indexes + " " + name + Environment.NewLine;
             moduleOBJECTS.NoOfGenBObjects = moduleOBJECTS.NoOfGenBObjects + 1;
             Array.Resize(ref moduleOBJECTS.GenBObjects, moduleOBJECTS.NoOfGenBObjects + 1);
             int K = lstGenB.SelectedIndex + 1;
@@ -2320,9 +2319,9 @@ namespace SBuilderX
             for (N = moduleOBJECTS.NoOfGenBObjects; N >= loopTo; N -= 1)
                 moduleOBJECTS.GenBObjects[N] = moduleOBJECTS.GenBObjects[N - 1];
             moduleOBJECTS.GenBObjects[K].type = type;
-            moduleOBJECTS.GenBObjects[K].sizeX = (float)Conversion.Val(width);
-            moduleOBJECTS.GenBObjects[K].sizeZ = (float)Conversion.Val(lenght);
-            moduleOBJECTS.GenBObjects[K].scale = (float)Conversion.Val(scale);
+            moduleOBJECTS.GenBObjects[K].sizeX = Convert.ToSingle(width);
+            moduleOBJECTS.GenBObjects[K].sizeZ = Convert.ToSingle(lenght);
+            moduleOBJECTS.GenBObjects[K].scale = Convert.ToSingle(scale);
             moduleOBJECTS.GenBObjects[K].textures = textures;
             moduleOBJECTS.GenBObjects[K].indexes = indexes;
             moduleOBJECTS.GenBObjects[K].name = name;
@@ -2344,7 +2343,7 @@ namespace SBuilderX
                 N = N + 1;
                 if (N == K)
                     newText = newText + myLine;
-                newText = newText + line + Constants.vbCrLf;
+                newText = newText + line + Environment.NewLine;
             }
 
             // should I realy comment the following? October 2017
@@ -2392,7 +2391,7 @@ namespace SBuilderX
                 N = N + 1;
                 if (!(N == K))
                 {
-                    newText = newText + line + Constants.vbCrLf;
+                    newText = newText + line + Environment.NewLine;
                 }
             }
 
@@ -2416,7 +2415,7 @@ namespace SBuilderX
             string indexes = moduleOBJECTS.GenBObjects[K].indexes;
             string name = moduleOBJECTS.GenBObjects[K].name;
             moduleOBJECTS.Objects[0].Type = type;
-            moduleOBJECTS.Objects[0].Description = Strings.Trim(Conversion.Str(moduleOBJECTS.scale_gb)) + "|" + textures + "|" + indexes + "|" + name;
+            moduleOBJECTS.Objects[0].Description = moduleOBJECTS.scale_gb.ToString().Trim() + "|" + textures + "|" + indexes + "|" + name;
             moduleOBJECTS.AnalyseGenBObject(0);
             moduleOBJECTS.ObjComment = name;
             txtComment.Text = name;
@@ -2464,8 +2463,8 @@ namespace SBuilderX
         private void ImgGenB_MouseDown(object sender, MouseEventArgs e)
         {
             short Button = (short)((int)e.Button / 0x100000);
-            int N = Strings.InStrRev(moduleMAIN.ImageFileName, @"\");
-            string A = Strings.UCase(Strings.Mid(moduleMAIN.ImageFileName, N + 1));
+            int N = moduleMAIN.ImageFileName.LastIndexOf(@"\");
+            string A = moduleMAIN.ImageFileName.Substring(N + 1).ToUpper();
             if (Button == 1)
             {
                 if (A != "NA.JPG")

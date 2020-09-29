@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Reflection;
+using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using TileServer;
 
@@ -80,7 +81,7 @@ namespace SBuilderX
             myFiles = Directory.GetFiles(myFolder + @"\Tiles", "*.dll");
             foreach (string foundFile in My.MyProject.Computer.FileSystem.GetFiles(moduleMAIN.AppPath + @"\Tiles", Microsoft.VisualBasic.FileIO.SearchOption.SearchTopLevelOnly, "L*"))
             {
-                Interaction.MsgBox(foundFile);
+                MessageBox.Show(foundFile);
                 My.MyProject.Computer.FileSystem.DeleteFile(foundFile);
             }
 
@@ -163,7 +164,7 @@ namespace SBuilderX
             double dXY;
             dXY = moduleMAIN.PI / Math.Pow(2d, Z);
             lon = moduleMAIN.PI + lon * pi_180;
-            XTilesFromLonRet = (int)Conversion.Int(lon / dXY);
+            XTilesFromLonRet = (int)(lon / dXY);
             return XTilesFromLonRet;
         }
 
@@ -177,7 +178,7 @@ namespace SBuilderX
             lat = Math.Tan(lat);
             lat = Math.Log(lat);
             lat = moduleMAIN.PI - lat;
-            YTilesFromLatRet = (int)Conversion.Int(lat / dXY);
+            YTilesFromLatRet = (int)(lat / dXY);
             return YTilesFromLatRet;
         }
 
@@ -575,7 +576,7 @@ namespace SBuilderX
             }
 
             if (Problem == true)
-                Interaction.MsgBox("Geotiff file may have some problems!");
+                MessageBox.Show("Geotiff file may have some problems!");
             File.WriteAllBytes(Filename, buffer);
             buffer = new byte[1];
             string Name = "Photo_L" + moduleMAIN.Zoom.ToString();
@@ -594,9 +595,9 @@ namespace SBuilderX
             FullFile = DataPath + @"\" + DataFile;
             if (File.Exists(FullFile))
             {
-                A = "The data file:" + Constants.vbCrLf + Constants.vbCrLf + DataFile + Constants.vbCrLf + Constants.vbCrLf;
+                A = "The data file:" + Environment.NewLine + Environment.NewLine + DataFile + Environment.NewLine + Environment.NewLine;
                 A = A + "already exists! Overwrite?";
-                if ((int)Interaction.MsgBox(A, MsgBoxStyle.YesNo | MsgBoxStyle.Question) == 7)
+                if (DialogResult.No == MessageBox.Show(A, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                     return;
             }
 
@@ -626,10 +627,10 @@ namespace SBuilderX
             {
                 if (moduleMAPS.Maps[N].Selected)
                 {
-                    A = Strings.UCase(Strings.Mid(moduleMAPS.Maps[N].Name, 1, 5));
+                    A = moduleMAPS.Maps[N].Name.Substring(0, 5).ToUpper();
                     if (A == "PHOTO")
                     {
-                        A = Strings.UCase(Path.GetExtension(moduleMAPS.Maps[N].BMPSu));
+                        A = Path.GetExtension(moduleMAPS.Maps[N].BMPSu).ToUpper();
                         if (A == ".BMP")
                         {
                             MakeThisBglPhoto(N, CopyBGLs);
@@ -803,10 +804,10 @@ namespace SBuilderX
                     FileSystem.PrintLine(3, "   Channel_LandWaterMask = " + (NoOfSources + 2).ToString() + ".0");
                 FileSystem.PrintLine(3, "   NullValue = 255,255,255");
                 FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(moduleMAPS.Maps[N].NLAT));
-                FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(moduleMAPS.Maps[N].WLON));
-                FileSystem.PrintLine(3, "   xDim = " + Conversion.Str((moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS));
-                FileSystem.PrintLine(3, "   yDim = " + Conversion.Str((moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS));
+                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
             }
 
             if (IsBlend)
@@ -818,10 +819,10 @@ namespace SBuilderX
                 FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
                 FileSystem.PrintLine(3, "   SourceFile = " + '"' + BlendName + '"');
                 FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(moduleMAPS.Maps[N].NLAT));
-                FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(moduleMAPS.Maps[N].WLON));
-                FileSystem.PrintLine(3, "   xDim = " + Conversion.Str((moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS));
-                FileSystem.PrintLine(3, "   yDim = " + Conversion.Str((moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS));
+                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
             }
 
             if (IsWater)
@@ -836,10 +837,10 @@ namespace SBuilderX
                 FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
                 FileSystem.PrintLine(3, "   SourceFile = " + '"' + WaterName + '"');
                 FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(moduleMAPS.Maps[N].NLAT));
-                FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(moduleMAPS.Maps[N].WLON));
-                FileSystem.PrintLine(3, "   xDim = " + Conversion.Str((moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS));
-                FileSystem.PrintLine(3, "   yDim = " + Conversion.Str((moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS));
+                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
             }
 
             FileSystem.PrintLine(3);
@@ -851,8 +852,7 @@ namespace SBuilderX
             FileSystem.PrintLine(3, "   UseSourceDimensions = 1");
             FileSystem.PrintLine(3, "   CompressionQuality = " + CompressionQuality.ToString());
             FileSystem.FileClose(3);
-            FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-            FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
+            Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             moduleMAIN.ExecCmd(Command);
             if (!CopyBGLs)
                 return;
@@ -866,7 +866,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Copying BGL files failed! Try to close FSX.", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -928,10 +928,10 @@ namespace SBuilderX
                 FileSystem.PrintLine(3, "   Channel_LandWaterMask = 3.0");
             FileSystem.PrintLine(3, "   NullValue = 255,255,255");
             FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-            FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(moduleMAPS.Maps[N].NLAT));
-            FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(moduleMAPS.Maps[N].WLON));
-            FileSystem.PrintLine(3, "   xDim = " + Conversion.Str((moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS));
-            FileSystem.PrintLine(3, "   yDim = " + Conversion.Str((moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS));
+            FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+            FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
+            FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+            FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
             if (IsBlend)
             {
                 FileSystem.PrintLine(3);
@@ -941,10 +941,10 @@ namespace SBuilderX
                 FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
                 FileSystem.PrintLine(3, "   SourceFile = " + '"' + BlendName + '"');
                 FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(moduleMAPS.Maps[N].NLAT));
-                FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(moduleMAPS.Maps[N].WLON));
-                FileSystem.PrintLine(3, "   xDim = " + Conversion.Str((moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS));
-                FileSystem.PrintLine(3, "   yDim = " + Conversion.Str((moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS));
+                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
             }
 
             if (IsWater)
@@ -959,10 +959,10 @@ namespace SBuilderX
                 FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
                 FileSystem.PrintLine(3, "   SourceFile = " + '"' + WaterName + '"');
                 FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(moduleMAPS.Maps[N].NLAT));
-                FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(moduleMAPS.Maps[N].WLON));
-                FileSystem.PrintLine(3, "   xDim = " + Conversion.Str((moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS));
-                FileSystem.PrintLine(3, "   yDim = " + Conversion.Str((moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS));
+                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
             }
 
             FileSystem.PrintLine(3);
@@ -974,8 +974,7 @@ namespace SBuilderX
             FileSystem.PrintLine(3, "   UseSourceDimensions = 1");
             FileSystem.PrintLine(3, "   CompressionQuality = " + CompressionQuality.ToString());
             FileSystem.FileClose(3);
-            FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-            FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
+            Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             moduleMAIN.ExecCmd(Command);
             if (!CopyBGLs)
                 return;
@@ -989,7 +988,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Copying BGL files failed! Try to close FSX.", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -1029,10 +1028,10 @@ namespace SBuilderX
             FileSystem.PrintLine(3, "   Channel_BlendMask = 2.0");
             FileSystem.PrintLine(3, "   NullValue = 255,255,255");
             FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-            FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(MapBackground.NLAT));
-            FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(MapBackground.WLON));
-            FileSystem.PrintLine(3, "   xDim = " + Conversion.Str((MapBackground.ELON - MapBackground.WLON) / MapBackground.COLS));
-            FileSystem.PrintLine(3, "   yDim = " + Conversion.Str((MapBackground.NLAT - MapBackground.SLAT) / MapBackground.ROWS));
+            FileSystem.PrintLine(3, "   ulyMap = " + MapBackground.NLAT);
+            FileSystem.PrintLine(3, "   ulxMap = " + MapBackground.WLON);
+            FileSystem.PrintLine(3, "   xDim = " + (MapBackground.ELON - MapBackground.WLON) / MapBackground.COLS);
+            FileSystem.PrintLine(3, "   yDim = " + (MapBackground.NLAT - MapBackground.SLAT) / MapBackground.ROWS);
             FileSystem.PrintLine(3);
             FileSystem.PrintLine(3, "[Source2]");
             FileSystem.PrintLine(3, "   Type = TIFF");
@@ -1040,10 +1039,10 @@ namespace SBuilderX
             FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
             FileSystem.PrintLine(3, "   SourceFile = " + '"' + "blendmask.tif" + '"');
             FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-            FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(MapBackground.NLAT));
-            FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(MapBackground.WLON));
-            FileSystem.PrintLine(3, "   xDim = " + Conversion.Str((MapBackground.ELON - MapBackground.WLON) / MapBackground.COLS));
-            FileSystem.PrintLine(3, "   yDim = " + Conversion.Str((MapBackground.NLAT - MapBackground.SLAT) / MapBackground.ROWS));
+            FileSystem.PrintLine(3, "   ulyMap = " + MapBackground.NLAT);
+            FileSystem.PrintLine(3, "   ulxMap = " + MapBackground.WLON);
+            FileSystem.PrintLine(3, "   xDim = " + (MapBackground.ELON - MapBackground.WLON) / MapBackground.COLS);
+            FileSystem.PrintLine(3, "   yDim = " + (MapBackground.NLAT - MapBackground.SLAT) / MapBackground.ROWS);
             FileSystem.PrintLine(3);
             FileSystem.PrintLine(3, "[Destination]");
             FileSystem.PrintLine(3, "   DestDir = " + '"' + "." + '"');
@@ -1053,8 +1052,7 @@ namespace SBuilderX
             FileSystem.PrintLine(3, "   UseSourceDimensions = 1");
             FileSystem.PrintLine(3, "   CompressionQuality = " + CompressionQuality.ToString());
             FileSystem.FileClose(3);
-            FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-            FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
+            Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             moduleMAIN.ExecCmd(Command);
             if (!CopyBGLs)
                 return;
@@ -1068,7 +1066,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Copying BGL files failed! Try to close FSX.", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -1126,10 +1124,10 @@ namespace SBuilderX
                 FileSystem.PrintLine(3, "   Channel_LandWaterMask = 4.0");
             FileSystem.PrintLine(3, "   NullValue = 255,255,255");
             FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-            FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(moduleMAPS.Maps[N].NLAT));
-            FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(moduleMAPS.Maps[N].WLON));
-            FileSystem.PrintLine(3, "   xDim = " + Conversion.Str((moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS));
-            FileSystem.PrintLine(3, "   yDim = " + Conversion.Str((moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS));
+            FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+            FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
+            FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+            FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
             FileSystem.PrintLine(3);
             FileSystem.PrintLine(3, "[Source2]");
             FileSystem.PrintLine(3, "   Type = BMP");
@@ -1145,10 +1143,10 @@ namespace SBuilderX
                 FileSystem.PrintLine(3, "   Channel_LandWaterMask = 4.0");
             FileSystem.PrintLine(3, "   NullValue = 255,255,255");
             FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-            FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(moduleMAPS.Maps[N].NLAT));
-            FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(moduleMAPS.Maps[N].WLON));
-            FileSystem.PrintLine(3, "   xDim = " + Conversion.Str((moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS));
-            FileSystem.PrintLine(3, "   yDim = " + Conversion.Str((moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS));
+            FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+            FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
+            FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+            FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
             if (IsBlend)
             {
                 FileSystem.PrintLine(3);
@@ -1158,10 +1156,10 @@ namespace SBuilderX
                 FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
                 FileSystem.PrintLine(3, "   SourceFile = " + '"' + BlendName + '"');
                 FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(moduleMAPS.Maps[N].NLAT));
-                FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(moduleMAPS.Maps[N].WLON));
-                FileSystem.PrintLine(3, "   xDim = " + Conversion.Str((moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS));
-                FileSystem.PrintLine(3, "   yDim = " + Conversion.Str((moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS));
+                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
             }
 
             if (IsWater)
@@ -1176,10 +1174,10 @@ namespace SBuilderX
                 FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
                 FileSystem.PrintLine(3, "   SourceFile = " + '"' + WaterName + '"');
                 FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(moduleMAPS.Maps[N].NLAT));
-                FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(moduleMAPS.Maps[N].WLON));
-                FileSystem.PrintLine(3, "   xDim = " + Conversion.Str((moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS));
-                FileSystem.PrintLine(3, "   yDim = " + Conversion.Str((moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS));
+                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
             }
 
             FileSystem.PrintLine(3);
@@ -1191,8 +1189,7 @@ namespace SBuilderX
             FileSystem.PrintLine(3, "   UseSourceDimensions = 1");
             FileSystem.PrintLine(3, "   CompressionQuality = " + CompressionQuality.ToString());
             FileSystem.FileClose(3);
-            FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-            FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
+            Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             moduleMAIN.ExecCmd(Command);
             if (!CopyBGLs)
                 return;
@@ -1206,7 +1203,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Copying BGL files failed! Try to close FSX.", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

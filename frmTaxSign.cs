@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -41,20 +40,20 @@ namespace SBuilderX
             int N;
             if (EntState == 0)
             {
-                Interaction.MsgBox("Select a type!", (MsgBoxStyle)16);
+                MessageBox.Show("Select a type!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            N = Strings.Len(txtMessage.Text);
+            N = txtMessage.Text.Length;
             if (N < 3)
             {
-                Interaction.MsgBox("Check your typing!", (MsgBoxStyle)16);
+                MessageBox.Show("Check your typing!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            A = Strings.Mid(txtMessage.Text, 1, N - 1);
+            A = txtMessage.Text.Substring(0, N - 1);
             A = A + "/]";
             txtMessage.Text = A;
             txtMessage.Focus();
@@ -67,20 +66,20 @@ namespace SBuilderX
             int N;
             if (EntState == 0)
             {
-                Interaction.MsgBox("Select a type!", (MsgBoxStyle)16);
+                MessageBox.Show("Select a type!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            N = Strings.Len(txtMessage.Text);
+            N = txtMessage.Text.Length;
             if (N < 3)
             {
-                Interaction.MsgBox("Check your typing!", (MsgBoxStyle)16);
+                MessageBox.Show("Check your typing!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            A = Strings.Mid(txtMessage.Text, 1, N - 1);
+            A = txtMessage.Text.Substring(0, N - 1);
             A = A + @"\]";
             txtMessage.Text = A;
             txtMessage.Focus();
@@ -93,20 +92,20 @@ namespace SBuilderX
             int N;
             if (EntState == 0)
             {
-                Interaction.MsgBox("Select a type!", (MsgBoxStyle)16);
+                MessageBox.Show("Select a type!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            N = Strings.Len(txtMessage.Text);
+            N = txtMessage.Text.Length;
             if (N < 3)
             {
-                Interaction.MsgBox("Check your typing!", (MsgBoxStyle)16);
+                MessageBox.Show("Check your typing!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            A = Strings.Mid(txtMessage.Text, 1, N - 1);
+            A = txtMessage.Text.Substring(0, N - 1);
             A = A + "<]";
             txtMessage.Text = A;
             txtMessage.Focus();
@@ -136,20 +135,20 @@ namespace SBuilderX
             int N;
             if (EntState == 0)
             {
-                Interaction.MsgBox("Select a type!", (MsgBoxStyle)16);
+                MessageBox.Show("Select a type!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            N = Strings.Len(txtMessage.Text);
+            N = txtMessage.Text.Length;
             if (N < 3)
             {
-                Interaction.MsgBox("Check your typing!", (MsgBoxStyle)16);
+                MessageBox.Show("Check your typing!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            A = Strings.Mid(txtMessage.Text, 1, N - 1);
+            A = txtMessage.Text.Substring(0, N - 1);
             A = A + ">]";
             txtMessage.Text = A;
             txtMessage.Focus();
@@ -173,20 +172,20 @@ namespace SBuilderX
             int N;
             if (EntState == 0)
             {
-                Interaction.MsgBox("Select a type!", (MsgBoxStyle)16);
+                MessageBox.Show("Select a type!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            N = Strings.Len(txtMessage.Text);
+            N = txtMessage.Text.Length;
             if (N < 3)
             {
-                Interaction.MsgBox("Check your typing!", (MsgBoxStyle)16);
+                MessageBox.Show("Check your typing!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            A = Strings.Mid(txtMessage.Text, 1, N - 1);
+            A = txtMessage.Text.Substring(0, N - 1);
             A = A + "`]";
             txtMessage.Text = A;
             txtMessage.Focus();
@@ -199,20 +198,20 @@ namespace SBuilderX
             int N;
             if (EntState == 0)
             {
-                Interaction.MsgBox("Select a type!", (MsgBoxStyle)16);
+                MessageBox.Show("Select a type!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            N = Strings.Len(txtMessage.Text);
+            N = txtMessage.Text.Length;
             if (N < 3)
             {
-                Interaction.MsgBox("Check your typing!", (MsgBoxStyle)16);
+                MessageBox.Show("Check your typing!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            A = Strings.Mid(txtMessage.Text, 1, N - 1);
+            A = txtMessage.Text.Substring(0, N - 1);
             A = A + "^]";
             txtMessage.Text = A;
             txtMessage.Focus();
@@ -225,20 +224,20 @@ namespace SBuilderX
             int N;
             if (EntState == 0)
             {
-                Interaction.MsgBox("Select a type!", (MsgBoxStyle)16);
+                MessageBox.Show("Select a type!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            N = Strings.Len(txtMessage.Text);
+            N = txtMessage.Text.Length;
             if (N < 3)
             {
-                Interaction.MsgBox("Check your typing!", (MsgBoxStyle)16);
+                MessageBox.Show("Check your typing!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            A = Strings.Mid(txtMessage.Text, 1, N - 1);
+            A = txtMessage.Text.Substring(0, N - 1);
             A = A + "']";
             txtMessage.Text = A;
             txtMessage.Focus();
@@ -251,20 +250,20 @@ namespace SBuilderX
             int N;
             if (EntState == 0)
             {
-                Interaction.MsgBox("Select a type!", (MsgBoxStyle)16);
+                MessageBox.Show("Select a type!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            N = Strings.Len(txtMessage.Text);
+            N = txtMessage.Text.Length;
             if (N < 3)
             {
-                Interaction.MsgBox("Check your typing!", (MsgBoxStyle)16);
+                MessageBox.Show("Check your typing!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            A = Strings.Mid(txtMessage.Text, 1, N - 1);
+            A = txtMessage.Text.Substring(0, N - 1);
             A = A + "v]";
             txtMessage.Text = A;
             txtMessage.Focus();
@@ -277,20 +276,20 @@ namespace SBuilderX
             int N;
             if (EntState == 0)
             {
-                Interaction.MsgBox("Select a type!", (MsgBoxStyle)16);
+                MessageBox.Show("Select a type!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            N = Strings.Len(txtMessage.Text);
+            N = txtMessage.Text.Length;
             if (N < 3)
             {
-                Interaction.MsgBox("Check your typing!", (MsgBoxStyle)16);
+                MessageBox.Show("Check your typing!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            A = Strings.Mid(txtMessage.Text, 1, N - 1);
+            A = txtMessage.Text.Substring(0, N - 1);
             A = A + "=]";
             txtMessage.Text = A;
             txtMessage.Focus();
@@ -303,20 +302,20 @@ namespace SBuilderX
             int N;
             if (EntState == 0)
             {
-                Interaction.MsgBox("Select a type!", (MsgBoxStyle)16);
+                MessageBox.Show("Select a type!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            N = Strings.Len(txtMessage.Text);
+            N = txtMessage.Text.Length;
             if (N < 3)
             {
-                Interaction.MsgBox("Check your typing!", (MsgBoxStyle)16);
+                MessageBox.Show("Check your typing!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            A = Strings.Mid(txtMessage.Text, 1, N - 1);
+            A = txtMessage.Text.Substring(0, N - 1);
             A = A + "#]";
             txtMessage.Text = A;
             txtMessage.Focus();
@@ -329,20 +328,20 @@ namespace SBuilderX
             int N;
             if (EntState == 0)
             {
-                Interaction.MsgBox("Select a type!", (MsgBoxStyle)16);
+                MessageBox.Show("Select a type!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            N = Strings.Len(txtMessage.Text);
+            N = txtMessage.Text.Length;
             if (N < 3)
             {
-                Interaction.MsgBox("Check your typing!", (MsgBoxStyle)16);
+                MessageBox.Show("Check your typing!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            A = Strings.Mid(txtMessage.Text, 1, N - 1);
+            A = txtMessage.Text.Substring(0, N - 1);
             A = A + "x]";
             txtMessage.Text = A;
             txtMessage.Focus();
@@ -355,20 +354,20 @@ namespace SBuilderX
             int N;
             if (EntState == 0)
             {
-                Interaction.MsgBox("Select a type!", (MsgBoxStyle)16);
+                MessageBox.Show("Select a type!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            N = Strings.Len(txtMessage.Text);
+            N = txtMessage.Text.Length;
             if (N < 3)
             {
-                Interaction.MsgBox("Check your typing!", (MsgBoxStyle)16);
+                MessageBox.Show("Check your typing!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
                 return;
             }
 
-            A = Strings.Mid(txtMessage.Text, 1, N - 1);
+            A = txtMessage.Text.Substring(0, N - 1);
             A = A + "|]";
             txtMessage.Text = A;
             txtMessage.Focus();
@@ -379,7 +378,7 @@ namespace SBuilderX
         {
             if (EntState == 0)
             {
-                Interaction.MsgBox("Select a type!", (MsgBoxStyle)16);
+                MessageBox.Show("Select a type!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtMessage.Text = "";
             }
         }

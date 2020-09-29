@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -87,10 +86,10 @@ namespace SBuilderX
             NameValue = "";
             try
             {
-                if (Conversions.ToString(reader.ReadChars(4)) != "RIFF")
+                if (reader.ReadChars(4).ToString() != "RIFF")
                     return ReadRet;
                 reader.ReadBytes(4);
-                R = Conversions.ToString(reader.ReadChars(4));
+                R = reader.ReadChars(4).ToString();
                 if (R == "MDLX")
                 {
                     TypeValue = 2;
@@ -104,14 +103,14 @@ namespace SBuilderX
                     return ReadRet;
                 }
 
-                R = Conversions.ToString(reader.ReadChars(4));
+                R = reader.ReadChars(4).ToString();
                 if (R != "MDLH")
                     return ReadRet;
                 N = (int)reader.ReadUInt32();
                 reader.ReadBytes(N);
                 do
                 {
-                    R = Conversions.ToString(reader.ReadChars(4));
+                    R = reader.ReadChars(4).ToString();
                     if (R == "MDLG")  // only happens in FSX
                     {
                         reader.ReadBytes(4);
@@ -123,7 +122,7 @@ namespace SBuilderX
                     else if (R == "MDLN") // only happens in FSX
                     {
                         N = (int)reader.ReadUInt32();
-                        NameValue = Conversions.ToString(reader.ReadChars(N));
+                        NameValue = reader.ReadChars(N).ToString();
                         NameValue = NameValue.Substring(0, N - 1);
                         NameOK = true;
                     }

@@ -95,7 +95,7 @@ namespace SBuilderX
 
                 IsPointInSegmentRet = true;
             }
-            catch(Exception exc)
+            catch(Exception)
             {
             }
             return IsPointInSegmentRet;

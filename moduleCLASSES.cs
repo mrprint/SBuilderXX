@@ -211,10 +211,10 @@ namespace SBuilderX
                 moduleEDIT.BackUp();
             X = X + 180d;
             X = X / moduleMAIN.D5Lon;
-            J = (int)Conversion.Fix(X);
+            J = (int)X;
             Y = 90d - Y;
             Y = Y / moduleMAIN.D5Lat;
-            K = (int)Conversion.Fix(Y);
+            K = (int)Y;
             C = (int)Math.Round((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
             R = (int)Math.Round((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
             int N1, N2, L, M, CC, RR;
@@ -248,10 +248,10 @@ namespace SBuilderX
                 moduleEDIT.BackUp();
             X = X + 180d;
             X = X / moduleMAIN.D5Lon;
-            J = (int)Conversion.Fix(X);
+            J = (int)X;
             Y = 90d - Y;
             Y = Y / moduleMAIN.D5Lat;
-            K = (int)Conversion.Fix(Y);
+            K = (int)Y;
             C = (int)Math.Round((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
             R = (int)Math.Round((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
             int N1, N2, L, M, CC, RR;
@@ -691,16 +691,16 @@ namespace SBuilderX
             double LonWest;
             X1 = (float)(moduleMAIN.LonDispWest + 180d);
             X1 = (float)(X1 / moduleMAIN.D5Lon);
-            LO1 = (int)Conversion.Fix(X1);
+            LO1 = (int)X1;
             Y1 = (float)(90d - moduleMAIN.LatDispNorth);
             Y1 = (float)(Y1 / moduleMAIN.D5Lat);
-            LA1 = (int)Conversion.Fix(Y1);
+            LA1 = (int)Y1;
             X1 = (float)(moduleMAIN.LonDispEast + 180d);
             X1 = (float)(X1 / moduleMAIN.D5Lon);
-            LO2 = (int)Conversion.Fix(X1);
+            LO2 = (int)X1;
             Y1 = (float)(90d - moduleMAIN.LatDispSouth);
             Y1 = (float)(Y1 / moduleMAIN.D5Lat);
-            LA2 = (int)Conversion.Fix(Y1);
+            LA2 = (int)Y1;
             int C, C0, R, R0, N;
             var loopTo = LA2;
             for (LA = LA1; LA <= loopTo; LA++)
@@ -718,13 +718,13 @@ namespace SBuilderX
                         Y1 = (float)((moduleMAIN.LatDispNorth - LatNorth - moduleMAIN.D14Lat) * moduleMAIN.PixelsPerLatDeg);
                         Y2 = (float)(moduleMAIN.D13Lat * moduleMAIN.PixelsPerLatDeg);
                         X2 = (float)(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
-                        R0 = (int)Conversion.Fix(-Y1 / Y2);
+                        R0 = (int)(-Y1 / Y2);
                         if (R0 > 256)
                             R0 = 256;
                         if (R0 < 0)
                             R0 = 0;
                         Y1 = Y1 + R0 * Y2;
-                        C0 = (int)Conversion.Fix(-X11 / X2);
+                        C0 = (int)(-X11 / X2);
                         if (C0 > 256)
                             C0 = 256;
                         if (C0 < 0)
@@ -790,16 +790,16 @@ namespace SBuilderX
             double LonWest;
             X1 = (float)(moduleMAIN.LonDispWest + 180d);
             X1 = (float)(X1 / moduleMAIN.D5Lon);
-            LO1 = (int)Conversion.Fix(X1);
+            LO1 = (int)X1;
             Y1 = (float)(90d - moduleMAIN.LatDispNorth);
             Y1 = (float)(Y1 / moduleMAIN.D5Lat);
-            LA1 = (int)Conversion.Fix(Y1);
+            LA1 = (int)Y1;
             X1 = (float)(moduleMAIN.LonDispEast + 180d);
             X1 = (float)(X1 / moduleMAIN.D5Lon);
-            LO2 = (int)Conversion.Fix(X1);
+            LO2 = (int)X1;
             Y1 = (float)(90d - moduleMAIN.LatDispSouth);
             Y1 = (float)(Y1 / moduleMAIN.D5Lat);
-            LA2 = (int)Conversion.Fix(Y1);
+            LA2 = (int)Y1;
             int C, C0, R, R0, N;
             var loopTo = LA2;
             for (LA = LA1; LA <= loopTo; LA++)
@@ -817,13 +817,13 @@ namespace SBuilderX
                         Y1 = (float)((moduleMAIN.LatDispNorth - LatNorth - moduleMAIN.D14Lat) * moduleMAIN.PixelsPerLatDeg);
                         Y2 = (float)(moduleMAIN.D13Lat * moduleMAIN.PixelsPerLatDeg);
                         X2 = (float)(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
-                        R0 = (int)Conversion.Fix(-Y1 / Y2);
+                        R0 = (int)(-Y1 / Y2);
                         if (R0 > 256)
                             R0 = 256;
                         if (R0 < 0)
                             R0 = 0;
                         Y1 = Y1 + R0 * Y2;
-                        C0 = (int)Conversion.Fix(-X11 / X2);
+                        C0 = (int)(-X11 / X2);
                         if (C0 > 256)
                             C0 = 256;
                         if (C0 < 0)
@@ -977,10 +977,10 @@ namespace SBuilderX
             int J, K, C, R;
             X = X + 180d;
             X = X / moduleMAIN.D5Lon;
-            J = (int)Conversion.Fix(X);
+            J = (int)X;
             Y = 90d - Y;
             Y = Y / moduleMAIN.D5Lat;
-            K = (int)Conversion.Fix(Y);
+            K = (int)Y;
             if (LL_XY[J, K].NoOfLWs == 0)
                 return;
             C = (int)Math.Round((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
@@ -1001,10 +1001,10 @@ namespace SBuilderX
             int J, K, C, R;
             X = X + 180d;
             X = X / moduleMAIN.D5Lon;
-            J = (int)Conversion.Fix(X);
+            J = (int)X;
             Y = 90d - Y;
             Y = Y / moduleMAIN.D5Lat;
-            K = (int)Conversion.Fix(Y);
+            K = (int)Y;
             if (WW_XY[J, K].NoOfLWs == 0)
                 return;
             C = (int)Math.Round((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
@@ -1314,8 +1314,8 @@ namespace SBuilderX
                             }
                         }
 
-                        RawFile = "LC_" + Strings.Format(J, "00");
-                        RawFile = RawFile + Strings.Format(K, "00");
+                        RawFile = "LC_" + J.ToString("00");
+                        RawFile = RawFile + K.ToString("00");
                         BGL[Counter] = RawFile + ".bgl";
                         RawFile = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + RawFile + ".raw";
                         FileSystem.FileOpen(3, RawFile, OpenMode.Binary);
@@ -1342,8 +1342,8 @@ namespace SBuilderX
                     if (Flag[J, K])
                     {
                         Counter = Counter + 1;
-                        InfFile = "LC_" + Strings.Format(J, "00");
-                        InfFile = InfFile + Strings.Format(K, "00");
+                        InfFile = "LC_" + J.ToString("00");
+                        InfFile = InfFile + K.ToString("00");
                         Command[Counter] = "resample " + @" work\" + InfFile + ".inf";
                         FileSystem.FileOpen(3, My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + InfFile + ".inf", OpenMode.Output);
                         FileSystem.PrintLine(3, "[Source]");
@@ -1354,12 +1354,12 @@ namespace SBuilderX
                         FileSystem.PrintLine(3, "   SamplingMethod = Point");
                         FileSystem.PrintLine(3, "   SampleType = UINT8");
                         FileSystem.PrintLine(3, "   NullValue = 254");
-                        FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(90.0d - K * moduleMAIN.D5Lat));
-                        FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(J * moduleMAIN.D5Lon - 180.0d));
-                        FileSystem.PrintLine(3, "   nCols = " + 257.ToString());
-                        FileSystem.PrintLine(3, "   nRows = " + 257.ToString());
-                        FileSystem.PrintLine(3, "   xDim = " + Conversion.Str(moduleMAIN.D13Lon));
-                        FileSystem.PrintLine(3, "   yDim = " + Conversion.Str(moduleMAIN.D13Lat));
+                        FileSystem.PrintLine(3, "   ulyMap = " + (90.0d - K * moduleMAIN.D5Lat));
+                        FileSystem.PrintLine(3, "   ulxMap = " + (J * moduleMAIN.D5Lon - 180.0d));
+                        FileSystem.PrintLine(3, "   nCols = " + 257);
+                        FileSystem.PrintLine(3, "   nRows = " + 257);
+                        FileSystem.PrintLine(3, "   xDim = " + moduleMAIN.D13Lon);
+                        FileSystem.PrintLine(3, "   yDim = " + moduleMAIN.D13Lat);
                         FileSystem.PrintLine(3);
                         FileSystem.PrintLine(3, "[Destination]");
                         FileSystem.PrintLine(3, "   DestDir = " + '"' + "." + '"');
@@ -1396,9 +1396,9 @@ namespace SBuilderX
 
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Copying BGL files failed! Try to close FSX.", MsgBoxStyle.Information);
+                MessageBox.Show("Copying BGL files failed! Try to close FSX.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1464,8 +1464,8 @@ namespace SBuilderX
                             }
                         }
 
-                        RawFile = "WC_" + Strings.Format(J, "00");
-                        RawFile = RawFile + Strings.Format(K, "00");
+                        RawFile = "WC_" + J.ToString("00");
+                        RawFile = RawFile + K.ToString("00");
                         BGL[Counter] = RawFile + ".bgl";
                         RawFile = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + RawFile + ".raw";
                         FileSystem.FileOpen(3, RawFile, OpenMode.Binary);
@@ -1492,8 +1492,8 @@ namespace SBuilderX
                     if (Flag[J, K])
                     {
                         Counter = Counter + 1;
-                        InfFile = "WC_" + Strings.Format(J, "00");
-                        InfFile = InfFile + Strings.Format(K, "00");
+                        InfFile = "WC_" + J.ToString("00");
+                        InfFile = InfFile + K.ToString("00");
                         Command[Counter] = "resample " + @" work\" + InfFile + ".inf";
                         FileSystem.FileOpen(3, My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + InfFile + ".inf", OpenMode.Output);
                         FileSystem.PrintLine(3, "[Source]");
@@ -1504,12 +1504,12 @@ namespace SBuilderX
                         FileSystem.PrintLine(3, "   SamplingMethod = Point");
                         FileSystem.PrintLine(3, "   SampleType = UINT8");
                         FileSystem.PrintLine(3, "   NullValue = 254");
-                        FileSystem.PrintLine(3, "   ulyMap = " + Conversion.Str(90.0d - K * moduleMAIN.D5Lat));
-                        FileSystem.PrintLine(3, "   ulxMap = " + Conversion.Str(J * moduleMAIN.D5Lon - 180.0d));
-                        FileSystem.PrintLine(3, "   nCols = " + 257.ToString());
-                        FileSystem.PrintLine(3, "   nRows = " + 257.ToString());
-                        FileSystem.PrintLine(3, "   xDim = " + Conversion.Str(moduleMAIN.D13Lon));
-                        FileSystem.PrintLine(3, "   yDim = " + Conversion.Str(moduleMAIN.D13Lat));
+                        FileSystem.PrintLine(3, "   ulyMap = " + (90.0d - K * moduleMAIN.D5Lat));
+                        FileSystem.PrintLine(3, "   ulxMap = " + (J * moduleMAIN.D5Lon - 180.0d));
+                        FileSystem.PrintLine(3, "   nCols = " + 257);
+                        FileSystem.PrintLine(3, "   nRows = " + 257);
+                        FileSystem.PrintLine(3, "   xDim = " + moduleMAIN.D13Lon);
+                        FileSystem.PrintLine(3, "   yDim = " + moduleMAIN.D13Lat);
                         FileSystem.PrintLine(3);
                         FileSystem.PrintLine(3, "[Destination]");
                         FileSystem.PrintLine(3, "   DestDir = " + '"' + "." + '"');
@@ -1521,8 +1521,7 @@ namespace SBuilderX
                 }
             }
 
-            FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-            FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
+            Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             var loopTo1 = NoOfQuads;
             for (J = 1; J <= loopTo1; J++)
                 moduleMAIN.ExecCmd(Command[J]);
@@ -1545,9 +1544,9 @@ namespace SBuilderX
 
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Copying BGL files failed! Try to close FSX.", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -1660,9 +1659,9 @@ namespace SBuilderX
                 moduleMAIN.Dirty = true;
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("There has been a problem! Check the generated indexes!");
+                MessageBox.Show("There has been a problem! Check the generated indexes!");
             }
         }
 
@@ -1770,9 +1769,9 @@ namespace SBuilderX
 
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("There has been a problem! Check the generated indexes!");
+                MessageBox.Show("There has been a problem! Check the generated indexes!");
             }
         }
     }

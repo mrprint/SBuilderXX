@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -55,7 +54,7 @@ namespace SBuilderX
 
         private void FrmSCREEN_Load(object sender, EventArgs e)
         {
-            string A = "  You are in screen capture mode! Select a region with the mouse and press" + Constants.vbCrLf;
+            string A = "  You are in screen capture mode! Select a region with the mouse and press" + Environment.NewLine;
             A = A + " <Esc> (or right click) to cancel or <Space> to capture the selected region.";
             var GS = Graphics.FromImage(Screen);
             var drawFont = new Font("Arial", 10f);

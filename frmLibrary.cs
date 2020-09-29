@@ -1,14 +1,61 @@
 ﻿using System;
-//using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
+    public class Utilities
+    {
+        public static string InputBox(string title, string promptText, string defvalue)
+        {
+            Form form = new Form();
+            Label label = new Label();
+            TextBox textBox = new TextBox();
+            Button buttonOk = new Button();
+            Button buttonCancel = new Button();
+
+            form.Text = title;
+            label.Text = promptText;
+            textBox.Text = defvalue;
+
+            buttonOk.Text = "OK";
+            buttonCancel.Text = "Cancel";
+            buttonOk.DialogResult = DialogResult.OK;
+            buttonCancel.DialogResult = DialogResult.Cancel;
+
+            label.SetBounds(9, 20, 372, 13);
+            textBox.SetBounds(12, 36, 372, 20);
+            buttonOk.SetBounds(228, 72, 75, 23);
+            buttonCancel.SetBounds(309, 72, 75, 23);
+
+            label.AutoSize = true;
+            textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
+            buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+            form.ClientSize = new Size(396, 107);
+            form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
+            form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
+            form.FormBorderStyle = FormBorderStyle.FixedDialog;
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.MinimizeBox = false;
+            form.MaximizeBox = false;
+            form.AcceptButton = buttonOk;
+            form.CancelButton = buttonCancel;
+
+            DialogResult dialogResult = form.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                return textBox.Text;
+            }
+            else
+            {
+                return "";
+            }
+        }
+    }
     public partial class FrmLibrary
     {
         public FrmLibrary()
@@ -240,7 +287,7 @@ namespace SBuilderX
             K = cmbLibCat.SelectedIndex + 1;
             if (K < 1)
             {
-                Interaction.MsgBox("Make a Category first");
+                MessageBox.Show("Make a Category first");
                 return;
             }
 
@@ -366,9 +413,9 @@ namespace SBuilderX
                 FileStream stream;
                 StreamWriter fileWriter;
                 StreamReader fileReader;
-                string data = Strings.Replace(DateTime.Now.ToString(), " ", "_");
-                data = Strings.Replace(data, "-", "_");
-                data = Strings.Replace(data, ":", "_") + "_";
+                string data = DateTime.Now.ToString().Replace(" ", "_");
+                data = data.Replace("-", "_");
+                data = data.Replace(":", "_") + "_";
                 string outfile = "";
                 string LibCatFolder = "";
 
@@ -378,9 +425,9 @@ namespace SBuilderX
                 for (N = 0; N <= loopTo; N++)
                 {
                     B = RemovedObjs[N].ToString();
-                    K = Strings.InStr(B, " ");
-                    C = B.Substring(K) + ".jpg";
-                    K = Conversions.ToInteger(B.Substring(0, K - 1));
+                    K = B.IndexOf(" ");
+                    C = B.Substring(K + 1) + ".jpg";
+                    K = Convert.ToInt32(B.Substring(0, K));
                     B = moduleOBJECTS.LibObjectsPath + @"\" + moduleOBJECTS.LibCategories[K].Name + @"\" + C;
                     if (My.MyProject.Computer.FileSystem.FileExists(B))
                     {
@@ -476,12 +523,12 @@ namespace SBuilderX
                                 }
                                 else
                                 {
-                                    line = "; comment on " + DateTime.Now.ToString() + Constants.vbCrLf + "; " + line;
+                                    line = "; comment on " + DateTime.Now.ToString() + Environment.NewLine + "; " + line;
                                 }
                             }
                         }
 
-                        outfile = outfile + line + Constants.vbCrLf;
+                        outfile = outfile + line + Environment.NewLine;
                     }
                     // should I realy comment the following? October 2017
                     // fileReader.Close()
@@ -490,9 +537,9 @@ namespace SBuilderX
 
                 if (newCatNames.Count > 0)
                 {
-                    outfile = outfile + Constants.vbCrLf + "; added in " + DateTime.Now.ToString() + Constants.vbCrLf;
+                    outfile = outfile + Environment.NewLine + "; added in " + DateTime.Now.ToString() + Environment.NewLine;
                     foreach (string name in newCatNames)
-                        outfile = outfile + "include=" + name + ".txt" + Constants.vbCrLf;
+                        outfile = outfile + "include=" + name + ".txt" + Environment.NewLine;
                 }
 
                 A = moduleOBJECTS.LibObjectsPath + @"\objects.txt";
@@ -522,7 +569,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Could not update Categories!", MsgBoxStyle.Critical);
+                MessageBox.Show("Could not update Categories!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             Dispose();
@@ -576,17 +623,17 @@ namespace SBuilderX
                 A = A + "category will be empty until you add objects from the ";
                 A = A + "temporary container on the right. If the category remains ";
                 A = A + "empty when you press OK, it will be eliminated.";
-                A = Strings.Trim(Interaction.InputBox(A, DefaultResponse: "FSX_New_Category"));
+                A = Utilities.InputBox("", A, "FSX_New_Category").Trim();
                 int N = A.Length;
                 if (N == 0)
                     return;
-                A = Strings.Replace(A, " ", "_");
+                A = A.Replace(" ", "_");
                 var loopTo = moduleOBJECTS.NoOfLibCategories;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if ((moduleOBJECTS.LibCategories[N].Name ?? "") == (A ?? ""))
                     {
-                        Interaction.MsgBox("The name already exists!", MsgBoxStyle.Exclamation);
+                        MessageBox.Show("The name already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
                     }
                 }
@@ -609,9 +656,9 @@ namespace SBuilderX
                 moduleOBJECTS.NoOfLibCategories = moduleOBJECTS.NoOfLibCategories + 1;
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Could not create a New Category!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Could not create a New Category!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -622,17 +669,17 @@ namespace SBuilderX
                 return;
             string B = moduleOBJECTS.LibCategories[K].Name;
             string A = "Enter a New name for this Category without spaces.";
-            A = Strings.Trim(Interaction.InputBox(A, DefaultResponse: B));
+            A = Utilities.InputBox("", A, B).Trim();
             int N = A.Length;
             if (N == 0)
                 return;
-            A = Strings.Replace(A, " ", "_");
+            A = A.Replace(" ", "_");
             var loopTo = moduleOBJECTS.NoOfLibCategories;
             for (N = 1; N <= loopTo; N++)
             {
                 if ((moduleOBJECTS.LibCategories[N].Name ?? "") == (A ?? ""))
                 {
-                    Interaction.MsgBox("The name already exists!", MsgBoxStyle.Exclamation);
+                    MessageBox.Show("The name already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
@@ -738,9 +785,9 @@ namespace SBuilderX
                 myObj.ID = moduleOBJECTS.LibCategories[K].Objs[N].ID;
                 myObj.Name = txtLibName.Text;
                 myObj.Type = moduleOBJECTS.LibCategories[K].Objs[N].Type;
-                myObj.Width = (float)Conversion.Val(txtLibWidth.Text);
-                myObj.Length = (float)Conversion.Val(txtLibLength.Text);
-                myObj.Scaling = (float)Conversion.Val(txtLibScale.Text);
+                myObj.Width = Convert.ToSingle(txtLibWidth.Text);
+                myObj.Length = Convert.ToSingle(txtLibLength.Text);
+                myObj.Scaling = Convert.ToSingle(txtLibScale.Text);
                 moduleOBJECTS.LibCategories[K].Objs[N] = myObj;
                 // Dim g As LibCategory
                 lstLib.Items.Clear();
@@ -757,9 +804,9 @@ namespace SBuilderX
                 myObj.ID = TempCategory[N].ID;
                 myObj.Name = txtLibName.Text;
                 myObj.Type = TempCategory[N].Type;
-                myObj.Width = (float)Conversion.Val(txtLibWidth.Text);
-                myObj.Length = (float)Conversion.Val(txtLibLength.Text);
-                myObj.Scaling = (float)Conversion.Val(txtLibScale.Text);
+                myObj.Width = Convert.ToSingle(txtLibWidth.Text);
+                myObj.Length = Convert.ToSingle(txtLibLength.Text);
+                myObj.Scaling = Convert.ToSingle(txtLibScale.Text);
                 TempCategory[N] = myObj;
                 lstBGL.Items.Clear();
                 foreach (var g in TempCategory)
@@ -789,7 +836,7 @@ namespace SBuilderX
             if (bgl.read(reader) == false)
             {
                 Cursor = Cursors.Default;
-                Interaction.MsgBox("Not a valid BGL!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Not a valid BGL!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 // should I realy comment the following? October 2017
                 // reader.Close()
                 fs.Dispose();
@@ -801,7 +848,7 @@ namespace SBuilderX
             if (bgl.NoOfMDLs == 0)
             {
                 Cursor = Cursors.Default;
-                Interaction.MsgBox("The BGL file does not contain objects!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("The BGL file does not contain objects!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -118,9 +117,9 @@ namespace SBuilderX
             Q = (int)Math.Pow(2d, Q - 2);
             DLat = 90d / Q;  // delta lat: the height of the quad
             DLon = 120d / Q;  // delta lon: the width of the quad
-            WLon = Conversion.Int((lon + 180d) / DLon) * DLon - 180d;
+            WLon = (int)((lon + 180d) / DLon) * DLon - 180d;
             ELon = WLon + DLon;
-            NLat = 90d - Conversion.Int((90d - lat) / DLat) * DLat;
+            NLat = 90d - (int)((90d - lat) / DLat) * DLat;
             SLat = NLat - DLat;
             CLat = (NLat + SLat) / 2d;
             CLon = (WLon + ELon) / 2d;
@@ -502,30 +501,28 @@ namespace SBuilderX
             for (N = 1; N <= loopTo; N++)
             {
                 if (Path[N].T == 0)
-                    goto next_N;
+                    continue;
                 Y1 = Path[N].Y;
                 Y0 = Path[N - 1].Y;
                 if (Y1 == Y0)
-                    goto next_N;
+                    continue;
                 if (Y <= Y1 & Y <= Y0)
-                    goto next_N;
+                    continue;
                 if (Y > Y1 & Y > Y0)
-                    goto next_N;
+                    continue;
                 X1 = Path[N].X;
                 X0 = Path[N - 1].X;
                 if (X < X1 & X < X0)
                 {
                     IsPtInPathRet = !IsPtInPathRet;
-                    goto next_N;
+                    continue;
                 }
 
                 if (X > X1 & X > X0)
-                    goto next_N;
+                    continue;
                 CP = (X1 - X0) * (Y - Y0) / (Y1 - Y0) + X0;
                 if (X < CP)
                     IsPtInPathRet = !IsPtInPathRet;
-                next_N:
-                ;
             }
 
             return IsPtInPathRet;
@@ -706,26 +703,24 @@ namespace SBuilderX
                 Y1 = moduleMAIN.Slices[I].P[N].Y;
                 Y0 = moduleMAIN.Slices[I].P[N - 1].Y;
                 if (Y1 == Y0)
-                    goto next_N;
+                    continue;
                 if (Y <= Y1 & Y <= Y0)
-                    goto next_N;
+                    continue;
                 if (Y > Y1 & Y > Y0)
-                    goto next_N;
+                    continue;
                 X1 = moduleMAIN.Slices[I].P[N].X;
                 X0 = moduleMAIN.Slices[I].P[N - 1].X;
                 if (X < X1 & X < X0)
                 {
                     IsPtInSliceRet = !IsPtInSliceRet;
-                    goto next_N;
+                    continue;
                 }
 
                 if (X > X1 & X > X0)
-                    goto next_N;
+                    continue;
                 CP = (X1 - X0) * (Y - Y0) / (Y1 - Y0) + X0;
                 if (X < CP)
                     IsPtInSliceRet = !IsPtInSliceRet;
-                next_N:
-                ;
             }
 
             return IsPtInSliceRet;
@@ -926,9 +921,9 @@ namespace SBuilderX
             Q = (int)Math.Pow(2d, Q - 2);
             DLat = 90d / Q;  // delta lat: the height of the quad
             DLon = 120d / Q;  // delta lon: the width of the quad
-            WLon = Conversion.Int((lon + 180d) / DLon) * DLon - 180d;
+            WLon = (int)((lon + 180d) / DLon) * DLon - 180d;
             ELon = WLon + DLon;
-            NLat = 90d - Conversion.Int((90d - lat) / DLat) * DLat;
+            NLat = 90d - (int)((90d - lat) / DLat) * DLat;
             SLat = NLat - DLat;
             CLat = (NLat + SLat) / 2d;
             CLon = (WLon + ELon) / 2d;

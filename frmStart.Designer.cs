@@ -478,7 +478,7 @@ namespace SBuilderX
             // MenuStrip
             // 
             MenuStrip.AllowMerge = false;
-            MenuStrip.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(234)), Conversions.ToInteger(Conversions.ToByte(234)), Conversions.ToInteger(Conversions.ToByte(234)));
+            MenuStrip.BackColor = Color.FromArgb(234, 234, 234);
             MenuStrip.Items.AddRange(new ToolStripItem[] { FileMenuItem, _EditMenuItem, ViewMenuItem, SelectMenuItem, ToolsMenuItem, HelpMenuItem });
             MenuStrip.Location = new Point(0, 0);
             MenuStrip.Name = "MenuStrip";
@@ -1606,7 +1606,7 @@ namespace SBuilderX
             // 
             // StatusZoom
             // 
-            StatusZoom.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)));
+            StatusZoom.BackColor = Color.FromArgb(244, 244, 244);
             StatusZoom.DisplayStyle = ToolStripItemDisplayStyle.Text;
             StatusZoom.Name = "StatusZoom";
             StatusZoom.Size = new Size(50, 17);
@@ -1614,14 +1614,14 @@ namespace SBuilderX
             // 
             // StatusLat
             // 
-            StatusLat.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)));
+            StatusLat.BackColor = Color.FromArgb(244, 244, 244);
             StatusLat.Name = "StatusLat";
             StatusLat.Size = new Size(46, 17);
             StatusLat.Text = "   Lat = ";
             // 
             // StatusLon
             // 
-            StatusLon.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)));
+            StatusLon.BackColor = Color.FromArgb(244, 244, 244);
             StatusLon.Name = "StatusLon";
             StatusLon.Size = new Size(47, 17);
             StatusLon.Text = "  Lon = ";
@@ -1635,7 +1635,7 @@ namespace SBuilderX
             // 
             // StatusDir
             // 
-            StatusDir.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)));
+            StatusDir.BackColor = Color.FromArgb(244, 244, 244);
             StatusDir.Name = "StatusDir";
             StatusDir.Size = new Size(42, 17);
             StatusDir.Text = "   Dir =";
@@ -1648,14 +1648,14 @@ namespace SBuilderX
             // 
             // StatusQMID
             // 
-            StatusQMID.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)));
+            StatusQMID.BackColor = Color.FromArgb(244, 244, 244);
             StatusQMID.Name = "StatusQMID";
             StatusQMID.Size = new Size(49, 17);
             StatusQMID.Text = "QMID =";
             // 
             // StatusStrip
             // 
-            StatusStrip.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)));
+            StatusStrip.BackColor = Color.FromArgb(244, 244, 244);
             StatusStrip.Items.AddRange(new ToolStripItem[] { StatusZoom, StatusLat, StatusLon, ToolStripStatusLabel3, StatusTile, ToolStripStatusLabel1, StatusDir, ToolStripStatusLabel2, StatusQMID });
             StatusStrip.Location = new Point(0, 444);
             StatusStrip.Margin = new Padding(0, 1, 0, 0);
@@ -1926,7 +1926,7 @@ namespace SBuilderX
             // 
             // ToolStrip
             // 
-            ToolStrip.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)), Conversions.ToInteger(Conversions.ToByte(244)));
+            ToolStrip.BackColor = Color.FromArgb(244, 244, 244);
             ToolStrip.GripStyle = ToolStripGripStyle.Hidden;
             ToolStrip.Items.AddRange(new ToolStripItem[] { _NewToolStripButton, _OpenToolStripButton, _SaveToolStripButton, toolStripSeparator6, _UndoToolStripButton, _RedoToolStripButton, toolStripSeparator7, _PointerToolStripButton, _ZoomToolStripButton, ToolStripSeparator22, _MeshToolStripButton, _LandToolStripButton, _WaterToolStripButton, PhotoToolStripButton, _LineToolStripButton, _PolyToolStripButton, _ObjectToolStripButton, _ExcludeToolStripButton, ToolStripSeparator23, _BGLToolStripButton });
             ToolStrip.Location = new Point(0, 24);
@@ -2140,7 +2140,7 @@ namespace SBuilderX
             // 
             lbScale.AutoSize = true;
             lbScale.BackColor = Color.Transparent;
-            lbScale.Font = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Bold, GraphicsUnit.Point, Conversions.ToByte(0));
+            lbScale.Font = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbScale.Location = new Point(641, 404);
             lbScale.Name = "lbScale";
             lbScale.Size = new Size(39, 13);
@@ -2152,7 +2152,7 @@ namespace SBuilderX
             // 
             lbScaleBar.BackColor = SystemColors.GradientInactiveCaption;
             lbScaleBar.BorderStyle = BorderStyle.FixedSingle;
-            lbScaleBar.Font = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Bold, GraphicsUnit.Point, Conversions.ToByte(0));
+            lbScaleBar.Font = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbScaleBar.Location = new Point(580, 417);
             lbScaleBar.Name = "lbScaleBar";
             lbScaleBar.Size = new Size(100, 5);

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -60,7 +58,7 @@ namespace SBuilderX
             if (DoBackUp)
                 moduleEDIT.BackUp();
             moduleMAIN.ProjectName = txtName.Text;
-            My.MyProject.Forms.FrmStart.Text = moduleMAIN.AppTitle + "  " + Strings.UCase(moduleMAIN.ProjectName);
+            My.MyProject.Forms.FrmStart.Text = moduleMAIN.AppTitle + "  " + moduleMAIN.ProjectName.ToUpper();
             if (!string.IsNullOrEmpty(txtBGLFolder.Text))
                 moduleMAIN.BGLProjectFolder = txtBGLFolder.Text;
             moduleMAIN.CheckFolders();
@@ -111,10 +109,9 @@ namespace SBuilderX
                 A = A + "and the definition is assigned to a color. ";
                 A = A + "Whenever this color is found on a Class Map, the 1st class is used 60% of the time, the 2nd ";
                 A = A + "class 25% and the 3rd class 15%. You can mix Land and Water definitions.";
-                A = Strings.Trim(Interaction.InputBox(A, DefaultResponse: "Land 101 102 103 City Textures")) + " ";
-                N1 = 1;
-                N2 = Strings.InStr(1, A, " ");
-                B = Strings.UCase(Strings.Mid(A, 1, N2 - N1));
+                A = Utilities.InputBox("", A, "Land 101 102 103 City Textures").Trim() + " ";
+                N2 = A.IndexOf(" ");
+                B = A.Substring(0, N2).ToUpper();
                 if (B == "LAND")
                 {
                     IsLand = true;
@@ -129,8 +126,8 @@ namespace SBuilderX
                 }
 
                 N1 = N2 + 1;
-                N2 = Strings.InStr(N1, A, " ");
-                P0 = Conversions.ToByte(Strings.Mid(A, N1, N2 - N1));
+                N2 = A.IndexOf(" ", N1);
+                P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                 if (IsLand)
                 {
                     var loopTo = moduleCLASSES.NoOfLCs;
@@ -158,8 +155,8 @@ namespace SBuilderX
 
                 P1 = (byte)N;
                 N1 = N2 + 1;
-                N2 = Strings.InStr(N1, A, " ");
-                P0 = Conversions.ToByte(Strings.Mid(A, N1, N2 - N1));
+                N2 = A.IndexOf(" ", N1);
+                P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                 if (IsLand)
                 {
                     var loopTo2 = moduleCLASSES.NoOfLCs;
@@ -187,8 +184,8 @@ namespace SBuilderX
 
                 P2 = (byte)N;
                 N1 = N2 + 1;
-                N2 = Strings.InStr(N1, A, " ");
-                P0 = Conversions.ToByte(Strings.Mid(A, N1, N2 - N1));
+                N2 = A.IndexOf(" ", N1);
+                P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                 if (IsLand)
                 {
                     var loopTo4 = moduleCLASSES.NoOfLCs;
@@ -250,9 +247,9 @@ namespace SBuilderX
                 moduleMAIN.Dirty = true;
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Please check your entry!");
+                MessageBox.Show("Please check your entry!");
             }
         }
 
@@ -267,7 +264,7 @@ namespace SBuilderX
                 moduleCLASSES.NoOfLWCIs = 0;
                 lstClassItems.Items.RemoveAt(0);
                 lbClassItem.Text = "";
-                lbClassItem.BackColor = ColorTranslator.FromOle(Information.RGB(255, 255, 255));
+                lbClassItem.BackColor = Color.FromArgb(255, 255, 255);
                 return;
             }
 
@@ -321,10 +318,9 @@ namespace SBuilderX
                 A = A + "and the definition is assigned to a color. ";
                 A = A + "Whenever this color is found on a Class Map, the 1st class is used 60% of the time, the 2nd ";
                 A = A + "class 25% and the 3rd class 15%. You can mix Land and Water definitions.";
-                A = Strings.Trim(Interaction.InputBox(A, DefaultResponse: moduleCLASSES.LWCIs[N0].Text)) + " ";
-                N1 = 1;
-                N2 = Strings.InStr(1, A, " ");
-                B = Strings.UCase(Strings.Mid(A, 1, N2 - N1));
+                A = Utilities.InputBox("", A, moduleCLASSES.LWCIs[N0].Text).Trim() + " ";
+                N2 = A.IndexOf(" ");
+                B = A.Substring(0, N2).ToUpper();
                 if (B == "LAND")
                 {
                     IsLand = true;
@@ -339,8 +335,8 @@ namespace SBuilderX
                 }
 
                 N1 = N2 + 1;
-                N2 = Strings.InStr(N1, A, " ");
-                P0 = Conversions.ToByte(Strings.Mid(A, N1, N2 - N1));
+                N2 = A.IndexOf(" ", N1);
+                P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                 if (IsLand)
                 {
                     var loopTo = moduleCLASSES.NoOfLCs;
@@ -368,8 +364,8 @@ namespace SBuilderX
 
                 P1 = (byte)N;
                 N1 = N2 + 1;
-                N2 = Strings.InStr(N1, A, " ");
-                P0 = Conversions.ToByte(Strings.Mid(A, N1, N2 - N1));
+                N2 = A.IndexOf(" ", N1);
+                P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                 if (IsLand)
                 {
                     var loopTo2 = moduleCLASSES.NoOfLCs;
@@ -397,8 +393,8 @@ namespace SBuilderX
 
                 P2 = (byte)N;
                 N1 = N2 + 1;
-                N2 = Strings.InStr(N1, A, " ");
-                P0 = Conversions.ToByte(Strings.Mid(A, N1, N2 - N1));
+                N2 = A.IndexOf(" ", N1);
+                P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                 if (IsLand)
                 {
                     var loopTo4 = moduleCLASSES.NoOfLCs;
@@ -438,9 +434,9 @@ namespace SBuilderX
                 moduleMAIN.Dirty = true;
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Please check your entry!");
+                MessageBox.Show("Please check your entry!");
             }
         }
 

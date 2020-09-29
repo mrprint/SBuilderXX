@@ -2,8 +2,8 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -35,7 +35,7 @@ namespace SBuilderX
             FullFile = DataPath + @"\" + DataFile;
             if (File.Exists(FullFile))
             {
-                A = "The file:" + Constants.vbCrLf + Constants.vbCrLf + DataFile + Constants.vbCrLf + Constants.vbCrLf;
+                A = "The file:" + Environment.NewLine + Environment.NewLine + DataFile + Environment.NewLine + Environment.NewLine;
                 A = A + "already exists! Overwrite?";
                 if ((int)Interaction.MsgBox(A, (MsgBoxStyle)(32 + 4)) == 7)
                     return;
@@ -193,8 +193,8 @@ namespace SBuilderX
             moduleMAPS.Maps[N].BMPWi = txtBMPWinter.Text;
             moduleMAPS.Maps[N].BMPHw = txtBMPHard.Text;
             moduleMAPS.Maps[N].BMPLm = txtBMPNight.Text;
-            moduleMAPS.Maps[N].COLS = Conversions.ToInteger(lbCols.Text);
-            moduleMAPS.Maps[N].ROWS = Conversions.ToInteger(lbRows.Text);
+            moduleMAPS.Maps[N].COLS = Convert.ToInt32(lbCols.Text);
+            moduleMAPS.Maps[N].ROWS = Convert.ToInt32(lbRows.Text);
             moduleMAPS.Maps[N].NLAT = moduleMAIN.Str2Lat(txtNLat.Text);
             moduleMAPS.Maps[N].SLAT = moduleMAIN.Str2Lat(txtSLat.Text);
             moduleMAPS.Maps[N].ELON = moduleMAIN.Str2Lon(txtELon.Text);
@@ -246,8 +246,8 @@ namespace SBuilderX
             double South = moduleMAIN.Str2Lat(txtSLat.Text);
             double East = moduleMAIN.Str2Lon(txtELon.Text);
             double West = moduleMAIN.Str2Lon(txtWLon.Text);
-            int Cols = Conversions.ToInteger(lbCols.Text);
-            int Rows = Conversions.ToInteger(lbRows.Text);
+            int Cols = Convert.ToInt32(lbCols.Text);
+            int Rows = Convert.ToInt32(lbRows.Text);
             double LX, SX;
             double LY, SY;
             SX = (East - West) / Cols;
@@ -265,8 +265,8 @@ namespace SBuilderX
             string FileName;
             int K;
             FileName = moduleMAPS.Maps[modulePOPUP.POPIndex].BMPSu;
-            K = Strings.Len(FileName) - 4;
-            FileName = Strings.Mid(FileName, 1, K) + ".tif";
+            K = FileName.Length - 4;
+            FileName = FileName.Substring(0, K) + ".tif";
             GeoTiff.Save(FileName);
             Stream.Dispose();
             byte[] buffer;
@@ -297,7 +297,7 @@ namespace SBuilderX
             }
 
             if (Problem == true)
-                Interaction.MsgBox("Geotiff file may have some problems!");
+                MessageBox.Show("Geotiff file may have some problems!");
             File.WriteAllBytes(FileName, buffer);
             buffer = new byte[1];
         }

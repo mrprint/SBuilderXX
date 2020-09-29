@@ -255,7 +255,7 @@ namespace SBuilderX
             // 
             // Label7
             // 
-            _Label7.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(255)), Conversions.ToInteger(Conversions.ToByte(0)), Conversions.ToInteger(Conversions.ToByte(128)));
+            _Label7.BackColor = Color.FromArgb(255, 0, 128);
             _Label7.Location = new Point(192, 49);
             _Label7.Name = "_Label7";
             _Label7.Size = new Size(20, 20);
@@ -263,7 +263,7 @@ namespace SBuilderX
             // 
             // Label8
             // 
-            _Label8.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(255)), Conversions.ToInteger(Conversions.ToByte(128)), Conversions.ToInteger(Conversions.ToByte(0)));
+            _Label8.BackColor = Color.FromArgb(255, 128, 0);
             _Label8.Location = new Point(166, 49);
             _Label8.Name = "_Label8";
             _Label8.Size = new Size(20, 20);
@@ -279,7 +279,7 @@ namespace SBuilderX
             // 
             // Label10
             // 
-            _Label10.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(128)), Conversions.ToInteger(Conversions.ToByte(128)), Conversions.ToInteger(Conversions.ToByte(255)));
+            _Label10.BackColor = Color.FromArgb(128, 128, 255);
             _Label10.Location = new Point(218, 79);
             _Label10.Name = "_Label10";
             _Label10.Size = new Size(20, 20);
@@ -287,7 +287,7 @@ namespace SBuilderX
             // 
             // Label11
             // 
-            _Label11.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(128)), Conversions.ToInteger(Conversions.ToByte(255)), Conversions.ToInteger(Conversions.ToByte(128)));
+            _Label11.BackColor = Color.FromArgb(128, 255, 128);
             _Label11.Location = new Point(192, 79);
             _Label11.Name = "_Label11";
             _Label11.Size = new Size(20, 20);
@@ -295,7 +295,7 @@ namespace SBuilderX
             // 
             // Label12
             // 
-            _Label12.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(255)), Conversions.ToInteger(Conversions.ToByte(128)), Conversions.ToInteger(Conversions.ToByte(128)));
+            _Label12.BackColor = Color.FromArgb(255, 128, 128);
             _Label12.Location = new Point(166, 79);
             _Label12.Name = "_Label12";
             _Label12.Size = new Size(20, 20);
@@ -319,7 +319,7 @@ namespace SBuilderX
             // 
             // Label15
             // 
-            _Label15.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(0)), Conversions.ToInteger(Conversions.ToByte(128)), Conversions.ToInteger(Conversions.ToByte(255)));
+            _Label15.BackColor = Color.FromArgb(0, 128, 255);
             _Label15.Location = new Point(322, 49);
             _Label15.Name = "_Label15";
             _Label15.Size = new Size(20, 20);
@@ -327,7 +327,7 @@ namespace SBuilderX
             // 
             // Label16
             // 
-            _Label16.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(0)), Conversions.ToInteger(Conversions.ToByte(255)), Conversions.ToInteger(Conversions.ToByte(128)));
+            _Label16.BackColor = Color.FromArgb(0, 255, 128);
             _Label16.Location = new Point(296, 49);
             _Label16.Name = "_Label16";
             _Label16.Size = new Size(20, 20);
@@ -335,7 +335,7 @@ namespace SBuilderX
             // 
             // Label17
             // 
-            _Label17.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(128)), Conversions.ToInteger(Conversions.ToByte(0)), Conversions.ToInteger(Conversions.ToByte(255)));
+            _Label17.BackColor = Color.FromArgb(128, 0, 255);
             _Label17.Location = new Point(244, 49);
             _Label17.Name = "_Label17";
             _Label17.Size = new Size(20, 20);
@@ -343,7 +343,7 @@ namespace SBuilderX
             // 
             // Label18
             // 
-            _Label18.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(128)), Conversions.ToInteger(Conversions.ToByte(255)), Conversions.ToInteger(Conversions.ToByte(0)));
+            _Label18.BackColor = Color.FromArgb(128, 255, 0);
             _Label18.Location = new Point(218, 49);
             _Label18.Name = "_Label18";
             _Label18.Size = new Size(20, 20);
@@ -391,7 +391,7 @@ namespace SBuilderX
             // 
             // Label24
             // 
-            _Label24.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(128)), Conversions.ToInteger(Conversions.ToByte(255)), Conversions.ToInteger(Conversions.ToByte(255)));
+            _Label24.BackColor = Color.FromArgb(128, 255, 255);
             _Label24.Location = new Point(322, 79);
             _Label24.Name = "_Label24";
             _Label24.Size = new Size(20, 20);
@@ -399,7 +399,7 @@ namespace SBuilderX
             // 
             // Label25
             // 
-            _Label25.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(255)), Conversions.ToInteger(Conversions.ToByte(128)), Conversions.ToInteger(Conversions.ToByte(255)));
+            _Label25.BackColor = Color.FromArgb(255, 128, 255);
             _Label25.Location = new Point(296, 79);
             _Label25.Name = "_Label25";
             _Label25.Size = new Size(20, 20);
@@ -407,7 +407,7 @@ namespace SBuilderX
             // 
             // Label26
             // 
-            _Label26.BackColor = Color.FromArgb(Conversions.ToInteger(Conversions.ToByte(255)), Conversions.ToInteger(Conversions.ToByte(255)), Conversions.ToInteger(Conversions.ToByte(128)));
+            _Label26.BackColor = Color.FromArgb(255, 255, 128);
             _Label26.Location = new Point(270, 79);
             _Label26.Name = "_Label26";
             _Label26.Size = new Size(20, 20);

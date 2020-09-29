@@ -1,5 +1,7 @@
 ﻿using System;
-using Microsoft.VisualBasic;
+using System.Media;
+using System.Windows.Forms;
+//using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -21,12 +23,12 @@ namespace SBuilderX
 
         private void CmdAll_Click(object eventSender, EventArgs eventArgs)
         {
-            Search = Strings.Trim(Strings.UCase(txtName.Text));
+            Search = txtName.Text.ToUpper().Trim();
             if (ckLines.Checked)
             {
                 if (FindLines(1) == 0)
                 {
-                    Interaction.MsgBox("No Line found !");
+                    MessageBox.Show("No Line found !");
                     return;
                 }
             }
@@ -35,7 +37,7 @@ namespace SBuilderX
             {
                 if (FindLTypes(1) == 0)
                 {
-                    Interaction.MsgBox("No Line found !");
+                    MessageBox.Show("No Line found !");
                     return;
                 }
             }
@@ -44,7 +46,7 @@ namespace SBuilderX
             {
                 if (FindPolys(1) == 0)
                 {
-                    Interaction.MsgBox("No Polygon found !");
+                    MessageBox.Show("No Polygon found !");
                     return;
                 }
             }
@@ -53,12 +55,12 @@ namespace SBuilderX
             {
                 if (FindPTypes(1) == 0)
                 {
-                    Interaction.MsgBox("No Polygon found !");
+                    MessageBox.Show("No Polygon found !");
                     return;
                 }
             }
 
-            Interaction.Beep();
+            SystemSounds.Beep.Play();
             moduleMAIN.LonDispCenter = LonFind;
             moduleMAIN.LatDispCenter = LatFind;
             moduleMAIN.SetDispCenter(0, 0);
@@ -72,12 +74,12 @@ namespace SBuilderX
 
         private void CmdNext_Click(object eventSender, EventArgs eventArgs)
         {
-            Search = Strings.Trim(Strings.UCase(txtName.Text));
+            Search = txtName.Text.ToUpper().Trim();
             if (ckLines.Checked)
             {
                 if (FindLines(0) == 0)
                 {
-                    Interaction.MsgBox("Line not found !");
+                    MessageBox.Show("Line not found !");
                     return;
                 }
             }
@@ -86,7 +88,7 @@ namespace SBuilderX
             {
                 if (FindLTypes(0) == 0)
                 {
-                    Interaction.MsgBox("Line not found !");
+                    MessageBox.Show("Line not found !");
                     return;
                 }
             }
@@ -95,7 +97,7 @@ namespace SBuilderX
             {
                 if (FindPolys(0) == 0)
                 {
-                    Interaction.MsgBox("Polygon not found !");
+                    MessageBox.Show("Polygon not found !");
                     return;
                 }
             }
@@ -104,12 +106,12 @@ namespace SBuilderX
             {
                 if (FindPTypes(0) == 0)
                 {
-                    Interaction.MsgBox("Polygon not found !");
+                    MessageBox.Show("Polygon not found !");
                     return;
                 }
             }
 
-            Interaction.Beep();
+            SystemSounds.Beep.Play();
             moduleMAIN.LonDispCenter = LonFind;
             moduleMAIN.LatDispCenter = LatFind;
             moduleMAIN.SetDispCenter(0, 0);
@@ -148,7 +150,7 @@ namespace SBuilderX
                     }
                     else
                     {
-                        Flag = Strings.InStr(1, Strings.UCase(moduleLINES.Lines[N].Name), Search) > 0;
+                        Flag = moduleLINES.Lines[N].Name.ToUpper().IndexOf(Search, 0) != -1;
                     }
 
                     if (Flag)
@@ -177,7 +179,7 @@ namespace SBuilderX
                     }
                     else
                     {
-                        Flag = Strings.InStr(1, Strings.UCase(moduleLINES.Lines[N].Name), Search) > 0;
+                        Flag = moduleLINES.Lines[N].Name.ToUpper().IndexOf(Search, 0) != -1;
                     }
 
                     if (Flag)
@@ -192,7 +194,7 @@ namespace SBuilderX
                     }
                 }
             }
-            catch(Exception exc)
+            catch(Exception)
             {
             }
             return FindLinesRet;
@@ -214,7 +216,7 @@ namespace SBuilderX
                 var loopTo = moduleLINES.NoOfLines;
                 for (N = LineInd; N <= loopTo; N++)
                 {
-                    if (Strings.InStr(1, Strings.UCase(moduleLINES.Lines[N].Guid), Search) > 0)
+                    if (moduleLINES.Lines[N].Guid.ToUpper().IndexOf(Search, 0) != -1)
                     {
                         FindLTypesRet = N;
                         LineInd = N;
@@ -232,7 +234,7 @@ namespace SBuilderX
                 var loopTo1 = LineInd;
                 for (N = 1; N <= loopTo1; N++)
                 {
-                    if (Strings.InStr(1, Strings.UCase(moduleLINES.Lines[N].Guid), Search) > 0)
+                    if (moduleLINES.Lines[N].Guid.ToUpper().IndexOf(Search, 0) != -1)
                     {
                         FindLTypesRet = N;
                         LineInd = N;
@@ -244,7 +246,7 @@ namespace SBuilderX
                     }
                 }
             }
-            catch (Exception exc)
+            catch (Exception)
             {
             }
             return FindLTypesRet;
@@ -275,7 +277,7 @@ namespace SBuilderX
                     }
                     else
                     {
-                        Flag = Strings.InStr(1, Strings.UCase(modulePOLYS.Polys[N].Name), Search) > 0;
+                        Flag = modulePOLYS.Polys[N].Name.ToUpper().IndexOf(Search, 0) != -1;
                     }
 
                     if (Flag)
@@ -304,7 +306,7 @@ namespace SBuilderX
                     }
                     else
                     {
-                        Flag = Strings.InStr(1, Strings.UCase(modulePOLYS.Polys[N].Name), Search) > 0;
+                        Flag = modulePOLYS.Polys[N].Name.ToUpper().IndexOf(Search, 0) != -1;
                     }
 
                     if (Flag)
@@ -319,7 +321,7 @@ namespace SBuilderX
                     }
                 }
             }
-            catch (Exception exc)
+            catch (Exception)
             {
             }
             return FindPolysRet;
@@ -341,7 +343,7 @@ namespace SBuilderX
                 var loopTo = modulePOLYS.NoOfPolys;
                 for (N = PolyInd; N <= loopTo; N++)
                 {
-                    if (Strings.InStr(1, Strings.UCase(modulePOLYS.Polys[N].Guid), Search) > 0)
+                    if (modulePOLYS.Polys[N].Guid.ToUpper().IndexOf(Search, 0) != -1)
                     {
                         FindPTypesRet = N;
                         PolyInd = N;
@@ -359,7 +361,7 @@ namespace SBuilderX
                 var loopTo1 = PolyInd;
                 for (N = 1; N <= loopTo1; N++)
                 {
-                    if (Strings.InStr(1, Strings.UCase(modulePOLYS.Polys[N].Guid), Search) > 0)
+                    if (modulePOLYS.Polys[N].Guid.ToUpper().IndexOf(Search, 0) != -1)
                     {
                         FindPTypesRet = N;
                         PolyInd = N;
@@ -371,7 +373,7 @@ namespace SBuilderX
                     }
                 }
             }
-            catch (Exception exc)
+            catch (Exception)
             {
             }
             return FindPTypesRet;

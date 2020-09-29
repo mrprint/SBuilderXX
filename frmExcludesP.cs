@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -89,23 +88,23 @@ namespace SBuilderX
             ckWind.CheckState = CheckState.Unchecked;
             ckBridges.CheckState = CheckState.Unchecked;
             N = moduleEXCLUDES.Excludes[ThisExc].Flag;
-            if (Conversions.ToBoolean(N & 1))
+            if (Convert.ToBoolean(N & 1))
                 ckAll.CheckState = CheckState.Checked;
-            if (Conversions.ToBoolean(N & 2))
+            if (Convert.ToBoolean(N & 2))
                 ckBeacons.CheckState = CheckState.Checked;
-            if (Conversions.ToBoolean(N & 4))
+            if (Convert.ToBoolean(N & 4))
                 ckEffects.CheckState = CheckState.Checked;
-            if (Conversions.ToBoolean(N & 8))
+            if (Convert.ToBoolean(N & 8))
                 ckGenBuilds.CheckState = CheckState.Checked;
-            if (Conversions.ToBoolean(N & 16))
+            if (Convert.ToBoolean(N & 16))
                 ckLibrary.CheckState = CheckState.Checked;
-            if (Conversions.ToBoolean(N & 32))
+            if (Convert.ToBoolean(N & 32))
                 ckTaxi.CheckState = CheckState.Checked;
-            if (Conversions.ToBoolean(N & 64))
+            if (Convert.ToBoolean(N & 64))
                 ckTrigger.CheckState = CheckState.Checked;
-            if (Conversions.ToBoolean(N & 128))
+            if (Convert.ToBoolean(N & 128))
                 ckWind.CheckState = CheckState.Checked;
-            if (Conversions.ToBoolean(N & 256))
+            if (Convert.ToBoolean(N & 256))
                 ckBridges.CheckState = CheckState.Checked;
         }
     }

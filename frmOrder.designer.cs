@@ -191,7 +191,7 @@ namespace SBuilderX
             // 
             lstObject.BackColor = SystemColors.Window;
             lstObject.Cursor = Cursors.Default;
-            lstObject.Font = new Font("Courier New", 9.0f, FontStyle.Regular, GraphicsUnit.Point, Conversions.ToByte(0));
+            lstObject.Font = new Font("Courier New", 9.0f, FontStyle.Regular, GraphicsUnit.Point, 0);
             lstObject.ForeColor = SystemColors.WindowText;
             lstObject.ItemHeight = 15;
             lstObject.Location = new Point(12, 33);

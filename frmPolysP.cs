@@ -3,7 +3,6 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -176,31 +175,31 @@ namespace SBuilderX
             string a, b;
             int N;
             a = modulePOLYS.Polys[modulePOPUP.POPIndex].Type;
-            N = Strings.InStr(1, a, "//");
-            a = Strings.Mid(a, N + 2);
-            N = Strings.InStr(1, a, "//");
-            b = Strings.Mid(a, 1, N - 1);
+            N = a.IndexOf("//");
+            a = a.Substring(N + 2);
+            N = a.IndexOf("//");
+            b = a.Substring(0, N);
             ShowPolyTex(b);
-            a = Strings.Mid(a, N + 2);
-            N = Strings.InStr(1, a, "//");
-            b = Strings.Mid(a, 1, N - 1);
-            txtTexPri.Text = Conversions.ToInteger(b).ToString();
-            a = Strings.Mid(a, N + 2);
-            N = Strings.InStr(1, a, "//");
-            b = Strings.Mid(a, 1, N - 1);
-            txtTexTileX.Text = Conversions.ToInteger(b).ToString();
-            a = Strings.Mid(a, N + 2);
-            N = Strings.InStr(1, a, "//");
-            b = Strings.Mid(a, 1, N - 1);
-            txtTexTileY.Text = Conversions.ToInteger(b).ToString();
-            a = Strings.Mid(a, N + 2);
-            N = Strings.InStr(1, a, "//");
-            b = Strings.Mid(a, 1, N - 1);
-            txtV1.Text = Conversions.ToInteger(b).ToString();
-            a = Strings.Mid(a, N + 2);
-            N = Strings.InStr(1, a, "//");
-            ckNight.CheckState = (CheckState)Conversions.ToInteger(Strings.Mid(a, 1, N - 1));
-            a = Strings.Mid(a, N + 2);
+            a = a.Substring(N + 2);
+            N = a.IndexOf("//");
+            b = a.Substring(0, N);
+            txtTexPri.Text = Convert.ToInt32(b).ToString();
+            a = a.Substring(N + 2);
+            N = a.IndexOf("//");
+            b = a.Substring(0, N);
+            txtTexTileX.Text = Convert.ToInt32(b).ToString();
+            a = a.Substring(N + 2);
+            N = a.IndexOf("//");
+            b = a.Substring(0, N);
+            txtTexTileY.Text = Convert.ToInt32(b).ToString();
+            a = a.Substring(N + 2);
+            N = a.IndexOf("//");
+            b = a.Substring(0, N);
+            txtV1.Text = Convert.ToInt32(b).ToString();
+            a = a.Substring(N + 2);
+            N = a.IndexOf("//");
+            ckNight.CheckState = (CheckState)Convert.ToInt32(a.Substring(0, N));
+            a = a.Substring(N + 2);
             lbPolyColor.BackColor = modulePOLYS.Polys[modulePOPUP.POPIndex].Color;
             lbPolyColor.ForeColor = moduleMAIN.InvertColor(modulePOLYS.Polys[modulePOPUP.POPIndex].Color);
             modulePOLYS.PolyTexString = a;
@@ -212,8 +211,7 @@ namespace SBuilderX
                 return;
             try
             {
-                FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-                FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\Tools\");
+                Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\Tools\");
                 string ImageTool;
                 string BmpPath = moduleMAIN.AppPath + @"\Tools\Work\temp.bmp";
                 txtTexName.Text = Tex;
@@ -236,7 +234,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("There is a problem with the display of this image!", MsgBoxStyle.Critical);
+                MessageBox.Show("There is a problem with the display of this image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -294,10 +292,10 @@ namespace SBuilderX
                         txtTexTileY.Text = "1";
                     if (string.IsNullOrEmpty(txtV1.Text))
                         txtV1.Text = "5000";
-                    A = A + Conversions.ToInteger(txtTexPri.Text).ToString() + "//";
-                    A = A + Conversions.ToInteger(txtTexTileX.Text).ToString() + "//";
-                    A = A + Conversions.ToInteger(txtTexTileY.Text).ToString() + "//";
-                    A = A + Conversions.ToInteger(txtV1.Text).ToString() + "//";
+                    A = A + Convert.ToInt32(txtTexPri.Text).ToString() + "//";
+                    A = A + Convert.ToInt32(txtTexTileX.Text).ToString() + "//";
+                    A = A + Convert.ToInt32(txtTexTileY.Text).ToString() + "//";
+                    A = A + Convert.ToInt32(txtV1.Text).ToString() + "//";
                     A = A + ((int)ckNight.CheckState).ToString() + "//";
                     modulePOLYS.Polys[N].Type = A;
                     modulePOLYS.MakePolyTexString(N, false);
@@ -305,9 +303,9 @@ namespace SBuilderX
                     modulePOLYS.Polys[N].Color = lbPolyColor.BackColor;
                     return;
                 }
-                catch (Exception exc)
+                catch (Exception)
                 {
-                    Interaction.MsgBox("Check your entries!", MsgBoxStyle.Critical);
+                    MessageBox.Show("Check your entries!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
@@ -355,17 +353,17 @@ namespace SBuilderX
             {
                 CheckVectorPolyNameRet = modulePOLYS.Polys[N].Name;
                 if (string.IsNullOrEmpty(CheckVectorPolyNameRet))
-                    CheckVectorPolyNameRet = Conversion.Str(modulePOLYS.Polys[N].NoOfPoints) + "_Pts_";
-                int K = Strings.InStr(CheckVectorPolyNameRet, "_");
-                if (K == 0)
+                    CheckVectorPolyNameRet = modulePOLYS.Polys[N].NoOfPoints.ToString() + "_Pts_";
+                int K = CheckVectorPolyNameRet.IndexOf("_");
+                if (K == -1)
                     return CheckVectorPolyNameRet;
-                string A = CheckVectorPolyNameRet.Substring(K - 1, 5);
+                string A = CheckVectorPolyNameRet.Substring(K, 5);
                 if (A == "_Pts_")
                 {
-                    CheckVectorPolyNameRet = CheckVectorPolyNameRet.Substring(0, K + 4) + modulePOLYS.PolyTypes[ThisPolyType].Name;
+                    CheckVectorPolyNameRet = CheckVectorPolyNameRet.Substring(0, K + 5) + modulePOLYS.PolyTypes[ThisPolyType].Name;
                 }
             }
-            catch (Exception exc)
+            catch (Exception)
             {
             }
             return CheckVectorPolyNameRet;
@@ -421,9 +419,9 @@ namespace SBuilderX
                 moduleMAIN.ImageFileName = A;
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox(A);
+                MessageBox.Show(A);
             }
         }
 
@@ -447,7 +445,7 @@ namespace SBuilderX
         {
             if (modulePOLYS.PolyTypes[ThisPolyType].TerrainIndex < 0)
             {
-                Interaction.MsgBox("This type is not described in Terrain.cfg!");
+                MessageBox.Show("This type is not described in Terrain.cfg!");
                 return;
             }
 
@@ -465,7 +463,7 @@ namespace SBuilderX
                 C = "Description from Tools/Terrain.cfg";
             }
 
-            Key = "[Texture." + Strings.Trim(modulePOLYS.PolyTypes[ThisPolyType].TerrainIndex.ToString()) + "]";
+            Key = "[Texture." + modulePOLYS.PolyTypes[ThisPolyType].TerrainIndex.ToString().Trim() + "]";
             FileSystem.FileOpen(2, TerrainFile, OpenMode.Input);
             N = (int)FileSystem.LOF(2);
             Marker = 0;
@@ -474,13 +472,13 @@ namespace SBuilderX
             while (Marker < N)
             {
                 A = FileSystem.LineInput(2);
-                Marker = Marker + Strings.Len(A) + 2;
-                A = Strings.Trim(A);
+                Marker = Marker + A.Length + 2;
+                A = A.Trim();
                 if (F1)
                 {
                     if (string.IsNullOrEmpty(A))
                         break;
-                    B = B + A + Constants.vbCrLf;
+                    B = B + A + Environment.NewLine;
                 }
 
                 if (!F1)
@@ -490,7 +488,7 @@ namespace SBuilderX
                 }
             }
 
-            Interaction.MsgBox(B, MsgBoxStyle.Information, C);
+            MessageBox.Show(B, C, MessageBoxButtons.OK, MessageBoxIcon.Information);
             FileSystem.FileClose();
         }
 
@@ -785,7 +783,7 @@ namespace SBuilderX
 
         private void OptVector_CheckedChanged(object sender, EventArgs e)
         {
-            if (Conversions.ToBoolean(sender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(sender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -798,7 +796,7 @@ namespace SBuilderX
 
         private void OptTexture_CheckedChanged(object sender, EventArgs e)
         {
-            if (Conversions.ToBoolean(sender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(sender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -853,8 +851,8 @@ namespace SBuilderX
             txtSlope.Text = (sxy * 1000d).ToString();
             txtAlt0.Text = modulePOLYS.Polys[modulePOPUP.POPIndex].GPoints[n1].alt.ToString();
             txtPt0.Text = n1.ToString();
-            lbSX.Text = "SlopeX = " + Strings.Mid(Conversion.Str(k1), 1, 13);
-            lbSY.Text = "SlopeY = " + Strings.Mid(Conversion.Str(k2), 1, 13);
+            lbSX.Text = "SlopeX = " + k1.ToString().Substring(0, 13);
+            lbSY.Text = "SlopeY = " + k2.ToString().Substring(0, 13);
         }
 
         private void CmdSlope_Click(object sender, EventArgs e)
@@ -882,9 +880,9 @@ namespace SBuilderX
                 LoadForm();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check your entries!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check your entries!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -895,8 +893,8 @@ namespace SBuilderX
             double x0, y0, z0;
             int P;
             int K, J;
-            Head = Conversions.ToDouble(txtHead.Text);
-            sxy = Conversions.ToDouble(txtSlope.Text);
+            Head = Convert.ToDouble(txtHead.Text);
+            sxy = Convert.ToDouble(txtSlope.Text);
             lat = 0d;
             var loopTo = modulePOLYS.Polys[N].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
@@ -908,10 +906,10 @@ namespace SBuilderX
             k2 = sxy * Math.Cos(Head);
             k1 = k1 * moduleMAIN.MetersPerDegLon(lat);
             k2 = k2 * moduleMAIN.MetersPerDegLat;
-            P = Conversions.ToInteger(txtPt0.Text);
+            P = Convert.ToInt32(txtPt0.Text);
             x0 = modulePOLYS.Polys[N].GPoints[P].lon;
             y0 = modulePOLYS.Polys[N].GPoints[P].lat;
-            z0 = Conversions.ToDouble(txtAlt0.Text);
+            z0 = Convert.ToDouble(txtAlt0.Text);
             k3 = z0 - k1 * x0 - k2 * y0;
             var loopTo1 = modulePOLYS.Polys[N].NoOfPoints;
             for (K = 1; K <= loopTo1; K++)
@@ -942,7 +940,7 @@ namespace SBuilderX
 
             try
             {
-                X = Conversions.ToDouble(txtAlt.Text);
+                X = Convert.ToDouble(txtAlt.Text);
                 if (modulePOPUP.POPMode == "One")
                 {
                     SetConstantAltitude(modulePOPUP.POPIndex, X);
@@ -962,9 +960,9 @@ namespace SBuilderX
                 LoadForm();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check altitude value!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check altitude value!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -987,11 +985,11 @@ namespace SBuilderX
         private void CmdHelpSlope_Click(object sender, EventArgs e)
         {
             string A;
-            A = "In this mode you specify: (i) the altitude and index of one" + Constants.vbCrLf;
-            A = A + "point (ii) the heading of maximum slope and (iii) the maximum" + Constants.vbCrLf;
-            A = A + "slope expressed as the altitude increase in meters per one" + Constants.vbCrLf;
+            A = "In this mode you specify: (i) the altitude and index of one" + Environment.NewLine;
+            A = A + "point (ii) the heading of maximum slope and (iii) the maximum" + Environment.NewLine;
+            A = A + "slope expressed as the altitude increase in meters per one" + Environment.NewLine;
             A = A + "thousand meters of horizontal shift.";
-            Interaction.MsgBox(A, MsgBoxStyle.Information);
+            MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // Private Sub Get3Points(ByVal N As Integer, ByRef N1 As Integer, ByRef N2 As Integer, ByRef N3 As Integer, ByRef lat As Double)
@@ -1149,7 +1147,7 @@ namespace SBuilderX
         {
             bool IsTexPolyRet = default;
             IsTexPolyRet = false;
-            if (Strings.Mid(modulePOLYS.Polys[N].Type, 1, 3) == "TEX")
+            if (modulePOLYS.Polys[N].Type.Substring(0, 3) == "TEX")
                 IsTexPolyRet = true;
             return IsTexPolyRet;
         }
@@ -1202,9 +1200,9 @@ namespace SBuilderX
             {
                 if ((TexPath ?? "") != (A ?? ""))
                 {
-                    B = "This file already exists in the ../SBuilder/Texture" + Constants.vbCrLf;
+                    B = "This file already exists in the ../SBuilder/Texture" + Environment.NewLine;
                     B = B + "folder and it will be overwriten! Do you want to continue?";
-                    if (Interaction.MsgBox(B, MsgBoxStyle.YesNo) == MsgBoxResult.No)
+                    if (MessageBox.Show(B, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         return;
                 }
             }
@@ -1219,7 +1217,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("The file could not be loaded!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("The file could not be loaded!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 

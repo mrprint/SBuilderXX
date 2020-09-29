@@ -5,7 +5,6 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -62,7 +61,7 @@ namespace SBuilderX
             string DataFile;
             double East = default, North = default, South = default, West = default;
             bool Flag;
-            string Name = "MAP" + Strings.Format(NoOfMaps, "00");
+            string Name = "MAP" + NoOfMaps.ToString("00");
             string A;
             A = "Windows Bitmap Format (*.BMP)|*.bmp";
             A = A + "|Jpeg File Interchange Format (*.JPG)|*.jpg";
@@ -88,7 +87,7 @@ namespace SBuilderX
                 if (Flag == false)
                 {
                     NoOfMaps = NoOfMaps - 1;
-                    Interaction.MsgBox("The image has a wrong file format!", MsgBoxStyle.Critical);
+                    MessageBox.Show("The image has a wrong file format!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
@@ -157,7 +156,7 @@ namespace SBuilderX
             My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             if (Flag == false)
             {
-                Interaction.MsgBox("You may need to calibrate this bitmap!", MsgBoxStyle.OkOnly);
+                MessageBox.Show("You may need to calibrate this bitmap!", "", MessageBoxButtons.OK);
                 modulePOPUP.POPIndex = NoOfMaps;
                 My.MyProject.Forms.FrmMapsP.ShowDialog();
             }
@@ -282,7 +281,7 @@ namespace SBuilderX
             string myfile;
             if (My.MyProject.Computer.Network.IsAvailable == false)
             {
-                Interaction.MsgBox("There is no Internet connection!", MsgBoxStyle.Information);
+                MessageBox.Show("There is no Internet connection!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -306,8 +305,8 @@ namespace SBuilderX
             LE = LonFromXMPix((long)(CLon + msize / 2d), moduleMAIN.Zoom);
             string makeurl;
             makeurl = "https://services.arcgisonline.com/arcgis/rest/services/World_" + ArcGisMapsType;
-            makeurl = makeurl + "/MapServer/export?bbox=" + Strings.Trim(Conversion.Str(LW)) + "," + Strings.Trim(Conversion.Str(LS));
-            makeurl = makeurl + "," + Strings.Trim(Conversion.Str(LE)) + "," + Strings.Trim(Conversion.Str(LN));
+            makeurl = makeurl + "/MapServer/export?bbox=" + LW.ToString().Trim() + "," + LS.ToString().Trim();
+            makeurl = makeurl + "," + LE.ToString().Trim() + "," + LN.ToString().Trim();
             makeurl = makeurl + "&bboxSR=4326&size=" + msize + "," + msize + "&f=image";
 
             // MsgBox(makeurl)
@@ -323,18 +322,18 @@ namespace SBuilderX
             catch (Exception ex)
             {
                 // MsgBox("Could not get a Arc Gis Map image!", MsgBoxStyle.Critical)
-                Interaction.MsgBox("Could not get an image at Zoom=" + moduleMAIN.Zoom + "!", MsgBoxStyle.Critical);
+                MessageBox.Show("Could not get an image at Zoom=" + moduleMAIN.Zoom + "!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
                 NoOfMaps = NoOfMaps - 1;
                 return;
             }
 
             Array.Resize(ref Maps, NoOfMaps + 1);
-            Maps[NoOfMaps].Name = "MAP" + Strings.Format(NoOfMaps, "00");
+            Maps[NoOfMaps].Name = "MAP" + NoOfMaps.ToString("00");
             Maps[NoOfMaps].Selected = false;
             string LA, LO;
-            LA = Strings.Format(Conversion.Val(moduleMAIN.LatDispCenter), "00.000000");
-            LO = Strings.Format(Conversion.Val(moduleMAIN.LonDispCenter), "000.000000");
+            LA = moduleMAIN.LatDispCenter.ToString("00.000000");
+            LO = moduleMAIN.LonDispCenter.ToString("000.000000");
             myfile = moduleMAIN.AppPath + @"\Tools\Work\ARCG_" + LA + "_" + LO + "_" + moduleMAIN.Zoom + ".png";
             try
             {
@@ -345,7 +344,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("There was a problem saving the image!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("There was a problem saving the image!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             Maps[NoOfMaps].BMPSu = myfile;
@@ -376,18 +375,18 @@ namespace SBuilderX
             string myfile;
             if (My.MyProject.Computer.Network.IsAvailable == false)
             {
-                Interaction.MsgBox("There is no Internet connection!", MsgBoxStyle.Information);
+                MessageBox.Show("There is no Internet connection!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             if (string.IsNullOrEmpty(GoogleMapsAPI))
             {
-                myfile = "You need to have a valid and active Google Static Maps API Key! Once you" + Constants.vbCrLf;
-                myfile = myfile + "get your_google_api_key, open SBuilderX.ini file and edit the following line" + Constants.vbCrLf;
-                myfile = myfile + "GoogleMapsAPI=your_google_api_key!" + Constants.vbCrLf + Constants.vbCrLf;
+                myfile = "You need to have a valid and active Google Static Maps API Key! Once you" + Environment.NewLine;
+                myfile = myfile + "get your_google_api_key, open SBuilderX.ini file and edit the following line" + Environment.NewLine;
+                myfile = myfile + "GoogleMapsAPI=your_google_api_key!" + Environment.NewLine + Environment.NewLine;
                 myfile = myfile + "Do you want to learn how to get a Google API key?";
-                var A = Interaction.MsgBox(myfile, MsgBoxStyle.YesNo, "Google Maps API is missing");
-                if (A == MsgBoxResult.Yes)
+                var A = MessageBox.Show(myfile, "Google Maps API is missing", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (A == DialogResult.Yes)
                 {
                     myfile = "https://developers.google.com/maps/documentation/static-maps/get-api-key";
                     Process.Start(myfile);
@@ -407,7 +406,7 @@ namespace SBuilderX
             Array.Resize(ref ImgMaps, NoOfMaps + 1);
             string makeurl;
             makeurl = "https://maps.googleapis.com/maps/api/staticmap?center=";
-            makeurl = makeurl + Strings.Trim(Conversion.Str(moduleMAIN.LatDispCenter)) + "," + Strings.Trim(Conversion.Str(moduleMAIN.LonDispCenter));
+            makeurl = makeurl + moduleMAIN.LatDispCenter.ToString().Trim() + "," + moduleMAIN.LonDispCenter.ToString().Trim();
             int msize = 640;
             makeurl = makeurl + "&size=" + msize + "x" + msize + "&zoom=" + moduleMAIN.Zoom + "&scale=2";
             makeurl = makeurl + "&format=png&maptype=" + GoogleMapsType;
@@ -423,18 +422,18 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Could not get an image at Zoom=" + moduleMAIN.Zoom + "!", MsgBoxStyle.Critical);
+                MessageBox.Show("Could not get an image at Zoom=" + moduleMAIN.Zoom + "!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
                 NoOfMaps = NoOfMaps - 1;
                 return;
             }
 
             Array.Resize(ref Maps, NoOfMaps + 1);
-            Maps[NoOfMaps].Name = "MAP" + Strings.Format(NoOfMaps, "00");
+            Maps[NoOfMaps].Name = "MAP" + NoOfMaps.ToString("00");
             Maps[NoOfMaps].Selected = false;
             string LA, LO;
-            LA = Strings.Format(Conversion.Val(moduleMAIN.LatDispCenter), "00.000000");
-            LO = Strings.Format(Conversion.Val(moduleMAIN.LonDispCenter), "000.000000");
+            LA = moduleMAIN.LatDispCenter.ToString("00.000000");
+            LO = moduleMAIN.LonDispCenter.ToString("000.000000");
             myfile = moduleMAIN.AppPath + @"\Tools\Work\GMAP_" + LA + "_" + LO + "_" + moduleMAIN.Zoom + ".png";
             try
             {
@@ -445,7 +444,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("There was a problem saving the image!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("There was a problem saving the image!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             Maps[NoOfMaps].BMPSu = myfile;
@@ -508,7 +507,7 @@ namespace SBuilderX
             BytesPerPixel = (int)(BitConverter.ToInt16(inp, 28) / 8d);
             LineWidth = cols * BytesPerPixel;
             // make LineWidth a multiple of 4
-            N = (int)Conversion.Int((LineWidth - 1) / 4d);
+            N = (int)((LineWidth - 1) / 4d);
             LineWidth = (N + 1) * 4;
             dlat = (North - South) / (rows - 1);
             north_m = YMercFromLat(North);
@@ -598,9 +597,9 @@ namespace SBuilderX
             try
             {
                 // ReadIniDouble = CDbl(ReadIniValue(File, KEY, Value))
-                ReadIniDoubleRet = Conversion.Val(moduleFILE_IO.ReadIniValue(File, KEY, ref Value));
+                ReadIniDoubleRet = Convert.ToDouble(moduleFILE_IO.ReadIniValue(File, KEY, ref Value));
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 ReadIniDoubleRet = 0d;
             }
@@ -718,7 +717,7 @@ namespace SBuilderX
                 My.MyProject.Forms.FrmStart.SetMouseIcon();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 CheckMaps();
                 My.MyProject.Forms.FrmStart.SetMouseIcon();
@@ -738,10 +737,10 @@ namespace SBuilderX
                     break;
                 if (!File.Exists(Maps[N].BMPSu))
                 {
-                    A = "The the following map:" + Constants.vbCrLf + Constants.vbCrLf;
-                    A = A + Maps[N].BMPSu + Constants.vbCrLf + Constants.vbCrLf;
+                    A = "The the following map:" + Environment.NewLine + Environment.NewLine;
+                    A = A + Maps[N].BMPSu + Environment.NewLine + Environment.NewLine;
                     A = A + "has a problem and will be deleted!";
-                    Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                    MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     DeleteMap(N);
                     N = N - 1;
                 }
@@ -894,7 +893,7 @@ namespace SBuilderX
                 // MsgBox("Can not display maps! Map View was turned OFF!", MsgBoxStyle.Exclamation)
                 // MapVIEW = False
                 // frmStart.ViewAllMapsMenuItem.Checked = False
-                Interaction.MsgBox("Can not display maps! Simple Map View turned ON!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Can not display maps! Simple Map View turned ON!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 ShowSimpleMaps = true;
             }
         }
@@ -1118,7 +1117,7 @@ namespace SBuilderX
 
                 ImgMaps[NoOfMaps] = new Bitmap(myFile);
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 return GetImageParametersRet;
             }
@@ -1216,7 +1215,7 @@ namespace SBuilderX
                     return GetImageParametersRet;
                 geoTiff = true;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 if (ImgMaps[NoOfMaps] is object)
                     ImgMaps[NoOfMaps].Dispose();
@@ -1234,7 +1233,7 @@ namespace SBuilderX
             F1 = false;
             F2 = false;
             N = arr.Length;
-            N = (long)(8d * Conversion.Int(N / 8d) - 1d);
+            N = (long)(8d * (int)(N / 8d) - 1d);
             var loopTo = N;
             for (J = 8L; J <= loopTo; J += 8L)
             {
@@ -1264,7 +1263,7 @@ namespace SBuilderX
             int N, J;
             byte B0;
             N = arr.Length;
-            N = (int)(8d * Conversion.Int(N / 8d) - 1d);
+            N = (int)(8d * (int)(N / 8d) - 1d);
             var loopTo = N;
             for (J = 0; J <= loopTo; J += 8)
             {

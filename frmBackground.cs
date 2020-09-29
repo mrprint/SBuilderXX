@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -32,7 +31,7 @@ namespace SBuilderX
             DialogResult = DialogResult.Cancel;
             if (moduleMAIN.Zoom < 5)
             {
-                Interaction.MsgBox("Zoom is too low for photo scenery!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Zoom is too low for photo scenery!", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Dispose();
                 return;  // added this. It is right? in October 2017
             }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -186,7 +185,7 @@ namespace SBuilderX
         {
             moduleSHAPE.ShapePolyGuid = txtGUID.Text;
             moduleSHAPE.ShapePolyName = txtName.Text;
-            moduleSHAPE.ShapePolyAltitude = Conversions.ToDouble(txtAltitude.Text);
+            moduleSHAPE.ShapePolyAltitude = Convert.ToDouble(txtAltitude.Text);
             moduleSHAPE.ShapePolyColor = lbColor.BackColor;
             moduleSHAPE.ShapePolyGuidField = cmbGUID.SelectedIndex;
             moduleSHAPE.ShapePolyNameField = cmbName.SelectedIndex;

@@ -4,8 +4,9 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Xml;
+using System.Media;
+using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -336,13 +337,13 @@ namespace SBuilderX
             {
                 if (TryThisLineJoin(NoOfLines))
                 {
-                    Interaction.Beep();
+                    SystemSounds.Beep.Play();
                     AddLatLonToLine(NoOfLines);
                     return;
                 }
             }
 
-            Lines[NoOfLines].Name = Conversion.Str(Lines[NoOfLines].NoOfPoints) + "_Pts_Line_of_Type_None";
+            Lines[NoOfLines].Name = Lines[NoOfLines].NoOfPoints.ToString() + "_Pts_Line_of_Type_None";
             Lines[NoOfLines].Guid = DefaultLineNoneGuid;
             Lines[NoOfLines].Type = "NONE";
             AddLatLonToLine(NoOfLines);
@@ -360,7 +361,7 @@ namespace SBuilderX
             var loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
-                if (Strings.Mid(Lines[N].Type, 1, 3) == "OBJ")
+                if (Lines[N].Type.Substring(0, 3) == "OBJ")
                 {
                     SetLenWidFromObject(N);
                     var loopTo1 = Lines[N].NoOfPoints;
@@ -368,20 +369,18 @@ namespace SBuilderX
                     {
                         SetHeadingsFromObject(N, K);
                         if (HDX > X + 5)
-                            goto next_k;
+                            continue;
                         if (HDX < X - 5)
-                            goto next_k;
+                            continue;
                         if (HDY < Y - 5)
-                            goto next_k;
+                            continue;
                         if (HDY > Y + 5)
-                            goto next_k;
+                            continue;
                         LineToTurn = N;
                         PointToTurn = K;
                         Lines[N].GLPoints[K].Selected = true;
                         IsLineObjectTurnRet = true;
                         return IsLineObjectTurnRet;
-                    next_k:
-                        ;
                     }
                 }
             }
@@ -556,7 +555,7 @@ namespace SBuilderX
             for (N = 1; N <= loopTo; N++)
             {
                 if (Done[N])
-                    goto next_n;
+                    continue;
                 if (N > NoOfLines - 1)
                     return;
                 if (Lines[N].Selected)
@@ -575,8 +574,6 @@ namespace SBuilderX
                 }
 
                 Done[N] = true;
-            next_n:
-                ;
             }
         }
 
@@ -632,7 +629,7 @@ namespace SBuilderX
             {
                 JoinLines(N1, N2, 1, 1);
                 Try2LineJoinRet = true;
-                Interaction.Beep();
+                SystemSounds.Beep.Play();
                 return Try2LineJoinRet;
             }
 
@@ -671,7 +668,7 @@ namespace SBuilderX
             {
                 JoinLines(N2, N1, 1, 1);
                 Try2LineJoinRet = true;
-                Interaction.Beep();
+                SystemSounds.Beep.Play();
                 return Try2LineJoinRet;
             }
 
@@ -729,7 +726,7 @@ namespace SBuilderX
                 {
                     JoinLines(N1, N2, 1, -1);
                     Try2LineJoinRet = true;
-                    Interaction.Beep();
+                    SystemSounds.Beep.Play();
                     return Try2LineJoinRet;
                 }
             }
@@ -761,7 +758,7 @@ namespace SBuilderX
                 {
                     JoinLines(N1, N2, -1, 1);
                     Try2LineJoinRet = true;
-                    Interaction.Beep();
+                    SystemSounds.Beep.Play();
                     return Try2LineJoinRet;
                 }
             }
@@ -786,7 +783,7 @@ namespace SBuilderX
                 {
                     if (TryThisLineJoin(N))
                     {
-                        Interaction.Beep();
+                        SystemSounds.Beep.Play();
                         Flag = true;
                         goto Return_back;
                     }
@@ -862,7 +859,7 @@ namespace SBuilderX
                         Array.Resize(ref Lines[N].GLPoints, Lines[N].NoOfPoints + 1);
                         AddLatLonToLine(NoOfLines);
                         AddLatLonToLine(N);
-                        Interaction.Beep();
+                        SystemSounds.Beep.Play();
                         return;
                     }
                 }
@@ -1288,11 +1285,11 @@ namespace SBuilderX
             // N is the line which is already knnow to be of the OBJ type
             string A;
             A = Lines[N].Type.Substring(4);
-            N = Strings.InStr(A, "|");
-            WID = (float)Conversion.Val(A.Substring(0, N - 1)) / 2f;
+            N = A.IndexOf("|");
+            WID = Convert.ToSingle(A.Substring(0, N)) / 2f;
             A = A.Substring(N);
-            N = Strings.InStr(A, "|");
-            LEN = (float)Conversion.Val(A.Substring(0, N - 1)) / 2f;
+            N = A.IndexOf("|");
+            LEN = Convert.ToSingle(A.Substring(0, N)) / 2f;
         }
 
         private static void SetCornersFromObject(int N, int K)
@@ -1375,9 +1372,9 @@ namespace SBuilderX
             {
                 if (Lines[N].Selected)
                 {
-                    if (Strings.Mid(Lines[N].Type, 1, 3) == "OBJ")
+                    if (Lines[N].Type.Substring(0, 3) == "OBJ")
                     {
-                        if (Strings.Mid(Lines[N].Guid, 1, 1) == "{")
+                        if (Lines[N].Guid.Substring(0, 1) == "{")
                         {
                             FSXml = true;
                         }
@@ -1392,7 +1389,7 @@ namespace SBuilderX
             if (FSXml)
             {
                 File2 = moduleMAIN.ProjectName + "_LOBX";
-                File2 = Strings.Replace(File2, " ", "_");
+                File2 = File2.Replace(" ", "_");
                 A = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File2 + ".xml";
                 var settings = new XmlWriterSettings()
                 {
@@ -1402,7 +1399,7 @@ namespace SBuilderX
                 };
                 var writer = XmlWriter.Create(A, settings);
                 writer.WriteStartDocument();
-                writer.WriteComment("Created by SBuilderX on " + DateAndTime.Now);
+                writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
                 writer.WriteStartElement("FSData");
                 writer.WriteAttributeString("version", "9.0");
                 writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
@@ -1413,28 +1410,28 @@ namespace SBuilderX
                 {
                     if (Lines[N].Selected)
                     {
-                        if (Strings.Mid(Lines[N].Type, 1, 3) == "OBJ")
+                        if (Lines[N].Type.Substring(0, 3) == "OBJ")
                         {
-                            if (Strings.Mid(Lines[N].Guid, 1, 1) == "{")
+                            if (Lines[N].Guid.Substring(0, 1) == "{")
                             {
                                 writer.WriteComment("Line_of_Objects_#" + N.ToString());
                                 A = Lines[N].Type.Substring(4);
-                                J = Strings.InStr(A, "|");
-                                A = A.Substring(J);
-                                J = Strings.InStr(A, "|");
-                                A = A.Substring(J);
-                                Complexity = Conversions.ToInteger(A);
+                                J = A.IndexOf("|");
+                                A = A.Substring(J + 1);
+                                J = A.IndexOf("|");
+                                A = A.Substring(J + 1);
+                                Complexity = Convert.ToInt32(A);
                                 var loopTo2 = Lines[N].NoOfPoints;
                                 for (K = 1; K <= loopTo2; K++)
                                 {
                                     writer.WriteStartElement("SceneryObject");
-                                    writer.WriteAttributeString("lat", Strings.Trim(Conversion.Str(Lines[N].GLPoints[K].lat)));
-                                    writer.WriteAttributeString("lon", Strings.Trim(Conversion.Str(Lines[N].GLPoints[K].lon)));
-                                    writer.WriteAttributeString("alt", Strings.Trim(Conversion.Str(Lines[N].GLPoints[K].alt)));
+                                    writer.WriteAttributeString("lat", Lines[N].GLPoints[K].lat.ToString().Trim());
+                                    writer.WriteAttributeString("lon", Lines[N].GLPoints[K].lon.ToString().Trim());
+                                    writer.WriteAttributeString("alt", Lines[N].GLPoints[K].alt.ToString().Trim());
                                     writer.WriteAttributeString("altitudeIsAgl", "TRUE");
                                     writer.WriteAttributeString("pitch", "0");
                                     writer.WriteAttributeString("bank", "0");
-                                    writer.WriteAttributeString("heading", Strings.Trim(Conversion.Str(Lines[N].GLPoints[K].wid)));
+                                    writer.WriteAttributeString("heading", Lines[N].GLPoints[K].wid.ToString().Trim());
                                     writer.WriteAttributeString("imageComplexity", GetComplex(Complexity));
                                     writer.WriteStartElement("LibraryObject");
                                     writer.WriteAttributeString("name", Lines[N].Guid);
@@ -1454,8 +1451,7 @@ namespace SBuilderX
                 BGLFile2 = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File2 + ".BGL";
                 if (File.Exists(BGLFile2))
                     File.Delete(BGLFile2);
-                FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-                FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
+                Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
                 A = My.MyProject.Application.Info.DirectoryPath + @"\tools\bglcomp.exe";
                 B = @"work\" + File2 + ".xml";
                 var myProcess = new Process();
@@ -1464,17 +1460,17 @@ namespace SBuilderX
                 myProcess.Dispose();
                 if (!File.Exists(BGLFile2))
                 {
-                    A = "BGLComp could not produce the file" + Constants.vbCrLf + BGLFile2 + Constants.vbCrLf;
-                    A = A + @"Try to compile the file ..\tools\" + B + " in a MSDOS window" + Constants.vbCrLf;
+                    A = "BGLComp could not produce the file" + Environment.NewLine + BGLFile2 + Environment.NewLine;
+                    A = A + @"Try to compile the file ..\tools\" + B + " in a MSDOS window" + Environment.NewLine;
                     A = A + "to read the error report!";
-                    Interaction.MsgBox(A, MsgBoxStyle.Critical);
+                    MessageBox.Show(A, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
 
             if (FSNew)
             {
                 File1 = moduleMAIN.ProjectName + "_LOB1";
-                File1 = Strings.Replace(File1, " ", "_");
+                File1 = File1.Replace(" ", "_");
                 FileSystem.FileOpen(3, My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File1 + ".scm", OpenMode.Output);
                 A = "Header( 0x201 )";
                 FileSystem.PrintLine(3, A);
@@ -1485,29 +1481,29 @@ namespace SBuilderX
                 {
                     if (Lines[N].Selected)
                     {
-                        if (Strings.Mid(Lines[N].Type, 1, 3) == "OBJ")
+                        if (Lines[N].Type.Substring(0, 3) == "OBJ")
                         {
-                            if (Strings.Mid(Lines[N].Guid, 1, 1) != "{")
+                            if (Lines[N].Guid.Substring(0, 1) != "{")
                             {
                                 moduleOBJECTS.ObjLibID = Lines[N].Guid;
                                 A = Lines[N].Type.Substring(4);
-                                J = Strings.InStr(A, "|");
-                                A = A.Substring(J);
-                                J = Strings.InStr(A, "|");
-                                A = A.Substring(J);
-                                Complexity = Conversions.ToInteger(A);
+                                J = A.IndexOf("|");
+                                A = A.Substring(J + 1);
+                                J = A.IndexOf("|");
+                                A = A.Substring(J + 1);
+                                Complexity = Convert.ToInt32(A);
                                 var loopTo4 = Lines[N].NoOfPoints;
                                 for (K = 1; K <= loopTo4; K++)
                                 {
-                                    Latitude = Strings.Format(Lines[N].GLPoints[K].lat, "0.00000000");
-                                    Longitude = Strings.Format(Lines[N].GLPoints[K].lon, "0.00000000");
-                                    Altitude = Strings.Format(Lines[N].GLPoints[K].alt, "0.000");
-                                    Heading = Strings.Format(Lines[N].GLPoints[K].wid, "0.000");
-                                    Latitude = Strings.Replace(Latitude, ",", ".");
-                                    Longitude = Strings.Replace(Longitude, ",", ".");
-                                    Altitude = Strings.Replace(Altitude, ",", ".");
-                                    Heading = Strings.Replace(Heading, ",", ".");
-                                    A = "; Line_of_Objects_#" + N.ToString() + Constants.vbCrLf;
+                                    Latitude = Lines[N].GLPoints[K].lat.ToString("0.00000000");
+                                    Longitude = Lines[N].GLPoints[K].lon.ToString("0.00000000");
+                                    Altitude = Lines[N].GLPoints[K].alt.ToString("0.000");
+                                    Heading = Lines[N].GLPoints[K].wid.ToString("0.000");
+                                    Latitude = Latitude.Replace(",", ".");
+                                    Longitude = Longitude.Replace(",", ".");
+                                    Altitude = Altitude.Replace(",", ".");
+                                    Heading = Heading.Replace(",", ".");
+                                    A = "; Line_of_Objects_#" + N.ToString() + Environment.NewLine;
                                     A = A + "LibraryObject( " + Latitude + " " + Longitude + " " + Altitude + " 1";
                                     FileSystem.PrintLine(3, A);
                                     A = "               0 0 " + Heading + " " + Complexity.ToString() + " " + FixLibID(moduleOBJECTS.ObjLibID) + " 1 )";
@@ -1525,16 +1521,15 @@ namespace SBuilderX
                 BGLFile1 = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File1 + ".BGL";
                 if (File.Exists(BGLFile1))
                     File.Delete(BGLFile1);
-                FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-                FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
+                Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
                 A = @"scasm work\" + File1 + ".scm -s -l";
                 N = moduleMAIN.ExecCmd(A);
                 if (N > 0)
                 {
-                    A = "There was a compilation error in this project!" + Constants.vbCrLf;
+                    A = "There was a compilation error in this project!" + Environment.NewLine;
                     A = A + "Do you want to read a SCASM report?";
-                    N = (int)Interaction.MsgBox(A, MsgBoxStyle.OkCancel);
-                    if (N == 1)
+                    DialogResult dr = MessageBox.Show(A, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dr == DialogResult.Yes)
                     {
                         A = "notepad SCAERROR.LOG";
                         N = moduleMAIN.ExecCmd(A);
@@ -1566,17 +1561,17 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Copying BGL files failed! Try to close FSX.", MsgBoxStyle.Information);
+                MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
         private static string FixLibID(string ID)
         {
             string FixLibIDRet = default;
-            FixLibIDRet = Strings.UCase(Strings.Mid(ID, 1, 8)) + " ";
-            FixLibIDRet = FixLibIDRet + Strings.UCase(Strings.Mid(ID, 9, 8)) + " ";
-            FixLibIDRet = FixLibIDRet + Strings.UCase(Strings.Mid(ID, 17, 8)) + " ";
-            FixLibIDRet = FixLibIDRet + Strings.UCase(Strings.Mid(ID, 25, 8));
+            FixLibIDRet = ID.Substring(0, 8).ToUpper() + " ";
+            FixLibIDRet = FixLibIDRet + ID.Substring(8, 8).ToUpper() + " ";
+            FixLibIDRet = FixLibIDRet + ID.Substring(16, 8).ToUpper() + " ";
+            FixLibIDRet = FixLibIDRet + ID.Substring(24, 8).ToUpper();
             return FixLibIDRet;
         }
 
@@ -1591,7 +1586,7 @@ namespace SBuilderX
             string lonN = "";
             string altN = "";
             string myFile = moduleMAIN.ProjectName + "_EXT";
-            myFile = Strings.Replace(myFile, " ", "_");
+            myFile = myFile.Replace(" ", "_");
             string a = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".xml";
             var settings = new XmlWriterSettings()
             {
@@ -1601,7 +1596,7 @@ namespace SBuilderX
             };
             var writer = XmlWriter.Create(a, settings);
             writer.WriteStartDocument();
-            writer.WriteComment("Created by SBuilderX on " + DateAndTime.Now);
+            writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
             writer.WriteStartElement("FSData");
             writer.WriteAttributeString("version", "9.0");
             writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
@@ -1612,7 +1607,7 @@ namespace SBuilderX
             {
                 if (Lines[N].Selected)
                 {
-                    if (Strings.Mid(Lines[N].Type, 1, 3) == "EXT")
+                    if (Lines[N].Type.Substring(0, 3) == "EXT")
                     {
                         GetExtrusionLineParameters(N);
                         writer.WriteComment("Extrusion Line " + N.ToString());
@@ -1620,19 +1615,19 @@ namespace SBuilderX
                         g = Guid.NewGuid();
                         writer.WriteAttributeString("instanceId", g.ToString("B"));
                         writer.WriteAttributeString("imageComplexity", GetComplex(ExtrusionComplexity));
-                        writer.WriteAttributeString("probability", Strings.Trim(Conversion.Str(ExtrusionProbability)));
-                        writer.WriteAttributeString("suppressPlatform", Strings.Trim(Conversion.Str(SuppressPlatform).ToUpper()));
-                        writer.WriteAttributeString("roadWidth", Strings.Trim(Conversion.Str(ExtrusionWidth)));
+                        writer.WriteAttributeString("probability", ExtrusionProbability.ToString().Trim());
+                        writer.WriteAttributeString("suppressPlatform", SuppressPlatform.ToString().ToUpper().Trim());
+                        writer.WriteAttributeString("roadWidth", ExtrusionWidth.ToString().Trim());
                         writer.WriteAttributeString("extrusionProfile", Lines[N].Guid);
                         writer.WriteAttributeString("materialSet", MaterialGuid);
                         writer.WriteStartElement("AltitudeSampleLocationList");
                         writer.WriteStartElement("AltitudeSampleLocation");
-                        writer.WriteAttributeString("lat", Strings.Trim(Conversion.Str(Lines[N].GLPoints[1].lat)));
-                        writer.WriteAttributeString("lon", Strings.Trim(Conversion.Str(Lines[N].GLPoints[1].lon)));
+                        writer.WriteAttributeString("lat", Lines[N].GLPoints[1].lat.ToString().Trim());
+                        writer.WriteAttributeString("lon", Lines[N].GLPoints[1].lon.ToString().Trim());
                         writer.WriteEndElement();
                         writer.WriteStartElement("AltitudeSampleLocation");
-                        writer.WriteAttributeString("lat", Strings.Trim(Conversion.Str(Lines[N].GLPoints[Lines[N].NoOfPoints].lat)));
-                        writer.WriteAttributeString("lon", Strings.Trim(Conversion.Str(Lines[N].GLPoints[Lines[N].NoOfPoints].lon)));
+                        writer.WriteAttributeString("lat", Lines[N].GLPoints[Lines[N].NoOfPoints].lat.ToString().Trim());
+                        writer.WriteAttributeString("lon", Lines[N].GLPoints[Lines[N].NoOfPoints].lon.ToString().Trim());
                         writer.WriteEndElement();
                         writer.WriteFullEndElement();
                         writer.WriteStartElement("PolylinePointList");
@@ -1646,9 +1641,9 @@ namespace SBuilderX
                         for (K = 1; K <= loopTo1; K++)
                         {
                             writer.WriteStartElement("PolylinePoint");
-                            writer.WriteAttributeString("latitude", Strings.Trim(Conversion.Str(Lines[N].GLPoints[K].lat)));
-                            writer.WriteAttributeString("longitude", Strings.Trim(Conversion.Str(Lines[N].GLPoints[K].lon)));
-                            writer.WriteAttributeString("altitude", Strings.Trim(Conversion.Str(Lines[N].GLPoints[K].alt)) + "M");
+                            writer.WriteAttributeString("latitude", Lines[N].GLPoints[K].lat.ToString().Trim());
+                            writer.WriteAttributeString("longitude", Lines[N].GLPoints[K].lon.ToString().Trim());
+                            writer.WriteAttributeString("altitude", Lines[N].GLPoints[K].alt.ToString().Trim() + "M");
                             writer.WriteEndElement();
                         }
 
@@ -1675,8 +1670,7 @@ namespace SBuilderX
             string BGLFile = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".BGL";
             if (File.Exists(BGLFile))
                 File.Delete(BGLFile);
-            FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-            FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
+            Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bglcomp.exe";
             string b = @"work\" + myFile + ".xml";
             var myProcess = new Process();
@@ -1685,10 +1679,10 @@ namespace SBuilderX
             myProcess.Dispose();
             if (!File.Exists(BGLFile))
             {
-                a = "BGLComp could not produce the file" + Constants.vbCrLf + BGLFile + Constants.vbCrLf;
-                a = a + @"Try to compile the file ..\tools\" + b + " in a MSDOS window" + Constants.vbCrLf;
+                a = "BGLComp could not produce the file" + Environment.NewLine + BGLFile + Environment.NewLine;
+                a = a + @"Try to compile the file ..\tools\" + b + " in a MSDOS window" + Environment.NewLine;
                 a = a + "to read the error report!";
-                Interaction.MsgBox(a, MsgBoxStyle.Critical);
+                MessageBox.Show(a, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             if (!CopyBGLs)
@@ -1703,7 +1697,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Copying BGL files failed!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Copying BGL files failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -1713,13 +1707,13 @@ namespace SBuilderX
             double D;
             int NP = Lines[N].NoOfPoints;
             D = Lines[N].GLPoints[2].lat - Lines[N].GLPoints[1].lat;
-            lat0 = Conversion.Str(Lines[N].GLPoints[1].lat - D / 2d);
+            lat0 = (Lines[N].GLPoints[1].lat - D / 2d).ToString();
             D = Lines[N].GLPoints[2].lon - Lines[N].GLPoints[1].lon;
-            lon0 = Conversion.Str(Lines[N].GLPoints[1].lon - D / 2d);
+            lon0 = (Lines[N].GLPoints[1].lon - D / 2d).ToString();
             D = Lines[N].GLPoints[NP - 1].lat - Lines[N].GLPoints[NP].lat;
-            latN = Conversion.Str(Lines[N].GLPoints[NP].lat - D / 2d);
+            latN = (Lines[N].GLPoints[NP].lat - D / 2d).ToString();
             D = Lines[N].GLPoints[NP - 1].lon - Lines[N].GLPoints[NP].lon;
-            lonN = Conversion.Str(Lines[N].GLPoints[NP].lon - D / 2d);
+            lonN = (Lines[N].GLPoints[NP].lon - D / 2d).ToString();
         }
 
         private static string MaterialGuid;
@@ -1734,22 +1728,22 @@ namespace SBuilderX
             string A;
             int J;
             A = Lines[N].Type.Substring(4);
-            J = Strings.InStr(A, "|");
-            MaterialGuid = A.Substring(0, J - 1);
+            J = A.IndexOf("|");
+            MaterialGuid = A.Substring(0, J);
             A = A.Substring(J);
-            J = Strings.InStr(A, "|");
-            PylonGuid = A.Substring(0, J - 1);
-            A = A.Substring(J);
-            J = Strings.InStr(A, "|");
-            ExtrusionComplexity = Conversions.ToInteger(A.Substring(0, J - 1));
-            A = A.Substring(J);
-            J = Strings.InStr(A, "|");
-            ExtrusionWidth = Conversion.Val(A.Substring(0, J - 1));
-            A = A.Substring(J);
-            J = Strings.InStr(A, "|");
-            ExtrusionProbability = Conversion.Val(A.Substring(0, J - 1));
-            A = A.Substring(J);
-            SuppressPlatform = Conversions.ToBoolean(A);
+            J = A.IndexOf("|");
+            PylonGuid = A.Substring(0, J);
+            A = A.Substring(J + 1);
+            J = A.IndexOf("|");
+            ExtrusionComplexity = Convert.ToInt32(A.Substring(0, J));
+            A = A.Substring(J + 1);
+            J = A.IndexOf("|");
+            ExtrusionWidth = Convert.ToDouble(A.Substring(0, J));
+            A = A.Substring(J + 1);
+            J = A.IndexOf("|");
+            ExtrusionProbability = Convert.ToDouble(A.Substring(0, J));
+            A = A.Substring(J + 1);
+            SuppressPlatform = Convert.ToBoolean(A);
         }
 
         private static string GetComplex(int X)
@@ -1854,7 +1848,7 @@ namespace SBuilderX
             modulePOLYS.NoOfPolys = modulePOLYS.NoOfPolys + 1;
             Array.Resize(ref modulePOLYS.Polys, modulePOLYS.NoOfPolys + 1);
             modulePOLYS.Polys[modulePOLYS.NoOfPolys].NoOfPoints = 2 * NP;
-            modulePOLYS.Polys[modulePOLYS.NoOfPolys].Name = Conversion.Str(modulePOLYS.Polys[modulePOLYS.NoOfPolys].NoOfPoints) + "_Pts_Polygon_of_Type_None";
+            modulePOLYS.Polys[modulePOLYS.NoOfPolys].Name = modulePOLYS.Polys[modulePOLYS.NoOfPolys].NoOfPoints.ToString() + "_Pts_Polygon_of_Type_None";
             modulePOLYS.Polys[modulePOLYS.NoOfPolys].Guid = modulePOLYS.DefaultPolyNoneGuid;
             modulePOLYS.Polys[modulePOLYS.NoOfPolys].NoOfChilds = 0;
             modulePOLYS.Polys[modulePOLYS.NoOfPolys].Color = modulePOLYS.DefaultPolyColor;
@@ -2394,7 +2388,7 @@ namespace SBuilderX
             modulePOINTS.GLPoint x;
             int M, NP, K;
             NP = Lines[N].NoOfPoints;
-            M = (int)Conversion.Int(NP / 2d);
+            M = (int)(NP / 2d);
             NP = NP + 1;
             var loopTo = M;
             for (K = 1; K <= loopTo; K++)

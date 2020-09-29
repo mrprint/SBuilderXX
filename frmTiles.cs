@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -161,7 +160,7 @@ namespace SBuilderX
             int NY = Z * 7;
             int Y;
             Y = moduleTILES.YTilesFromLat(moduleMAIN.LatDispCenter, ZZZ);
-            Y = Y - (int)Conversion.Int(NY / 2d);
+            Y = Y - (int)(NY / 2d);
             H = new int[NY + 1];
             // PixelHeight240FromY(Y, H, NY, ZZZ)
             PixelHeight440FromY(Y, ref H, NY, ZZZ);
@@ -318,7 +317,7 @@ namespace SBuilderX
             S = (X11 - X00 + 1) * (Y11 - Y00 + 1);
             GroupBox1.Text = "Number of Tiles = " + S;
             S = S * 262.144d;
-            labelSize.Text = "Size = " + Strings.Format(S, "###,000") + " KB";
+            labelSize.Text = "Size = " + S.ToString("###,000") + " KB";
             BuildImageBuffer();
             UpDateDisplay();
             DrawSelectBox(X_1, Y_1);
@@ -382,9 +381,9 @@ namespace SBuilderX
             string A;
             if (string.IsNullOrEmpty(moduleTILES.ActiveTileFolder) | moduleTILES.TilesToCome > 0)
             {
-                A = "Could not start the acquisition of the image." + Constants.vbCrLf;
+                A = "Could not start the acquisition of the image." + Environment.NewLine;
                 A = A + "Hide and Show the Background, and try again!";
-                Interaction.MsgBox(A, MsgBoxStyle.Critical);
+                MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return MakeImageFromTilesRet;
             }
 
@@ -396,7 +395,7 @@ namespace SBuilderX
                 NX = X11 - X00;
                 NY = Y11 - Y00;
                 string TileExtension = moduleTILES.TileServer.ImageType;
-                string TilePrefix = @"\L" + Strings.Trim(ZZZ.ToString()) + "X";
+                string TilePrefix = @"\L" + ZZZ.ToString().Trim() + "X";
                 moduleTILES.TileFolder = moduleMAIN.AppPath + @"\Tiles\" + moduleTILES.TileServer.ServerName;
                 string TileName, TileFull, TileDir, TileTemp;
                 IAsyncResult AR;
@@ -432,7 +431,7 @@ namespace SBuilderX
                         K = K + 1;
                         labelCount.Text = "Processing Tile " + K + " out of " + KT;
                         labelCount.Refresh();
-                        TileName = TilePrefix + Strings.Trim((X00 + C).ToString()) + "Y" + Strings.Trim((Y00 + R).ToString()) + TileExtension;
+                        TileName = TilePrefix + (X00 + C).ToString().Trim() + "Y" + (Y00 + R).ToString().Trim() + TileExtension;
                         TileDir = moduleTILES.TileDirFromXYZ(X00 + C, Y00 + R, ZZZ);
                         try
                         {
@@ -471,7 +470,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Could not make an image!", MsgBoxStyle.Critical);
+                MessageBox.Show("Could not make an image!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Cursor = Cursors.Default;
                 moduleMAPS.NoOfMaps = moduleMAPS.NoOfMaps - 1;
                 Array.Resize(ref moduleMAPS.ImgMaps, moduleMAPS.NoOfMaps + 1);
@@ -480,17 +479,17 @@ namespace SBuilderX
 
             if (moduleTILES.TilesToCome > 0)
             {
-                A = moduleTILES.TilesToCome.ToString() + " tiles are being downloaded" + Constants.vbCrLf;
-                A = A + "at this moment. Please repeat this" + Constants.vbCrLf;
+                A = moduleTILES.TilesToCome.ToString() + " tiles are being downloaded" + Environment.NewLine;
+                A = A + "at this moment. Please repeat this" + Environment.NewLine;
                 A = A + "operation when downloading is complete!";
-                Interaction.MsgBox(A, MsgBoxStyle.Information);
+                MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Cursor = Cursors.Default;
                 moduleMAPS.NoOfMaps = moduleMAPS.NoOfMaps - 1;
                 Array.Resize(ref moduleMAPS.ImgMaps, moduleMAPS.NoOfMaps + 1);
                 return MakeImageFromTilesRet;
             }
 
-            moduleMAPS.Maps[moduleMAPS.NoOfMaps].Name = "Photo" + Strings.Format(moduleMAPS.NoOfMaps, "00");
+            moduleMAPS.Maps[moduleMAPS.NoOfMaps].Name = "Photo" + moduleMAPS.NoOfMaps.ToString("00");
             moduleMAPS.Maps[moduleMAPS.NoOfMaps].Selected = false;
             string myfile = moduleMAIN.AppPath + @"\Tools\Work\L";
             myfile = myfile + ZZZ.ToString() + "X" + X00.ToString() + "X" + X11.ToString();
@@ -504,7 +503,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("There was a problem saving the image!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("There was a problem saving the image!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             MakeImageFromTilesRet = true;

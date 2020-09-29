@@ -1,6 +1,5 @@
 ﻿using System;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -61,8 +60,8 @@ namespace SBuilderX
             txtSlope.Text = (sxy * 1000d).ToString();
             txtAlt0.Text = modulePOLYS.Polys[modulePOPUP.POPIndex].GPoints[n1].alt.ToString();
             txtPt0.Text = n1.ToString();
-            lbSX.Text = "SlopeX = " + Strings.Mid(Conversion.Str(k1), 1, 13);
-            lbSY.Text = "SlopeY = " + Strings.Mid(Conversion.Str(k2), 1, 13);
+            lbSX.Text = "SlopeX = " + k1.ToString().Substring(0, 13);
+            lbSY.Text = "SlopeY = " + k2.ToString().Substring(0, 13);
         }
 
         private void CmdSlope_Click(object sender, EventArgs e)
@@ -94,8 +93,8 @@ namespace SBuilderX
             double x0, y0, z0;
             int P;
             int K, J;
-            Head = Conversions.ToDouble(txtHead.Text);
-            sxy = Conversions.ToDouble(txtSlope.Text);
+            Head = Convert.ToDouble(txtHead.Text);
+            sxy = Convert.ToDouble(txtSlope.Text);
             lat = 0d;
             var loopTo = modulePOLYS.Polys[N].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
@@ -107,10 +106,10 @@ namespace SBuilderX
             k2 = sxy * Math.Cos(Head);
             k1 = k1 * moduleMAIN.MetersPerDegLon(lat);
             k2 = k2 * moduleMAIN.MetersPerDegLat;
-            P = Conversions.ToInteger(txtPt0.Text);
+            P = Convert.ToInt32(txtPt0.Text);
             x0 = modulePOLYS.Polys[N].GPoints[P].lon;
             y0 = modulePOLYS.Polys[N].GPoints[P].lat;
-            z0 = Conversions.ToDouble(txtAlt0.Text);
+            z0 = Convert.ToDouble(txtAlt0.Text);
             k3 = z0 - k1 * x0 - k2 * y0;
             var loopTo1 = modulePOLYS.Polys[N].NoOfPoints;
             for (K = 1; K <= loopTo1; K++)
@@ -141,7 +140,7 @@ namespace SBuilderX
 
             try
             {
-                X = Conversions.ToDouble(txtAlt.Text);
+                X = Convert.ToDouble(txtAlt.Text);
                 if (modulePOPUP.POPMode == "One")
                 {
                     SetConstantAltitude(modulePOPUP.POPIndex, X);
@@ -161,9 +160,9 @@ namespace SBuilderX
                 LoadForm();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check altitude value!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check altitude value!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -186,11 +185,11 @@ namespace SBuilderX
         private void CmdHelpSlope_Click(object sender, EventArgs e)
         {
             string A;
-            A = "In this mode you specify: (i) the altitude and index of one" + Constants.vbCrLf;
-            A = A + "point (ii) the heading of maximum slope and (iii) the maximum" + Constants.vbCrLf;
-            A = A + "slope expressed as the altitude increase in meters per one" + Constants.vbCrLf;
+            A = "In this mode you specify: (i) the altitude and index of one" + Environment.NewLine;
+            A = A + "point (ii) the heading of maximum slope and (iii) the maximum" + Environment.NewLine;
+            A = A + "slope expressed as the altitude increase in meters per one" + Environment.NewLine;
             A = A + "thousand meters of horizontal shift.";
-            Interaction.MsgBox(A, MsgBoxStyle.Information);
+            MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void Get3Points(int N, ref int N1, ref int N2, ref int N3, ref double lat)

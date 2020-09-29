@@ -49,13 +49,13 @@ namespace SBuilderX
             GetGuidAndIndex(name);
             if (Index < 0)
             {
-                Interaction.MsgBox("This type is not described in Terrain.cfg!");
+                MessageBox.Show("This type is not described in Terrain.cfg!");
                 return;
             }
 
             if (!moduleMAIN.IsFSX)
             {
-                Interaction.MsgBox("Terrain.cfg could not be found!");
+                MessageBox.Show("Terrain.cfg could not be found!");
                 return;
             }
 
@@ -63,7 +63,7 @@ namespace SBuilderX
             int N, Marker;
             bool F1;
             TerrainFile = moduleMAIN.FSPath + "Terrain.cfg";
-            Key = "[Texture." + Strings.Trim(Index.ToString()) + "]";
+            Key = "[Texture." + Index.ToString().Trim() + "]";
             FileSystem.FileOpen(2, TerrainFile, OpenMode.Input);
             N = (int)FileSystem.LOF(2);
             Marker = 0;
@@ -72,13 +72,13 @@ namespace SBuilderX
             while (Marker < N)
             {
                 A = FileSystem.LineInput(2);
-                Marker = Marker + Strings.Len(A) + 2;
-                A = Strings.Trim(A);
+                Marker = Marker + A.Length + 2;
+                A = A.Trim();
                 if (F1)
                 {
                     if (string.IsNullOrEmpty(A))
                         break;
-                    B = B + A + Constants.vbCrLf;
+                    B = B + A + Environment.NewLine;
                 }
 
                 if (!F1)
@@ -88,7 +88,7 @@ namespace SBuilderX
                 }
             }
 
-            Interaction.MsgBox(B, MsgBoxStyle.Information, "Description from Terrain.cfg");
+            MessageBox.Show(B, "Description from Terrain.cfg", MessageBoxButtons.OK, MessageBoxIcon.Information);
             FileSystem.FileClose();
         }
 

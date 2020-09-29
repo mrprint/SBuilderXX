@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -73,53 +73,50 @@ namespace SBuilderX
                 for (N = 1; N <= 6; N++)
                 {
                     A = FileSystem.LineInput(2);
-                    A = Strings.Trim(A);
-                    B = Strings.Mid(A, 1, 10);
+                    A = A.Trim();
+                    B = A.Substring(0, 10);
                     if (B == ";DEFAULTSC")
                     {
-                        A = Strings.Mid(A, 15);
-                        A = Strings.Replace(A, ",", ".");
-                        MacroScale = Conversions.ToSingle(A);
+                        A = A.Substring(14);
+                        A = A.Replace(",", ".");
+                        MacroScale = Convert.ToSingle(A);
                     }
 
                     if (B == ";DEFAULTRA")
                     {
-                        J = Strings.InStr(15, A, " ");
-                        if (J == 0)
+                        J = A.IndexOf(" ", 14);
+                        if (J == -1)
                         {
-                            MacroRange = (int)Conversion.Int(Conversions.ToSingle(Strings.Mid(A, 15)) / 1000f);
+                            MacroRange = (int)(Convert.ToSingle(A.Substring(14)) / 1000f);
                         }
                         else
                         {
-                            MacroRange = (int)Conversion.Int(Conversions.ToSingle(Strings.Mid(A, 15, J - 15)) / 1000f);
+                            MacroRange = (int)(Convert.ToSingle(A.Substring(14, J - 14)) / 1000f);
                         }
                     }
 
                     if (B == ";MACRODESC")
                     {
-                        A = Strings.Mid(A, 12);
-                        J = Strings.InStr(1, A, " by ");
-                        if (J == 0)
-                            goto next_N;
-                        B = Strings.Mid(A, J + 4);
-                        A = Strings.Mid(A, 1, J - 1);
-                        J = Strings.InStrRev(A, " ");
-                        if (J == 0)
-                            goto next_N;
-                        MacroWidth = Conversions.ToSingle(Strings.Mid(A, J + 1));
-                        J = Strings.InStr(B, " ");
-                        if (J == 0)
-                            goto next_N;
-                        MacroLength = Conversions.ToSingle(Strings.Mid(B, 1, J - 1));
+                        A = A.Substring(11);
+                        J = A.IndexOf(" by ");
+                        if (J == -1)
+                            continue;
+                        B = A.Substring(J + 4);
+                        A = A.Substring(0, J);
+                        J = A.LastIndexOf(" ");
+                        if (J == -1)
+                            continue;
+                        MacroWidth = Convert.ToSingle(A.Substring(J + 1));
+                        J = B.IndexOf(" ");
+                        if (J == -1)
+                            continue;
+                        MacroLength = Convert.ToSingle(B.Substring(0, J));
                     }
-
-                next_N:
-                    ;
                 }
 
                 FileSystem.FileClose();
-                N = Strings.Len(FileName);
-                FileName = Strings.Mid(FileName, 1, N - 3);
+                N = FileName.Length;
+                FileName = FileName.Substring(0, N - 3);
                 A = FileName + "bmp";
                 moduleMAIN.ImageFileNameTrue = A;   // added in 313
                 if (File.Exists(A))
@@ -140,9 +137,9 @@ namespace SBuilderX
 
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Error on Show API routine!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Error on Show API routine!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 FileSystem.FileClose();
             }
         }
@@ -179,22 +176,22 @@ namespace SBuilderX
                 do
                 {
                     A = FileSystem.LineInput(2);
-                    N = Strings.InStr(1, A, @"\");
-                    if (N > 0)
-                        B = B + Strings.Mid(A, 2, N - 2) + ",";
-                    if (N == 0)
+                    N = A.IndexOf(@"\");
+                    if (N > -1)
+                        B = B + A.Substring(1, N - 1) + ",";
+                    if (N == -1)
                     {
-                        B = B + Strings.Mid(A, 2) + ",";
+                        B = B + A.Substring(1) + ",";
                         break;
                     }
                 }
                 while (true);
                 FileSystem.FileClose();
-                B = Strings.Replace(B, ", ", ",");
-                B = Strings.Replace(B, " ,", ",");
-                B = Strings.Replace(B, ",,", ",");
-                B = Strings.Replace(B, ",,", ",");
-                MacroString = Strings.Replace(B, "= ", "=");
+                B = B.Replace(", ", ",");
+                B = B.Replace(" ,", ",");
+                B = B.Replace(",,", ",");
+                B = B.Replace(",,", ",");
+                MacroString = B.Replace("= ", "=");
                 Name = GetMacroValue("Name");
                 A = GetMacroValue("Type");
                 A = GetMacroValue("Latitude");
@@ -203,34 +200,34 @@ namespace SBuilderX
                 A = GetMacroValue("autoscale");
                 A = GetMacroValue("FixedLength");
                 if (!string.IsNullOrEmpty(A))
-                    MacroLength = Conversions.ToSingle(A);
+                    MacroLength = Convert.ToSingle(A);
                 A = GetMacroValue("FixedWidth");
                 if (!string.IsNullOrEmpty(A))
-                    MacroWidth = Conversions.ToSingle(A);
+                    MacroWidth = Convert.ToSingle(A);
                 A = GetMacroValue("Length");
                 if (!string.IsNullOrEmpty(A))
-                    MacroLength = Conversions.ToSingle(A);
+                    MacroLength = Convert.ToSingle(A);
                 A = GetMacroValue("Width");
                 if (!string.IsNullOrEmpty(A))
-                    MacroWidth = Conversions.ToSingle(A);
+                    MacroWidth = Convert.ToSingle(A);
                 A = GetMacroValue("Range");
                 if (!string.IsNullOrEmpty(A))
-                    MacroRange = Conversions.ToInteger(A);
+                    MacroRange = Convert.ToInt32(A);
                 A = GetMacroValue("Scale");
                 if (!string.IsNullOrEmpty(A))
-                    MacroScale = Conversions.ToSingle(A);
+                    MacroScale = Convert.ToSingle(A);
                 A = GetMacroValue("Rotation");
                 if (!string.IsNullOrEmpty(A))
-                    MacroRotation = Conversions.ToSingle(A);
+                    MacroRotation = Convert.ToSingle(A);
                 A = GetMacroValue("Elevation");
                 if (!string.IsNullOrEmpty(A))
-                    MacroElevation = Conversions.ToSingle(A);
+                    MacroElevation = Convert.ToSingle(A);
                 A = GetMacroValue("Visibility");
                 if (!string.IsNullOrEmpty(A))
-                    MacroVisibility = Conversions.ToSingle(A);
+                    MacroVisibility = Convert.ToSingle(A);
                 A = GetMacroValue("Density");
                 if (!string.IsNullOrEmpty(A))
-                    MacroDensity = Conversions.ToInteger(A);
+                    MacroDensity = Convert.ToInt32(A);
                 A = GetMacroValue("Bitmap");
                 if (!string.IsNullOrEmpty(A))
                 {
@@ -246,7 +243,7 @@ namespace SBuilderX
                     }
                 }
 
-                if (Strings.Len(MacroString) < 2)
+                if (MacroString.Length < 2)
                     return;
                 A = GetMacroParameter();
                 if (!string.IsNullOrEmpty(A))
@@ -259,7 +256,7 @@ namespace SBuilderX
                     return;
                 }
 
-                if (Strings.Len(MacroString) < 2)
+                if (MacroString.Length < 2)
                     return;
                 A = GetMacroParameter();
                 if (!string.IsNullOrEmpty(A))
@@ -272,7 +269,7 @@ namespace SBuilderX
                     return;
                 }
 
-                if (Strings.Len(MacroString) < 2)
+                if (MacroString.Length < 2)
                     return;
                 A = GetMacroParameter();
                 if (!string.IsNullOrEmpty(A))
@@ -285,7 +282,7 @@ namespace SBuilderX
                     return;
                 }
 
-                if (Strings.Len(MacroString) < 2)
+                if (MacroString.Length < 2)
                     return;
                 A = GetMacroParameter();
                 if (!string.IsNullOrEmpty(A))
@@ -298,7 +295,7 @@ namespace SBuilderX
                     return;
                 }
 
-                if (Strings.Len(MacroString) < 2)
+                if (MacroString.Length < 2)
                     return;
                 A = GetMacroParameter();
                 if (!string.IsNullOrEmpty(A))
@@ -311,7 +308,7 @@ namespace SBuilderX
                     return;
                 }
 
-                if (Strings.Len(MacroString) < 2)
+                if (MacroString.Length < 2)
                     return;
                 A = GetMacroParameter();
                 if (!string.IsNullOrEmpty(A))
@@ -324,7 +321,7 @@ namespace SBuilderX
                     return;
                 }
 
-                if (Strings.Len(MacroString) < 2)
+                if (MacroString.Length < 2)
                     return;
                 A = GetMacroParameter();
                 if (!string.IsNullOrEmpty(A))
@@ -337,7 +334,7 @@ namespace SBuilderX
                     return;
                 }
 
-                if (Strings.Len(MacroString) < 2)
+                if (MacroString.Length < 2)
                     return;
                 A = GetMacroParameter();
                 if (!string.IsNullOrEmpty(A))
@@ -351,10 +348,10 @@ namespace SBuilderX
                 }
 
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 FileSystem.FileClose();
-                Interaction.MsgBox("Error on Show ASD routine!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Error on Show ASD routine!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -374,23 +371,23 @@ namespace SBuilderX
             // If N = 0 Then A = RGNPointType1
             if (N > 0)
                 A = moduleOBJECTS.Objects[N].Description;
-            M1 = 1;
-            M2 = Strings.InStr(M1, A, "|");
-            MacroID = Strings.Mid(A, M1, M2 - M1);
+            M1 = 0;
+            M2 = A.IndexOf("|", M1);
+            MacroID = A.Substring(M1, M2 - M1);
             M1 = M2 + 1;
-            M2 = Strings.InStr(M1, A, "|");
-            MacroString = Strings.Mid(A, M1, M2 - M1);
-            moduleOBJECTS.ObjComment = Strings.Mid(A, M2 + 1);
+            M2 = A.IndexOf("|", M1);
+            MacroString = A.Substring(M1, M2 - M1);
+            moduleOBJECTS.ObjComment = A.Substring(M2 + 1);
             A = GetMacroValue("Range");
             if (!string.IsNullOrEmpty(A))
-                MacroRange = Conversions.ToInteger(A);
+                MacroRange = Convert.ToInt32(A);
             A = GetMacroValue("Scale");
             if (!string.IsNullOrEmpty(A))
-                MacroScale = Conversions.ToSingle(A);
+                MacroScale = Convert.ToSingle(A);
             A = GetMacroValue("V1");
             if (!string.IsNullOrEmpty(A))
-                MacroVisibility = Conversions.ToSingle(A);
-            if (Strings.Len(MacroString) < 3)
+                MacroVisibility = Convert.ToSingle(A);
+            if (MacroString.Length < 3)
                 return;
             A = GetMacroParameter();
             if (!string.IsNullOrEmpty(A))
@@ -403,7 +400,7 @@ namespace SBuilderX
                 return;
             }
 
-            if (Strings.Len(MacroString) < 3)
+            if (MacroString.Length < 3)
                 return;
             A = GetMacroParameter();
             if (!string.IsNullOrEmpty(A))
@@ -416,7 +413,7 @@ namespace SBuilderX
                 return;
             }
 
-            if (Strings.Len(MacroString) < 3)
+            if (MacroString.Length < 3)
                 return;
             A = GetMacroParameter();
             if (!string.IsNullOrEmpty(A))
@@ -429,7 +426,7 @@ namespace SBuilderX
                 return;
             }
 
-            if (Strings.Len(MacroString) < 3)
+            if (MacroString.Length < 3)
                 return;
             A = GetMacroParameter();
             if (!string.IsNullOrEmpty(A))
@@ -442,7 +439,7 @@ namespace SBuilderX
                 return;
             }
 
-            if (Strings.Len(MacroString) < 3)
+            if (MacroString.Length < 3)
                 return;
             A = GetMacroParameter();
             if (!string.IsNullOrEmpty(A))
@@ -455,7 +452,7 @@ namespace SBuilderX
                 return;
             }
 
-            if (Strings.Len(MacroString) < 3)
+            if (MacroString.Length < 3)
                 return;
             A = GetMacroParameter();
             if (!string.IsNullOrEmpty(A))
@@ -468,7 +465,7 @@ namespace SBuilderX
                 return;
             }
 
-            if (Strings.Len(MacroString) < 3)
+            if (MacroString.Length < 3)
                 return;
             A = GetMacroParameter();
             if (!string.IsNullOrEmpty(A))
@@ -481,7 +478,7 @@ namespace SBuilderX
                 return;
             }
 
-            if (Strings.Len(MacroString) < 3)
+            if (MacroString.Length < 3)
                 return;
             A = GetMacroParameter();
             if (!string.IsNullOrEmpty(A))
@@ -544,12 +541,11 @@ namespace SBuilderX
 
             // line number 1
             A = FileSystem.LineInput(2);
-            A = Strings.Replace(A, Conversions.ToString('\t'), "");
-            A = Strings.Trim(A);
-            B = Strings.Mid(A, 1, 9);
+            A = A.Replace("\t", "").Trim();
+            B = A.Substring(0, 9);
             if (B == ";CATEGORY")
             {
-                B = Strings.Trim(Strings.Mid(A, 11));
+                B = A.Substring(10).Trim();
             }
             else
             {
@@ -557,23 +553,23 @@ namespace SBuilderX
             }
 
             AddCatMacro(ref C, ref M, B); // by ref
-            MacroCategories[C].MacroObjects[M].File = Strings.UCase(File);
-            MacroCategories[C].MacroObjects[M].Name = Strings.UCase(File);
+            MacroCategories[C].MacroObjects[M].File = File.ToUpper();
+            MacroCategories[C].MacroObjects[M].Name = File.ToUpper();
             for (N = 1; N <= 5; N++)
             {
-                A = Strings.Trim(A);
-                B = Strings.Mid(A, 1, 10);
+                A = A.Trim();
+                B = A.Substring(0, 10);
                 if (B == ";MACRODESC")
                 {
-                    A = Strings.Trim(Strings.Mid(A, 12));
-                    J = Strings.InStr(1, A, " by ");
-                    if (J > 0)
+                    A = A.Substring(11).Trim();
+                    J = A.IndexOf(" by ");
+                    if (J != -1)
                     {
-                        A = Strings.Mid(A, 1, J - 1);
-                        J = Strings.InStrRev(A, " ");
-                        if (J == 0)
+                        A = A.Substring(0, J);
+                        J = A.LastIndexOf(" ");
+                        if (J == -1)
                             break;
-                        A = Strings.Mid(A, 1, J - 1);
+                        A = A.Substring(0, J);
                     }
 
                     if (!string.IsNullOrEmpty(A))
@@ -644,37 +640,37 @@ namespace SBuilderX
 
                 // line number 1
                 A = FileSystem.LineInput(2);
-                A = Strings.Trim(A);
+                A = A.Trim();
                 if (A != ";ASDesign Compatible Macro")
                     throw new Exception();
                 A = FileSystem.LineInput(2);
                 A = A + ",";
-                A = Strings.Replace(A, @"\", ",");
-                A = Strings.Replace(A, ",,", ",");
-                A = Strings.Replace(A, " ,", ",");
-                N1 = Strings.InStr(1, A, "Type=");
-                if (N1 == 0)
+                A = A.Replace(@"\", ",");
+                A = A.Replace(",,", ",");
+                A = A.Replace(" ,", ",");
+                N1 = A.IndexOf("Type=");
+                if (N1 == -1)
                     throw new Exception();
-                N2 = Strings.InStr(N1, A, ",");
-                B = Strings.Mid(A, N1 + 5, N2 - N1 - 5);
+                N2 = A.IndexOf(",", N1);
+                B = A.Substring(N1 + 5, N2 - N1 - 4);
                 if (B == "Misc.")
                 {
                     B = "ASD - General";
                 }
 
-                B = Strings.Trim(B);
+                B = B.Trim();
                 AddCatMacro(ref C, ref M, B); // by ref
-                MacroCategories[C].MacroObjects[M].File = Strings.UCase(File);
-                MacroCategories[C].MacroObjects[M].Name = Strings.UCase(File);
-                N1 = Strings.InStr(1, A, "Name=");
-                if (N1 == 0)
+                MacroCategories[C].MacroObjects[M].File = File.ToUpper();
+                MacroCategories[C].MacroObjects[M].Name = File.ToUpper();
+                N1 = A.IndexOf("Name=");
+                if (N1 == -1)
                     throw new Exception();
-                N2 = Strings.InStr(N1, A, ",");
-                MacroCategories[C].MacroObjects[M].Name = Strings.Mid(A, N1 + 5, N2 - N1 - 5);
+                N2 = A.IndexOf(",", N1);
+                MacroCategories[C].MacroObjects[M].Name = A.Substring(N1 + 5, N2 - N1 - 4);
                 FileSystem.FileClose();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 FileSystem.FileClose();
             }
@@ -702,19 +698,19 @@ namespace SBuilderX
             // If N = 0 Then A = RGNPointType1
             if (N > 0)
                 A = moduleOBJECTS.Objects[N].Description;
-            M1 = 1;
-            M2 = Strings.InStr(M1, A, "|");
-            MacroID = Strings.Mid(A, M1, M2 - M1);
+            M1 = 0;
+            M2 = A.IndexOf("|", M1);
+            MacroID = A.Substring(M1, M2 - M1);
             M1 = M2 + 1;
-            M2 = Strings.InStr(M1, A, "|");
-            MacroString = Strings.Mid(A, M1, M2 - M1);
-            moduleOBJECTS.ObjComment = Strings.Mid(A, M2 + 1);
+            M2 = A.IndexOf("|", M1);
+            MacroString = A.Substring(M1, M2 - M1);
+            moduleOBJECTS.ObjComment = A.Substring(M2 + 1);
             A = GetMacroValue("Range");
             if (!string.IsNullOrEmpty(A))
-                MacroRange = Conversions.ToInteger(A);
+                MacroRange = Convert.ToInt32(A);
             A = GetMacroValue("Scale");
             if (!string.IsNullOrEmpty(A))
-                MacroScale = Conversions.ToSingle(A);
+                MacroScale = Convert.ToSingle(A);
             A = GetMacroValue("P6");
             if (!string.IsNullOrEmpty(A))
                 MacroP6Value = A;
@@ -729,10 +725,10 @@ namespace SBuilderX
                 MacroP9Value = A;
             A = GetMacroValue("V1");
             if (!string.IsNullOrEmpty(A))
-                MacroVisibility = Conversions.ToSingle(A);
+                MacroVisibility = Convert.ToSingle(A);
             A = GetMacroValue("V2");
             if (!string.IsNullOrEmpty(A))
-                MacroV2Value = Conversions.ToSingle(A);
+                MacroV2Value = Convert.ToSingle(A);
         }
 
         internal static string GetMacroValue(string str1)
@@ -741,23 +737,23 @@ namespace SBuilderX
             string A;
             int J, N, J1, K;
             GetMacroValueRet = "";
-            N = Strings.Len(str1);
-            J1 = Strings.InStr(1, MacroString, str1);
-            if (J1 == 0)
+            N = str1.Length;
+            J1 = MacroString.IndexOf(str1);
+            if (J1 == -1)
                 return GetMacroValueRet;
             GetMacroValueRet = "0";
-            K = Strings.InStr(J1, MacroString, ",");
+            K = MacroString.IndexOf(",", J1);
             J = J1 + N + 1;
             if (K <= J)
             {
-                A = Strings.Mid(MacroString, J1, K - J1 + 1);
-                MacroString = Strings.Replace(MacroString, A, "");
+                A = MacroString.Substring(J1, K - J1 + 1);
+                MacroString = MacroString.Replace(A, "");
                 return GetMacroValueRet;
             }
 
-            GetMacroValueRet = Strings.Mid(MacroString, J, K - J);
-            A = Strings.Mid(MacroString, J1, K - J1 + 1);
-            MacroString = Strings.Replace(MacroString, A, "");
+            GetMacroValueRet = MacroString.Substring(J, K - J);
+            A = MacroString.Substring(J1, K - J1 + 1);
+            MacroString = MacroString.Replace(A, "");
             return GetMacroValueRet;
         }
 
@@ -766,13 +762,13 @@ namespace SBuilderX
             string GetMacroParameterRet = default;
             int J, N;
             GetMacroParameterRet = "";
-            N = Strings.InStr(1, MacroString, "=");
-            J = Strings.InStr(1, MacroString, ",");
-            if (N < J & N > 0)
+            N = MacroString.IndexOf("=");
+            J = MacroString.IndexOf(",");
+            if (N < J && N != -1)
                 J = N;
-            if (J == 0)
+            if (J == -1)
                 return GetMacroParameterRet;
-            GetMacroParameterRet = Strings.Mid(MacroString, 1, J - 1);
+            GetMacroParameterRet = MacroString.Substring(0, J);
             return GetMacroParameterRet;
         }
     }

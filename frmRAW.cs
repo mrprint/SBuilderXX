@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -65,7 +64,7 @@ namespace SBuilderX
 
             try
             {
-                _J = Conversions.ToInteger(txtJ.Text);
+                _J = Convert.ToInt32(txtJ.Text);
             }
             catch (Exception ex)
             {
@@ -75,7 +74,7 @@ namespace SBuilderX
 
             try
             {
-                _K = Conversions.ToInteger(txtK.Text);
+                _K = Convert.ToInt32(txtK.Text);
             }
             catch (Exception ex)
             {

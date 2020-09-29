@@ -1,6 +1,5 @@
 ﻿using System;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -25,7 +24,7 @@ namespace SBuilderX
 
             try
             {
-                X = Conversions.ToDouble(txtAlt.Text);
+                X = Convert.ToDouble(txtAlt.Text);
                 if (modulePOPUP.POPMode == "One")
                 {
                     var loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
@@ -49,9 +48,9 @@ namespace SBuilderX
                 Dispose();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check altitude value!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check altitude value!", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Dispose();
             }
         }

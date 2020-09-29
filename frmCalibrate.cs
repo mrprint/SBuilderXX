@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualBasic;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -49,7 +49,7 @@ namespace SBuilderX
             double PxLat, PxLon;
             if (!ValidateLatLon())
             {
-                Interaction.MsgBox("Check Latitude & Longitude Values");
+                MessageBox.Show("Check Latitude & Longitude Values");
                 return;
             }
 
@@ -57,7 +57,7 @@ namespace SBuilderX
             {
                 if (!optLon.Checked)
                 {
-                    Interaction.MsgBox("Check Y Pixel Values");
+                    MessageBox.Show("Check Y Pixel Values");
                     return;
                 }
             }
@@ -66,7 +66,7 @@ namespace SBuilderX
             {
                 if (!optLat.Checked)
                 {
-                    Interaction.MsgBox("Check X Pixel Values");
+                    MessageBox.Show("Check X Pixel Values");
                     return;
                 }
             }
@@ -105,25 +105,26 @@ namespace SBuilderX
         private void CmdHelp_Click(object eventSender, EventArgs eventArgs)
         {
             string A;
+            string nl = Environment.NewLine;
             A = "In order to calibrate a map, the geographic and the bitmap locations";
-            A = A + Constants.vbCrLf + "of 2 points are needed. In particular you need to know:";
-            A = A + Constants.vbCrLf;
-            A = A + Constants.vbCrLf + "- lat/lon and X/Y of point P1";
-            A = A + Constants.vbCrLf + "- lat/lon and X/Y of point P2.";
-            A = A + Constants.vbCrLf;
-            A = A + Constants.vbCrLf + "You can manually enter the lat/lon values of a known";
-            A = A + Constants.vbCrLf + "point in the lat/lon boxes or you can press the \"Change\"";
-            A = A + Constants.vbCrLf + "command button on the left side of each frame. In this";
-            A = A + Constants.vbCrLf + "case the lat/lon values of the clicked point will be";
-            A = A + Constants.vbCrLf + "copied into the lat/lon boxes.";
-            A = A + Constants.vbCrLf;
-            A = A + Constants.vbCrLf + "You also need to enter the X/Y bitmap pixel locations of";
-            A = A + Constants.vbCrLf + "the 2 calibrating points. You can either enter these";
-            A = A + Constants.vbCrLf + "values directly into the corresponding boxes or you can";
-            A = A + Constants.vbCrLf + "press the \"Change\" command button on the right side of the";
-            A = A + Constants.vbCrLf + "frames. In this case the clicked the pixel will be used in";
-            A = A + Constants.vbCrLf + "the setting of the X/Y values.";
-            Interaction.MsgBox(A, MsgBoxStyle.Information);
+            A = A + nl + "of 2 points are needed. In particular you need to know:";
+            A = A + nl;
+            A = A + nl + "- lat/lon and X/Y of point P1";
+            A = A + nl + "- lat/lon and X/Y of point P2.";
+            A = A + nl;
+            A = A + nl + "You can manually enter the lat/lon values of a known";
+            A = A + nl + "point in the lat/lon boxes or you can press the \"Change\"";
+            A = A + nl + "command button on the left side of each frame. In this";
+            A = A + nl + "case the lat/lon values of the clicked point will be";
+            A = A + nl + "copied into the lat/lon boxes.";
+            A = A + nl;
+            A = A + nl + "You also need to enter the X/Y bitmap pixel locations of";
+            A = A + nl + "the 2 calibrating points. You can either enter these";
+            A = A + nl + "values directly into the corresponding boxes or you can";
+            A = A + nl + "press the \"Change\" command button on the right side of the";
+            A = A + nl + "frames. In this case the clicked the pixel will be used in";
+            A = A + nl + "the setting of the X/Y values.";
+            MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void CmdLL1_Click(object eventSender, EventArgs eventArgs)
@@ -208,7 +209,7 @@ namespace SBuilderX
             Y1 = moduleMAIN.LatDispNorth * moduleMAIN.PixelsPerLatDeg - Y;
             if (!moduleMAPS.IsPointInsideMap(ThisMap, X1, Y1))
             {
-                Interaction.MsgBox("Point is not on the map!");
+                MessageBox.Show("Point is not on the map!");
                 return;
             }
 
@@ -246,7 +247,7 @@ namespace SBuilderX
             Y1 = moduleMAIN.LatDispNorth * moduleMAIN.PixelsPerLatDeg - Y;
             if (!moduleMAPS.IsPointInsideMap(ThisMap, X1, Y1))
             {
-                Interaction.MsgBox("Point is not on the map!");
+                MessageBox.Show("Point is not on the map!");
                 return;
             }
 

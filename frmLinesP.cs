@@ -3,7 +3,6 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -76,10 +75,10 @@ namespace SBuilderX
             if ((moduleLINES.LineTypes[ThisLineType].Guid ?? "") != (moduleLINES.DefaultLineFS9Guid ?? ""))
             {
                 string A;
-                A = Strings.Mid(moduleLINES.LineTypes[ThisLineType].Type, 1, 3);
+                A = moduleLINES.LineTypes[ThisLineType].Type.Substring(0, 3);
                 if (A == "FWX")
                 {
-                    moduleLINES.Lines[N].Type = Conversions.ToString(Operators.ConcatenateObject(Operators.ConcatenateObject("FWX", cbLanes.SelectedItem), cbDir.SelectedItem));
+                    moduleLINES.Lines[N].Type = "FWX" + cbLanes.SelectedItem + cbDir.SelectedItem;
                 }
                 else
                 {
@@ -97,7 +96,7 @@ namespace SBuilderX
                 moduleLINES.Lines[N].Color = ckThisColor.BackColor;
                 moduleLINES.Lines[N].Name = CheckExtrusionLineName(N);
                 moduleLINES.Lines[N].Guid = labelProfile.Text;
-                moduleLINES.Lines[N].Type = "EXT|" + MaterialGuid + "|" + PylonGuid + "|" + Complexity.ToString() + "|" + Conversion.Str(ExtrusionWidth) + "|" + Conversion.Str(ExtrusionProbability) + "|" + SuppressPlatform.ToString();
+                moduleLINES.Lines[N].Type = "EXT|" + MaterialGuid + "|" + PylonGuid + "|" + Complexity.ToString() + "|" + ExtrusionWidth.ToString() + "|" + ExtrusionProbability.ToString() + "|" + SuppressPlatform.ToString();
 
                 int K;
                 var loopTo = moduleLINES.Lines[N].NoOfPoints;
@@ -105,9 +104,9 @@ namespace SBuilderX
                     moduleLINES.Lines[N].GLPoints[K].wid = ExtrusionWidth;
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check your Extrusion Line parameters!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check your Extrusion Line parameters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -121,7 +120,7 @@ namespace SBuilderX
                     X = "Lying";
                 if (string.IsNullOrEmpty(txtTexName.Text))
                 {
-                    Interaction.MsgBox("You need to specify a texture for the line!", MsgBoxStyle.Exclamation);
+                    MessageBox.Show("You need to specify a texture for the line!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
                 string A = "TEX|" + X + "|";
@@ -130,10 +129,10 @@ namespace SBuilderX
                     txtTexPri.Text = "4";
                 if (string.IsNullOrEmpty(txtV1.Text))
                     txtV1.Text = "15000";
-                A = A + Conversions.ToInteger(txtTexPri.Text).ToString() + "|";
-                A = A + Conversions.ToInteger(txtV1.Text).ToString() + "|";
+                A = A + Convert.ToInt32(txtTexPri.Text).ToString() + "|";
+                A = A + Convert.ToInt32(txtV1.Text).ToString() + "|";
                 A = A + Complex.ToString() + "|";
-                A = A + Conversions.ToString(ckNight.Checked) + "|";
+                A = A + ckNight.Checked.ToString() + "|";
                 X = "Tile";
                 if (optStretch.Checked)
                     X = "Stretch";
@@ -145,9 +144,9 @@ namespace SBuilderX
                 moduleLINES.Lines[N].Name = CheckTexturedLineName(N);
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check your Textured Line parameters!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check your Textured Line parameters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -161,28 +160,28 @@ namespace SBuilderX
                 moduleLINES.Lines[N].Color = ckThisColor.BackColor;
                 moduleLINES.Lines[N].Name = CheckLineOfObjectsName(N);
                 moduleLINES.Lines[N].Guid = labelLibID.Text;
-                moduleLINES.Lines[N].Type = "OBJ|" + Strings.Trim(Conversion.Str(ObjWidth)) + "|" + Strings.Trim(Conversion.Str(ObjLength)) + "|" + Complexity.ToString();
+                moduleLINES.Lines[N].Type = "OBJ|" + ObjWidth.ToString().Trim() + "|" + ObjLength.ToString().Trim() + "|" + Complexity.ToString();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check your Line of Objects parameters!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check your Line of Objects parameters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
         private string CheckLineOfObjectsName(object N)
         {
             string CheckLineOfObjectsNameRet = default;
-            CheckLineOfObjectsNameRet = moduleLINES.Lines[Conversions.ToInteger(N)].Name;
+            CheckLineOfObjectsNameRet = moduleLINES.Lines[Convert.ToInt32(N)].Name;
             if (string.IsNullOrEmpty(CheckLineOfObjectsNameRet))
-                CheckLineOfObjectsNameRet = Conversion.Str(moduleLINES.Lines[Conversions.ToInteger(N)].NoOfPoints) + "_Pts_";
-            int K = Strings.InStr(CheckLineOfObjectsNameRet, "_");
-            if (K == 0)
+                CheckLineOfObjectsNameRet = moduleLINES.Lines[Convert.ToInt32(N)].NoOfPoints.ToString() + "_Pts_";
+            int K = CheckLineOfObjectsNameRet.IndexOf("_");
+            if (K == -1)
                 return CheckLineOfObjectsNameRet;
-            string A = CheckLineOfObjectsNameRet.Substring(K - 1, 5);
+            string A = CheckLineOfObjectsNameRet.Substring(K, 5);
             if (A == "_Pts_")
             {
-                CheckLineOfObjectsNameRet = CheckLineOfObjectsNameRet.Substring(0, K + 4) + labelLibID.Text;
+                CheckLineOfObjectsNameRet = CheckLineOfObjectsNameRet.Substring(0, K + 5) + labelLibID.Text;
             }
 
             return CheckLineOfObjectsNameRet;
@@ -195,17 +194,17 @@ namespace SBuilderX
             {
                 CheckVectorLineNameRet = moduleLINES.Lines[N].Name;
                 if (string.IsNullOrEmpty(CheckVectorLineNameRet))
-                    CheckVectorLineNameRet = Conversion.Str(moduleLINES.Lines[N].NoOfPoints) + "_Pts_";
-                int K = Strings.InStr(CheckVectorLineNameRet, "_");
-                if (K == 0)
+                    CheckVectorLineNameRet = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_";
+                int K = CheckVectorLineNameRet.IndexOf("_");
+                if (K == -1)
                     return CheckVectorLineNameRet;
-                string A = CheckVectorLineNameRet.Substring(K - 1, 5);
+                string A = CheckVectorLineNameRet.Substring(K, 5);
                 if (A == "_Pts_")
                 {
-                    CheckVectorLineNameRet = CheckVectorLineNameRet.Substring(0, K + 4) + moduleLINES.LineTypes[ThisLineType].Name;
+                    CheckVectorLineNameRet = CheckVectorLineNameRet.Substring(0, K + 5) + moduleLINES.LineTypes[ThisLineType].Name;
                 }
             }
-            catch (Exception exc)
+            catch (Exception)
             {
             }
             return CheckVectorLineNameRet;
@@ -216,14 +215,14 @@ namespace SBuilderX
             string CheckExtrusionLineNameRet = default;
             CheckExtrusionLineNameRet = moduleLINES.Lines[N].Name;
             if (string.IsNullOrEmpty(CheckExtrusionLineNameRet))
-                CheckExtrusionLineNameRet = Conversion.Str(moduleLINES.Lines[N].NoOfPoints) + "_Pts_";
-            int K = Strings.InStr(CheckExtrusionLineNameRet, "_");
-            if (K == 0)
+                CheckExtrusionLineNameRet = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_";
+            int K = CheckExtrusionLineNameRet.IndexOf("_");
+            if (K == -1)
                 return CheckExtrusionLineNameRet;
-            string A = CheckExtrusionLineNameRet.Substring(K - 1, 5);
+            string A = CheckExtrusionLineNameRet.Substring(K, 5);
             if (A == "_Pts_")
             {
-                CheckExtrusionLineNameRet = CheckExtrusionLineNameRet.Substring(0, K + 4) + moduleLINES.ExtrusionTypes[ThisExtrusionType].Name;
+                CheckExtrusionLineNameRet = CheckExtrusionLineNameRet.Substring(0, K + 5) + moduleLINES.ExtrusionTypes[ThisExtrusionType].Name;
             }
 
             return CheckExtrusionLineNameRet;
@@ -234,14 +233,14 @@ namespace SBuilderX
             string CheckTexturedLineNameRet = default;
             CheckTexturedLineNameRet = moduleLINES.Lines[N].Name;
             if (string.IsNullOrEmpty(CheckTexturedLineNameRet))
-                CheckTexturedLineNameRet = Conversion.Str(moduleLINES.Lines[N].NoOfPoints) + "_Pts_";
-            int K = Strings.InStr(CheckTexturedLineNameRet, "_");
-            if (K == 0)
+                CheckTexturedLineNameRet = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_";
+            int K = CheckTexturedLineNameRet.IndexOf("_");
+            if (K == -1)
                 return CheckTexturedLineNameRet;
-            string A = CheckTexturedLineNameRet.Substring(K - 1, 5);
+            string A = CheckTexturedLineNameRet.Substring(K, 5);
             if (A == "_Pts_")
             {
-                CheckTexturedLineNameRet = CheckTexturedLineNameRet.Substring(0, K + 4) + "Line_" + txtTexName.Text;
+                CheckTexturedLineNameRet = CheckTexturedLineNameRet.Substring(0, K + 5) + "Line_" + txtTexName.Text;
             }
 
             return CheckTexturedLineNameRet;
@@ -422,7 +421,7 @@ namespace SBuilderX
                 foreach (var currentG in moduleOBJECTS.LibCategories[K].Objs)
                 {
                     g = currentG;
-                    if (Conversions.ToBoolean(Operators.ConditionalCompareObjectEqual(g.ID, Guid, false)))
+                    if (g.ID == Guid)
                     {
                         Flag = true;
                         break;
@@ -478,12 +477,12 @@ namespace SBuilderX
             string A, B;
             int N;
             A = moduleLINES.Lines[K].Type;
-            N = Strings.InStr(1, A, "|");
-            A = Strings.Mid(A, N + 1);
+            N = A.IndexOf("|");
+            A = A.Substring(N + 1);
             // TEX| was removed
 
-            N = Strings.InStr(1, A, "|");
-            B = Strings.Mid(A, 1, 1);
+            N = A.IndexOf("|");
+            B = A.Substring(0, 1);
             if (B == "S")
             {
                 optStanding.Checked = true;
@@ -495,27 +494,27 @@ namespace SBuilderX
                 optLying.Checked = true;
             }
 
-            A = Strings.Mid(A, N + 1);
-            N = Strings.InStr(1, A, "|");
-            B = Strings.Mid(A, 1, N - 1);
+            A = A.Substring(N + 1);
+            N = A.IndexOf("|");
+            B = A.Substring(0, N);
             ShowLineTex(B);
-            A = Strings.Mid(A, N + 1);
-            N = Strings.InStr(1, A, "|");
-            B = Strings.Mid(A, 1, N - 1);
-            txtTexPri.Text = Conversions.ToInteger(B).ToString();
-            A = Strings.Mid(A, N + 1);
-            N = Strings.InStr(1, A, "|");
-            B = Strings.Mid(A, 1, N - 1);
-            txtV1.Text = Conversions.ToInteger(B).ToString();
-            A = Strings.Mid(A, N + 1);
-            N = Strings.InStr(1, A, "|");
-            B = Strings.Mid(A, 1, N - 1);
-            cmbComplex.SelectedIndex = Conversions.ToInteger(B);
-            A = Strings.Mid(A, N + 1);
-            N = Strings.InStr(1, A, "|");
-            B = Strings.Mid(A, 1, N - 1);
-            ckNight.Checked = Conversions.ToBoolean(B);
-            A = Strings.Mid(A, N + 1, 1);
+            A = A.Substring(N + 1);
+            N = A.IndexOf("|");
+            B = A.Substring(0, N);
+            txtTexPri.Text = Convert.ToInt32(B).ToString();
+            A = A.Substring(N + 1);
+            N = A.IndexOf("|");
+            B = A.Substring(0, N);
+            txtV1.Text = Convert.ToInt32(B).ToString();
+            A = A.Substring(N + 1);
+            N = A.IndexOf("|");
+            B = A.Substring(0, N);
+            cmbComplex.SelectedIndex = Convert.ToInt32(B);
+            A = A.Substring(N + 1);
+            N = A.IndexOf("|");
+            B = A.Substring(0, N);
+            ckNight.Checked = Convert.ToBoolean(B);
+            A = A.Substring(N + 1, 1);
             if (A == "T")
             {
                 optTile.Checked = true;
@@ -577,9 +576,9 @@ namespace SBuilderX
                 moduleMAIN.ImageFileName = A;
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox(A);
+                MessageBox.Show(A);
             }
         }
 
@@ -591,26 +590,26 @@ namespace SBuilderX
             Color C;
             try
             {
-                C = moduleLINES.ExtrusionTypes[Conversions.ToInteger(LT)].Color;
+                C = moduleLINES.ExtrusionTypes[Convert.ToInt32(LT)].Color;
                 labelProfile.BackColor = C;
                 C = moduleMAIN.InvertColor(C);
                 labelProfile.ForeColor = C;
-                labelProfile.Text = moduleLINES.ExtrusionTypes[Conversions.ToInteger(LT)].Profile;
-                ProfileGuid = moduleLINES.ExtrusionTypes[Conversions.ToInteger(LT)].Profile;
-                MaterialGuid = moduleLINES.ExtrusionTypes[Conversions.ToInteger(LT)].Material;
-                PylonGuid = moduleLINES.ExtrusionTypes[Conversions.ToInteger(LT)].Pylon;
-                ExtrusionWidth = Conversion.Val(moduleLINES.ExtrusionTypes[Conversions.ToInteger(LT)].Width);
+                labelProfile.Text = moduleLINES.ExtrusionTypes[Convert.ToInt32(LT)].Profile;
+                ProfileGuid = moduleLINES.ExtrusionTypes[Convert.ToInt32(LT)].Profile;
+                MaterialGuid = moduleLINES.ExtrusionTypes[Convert.ToInt32(LT)].Material;
+                PylonGuid = moduleLINES.ExtrusionTypes[Convert.ToInt32(LT)].Pylon;
+                ExtrusionWidth = moduleLINES.ExtrusionTypes[Convert.ToInt32(LT)].Width;
                 ExtrusionProbability = 0.5d;
                 SuppressPlatform = true;
                 Complexity = 2;
-                A = My.MyProject.Application.Info.DirectoryPath + @"\Tools\Bmps\" + moduleLINES.ExtrusionTypes[Conversions.ToInteger(LT)].Name + jpg;
+                A = My.MyProject.Application.Info.DirectoryPath + @"\Tools\Bmps\" + moduleLINES.ExtrusionTypes[Convert.ToInt32(LT)].Name + jpg;
                 imgExtrusion.Image = Image.FromFile(A);
-                moduleMAIN.ImageFileName = My.MyProject.Application.Info.DirectoryPath + @"\Tools\Bmps\" + moduleLINES.ExtrusionTypes[Conversions.ToInteger(LT)].Name + closejpg;
+                moduleMAIN.ImageFileName = My.MyProject.Application.Info.DirectoryPath + @"\Tools\Bmps\" + moduleLINES.ExtrusionTypes[Convert.ToInt32(LT)].Name + closejpg;
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Image for Extrusion Bridge could not be used!");
+                MessageBox.Show("Image for Extrusion Bridge could not be used!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -619,22 +618,22 @@ namespace SBuilderX
             string A;
             int J;
             A = moduleLINES.Lines[N].Type.Substring(4);
-            J = Strings.InStr(A, "|");
-            MaterialGuid = A.Substring(0, J - 1);
-            A = A.Substring(J);
-            J = Strings.InStr(A, "|");
-            PylonGuid = A.Substring(0, J - 1);
-            A = A.Substring(J);
-            J = Strings.InStr(A, "|");
-            Complexity = Conversions.ToInteger(A.Substring(0, J - 1));
-            A = A.Substring(J);
-            J = Strings.InStr(A, "|");
-            ExtrusionWidth = Conversion.Val(A.Substring(0, J - 1));
-            A = A.Substring(J);
-            J = Strings.InStr(A, "|");
-            ExtrusionProbability = Conversion.Val(A.Substring(0, J - 1));
-            A = A.Substring(J);
-            SuppressPlatform = Conversions.ToBoolean(A);
+            J = A.IndexOf("|");
+            MaterialGuid = A.Substring(0, J);
+            A = A.Substring(J + 1);
+            J = A.IndexOf("|");
+            PylonGuid = A.Substring(0, J);
+            A = A.Substring(J + 1);
+            J = A.IndexOf("|");
+            Complexity = Convert.ToInt32(A.Substring(0, J));
+            A = A.Substring(J + 1);
+            J = A.IndexOf("|");
+            ExtrusionWidth = Convert.ToDouble(A.Substring(0, J));
+            A = A.Substring(J + 1);
+            J = A.IndexOf("|");
+            ExtrusionProbability = Convert.ToDouble(A.Substring(0, J));
+            A = A.Substring(J + 1);
+            SuppressPlatform = Convert.ToBoolean(A);
             ckThisColor.BackColor = moduleLINES.Lines[N].Color;
             ckThisColor.ForeColor = moduleMAIN.InvertColor(moduleLINES.Lines[N].Color);
         }
@@ -644,18 +643,18 @@ namespace SBuilderX
             string A;
             int J;
             A = moduleLINES.Lines[N].Type.Substring(4);
-            J = Strings.InStr(A, "|");
-            ObjWidth = (float)Conversion.Val(A.Substring(0, J - 1));
-            A = A.Substring(J);
-            J = Strings.InStr(A, "|");
-            ObjLength = (float)Conversion.Val(A.Substring(0, J - 1));
-            A = A.Substring(J);
-            cmbComplexity.SelectedIndex = Conversions.ToInteger(A);
+            J = A.IndexOf("|");
+            ObjWidth = Convert.ToSingle(A.Substring(0, J));
+            A = A.Substring(J + 1);
+            J = A.IndexOf("|");
+            ObjLength = Convert.ToSingle(A.Substring(0, J));
+            A = A.Substring(J + 1);
+            cmbComplexity.SelectedIndex = Convert.ToInt32(A);
             double X = 0d;
             var loopTo = moduleLINES.Lines[N].NoOfPoints;
             for (J = 1; J <= loopTo; J++)
                 X = X + moduleLINES.Lines[N].GLPoints[J].wid;
-            txtHeading.Text = Strings.Format(X / moduleLINES.Lines[N].NoOfPoints, "0.00");
+            txtHeading.Text = (X / moduleLINES.Lines[N].NoOfPoints).ToString("0.00");
             ckThisColor.BackColor = moduleLINES.Lines[N].Color;
             ckThisColor.ForeColor = moduleMAIN.InvertColor(moduleLINES.Lines[N].Color);
         }
@@ -663,15 +662,15 @@ namespace SBuilderX
         private void CheckIfFWX(int K)
         {
             string A, B;
-            A = Strings.Mid(moduleLINES.LineTypes[K].Type, 1, 3);
+            A = moduleLINES.LineTypes[K].Type.Substring(0, 3);
             if (A == "FWX")
             {
                 EnableTraffic(true);
-                B = Strings.Mid(moduleLINES.Lines[modulePOPUP.POPIndex].Type, 1, 3);
+                B = moduleLINES.Lines[modulePOPUP.POPIndex].Type.Substring(0, 3);
                 if (B == "FWX")
                 {
-                    cbLanes.Text = Strings.Mid(moduleLINES.Lines[modulePOPUP.POPIndex].Type, 4, 1);
-                    cbDir.Text = Strings.Mid(moduleLINES.Lines[modulePOPUP.POPIndex].Type, 5, 1);
+                    cbLanes.Text = moduleLINES.Lines[modulePOPUP.POPIndex].Type.Substring(3, 1);
+                    cbDir.Text = moduleLINES.Lines[modulePOPUP.POPIndex].Type.Substring(4, 1);
                 }
             }
             else
@@ -796,8 +795,8 @@ namespace SBuilderX
             }
 
             // this could be used when appending FWX lines
-            moduleSHAPE.DefaultNoOfLanes = Conversions.ToByte(cbLanes.SelectedItem);
-            moduleSHAPE.DefaultTrafficDir = Conversions.ToString(cbDir.SelectedItem);
+            moduleSHAPE.DefaultNoOfLanes = Convert.ToByte(cbLanes.SelectedItem);
+            moduleSHAPE.DefaultTrafficDir = Convert.ToString(cbDir.SelectedItem);
             Init = true;
             modulePOPUP.POPIndex = 0;
             Dispose();
@@ -807,19 +806,19 @@ namespace SBuilderX
         {
             if (optVector.Checked)
             {
-                SetThisVectorLineProperties(Conversions.ToInteger(N));
+                SetThisVectorLineProperties(Convert.ToInt32(N));
             }
             else if (optExtrusion.Checked)
             {
-                SetThisExtrusionLineProperties(Conversions.ToInteger(N));
+                SetThisExtrusionLineProperties(Convert.ToInt32(N));
             }
             else if (optTexture.Checked)
             {
-                SetThisTexturedLineProperties(Conversions.ToInteger(N));
+                SetThisTexturedLineProperties(Convert.ToInt32(N));
             }
             else if (optObjects.Checked)
             {
-                SetThisLineOfObjectsProperties(Conversions.ToInteger(N));
+                SetThisLineOfObjectsProperties(Convert.ToInt32(N));
             }
         }
 
@@ -855,7 +854,7 @@ namespace SBuilderX
         {
             if (moduleLINES.LineTypes[ThisLineType].TerrainIndex < 0)
             {
-                Interaction.MsgBox("This type is not described in Terrain.cfg!");
+                MessageBox.Show("This type is not described in Terrain.cfg!");
                 return;
             }
 
@@ -873,7 +872,7 @@ namespace SBuilderX
                 C = "Description from Tools/Terrain.cfg";
             }
 
-            Key = "[Texture." + Strings.Trim(moduleLINES.LineTypes[ThisLineType].TerrainIndex.ToString()) + "]";
+            Key = "[Texture." + moduleLINES.LineTypes[ThisLineType].TerrainIndex.ToString().Trim() + "]";
             FileSystem.FileOpen(2, TerrainFile, OpenMode.Input);
             N = (int)FileSystem.LOF(2);
             Marker = 0;
@@ -882,13 +881,13 @@ namespace SBuilderX
             while (Marker < N)
             {
                 A = FileSystem.LineInput(2);
-                Marker = Marker + Strings.Len(A) + 2;
-                A = Strings.Trim(A);
+                Marker = Marker + A.Length + 2;
+                A = A.Trim();
                 if (F1)
                 {
                     if (string.IsNullOrEmpty(A))
                         break;
-                    B = B + A + Constants.vbCrLf;
+                    B = B + A + Environment.NewLine;
                 }
 
                 if (!F1)
@@ -898,7 +897,7 @@ namespace SBuilderX
                 }
             }
 
-            Interaction.MsgBox(B, MsgBoxStyle.Information, C);
+            MessageBox.Show(B, C, MessageBoxButtons.OK, MessageBoxIcon.Information);
             FileSystem.FileClose();
         }
 
@@ -930,7 +929,7 @@ namespace SBuilderX
             double X;
             try
             {
-                X = Conversion.Val(txtWidth.Text);
+                X = Convert.ToDouble(txtWidth.Text);
                 if (modulePOPUP.POPMode == "One")
                 {
                     var loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
@@ -954,9 +953,9 @@ namespace SBuilderX
                 moduleMAIN.RebuildDisplay();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check width value!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check width value!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -966,7 +965,7 @@ namespace SBuilderX
             double X;
             try
             {
-                X = Conversion.Val(txtAlt.Text);
+                X = Convert.ToDouble(txtAlt.Text);
                 if (modulePOPUP.POPMode == "One")
                 {
                     var loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
@@ -989,9 +988,9 @@ namespace SBuilderX
 
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check altitude value!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check altitude value!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -1002,8 +1001,8 @@ namespace SBuilderX
 
             try
             {
-                W1 = Conversion.Val(txtWidth1.Text);
-                W21 = Conversion.Val(txtWidth2.Text);
+                W1 = Convert.ToDouble(txtWidth1.Text);
+                W21 = Convert.ToDouble(txtWidth2.Text);
                 W21 = W21 - W1;
                 if (modulePOPUP.POPMode == "One")
                 {
@@ -1038,9 +1037,9 @@ namespace SBuilderX
                 moduleMAIN.RebuildDisplay();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check width values!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check width values!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -1155,7 +1154,7 @@ namespace SBuilderX
 
         private void OptVector_CheckedChanged(object sender, EventArgs e)
         {
-            if (Conversions.ToBoolean(sender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(sender.GetType().GetField("Checked")))
             {
                 if (Init)
                     return;
@@ -1170,7 +1169,7 @@ namespace SBuilderX
 
         private void OptTexture_CheckedChanged(object sender, EventArgs e)
         {
-            if (Conversions.ToBoolean(sender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(sender.GetType().GetField("Checked")))
             {
                 if (Init)
                     return;
@@ -1185,7 +1184,7 @@ namespace SBuilderX
 
         private void OptExtrusion_CheckedChanged(object sender, EventArgs e)
         {
-            if (Conversions.ToBoolean(sender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(sender.GetType().GetField("Checked")))
             {
                 if (Init)
                     return;
@@ -1201,7 +1200,7 @@ namespace SBuilderX
 
         private void OptObjects_CheckedChanged(object sender, EventArgs e)
         {
-            if (Conversions.ToBoolean(sender.GetType().GetField("Checked")))
+            if (Convert.ToBoolean(sender.GetType().GetField("Checked")))
             {
                 if (Init)
                     return;
@@ -1250,7 +1249,7 @@ namespace SBuilderX
             {
                 if ((TexPath ?? "") != (A ?? ""))
                 {
-                    B = "This file already exists in the ../SBuilderX/Texture" + Constants.vbCrLf;
+                    B = "This file already exists in the ../SBuilderX/Texture" + Environment.NewLine;
                     B = B + "folder and it will be overwriten! Do you want to continue?";
                     if (Interaction.MsgBox(B, MsgBoxStyle.YesNo) == MsgBoxResult.No)
                         return;
@@ -1267,7 +1266,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("The file could not be loaded!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("The file could not be loaded!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -1312,7 +1311,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("There is a problem with the display of this image!", MsgBoxStyle.Critical);
+                MessageBox.Show("There is a problem with the display of this image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -1468,7 +1467,7 @@ namespace SBuilderX
 
         private void CmdHeading_Click(object sender, EventArgs e)
         {
-            double W = Conversion.Val(txtHeading.Text);
+            double W = Convert.ToDouble(txtHeading.Text);
             int K;
             if (ckRandom.Checked)
                 VBMath.Randomize();

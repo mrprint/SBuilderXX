@@ -1,6 +1,4 @@
 ﻿using System;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -133,18 +131,18 @@ namespace SBuilderX
         {
             moduleMAIN.NoEndsSmooth = chNoEnds.Checked;
             moduleMAIN.CornerSmooth = chCorner.Checked;
-            moduleMAIN.SmoothDistance = Conversions.ToDouble(txtDistance.Text);
+            moduleMAIN.SmoothDistance = Convert.ToDouble(txtDistance.Text);
             string argPutKey = "Main";
             string argPutVariable = "NoEndsSmooth";
-            string argPutValue = Conversions.ToString(moduleMAIN.NoEndsSmooth);
+            string argPutValue = moduleMAIN.NoEndsSmooth.ToString();
             moduleFILE_IO.WriteIniValue(ref moduleMAIN.AppIni, ref argPutKey, ref argPutVariable, ref argPutValue);
             string argPutKey1 = "Main";
             string argPutVariable1 = "CornerSmooth";
-            string argPutValue1 = Conversions.ToString(moduleMAIN.CornerSmooth);
+            string argPutValue1 = moduleMAIN.CornerSmooth.ToString();
             moduleFILE_IO.WriteIniValue(ref moduleMAIN.AppIni, ref argPutKey1, ref argPutVariable1, ref argPutValue1);
             string argPutKey2 = "Main";
             string argPutVariable2 = "SmoothDistance";
-            string argPutValue2 = Conversion.Str(moduleMAIN.SmoothDistance);
+            string argPutValue2 = moduleMAIN.SmoothDistance.ToString();
             moduleFILE_IO.WriteIniValue(ref moduleMAIN.AppIni, ref argPutKey2, ref argPutVariable2, ref argPutValue2);
 
             // WriteSettings()
@@ -255,7 +253,7 @@ namespace SBuilderX
 
         private void TxtDistance_TextChanged(object sender, EventArgs e)
         {
-            moduleMAIN.SmoothDistance = Conversion.Val(txtDistance.Text);
+            moduleMAIN.SmoothDistance = Convert.ToDouble(txtDistance.Text);
             SquareSmoothDistance = moduleMAIN.SmoothDistance * moduleMAIN.SmoothDistance;
         }
 

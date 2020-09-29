@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -32,14 +31,14 @@ namespace SBuilderX
             var loopTo = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
-                FileSystem.PrintLine(FN, moduleLINES.Lines[N].NoOfPoints.ToString() + BLNSeparator + Strings.Trim(moduleLINES.Lines[N].Name));
+                FileSystem.PrintLine(FN, moduleLINES.Lines[N].NoOfPoints.ToString() + BLNSeparator + moduleLINES.Lines[N].Name.Trim());
                 var loopTo1 = moduleLINES.Lines[N].NoOfPoints;
                 for (M = 1; M <= loopTo1; M++)
                 {
-                    A = Strings.Trim(Conversion.Str(moduleLINES.Lines[N].GLPoints[M].lon)) + BLNSeparator;
-                    A = A + Strings.Trim(Conversion.Str(moduleLINES.Lines[N].GLPoints[M].lat));
+                    A = moduleLINES.Lines[N].GLPoints[M].lon.ToString().Trim() + BLNSeparator;
+                    A = A + moduleLINES.Lines[N].GLPoints[M].lat.ToString().Trim();
                     if (BLNExportAltitudes)
-                        A = A + BLNSeparator + Strings.Trim(Conversion.Str(moduleLINES.Lines[N].GLPoints[M].alt));
+                        A = A + BLNSeparator + moduleLINES.Lines[N].GLPoints[M].alt.ToString().Trim();
                     FileSystem.PrintLine(FN, A);
                 }
             }
@@ -47,21 +46,21 @@ namespace SBuilderX
             var loopTo2 = modulePOLYS.NoOfPolys;
             for (N = 1; N <= loopTo2; N++)
             {
-                FileSystem.PrintLine(FN, (modulePOLYS.Polys[N].NoOfPoints + 1).ToString() + BLNSeparator + Strings.Trim(modulePOLYS.Polys[N].Name));
+                FileSystem.PrintLine(FN, (modulePOLYS.Polys[N].NoOfPoints + 1).ToString() + BLNSeparator + modulePOLYS.Polys[N].Name.Trim());
                 var loopTo3 = modulePOLYS.Polys[N].NoOfPoints;
                 for (M = 1; M <= loopTo3; M++)
                 {
-                    A = Strings.Trim(Conversion.Str(modulePOLYS.Polys[N].GPoints[M].lon)) + BLNSeparator;
-                    A = A + Strings.Trim(Conversion.Str(modulePOLYS.Polys[N].GPoints[M].lat));
+                    A = modulePOLYS.Polys[N].GPoints[M].lon.ToString().Trim() + BLNSeparator;
+                    A = A + modulePOLYS.Polys[N].GPoints[M].lat.ToString().Trim();
                     if (BLNExportAltitudes)
-                        A = A + BLNSeparator + Strings.Trim(Conversion.Str(modulePOLYS.Polys[N].GPoints[M].alt));
+                        A = A + BLNSeparator + modulePOLYS.Polys[N].GPoints[M].alt.ToString().Trim();
                     FileSystem.PrintLine(FN, A);
                 }
 
-                A = Strings.Trim(Conversion.Str(modulePOLYS.Polys[N].GPoints[1].lon)) + BLNSeparator;
-                A = A + Strings.Trim(Conversion.Str(modulePOLYS.Polys[N].GPoints[1].lat));
+                A = modulePOLYS.Polys[N].GPoints[1].lon.ToString().Trim() + BLNSeparator;
+                A = A + modulePOLYS.Polys[N].GPoints[1].lat.ToString().Trim();
                 if (BLNExportAltitudes)
-                    A = A + BLNSeparator + Strings.Trim(Conversion.Str(modulePOLYS.Polys[N].GPoints[1].alt));
+                    A = A + BLNSeparator + modulePOLYS.Polys[N].GPoints[1].alt.ToString().Trim();
                 FileSystem.PrintLine(FN, A);
             }
 
@@ -96,24 +95,24 @@ namespace SBuilderX
                 while (Marker < LenOfFile)
                 {
                     A = FileSystem.LineInput(2);
-                    Marker = Marker + Strings.Len(A) + 2;
-                    K1 = Strings.InStr(A, BLNSeparator);
-                    if (K1 > 0)
+                    Marker = Marker + A.Length + 2;
+                    K1 = A.IndexOf(BLNSeparator);
+                    if (K1 != -1)
                     {
-                        N = Conversions.ToInteger(Strings.Left(A, K1 - 1));
-                        B = Strings.Mid(A, K1 + 1, 2); // added in April 2005, 15th
-                        if ((B ?? "") == ("0" + BLNSeparator ?? "") | (B ?? "") == ("1" + BLNSeparator ?? ""))
+                        N = Convert.ToInt32(A.Substring(0, K1));
+                        B = (A.Length >= K1 + 3) ? A.Substring(K1 + 1, 2) : "";
+                        if (B == ("0" + BLNSeparator ?? "") || B == ("1" + BLNSeparator ?? ""))
                         {
-                            myLine.Name = Strings.Mid(A, K1 + 3);
+                            myLine.Name = A.Substring(K1 + 3);
                         }
                         else
                         {
-                            myLine.Name = Strings.Mid(A, K1 + 1);
+                            myLine.Name = A.Substring(K1 + 1);
                         }
                     }
                     else
                     {
-                        N = Conversions.ToInteger(A);
+                        N = Convert.ToInt32(A);
                     }
 
                     myLine.GLPoints = new modulePOINTS.GLPoint[N + 1];
@@ -121,9 +120,9 @@ namespace SBuilderX
                     for (M = 1; M <= loopTo; M++)
                     {
                         A = FileSystem.LineInput(2);
-                        Marker = Marker + Strings.Len(A) + 2;
-                        K1 = Strings.InStr(A, BLNSeparator);
-                        myLine.GLPoints[M].lon = Conversion.Val(Strings.Left(A, K1 - 1));
+                        Marker = Marker + A.Length + 2;
+                        K1 = A.IndexOf(BLNSeparator);
+                        myLine.GLPoints[M].lon = Convert.ToDouble(A.Substring(0, K1));
 
                         // commented on November 2017
                         // K2 = InStr(K1 + 1, A, BLNSeparator)
@@ -139,28 +138,28 @@ namespace SBuilderX
                         // replaced with the following
                         if (M == 1)
                         {
-                            K2 = Strings.InStr(K1 + 1, A, BLNSeparator);
-                            if (K2 == 0)
+                            K2 = A.IndexOf(BLNSeparator, K1 + 1);
+                            if (K2 == -1)
                             {
                                 Has3Par = false;
-                                myLine.GLPoints[M].lat = Conversion.Val(Strings.Mid(A, K1 + 1));
+                                myLine.GLPoints[M].lat = Convert.ToDouble(A.Substring(K1 + 1));
                             }
                             else
                             {
                                 Has3Par = true;
-                                myLine.GLPoints[M].lat = Conversion.Val(Strings.Mid(A, K1 + 1, K2 - K1 - 1));
-                                myLine.GLPoints[M].alt = Conversion.Val(Strings.Mid(A, K2 + 1));
+                                myLine.GLPoints[M].lat = Convert.ToDouble(A.Substring(K1 + 1, K2 - K1 - 1));
+                                myLine.GLPoints[M].alt = Convert.ToDouble(A.Substring(K2 + 1));
                             }
                         }
                         else if (Has3Par)
                         {
-                            K2 = Strings.InStr(K1 + 1, A, BLNSeparator);
-                            myLine.GLPoints[M].lat = Conversion.Val(Strings.Mid(A, K1 + 1, K2 - K1 - 1));
-                            myLine.GLPoints[M].alt = Conversion.Val(Strings.Mid(A, K2 + 1));
+                            K2 = A.IndexOf(BLNSeparator, K1 + 1);
+                            myLine.GLPoints[M].lat = Convert.ToDouble(A.Substring(K1 + 1, K2 - K1 - 1));
+                            myLine.GLPoints[M].alt = Convert.ToDouble(A.Substring(K2 + 1));
                         }
                         else
                         {
-                            myLine.GLPoints[M].lat = Conversion.Val(Strings.Mid(A, K1 + 1));
+                            myLine.GLPoints[M].lat = Convert.ToDouble(A.Substring(K1 + 1));
                         }
                         // end of replacement
                     }
@@ -180,7 +179,7 @@ namespace SBuilderX
                         // ReDim Preserve Polys(NoOfPolys)
                         if (string.IsNullOrEmpty(myLine.Name))
                         {
-                            modulePOLYS.Polys[NoP].Name = Conversion.Str(N - 1) + "_Pts_BLN_Imported_Polygon";
+                            modulePOLYS.Polys[NoP].Name = (N - 1).ToString() + "_Pts_BLN_Imported_Polygon";
                         }
                         else
                         {
@@ -388,12 +387,12 @@ namespace SBuilderX
                 My.MyProject.Forms.FrmStart.SetMouseIcon();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 FileSystem.FileClose(2);
-                A = "There has been a fatal error! Please" + Constants.vbCrLf;
+                A = "There has been a fatal error! Please" + Environment.NewLine;
                 A = A + "verify the BLN separator in INI file!";
-                Interaction.MsgBox(A, MsgBoxStyle.Critical);
+                MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.SetMouseIcon();
             }
         }

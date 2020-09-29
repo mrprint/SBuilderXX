@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -58,8 +56,8 @@ namespace SBuilderX
             for (N = 1; N <= loopTo; N++)
             {
                 A = lstObject.GetItemText(N - 1);
-                A = Strings.Mid(A, 58, 5);
-                K = Conversions.ToInteger(A);
+                A = A.Substring(57, 5);
+                K = Convert.ToInt32(A);
                 // added after 205
                 // If K = ObjPOPIndex Then ObjPOPIndex = N
                 if (K == modulePOPUP.POPIndex)
@@ -114,12 +112,12 @@ namespace SBuilderX
                 if (K == 0)
                 {
                     A = moduleOBJECTS.Objects[N].Description;
-                    M = Strings.InStrRev(A, "|");
-                    B = Strings.Mid(A, M + 1);
+                    M = A.LastIndexOf("|");
+                    B = A.Substring(M + 1);
                     if (string.IsNullOrEmpty(B))
                     {
-                        M = Strings.InStr(1, A, "|");
-                        B = Strings.Mid(A, 1, M - 1);
+                        M = A.IndexOf("|");
+                        B = A.Substring(0, M - 1);
                     }
 
                     O[N] = "FSX Library Object  " + B;
@@ -128,12 +126,12 @@ namespace SBuilderX
                 if (K == 1)
                 {
                     A = moduleOBJECTS.Objects[N].Description;
-                    M = Strings.InStrRev(A, "|");
-                    B = Strings.Mid(A, M + 1);
+                    M = A.LastIndexOf("|");
+                    B = A.Substring(M + 1);
                     if (string.IsNullOrEmpty(B))
                     {
-                        M = Strings.InStr(1, A, "|");
-                        B = Strings.Mid(A, 1, M - 1);
+                        M = A.IndexOf("|");
+                        B = A.Substring(0, M - 1);
                     }
 
                     O[N] = "FS8 Library Object  " + B;
@@ -142,12 +140,12 @@ namespace SBuilderX
                 if (K == 2)
                 {
                     A = moduleOBJECTS.Objects[N].Description;
-                    M = Strings.InStrRev(A, "|");
-                    B = Strings.Mid(A, M + 1);
+                    M = A.LastIndexOf("|");
+                    B = A.Substring(M + 1);
                     if (string.IsNullOrEmpty(B))
                     {
-                        M = Strings.InStr(1, A, "|");
-                        B = Strings.Mid(A, 1, M - 1);
+                        M = A.IndexOf("|");
+                        B = A.Substring(0, M - 1);
                     }
 
                     O[N] = "FS9 Library Object  " + B;
@@ -156,12 +154,12 @@ namespace SBuilderX
                 if (K == 3)
                 {
                     A = moduleOBJECTS.Objects[N].Description;
-                    M = Strings.InStrRev(A, "|");
-                    B = Strings.Mid(A, M + 1);
+                    M = A.LastIndexOf("|");
+                    B = A.Substring(M + 1);
                     if (string.IsNullOrEmpty(B))
                     {
-                        M = Strings.InStr(1, A, "|");
-                        B = Strings.Mid(A, 1, M - 1);
+                        M = A.IndexOf("|");
+                        B = A.Substring(0, M - 1);
                     }
 
                     O[N] = "Rwy12 Object        " + B;
@@ -170,12 +168,12 @@ namespace SBuilderX
                 if (K == 4)
                 {
                     A = moduleOBJECTS.Objects[N].Description;
-                    M = Strings.InStrRev(A, "|");
-                    B = Strings.Mid(A, M + 1);
+                    M = A.LastIndexOf("|");
+                    B = A.Substring(M + 1);
                     if (string.IsNullOrEmpty(B))
                     {
-                        M = Strings.InStr(1, A, "|");
-                        B = Strings.Mid(A, 1, M - 1);
+                        M = A.IndexOf("|");
+                        B = A.Substring(0, M - 1);
                     }
 
                     O[N] = "API Macro Object    " + B;
@@ -184,12 +182,12 @@ namespace SBuilderX
                 if (K == 5)
                 {
                     A = moduleOBJECTS.Objects[N].Description;
-                    M = Strings.InStrRev(A, "|");
-                    B = Strings.Mid(A, M + 1);
+                    M = A.LastIndexOf("|");
+                    B = A.Substring(M + 1);
                     if (string.IsNullOrEmpty(B))
                     {
-                        M = Strings.InStr(1, A, "|");
-                        B = Strings.Mid(A, 1, M - 1);
+                        M = A.IndexOf("|");
+                        B = A.Substring(0, M - 1);
                     }
 
                     O[N] = "ASD Macro Object    " + B;
@@ -198,14 +196,14 @@ namespace SBuilderX
                 if (K == 8)
                 {
                     A = moduleOBJECTS.Objects[N].Description;
-                    M = Strings.InStrRev(A, "|");
-                    B = Strings.Mid(A, M + 1);
+                    M = A.LastIndexOf("|");
+                    B = A.Substring(M + 1);
                     if (string.IsNullOrEmpty(B))
                     {
-                        M = Strings.Len(A);
-                        A = Strings.Mid(A, 1, M - 1);
-                        M = Strings.InStrRev(A, "|");
-                        B = Strings.Mid(A, M + 1);
+                        M = A.Length;
+                        A = A.Substring(0, M - 1);
+                        M = A.LastIndexOf("|");
+                        B = A.Substring(M + 1);
                     }
 
                     O[N] = "Taxiway Sign        " + B;
@@ -214,12 +212,12 @@ namespace SBuilderX
                 if (K == 16)
                 {
                     A = moduleOBJECTS.Objects[N].Description;
-                    M = Strings.InStrRev(A, "|");
-                    B = Strings.Mid(A, M + 1);
+                    M = A.LastIndexOf("|");
+                    B = A.Substring(M + 1);
                     if (string.IsNullOrEmpty(B))
                     {
-                        M = Strings.InStr(1, A, "|");
-                        B = Strings.Mid(A, 1, M - 1);
+                        M = A.IndexOf("|");
+                        B = A.Substring(0, M - 1);
                     }
 
                     O[N] = "Effect Object       " + B;
@@ -228,11 +226,11 @@ namespace SBuilderX
                 if (K == 32)
                 {
                     A = moduleOBJECTS.Objects[N].Description;
-                    M = Strings.InStrRev(A, "|");
-                    B = Strings.Mid(A, M + 1);
+                    M = A.LastIndexOf("|");
+                    B = A.Substring(M + 1);
                     if (string.IsNullOrEmpty(B))
                     {
-                        B = "Object # " + Strings.Trim(Conversion.Str(N));
+                        B = "Object # " + N.ToString().Trim();
                     }
 
                     O[N] = "Beacon Object       " + B;
@@ -241,21 +239,21 @@ namespace SBuilderX
                 if (K == 64)
                 {
                     A = moduleOBJECTS.Objects[N].Description;
-                    M = Strings.InStrRev(A, "|");
-                    B = Strings.Mid(A, M + 1);
+                    M = A.LastIndexOf("|");
+                    B = A.Substring(M + 1);
                     if (string.IsNullOrEmpty(B))
                     {
-                        B = "Object # " + Strings.Trim(Conversion.Str(N));
+                        B = "Object # " + N.ToString().Trim();
                     }
 
                     O[N] = "Windsock Object     " + B;
                 }
 
-                O[N] = Strings.Mid(O[N], 1, 57);
-                K = Strings.Len(O[N]);
+                O[N] = O[N].Substring(0, 57);
+                K = O[N].Length;
                 for (J = K + 1; J <= 57; J++)
                     O[N] = O[N] + " ";
-                B = Strings.Format(N, "00000");
+                B = N.ToString("00000");
                 O[N] = O[N] + B;
                 lstObject.Items.Add(O[N]);
             }

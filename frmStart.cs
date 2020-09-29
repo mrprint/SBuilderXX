@@ -4,9 +4,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
+using System.Media;
 using FSUIPC;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 using Microsoft.Win32;
 using ScruffyDuck.Flightsim.Scenery.SceneryFile;
 
@@ -341,7 +341,7 @@ namespace SBuilderX
             lbScaleBar.Location = XY;
             lbScaleBar.Width = X;
             XY.Y = moduleMAIN.DisplayHeight - 50;
-            X = Strings.Len(A);
+            X = A.Length;
             // XY.X = DisplayWidth - 65
             XY.X = moduleMAIN.DisplayWidth - X * 8 - 10;
             lbScale.Location = XY;
@@ -589,10 +589,10 @@ namespace SBuilderX
                 return;
             }
 
-            LA1 = (int)(Conversion.Int(LatSouth / LatDelta) + 1d);
-            LA2 = (int)Conversion.Int(LatNorth / LatDelta);
-            LO1 = (int)(Conversion.Int(LonWest / LonDelta) + 1d);
-            LO2 = (int)Conversion.Int(LonEast / LonDelta);
+            LA1 = (int)(Convert.ToInt32(LatSouth / LatDelta) + 1d);
+            LA2 = (int)Convert.ToInt32(LatNorth / LatDelta);
+            LO1 = (int)(Convert.ToInt32(LonWest / LonDelta) + 1d);
+            LO2 = (int)Convert.ToInt32(LonEast / LonDelta);
             LatDelta = (LA1 * LatDelta - moduleMAIN.LatDispSouth) * moduleMAIN.PixelsPerLatDeg;
             if (G == 0)
             {
@@ -631,7 +631,7 @@ namespace SBuilderX
         private void DisplayCheckLine(Graphics g)
         {
             string A;
-            A = "Line #" + Strings.Trim(Conversion.Str(moduleLINES.CheckLine)) + Constants.vbCrLf + "Point #" + Strings.Trim(Conversion.Str(moduleLINES.CheckLinePt));
+            A = "Line #" + moduleLINES.CheckLine.ToString().Trim() + Environment.NewLine + "Point #" + moduleLINES.CheckLinePt.ToString().Trim();
             var drawFont = new Font("MS Reference Sans Serif", 8f);
             g.DrawString(A, drawFont, Brushes.Black, moduleMAIN.DisplayCenterX + 6, moduleMAIN.DisplayCenterY - 12);
             drawFont.Dispose();
@@ -640,7 +640,7 @@ namespace SBuilderX
         private void DisplayCheckPoly(Graphics g)
         {
             string A;
-            A = "Poly #" + Strings.Trim(Conversion.Str(modulePOLYS.CheckPoly)) + Constants.vbCrLf + "Point #" + Strings.Trim(Conversion.Str(modulePOLYS.CheckPolyPt));
+            A = "Poly #" + modulePOLYS.CheckPoly.ToString().Trim() + Environment.NewLine + "Point #" + modulePOLYS.CheckPolyPt.ToString().Trim();
             var drawFont = new Font("MS Reference Sans Serif", 8f);
             g.DrawString(A, drawFont, Brushes.Black, moduleMAIN.DisplayCenterX + 6, moduleMAIN.DisplayCenterY - 12);
             drawFont.Dispose();
@@ -1035,7 +1035,7 @@ namespace SBuilderX
             }
 
             string A = "You did not save your data! Do you really want to exit ?";
-            if (Interaction.MsgBox(A, MsgBoxStyle.YesNo) == MsgBoxResult.No)
+            if (MessageBox.Show(A, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 Cancel = true;
             }
@@ -1069,14 +1069,14 @@ namespace SBuilderX
             {
                 if (moduleMAIN.AskDelete)
                 {
-                    X = (int)Interaction.MsgBox("Delete " + Conversion.Str(N) + " item(s) ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
+                    X = (int)MessageBox.Show("Delete " + N.ToString() + " item(s) ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
                 else
                 {
-                    X = (int)MsgBoxResult.Yes;
+                    X = (int)DialogResult.Yes;
                 }
 
-                if (X == (int)MsgBoxResult.Yes)
+                if (X == (int)DialogResult.Yes)
                 {
                     moduleEDIT.BackUp();
                     moduleEDIT.SkipBackUp = true;
@@ -1387,9 +1387,9 @@ namespace SBuilderX
 
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Error - display cursor", MsgBoxStyle.Critical);
+                MessageBox.Show("Error - display cursor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -1509,22 +1509,22 @@ namespace SBuilderX
 
             if (!My.MyProject.Computer.FileSystem.DirectoryExists(moduleMAIN.AppPath + @"\ASD"))
             {
-                FileSystem.MkDir(My.MyProject.Application.Info.DirectoryPath + @"\ASD");
+                Directory.CreateDirectory(My.MyProject.Application.Info.DirectoryPath + @"\ASD");
             }
 
             if (!My.MyProject.Computer.FileSystem.DirectoryExists(moduleMAIN.AppPath + @"\API"))
             {
-                FileSystem.MkDir(My.MyProject.Application.Info.DirectoryPath + @"\API");
+                Directory.CreateDirectory(My.MyProject.Application.Info.DirectoryPath + @"\API");
             }
 
             if (!My.MyProject.Computer.FileSystem.DirectoryExists(moduleMAIN.AppPath + @"\Rwy12"))
             {
-                FileSystem.MkDir(My.MyProject.Application.Info.DirectoryPath + @"\Rwy12");
+                Directory.CreateDirectory(My.MyProject.Application.Info.DirectoryPath + @"\Rwy12");
             }
 
             if (!My.MyProject.Computer.FileSystem.DirectoryExists(moduleMAIN.AppPath + @"\Rwy12\img"))
             {
-                FileSystem.MkDir(My.MyProject.Application.Info.DirectoryPath + @"\Rwy12\img");
+                Directory.CreateDirectory(My.MyProject.Application.Info.DirectoryPath + @"\Rwy12\img");
             }
 
             if (!My.MyProject.Computer.FileSystem.DirectoryExists(moduleMAIN.AppPath + @"\Tools\Work"))
@@ -1534,17 +1534,17 @@ namespace SBuilderX
 
             if (!My.MyProject.Computer.FileSystem.DirectoryExists(moduleMAIN.AppPath + @"\Tools\Shapes"))
             {
-                FileSystem.MkDir(My.MyProject.Application.Info.DirectoryPath + @"\Tools\Shapes");
+                Directory.CreateDirectory(My.MyProject.Application.Info.DirectoryPath + @"\Tools\Shapes");
             }
 
             if (!My.MyProject.Computer.FileSystem.DirectoryExists(moduleMAIN.AppPath + @"\Tools\Bmps"))
             {
-                FileSystem.MkDir(My.MyProject.Application.Info.DirectoryPath + @"\Tools\Bmps");
+                Directory.CreateDirectory(My.MyProject.Application.Info.DirectoryPath + @"\Tools\Bmps");
             }
 
             if (!My.MyProject.Computer.FileSystem.DirectoryExists(moduleMAIN.AppPath + @"\Help"))
             {
-                FileSystem.MkDir(My.MyProject.Application.Info.DirectoryPath + @"\Help");
+                Directory.CreateDirectory(My.MyProject.Application.Info.DirectoryPath + @"\Help");
             }
 
             SetPolyTypes();
@@ -1565,7 +1565,7 @@ namespace SBuilderX
             moduleMAIN.ProjectName = "PROJECT";
             moduleMAIN.BGLProjectFolder = moduleMAIN.BGLFolder;
             DeleteAll();  // this avoids the error on Loading of Generic Buildings (June, 7, 2014)
-            Text = moduleMAIN.AppTitle + "  " + Strings.UCase(moduleMAIN.ProjectName);
+            Text = moduleMAIN.AppTitle + "  " + moduleMAIN.ProjectName.ToUpper();
             StatusStrip.Visible = true;
             lbScale.Visible = true;
             lbScaleBar.Visible = true;
@@ -1619,7 +1619,7 @@ namespace SBuilderX
             if (moduleMAIN.Dirty)
             {
                 string A = "You did not save your data! Continue ?";
-                if (Interaction.MsgBox(A, MsgBoxStyle.YesNo) == MsgBoxResult.No)
+                if (MessageBox.Show(A, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 {
                     return;
                 }
@@ -1648,7 +1648,7 @@ namespace SBuilderX
             moduleMAIN.BGLProjectFolder = moduleMAIN.BGLFolder;
             lbDonation.Visible = false;
             My.MyProject.Forms.FrmProjectP.ShowDialog();
-            Text = moduleMAIN.AppTitle + "  " + Strings.UCase(moduleMAIN.ProjectName);
+            Text = moduleMAIN.AppTitle + "  " + moduleMAIN.ProjectName.ToUpper();
             BackColorGray = false;
             StatusStrip.Visible = true;
             lbScale.Visible = true;
@@ -1704,17 +1704,17 @@ namespace SBuilderX
             moduleMAIN.FSPath = Get_FS_Path("FSX");
             if (string.IsNullOrEmpty(moduleMAIN.FSPath))
             {
-                Interaction.MsgBox("FSX could not be found in this computer!", (MsgBoxStyle)16, moduleMAIN.AppTitle);
+                MessageBox.Show("FSX could not be found in this computer!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
                 moduleMAIN.FSTextureFolder = moduleMAIN.FSPath + @"Scenery\World\Texture\";
                 if (!My.MyProject.Computer.FileSystem.FileExists(moduleMAIN.FSPath + "terrain.cfg"))
                 {
-                    C = "The Windows Registry indicates that FSX is in the folder:" + Constants.vbCrLf + Constants.vbCrLf;
-                    C = C + moduleMAIN.FSPath + Constants.vbCrLf + Constants.vbCrLf;
+                    C = "The Windows Registry indicates that FSX is in the folder:" + Environment.NewLine + Environment.NewLine;
+                    C = C + moduleMAIN.FSPath + Environment.NewLine + Environment.NewLine;
                     C = C + "but SBuilderX could not find it there!";
-                    Interaction.MsgBox(C, (MsgBoxStyle)16, moduleMAIN.AppTitle);
+                    MessageBox.Show(C, moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
                 {
@@ -1785,8 +1785,8 @@ namespace SBuilderX
                     else
                     {
                         C = @"Shp2Vec, ImageTool & Resample do not exist in the ..\SBuilder\Tools";
-                        C = C + Constants.vbCrLf + " folder nor in the Terrain SDK folder! Some BGL files can not be generated!";
-                        Interaction.MsgBox(C, (MsgBoxStyle)16, moduleMAIN.AppTitle);
+                        C = C + Environment.NewLine + " folder nor in the Terrain SDK folder! Some BGL files can not be generated!";
+                        MessageBox.Show(C, moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
 
@@ -1806,8 +1806,8 @@ namespace SBuilderX
                     else
                     {
                         C = @"BGLComp does not exist in the ..\SBuilder\Tools folder nor in";
-                        C = C + Constants.vbCrLf + "the BGL Compiler SDK folder! Some BGL files can not be generated!";
-                        Interaction.MsgBox(C, (MsgBoxStyle)16, moduleMAIN.AppTitle);
+                        C = C + Environment.NewLine + "the BGL Compiler SDK folder! Some BGL files can not be generated!";
+                        MessageBox.Show(C, moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
 
@@ -1831,16 +1831,16 @@ namespace SBuilderX
                     else
                     {
                         C = @"XToMdl, Managed_CrashTree & Managed_Lookup_Keyword do not exist in the ..\SBuilder\Tools";
-                        C = C + Constants.vbCrLf + @" folder nor in the FSX_GmaxGamePack\Plugins SDK folder! Some BGL files can not be generated!";
-                        Interaction.MsgBox(C, (MsgBoxStyle)16, moduleMAIN.AppTitle);
+                        C = C + Environment.NewLine + @" folder nor in the FSX_GmaxGamePack\Plugins SDK folder! Some BGL files can not be generated!";
+                        MessageBox.Show(C, moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
             }
             else
             {
                 C = @"Some SDK tools are missing in the ..\SBuilder\Tools folder and the FSX SDK";
-                C = C + Constants.vbCrLf + "could not be found in this computer! Some BGL files can not be generated!";
-                Interaction.MsgBox(C, (MsgBoxStyle)16, moduleMAIN.AppTitle);
+                C = C + Environment.NewLine + "could not be found in this computer! Some BGL files can not be generated!";
+                MessageBox.Show(C, moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -1880,7 +1880,7 @@ namespace SBuilderX
                         regKey = My.MyProject.Computer.Registry.Users.OpenSubKey(s);
                     if (regKey is object)
                     {
-                        GetPath = Conversions.ToString(regKey.GetValue("SetupPath"));
+                        GetPath = regKey.GetValue("SetupPath").ToString();
                         if (GetPath is object && !GetPath.EndsWith(@"\"))
                         {
                             GetPath = GetPath + @"\";
@@ -1900,7 +1900,7 @@ namespace SBuilderX
             }
             catch (System.Security.SecurityException sE)
             {
-                Interaction.MsgBox("You do not have sufficient privileges to run SBuilderX.  Please log on as administrator.");
+                MessageBox.Show("You do not have sufficient privileges to run SBuilderX.  Please log on as administrator.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return "";
             }
         }
@@ -1921,12 +1921,12 @@ namespace SBuilderX
                 IsOK = false;
             if (IsOK)
                 return;
-            A = "The modified FSX terrain.cfg file authored by Richard Ludowise" + Constants.vbCrLf;
-            A = A + "and Luis Fйliz-Tirado was not detected in your system! For better" + Constants.vbCrLf;
-            A = A + "results you should install this file. SBuilderX can make a backup" + Constants.vbCrLf;
-            A = A + "of the original terrain.cfg and install the modified file for you." + Constants.vbCrLf + Constants.vbCrLf;
-            A = A + "Do you want to install the modified terrain.cfg?" + Constants.vbCrLf;
-            if (Interaction.MsgBox(A, MsgBoxStyle.YesNo) == MsgBoxResult.Yes)
+            A = "The modified FSX terrain.cfg file authored by Richard Ludowise" + Environment.NewLine;
+            A = A + "and Luis Fйliz-Tirado was not detected in your system! For better" + Environment.NewLine;
+            A = A + "results you should install this file. SBuilderX can make a backup" + Environment.NewLine;
+            A = A + "of the original terrain.cfg and install the modified file for you." + Environment.NewLine + Environment.NewLine;
+            A = A + "Do you want to install the modified terrain.cfg?" + Environment.NewLine;
+            if (MessageBox.Show(A, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 A = "Enter a filename to store the original terrain.cfg.";
                 string BackUpFile = Interaction.InputBox(A, DefaultResponse: "terrain_original.cfg");
@@ -1939,9 +1939,9 @@ namespace SBuilderX
             }
             else
             {
-                A = "If you want to keep your present terrain.cfg and" + Constants.vbCrLf;
+                A = "If you want to keep your present terrain.cfg and" + Environment.NewLine;
                 A = A + "force SBuilderX to ignore this test, answer YES!";
-                if (Interaction.MsgBox(A, MsgBoxStyle.YesNo) == MsgBoxResult.Yes)
+                if (MessageBox.Show(A, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     moduleMAIN.OriginalTerrainCFG = true;
                     moduleFILE_IO.WriteSettings();
@@ -1968,7 +1968,7 @@ namespace SBuilderX
                 // End If
 
                 a = "You did not save your data! Continue ?";
-                if (Interaction.MsgBox(a, MsgBoxStyle.YesNo) == MsgBoxResult.No)
+                if (MessageBox.Show(a, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 {
                     return;
                 }
@@ -2017,7 +2017,7 @@ namespace SBuilderX
                 moduleMAPS.CheckMaps();
             }
 
-            Text = moduleMAIN.AppTitle + "  " + Strings.UCase(moduleMAIN.ProjectName);
+            Text = moduleMAIN.AppTitle + "  " + moduleMAIN.ProjectName.ToUpper();
             StatusStrip.Visible = true;
             moduleMAIN.Dirty = false;
             if (moduleEDIT.BackUpON)
@@ -2093,9 +2093,9 @@ namespace SBuilderX
             moduleFILE_IO.SaveFile(a);
             moduleFILE_IO.SetFileBackUp(a);
             moduleMAIN.Dirty = false;
-            N = Strings.InStrRev(a, @"\") + 1;
-            a = Strings.Mid(a, N);
-            Text = moduleMAIN.AppTitle + "  " + Strings.UCase(moduleMAIN.ProjectName);
+            N = a.LastIndexOf(@"\") + 1;
+            a = a.Substring(0, N);
+            Text = moduleMAIN.AppTitle + "  " + moduleMAIN.ProjectName.ToUpper();
             SaveMenuItem.Enabled = true;
             SaveToolStripButton.Enabled = true;
         }
@@ -3487,21 +3487,21 @@ namespace SBuilderX
 
             X = Lon + 180d;
             Y = 90d - Lat;
-            J = (int)Conversion.Int(X / 30d);
-            K = (int)Conversion.Int(Y / 22.5d);
-            A = "Dir = " + Strings.Format(J, "00") + Strings.Format(K, "00") + "   File = ";
-            J = (int)Conversion.Int(X / 3.75d);
-            K = (int)Conversion.Int(Y / 2.825d);
-            A = A + Strings.Format(J, "00") + Strings.Format(K, "00");
+            J = (int)(X / 30d);
+            K = (int)(Y / 22.5d);
+            A = "Dir = " + J.ToString("00") + K.ToString("00") + "   File = ";
+            J = (int)(X / 3.75d);
+            K = (int)(Y / 2.825d);
+            A = A + J.ToString("00") + K.ToString("00");
             StatusDir.Text = A;
             StatusQMID.Text = "";
             if (moduleMAIN.QMIDLevel > 1)
             {
                 SetLatLonDeltas();
-                J = (int)Conversion.Int(X / LongitudeDelta);
-                K = (int)Conversion.Int(Y / LatitudeDelta);
-                A = Strings.Format(J, "00") + Strings.Format(K, "00");
-                StatusQMID.Text = "QMID (L = " + moduleMAIN.QMIDLevel + "  U = " + Strings.Format(J, "00") + "  V = " + Strings.Format(K, "00") + ") ";
+                J = (int)(X / LongitudeDelta);
+                K = (int)(Y / LatitudeDelta);
+                A = J.ToString("00") + K.ToString("00");
+                StatusQMID.Text = "QMID (L = " + moduleMAIN.QMIDLevel + "  U = " + J.ToString("00") + "  V = " + K.ToString("00") + ") ";
             }
 
             StatusStrip.Refresh();
@@ -3993,16 +3993,16 @@ namespace SBuilderX
             DX = Math.Sqrt(DX);
             if (moduleMAIN.MeasuringMeters)
             {
-                A = "Lenght= " + Strings.Format(DX, "0.000") + " m";
+                A = "Lenght= " + DX.ToString("0.000") + " m";
             }
             else
             {
                 DX = DX * 3.2808d;
-                A = "Lenght= " + Strings.Format(DX, "0.000") + " ft";
+                A = "Lenght= " + DX.ToString("0.000") + " ft";
             }
 
-            A = A + Constants.vbCrLf + "Heading = " + Strings.Format(moduleOBJECTS.ObjMHead, "0.000") + " deg";
-            A = A + Constants.vbCrLf + Constants.vbCrLf + "Lat. = " + moduleMAIN.Lat2Str(CLat) + Constants.vbCrLf + "Lon. = " + moduleMAIN.Lon2Str(CLon);
+            A = A + Environment.NewLine + "Heading = " + moduleOBJECTS.ObjMHead.ToString("0.000") + " deg";
+            A = A + Environment.NewLine + Environment.NewLine + "Lat. = " + moduleMAIN.Lat2Str(CLat) + Environment.NewLine + "Lon. = " + moduleMAIN.Lon2Str(CLon);
             Graphics g;
             var p = new Pen(moduleLINES.DefaultLineColor);
             g = CreateGraphics();
@@ -4031,7 +4031,7 @@ namespace SBuilderX
             {
                 if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
                 {
-                    A = "Line #" + Conversion.Str(N);
+                    A = "Line #" + N;
                 }
                 else
                 {
@@ -4043,7 +4043,7 @@ namespace SBuilderX
                 if (moduleMAIN.BitmapBuffer is object)
                     g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
                 var drawFont = new Font("Arial", 10f);
-                g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, Strings.Len(A) * 7, 18));
+                g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, A.Length * 7, 18));
                 g.DrawString(A, drawFont, Brushes.Black, X, Y - 20);
                 drawFont.Dispose();
                 g.Dispose();
@@ -4057,7 +4057,7 @@ namespace SBuilderX
             {
                 if (string.IsNullOrEmpty(modulePOLYS.Polys[N].Name))
                 {
-                    A = "Poly #" + Conversion.Str(N);
+                    A = "Poly #" + N;
                 }
                 else
                 {
@@ -4066,7 +4066,7 @@ namespace SBuilderX
 
                 if (M > 0)
                 {
-                    A = "Pt#" + M + " Alt = " + Strings.Format(modulePOLYS.Polys[N].GPoints[M].alt, "0.00");
+                    A = "Pt#" + M + " Alt = " + modulePOLYS.Polys[N].GPoints[M].alt.ToString("0.00");
                 }
 
                 Graphics g;
@@ -4074,7 +4074,7 @@ namespace SBuilderX
                 if (moduleMAIN.BitmapBuffer is object)
                     g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
                 var drawFont = new Font("Arial", 10f);
-                g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, Strings.Len(A) * 7, 18));
+                g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, A.Length * 7, 18));
                 g.DrawString(A, drawFont, Brushes.Black, X, Y - 20);
                 drawFont.Dispose();
                 g.Dispose();
@@ -4089,7 +4089,7 @@ namespace SBuilderX
             if (moduleMAIN.BitmapBuffer is object)
                 g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
             var drawFont = new Font("Arial", 10f);
-            g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, Strings.Len(A) * 6 + 3, 18));
+            g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, A.Length * 6 + 3, 18));
             g.DrawString(A, drawFont, Brushes.Black, X, Y - 20);
             drawFont.Dispose();
             g.Dispose();
@@ -4100,13 +4100,13 @@ namespace SBuilderX
             string A;
             if (N > 0)
             {
-                A = "Object #" + Conversion.Str(N);
+                A = "Object #" + N;
                 Graphics g;
                 g = CreateGraphics();
                 if (moduleMAIN.BitmapBuffer is object)
                     g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
                 var drawFont = new Font("Arial", 10f);
-                g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, Strings.Len(A) * 7, 18));
+                g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, A.Length * 7, 18));
                 g.DrawString(A, drawFont, Brushes.Black, X, Y - 20);
                 drawFont.Dispose();
                 g.Dispose();
@@ -4229,14 +4229,14 @@ namespace SBuilderX
             {
                 if (moduleMAIN.AskDelete)
                 {
-                    X = (int)Interaction.MsgBox("Delete " + Conversion.Str(N) + " item(s) ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
+                    X = (int)MessageBox.Show("Delete " + N + " item(s) ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
                 else
                 {
-                    X = (int)MsgBoxResult.Yes;
+                    X = (int)DialogResult.Yes;
                 }
 
-                if (X == (int)MsgBoxResult.Yes)
+                if (X == (int)DialogResult.Yes)
                 {
                     moduleEDIT.BackUp();
                     moduleEDIT.SkipBackUp = true;
@@ -4263,8 +4263,7 @@ namespace SBuilderX
             string FileName;
             if (moduleMAIN.Dirty)
             {
-                Interaction.MsgBox("You did not save your data! Continue ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2));
-                if (Conversions.ToBoolean(MsgBoxResult.Yes)) // User chose Yes.
+                if (MessageBox.Show("You did not save your data! Continue ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) // User chose Yes.
                 {
                 }
                 else // User chose No.
@@ -4287,8 +4286,7 @@ namespace SBuilderX
             string FileName;
             if (moduleMAIN.Dirty)
             {
-                Interaction.MsgBox("You did not save your data! Continue ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2));
-                if (Conversions.ToBoolean(MsgBoxResult.Yes)) // User chose Yes.
+                if (MessageBox.Show("You did not save your data! Continue ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) // User chose Yes.
                 {
                 }
                 else // User chose No.
@@ -4311,8 +4309,7 @@ namespace SBuilderX
             string FileName;
             if (moduleMAIN.Dirty)
             {
-                Interaction.MsgBox("You did not save your data! Continue ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2));
-                if (Conversions.ToBoolean(MsgBoxResult.Yes)) // User chose Yes.
+                if (MessageBox.Show("You did not save your data! Continue ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) // User chose Yes.
                 {
                 }
                 else // User chose No.
@@ -4335,8 +4332,7 @@ namespace SBuilderX
             string FileName;
             if (moduleMAIN.Dirty)
             {
-                Interaction.MsgBox("You did not save your data! Continue ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2));
-                if (Conversions.ToBoolean(MsgBoxResult.Yes)) // User chose Yes.
+                if (MessageBox.Show("You did not save your data! Continue ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) // User chose Yes.
                 {
                 }
                 else // User chose No.
@@ -4450,11 +4446,11 @@ namespace SBuilderX
 
         private void DeletePopUPMenu_Click(object sender, EventArgs e)
         {
-            float X;
+            DialogResult X;
             if (modulePOPUP.POPType == "PtInLine")
             {
-                X = (float)Interaction.MsgBox("Delete this Point from this Line ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
-                if (X == (float)MsgBoxResult.Yes)
+                X = MessageBox.Show("Delete this Point from this Line ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (X == DialogResult.Yes)
                 {
                     moduleLINES.DeletePointInLine(modulePOPUP.POPIndex, modulePOPUP.POPIndexPT);
                     moduleMAIN.RebuildDisplay();
@@ -4467,8 +4463,8 @@ namespace SBuilderX
 
             if (modulePOPUP.POPType == "PtInPoly")
             {
-                X = (float)Interaction.MsgBox("Delete this Point from this Poly ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
-                if (X == (float)MsgBoxResult.Yes)
+                X = MessageBox.Show("Delete this Point from this Poly ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (X == DialogResult.Yes)
                 {
                     if (modulePOLYS.Polys[modulePOPUP.POPIndex].NoOfPoints < 3)
                     {
@@ -4490,8 +4486,8 @@ namespace SBuilderX
 
             if (modulePOPUP.POPType == "Line")
             {
-                X = (float)Interaction.MsgBox("Delete this Line ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
-                if (X == (float)MsgBoxResult.Yes)
+                X = MessageBox.Show("Delete this Line ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question); ;
+                if (X == DialogResult.Yes)
                 {
                     moduleLINES.DeleteLine(modulePOPUP.POPIndex);
                     moduleMAIN.RebuildDisplay();
@@ -4504,8 +4500,8 @@ namespace SBuilderX
 
             if (modulePOPUP.POPType == "Poly")
             {
-                X = (float)Interaction.MsgBox("Delete this Poly ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
-                if (X == (float)MsgBoxResult.Yes)
+                X = MessageBox.Show("Delete this Poly ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question); ;
+                if (X == DialogResult.Yes)
                 {
                     modulePOLYS.DeletePoly(modulePOPUP.POPIndex);
                     moduleMAIN.RebuildDisplay();
@@ -4518,8 +4514,8 @@ namespace SBuilderX
 
             if (modulePOPUP.POPType == "Exclude")
             {
-                X = (float)Interaction.MsgBox("Delete this Exclude ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
-                if (X == (float)MsgBoxResult.Yes)
+                X = MessageBox.Show("Delete this Exclude ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question); ;
+                if (X == DialogResult.Yes)
                 {
                     moduleEXCLUDES.DeleteExclude(modulePOPUP.POPIndex);
                     moduleMAIN.RebuildDisplay();
@@ -4532,8 +4528,8 @@ namespace SBuilderX
 
             if (modulePOPUP.POPType == "Land")
             {
-                X = (float)Interaction.MsgBox("Delete this Land Class ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
-                if (X == (float)MsgBoxResult.Yes)
+                X = MessageBox.Show("Delete this Land Class ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (X == DialogResult.Yes)
                 {
                     moduleCLASSES.DeleteLandPopUp(modulePOPUP.POPIndex);
                     moduleMAIN.RebuildDisplay();
@@ -4546,8 +4542,8 @@ namespace SBuilderX
 
             if (modulePOPUP.POPType == "Water")
             {
-                X = (float)Interaction.MsgBox("Delete this Water Class ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
-                if (X == (float)MsgBoxResult.Yes)
+                X = MessageBox.Show("Delete this Water Class ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (X == DialogResult.Yes)
                 {
                     moduleCLASSES.DeleteWaterPopUp(modulePOPUP.POPIndex);
                     moduleMAIN.RebuildDisplay();
@@ -4560,8 +4556,8 @@ namespace SBuilderX
 
             if (modulePOPUP.POPType == "Object")
             {
-                X = (float)Interaction.MsgBox("Delete this Object ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
-                if (X == (float)MsgBoxResult.Yes)
+                X = MessageBox.Show("Delete this Object ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (X == DialogResult.Yes)
                 {
                     moduleOBJECTS.DeleteThisObject(modulePOPUP.POPIndex);
                     moduleMAIN.RebuildDisplay();
@@ -4574,8 +4570,8 @@ namespace SBuilderX
 
             if (modulePOPUP.POPType == "Map")
             {
-                X = (float)Interaction.MsgBox("Delete this Map ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
-                if (X == (float)MsgBoxResult.Yes)
+                X = MessageBox.Show("Delete this Map ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (X == DialogResult.Yes)
                 {
                     moduleMAPS.DeleteMap(modulePOPUP.POPIndex);
                     moduleMAIN.RebuildDisplay();
@@ -4682,12 +4678,12 @@ namespace SBuilderX
         private void ManualCheckPopUPMenu_Click(object sender, EventArgs e)
         {
             string A;
-            A = "Use Up and Down Arrows to scroll" + Constants.vbCrLf;
-            A = A + "through Points. Press Delete as" + Constants.vbCrLf;
-            A = A + "required. Scroll through Lines" + Constants.vbCrLf;
-            A = A + "or Polys with Right and Left Arrows." + Constants.vbCrLf;
+            A = "Use Up and Down Arrows to scroll" + Environment.NewLine;
+            A = A + "through Points. Press Delete as" + Environment.NewLine;
+            A = A + "required. Scroll through Lines" + Environment.NewLine;
+            A = A + "or Polys with Right and Left Arrows." + Environment.NewLine;
             A = A + "Press <Esc> to exit.";
-            Interaction.MsgBox(A, MsgBoxStyle.Information, "SBuilderX - Checking Lines or Polys");
+            MessageBox.Show(A, "SBuilderX - Checking Lines or Polys", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (modulePOPUP.POPType == "Line")
             {
                 UnSelectAll();
@@ -4799,13 +4795,13 @@ namespace SBuilderX
             string a, b;
             if (moduleLINES.NoOfLines == 0 & modulePOLYS.NoOfPolys == 0)
             {
-                if (Conversions.ToBoolean(moduleEXCLUDES.NoOfExcludes & Conversions.ToInteger(moduleOBJECTS.NoOfObjects == 0)))
+                if (Convert.ToBoolean(moduleEXCLUDES.NoOfExcludes & Convert.ToInt32(moduleOBJECTS.NoOfObjects == 0)))
                 {
                     if (moduleCLASSES.NoOfLLXYs == 0 & moduleCLASSES.NoOfWWXYs == 0)
                     {
                         if (moduleMAPS.NoOfMaps == 0 & moduleCLASSES.NoOfLWCIs == 0)
                         {
-                            Interaction.MsgBox("There are no items to export!", MsgBoxStyle.Critical);
+                            MessageBox.Show("There are no items to export!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             return;
                         }
                     }
@@ -4828,12 +4824,12 @@ namespace SBuilderX
         private void ImportSBXMenuItem_Click(object sender, EventArgs e)
         {
             string b, a, FileName;
-            int x;
+            DialogResult x;
             lbDonation.Visible = false;
             if (moduleMAIN.Dirty)
             {
-                x = (int)Interaction.MsgBox("You did not save your data! Continue ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2));
-                if (x == (int)MsgBoxResult.Yes) // User chose Yes.
+                x = MessageBox.Show("You did not save your data! Continue ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (x == DialogResult.Yes) // User chose Yes.
                 {
                 }
                 else // User chose No.
@@ -4876,13 +4872,13 @@ namespace SBuilderX
             string a, b;
             if (moduleLINES.NoOfLines == 0 & modulePOLYS.NoOfPolys == 0)
             {
-                Interaction.MsgBox("There is no line or polygon to export!", MsgBoxStyle.Critical);
+                MessageBox.Show("There is no line or polygon to export!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             if (moduleLINES.NoOfLines > 0 & modulePOLYS.NoOfPolys > 0)
             {
-                Interaction.MsgBox("Lines and Polys will be saved in 2 separated files!", MsgBoxStyle.Information);
+                MessageBox.Show("Lines and Polys will be saved in 2 separated files!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             if (moduleLINES.NoOfLines > 0)
@@ -4953,7 +4949,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    Interaction.MsgBox("Wrong File Extension", MsgBoxStyle.Critical);
+                    MessageBox.Show("Wrong File Extension", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
                 FileOpenTrailer();
@@ -4961,7 +4957,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("SBuilderX can not decompile file " + A, MsgBoxStyle.Critical);
+                MessageBox.Show("SBuilderX can not decompile file " + A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -4981,43 +4977,43 @@ namespace SBuilderX
                 while (Marker < N)
                 {
                     A = FileSystem.LineInput(2);
-                    Marker = Marker + Strings.Len(A) + 2;
-                    B = Strings.Trim(Strings.Mid(A, 1, 4));
+                    Marker = Marker + A.Length + 2;
+                    B = A.Substring(0, 4).Trim();
                     if (B == "[Tex")
                     {
                         K = K + 1;
-                        C = Strings.Trim(Strings.Mid(A, 10));
-                        C = Strings.Replace(C, "]", "");
-                        moduleLINES.LineTypes[K].TerrainIndex = Conversions.ToInteger(C);
+                        C = A.Substring(9).Trim();
+                        C = C.Replace("]", "");
+                        moduleLINES.LineTypes[K].TerrainIndex = Convert.ToInt32(C);
                     }
 
                     if (B == "Name")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 6));
+                        C = A.Substring(5).Trim();
                         moduleLINES.LineTypes[K].Name = C;
                     }
 
                     if (B == "Colo")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 7));
+                        C = A.Substring(6).Trim();
                         moduleLINES.LineTypes[K].Color = Color.FromArgb(Convert.ToInt32(C, 16));
                     }
 
                     if (B == "Text")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 10));
+                        C = A.Substring(9).Trim();
                         moduleLINES.LineTypes[K].Texture = C;
                     }
 
                     if (B == "Guid")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 6));
+                        C = A.Substring(5).Trim();
                         moduleLINES.LineTypes[K].Guid = C;
                     }
 
                     if (B == "Type")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 6, 3)); // ''' skip legacy
+                        C = A.Substring(5, 3).Trim(); // ''' skip legacy
                         moduleLINES.LineTypes[K].Type = C;
                     }
                 }
@@ -5029,9 +5025,9 @@ namespace SBuilderX
                 Array.Resize(ref moduleLINES.LineTypes, K + 1);
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check your Lines.txt file!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check your Lines.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -5051,43 +5047,43 @@ namespace SBuilderX
                 while (Marker < N)
                 {
                     A = FileSystem.LineInput(2);
-                    Marker = Marker + Strings.Len(A) + 2;
-                    B = Strings.UCase(Strings.Trim(Strings.Mid(A, 1, 4)));
+                    Marker = Marker + A.Length + 2;
+                    B = A.Substring(0, 4).Trim().ToUpper();
                     if (B == "[TEX")
                     {
                         K = K + 1;
-                        C = Strings.Trim(Strings.Mid(A, 10));
-                        C = Strings.Replace(C, "]", "");
-                        modulePOLYS.PolyTypes[K].TerrainIndex = Conversions.ToInteger(C);
+                        C = A.Substring(9).Trim();
+                        C = C.Replace("]", "");
+                        modulePOLYS.PolyTypes[K].TerrainIndex = Convert.ToInt32(C);
                     }
 
                     if (B == "NAME")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 6));
+                        C = A.Substring(5).Trim();
                         modulePOLYS.PolyTypes[K].Name = C;
                     }
 
                     if (B == "COLO")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 7));
+                        C = A.Substring(6).Trim();
                         modulePOLYS.PolyTypes[K].Color = Color.FromArgb(Convert.ToInt32(C, 16));
                     }
 
                     if (B == "TEXT")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 10));
+                        C = A.Substring(9).Trim();
                         modulePOLYS.PolyTypes[K].Texture = C;
                     }
 
                     if (B == "GUID")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 6));
+                        C = A.Substring(5).Trim();
                         modulePOLYS.PolyTypes[K].Guid = C;
                     }
 
                     if (B == "TYPE")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 6, 3)); // ''' landclasses
+                        C = A.Substring(5, 3).Trim(); // ''' landclasses
                                                                 // C = Mid(C, 1, 3)
                         modulePOLYS.PolyTypes[K].Type = C;
                     }
@@ -5101,9 +5097,9 @@ namespace SBuilderX
                 Array.Resize(ref modulePOLYS.PolyTypes, K + 1);
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check your Polys.txt file!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check your Polys.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -5124,25 +5120,25 @@ namespace SBuilderX
                 while (Marker < N)
                 {
                     A = FileSystem.LineInput(2);
-                    Marker = Marker + Strings.Len(A) + 2;
-                    B = Strings.UCase(Strings.Trim(Strings.Mid(A, 1, 4)));
+                    Marker = Marker + A.Length + 2;
+                    B = A.Substring(0, 4).Trim().ToUpper();
                     if (B == "NAME")
                     {
                         K = K + 1;
-                        C = Strings.Trim(Strings.Mid(A, 6));
-                        moduleCLASSES.LC[K].Index = (byte)Conversions.ToInteger(Strings.Mid(C, 1, 3));
+                        C = A.Substring(5).Trim();
+                        moduleCLASSES.LC[K].Index = Convert.ToByte(C.Substring(0, 3));
                         moduleCLASSES.LC[K].Caption = C;
                     }
 
                     if (B == "TEXT")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 10));
+                        C = A.Substring(9).Trim();
                         moduleCLASSES.LC[K].Texture = C;
                     }
 
                     if (B == "COLO")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 7));
+                        C = A.Substring(6).Trim();
                         moduleCLASSES.LC[K].Color = Color.FromArgb(Convert.ToInt32(C, 16));
                     }
                 }
@@ -5161,9 +5157,9 @@ namespace SBuilderX
 
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check your Lands.txt file!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check your Lands.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -5183,25 +5179,25 @@ namespace SBuilderX
                 while (Marker < N)
                 {
                     A = FileSystem.LineInput(2);
-                    Marker = Marker + Strings.Len(A) + 2;
-                    B = Strings.UCase(Strings.Trim(Strings.Mid(A, 1, 4)));
+                    Marker = Marker + A.Length + 2;
+                    B = A.Substring(0, 4).Trim().ToUpper();
                     if (B == "NAME")
                     {
                         K = K + 1;
-                        C = Strings.Trim(Strings.Mid(A, 6));
-                        moduleCLASSES.WC[K].Index = (byte)Conversions.ToInteger(Strings.Mid(C, 1, 3));
+                        C = A.Substring(5).Trim();
+                        moduleCLASSES.WC[K].Index = Convert.ToByte(C.Substring(0, 3));
                         moduleCLASSES.WC[K].Caption = C;
                     }
 
                     if (B == "TEXT")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 10));
+                        C = A.Substring(9).Trim();
                         moduleCLASSES.WC[K].Texture = C;
                     }
 
                     if (B == "COLO")
                     {
-                        C = Strings.Trim(Strings.Mid(A, 7));
+                        C = A.Substring(6).Trim();
                         moduleCLASSES.WC[K].Color = Color.FromArgb(Convert.ToInt32(C, 16));
                     }
                 }
@@ -5220,9 +5216,9 @@ namespace SBuilderX
 
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check your Waters.txt file!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check your Waters.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -5242,37 +5238,37 @@ namespace SBuilderX
                 while (Marker < N)
                 {
                     A = FileSystem.LineInput(2);
-                    Marker = Marker + Strings.Len(A) + 2;
-                    B = Strings.UCase(Strings.Trim(Strings.Mid(A, 1, 3)));
+                    Marker = Marker + A.Length + 2;
+                    B = A.Substring(0, 3).Trim().ToUpper();
                     if (B == "NAM")
                     {
                         K = K + 1;
-                        moduleLINES.ExtrusionTypes[K].Name = Strings.Trim(A.Substring(5));
+                        moduleLINES.ExtrusionTypes[K].Name = A.Substring(5).Trim();
                     }
 
                     if (B == "COL")
                     {
-                        moduleLINES.ExtrusionTypes[K].Color = ColorFromArgb(Strings.Trim(A.Substring(6)));
+                        moduleLINES.ExtrusionTypes[K].Color = ColorFromArgb(A.Substring(6).Trim());
                     }
 
                     if (B == "WID")
                     {
-                        moduleLINES.ExtrusionTypes[K].Width = Conversion.Val(Strings.Trim(A.Substring(6)));
+                        moduleLINES.ExtrusionTypes[K].Width = Convert.ToDouble(A.Substring(6).Trim());
                     }
 
                     if (B == "PRO")
                     {
-                        moduleLINES.ExtrusionTypes[K].Profile = Strings.Trim(A.Substring(8));
+                        moduleLINES.ExtrusionTypes[K].Profile = A.Substring(8).Trim();
                     }
 
                     if (B == "MAT")
                     {
-                        moduleLINES.ExtrusionTypes[K].Material = Strings.Trim(A.Substring(9));
+                        moduleLINES.ExtrusionTypes[K].Material = A.Substring(9).Trim();
                     }
 
                     if (B == "PYL")
                     {
-                        moduleLINES.ExtrusionTypes[K].Pylon = Strings.Trim(A.Substring(6));
+                        moduleLINES.ExtrusionTypes[K].Pylon = A.Substring(6).Trim();
                     }
                 }
 
@@ -5281,9 +5277,9 @@ namespace SBuilderX
                 Array.Resize(ref moduleLINES.ExtrusionTypes, K + 1);
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check your Bridges.txt file!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check your Bridges.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -5308,8 +5304,7 @@ namespace SBuilderX
             bool ShowWait = false;
             try
             {
-                FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-                FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\Tools\");
+                Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\Tools\");
                 if (!My.MyProject.Computer.FileSystem.FileExists(BmpFolder + "000b2su1.jpg"))
                 {
                     ShowWait = true;
@@ -5439,7 +5434,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox(@"Some textures referred to in polys.txt, lines.txt, lands.txt, or waters.txt could not be copied into the \Tools\Bmps\ folder!", MsgBoxStyle.Critical);
+                MessageBox.Show(@"Some textures referred to in polys.txt, lines.txt, lands.txt, or waters.txt could not be copied into the \Tools\Bmps\ folder!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -5473,7 +5468,7 @@ namespace SBuilderX
             }
 
             if (Flag == false)
-                Interaction.MsgBox("Error in setting an outer polygon");
+                MessageBox.Show("Error in setting an outer polygon");
             moduleMAIN.RebuildDisplay();
         }
 
@@ -5557,7 +5552,7 @@ namespace SBuilderX
                 catch (Exception ex)
                 {
                     FSUIPCConnection.Close();
-                    Interaction.MsgBox("Error communicating with FSUIPC!", MsgBoxStyle.Information);
+                    MessageBox.Show("Error communicating with FSUIPC!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
@@ -5606,7 +5601,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Error communicating with FSUIPC!", MsgBoxStyle.Information);
+                MessageBox.Show("Error communicating with FSUIPC!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ShowAircraftMenuItem.Checked = false;
                 Timer2.Enabled = false;
                 moduleMAIN.AircraftVIEW = false;
@@ -5632,9 +5627,9 @@ namespace SBuilderX
                 }
 
                 FSUIPCConnection.Open();
-                A = "Fly your Aircraft to this position:" + Constants.vbCrLf;
+                A = "Fly your Aircraft to this position:" + Environment.NewLine;
                 A = A + moduleMAIN.Lat2Str(moduleMAIN.LatDispCenter) + "   " + moduleMAIN.Lon2Str(moduleMAIN.LonDispCenter) + " ?";
-                if (Interaction.MsgBox(A, MsgBoxStyle.OkCancel) == MsgBoxResult.Cancel)
+                if (MessageBox.Show(A, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
                     return;
                 Lat = moduleMAIN.LatDispCenter;
                 Lat = Lat * (10001750.0d * 65536.0d * 65536.0d) / 90.0d;
@@ -5647,7 +5642,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Error communicating with FSUIPC!", MsgBoxStyle.Information);
+                MessageBox.Show("Error communicating with FSUIPC!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -5676,7 +5671,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Error communicating with FSUIPC!", MsgBoxStyle.Information);
+                MessageBox.Show("Error communicating with FSUIPC!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -5710,7 +5705,7 @@ namespace SBuilderX
             string a, b;
             if (moduleLINES.NoOfLines == 0 & modulePOLYS.NoOfPolys == 0)
             {
-                Interaction.MsgBox("There is no line or polygon to export!", MsgBoxStyle.Critical);
+                MessageBox.Show("There is no line or polygon to export!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -5818,7 +5813,7 @@ namespace SBuilderX
                 var H = new int[7];
                 Bitmap img_tile;
                 string TileExtension = moduleTILES.TileServer.ImageType;
-                string TilePrefix = @"\L" + Strings.Trim(moduleMAIN.Zoom.ToString()) + "X";
+                string TilePrefix = @"\L" + moduleMAIN.Zoom.ToString().Trim() + "X";
                 moduleTILES.TileFolder = moduleMAIN.AppPath + @"\Tiles\" + moduleTILES.TileServer.ServerName;
                 string TileName, TileFull, TileTemp;
                 if (!My.MyProject.Computer.FileSystem.DirectoryExists(moduleTILES.TileFolder))
@@ -5857,7 +5852,7 @@ namespace SBuilderX
                     for (X = X0; X <= loopTo1; X++)
                     {
                         TileDir = moduleTILES.TileDirFromXYZ(X, Y, moduleMAIN.Zoom);
-                        TileName = TilePrefix + Strings.Trim(X.ToString()) + "Y" + Strings.Trim(Y.ToString()) + TileExtension;
+                        TileName = TilePrefix + X.ToString().Trim() + "Y" + Y.ToString().Trim() + TileExtension;
                         if (moduleMAIN.Zoom > moduleTILES.MaximumZoom)
                         {
                             img_tile = moduleTILES.najpg;
@@ -6021,7 +6016,7 @@ namespace SBuilderX
             moduleFILE_IO.BackUpFileCounter = moduleFILE_IO.BackUpFileCounter + 1;
             if (moduleFILE_IO.BackUpFileCounter == 100)
                 moduleFILE_IO.BackUpFileCounter = 0;
-            string A = Strings.Format(moduleFILE_IO.BackUpFileCounter, "00") + ".SBP";
+            string A = moduleFILE_IO.BackUpFileCounter.ToString("00") + ".SBP";
             moduleFILE_IO.SaveFile(moduleFILE_IO.BackUpFileName + A);
         }
 
@@ -6067,7 +6062,7 @@ namespace SBuilderX
         {
             lbDonation.Visible = false;
             string HTMLFile;
-            HTMLFile = "http://www.ptsim.com/sbuilder/gmaps.asp?Lat=" + Conversion.Str(moduleMAIN.LatIniCenter) + "&Lon=" + Conversion.Str(moduleMAIN.LonIniCenter) + "&Zoom=" + moduleMAIN.Zoom;
+            HTMLFile = "http://www.ptsim.com/sbuilder/gmaps.asp?Lat=" + moduleMAIN.LatIniCenter + "&Lon=" + moduleMAIN.LonIniCenter + "&Zoom=" + moduleMAIN.Zoom;
             Process.Start(HTMLFile);
         }
 
@@ -6110,8 +6105,8 @@ namespace SBuilderX
             {
                 try
                 {
-                    J = Conversions.ToInteger(A.Substring(3, 2));
-                    K = Conversions.ToInteger(A.Substring(5, 2));
+                    J = Convert.ToInt32(A.Substring(3, 2));
+                    K = Convert.ToInt32(A.Substring(5, 2));
                 }
                 catch (Exception ex)
                 {
@@ -6152,7 +6147,7 @@ namespace SBuilderX
 
             if (!Good)
             {
-                Interaction.MsgBox("Wrong File Specification!", MsgBoxStyle.Critical);
+                MessageBox.Show("Wrong File Specification!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -6166,7 +6161,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    Interaction.MsgBox("Error in reading land class file!", MsgBoxStyle.Critical);
+                    MessageBox.Show("Error in reading land class file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             else if (B == "WC_")
@@ -6178,7 +6173,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    Interaction.MsgBox("Error in reading waster class file!", MsgBoxStyle.Critical);
+                    MessageBox.Show("Error in reading waster class file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }
@@ -6196,9 +6191,9 @@ namespace SBuilderX
             int K;
             if (moduleLINES.AutoLinePolyJoin)
             {
-                string A = "It is recommended to edit the INI file " + Constants.vbCrLf;
+                string A = "It is recommended to edit the INI file " + Environment.NewLine;
                 A = A + "and set AutoLinePolyJoin=False. Do you want to continue?";
-                if (Interaction.MsgBox(A, MsgBoxStyle.YesNo) == MsgBoxResult.No)
+                if (MessageBox.Show(A, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
             }
 
@@ -6287,16 +6282,16 @@ namespace SBuilderX
             LAS = modulePOLYS.Polys[Pl].SLAT;
             LOW = modulePOLYS.Polys[Pl].WLON;
             LOE = modulePOLYS.Polys[Pl].ELON;
-            N = (int)Conversion.Int(LAS / LatitudeDelta);
+            N = (int)(LAS / LatitudeDelta);
             LAS = (N + 1) * LatitudeDelta;
-            N = (int)Conversion.Int(LAN / LatitudeDelta);
+            N = (int)(LAN / LatitudeDelta);
             LA = LAN % LatitudeDelta;
             if (LA == 0d)
                 N = N - 1;
             LAN = N * LatitudeDelta;
-            N = (int)Conversion.Int(LOW / LongitudeDelta);
+            N = (int)(LOW / LongitudeDelta);
             LOW = (N + 1) * LongitudeDelta;
-            N = (int)Conversion.Int(LOE / LongitudeDelta);
+            N = (int)(LOE / LongitudeDelta);
             LO = LOE % LongitudeDelta;
             if (LO == 0d)
                 N = N - 1;
@@ -6345,16 +6340,16 @@ namespace SBuilderX
             LAS = moduleLINES.Lines[Ln].SLAT;
             LOW = moduleLINES.Lines[Ln].WLON;
             LOE = moduleLINES.Lines[Ln].ELON;
-            N = (int)Conversion.Int(LAS / LatitudeDelta);
+            N = (int)(LAS / LatitudeDelta);
             LAS = (N + 1) * LatitudeDelta;
-            N = (int)Conversion.Int(LAN / LatitudeDelta);
+            N = (int)(LAN / LatitudeDelta);
             LA = LAN % LatitudeDelta;
             if (LA == 0d)
                 N = N - 1;
             LAN = N * LatitudeDelta;
-            N = (int)Conversion.Int(LOW / LongitudeDelta);
+            N = (int)(LOW / LongitudeDelta);
             LOW = (N + 1) * LongitudeDelta;
-            N = (int)Conversion.Int(LOE / LongitudeDelta);
+            N = (int)(LOE / LongitudeDelta);
             LO = LOE % LongitudeDelta;
             if (LO == 0d)
                 N = N - 1;
@@ -6401,9 +6396,9 @@ namespace SBuilderX
             int K;
             if (moduleLINES.AutoLinePolyJoin)
             {
-                string A = "It is recommended to edit the INI file " + Constants.vbCrLf;
+                string A = "It is recommended to edit the INI file " + Environment.NewLine;
                 A = A + "and set AutoLinePolyJoin=False. Do you want to continue?";
-                if (Interaction.MsgBox(A, MsgBoxStyle.YesNo) == MsgBoxResult.No)
+                if (MessageBox.Show(A, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
             }
 
@@ -6473,16 +6468,16 @@ namespace SBuilderX
             LAS = modulePOLYS.Polys[Pl].SLAT;
             LOW = modulePOLYS.Polys[Pl].WLON;
             LOE = modulePOLYS.Polys[Pl].ELON;
-            N = (int)Conversion.Int(LAS / LatitudeDelta);
+            N = (int)(LAS / LatitudeDelta);
             LAS = (N + 1) * LatitudeDelta;
-            N = (int)Conversion.Int(LAN / LatitudeDelta);
+            N = (int)(LAN / LatitudeDelta);
             LA = LAN % LatitudeDelta;
             if (LA == 0d)
                 N = N - 1;
             LAN = N * LatitudeDelta;
-            N = (int)Conversion.Int(LOW / LongitudeDelta);
+            N = (int)(LOW / LongitudeDelta);
             LOW = (N + 1) * LongitudeDelta;
-            N = (int)Conversion.Int(LOE / LongitudeDelta);
+            N = (int)(LOE / LongitudeDelta);
             LO = LOE % LongitudeDelta;
             if (LO == 0d)
                 N = N - 1;
@@ -6671,7 +6666,7 @@ namespace SBuilderX
             catch (Exception ex)
             {
                 FSUIPCConnection.Close();
-                Interaction.MsgBox("Error communicating with FSUIPC!", MsgBoxStyle.Information);
+                MessageBox.Show("Error communicating with FSUIPC!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
         }
@@ -6680,17 +6675,17 @@ namespace SBuilderX
         {
             if (moduleMAIN.Zoom <= moduleTILES.GlobeOrTiles | string.IsNullOrEmpty(moduleTILES.ActiveTileFolder))
             {
-                Interaction.MsgBox("Can not get Tile Path", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Can not get Tile Path", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             string TileExtension = moduleTILES.TileServer.ImageType;
-            string TilePrefix = @"\L" + Strings.Trim(moduleMAIN.Zoom.ToString()) + "X";
+            string TilePrefix = @"\L" + moduleMAIN.Zoom.ToString().Trim() + "X";
             moduleTILES.TileFolder = moduleMAIN.AppPath + @"\Tiles\" + moduleTILES.TileServer.ServerName;
             int X = moduleTILES.XTilesFromLon(moduleMAIN.LonDispCenter, moduleMAIN.Zoom);
             int Y = moduleTILES.YTilesFromLat(moduleMAIN.LatDispCenter, moduleMAIN.Zoom);
             string TileDir = moduleTILES.TileDirFromXYZ(X, Y, moduleMAIN.Zoom);
-            string TileName = TilePrefix + Strings.Trim(X.ToString()) + "Y" + Strings.Trim(Y.ToString()) + TileExtension;
+            string TileName = TilePrefix + X.ToString().Trim() + "Y" + Y.ToString().Trim() + TileExtension;
             string TileFull = moduleTILES.TileFolder + TileDir + TileName;
             My.MyProject.Computer.Clipboard.SetText(TileFull);
         }
@@ -6925,15 +6920,15 @@ namespace SBuilderX
                 return;
             if (modulePOLYS.NoOfPolysSelected == 0)
             {
-                Interaction.MsgBox("No polygons are selected!", MsgBoxStyle.Information, moduleMAIN.AppTitle);
+                MessageBox.Show("No polygons are selected!", moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             string A = "Snap Points in Selected Polys to";
-            A = A + Constants.vbCrLf + "a QMID Level " + moduleMAIN.QMIDLevel + " grid ?";
-            int x;
-            x = (int)Interaction.MsgBox(A, (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
-            if (!(x == (int)MsgBoxResult.Yes))
+            A = A + Environment.NewLine + "a QMID Level " + moduleMAIN.QMIDLevel + " grid ?";
+            DialogResult x;
+            x = MessageBox.Show(A, moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (x != DialogResult.Yes)
                 return;
             if (modulePOLYS.NoOfPolysSelected > 0)
                 modulePOLYS.SnapPolys();
@@ -6944,7 +6939,7 @@ namespace SBuilderX
 
 
             moduleMAIN.RebuildDisplay();
-            Interaction.Beep();
+            SystemSounds.Beep.Play();
             // SkipBackUp = False
 
 
@@ -6965,7 +6960,7 @@ namespace SBuilderX
             string a, b;
             if (moduleLINES.NoOfLines == 0 & modulePOLYS.NoOfPolys == 0)
             {
-                Interaction.MsgBox("There is no line or polygon to export!", MsgBoxStyle.Critical);
+                MessageBox.Show("There is no line or polygon to export!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -7047,13 +7042,13 @@ namespace SBuilderX
                 Process.Start(moduleMAIN.AppPath + @"\Help\whatisnewin315.pdf");
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                string A = "SBuilderX could not find the file: whatisnewin315.pdf which should" + Constants.vbCrLf;
-                A = A + @"exist in the SBuilderX\Help folder! You can download the most recent" + Constants.vbCrLf;
-                A = A + "version of this file from here:" + Constants.vbCrLf;
+                string A = "SBuilderX could not find the file: whatisnewin315.pdf which should" + Environment.NewLine;
+                A = A + @"exist in the SBuilderX\Help folder! You can download the most recent" + Environment.NewLine;
+                A = A + "version of this file from here:" + Environment.NewLine;
                 A = A + "http://www.ptsim.com/sbuilderx/whatisnewin315.pdf";
-                Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -23,7 +22,7 @@ namespace SBuilderX
 
             try
             {
-                X = Conversions.ToDouble(txtWidth.Text);
+                X = Convert.ToDouble(txtWidth.Text);
                 if (modulePOPUP.POPMode == "One")
                 {
                     var loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
@@ -48,9 +47,9 @@ namespace SBuilderX
                 Close();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check width value!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check width value!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -79,8 +78,8 @@ namespace SBuilderX
 
             try
             {
-                W1 = Conversions.ToDouble(txtWidth1.Text);
-                W21 = Conversions.ToDouble(txtWidth2.Text);
+                W1 = Convert.ToDouble(txtWidth1.Text);
+                W21 = Convert.ToDouble(txtWidth2.Text);
                 W21 = W21 - W1;
                 if (modulePOPUP.POPMode == "One")
                 {
@@ -115,9 +114,9 @@ namespace SBuilderX
                 moduleMAIN.RebuildDisplay();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Interaction.MsgBox("Check width values!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check width values!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

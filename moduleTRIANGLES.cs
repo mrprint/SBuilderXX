@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualBasic;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -52,15 +52,13 @@ namespace SBuilderX
             for (N = 2; N <= loopTo; N++)
             {
                 if (!IsTri(N))
-                    goto next_N;
+                    continue;
                 // ok on some
                 N1 = N;
                 return;
-            next_N:
-                ;
             }
 
-            Interaction.MsgBox("Error on the triangulation!");
+            MessageBox.Show("Error on the triangulation!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private static void RemoveTri(int N1)
@@ -158,26 +156,24 @@ namespace SBuilderX
                 Y1 = P[C].Y;
                 Y0 = P[C - 1].Y;
                 if (Y1 == Y0)
-                    goto next_C;
+                    continue;
                 if (Y <= Y1 & Y <= Y0)
-                    goto next_C;
+                    continue;
                 if (Y > Y1 & Y > Y0)
-                    goto next_C;
+                    continue;
                 X1 = P[C].X;
                 X0 = P[C - 1].X;
                 if (X < X1 & X < X0)
                 {
                     IsPtInTriRet = !IsPtInTriRet;
-                    goto next_C;
+                    continue;
                 }
 
                 if (X > X1 & X > X0)
-                    goto next_C;
+                    continue;
                 CP = (X1 - X0) * (Y - Y0) / (Y1 - Y0) + X0;
                 if (X < CP)
                     IsPtInTriRet = !IsPtInTriRet;
-                next_C:
-                ;
             }
 
             return IsPtInTriRet;

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -231,60 +230,60 @@ namespace SBuilderX
         {
             var BFormatter = new BinaryFormatter();
             ofile.Position = 0L;
-            moduleMAPS.NoOfMaps = Conversions.ToInteger(BFormatter.Deserialize(ofile));
-            moduleCLASSES.NoOfLands = Conversions.ToInteger(BFormatter.Deserialize(ofile));
-            moduleLINES.NoOfLines = Conversions.ToInteger(BFormatter.Deserialize(ofile));
-            modulePOLYS.NoOfPolys = Conversions.ToInteger(BFormatter.Deserialize(ofile));
-            moduleCLASSES.NoOfWaters = Conversions.ToInteger(BFormatter.Deserialize(ofile));
-            moduleOBJECTS.NoOfObjects = Conversions.ToInteger(BFormatter.Deserialize(ofile));
-            moduleEXCLUDES.NoOfExcludes = Conversions.ToInteger(BFormatter.Deserialize(ofile));
-            moduleCLASSES.NoOfLWCIs = Conversions.ToInteger(BFormatter.Deserialize(ofile));
-            moduleMAIN.SomeSelected = Conversions.ToBoolean(BFormatter.Deserialize(ofile));
-            moduleMAIN.NoOfPointsSelected = Conversions.ToInteger(BFormatter.Deserialize(ofile));
+            moduleMAPS.NoOfMaps = Convert.ToInt32(BFormatter.Deserialize(ofile));
+            moduleCLASSES.NoOfLands = Convert.ToInt32(BFormatter.Deserialize(ofile));
+            moduleLINES.NoOfLines = Convert.ToInt32(BFormatter.Deserialize(ofile));
+            modulePOLYS.NoOfPolys = Convert.ToInt32(BFormatter.Deserialize(ofile));
+            moduleCLASSES.NoOfWaters = Convert.ToInt32(BFormatter.Deserialize(ofile));
+            moduleOBJECTS.NoOfObjects = Convert.ToInt32(BFormatter.Deserialize(ofile));
+            moduleEXCLUDES.NoOfExcludes = Convert.ToInt32(BFormatter.Deserialize(ofile));
+            moduleCLASSES.NoOfLWCIs = Convert.ToInt32(BFormatter.Deserialize(ofile));
+            moduleMAIN.SomeSelected = Convert.ToBoolean(BFormatter.Deserialize(ofile));
+            moduleMAIN.NoOfPointsSelected = Convert.ToInt32(BFormatter.Deserialize(ofile));
             if (moduleMAPS.NoOfMaps > 0)
             {
                 moduleMAPS.Maps = (moduleMAPS.Map[])BFormatter.Deserialize(ofile);
-                moduleMAPS.NoOfMapsSelected = Conversions.ToInteger(BFormatter.Deserialize(ofile));
+                moduleMAPS.NoOfMapsSelected = Convert.ToInt32(BFormatter.Deserialize(ofile));
             }
 
             if (moduleCLASSES.NoOfLands > 0)
             {
-                moduleCLASSES.NoOfLLXYs = Conversions.ToInteger(BFormatter.Deserialize(ofile));
+                moduleCLASSES.NoOfLLXYs = Convert.ToInt32(BFormatter.Deserialize(ofile));
                 moduleCLASSES.LL_XY = (moduleCLASSES.LWXY[,])BFormatter.Deserialize(ofile);
                 moduleCLASSES.LLands = (byte[,,])BFormatter.Deserialize(ofile);
-                moduleCLASSES.NoOfLandsSelected = Conversions.ToInteger(BFormatter.Deserialize(ofile));
+                moduleCLASSES.NoOfLandsSelected = Convert.ToInt32(BFormatter.Deserialize(ofile));
             }
 
             if (moduleLINES.NoOfLines > 0)
             {
                 moduleLINES.Lines = (moduleLINES.GLine[])BFormatter.Deserialize(ofile);
-                moduleLINES.NoOfLinesSelected = Conversions.ToInteger(BFormatter.Deserialize(ofile));
+                moduleLINES.NoOfLinesSelected = Convert.ToInt32(BFormatter.Deserialize(ofile));
             }
 
             if (modulePOLYS.NoOfPolys > 0)
             {
                 modulePOLYS.Polys = (modulePOLYS.GPoly[])BFormatter.Deserialize(ofile);
-                modulePOLYS.NoOfPolysSelected = Conversions.ToInteger(BFormatter.Deserialize(ofile));
+                modulePOLYS.NoOfPolysSelected = Convert.ToInt32(BFormatter.Deserialize(ofile));
             }
 
             if (moduleCLASSES.NoOfWaters > 0)
             {
-                moduleCLASSES.NoOfWWXYs = Conversions.ToInteger(BFormatter.Deserialize(ofile));
+                moduleCLASSES.NoOfWWXYs = Convert.ToInt32(BFormatter.Deserialize(ofile));
                 moduleCLASSES.WW_XY = (moduleCLASSES.LWXY[,])BFormatter.Deserialize(ofile);
                 moduleCLASSES.WWaters = (byte[,,])BFormatter.Deserialize(ofile);
-                moduleCLASSES.NoOfWatersSelected = Conversions.ToInteger(BFormatter.Deserialize(ofile));
+                moduleCLASSES.NoOfWatersSelected = Convert.ToInt32(BFormatter.Deserialize(ofile));
             }
 
             if (moduleOBJECTS.NoOfObjects > 0)
             {
                 moduleOBJECTS.Objects = (moduleOBJECTS.Objecto[])BFormatter.Deserialize(ofile);
-                moduleOBJECTS.NoOfObjectsSelected = Conversions.ToInteger(BFormatter.Deserialize(ofile));
+                moduleOBJECTS.NoOfObjectsSelected = Convert.ToInt32(BFormatter.Deserialize(ofile));
             }
 
             if (moduleEXCLUDES.NoOfExcludes > 0)
             {
                 moduleEXCLUDES.Excludes = (moduleEXCLUDES.Exclude[])BFormatter.Deserialize(ofile);
-                moduleEXCLUDES.NoOfExcludesSelected = Conversions.ToInteger(BFormatter.Deserialize(ofile));
+                moduleEXCLUDES.NoOfExcludesSelected = Convert.ToInt32(BFormatter.Deserialize(ofile));
             }
 
             if (moduleCLASSES.NoOfLWCIs > 0)
@@ -543,7 +542,7 @@ namespace SBuilderX
         {
             int N;
             bool GetIt;
-            float X;
+            DialogResult X;
             BackUp();
             if (moduleLINES.LineON)
             {
@@ -558,8 +557,8 @@ namespace SBuilderX
                         return;
                 }
 
-                X = (float)Interaction.MsgBox("Delete this Line ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
-                if (X == (float)MsgBoxResult.Yes)
+                X = MessageBox.Show("Delete this Line ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (X == DialogResult.Yes)
                 {
                     moduleLINES.DeleteLine(N - 1);
                     My.MyProject.Forms.FrmStart.DeleteMenuItem.Enabled = false;
@@ -583,8 +582,8 @@ namespace SBuilderX
                         return;
                 }
 
-                X = (float)Interaction.MsgBox("Delete this Poly ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
-                if (X == (float)MsgBoxResult.Yes)
+                X = MessageBox.Show("Delete this Poly ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (X == DialogResult.Yes)
                 {
                     modulePOLYS.DeletePoly(N - 1);
                     My.MyProject.Forms.FrmStart.CopyMenuItem.Enabled = false;
@@ -609,8 +608,8 @@ namespace SBuilderX
                         return;
                 }
 
-                X = (float)Interaction.MsgBox("Delete this object ?", (MsgBoxStyle)((int)MsgBoxStyle.YesNo + (int)MsgBoxStyle.Question + (int)MsgBoxStyle.DefaultButton2), moduleMAIN.AppTitle);
-                if (X == (float)MsgBoxResult.Yes)
+                X = MessageBox.Show("Delete this object ?", moduleMAIN.AppTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (X == DialogResult.Yes)
                 {
                     moduleOBJECTS.DeleteThisObject(N - 1);
                     My.MyProject.Forms.FrmStart.CopyMenuItem.Enabled = false;

@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -51,7 +50,7 @@ namespace SBuilderX
             // If FSXTools = False Then
             if (moduleMAIN.IsFSXTerrain == false | moduleMAIN.IsFSXBGLComp == false)
             {
-                Interaction.MsgBox(@"SDK Tools are not present in ..\SBuilder\Tools folder!", MsgBoxStyle.Critical);
+                MessageBox.Show(@"SDK Tools are not present in ..\SBuilder\Tools folder!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -131,7 +130,7 @@ namespace SBuilderX
             {
                 if (modulePOLYS.Polys[N].Selected)
                 {
-                    A = Strings.Mid(modulePOLYS.Polys[N].Type, 1, 3);
+                    A = modulePOLYS.Polys[N].Type.Substring(0, 3);
                     if (A == "XXX")
                         EXX = true;
                     if (A == "EXX")
@@ -159,7 +158,7 @@ namespace SBuilderX
             {
                 if (moduleLINES.Lines[N].Selected)
                 {
-                    A = Strings.Mid(moduleLINES.Lines[N].Type, 1, 3);
+                    A = moduleLINES.Lines[N].Type.Substring(0, 3);
                     if (A == "STX")
                         STX = true;
                     if (A == "FWX")
@@ -228,10 +227,10 @@ namespace SBuilderX
             {
                 if (moduleMAPS.Maps[N].Selected)
                 {
-                    A = Strings.UCase(Strings.Mid(moduleMAPS.Maps[N].Name, 1, 5));
+                    A = moduleMAPS.Maps[N].Name.Substring(1, 5).ToUpper();
                     if (A == "PHOTO")
                     {
-                        A = Strings.UCase(Path.GetExtension(moduleMAPS.Maps[N].BMPSu));
+                        A = Path.GetExtension(moduleMAPS.Maps[N].BMPSu.ToUpper());
                         if (A == ".BMP")
                         {
                             Flag1 = true;
@@ -296,7 +295,7 @@ namespace SBuilderX
             string source, dest, shapefile;
             string[] shpfiles;
             string ProjectNameNoSpaces;
-            ProjectNameNoSpaces = Strings.Replace(moduleMAIN.ProjectName, " ", "_");
+            ProjectNameNoSpaces = moduleMAIN.ProjectName.Replace(" ", "_");
             shpfiles = Directory.GetFiles(moduleMAIN.AppPath + @"\Tools\Shapes");
             foreach (var currentShapefile in shpfiles)
             {
@@ -306,8 +305,7 @@ namespace SBuilderX
 
             sourcebase = moduleMAIN.AppPath + @"\Tools\";
             destbase = moduleMAIN.AppPath + @"\Tools\Shapes\";
-            FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-            FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\Tools\Shapes");
+            Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\Tools\Shapes");
             if (EXX)
             {
                 source = sourcebase + "EXX.xml";
@@ -418,7 +416,7 @@ namespace SBuilderX
                 moduleSHAPE.MakeSHPLines(shapefile, "UTX");
             }
 
-            FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\Tools");
+            Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\Tools");
             string myCommand;
             myCommand = "shp2vec Shapes _" + ProjectNameNoSpaces;
             if (moduleSHAPE.AddToCells)
@@ -437,7 +435,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Copying BGL files failed! Try to close FSX.", MsgBoxStyle.Information);
+                MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

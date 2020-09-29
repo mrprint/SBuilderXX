@@ -605,17 +605,15 @@ namespace SBuilderX
                     X1 = moduleOBJECTS.Objects[N].lon * moduleMAIN.PixelsPerLonDeg;
                     Y1 = moduleOBJECTS.Objects[N].lat * moduleMAIN.PixelsPerLatDeg;
                     if (X1 > X + 4d)
-                        goto next_N;
+                        continue;
                     if (X1 < X - 4d)
-                        goto next_N;
+                        continue;
                     if (Y1 < Y - 4d)
-                        goto next_N;
+                        continue;
                     if (Y1 > Y + 4d)
-                        goto next_N;
+                        continue;
                     IsObjectUPRet = N;
                     return IsObjectUPRet;
-                next_N:
-                    ;
                 }
             }
 

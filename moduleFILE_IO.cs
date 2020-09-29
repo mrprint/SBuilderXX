@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -47,129 +47,127 @@ namespace SBuilderX
 
         internal static void GetSettings()
         {
-            var IniSettings = new Collection();
+            var IniSettings = new Dictionary<string, string>();
 
             try
             {
                 // [Main]
-                IniSettings.Add("-9.136076", "LonIniCenter");
-                IniSettings.Add("38.7813203", "LatIniCenter");
-                IniSettings.Add("False", "DecimalDegrees");
-                IniSettings.Add("True", "MeasuringMeters");
-                IniSettings.Add(My.MyProject.Application.Info.DirectoryPath + @"\Scenery", "BGLFolder");
-                IniSettings.Add("False", "OriginalTerrainCFG");
-                IniSettings.Add("FSX", "NameOfSim");
-                IniSettings.Add(My.MyProject.Application.Info.DirectoryPath + @"\Tools", "SimPath");
+                IniSettings.Add("LonIniCenter", "-9.136076");
+                IniSettings.Add("LatIniCenter", "38.7813203");
+                IniSettings.Add("DecimalDegrees", "False");
+                IniSettings.Add("MeasuringMeters", "True");
+                IniSettings.Add("BGLFolder", My.MyProject.Application.Info.DirectoryPath + @"\Scenery");
+                IniSettings.Add("OriginalTerrainCFG", "False");
+                IniSettings.Add("NameOfSim", "FSX");
+                IniSettings.Add("SimPath", My.MyProject.Application.Info.DirectoryPath + @"\Tools");
 
                 // [Edit]
-                IniSettings.Add("False", "BackUpON");
-                IniSettings.Add("60", "BackUpSeconds");
-                IniSettings.Add("True", "AskDelete");
-                IniSettings.Add("True", "ShowDonation");
-                IniSettings.Add("True", "BorderON");
-                IniSettings.Add("True", "ShowLabels");
-                IniSettings.Add(ArgbFromColor(Color.Green), "SelectedPointColor");
-                IniSettings.Add(ArgbFromColor(Color.Red), "UnselectedPointColor");
+                IniSettings.Add("BackUpON", "False");
+                IniSettings.Add("BackUpSeconds", "60");
+                IniSettings.Add("AskDelete", "True");
+                IniSettings.Add("ShowDonation", "True");
+                IniSettings.Add("BorderON", "True");
+                IniSettings.Add("ShowLabels", "True");
+                IniSettings.Add("SelectedPointColor", ArgbFromColor(Color.Green));
+                IniSettings.Add("UnselectedPointColor", ArgbFromColor(Color.Red));
 
                 // [Misc]
-                IniSettings.Add("False", "AutoLinePolyJoin");
-                IniSettings.Add("True", "DisplayJoin");
-                IniSettings.Add("True", "DirJoin");
-                IniSettings.Add("True", "NameJoin");
-                IniSettings.Add("True", "NoEndsSmooth");
-                IniSettings.Add("True", "CornerSmooth");
-                IniSettings.Add("10", "SampleDistance");
-                IniSettings.Add("50", "SmoothDistance");
-                IniSettings.Add("11", "DefaultLC");
-                IniSettings.Add("12", "DefaultWC");
+                IniSettings.Add("AutoLinePolyJoin", "False");
+                IniSettings.Add("DisplayJoin", "True");
+                IniSettings.Add("DirJoin", "True");
+                IniSettings.Add("NameJoin", "True");
+                IniSettings.Add("NoEndsSmooth", "True");
+                IniSettings.Add("CornerSmooth", "True");
+                IniSettings.Add("SampleDistance", "10");
+                IniSettings.Add("SmoothDistance", "50");
+                IniSettings.Add("DefaultLC", "11");
+                IniSettings.Add("DefaultWC", "12");
                 // IniSettings.Add("DemoAppId01082013GAL", "Here_app_id")
                 // IniSettings.Add("AJKnXv84fjrb0KIHawS0Tg", "Here_app_code")
-                IniSettings.Add("", "GoogleMapsAPI");
-                IniSettings.Add("False", "MakeSlopeXY");
+                IniSettings.Add("GoogleMapsAPI", "");
+                IniSettings.Add("MakeSlopeXY", "False");
 
                 // [Grid]
-                IniSettings.Add(ArgbFromColor(Color.Green), "GridColor");
-                IniSettings.Add(ArgbFromColor(Color.Red), "GridLODColor");
-                IniSettings.Add("1", "GridWidth");
-                IniSettings.Add("True", "ZoomOnQMID");
-                IniSettings.Add("False", "CenterOnMouseWheel");
+                IniSettings.Add("GridColor", ArgbFromColor(Color.Green));
+                IniSettings.Add("GridLODColor", ArgbFromColor(Color.Red));
+                IniSettings.Add("GridWidth", "1");
+                IniSettings.Add("ZoomOnQMID", "True");
+                IniSettings.Add("CenterOnMouseWheel", "False");
 
                 // [Aircraft]
-                IniSettings.Add("5000", "ShowAircraftPeriod");
-                IniSettings.Add("0.5", "AircraftAltitudeOffset");
-                IniSettings.Add("-20M", "ExtraExtrusionAltitude");
+                IniSettings.Add("ShowAircraftPeriod", "5000");
+                IniSettings.Add("AircraftAltitudeOffset", "0.5");
+                IniSettings.Add("ExtraExtrusionAltitude", "-20M");
 
                 // [Objects]
-                IniSettings.Add(My.MyProject.Application.Info.DirectoryPath + @"\Rwy12", "Rwy12Path");
-                IniSettings.Add(My.MyProject.Application.Info.DirectoryPath + @"\API", "MacroAPIPath");
-                IniSettings.Add(My.MyProject.Application.Info.DirectoryPath + @"\ASD", "MacroASDPath");
-                IniSettings.Add(My.MyProject.Application.Info.DirectoryPath + @"\LibObjects", "LibObjectsPath");
+                IniSettings.Add("Rwy12Path", My.MyProject.Application.Info.DirectoryPath + @"\Rwy12");
+                IniSettings.Add("MacroAPIPath", My.MyProject.Application.Info.DirectoryPath + @"\API");
+                IniSettings.Add("MacroASDPath", My.MyProject.Application.Info.DirectoryPath + @"\ASD");
+                IniSettings.Add("LibObjectsPath", My.MyProject.Application.Info.DirectoryPath + @"\LibObjects");
 
                 // [Lines]
-                IniSettings.Add("0", "DefaultLineAltitude");
-                IniSettings.Add("50", "DefaultLineWidth");
-                IniSettings.Add("1", "LinePenWidth");
-                IniSettings.Add(ArgbFromColor(Color.Green), "SelectedLineColor");
-                IniSettings.Add(ArgbFromColor(Color.Blue), "DefaultLineColor");
-                IniSettings.Add("False", "MakeClosedLineFromPoly");
+                IniSettings.Add("DefaultLineAltitude", "0");
+                IniSettings.Add("DefaultLineWidth", "50");
+                IniSettings.Add("LinePenWidth", "1");
+                IniSettings.Add("SelectedLineColor", ArgbFromColor(Color.Green));
+                IniSettings.Add("DefaultLineColor", ArgbFromColor(Color.Blue));
+                IniSettings.Add("MakeClosedLineFromPoly", "False");
 
                 // [Polys]
-                IniSettings.Add("0", "DefaultPolyAltitude");
-                IniSettings.Add("1", "PolyPenWidth");
-                IniSettings.Add("True", "PolyFILL");
-                IniSettings.Add("80FFFF00", "DefaultPolyColor");
-                IniSettings.Add(ArgbFromColor(Color.Black), "PolyColorBorder");
+                IniSettings.Add("DefaultPolyAltitude", "0");
+                IniSettings.Add("PolyPenWidth", "1");
+                IniSettings.Add("PolyFILL", "True");
+                IniSettings.Add("DefaultPolyColor", "80FFFF00");
+                IniSettings.Add("PolyColorBorder", ArgbFromColor(Color.Black));
 
                 // [Shapes]
-                IniSettings.Add("{89ABCDEF-EDCB-A987-6543-210FEDCBA000}", "ShapeLineGuid");
-                IniSettings.Add("0", "ShapeLineAltitude");
-                IniSettings.Add("50", "ShapeLineWidth");
-                IniSettings.Add(ArgbFromColor(Color.Blue), "ShapeLineColor");
-                IniSettings.Add("{9ABCDEF0-FEDC-BA98-7654-3210FEDCB000}", "ShapePolyGuid");
-                IniSettings.Add("0", "ShapePolyAltitude");
-                IniSettings.Add(ArgbFromColor(Color.Pink), "ShapePolyColor");
-                IniSettings.Add("True", "AddToCells");
+                IniSettings.Add("ShapeLineGuid", "{89ABCDEF-EDCB-A987-6543-210FEDCBA000}");
+                IniSettings.Add("ShapeLineAltitude", "0");
+                IniSettings.Add("ShapeLineWidth", "50");
+                IniSettings.Add("ShapeLineColor", ArgbFromColor(Color.Blue));
+                IniSettings.Add("ShapePolyGuid", "{9ABCDEF0-FEDC-BA98-7654-3210FEDCB000}");
+                IniSettings.Add("ShapePolyAltitude", "0");
+                IniSettings.Add("ShapePolyColor", ArgbFromColor(Color.Pink));
+                IniSettings.Add("AddToCells", "True");
 
                 // [Tiles]
-                IniSettings.Add("", "ActiveTileFolder");
-                IniSettings.Add("True", "ReprojectMercatorTiles");
-                IniSettings.Add("July,August,September", "SummerVariations");
-                IniSettings.Add("April,May,June", "SpringVariations");
-                IniSettings.Add("October,November", "FallVariations");
-                IniSettings.Add("December,February,March", "WinterVariations");
-                IniSettings.Add("January", "HardWinterVariations");
-                IniSettings.Add("85", "CompressionQuality");
+                IniSettings.Add("ActiveTileFolder", "");
+                IniSettings.Add("ReprojectMercatorTiles", "True");
+                IniSettings.Add("SummerVariations", "July,August,September");
+                IniSettings.Add("SpringVariations", "April,May,June");
+                IniSettings.Add("FallVariations", "October,November");
+                IniSettings.Add("WinterVariations", "December,February,March");
+                IniSettings.Add("HardWinterVariations", "January");
+                IniSettings.Add("CompressionQuality", "85");
 
                 // [BLN]
-                IniSettings.Add(",", "BLNSeparator");
-                if (moduleSURFER.BLNSeparator == "tab")
-                    moduleSURFER.BLNSeparator = Conversions.ToString('\t');
-                IniSettings.Add("{9ABCDEF0-FEDC-BA98-7654-3210FEDCB000}", "BLNPolyGuid");
-                IniSettings.Add(ArgbFromColor(Color.Red), "BLNPolyColor");
-                IniSettings.Add("{89ABCDEF-EDCB-A987-6543-210FEDCBA000}", "BLNLineGuid");
-                IniSettings.Add(ArgbFromColor(Color.Red), "BLNLineColor");
-                IniSettings.Add("True", "BLNIsPolyAlt");
-                IniSettings.Add("True", "BLNIsLineAlt");
-                IniSettings.Add("35", "BLNStartWidth");
-                IniSettings.Add("35", "BLNEndWidth");
-                IniSettings.Add("True", "BLNLineFromPoly");
-                IniSettings.Add("True", "BLNExportAltitudes");
+                IniSettings.Add("BLNSeparator", ",");
+                IniSettings.Add("BLNPolyGuid", "{9ABCDEF0-FEDC-BA98-7654-3210FEDCB000}");
+                IniSettings.Add("BLNPolyColor", ArgbFromColor(Color.Red));
+                IniSettings.Add("BLNLineGuid", "{89ABCDEF-EDCB-A987-6543-210FEDCBA000}");
+                IniSettings.Add("BLNLineColor", ArgbFromColor(Color.Red));
+                IniSettings.Add("BLNIsPolyAlt", "True");
+                IniSettings.Add("BLNIsLineAlt", "True");
+                IniSettings.Add("BLNStartWidth", "35");
+                IniSettings.Add("BLNEndWidth", "35");
+                IniSettings.Add("BLNLineFromPoly", "True");
+                IniSettings.Add("BLNExportAltitudes", "True");
 
                 // [RecentDirs]
-                IniSettings.Add("", "SBPDir");
-                IniSettings.Add("", "SBXDir");
-                IniSettings.Add("", "SHPDir");
-                IniSettings.Add("", "SURDir");
-                IniSettings.Add("", "TEXDir");
-                IniSettings.Add("", "BMPDir");
-                IniSettings.Add("", "OBJDir");
-                IniSettings.Add("", "RAWDir");
-                IniSettings.Add("", "LIBDir");
-                IniSettings.Add("", "KMLDir");
-                IniSettings.Add("", "RecentFile1");
-                IniSettings.Add("", "RecentFile2");
-                IniSettings.Add("", "RecentFile3");
-                IniSettings.Add("", "RecentFile4");
+                IniSettings.Add("SBPDir", "");
+                IniSettings.Add("SBXDir", "");
+                IniSettings.Add("SHPDir", "");
+                IniSettings.Add("SURDir", "");
+                IniSettings.Add("TEXDir", "");
+                IniSettings.Add("BMPDir", "");
+                IniSettings.Add("OBJDir", "");
+                IniSettings.Add("RAWDir", "");
+                IniSettings.Add("LIBDir", "");
+                IniSettings.Add("KMLDir", "");
+                IniSettings.Add("RecentFile1", "");
+                IniSettings.Add("RecentFile2", "");
+                IniSettings.Add("RecentFile3", "");
+                IniSettings.Add("RecentFile4", "");
                 int NF = FileSystem.FreeFile();
                 string myLine, A, B;
                 int N;
@@ -182,15 +180,15 @@ namespace SBuilderX
                     while (!FileSystem.EOF(NF))
                     {
                         myLine = FileSystem.LineInput(NF);
-                        N = Strings.InStr(myLine, "=");
-                        if (N > 0)
+                        N = myLine.IndexOf("=");
+                        if (N != -1)
                         {
-                            A = myLine.Substring(0, N - 1);
-                            if (IniSettings.Contains(A))
+                            A = myLine.Substring(0, N);
+                            if (IniSettings.ContainsKey(A))
                             {
-                                B = myLine.Substring(N);
+                                B = myLine.Substring(N + 1);
                                 IniSettings.Remove(A);
-                                IniSettings.Add(B, A);
+                                IniSettings.Add(A, B);
                             }
                         }
                     }
@@ -199,144 +197,144 @@ namespace SBuilderX
                 }
 
                 // [Main]
-                moduleMAIN.LonIniCenter = Conversion.Val(IniSettings["LonIniCenter"]);
-                moduleMAIN.LatIniCenter = Conversion.Val(IniSettings["LatIniCenter"]);
-                moduleMAIN.DecimalDegrees = Conversions.ToBoolean(IniSettings["DecimalDegrees"]);
-                moduleMAIN.MeasuringMeters = Conversions.ToBoolean(IniSettings["MeasuringMeters"]);
-                moduleMAIN.BGLFolder = Conversions.ToString(IniSettings["BGLFolder"]);
-                moduleMAIN.OriginalTerrainCFG = Conversions.ToBoolean(IniSettings["OriginalTerrainCFG"]);
-                moduleMAIN.NameOfSim = Conversions.ToString(IniSettings["NameOfSim"]);
-                moduleMAIN.SimPath = Conversions.ToString(IniSettings["SimPath"]);
+                moduleMAIN.LonIniCenter = Convert.ToDouble(IniSettings["LonIniCenter"]);
+                moduleMAIN.LatIniCenter = Convert.ToDouble(IniSettings["LatIniCenter"]);
+                moduleMAIN.DecimalDegrees = Convert.ToBoolean(IniSettings["DecimalDegrees"]);
+                moduleMAIN.MeasuringMeters = Convert.ToBoolean(IniSettings["MeasuringMeters"]);
+                moduleMAIN.BGLFolder = IniSettings["BGLFolder"];
+                moduleMAIN.OriginalTerrainCFG = Convert.ToBoolean(IniSettings["OriginalTerrainCFG"]);
+                moduleMAIN.NameOfSim = IniSettings["NameOfSim"];
+                moduleMAIN.SimPath = IniSettings["SimPath"];
 
                 // [Edit]
-                moduleEDIT.BackUpON = Conversions.ToBoolean(IniSettings["BackUpON"]);
-                BackUpSeconds = (int)Conversion.Val(IniSettings["BackUpSeconds"]);
-                moduleMAPS.BorderON = Conversions.ToBoolean(IniSettings["BorderON"]);
-                moduleMAIN.AskDelete = Conversions.ToBoolean(IniSettings["AskDelete"]);
-                moduleMAIN.ShowDonation = Conversions.ToBoolean(IniSettings["ShowDonation"]);
-                moduleMAIN.ShowLabels = Conversions.ToBoolean(IniSettings["ShowLabels"]);
-                modulePOINTS.SelectedPointColor = ColorFromArgb(Conversions.ToString(IniSettings["SelectedPointColor"]));
-                modulePOINTS.UnselectedPointColor = ColorFromArgb(Conversions.ToString(IniSettings["UnselectedPointColor"]));
+                moduleEDIT.BackUpON = Convert.ToBoolean(IniSettings["BackUpON"]);
+                BackUpSeconds = (int)Convert.ToDouble(IniSettings["BackUpSeconds"]);
+                moduleMAPS.BorderON = Convert.ToBoolean(IniSettings["BorderON"]);
+                moduleMAIN.AskDelete = Convert.ToBoolean(IniSettings["AskDelete"]);
+                moduleMAIN.ShowDonation = Convert.ToBoolean(IniSettings["ShowDonation"]);
+                moduleMAIN.ShowLabels = Convert.ToBoolean(IniSettings["ShowLabels"]);
+                modulePOINTS.SelectedPointColor = ColorFromArgb(IniSettings["SelectedPointColor"]);
+                modulePOINTS.UnselectedPointColor = ColorFromArgb(IniSettings["UnselectedPointColor"]);
 
                 // [Misc]
-                moduleLINES.AutoLinePolyJoin = Conversions.ToBoolean(IniSettings["AutoLinePolyJoin"]);
-                moduleLINES.DisplayJoin = Conversions.ToBoolean(IniSettings["DisplayJoin"]);
-                moduleLINES.DirJoin = Conversions.ToBoolean(IniSettings["DirJoin"]);
-                moduleLINES.NameJoin = Conversions.ToBoolean(IniSettings["NameJoin"]);
-                moduleMAIN.NoEndsSmooth = Conversions.ToBoolean(IniSettings["NoEndsSmooth"]);
-                moduleMAIN.CornerSmooth = Conversions.ToBoolean(IniSettings["CornerSmooth"]);
-                moduleMAIN.SampleDistance = Conversion.Val(IniSettings["SampleDistance"]);
-                moduleMAIN.SmoothDistance = Conversion.Val(IniSettings["SmoothDistance"]);
-                moduleCLASSES.DefaultLC = Conversions.ToByte(IniSettings["DefaultLC"]);
-                moduleCLASSES.DefaultWC = Conversions.ToByte(IniSettings["DefaultWC"]);
+                moduleLINES.AutoLinePolyJoin = Convert.ToBoolean(IniSettings["AutoLinePolyJoin"]);
+                moduleLINES.DisplayJoin = Convert.ToBoolean(IniSettings["DisplayJoin"]);
+                moduleLINES.DirJoin = Convert.ToBoolean(IniSettings["DirJoin"]);
+                moduleLINES.NameJoin = Convert.ToBoolean(IniSettings["NameJoin"]);
+                moduleMAIN.NoEndsSmooth = Convert.ToBoolean(IniSettings["NoEndsSmooth"]);
+                moduleMAIN.CornerSmooth = Convert.ToBoolean(IniSettings["CornerSmooth"]);
+                moduleMAIN.SampleDistance = Convert.ToDouble(IniSettings["SampleDistance"]);
+                moduleMAIN.SmoothDistance = Convert.ToDouble(IniSettings["SmoothDistance"]);
+                moduleCLASSES.DefaultLC = Convert.ToByte(IniSettings["DefaultLC"]);
+                moduleCLASSES.DefaultWC = Convert.ToByte(IniSettings["DefaultWC"]);
                 // Here_app_id = CStr(IniSettings.Item("Here_app_id"))
                 // Here_app_code = CStr(IniSettings.Item("Here_app_code"))
-                moduleMAPS.GoogleMapsAPI = Conversions.ToString(IniSettings["GoogleMapsAPI"]);
-                moduleMAIN.MakeSlopeXY = Conversions.ToBoolean(IniSettings["MakeSlopeXY"]);
+                moduleMAPS.GoogleMapsAPI = IniSettings["GoogleMapsAPI"];
+                moduleMAIN.MakeSlopeXY = Convert.ToBoolean(IniSettings["MakeSlopeXY"]);
 
                 // [Grid]
-                moduleMAIN.GridColor = ColorFromArgb(Conversions.ToString(IniSettings["GridColor"]));
-                moduleMAIN.GridLODColor = ColorFromArgb(Conversions.ToString(IniSettings["GridLODColor"]));
-                moduleMAIN.GridWidth = (int)Conversion.Val(IniSettings["GridWidth"]);
-                moduleMAIN.ZoomOnQMID = Conversions.ToBoolean(IniSettings["ZoomOnQMID"]);
+                moduleMAIN.GridColor = ColorFromArgb(IniSettings["GridColor"]);
+                moduleMAIN.GridLODColor = ColorFromArgb(IniSettings["GridLODColor"]);
+                moduleMAIN.GridWidth = (int)Convert.ToDouble(IniSettings["GridWidth"]);
+                moduleMAIN.ZoomOnQMID = Convert.ToBoolean(IniSettings["ZoomOnQMID"]);
                 if (moduleMAIN.GridWidth > 2)
                     moduleMAIN.GridWidth = 2;
-                moduleMAIN.CenterOnMouseWheel = Conversions.ToBoolean(IniSettings["CenterOnMouseWheel"]);
+                moduleMAIN.CenterOnMouseWheel = Convert.ToBoolean(IniSettings["CenterOnMouseWheel"]);
 
                 // [Aircraft]
-                moduleMAIN.ShowAircraftPeriod = (int)Conversion.Val(IniSettings["ShowAircraftPeriod"]);
-                moduleMAIN.AircraftAltitudeOffset = Conversion.Val(IniSettings["AircraftAltitudeOffset"]);
-                moduleLINES.ExtraExtrusionAltitude = Conversions.ToString(IniSettings["ExtraExtrusionAltitude"]);
+                moduleMAIN.ShowAircraftPeriod = (int)Convert.ToDouble(IniSettings["ShowAircraftPeriod"]);
+                moduleMAIN.AircraftAltitudeOffset = Convert.ToDouble(IniSettings["AircraftAltitudeOffset"]);
+                moduleLINES.ExtraExtrusionAltitude = IniSettings["ExtraExtrusionAltitude"];
 
                 // [Objects]
-                moduleOBJECTS.Rwy12Path = Conversions.ToString(IniSettings["Rwy12Path"]);
-                moduleMACROS.MacroAPIPath = Conversions.ToString(IniSettings["MacroAPIPath"]);
-                moduleMACROS.MacroASDPath = Conversions.ToString(IniSettings["MacroASDPath"]);
-                moduleOBJECTS.LibObjectsPath = Conversions.ToString(IniSettings["LibObjectsPath"]);
+                moduleOBJECTS.Rwy12Path = IniSettings["Rwy12Path"];
+                moduleMACROS.MacroAPIPath = IniSettings["MacroAPIPath"];
+                moduleMACROS.MacroASDPath = IniSettings["MacroASDPath"];
+                moduleOBJECTS.LibObjectsPath = IniSettings["LibObjectsPath"];
 
                 // [Lines]
-                moduleLINES.DefaultLineAltitude = Conversion.Val(IniSettings["DefaultLineAltitude"]);
-                moduleLINES.DefaultLineWidth = Conversion.Val(IniSettings["DefaultLineWidth"]);
-                moduleLINES.LinePenWidth = (int)Conversion.Val(IniSettings["LinePenWidth"]);
+                moduleLINES.DefaultLineAltitude = Convert.ToDouble(IniSettings["DefaultLineAltitude"]);
+                moduleLINES.DefaultLineWidth = Convert.ToDouble(IniSettings["DefaultLineWidth"]);
+                moduleLINES.LinePenWidth = (int)Convert.ToDouble(IniSettings["LinePenWidth"]);
                 if (moduleLINES.LinePenWidth > 2)
                     moduleLINES.LinePenWidth = 2;
-                moduleLINES.SelectedLineColor = ColorFromArgb(Conversions.ToString(IniSettings["SelectedLineColor"]));
-                moduleLINES.DefaultLineColor = ColorFromArgb(Conversions.ToString(IniSettings["DefaultLineColor"]));
-                modulePOLYS.MakeClosedLineFromPoly = Conversions.ToBoolean(IniSettings["MakeClosedLineFromPoly"]);
+                moduleLINES.SelectedLineColor = ColorFromArgb(IniSettings["SelectedLineColor"]);
+                moduleLINES.DefaultLineColor = ColorFromArgb(IniSettings["DefaultLineColor"]);
+                modulePOLYS.MakeClosedLineFromPoly = Convert.ToBoolean(IniSettings["MakeClosedLineFromPoly"]);
 
                 // [Polys]
-                modulePOLYS.DefaultPolyAltitude = Conversion.Val(IniSettings["DefaultPolyAltitude"]);
-                modulePOLYS.PolyPenWidth = (int)Conversion.Val(IniSettings["PolyPenWidth"]);
+                modulePOLYS.DefaultPolyAltitude = Convert.ToDouble(IniSettings["DefaultPolyAltitude"]);
+                modulePOLYS.PolyPenWidth = (int)Convert.ToDouble(IniSettings["PolyPenWidth"]);
                 if (modulePOLYS.PolyPenWidth > 2)
                     modulePOLYS.PolyPenWidth = 2;
-                modulePOLYS.PolyFILL = Conversions.ToBoolean(IniSettings["PolyFILL"]);
-                modulePOLYS.DefaultPolyColor = ColorFromArgb(Conversions.ToString(IniSettings["DefaultPolyColor"]));
-                modulePOLYS.PolyColorBorder = ColorFromArgb(Conversions.ToString(IniSettings["PolyColorBorder"]));
+                modulePOLYS.PolyFILL = Convert.ToBoolean(IniSettings["PolyFILL"]);
+                modulePOLYS.DefaultPolyColor = ColorFromArgb(IniSettings["DefaultPolyColor"]);
+                modulePOLYS.PolyColorBorder = ColorFromArgb(IniSettings["PolyColorBorder"]);
 
                 // [Shapes]
-                moduleSHAPE.ShapeLineGuid = Conversions.ToString(IniSettings["ShapeLineGuid"]);
-                moduleSHAPE.ShapeLineAltitude = Conversion.Val(IniSettings["ShapeLineAltitude"]);
-                moduleSHAPE.ShapeLineWidth = Conversion.Val(IniSettings["ShapeLineWidth"]);
-                moduleSHAPE.ShapeLineColor = ColorFromArgb(Conversions.ToString(IniSettings["ShapeLineColor"]));
-                moduleSHAPE.ShapePolyGuid = Conversions.ToString(IniSettings["ShapePolyGuid"]);
-                moduleSHAPE.ShapePolyAltitude = Conversion.Val(IniSettings["ShapePolyAltitude"]);
-                moduleSHAPE.ShapePolyColor = ColorFromArgb(Conversions.ToString(IniSettings["ShapePolyColor"]));
-                moduleSHAPE.AddToCells = Conversions.ToBoolean(IniSettings["AddToCells"]);
+                moduleSHAPE.ShapeLineGuid = IniSettings["ShapeLineGuid"];
+                moduleSHAPE.ShapeLineAltitude = Convert.ToDouble(IniSettings["ShapeLineAltitude"]);
+                moduleSHAPE.ShapeLineWidth = Convert.ToDouble(IniSettings["ShapeLineWidth"]);
+                moduleSHAPE.ShapeLineColor = ColorFromArgb(IniSettings["ShapeLineColor"]);
+                moduleSHAPE.ShapePolyGuid = IniSettings["ShapePolyGuid"];
+                moduleSHAPE.ShapePolyAltitude = Convert.ToDouble(IniSettings["ShapePolyAltitude"]);
+                moduleSHAPE.ShapePolyColor = ColorFromArgb(IniSettings["ShapePolyColor"]);
+                moduleSHAPE.AddToCells = Convert.ToBoolean(IniSettings["AddToCells"]);
 
                 // [Tiles]
-                moduleTILES.ActiveTileFolder = Conversions.ToString(IniSettings["ActiveTileFolder"]);
-                moduleTILES.ReprojectMercatorTiles = Conversions.ToBoolean(IniSettings["ReprojectMercatorTiles"]);
-                moduleTILES.SummerVariations = Conversions.ToString(IniSettings["SummerVariations"]);
-                moduleTILES.SpringVariations = Conversions.ToString(IniSettings["SpringVariations"]);
-                moduleTILES.FallVariations = Conversions.ToString(IniSettings["FallVariations"]);
-                moduleTILES.WinterVariations = Conversions.ToString(IniSettings["WinterVariations"]);
-                moduleTILES.HardWinterVariations = Conversions.ToString(IniSettings["HardWinterVariations"]);
-                moduleTILES.CompressionQuality = Conversions.ToInteger(IniSettings["CompressionQuality"]);
+                moduleTILES.ActiveTileFolder = IniSettings["ActiveTileFolder"];
+                moduleTILES.ReprojectMercatorTiles = Convert.ToBoolean(IniSettings["ReprojectMercatorTiles"]);
+                moduleTILES.SummerVariations = IniSettings["SummerVariations"];
+                moduleTILES.SpringVariations = IniSettings["SpringVariations"];
+                moduleTILES.FallVariations = IniSettings["FallVariations"];
+                moduleTILES.WinterVariations = IniSettings["WinterVariations"];
+                moduleTILES.HardWinterVariations = IniSettings["HardWinterVariations"];
+                moduleTILES.CompressionQuality = (int)Convert.ToSingle(IniSettings["CompressionQuality"]);
 
                 // [BLN]
-                moduleSURFER.BLNSeparator = Conversions.ToString(IniSettings["BLNSeparator"]);
+                moduleSURFER.BLNSeparator = IniSettings["BLNSeparator"];
                 if (moduleSURFER.BLNSeparator == "tab")
-                    moduleSURFER.BLNSeparator = Conversions.ToString('\t');
-                moduleSURFER.BLNPolyGuid = Conversions.ToString(IniSettings["BLNPolyGuid"]);
-                moduleSURFER.BLNPolyColor = ColorFromArgb(Conversions.ToString(IniSettings["BLNPolyColor"]));
-                moduleSURFER.BLNLineGuid = Conversions.ToString(IniSettings["BLNLineGuid"]);
-                moduleSURFER.BLNLineColor = ColorFromArgb(Conversions.ToString(IniSettings["BLNLineColor"]));
-                moduleSURFER.BLNIsPolyAlt = Conversions.ToBoolean(IniSettings["BLNIsPolyAlt"]);
-                moduleSURFER.BLNIsLineAlt = Conversions.ToBoolean(IniSettings["BLNIsLineAlt"]);
-                moduleSURFER.BLNStartWidth = Conversion.Val(IniSettings["BLNStartWidth"]);
-                moduleSURFER.BLNEndWidth = Conversion.Val(IniSettings["BLNEndWidth"]);
-                moduleSURFER.BLNLineFromPoly = Conversions.ToBoolean(IniSettings["BLNLineFromPoly"]);
-                moduleSURFER.BLNExportAltitudes = Conversions.ToBoolean(IniSettings["BLNExportAltitudes"]);
+                    moduleSURFER.BLNSeparator = "\t";
+                moduleSURFER.BLNPolyGuid = IniSettings["BLNPolyGuid"];
+                moduleSURFER.BLNPolyColor = ColorFromArgb(IniSettings["BLNPolyColor"]);
+                moduleSURFER.BLNLineGuid = IniSettings["BLNLineGuid"];
+                moduleSURFER.BLNLineColor = ColorFromArgb(IniSettings["BLNLineColor"]);
+                moduleSURFER.BLNIsPolyAlt = Convert.ToBoolean(IniSettings["BLNIsPolyAlt"]);
+                moduleSURFER.BLNIsLineAlt = Convert.ToBoolean(IniSettings["BLNIsLineAlt"]);
+                moduleSURFER.BLNStartWidth = Convert.ToDouble(IniSettings["BLNStartWidth"]);
+                moduleSURFER.BLNEndWidth = Convert.ToDouble(IniSettings["BLNEndWidth"]);
+                moduleSURFER.BLNLineFromPoly = Convert.ToBoolean(IniSettings["BLNLineFromPoly"]);
+                moduleSURFER.BLNExportAltitudes = Convert.ToBoolean(IniSettings["BLNExportAltitudes"]);
 
                 // [RecentDirs]
-                SHPDir = Conversions.ToString(IniSettings["SHPDir"]);
-                SBPDir = Conversions.ToString(IniSettings["SBPDir"]);
-                SBXDir = Conversions.ToString(IniSettings["SBXDir"]);
-                SURDir = Conversions.ToString(IniSettings["SURDir"]);
-                TEXDir = Conversions.ToString(IniSettings["TEXDir"]);
-                BMPDir = Conversions.ToString(IniSettings["BMPDir"]);
-                OBJDir = Conversions.ToString(IniSettings["OBJDir"]);
-                RAWDir = Conversions.ToString(IniSettings["RAWDir"]);
-                LIBDir = Conversions.ToString(IniSettings["LIBDir"]);
-                KMLDir = Conversions.ToString(IniSettings["KMLDir"]);
+                SHPDir = IniSettings["SHPDir"];
+                SBPDir = IniSettings["SBPDir"];
+                SBXDir = IniSettings["SBXDir"];
+                SURDir = IniSettings["SURDir"];
+                TEXDir = IniSettings["TEXDir"];
+                BMPDir = IniSettings["BMPDir"];
+                OBJDir = IniSettings["OBJDir"];
+                RAWDir = IniSettings["RAWDir"];
+                LIBDir = IniSettings["LIBDir"];
+                KMLDir = IniSettings["KMLDir"];
 
                 // [RecentFiles]
-                RecentFiles[1] = Conversions.ToString(IniSettings["RecentFile1"]);
-                RecentFiles[2] = Conversions.ToString(IniSettings["RecentFile2"]);
-                RecentFiles[3] = Conversions.ToString(IniSettings["RecentFile3"]);
-                RecentFiles[4] = Conversions.ToString(IniSettings["RecentFile4"]);
+                RecentFiles[1] = IniSettings["RecentFile1"];
+                RecentFiles[2] = IniSettings["RecentFile2"];
+                RecentFiles[3] = IniSettings["RecentFile3"];
+                RecentFiles[4] = IniSettings["RecentFile4"];
 
                 // PRINT INI FILE
                 // **************
                 WriteSettings();
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                string A = "Error in reading/writing the INI file! If you can not" + Constants.vbCrLf;
-                A = A + "determine the cause of this error, delete the INI file" + Constants.vbCrLf;
+                string A = "Error in reading/writing the INI file! If you can not" + Environment.NewLine;
+                A = A + "determine the cause of this error, delete the INI file" + Environment.NewLine;
                 A = A + "and SBuilderX will recreate it! SBuilderX will stop now!";
-                Interaction.MsgBox(A, MsgBoxStyle.Critical);
+                MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Environment.Exit(0);
             }
         }
@@ -364,8 +362,8 @@ namespace SBuilderX
             FileSystem.PrintLine(NF, "KMLDir=" + KMLDir);
             FileSystem.PrintLine(NF);
             FileSystem.PrintLine(NF, "[Main]");
-            FileSystem.PrintLine(NF, "LonIniCenter=" + Conversion.Str(moduleMAIN.LonIniCenter));
-            FileSystem.PrintLine(NF, "LatIniCenter=" + Conversion.Str(moduleMAIN.LatIniCenter));
+            FileSystem.PrintLine(NF, "LonIniCenter=" + moduleMAIN.LonIniCenter.ToString());
+            FileSystem.PrintLine(NF, "LatIniCenter=" + moduleMAIN.LatIniCenter.ToString());
             FileSystem.PrintLine(NF, "DecimalDegrees=" + moduleMAIN.DecimalDegrees.ToString());
             FileSystem.PrintLine(NF, "MeasuringMeters=" + moduleMAIN.MeasuringMeters.ToString());
             FileSystem.PrintLine(NF, "BGLFolder=" + moduleMAIN.BGLFolder);
@@ -391,8 +389,8 @@ namespace SBuilderX
             FileSystem.PrintLine(NF, "NameJoin=" + moduleLINES.NameJoin.ToString());
             FileSystem.PrintLine(NF, "NoEndsSmooth=" + moduleMAIN.NoEndsSmooth.ToString());
             FileSystem.PrintLine(NF, "CornerSmooth=" + moduleMAIN.CornerSmooth.ToString());
-            FileSystem.PrintLine(NF, "SampleDistance=" + Conversion.Str(moduleMAIN.SampleDistance));
-            FileSystem.PrintLine(NF, "SmoothDistance=" + Conversion.Str(moduleMAIN.SmoothDistance));
+            FileSystem.PrintLine(NF, "SampleDistance=" + moduleMAIN.SampleDistance.ToString());
+            FileSystem.PrintLine(NF, "SmoothDistance=" + moduleMAIN.SmoothDistance.ToString());
             FileSystem.PrintLine(NF, "DefaultLC=" + moduleCLASSES.DefaultLC.ToString());
             FileSystem.PrintLine(NF, "DefaultWC=" + moduleCLASSES.DefaultWC.ToString());
             // PrintLine(NF, "Here_app_id=" & Here_app_id)
@@ -403,13 +401,13 @@ namespace SBuilderX
             FileSystem.PrintLine(NF, "[Grids]");
             FileSystem.PrintLine(NF, "GridColor=" + ArgbFromColor(moduleMAIN.GridColor));
             FileSystem.PrintLine(NF, "GridLODColor=" + ArgbFromColor(moduleMAIN.GridLODColor));
-            FileSystem.PrintLine(NF, "GridWidth=" + Conversion.Str(moduleMAIN.GridWidth));
+            FileSystem.PrintLine(NF, "GridWidth=" + moduleMAIN.GridWidth.ToString());
             FileSystem.PrintLine(NF, "ZoomOnQMID=" + moduleMAIN.ZoomOnQMID.ToString());
             FileSystem.PrintLine(NF, "CenterOnMouseWheel=" + moduleMAIN.CenterOnMouseWheel.ToString());
             FileSystem.PrintLine(NF);
             FileSystem.PrintLine(NF, "[Aircraft]");
             FileSystem.PrintLine(NF, "ShowAircraftPeriod=" + moduleMAIN.ShowAircraftPeriod.ToString());
-            FileSystem.PrintLine(NF, "AircraftAltitudeOffset=" + Conversion.Str(moduleMAIN.AircraftAltitudeOffset));
+            FileSystem.PrintLine(NF, "AircraftAltitudeOffset=" + moduleMAIN.AircraftAltitudeOffset.ToString());
             FileSystem.PrintLine(NF, "ExtraExtrusionAltitude=" + moduleLINES.ExtraExtrusionAltitude);
             FileSystem.PrintLine(NF);
             FileSystem.PrintLine(NF, "[Objects]");
@@ -419,27 +417,27 @@ namespace SBuilderX
             FileSystem.PrintLine(NF, "LibObjectsPath=" + moduleOBJECTS.LibObjectsPath);
             FileSystem.PrintLine(NF);
             FileSystem.PrintLine(NF, "[Lines]");
-            FileSystem.PrintLine(NF, "DefaultLineAltitude=" + Conversion.Str(moduleLINES.DefaultLineAltitude));
-            FileSystem.PrintLine(NF, "DefaultLineWidth=" + Conversion.Str(moduleLINES.DefaultLineWidth));
-            FileSystem.PrintLine(NF, "LinePenWidth=" + Conversion.Str(moduleLINES.LinePenWidth));
+            FileSystem.PrintLine(NF, "DefaultLineAltitude=" + moduleLINES.DefaultLineAltitude.ToString());
+            FileSystem.PrintLine(NF, "DefaultLineWidth=" + moduleLINES.DefaultLineWidth.ToString());
+            FileSystem.PrintLine(NF, "LinePenWidth=" + moduleLINES.LinePenWidth.ToString());
             FileSystem.PrintLine(NF, "SelectedLineColor=" + ArgbFromColor(moduleLINES.SelectedLineColor));
             FileSystem.PrintLine(NF, "DefaultLineColor=" + ArgbFromColor(moduleLINES.DefaultLineColor));
             FileSystem.PrintLine(NF, "MakeClosedLineFromPoly=" + modulePOLYS.MakeClosedLineFromPoly.ToString());
             FileSystem.PrintLine(NF);
             FileSystem.PrintLine(NF, "[Polys]");
-            FileSystem.PrintLine(NF, "DefaultPolyAltitude=" + Conversion.Str(modulePOLYS.DefaultPolyAltitude));
-            FileSystem.PrintLine(NF, "PolyPenWidth=" + Conversion.Str(modulePOLYS.PolyPenWidth));
+            FileSystem.PrintLine(NF, "DefaultPolyAltitude=" + modulePOLYS.DefaultPolyAltitude.ToString());
+            FileSystem.PrintLine(NF, "PolyPenWidth=" + modulePOLYS.PolyPenWidth.ToString());
             FileSystem.PrintLine(NF, "PolyFILL=" + modulePOLYS.PolyFILL.ToString());
             FileSystem.PrintLine(NF, "DefaultPolyColor=" + ArgbFromColor(modulePOLYS.DefaultPolyColor));
             FileSystem.PrintLine(NF, "PolyColorBorder=" + ArgbFromColor(modulePOLYS.PolyColorBorder));
             FileSystem.PrintLine(NF);
             FileSystem.PrintLine(NF, "[Shapes]");
             FileSystem.PrintLine(NF, "ShapeLineGuid=" + moduleSHAPE.ShapeLineGuid);
-            FileSystem.PrintLine(NF, "ShapeLineAltitude=" + Conversion.Str(moduleSHAPE.ShapeLineAltitude));
-            FileSystem.PrintLine(NF, "ShapeLineWidth=" + Conversion.Str(moduleSHAPE.ShapeLineWidth));
+            FileSystem.PrintLine(NF, "ShapeLineAltitude=" + moduleSHAPE.ShapeLineAltitude.ToString());
+            FileSystem.PrintLine(NF, "ShapeLineWidth=" + moduleSHAPE.ShapeLineWidth.ToString());
             FileSystem.PrintLine(NF, "ShapeLineColor=" + ArgbFromColor(moduleSHAPE.ShapeLineColor));
             FileSystem.PrintLine(NF, "ShapePolyGuid=" + moduleSHAPE.ShapePolyGuid);
-            FileSystem.PrintLine(NF, "ShapePolyAltitude=" + Conversion.Str(moduleSHAPE.ShapePolyAltitude));
+            FileSystem.PrintLine(NF, "ShapePolyAltitude=" + moduleSHAPE.ShapePolyAltitude.ToString());
             FileSystem.PrintLine(NF, "ShapePolyColor=" + ArgbFromColor(moduleSHAPE.ShapePolyColor));
             FileSystem.PrintLine(NF, "AddToCells=" + moduleSHAPE.AddToCells.ToString());
             FileSystem.PrintLine(NF);
@@ -454,7 +452,7 @@ namespace SBuilderX
             FileSystem.PrintLine(NF, "CompressionQuality=" + moduleTILES.CompressionQuality.ToString());
             FileSystem.PrintLine(NF);
             FileSystem.PrintLine(NF, "[BLN]");
-            if (moduleSURFER.BLNSeparator == Conversions.ToString('\t'))
+            if (moduleSURFER.BLNSeparator == "\t")
             {
                 FileSystem.PrintLine(NF, "BLNSeparator=tab");
             }
@@ -469,8 +467,8 @@ namespace SBuilderX
             FileSystem.PrintLine(NF, "BLNLineColor=" + ArgbFromColor(moduleSURFER.BLNLineColor));
             FileSystem.PrintLine(NF, "BLNIsPolyAlt=" + moduleSURFER.BLNIsPolyAlt.ToString());
             FileSystem.PrintLine(NF, "BLNIsLineAlt=" + moduleSURFER.BLNIsLineAlt.ToString());
-            FileSystem.PrintLine(NF, "BLNStartWidth=" + Conversion.Str(moduleSURFER.BLNStartWidth));
-            FileSystem.PrintLine(NF, "BLNEndWidth=" + Conversion.Str(moduleSURFER.BLNEndWidth));
+            FileSystem.PrintLine(NF, "BLNStartWidth=" + moduleSURFER.BLNStartWidth.ToString());
+            FileSystem.PrintLine(NF, "BLNEndWidth=" + moduleSURFER.BLNEndWidth.ToString());
             FileSystem.PrintLine(NF, "BLNLineFromPoly=" + moduleSURFER.BLNLineFromPoly.ToString());
             FileSystem.PrintLine(NF, "BLNExportAltitudes=" + moduleSURFER.BLNExportAltitudes.ToString());
             FileSystem.PrintLine(NF);
@@ -507,7 +505,7 @@ namespace SBuilderX
             string GetStringRet = default;
             string D, B1;
             B1 = B;
-            D = Strings.Trim(ReadIniValue(moduleMAIN.AppIni, A, ref B1));
+            D = ReadIniValue(moduleMAIN.AppIni, A, ref B1).Trim();
             if (string.IsNullOrEmpty(D))
             {
                 WriteIniValue(ref moduleMAIN.AppIni, ref A, ref B, ref C);
@@ -553,8 +551,8 @@ namespace SBuilderX
             var ReadyToRead = default(bool);
             NF = FileSystem.FreeFile();
             ReadIniValueRet = "";
-            KEY = "[" + Strings.LCase(KEY) + "]";
-            Variable = Strings.LCase(Variable);
+            KEY = "[" + KEY.ToLower() + "]";
+            Variable = Variable.ToLower();
             FileSystem.FileOpen(NF, INIpath, OpenMode.Binary);
             FileSystem.FileClose(NF);
             FileSystem.SetAttr(INIpath, FileAttribute.Archive);
@@ -562,16 +560,16 @@ namespace SBuilderX
             while (!FileSystem.EOF(NF))
             {
                 Temp = FileSystem.LineInput(NF);
-                LcaseTemp = Strings.LCase(Temp);
-                if (Strings.InStr(LcaseTemp, "[") != 0)
+                LcaseTemp = Temp.ToLower();
+                if (LcaseTemp.IndexOf("[") != -1)
                     ReadyToRead = false;
                 if ((LcaseTemp ?? "") == (KEY ?? ""))
                     ReadyToRead = true;
-                if (Strings.InStr(LcaseTemp, "[") == 0 & ReadyToRead)
+                if (LcaseTemp.IndexOf("[") == -1 & ReadyToRead)
                 {
-                    if (Strings.InStr(LcaseTemp, Variable + "=") == 1)
+                    if (LcaseTemp.IndexOf(Variable + "=") == 0)
                     {
-                        ReadIniValueRet = Strings.Mid(Temp, 1 + Strings.Len(Variable + "="));
+                        ReadIniValueRet = Temp.Substring((Variable + "=").Length);
                         FileSystem.FileClose(NF);
                         return ReadIniValueRet;
                     }
@@ -595,50 +593,50 @@ namespace SBuilderX
             int VARENDOFLINE;
             int NF;
             NF = FileSystem.FreeFile();
-            ReadKey = Constants.vbCrLf + "[" + Strings.LCase(PutKey) + "]" + '\r';
-            KEYLEN = Strings.Len(ReadKey);
-            ReadVariable = '\n' + Strings.LCase(PutVariable) + "=";
+            ReadKey = Environment.NewLine + "[" + PutKey.ToLower() + "]\r";
+            KEYLEN = ReadKey.Length;
+            ReadVariable = "\n" + PutVariable.ToLower() + "=";
             FileSystem.FileOpen(NF, INIpath, OpenMode.Binary);
             FileSystem.FileClose(NF);
             FileSystem.SetAttr(INIpath, FileAttribute.Archive);
             FileSystem.FileOpen(NF, INIpath, OpenMode.Input);
             Temp = FileSystem.InputString(NF, (int)FileSystem.LOF(NF));
-            Temp = Constants.vbCrLf + Temp + "[]";
+            Temp = Environment.NewLine + Temp + "[]";
             FileSystem.FileClose(NF);
-            LcaseTemp = Strings.LCase(Temp);
-            LOKEY = Strings.InStr(LcaseTemp, ReadKey);
-            if (LOKEY == 0)
+            LcaseTemp = Temp.ToLower();
+            LOKEY = LcaseTemp.IndexOf(ReadKey);
+            if (LOKEY == -1)
                 goto AddKey;
-            HIKEY = Strings.InStr(LOKEY + KEYLEN, LcaseTemp, "[");
-            VAR = Strings.InStr(LOKEY, LcaseTemp, ReadVariable);
+            HIKEY = LcaseTemp.IndexOf("[", LOKEY + KEYLEN);
+            VAR = LcaseTemp.IndexOf(ReadVariable, LOKEY);
             if (VAR > HIKEY | VAR < LOKEY)
                 goto AddVariable;
             goto RenewVariable;
         AddKey:
             ;
-            Temp = Strings.Left(Temp, Strings.Len(Temp) - 2);
-            Temp = Temp + Constants.vbCrLf + Constants.vbCrLf + "[" + PutKey + "]" + Constants.vbCrLf + PutVariable + "=" + PutValue;
+            Temp = Temp.Substring(0, Temp.Length - 2);
+            Temp = Temp + Environment.NewLine + Environment.NewLine + "[" + PutKey + "]" + Environment.NewLine + PutVariable + "=" + PutValue;
             goto TrimFinalString;
         AddVariable:
             ;
-            Temp = Strings.Left(Temp, Strings.Len(Temp) - 2);
-            Temp = Strings.Left(Temp, LOKEY + KEYLEN) + PutVariable + "=" + PutValue + Constants.vbCrLf + Strings.Mid(Temp, LOKEY + KEYLEN + 1);
+            Temp = Temp.Substring(0, Temp.Length - 2);
+            Temp = Temp.Substring(0, LOKEY + KEYLEN + 1) + PutVariable + "=" + PutValue + Environment.NewLine + Temp.Substring(LOKEY + KEYLEN + 1);
             goto TrimFinalString;
         RenewVariable:
             ;
-            Temp = Strings.Left(Temp, Strings.Len(Temp) - 2);
-            VARENDOFLINE = Strings.InStr(VAR, Temp, Conversions.ToString('\r'));
-            Temp = Strings.Left(Temp, VAR) + PutVariable + "=" + PutValue + Strings.Mid(Temp, VARENDOFLINE);
+            Temp = Temp.Substring(0, Temp.Length - 2);
+            VARENDOFLINE = Temp.IndexOf("\r", VAR);
+            Temp = Temp.Substring(0, VAR + 1) + PutVariable + "=" + PutValue + Temp.Substring(VARENDOFLINE);
             goto TrimFinalString;
         TrimFinalString:
             ;
-            Temp = Strings.Mid(Temp, 2);
-            while (Strings.InStr(Temp, Constants.vbCrLf + Constants.vbCrLf + Constants.vbCrLf) != 0)
-                Temp = Strings.Replace(Temp, Constants.vbCrLf + Constants.vbCrLf + Constants.vbCrLf, Constants.vbCrLf + Constants.vbCrLf);
-            while (Operators.CompareString(Strings.Right(Temp, 1), '\r'.ToString(), false) <= 0)
-                Temp = Strings.Left(Temp, Strings.Len(Temp) - 1);
-            while (Operators.CompareString(Strings.Left(Temp, 1), '\r'.ToString(), false) <= 0)
-                Temp = Strings.Mid(Temp, 2);
+            Temp = Temp.Substring(1);
+            while (Temp.IndexOf(Environment.NewLine + Environment.NewLine + Environment.NewLine) != -1)
+                Temp = Temp.Replace(Environment.NewLine + Environment.NewLine + Environment.NewLine, Environment.NewLine + Environment.NewLine);
+            while (string.Compare(Temp.Substring(Temp.Length - 1), "\r") <= 0)
+                Temp = Temp.Substring(0, Temp.Length - 1);
+            while (string.Compare(Temp.Substring(0, 1), "\r") <= 0)
+                Temp = Temp.Substring(1);
             FileSystem.FileOpen(NF, INIpath, OpenMode.Output);
             FileSystem.PrintLine(NF, Temp);
             FileSystem.FileClose(NF);
@@ -649,18 +647,18 @@ namespace SBuilderX
             string TrimFileRet = default;
             int K1, K, K2;
             TrimFileRet = str_file;
-            K = Strings.Len(str_file);
+            K = str_file.Length;
             if (K <= N)
                 return TrimFileRet;
-            K1 = Strings.InStr(4, str_file, @"\");
-            K2 = Strings.InStrRev(str_file, @"\");
+            K1 = str_file.IndexOf(@"\", 3);
+            K2 = str_file.LastIndexOf(@"\");
             if (K1 + K - K2 > N)
             {
-                TrimFileRet = Strings.Mid(str_file, 1, 3) + ".." + Strings.Mid(str_file, K2);
+                TrimFileRet = str_file.Substring(0, 3) + ".." + str_file.Substring(K2);
                 return TrimFileRet;
             }
 
-            TrimFileRet = Strings.Mid(str_file, 1, K1) + ".." + Strings.Mid(str_file, K2);
+            TrimFileRet = str_file.Substring(0, K1 + 1) + ".." + str_file.Substring(K2);
             return TrimFileRet;
         }
 
@@ -707,7 +705,7 @@ namespace SBuilderX
                 {
                     cDir = Path.GetDirectoryName(FileNameToOpenRet);
                 }
-                catch(Exception exc)
+                catch(Exception)
                 {
                 }
                 if (s_dir == "SBX")
@@ -732,7 +730,7 @@ namespace SBuilderX
                 { 
                     WriteSettings();
                 }
-                catch (Exception exc)
+                catch (Exception)
                 {
                 }
             }
@@ -751,7 +749,7 @@ namespace SBuilderX
             {
                 TheFile = Path.GetFileNameWithoutExtension(moduleMAIN.WorkFile);
             }
-            catch (Exception exc)
+            catch (Exception)
             {
             }
             TheDir = "";
@@ -786,7 +784,7 @@ namespace SBuilderX
                 {
                     cDir = Path.GetDirectoryName(FileNameToSaveRet);
                 }
-                catch (Exception exc)
+                catch (Exception)
                 {
                 }
                 if (s_dir == "SBX")
@@ -811,7 +809,7 @@ namespace SBuilderX
                 {
                     WriteSettings();
                 }
-                catch (Exception exc)
+                catch (Exception)
                 {
                 }
             }
@@ -854,7 +852,7 @@ namespace SBuilderX
         {
             if (moduleEDIT.BackUpON == false)
                 return;
-            string ext = Strings.UCase(Path.GetExtension(filename));
+            string ext = Path.GetExtension(filename).ToUpper();
             BackUpFileName = Path.GetDirectoryName(filename);
             BackUpFileName = BackUpFileName + @"\" + Path.GetFileNameWithoutExtension(filename) + "_BAK_";
             if (ext == ".SBP")
@@ -869,7 +867,7 @@ namespace SBuilderX
             int Lixo;
             if (!My.MyProject.Computer.FileSystem.FileExists(filename))
             {
-                Interaction.MsgBox("This file was not found!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("This file was not found!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             };
 
@@ -879,33 +877,33 @@ namespace SBuilderX
                 oFile = new FileStream(filename, FileMode.Open);
                 var BFormatter = new BinaryFormatter() { Binder = new SbuilderBinder() };
                 string Version;
-                Version = Conversions.ToString(BFormatter.Deserialize(oFile));
+                Version = Convert.ToString(BFormatter.Deserialize(oFile));
                 SetFileBackUp(filename);
-                moduleMAIN.ProjectName = Conversions.ToString(BFormatter.Deserialize(oFile));
-                moduleMAIN.BGLProjectFolder = Conversions.ToString(BFormatter.Deserialize(oFile));
+                moduleMAIN.ProjectName = Convert.ToString(BFormatter.Deserialize(oFile));
+                moduleMAIN.BGLProjectFolder = Convert.ToString(BFormatter.Deserialize(oFile));
                 moduleMAIN.CheckFolders();
-                double readZoom = Conversions.ToDouble(BFormatter.Deserialize(oFile));
-                moduleMAIN.Zoom = Conversions.ToInteger(readZoom);
-                moduleMAIN.LatDispCenter = Conversions.ToDouble(BFormatter.Deserialize(oFile));
-                moduleMAIN.LonDispCenter = Conversions.ToDouble(BFormatter.Deserialize(oFile));
-                moduleMAIN.QMIDLevel = Conversions.ToInteger(BFormatter.Deserialize(oFile));
-                moduleMAPS.NoOfMaps = Conversions.ToInteger(BFormatter.Deserialize(oFile));
-                moduleCLASSES.NoOfLands = Conversions.ToInteger(BFormatter.Deserialize(oFile));
-                Lixo = Conversions.ToInteger(BFormatter.Deserialize(oFile));
-                moduleLINES.NoOfLines = Conversions.ToInteger(BFormatter.Deserialize(oFile));
-                modulePOLYS.NoOfPolys = Conversions.ToInteger(BFormatter.Deserialize(oFile));
-                moduleCLASSES.NoOfWaters = Conversions.ToInteger(BFormatter.Deserialize(oFile));
-                moduleOBJECTS.NoOfObjects = Conversions.ToInteger(BFormatter.Deserialize(oFile));
-                moduleEXCLUDES.NoOfExcludes = Conversions.ToInteger(BFormatter.Deserialize(oFile));
-                Lixo = Conversions.ToInteger(BFormatter.Deserialize(oFile));
+                double readZoom = Convert.ToDouble(BFormatter.Deserialize(oFile));
+                moduleMAIN.Zoom = Convert.ToInt32(readZoom);
+                moduleMAIN.LatDispCenter = Convert.ToDouble(BFormatter.Deserialize(oFile));
+                moduleMAIN.LonDispCenter = Convert.ToDouble(BFormatter.Deserialize(oFile));
+                moduleMAIN.QMIDLevel = Convert.ToInt32(BFormatter.Deserialize(oFile));
+                moduleMAPS.NoOfMaps = Convert.ToInt32(BFormatter.Deserialize(oFile));
+                moduleCLASSES.NoOfLands = Convert.ToInt32(BFormatter.Deserialize(oFile));
+                Lixo = Convert.ToInt32(BFormatter.Deserialize(oFile));
+                moduleLINES.NoOfLines = Convert.ToInt32(BFormatter.Deserialize(oFile));
+                modulePOLYS.NoOfPolys = Convert.ToInt32(BFormatter.Deserialize(oFile));
+                moduleCLASSES.NoOfWaters = Convert.ToInt32(BFormatter.Deserialize(oFile));
+                moduleOBJECTS.NoOfObjects = Convert.ToInt32(BFormatter.Deserialize(oFile));
+                moduleEXCLUDES.NoOfExcludes = Convert.ToInt32(BFormatter.Deserialize(oFile));
+                Lixo = Convert.ToInt32(BFormatter.Deserialize(oFile));
                 moduleCLASSES.NoOfLWCIs = 0;
                 if (!(Version == "SB301"))
-                    moduleCLASSES.NoOfLWCIs = Conversions.ToInteger(BFormatter.Deserialize(oFile));
+                    moduleCLASSES.NoOfLWCIs = Convert.ToInt32(BFormatter.Deserialize(oFile));
                 if (moduleMAPS.NoOfMaps > 0)
                     moduleMAPS.Maps = (moduleMAPS.Map[])BFormatter.Deserialize(oFile);
                 if (moduleCLASSES.NoOfLands > 0)
                 {
-                    moduleCLASSES.NoOfLLXYs = Conversions.ToInteger(BFormatter.Deserialize(oFile));
+                    moduleCLASSES.NoOfLLXYs = Convert.ToInt32(BFormatter.Deserialize(oFile));
                     moduleCLASSES.LL_XY = (moduleCLASSES.LWXY[,])BFormatter.Deserialize(oFile);
                     moduleCLASSES.LLands = (byte[,,])BFormatter.Deserialize(oFile);
                 }
@@ -916,7 +914,7 @@ namespace SBuilderX
                     modulePOLYS.Polys = (modulePOLYS.GPoly[])BFormatter.Deserialize(oFile);
                 if (moduleCLASSES.NoOfWaters > 0)
                 {
-                    moduleCLASSES.NoOfWWXYs = Conversions.ToInteger(BFormatter.Deserialize(oFile));
+                    moduleCLASSES.NoOfWWXYs = Convert.ToInt32(BFormatter.Deserialize(oFile));
                     moduleCLASSES.WW_XY = (moduleCLASSES.LWXY[,])BFormatter.Deserialize(oFile);
                     moduleCLASSES.WWaters = (byte[,,])BFormatter.Deserialize(oFile);
                 }
@@ -931,10 +929,10 @@ namespace SBuilderX
                 UpdateFileMenu(filename);
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 oFile.Close();
-                Interaction.MsgBox("This file is not a SBuilderX 3.XX project!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("This file is not a SBuilderX 3.XX project!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 moduleMAPS.NoOfMaps = 0;
                 moduleCLASSES.NoOfLands = 0;
                 moduleLINES.NoOfLines = 0;
@@ -953,7 +951,7 @@ namespace SBuilderX
             BFormatter.Serialize(sFile, "SB314");
             BFormatter.Serialize(sFile, moduleMAIN.ProjectName);
             BFormatter.Serialize(sFile, moduleMAIN.BGLProjectFolder);
-            double savedZoom = Conversions.ToDouble(moduleMAIN.Zoom);
+            double savedZoom = Convert.ToDouble(moduleMAIN.Zoom);
             BFormatter.Serialize(sFile, savedZoom);
             BFormatter.Serialize(sFile, moduleMAIN.LatDispCenter);
             BFormatter.Serialize(sFile, moduleMAIN.LonDispCenter);
@@ -1016,14 +1014,14 @@ namespace SBuilderX
             FileSystem.PrintLine(FN, "NoOfExcludes=" + moduleEXCLUDES.NoOfExcludes);
             FileSystem.PrintLine(FN, "NoOfLWCIs=" + moduleCLASSES.NoOfLWCIs);
             FileSystem.PrintLine(FN, "BGLProjectFolder=" + moduleMAIN.BGLProjectFolder);
-            FileSystem.PrintLine(FN, "LatDispCenter=" + Conversion.Str(moduleMAIN.LatDispCenter));
-            FileSystem.PrintLine(FN, "LonDispCenter=" + Conversion.Str(moduleMAIN.LonDispCenter));
+            FileSystem.PrintLine(FN, "LatDispCenter=" + moduleMAIN.LatDispCenter.ToString());
+            FileSystem.PrintLine(FN, "LonDispCenter=" + moduleMAIN.LonDispCenter.ToString());
             FileSystem.PrintLine(FN, "Zoom=" + moduleMAIN.Zoom);
             var loopTo = moduleMAPS.NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
                 FileSystem.PrintLine(FN);
-                KEY = "[Map." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[Map." + N.ToString().Trim() + "]";
                 FileSystem.PrintLine(FN, KEY);
                 FileSystem.PrintLine(FN, "Name=" + moduleMAPS.Maps[N].Name);
                 FileSystem.PrintLine(FN, "BMPSu=" + moduleMAPS.Maps[N].BMPSu);
@@ -1032,19 +1030,19 @@ namespace SBuilderX
                 FileSystem.PrintLine(FN, "BMPWi=" + moduleMAPS.Maps[N].BMPWi);
                 FileSystem.PrintLine(FN, "BMPHw=" + moduleMAPS.Maps[N].BMPHw);
                 FileSystem.PrintLine(FN, "BMPLm=" + moduleMAPS.Maps[N].BMPLm);
-                FileSystem.PrintLine(FN, "Cols=" + Conversion.Str(moduleMAPS.Maps[N].COLS));
-                FileSystem.PrintLine(FN, "Rows=" + Conversion.Str(moduleMAPS.Maps[N].ROWS));
-                FileSystem.PrintLine(FN, "NLat=" + Conversion.Str(moduleMAPS.Maps[N].NLAT));
-                FileSystem.PrintLine(FN, "SLat=" + Conversion.Str(moduleMAPS.Maps[N].SLAT));
-                FileSystem.PrintLine(FN, "ELon=" + Conversion.Str(moduleMAPS.Maps[N].ELON));
-                FileSystem.PrintLine(FN, "WLon=" + Conversion.Str(moduleMAPS.Maps[N].WLON));
+                FileSystem.PrintLine(FN, "Cols=" + moduleMAPS.Maps[N].COLS.ToString());
+                FileSystem.PrintLine(FN, "Rows=" + moduleMAPS.Maps[N].ROWS.ToString());
+                FileSystem.PrintLine(FN, "NLat=" + moduleMAPS.Maps[N].NLAT.ToString());
+                FileSystem.PrintLine(FN, "SLat=" + moduleMAPS.Maps[N].SLAT.ToString());
+                FileSystem.PrintLine(FN, "ELon=" + moduleMAPS.Maps[N].ELON.ToString());
+                FileSystem.PrintLine(FN, "WLon=" + moduleMAPS.Maps[N].WLON.ToString());
             }
 
             var loopTo1 = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo1; N++)
             {
                 FileSystem.PrintLine(FN);
-                KEY = "[Line." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[Line." + N.ToString().Trim() + "]";
                 FileSystem.PrintLine(FN, KEY);
                 FileSystem.PrintLine(FN, "Name=" + moduleLINES.Lines[N].Name);
                 FileSystem.PrintLine(FN, "Type=" + moduleLINES.Lines[N].Type);
@@ -1054,10 +1052,10 @@ namespace SBuilderX
                 var loopTo2 = moduleLINES.Lines[N].NoOfPoints;
                 for (M = 1; M <= loopTo2; M++)
                 {
-                    FileSystem.PrintLine(FN, "Lat" + Strings.Trim(Conversion.Str(M)) + "=" + Conversion.Str(moduleLINES.Lines[N].GLPoints[M].lat));
-                    FileSystem.PrintLine(FN, "Lon" + Strings.Trim(Conversion.Str(M)) + "=" + Conversion.Str(moduleLINES.Lines[N].GLPoints[M].lon));
-                    FileSystem.PrintLine(FN, "Alt" + M + "=" + Conversion.Str(moduleLINES.Lines[N].GLPoints[M].alt));
-                    FileSystem.PrintLine(FN, "Wid" + M + "=" + Conversion.Str(moduleLINES.Lines[N].GLPoints[M].wid));
+                    FileSystem.PrintLine(FN, "Lat" + M.ToString().Trim() + "=" + moduleLINES.Lines[N].GLPoints[M].lat.ToString());
+                    FileSystem.PrintLine(FN, "Lon" + M.ToString().Trim() + "=" + moduleLINES.Lines[N].GLPoints[M].lon.ToString());
+                    FileSystem.PrintLine(FN, "Alt" + M + "=" + moduleLINES.Lines[N].GLPoints[M].alt.ToString());
+                    FileSystem.PrintLine(FN, "Wid" + M + "=" + moduleLINES.Lines[N].GLPoints[M].wid.ToString());
                 }
             }
 
@@ -1065,7 +1063,7 @@ namespace SBuilderX
             for (N = 1; N <= loopTo3; N++)
             {
                 FileSystem.PrintLine(FN);
-                KEY = "[Poly." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[Poly." + N.ToString().Trim() + "]";
                 FileSystem.PrintLine(FN, KEY);
                 FileSystem.PrintLine(FN, "Name=" + modulePOLYS.Polys[N].Name);
                 FileSystem.PrintLine(FN, "Type=" + modulePOLYS.Polys[N].Type);
@@ -1074,14 +1072,14 @@ namespace SBuilderX
                 FileSystem.PrintLine(FN, "NoOfChilds=" + modulePOLYS.Polys[N].NoOfChilds.ToString());
                 var loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
                 for (M = 1; M <= loopTo4; M++)
-                    FileSystem.PrintLine(FN, "Child" + Strings.Trim(Conversion.Str(M)) + "=" + Conversion.Str(modulePOLYS.Polys[N].Childs[M]));
+                    FileSystem.PrintLine(FN, "Child" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].Childs[M].ToString());
                 FileSystem.PrintLine(FN, "NoOfPoints=" + modulePOLYS.Polys[N].NoOfPoints.ToString());
                 var loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
                 for (M = 1; M <= loopTo5; M++)
                 {
-                    FileSystem.PrintLine(FN, "Lat" + Strings.Trim(Conversion.Str(M)) + "=" + Conversion.Str(modulePOLYS.Polys[N].GPoints[M].lat));
-                    FileSystem.PrintLine(FN, "Lon" + Strings.Trim(Conversion.Str(M)) + "=" + Conversion.Str(modulePOLYS.Polys[N].GPoints[M].lon));
-                    FileSystem.PrintLine(FN, "Alt" + Strings.Trim(Conversion.Str(M)) + "=" + Conversion.Str(modulePOLYS.Polys[N].GPoints[M].alt));
+                    FileSystem.PrintLine(FN, "Lat" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].GPoints[M].lat.ToString());
+                    FileSystem.PrintLine(FN, "Lon" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].GPoints[M].lon.ToString());
+                    FileSystem.PrintLine(FN, "Alt" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].GPoints[M].alt.ToString());
                 }
             }
 
@@ -1099,9 +1097,9 @@ namespace SBuilderX
                             FileSystem.PrintLine(FN);
                             A = "[LC_LOD5." + N + "]";
                             FileSystem.PrintLine(FN, A);
-                            A = "U=" + Strings.Format(J, "00");
+                            A = "U=" + J.ToString("00");
                             FileSystem.PrintLine(FN, A);
-                            A = "V=" + Strings.Format(K, "00");
+                            A = "V=" + K.ToString("00");
                             FileSystem.PrintLine(FN, A);
                             FileSystem.PrintLine(FN, "NoOfLands=" + moduleCLASSES.LL_XY[J, K].NoOfLWs);
                             P = moduleCLASSES.LL_XY[J, K].Pointer;
@@ -1114,7 +1112,7 @@ namespace SBuilderX
                                     {
                                         if (!(moduleCLASSES.LLands[C, R, P] == 254))
                                         {
-                                            FileSystem.PrintLine(FN, "C" + Strings.Format(C, "000") + "R" + Strings.Format(R, "000=") + moduleCLASSES.LC[moduleCLASSES.LLands[C, R, P]].Index);
+                                            FileSystem.PrintLine(FN, "C" + C.ToString("000") + "R" + R.ToString("000=") + moduleCLASSES.LC[moduleCLASSES.LLands[C, R, P]].Index);
                                         }
                                     }
                                 }
@@ -1138,9 +1136,9 @@ namespace SBuilderX
                             FileSystem.PrintLine(FN);
                             A = "[WC_LOD5." + N + "]";
                             FileSystem.PrintLine(FN, A);
-                            A = "U=" + Strings.Format(J, "00");
+                            A = "U=" + J.ToString("00");
                             FileSystem.PrintLine(FN, A);
-                            A = "V=" + Strings.Format(K, "00");
+                            A = "V=" + K.ToString("00");
                             FileSystem.PrintLine(FN, A);
                             FileSystem.PrintLine(FN, "NoOfWaters=" + moduleCLASSES.WW_XY[J, K].NoOfLWs);
                             P = moduleCLASSES.WW_XY[J, K].Pointer;
@@ -1153,7 +1151,7 @@ namespace SBuilderX
                                     {
                                         if (!(moduleCLASSES.WWaters[C, R, P] == 254))
                                         {
-                                            FileSystem.PrintLine(FN, "C" + Strings.Format(C, "000") + "R" + Strings.Format(R, "000=") + moduleCLASSES.WC[moduleCLASSES.WWaters[C, R, P]].Index);
+                                            FileSystem.PrintLine(FN, "C" + C.ToString("000") + "R" + R.ToString("000=") + moduleCLASSES.WC[moduleCLASSES.WWaters[C, R, P]].Index);
                                         }
                                     }
                                 }
@@ -1169,44 +1167,44 @@ namespace SBuilderX
             for (N = 1; N <= loopTo6; N++)
             {
                 FileSystem.PrintLine(FN);
-                KEY = "[Exclude." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[Exclude." + N.ToString().Trim() + "]";
                 FileSystem.PrintLine(FN, KEY);
                 // before November 2017 these were CStr()
-                FileSystem.PrintLine(FN, "Flag=" + Conversion.Str(moduleEXCLUDES.Excludes[N].Flag));
-                FileSystem.PrintLine(FN, "NLat=" + Conversion.Str(moduleEXCLUDES.Excludes[N].NLAT));
-                FileSystem.PrintLine(FN, "SLat=" + Conversion.Str(moduleEXCLUDES.Excludes[N].SLAT));
-                FileSystem.PrintLine(FN, "ELon=" + Conversion.Str(moduleEXCLUDES.Excludes[N].ELON));
-                FileSystem.PrintLine(FN, "WLon=" + Conversion.Str(moduleEXCLUDES.Excludes[N].WLON));
+                FileSystem.PrintLine(FN, "Flag=" + moduleEXCLUDES.Excludes[N].Flag.ToString());
+                FileSystem.PrintLine(FN, "NLat=" + moduleEXCLUDES.Excludes[N].NLAT.ToString());
+                FileSystem.PrintLine(FN, "SLat=" + moduleEXCLUDES.Excludes[N].SLAT.ToString());
+                FileSystem.PrintLine(FN, "ELon=" + moduleEXCLUDES.Excludes[N].ELON.ToString());
+                FileSystem.PrintLine(FN, "WLon=" + moduleEXCLUDES.Excludes[N].WLON.ToString());
             }
 
             var loopTo7 = moduleOBJECTS.NoOfObjects;
             for (N = 1; N <= loopTo7; N++)
             {
                 FileSystem.PrintLine(FN);
-                KEY = "[Object." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[Object." + N.ToString().Trim() + "]";
                 FileSystem.PrintLine(FN, KEY);
                 FileSystem.PrintLine(FN, "Type=" + moduleOBJECTS.Objects[N].Type.ToString());
                 FileSystem.PrintLine(FN, "Description=" + moduleOBJECTS.Objects[N].Description);
-                FileSystem.PrintLine(FN, "Width=" + Conversion.Str(moduleOBJECTS.Objects[N].Width));
-                FileSystem.PrintLine(FN, "Length=" + Conversion.Str(moduleOBJECTS.Objects[N].Length));
-                FileSystem.PrintLine(FN, "Heading=" + Conversion.Str(moduleOBJECTS.Objects[N].Heading));
-                FileSystem.PrintLine(FN, "Pitch=" + Conversion.Str(moduleOBJECTS.Objects[N].Pitch));
-                FileSystem.PrintLine(FN, "Bank=" + Conversion.Str(moduleOBJECTS.Objects[N].Bank));
-                FileSystem.PrintLine(FN, "BiasX=" + Conversion.Str(moduleOBJECTS.Objects[N].BiasX));
-                FileSystem.PrintLine(FN, "BiasY=" + Conversion.Str(moduleOBJECTS.Objects[N].BiasY));
-                FileSystem.PrintLine(FN, "BiasZ=" + Conversion.Str(moduleOBJECTS.Objects[N].BiasZ));
-                FileSystem.PrintLine(FN, "Lat=" + Conversion.Str(moduleOBJECTS.Objects[N].lat));
-                FileSystem.PrintLine(FN, "Lon=" + Conversion.Str(moduleOBJECTS.Objects[N].lon));
-                FileSystem.PrintLine(FN, "Altitude=" + Conversion.Str(moduleOBJECTS.Objects[N].Altitude));
-                FileSystem.PrintLine(FN, "AGL=" + Conversion.Str(moduleOBJECTS.Objects[N].AGL));
-                FileSystem.PrintLine(FN, "Complexity=" + Conversion.Str(moduleOBJECTS.Objects[N].Complexity));
+                FileSystem.PrintLine(FN, "Width=" + moduleOBJECTS.Objects[N].Width.ToString());
+                FileSystem.PrintLine(FN, "Length=" + moduleOBJECTS.Objects[N].Length.ToString());
+                FileSystem.PrintLine(FN, "Heading=" + moduleOBJECTS.Objects[N].Heading.ToString());
+                FileSystem.PrintLine(FN, "Pitch=" + moduleOBJECTS.Objects[N].Pitch.ToString());
+                FileSystem.PrintLine(FN, "Bank=" + moduleOBJECTS.Objects[N].Bank.ToString());
+                FileSystem.PrintLine(FN, "BiasX=" + moduleOBJECTS.Objects[N].BiasX.ToString());
+                FileSystem.PrintLine(FN, "BiasY=" + moduleOBJECTS.Objects[N].BiasY.ToString());
+                FileSystem.PrintLine(FN, "BiasZ=" + moduleOBJECTS.Objects[N].BiasZ.ToString());
+                FileSystem.PrintLine(FN, "Lat=" + moduleOBJECTS.Objects[N].lat.ToString());
+                FileSystem.PrintLine(FN, "Lon=" + moduleOBJECTS.Objects[N].lon.ToString());
+                FileSystem.PrintLine(FN, "Altitude=" + moduleOBJECTS.Objects[N].Altitude.ToString());
+                FileSystem.PrintLine(FN, "AGL=" + moduleOBJECTS.Objects[N].AGL.ToString());
+                FileSystem.PrintLine(FN, "Complexity=" + moduleOBJECTS.Objects[N].Complexity.ToString());
             }
 
             var loopTo8 = moduleCLASSES.NoOfLWCIs;
             for (N = 1; N <= loopTo8; N++)
             {
                 FileSystem.PrintLine(FN);
-                KEY = "[LWCI." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[LWCI." + N.ToString().Trim() + "]";
                 FileSystem.PrintLine(FN, KEY);
                 FileSystem.PrintLine(FN, "Text=" + moduleCLASSES.LWCIs[N].Text);
                 FileSystem.PrintLine(FN, "Color=" + ArgbFromColor(moduleCLASSES.LWCIs[N].Color));
@@ -1226,7 +1224,7 @@ namespace SBuilderX
             string A, Version;
             string argVariable = "CopyRight";
             KEY = ReadIniValue(Filename, "Main", ref argVariable);
-            KEY = Strings.Left(KEY, 11);
+            KEY = KEY.Substring(0, 11);
             if (KEY == "PTSIM")
             {
                 ImportSBX205(Filename, "");
@@ -1265,7 +1263,7 @@ namespace SBuilderX
             }
             else
             {
-                Interaction.MsgBox("Not a Valid SBX SBuilderX File!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Not a Valid SBX SBuilderX File!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -1310,7 +1308,7 @@ namespace SBuilderX
             var loopTo = moduleMAPS.NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
-                KEY = "Map." + Strings.Trim(Conversion.Str(N));
+                KEY = "Map." + N.ToString().Trim();
                 string argVariable3 = "Name";
                 moduleMAPS.Maps[N].Name = ReadIniValue(Filename, KEY, ref argVariable3);
                 string argVariable4 = "BMPSu";
@@ -1337,21 +1335,21 @@ namespace SBuilderX
             var loopTo1 = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo1; N++)
             {
-                KEY = "[Line." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[Line." + N.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                moduleLINES.Lines[N].Name = Strings.Mid(FileSystem.LineInput(5), 6);
-                moduleLINES.Lines[N].Type = Strings.Mid(FileSystem.LineInput(5), 6);
-                moduleLINES.Lines[N].Guid = Strings.Mid(FileSystem.LineInput(5), 6);
+                moduleLINES.Lines[N].Name = FileSystem.LineInput(5).Substring(5);
+                moduleLINES.Lines[N].Type = FileSystem.LineInput(5).Substring(5);
+                moduleLINES.Lines[N].Guid = FileSystem.LineInput(5).Substring(5);
                 if (Version == "SB301")
                 {
-                    moduleLINES.Lines[N].Color = Color.FromArgb(Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 7)));
+                    moduleLINES.Lines[N].Color = Color.FromArgb(Convert.ToInt32(FileSystem.LineInput(5).Substring(6)));
                 }
                 else
                 {
-                    moduleLINES.Lines[N].Color = ColorFromArgb(Strings.Mid(FileSystem.LineInput(5), 7));
+                    moduleLINES.Lines[N].Color = ColorFromArgb(FileSystem.LineInput(5).Substring(6));
                 }
 
-                moduleLINES.Lines[N].NoOfPoints = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 12));
+                moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                 if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
                     moduleLINES.Lines[N].Name = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_Imported_Line";
                 moduleLINES.Lines[N].GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[N].NoOfPoints + 1];
@@ -1375,20 +1373,20 @@ namespace SBuilderX
                         J = 11;
                     if (M > 999999)
                         J = 12;
-                    X = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                     moduleLINES.Lines[N].GLPoints[M].lat = X;
                     if (X < SL)
                         SL = X;
                     if (X > NL)
                         NL = X;
-                    X = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                     moduleLINES.Lines[N].GLPoints[M].lon = X;
                     if (X > EL)
                         EL = X;
                     if (X < WL)
                         WL = X;
-                    moduleLINES.Lines[N].GLPoints[M].alt = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
-                    moduleLINES.Lines[N].GLPoints[M].wid = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    moduleLINES.Lines[N].GLPoints[M].alt = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
+                    moduleLINES.Lines[N].GLPoints[M].wid = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                 }
 
                 moduleLINES.Lines[N].ELON = EL;
@@ -1400,21 +1398,21 @@ namespace SBuilderX
             var loopTo3 = modulePOLYS.NoOfPolys;
             for (N = 1; N <= loopTo3; N++)
             {
-                KEY = "[Poly." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[Poly." + N.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                modulePOLYS.Polys[N].Name = Strings.Mid(FileSystem.LineInput(5), 6);
-                modulePOLYS.Polys[N].Type = Strings.Mid(FileSystem.LineInput(5), 6);
-                modulePOLYS.Polys[N].Guid = Strings.Mid(FileSystem.LineInput(5), 6);
+                modulePOLYS.Polys[N].Name = FileSystem.LineInput(5).Substring(5);
+                modulePOLYS.Polys[N].Type = FileSystem.LineInput(5).Substring(5);
+                modulePOLYS.Polys[N].Guid = FileSystem.LineInput(5).Substring(5);
                 if (Version == "SB301")
                 {
-                    modulePOLYS.Polys[N].Color = Color.FromArgb(Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 7)));
+                    modulePOLYS.Polys[N].Color = Color.FromArgb(Convert.ToInt32(FileSystem.LineInput(5).Substring(6)));
                 }
                 else
                 {
-                    modulePOLYS.Polys[N].Color = ColorFromArgb(Strings.Mid(FileSystem.LineInput(5), 7));
+                    modulePOLYS.Polys[N].Color = ColorFromArgb(FileSystem.LineInput(5).Substring(6));
                 }
 
-                J = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 12));
+                J = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                 modulePOLYS.Polys[N].NoOfChilds = J;
                 if (J > 0)
                 {
@@ -1441,10 +1439,10 @@ namespace SBuilderX
                         J = 13;
                     if (M > 999999)
                         J = 14;
-                    modulePOLYS.Polys[N].Childs[M] = (int)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    modulePOLYS.Polys[N].Childs[M] = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                 }
 
-                modulePOLYS.Polys[N].NoOfPoints = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 12));
+                modulePOLYS.Polys[N].NoOfPoints = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                 if (string.IsNullOrEmpty(modulePOLYS.Polys[N].Name))
                     modulePOLYS.Polys[N].Name = modulePOLYS.Polys[N].NoOfPoints.ToString() + "_Pts_Imported_Polygon";
                 modulePOLYS.Polys[N].GPoints = new modulePOINTS.GPoint[modulePOLYS.Polys[N].NoOfPoints + 1];
@@ -1468,19 +1466,19 @@ namespace SBuilderX
                         J = 11;
                     if (M > 999999)
                         J = 12;
-                    X = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                     modulePOLYS.Polys[N].GPoints[M].lat = X;
                     if (X < SL)
                         SL = X;
                     if (X > NL)
                         NL = X;
-                    X = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                     modulePOLYS.Polys[N].GPoints[M].lon = X;
                     if (X > EL)
                         EL = X;
                     if (X < WL)
                         WL = X;
-                    modulePOLYS.Polys[N].GPoints[M].alt = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    modulePOLYS.Polys[N].GPoints[M].alt = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                 }
 
                 modulePOLYS.Polys[N].ELON = EL;
@@ -1498,18 +1496,18 @@ namespace SBuilderX
                 {
                     KEY = "[LC_LOD5." + P + "]";
                     GoToThisKey(KEY);
-                    J = (int)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 3));
-                    K = (int)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 3));
-                    L = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 11));
+                    J = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(2));
+                    K = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(2));
+                    L = Convert.ToInt32(FileSystem.LineInput(5).Substring(10));
                     moduleCLASSES.LL_XY[J, K].Pointer = P - 1;
                     moduleCLASSES.LL_XY[J, K].NoOfLWs = L;
                     var loopTo7 = L;
                     for (M = 1; M <= loopTo7; M++)
                     {
                         A = FileSystem.LineInput(5);
-                        C = (int)Conversion.Val(Strings.Mid(A, 2, 3));
-                        R = (int)Conversion.Val(Strings.Mid(A, 6, 3));
-                        I = (int)Conversion.Val(Strings.Mid(A, 10));
+                        C = (int)Convert.ToDouble(A.Substring(1, 3));
+                        R = (int)Convert.ToDouble(A.Substring(5, 3));
+                        I = (int)Convert.ToDouble(A.Substring(9));
                         moduleCLASSES.LLands[C, R, P - 1] = moduleCLASSES.ILC[I];
                         N = N + 1;
                     }
@@ -1527,18 +1525,18 @@ namespace SBuilderX
                 {
                     KEY = "[WC_LOD5." + P + "]";
                     GoToThisKey(KEY);
-                    J = (int)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 3));
-                    K = (int)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 3));
-                    L = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 12));
+                    J = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(2));
+                    K = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(2));
+                    L = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                     moduleCLASSES.WW_XY[J, K].Pointer = P - 1;
                     moduleCLASSES.WW_XY[J, K].NoOfLWs = L;
                     var loopTo9 = L;
                     for (M = 1; M <= loopTo9; M++)
                     {
                         A = FileSystem.LineInput(5);
-                        C = (int)Conversion.Val(Strings.Mid(A, 2, 3));
-                        R = (int)Conversion.Val(Strings.Mid(A, 6, 3));
-                        I = (int)Conversion.Val(Strings.Mid(A, 10));
+                        C = (int)Convert.ToDouble(A.Substring(1, 3));
+                        R = (int)Convert.ToDouble(A.Substring(5, 3));
+                        I = (int)Convert.ToDouble(A.Substring(9));
                         moduleCLASSES.WWaters[C, R, P - 1] = moduleCLASSES.IWC[I];
                         N = N + 1;
                     }
@@ -1550,45 +1548,45 @@ namespace SBuilderX
             var loopTo10 = moduleEXCLUDES.NoOfExcludes;
             for (N = 1; N <= loopTo10; N++)
             {
-                KEY = "[Exclude." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[Exclude." + N.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                moduleEXCLUDES.Excludes[N].Flag = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleEXCLUDES.Excludes[N].NLAT = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleEXCLUDES.Excludes[N].SLAT = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleEXCLUDES.Excludes[N].ELON = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleEXCLUDES.Excludes[N].WLON = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
+                moduleEXCLUDES.Excludes[N].Flag = Convert.ToInt32(FileSystem.LineInput(5).Substring(5));
+                moduleEXCLUDES.Excludes[N].NLAT = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
+                moduleEXCLUDES.Excludes[N].SLAT = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
+                moduleEXCLUDES.Excludes[N].ELON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
+                moduleEXCLUDES.Excludes[N].WLON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
             }
 
             var loopTo11 = moduleOBJECTS.NoOfObjects;
             for (N = 1; N <= loopTo11; N++)
             {
-                KEY = "[Object." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[Object." + N.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                moduleOBJECTS.Objects[N].Type = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleOBJECTS.Objects[N].Description = Strings.Mid(FileSystem.LineInput(5), 13);
-                moduleOBJECTS.Objects[N].Width = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].Length = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 8));
-                moduleOBJECTS.Objects[N].Heading = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 9));
-                moduleOBJECTS.Objects[N].Pitch = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].Bank = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleOBJECTS.Objects[N].BiasX = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].BiasY = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].BiasZ = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].lat = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 5));
-                moduleOBJECTS.Objects[N].lon = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 5));
-                moduleOBJECTS.Objects[N].Altitude = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 10));
-                moduleOBJECTS.Objects[N].AGL = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 5));
-                moduleOBJECTS.Objects[N].Complexity = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 12));
+                moduleOBJECTS.Objects[N].Type = Convert.ToInt32(FileSystem.LineInput(5).Substring(5));
+                moduleOBJECTS.Objects[N].Description = FileSystem.LineInput(5).Substring(12);
+                moduleOBJECTS.Objects[N].Width = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].Length = Convert.ToSingle(FileSystem.LineInput(5).Substring(7));
+                moduleOBJECTS.Objects[N].Heading = Convert.ToSingle(FileSystem.LineInput(5).Substring(8));
+                moduleOBJECTS.Objects[N].Pitch = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].Bank = Convert.ToSingle(FileSystem.LineInput(5).Substring(5));
+                moduleOBJECTS.Objects[N].BiasX = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].BiasY = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].BiasZ = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].lat = Convert.ToDouble(FileSystem.LineInput(5).Substring(4));
+                moduleOBJECTS.Objects[N].lon = Convert.ToDouble(FileSystem.LineInput(5).Substring(4));
+                moduleOBJECTS.Objects[N].Altitude = Convert.ToSingle(FileSystem.LineInput(5).Substring(9));
+                moduleOBJECTS.Objects[N].AGL = Convert.ToInt32(FileSystem.LineInput(5).Substring(4));
+                moduleOBJECTS.Objects[N].Complexity = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                 moduleOBJECTS.AddLatLonToObjects(N);
             }
 
             var loopTo12 = moduleCLASSES.NoOfLWCIs;
             for (N = 1; N <= loopTo12; N++)
             {
-                KEY = "[LWCI." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[LWCI." + N.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                moduleCLASSES.LWCIs[N].Text = Strings.Mid(FileSystem.LineInput(5), 6);
-                moduleCLASSES.LWCIs[N].Color = ColorFromArgb(Strings.Mid(FileSystem.LineInput(5), 7));
+                moduleCLASSES.LWCIs[N].Text = FileSystem.LineInput(5).Substring(5);
+                moduleCLASSES.LWCIs[N].Color = ColorFromArgb(FileSystem.LineInput(5).Substring(6));
             }
 
             SetLWCIs();
@@ -1641,7 +1639,7 @@ namespace SBuilderX
             var loopTo = moduleMAPS.NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
-                KEY = "Map." + Strings.Trim(Conversion.Str(N));
+                KEY = "Map." + N.ToString().Trim();
                 string argVariable2 = "Name";
                 moduleMAPS.Maps[N].Name = ReadIniValue(Filename, KEY, ref argVariable2);
                 string argVariable3 = "BMPSu";
@@ -1668,19 +1666,19 @@ namespace SBuilderX
             var loopTo1 = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo1; N++)
             {
-                KEY = "[Line." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[Line." + N.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                moduleLINES.Lines[N].Name = Strings.Mid(FileSystem.LineInput(5), 6);
-                KEY = Strings.Mid(FileSystem.LineInput(5), 6);
+                moduleLINES.Lines[N].Name = FileSystem.LineInput(5).Substring(5);
+                KEY = FileSystem.LineInput(5).Substring(5);
                 // Lines(N).Type = Mid(LineInput(5), 6)
                 // Lines(N).Guid = Mid(LineInput(5), 6)
                 ConvertOldLineType(N, KEY);
-                C = Color.FromArgb(Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 7)));
+                C = Color.FromArgb(Convert.ToInt32(FileSystem.LineInput(5).Substring(6)));
                 R = C.R;
                 G = C.G;
                 B = C.B;
                 moduleLINES.Lines[N].Color = Color.FromArgb(B, G, R);
-                moduleLINES.Lines[N].NoOfPoints = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 12));
+                moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                 if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
                     moduleLINES.Lines[N].Name = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_Imported_Line";
                 moduleLINES.Lines[N].GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[N].NoOfPoints + 1];
@@ -1704,20 +1702,20 @@ namespace SBuilderX
                         J = 11;
                     if (M > 999999)
                         J = 12;
-                    X = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));   // latitude
+                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));   // latitude
                     moduleLINES.Lines[N].GLPoints[M].lat = X;
                     if (X < SL)
                         SL = X;
                     if (X > NL)
                         NL = X;
-                    X = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));  // longitude
+                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));  // longitude
                     moduleLINES.Lines[N].GLPoints[M].lon = X;
                     if (X > EL)
                         EL = X;
                     if (X < WL)
                         WL = X;
                     moduleLINES.Lines[N].GLPoints[M].alt = 0d;
-                    moduleLINES.Lines[N].GLPoints[M].wid = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    moduleLINES.Lines[N].GLPoints[M].wid = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                 }
 
                 moduleLINES.Lines[N].ELON = EL;
@@ -1729,21 +1727,21 @@ namespace SBuilderX
             var loopTo3 = modulePOLYS.NoOfPolys;
             for (N = 1; N <= loopTo3; N++)
             {
-                KEY = "[Poly." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[Poly." + N.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                modulePOLYS.Polys[N].Name = Strings.Mid(FileSystem.LineInput(5), 6);
-                KEY = Strings.Mid(FileSystem.LineInput(5), 6);
+                modulePOLYS.Polys[N].Name = FileSystem.LineInput(5).Substring(5);
+                KEY = FileSystem.LineInput(5).Substring(5);
                 // Polys(N).Type = Mid(LineInput(5), 6)
                 // Polys(N).Guid = Mid(LineInput(5), 6)
                 ConvertOldPolyType(N, KEY);
-                C = Color.FromArgb(Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 7)));
+                C = Color.FromArgb(Convert.ToInt32(FileSystem.LineInput(5).Substring(6)));
                 R = C.R;
                 G = C.G;
                 B = C.B;
                 modulePOLYS.Polys[N].Color = Color.FromArgb(B, G, R);
                 modulePOLYS.Polys[N].NoOfChilds = 0;
                 // ReDim Polys(N).Childs(Polys(N).NoOfChilds)
-                modulePOLYS.Polys[N].NoOfPoints = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 12));
+                modulePOLYS.Polys[N].NoOfPoints = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                 if (string.IsNullOrEmpty(modulePOLYS.Polys[N].Name))
                     modulePOLYS.Polys[N].Name = modulePOLYS.Polys[N].NoOfPoints.ToString() + "_Pts_Imported_Polygon";
                 modulePOLYS.Polys[N].GPoints = new modulePOINTS.GPoint[modulePOLYS.Polys[N].NoOfPoints + 1];
@@ -1767,13 +1765,13 @@ namespace SBuilderX
                         J = 11;
                     if (M > 999999)
                         J = 12;
-                    X = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                     modulePOLYS.Polys[N].GPoints[M].lat = X;
                     if (X < SL)
                         SL = X;
                     if (X > NL)
                         NL = X;
-                    X = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                     modulePOLYS.Polys[N].GPoints[M].lon = X;
                     if (X > EL)
                         EL = X;
@@ -1782,7 +1780,7 @@ namespace SBuilderX
                     // *******!!!!
                     if (SB205)
                     {
-                        modulePOLYS.Polys[N].GPoints[M].alt = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                        modulePOLYS.Polys[N].GPoints[M].alt = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                     }
                     else
                     {
@@ -1799,35 +1797,35 @@ namespace SBuilderX
             var loopTo5 = moduleEXCLUDES.NoOfExcludes;
             for (N = 1; N <= loopTo5; N++)
             {
-                KEY = "[Exclude." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[Exclude." + N.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                moduleEXCLUDES.Excludes[N].Flag = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleEXCLUDES.Excludes[N].NLAT = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleEXCLUDES.Excludes[N].SLAT = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleEXCLUDES.Excludes[N].ELON = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleEXCLUDES.Excludes[N].WLON = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
+                moduleEXCLUDES.Excludes[N].Flag = Convert.ToInt32(FileSystem.LineInput(5).Substring(5));
+                moduleEXCLUDES.Excludes[N].NLAT = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
+                moduleEXCLUDES.Excludes[N].SLAT = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
+                moduleEXCLUDES.Excludes[N].ELON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
+                moduleEXCLUDES.Excludes[N].WLON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
             }
 
             var loopTo6 = moduleOBJECTS.NoOfObjects;
             for (N = 1; N <= loopTo6; N++)
             {
-                KEY = "[Object." + Strings.Trim(Conversion.Str(N)) + "]";
+                KEY = "[Object." + N.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                moduleOBJECTS.Objects[N].Type = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleOBJECTS.Objects[N].Description = Strings.Mid(FileSystem.LineInput(5), 13);
-                moduleOBJECTS.Objects[N].Width = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].Length = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 8));
-                moduleOBJECTS.Objects[N].Heading = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 9));
-                moduleOBJECTS.Objects[N].Pitch = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].Bank = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleOBJECTS.Objects[N].BiasX = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].BiasY = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].BiasZ = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].lat = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 5));
-                moduleOBJECTS.Objects[N].lon = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 5));
-                moduleOBJECTS.Objects[N].Altitude = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 10));
-                moduleOBJECTS.Objects[N].AGL = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 5));
-                moduleOBJECTS.Objects[N].Complexity = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 12));
+                moduleOBJECTS.Objects[N].Type = Convert.ToInt32(FileSystem.LineInput(5).Substring(5));
+                moduleOBJECTS.Objects[N].Description = FileSystem.LineInput(5).Substring(12);
+                moduleOBJECTS.Objects[N].Width = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].Length = Convert.ToSingle(FileSystem.LineInput(5).Substring(7));
+                moduleOBJECTS.Objects[N].Heading = Convert.ToSingle(FileSystem.LineInput(5).Substring(8));
+                moduleOBJECTS.Objects[N].Pitch = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].Bank = Convert.ToSingle(FileSystem.LineInput(5).Substring(5));
+                moduleOBJECTS.Objects[N].BiasX = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].BiasY = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].BiasZ = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].lat = Convert.ToDouble(FileSystem.LineInput(5).Substring(4));
+                moduleOBJECTS.Objects[N].lon = Convert.ToDouble(FileSystem.LineInput(5).Substring(4));
+                moduleOBJECTS.Objects[N].Altitude = Convert.ToSingle(FileSystem.LineInput(5).Substring(9));
+                moduleOBJECTS.Objects[N].AGL = Convert.ToInt32(FileSystem.LineInput(5).Substring(4));
+                moduleOBJECTS.Objects[N].Complexity = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                 moduleOBJECTS.AddLatLonToObjects(N);
             }
 
@@ -1847,10 +1845,10 @@ namespace SBuilderX
             double EL, SL, NL, WL, X;
             string argVariable = "CopyRight";
             KEY = ReadIniValue(Filename, "Main", ref argVariable);
-            KEY = Strings.Left(KEY, 11);
+            KEY = KEY.Substring(0, 11);
             if (KEY == "PTSIM SB205" | KEY == "PTSIM")
             {
-                Interaction.MsgBox("You can not Append this file! Try to Import it!", MsgBoxStyle.Information);
+                MessageBox.Show("You can not Append this file! Try to Import it!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -1881,7 +1879,7 @@ namespace SBuilderX
             }
             else
             {
-                Interaction.MsgBox("Not a Valid SBX SBuilderX File!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Not a Valid SBX SBuilderX File!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -1919,7 +1917,7 @@ namespace SBuilderX
             for (K = 1; K <= loopTo; K++)
             {
                 N = moduleMAPS.NoOfMaps + K;
-                KEY = "Map." + Strings.Trim(Conversion.Str(K));
+                KEY = "Map." + K.ToString().Trim();
                 string argVariable1 = "Name";
                 moduleMAPS.Maps[N].Name = ReadIniValue(Filename, KEY, ref argVariable1);
                 string argVariable2 = "BMPSu";
@@ -1947,21 +1945,21 @@ namespace SBuilderX
             for (K = 1; K <= loopTo1; K++)
             {
                 N = K + moduleLINES.NoOfLines;
-                KEY = "[Line." + Strings.Trim(Conversion.Str(K)) + "]";
+                KEY = "[Line." + K.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                moduleLINES.Lines[N].Name = Strings.Mid(FileSystem.LineInput(5), 6);
-                moduleLINES.Lines[N].Type = Strings.Mid(FileSystem.LineInput(5), 6);
-                moduleLINES.Lines[N].Guid = Strings.Mid(FileSystem.LineInput(5), 6);
+                moduleLINES.Lines[N].Name = FileSystem.LineInput(5).Substring(5);
+                moduleLINES.Lines[N].Type = FileSystem.LineInput(5).Substring(5);
+                moduleLINES.Lines[N].Guid = FileSystem.LineInput(5).Substring(5);
                 if (Version == "SB301")
                 {
-                    moduleLINES.Lines[N].Color = Color.FromArgb(Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 7)));
+                    moduleLINES.Lines[N].Color = Color.FromArgb(Convert.ToInt32(FileSystem.LineInput(5).Substring(6)));
                 }
                 else
                 {
-                    moduleLINES.Lines[N].Color = ColorFromArgb(Strings.Mid(FileSystem.LineInput(5), 7));
+                    moduleLINES.Lines[N].Color = ColorFromArgb(FileSystem.LineInput(5).Substring(6));
                 }
 
-                moduleLINES.Lines[N].NoOfPoints = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 12));
+                moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                 if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
                     moduleLINES.Lines[N].Name = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_Imported_Line";
                 moduleLINES.Lines[N].GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[N].NoOfPoints + 1];
@@ -1985,20 +1983,20 @@ namespace SBuilderX
                         J = 11;
                     if (M > 999999)
                         J = 12;
-                    X = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                     moduleLINES.Lines[N].GLPoints[M].lat = X;
                     if (X < SL)
                         SL = X;
                     if (X > NL)
                         NL = X;
-                    X = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                     moduleLINES.Lines[N].GLPoints[M].lon = X;
                     if (X > EL)
                         EL = X;
                     if (X < WL)
                         WL = X;
-                    moduleLINES.Lines[N].GLPoints[M].alt = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
-                    moduleLINES.Lines[N].GLPoints[M].wid = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    moduleLINES.Lines[N].GLPoints[M].alt = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
+                    moduleLINES.Lines[N].GLPoints[M].wid = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                 }
 
                 moduleLINES.Lines[N].ELON = EL;
@@ -2011,21 +2009,21 @@ namespace SBuilderX
             for (K = 1; K <= loopTo3; K++)
             {
                 N = K + modulePOLYS.NoOfPolys;
-                KEY = "[Poly." + Strings.Trim(Conversion.Str(K)) + "]";
+                KEY = "[Poly." + K.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                modulePOLYS.Polys[N].Name = Strings.Mid(FileSystem.LineInput(5), 6);
-                modulePOLYS.Polys[N].Type = Strings.Mid(FileSystem.LineInput(5), 6);
-                modulePOLYS.Polys[N].Guid = Strings.Mid(FileSystem.LineInput(5), 6);
+                modulePOLYS.Polys[N].Name = FileSystem.LineInput(5).Substring(5);
+                modulePOLYS.Polys[N].Type = FileSystem.LineInput(5).Substring(5);
+                modulePOLYS.Polys[N].Guid = FileSystem.LineInput(5).Substring(5);
                 if (Version == "SB301")
                 {
-                    modulePOLYS.Polys[N].Color = Color.FromArgb(Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 7)));
+                    modulePOLYS.Polys[N].Color = Color.FromArgb(Convert.ToInt32(FileSystem.LineInput(5).Substring(6)));
                 }
                 else
                 {
-                    modulePOLYS.Polys[N].Color = ColorFromArgb(Strings.Mid(FileSystem.LineInput(5), 7));
+                    modulePOLYS.Polys[N].Color = ColorFromArgb(FileSystem.LineInput(5).Substring(6));
                 }
 
-                L = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 12));
+                L = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                 if (L > 0)
                 {
                     modulePOLYS.Polys[N].NoOfChilds = L;
@@ -2058,11 +2056,11 @@ namespace SBuilderX
                         J = 13;
                     if (M > 999999)
                         J = 14;
-                    L = (int)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    L = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                     modulePOLYS.Polys[N].Childs[M] = L + modulePOLYS.NoOfPolys;
                 }
 
-                modulePOLYS.Polys[N].NoOfPoints = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 12));
+                modulePOLYS.Polys[N].NoOfPoints = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                 if (string.IsNullOrEmpty(modulePOLYS.Polys[N].Name))
                     modulePOLYS.Polys[N].Name = modulePOLYS.Polys[N].NoOfPoints.ToString() + "_Pts_Imported_Polygon";
                 modulePOLYS.Polys[N].GPoints = new modulePOINTS.GPoint[modulePOLYS.Polys[N].NoOfPoints + 1];
@@ -2086,19 +2084,19 @@ namespace SBuilderX
                         J = 11;
                     if (M > 999999)
                         J = 12;
-                    X = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                     modulePOLYS.Polys[N].GPoints[M].lat = X;
                     if (X < SL)
                         SL = X;
                     if (X > NL)
                         NL = X;
-                    X = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                     modulePOLYS.Polys[N].GPoints[M].lon = X;
                     if (X > EL)
                         EL = X;
                     if (X < WL)
                         WL = X;
-                    modulePOLYS.Polys[N].GPoints[M].alt = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), J));
+                    modulePOLYS.Polys[N].GPoints[M].alt = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
                 }
 
                 modulePOLYS.Polys[N].ELON = EL;
@@ -2113,7 +2111,7 @@ namespace SBuilderX
             bool Flag;
             int NN, LL;
             NN = moduleCLASSES.NoOfLands;
-            if (Conversions.ToBoolean(NoOfLLXYsX))
+            if (Convert.ToBoolean(NoOfLLXYsX))
             {
                 D = 0;
                 var oldLLands = moduleCLASSES.LLands;
@@ -2126,9 +2124,9 @@ namespace SBuilderX
                 {
                     KEY = "[LC_LOD5." + P + "]";
                     GoToThisKey(KEY);
-                    J = (int)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 3));
-                    K = (int)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 3));
-                    L = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 11));
+                    J = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(2));
+                    K = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(2));
+                    L = Convert.ToInt32(FileSystem.LineInput(5).Substring(10));
                     N = moduleCLASSES.LL_XY[J, K].NoOfLWs;
                     PP = moduleCLASSES.NoOfLLXYs + P - 1;
                     Flag = false;
@@ -2148,9 +2146,9 @@ namespace SBuilderX
                     for (M = 1; M <= loopTo7; M++)
                     {
                         A = FileSystem.LineInput(5);
-                        C = (int)Conversion.Val(Strings.Mid(A, 2, 3));
-                        R = (int)Conversion.Val(Strings.Mid(A, 6, 3));
-                        I = (int)Conversion.Val(Strings.Mid(A, 10));
+                        C = (int)Convert.ToSingle(A.Substring(1, 3));
+                        R = (int)Convert.ToSingle(A.Substring(5, 3));
+                        I = (int)Convert.ToSingle(A.Substring(9));
                         if (Flag)
                         {
                             if (moduleCLASSES.LLands[C, R, PP] > 0)
@@ -2180,7 +2178,7 @@ namespace SBuilderX
             }
 
             NN = moduleCLASSES.NoOfWaters;
-            if (Conversions.ToBoolean(NoOfWWXYsX))
+            if (Convert.ToBoolean(NoOfWWXYsX))
             {
                 D = 0;
                 var oldWWaters = moduleCLASSES.WWaters;
@@ -2193,9 +2191,9 @@ namespace SBuilderX
                 {
                     KEY = "[WC_LOD5." + P + "]";
                     GoToThisKey(KEY);
-                    J = (int)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 3));
-                    K = (int)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 3));
-                    L = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 12));
+                    J = (int)Convert.ToSingle(FileSystem.LineInput(5).Substring(2));
+                    K = (int)Convert.ToSingle(FileSystem.LineInput(5).Substring(2));
+                    L = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                     N = moduleCLASSES.WW_XY[J, K].NoOfLWs;
                     PP = moduleCLASSES.NoOfWWXYs + P - 1;
                     Flag = false;
@@ -2215,9 +2213,9 @@ namespace SBuilderX
                     for (M = 1; M <= loopTo9; M++)
                     {
                         A = FileSystem.LineInput(5);
-                        C = (int)Conversion.Val(Strings.Mid(A, 2, 3));
-                        R = (int)Conversion.Val(Strings.Mid(A, 6, 3));
-                        I = (int)Conversion.Val(Strings.Mid(A, 10));
+                        C = (int)Convert.ToSingle(A.Substring(1, 3));
+                        R = (int)Convert.ToSingle(A.Substring(5, 3));
+                        I = (int)Convert.ToSingle(A.Substring(9));
                         if (Flag)
                         {
                             if (moduleCLASSES.WWaters[C, R, PP] > 0)
@@ -2250,36 +2248,36 @@ namespace SBuilderX
             for (K = 1; K <= loopTo10; K++)
             {
                 N = K + moduleEXCLUDES.NoOfExcludes;
-                KEY = "[Exclude." + Strings.Trim(Conversion.Str(K)) + "]";
+                KEY = "[Exclude." + K.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                moduleEXCLUDES.Excludes[N].Flag = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleEXCLUDES.Excludes[N].NLAT = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleEXCLUDES.Excludes[N].SLAT = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleEXCLUDES.Excludes[N].ELON = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleEXCLUDES.Excludes[N].WLON = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
+                moduleEXCLUDES.Excludes[N].Flag = Convert.ToInt32(FileSystem.LineInput(5).Substring(5));
+                moduleEXCLUDES.Excludes[N].NLAT = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
+                moduleEXCLUDES.Excludes[N].SLAT = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
+                moduleEXCLUDES.Excludes[N].ELON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
+                moduleEXCLUDES.Excludes[N].WLON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
             }
 
             var loopTo11 = NoOfObjectsX;
             for (K = 1; K <= loopTo11; K++)
             {
                 N = K + moduleOBJECTS.NoOfObjects;
-                KEY = "[Object." + Strings.Trim(Conversion.Str(K)) + "]";
+                KEY = "[Object." + K.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                moduleOBJECTS.Objects[N].Type = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleOBJECTS.Objects[N].Description = Strings.Mid(FileSystem.LineInput(5), 13);
-                moduleOBJECTS.Objects[N].Width = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].Length = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 8));
-                moduleOBJECTS.Objects[N].Heading = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 9));
-                moduleOBJECTS.Objects[N].Pitch = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].Bank = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 6));
-                moduleOBJECTS.Objects[N].BiasX = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].BiasY = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].BiasZ = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 7));
-                moduleOBJECTS.Objects[N].lat = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 5));
-                moduleOBJECTS.Objects[N].lon = Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 5));
-                moduleOBJECTS.Objects[N].Altitude = (float)Conversion.Val(Strings.Mid(FileSystem.LineInput(5), 10));
-                moduleOBJECTS.Objects[N].AGL = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 5));
-                moduleOBJECTS.Objects[N].Complexity = Conversions.ToInteger(Strings.Mid(FileSystem.LineInput(5), 12));
+                moduleOBJECTS.Objects[N].Type = Convert.ToInt32(FileSystem.LineInput(5).Substring(5));
+                moduleOBJECTS.Objects[N].Description = FileSystem.LineInput(5).Substring(12);
+                moduleOBJECTS.Objects[N].Width = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].Length = Convert.ToSingle(FileSystem.LineInput(5).Substring(7));
+                moduleOBJECTS.Objects[N].Heading = Convert.ToSingle(FileSystem.LineInput(5).Substring(8));
+                moduleOBJECTS.Objects[N].Pitch = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].Bank = Convert.ToSingle(FileSystem.LineInput(5).Substring(5));
+                moduleOBJECTS.Objects[N].BiasX = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].BiasY = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].BiasZ = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
+                moduleOBJECTS.Objects[N].lat = Convert.ToDouble(FileSystem.LineInput(5).Substring(4));
+                moduleOBJECTS.Objects[N].lon = Convert.ToDouble(FileSystem.LineInput(5).Substring(4));
+                moduleOBJECTS.Objects[N].Altitude = Convert.ToSingle(FileSystem.LineInput(5).Substring(9));
+                moduleOBJECTS.Objects[N].AGL = Convert.ToInt32(FileSystem.LineInput(5).Substring(4));
+                moduleOBJECTS.Objects[N].Complexity = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                 moduleOBJECTS.AddLatLonToObjects(N);
             }
 
@@ -2287,10 +2285,10 @@ namespace SBuilderX
             for (K = 1; K <= loopTo12; K++)
             {
                 N = K + moduleCLASSES.NoOfLWCIs;
-                KEY = "[LWCI." + Strings.Trim(Conversion.Str(K)) + "]";
+                KEY = "[LWCI." + K.ToString().Trim() + "]";
                 GoToThisKey(KEY);
-                moduleCLASSES.LWCIs[N].Text = Strings.Mid(FileSystem.LineInput(5), 6);
-                moduleCLASSES.LWCIs[N].Color = ColorFromArgb(Strings.Mid(FileSystem.LineInput(5), 7));
+                moduleCLASSES.LWCIs[N].Text = FileSystem.LineInput(5).Substring(5);
+                moduleCLASSES.LWCIs[N].Color = ColorFromArgb(FileSystem.LineInput(5).Substring(6));
             }
 
             FileSystem.FileClose(5);
@@ -2303,7 +2301,7 @@ namespace SBuilderX
             SetLWCIs();
             var loopTo13 = moduleCLASSES.NoOfLWCIs;
             for (K = 1; K <= loopTo13; K++)
-                Interaction.MsgBox(moduleCLASSES.LWCIs[2].Color.ToString() + " " + moduleCLASSES.LWCIs[2].IsLand.ToString() + " Text= " + moduleCLASSES.LWCIs[2].Text);
+                MessageBox.Show(moduleCLASSES.LWCIs[2].Color.ToString() + " " + moduleCLASSES.LWCIs[2].IsLand.ToString() + " Text= " + moduleCLASSES.LWCIs[2].Text);
             My.MyProject.Forms.FrmStart.SetMouseIcon();
         }
 
@@ -2311,11 +2309,11 @@ namespace SBuilderX
         {
             string A;
             int NK, NA;
-            NK = Strings.Len(KEY);
+            NK = KEY.Length;
             do
             {
                 A = FileSystem.LineInput(5);
-                NA = Strings.Len(A);
+                NA = A.Length;
                 if (NA == NK)
                 {
                     if ((A ?? "") == (KEY ?? ""))
@@ -2330,9 +2328,9 @@ namespace SBuilderX
             int ReadIniIntegerRet = default;
             try
             {
-                ReadIniIntegerRet = Conversions.ToInteger(ReadIniValue(File, KEY, ref Value));
+                ReadIniIntegerRet = Convert.ToInt32(ReadIniValue(File, KEY, ref Value));
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 ReadIniIntegerRet = 0;
             }
@@ -2344,9 +2342,9 @@ namespace SBuilderX
             double ReadIniDoubleRet = default;
             try
             {
-                ReadIniDoubleRet = Conversion.Val(ReadIniValue(File, KEY, ref Value));
+                ReadIniDoubleRet = Convert.ToDouble(ReadIniValue(File, KEY, ref Value));
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 ReadIniDoubleRet = 0d;
             }
@@ -2366,10 +2364,10 @@ namespace SBuilderX
                 var loopTo = moduleCLASSES.NoOfLWCIs;
                 for (J = 1; J <= loopTo; J++)
                 {
-                    A = Strings.Trim(moduleCLASSES.LWCIs[J].Text) + " ";
-                    N1 = 1;
-                    N2 = Strings.InStr(1, A, " ");
-                    B = Strings.UCase(Strings.Mid(A, 1, N2 - N1));
+                    A = moduleCLASSES.LWCIs[J].Text.Trim() + " ";
+                    N1 = 0;
+                    N2 = A.IndexOf(" ");
+                    B = A.Substring(0, N2 - N1).ToUpper();
                     if (B == "LAND")
                     {
                         IsLand = true;
@@ -2384,8 +2382,8 @@ namespace SBuilderX
                     }
 
                     N1 = N2 + 1;
-                    N2 = Strings.InStr(N1, A, " ");
-                    P0 = Conversions.ToByte(Strings.Mid(A, N1, N2 - N1));
+                    N2 = A.IndexOf(" ", N1);
+                    P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                     if (IsLand)
                     {
                         var loopTo1 = moduleCLASSES.NoOfLCs;
@@ -2413,8 +2411,8 @@ namespace SBuilderX
 
                     P1 = (byte)N; // N goes to P1
                     N1 = N2 + 1;
-                    N2 = Strings.InStr(N1, A, " ");
-                    P0 = Conversions.ToByte(Strings.Mid(A, N1, N2 - N1));
+                    N2 = A.IndexOf(" ", N1);
+                    P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                     if (IsLand)
                     {
                         var loopTo3 = moduleCLASSES.NoOfLCs;
@@ -2442,8 +2440,8 @@ namespace SBuilderX
 
                     P2 = (byte)N;
                     N1 = N2 + 1;
-                    N2 = Strings.InStr(N1, A, " ");
-                    P0 = Conversions.ToByte(Strings.Mid(A, N1, N2 - N1));
+                    N2 = A.IndexOf(" ", N1);
+                    P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                     if (IsLand)
                     {
                         var loopTo5 = moduleCLASSES.NoOfLCs;
@@ -2480,7 +2478,7 @@ namespace SBuilderX
             }
             catch (ArgumentException exc)
             {
-                Interaction.MsgBox("Land/Water Class indexes could not be read!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Land/Water Class indexes could not be read!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -2497,24 +2495,24 @@ namespace SBuilderX
             while (Marker < N)
             {
                 A = FileSystem.LineInput(2);
-                Marker = Marker + Strings.Len(A) + 2;
-                B = Strings.UCase(Strings.Trim(Strings.Mid(A, 1, 4)));
+                Marker = Marker + A.Length + 2;
+                B = A.Substring(0, 4).Trim().ToUpper();
                 if (B == "GUID")
                 {
-                    C = Strings.Trim(Strings.Mid(A, 6));
+                    C = A.Substring(5).Trim();
                     LegacyPolys[K].Guid = C;
                 }
 
                 if (B == "TYPE")
                 {
-                    C = Strings.Trim(Strings.Mid(A, 6, 3));
+                    C = A.Substring(5, 3).Trim();
                     if (C == "LCP")
                     {
-                        if (Strings.Len(A) > 8)
+                        if (A.Length > 8)
                         {
                             try
                             {
-                                J = Conversions.ToInteger(Strings.Trim(Strings.Mid(A, 9)));
+                                J = Convert.ToInt32(A.Substring(8).Trim());
                             }
                             catch (Exception ex)
                             {
@@ -2549,21 +2547,21 @@ namespace SBuilderX
             while (Marker < N)
             {
                 A = FileSystem.LineInput(2);
-                Marker = Marker + Strings.Len(A) + 2;
-                B = Strings.UCase(Strings.Trim(Strings.Mid(A, 1, 4)));
+                Marker = Marker + A.Length + 2;
+                B = A.Substring(0, 4).Trim().ToUpper();
                 if (B == "GUID")
                 {
-                    C = Strings.Trim(Strings.Mid(A, 6));
+                    C = A.Substring(5).Trim();
                     LegacyLines[K].Guid = C;
                 }
 
                 if (B == "TYPE")
                 {
-                    if (Strings.Len(A) > 8)
+                    if (A.Length > 8)
                     {
                         try
                         {
-                            J = Conversions.ToInteger(Strings.Trim(Strings.Mid(A, 9)));
+                            J = Convert.ToInt32(A.Substring(8).Trim());
                         }
                         catch (Exception ex)
                         {
@@ -2573,7 +2571,7 @@ namespace SBuilderX
                         if (J > 0)
                         {
                             LegacyLines[K].Legacy = J;
-                            LegacyLines[K].Type = Strings.Trim(Strings.Mid(A, 6, 3));
+                            LegacyLines[K].Type = A.Substring(5, 3).Trim();
                             K = K + 1;
                         }
                     }
@@ -2588,7 +2586,7 @@ namespace SBuilderX
         private static void ConvertOldPolyType(int N, string Key)
         {
             string A, B;
-            A = Strings.Trim(Key);
+            A = Key.Trim();
 
             // set to none
             modulePOLYS.Polys[N].Type = "";
@@ -2603,16 +2601,16 @@ namespace SBuilderX
             {
                 int J, K;
                 bool Flag;
-                B = Strings.Mid(A, 1, 3);
+                B = A.Substring(0, 3);
                 if (B == "VTP")
                 {
-                    J = Strings.InStr(A, "//");
-                    A = Strings.Mid(A, J + 2);
-                    J = Strings.InStr(A, "//");
-                    A = Strings.Mid(A, J + 2);
-                    J = Strings.InStr(A, "//");
-                    A = Strings.Mid(A, 1, J - 1);
-                    J = Conversions.ToInteger(A);
+                    J = A.IndexOf("//");
+                    A = A.Substring(J + 2);
+                    J = A.IndexOf("//");
+                    A = A.Substring(J + 2);
+                    J = A.IndexOf("//");
+                    A = A.Substring(0, J);
+                    J = Convert.ToInt32(A);
                     Flag = false;
                     var loopTo = NoOfLegacyPolys;
                     for (K = 1; K <= loopTo; K++)
@@ -2639,19 +2637,19 @@ namespace SBuilderX
 
                 if (B == "LWM")
                 {
-                    J = Strings.InStr(A, "//");
-                    A = Strings.Mid(A, J + 2);
+                    J = A.IndexOf("//");
+                    A = A.Substring(J + 2);
                     // Water//455//455//1//1//
-                    J = Strings.InStr(A, "//");
-                    B = Strings.Mid(A, 1, J - 1);
-                    A = Strings.Mid(A, J + 2);
+                    J = A.IndexOf("//");
+                    B = A.Substring(0, J);
+                    A = A.Substring(J + 2);
                     // 455//455//1//1//
 
                     if (B == "Water")
                     {
-                        J = Strings.InStr(A, "//");
-                        B = Strings.Mid(A, 1, J - 1);
-                        K = Conversions.ToInteger(B);
+                        J = A.IndexOf("//");
+                        B = A.Substring(0, J);
+                        K = Convert.ToInt32(B);
                         if (K == -9999)
                         {
                             modulePOLYS.Polys[N].Guid = "{5835459A-4B8B-41F2-ADC1-DEE721573B28}";
@@ -2666,9 +2664,9 @@ namespace SBuilderX
 
                     if (B == "Land")
                     {
-                        J = Strings.InStr(A, "//");
-                        B = Strings.Mid(A, 1, J - 1);
-                        K = Conversions.ToInteger(B);
+                        J = A.IndexOf("//");
+                        B = A.Substring(0, J);
+                        K = Convert.ToInt32(B);
                         if (K == -9999)
                         {
                             modulePOLYS.Polys[N].Guid = "{3EC48E64-5522-449C-96C6-96F8CEBDBDE2}";
@@ -2690,7 +2688,7 @@ namespace SBuilderX
 
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 modulePOLYS.Polys[N].Name = modulePOLYS.Polys[N].Name + "_not converted from SB205";
             }
@@ -2702,7 +2700,7 @@ namespace SBuilderX
             // Type=VTP//7//1032//
 
             string A, B;
-            A = Strings.Trim(Key);
+            A = Key.Trim();
 
             // set to none
             moduleLINES.Lines[N].Type = "";
@@ -2716,16 +2714,16 @@ namespace SBuilderX
                 moduleLINES.Lines[N].Guid = "{00000000-0000-0000-0000-444444444444}";
                 int J, K;
                 bool Flag;
-                B = Strings.Mid(A, 1, 3);
+                B = A.Substring(0, 3);
                 if (B == "VTP")
                 {
-                    J = Strings.InStr(A, "//");
-                    A = Strings.Mid(A, J + 2);
-                    J = Strings.InStr(A, "//");
-                    A = Strings.Mid(A, J + 2);
-                    J = Strings.InStr(A, "//");
-                    A = Strings.Mid(A, 1, J - 1);
-                    J = Conversions.ToInteger(A);
+                    J = A.IndexOf("//");
+                    A = A.Substring(J + 2);
+                    J = A.IndexOf("//");
+                    A = A.Substring(J + 2);
+                    J = A.IndexOf("//");
+                    A = A.Substring(0, J);
+                    J = Convert.ToInt32(A);
                     Flag = false;
                     var loopTo = NoOfLegacyLines;
                     for (K = 1; K <= loopTo; K++)
@@ -2746,7 +2744,7 @@ namespace SBuilderX
 
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 moduleLINES.Lines[N].Name = moduleLINES.Lines[N].Name + "_not converted from SB205";
             }
@@ -2756,18 +2754,10 @@ namespace SBuilderX
         {
             string ArgbFromColorRet = default;
             string A, R, G, B;
-            A = Conversion.Hex(myColor.A);
-            if (Strings.Len(A) == 1)
-                A = "0" + A;
-            R = Conversion.Hex(myColor.R);
-            if (Strings.Len(R) == 1)
-                R = "0" + R;
-            G = Conversion.Hex(myColor.G);
-            if (Strings.Len(G) == 1)
-                G = "0" + G;
-            B = Conversion.Hex(myColor.B);
-            if (Strings.Len(B) == 1)
-                B = "0" + B;
+            A = myColor.A.ToString("X2");
+            R = myColor.R.ToString("X2");
+            G = myColor.G.ToString("X2");
+            B = myColor.B.ToString("X2");
             ArgbFromColorRet = A + R + G + B;
             return ArgbFromColorRet;
         }

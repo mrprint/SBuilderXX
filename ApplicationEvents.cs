@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX.My
 {
@@ -17,10 +17,11 @@ namespace SBuilderX.My
     {
         private void MyApplication_UnhandledException(object sender, Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs e)
         {
-            string errorMessage = e.Exception.Message + Constants.vbCrLf + Constants.vbCrLf;
+            string nl = Environment.NewLine;
+            string errorMessage = e.Exception.Message + nl + nl;
             // errorMessage += e.Exception.ToString & vbCrLf & vbCrLf
-            errorMessage += "This was an unexpected error that can lead to unpredictable results. If " + Constants.vbCrLf;
-            errorMessage += "you press NO SBuilderX will shut down. If you press YES you can continue " + Constants.vbCrLf;
+            errorMessage += "This was an unexpected error that can lead to unpredictable results. If " + nl;
+            errorMessage += "you press NO SBuilderX will shut down. If you press YES you can continue " + nl;
             errorMessage += "to work at your own risk. Do you want to continue?";
             string errorFile;
             if (MessageBox.Show(errorMessage, "SBuilderX - Globally Exception:", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
@@ -43,63 +44,63 @@ namespace SBuilderX.My
                 moduleFILE_IO.SaveFile(errorFile);
             }
 
-            errorMessage = "Error Report created by SBuilderX on " + DateAndTime.Now.ToString() + Constants.vbCrLf + Constants.vbCrLf;
-            errorMessage += e.Exception.Message + Constants.vbCrLf + Constants.vbCrLf;
-            errorMessage += e.Exception.ToString() + Constants.vbCrLf + Constants.vbCrLf;
-            errorMessage += "Name=" + moduleMAIN.ProjectName.ToString() + Constants.vbCrLf;
-            errorMessage += "NoOfMaps=" + moduleMAPS.NoOfMaps.ToString() + Constants.vbCrLf;
-            errorMessage += "NoOfLands=" + moduleCLASSES.NoOfLands.ToString() + Constants.vbCrLf;
-            errorMessage += "NoOfLines=" + moduleLINES.NoOfLines.ToString() + Constants.vbCrLf;
-            errorMessage += "NoOfPolys=" + modulePOLYS.NoOfPolys.ToString() + Constants.vbCrLf;
-            errorMessage += "NoOfWaters=" + moduleCLASSES.NoOfWaters.ToString() + Constants.vbCrLf;
-            errorMessage += "NoOfObjects=" + moduleOBJECTS.NoOfObjects.ToString() + Constants.vbCrLf;
-            errorMessage += "NoOfExcludes=" + moduleEXCLUDES.NoOfExcludes.ToString() + Constants.vbCrLf;
-            errorMessage += "NoOfLWCIs=" + moduleCLASSES.NoOfLWCIs.ToString() + Constants.vbCrLf;
-            errorMessage += "BGLProjectFolder=" + moduleMAIN.BGLProjectFolder.ToString() + Constants.vbCrLf;
-            errorMessage += "LatDispCenter=" + moduleMAIN.LatDispCenter.ToString() + Constants.vbCrLf;
-            errorMessage += "LonDispCenter=" + moduleMAIN.LonDispCenter.ToString() + Constants.vbCrLf;
-            errorMessage += "Zoom=" + moduleMAIN.Zoom.ToString() + Constants.vbCrLf;
-            errorMessage += "PolyON=" + modulePOLYS.PolyON.ToString() + Constants.vbCrLf;
-            errorMessage += "PolyVIEW=" + modulePOLYS.PolyVIEW.ToString() + Constants.vbCrLf;
-            errorMessage += "LineON=" + moduleLINES.LineON.ToString() + Constants.vbCrLf;
-            errorMessage += "LineVIEW=" + moduleLINES.LineVIEW.ToString() + Constants.vbCrLf;
-            errorMessage += "MapVIEW=" + moduleMAPS.MapVIEW.ToString() + Constants.vbCrLf;
-            errorMessage += "TilesToCome=" + moduleTILES.TilesToCome.ToString() + Constants.vbCrLf;
-            errorMessage += "NoOfServerTypes=" + moduleTILES.NoOfServerTypes.ToString() + Constants.vbCrLf;
-            errorMessage += "TileVIEW=" + moduleTILES.TileVIEW.ToString() + Constants.vbCrLf;
-            errorMessage += "ActiveTileFolder=" + moduleTILES.ActiveTileFolder.ToString() + Constants.vbCrLf;
-            errorMessage += "WaterVIEW=" + moduleCLASSES.WaterVIEW.ToString() + Constants.vbCrLf;
-            errorMessage += "WaterON=" + moduleCLASSES.WaterON.ToString() + Constants.vbCrLf;
-            errorMessage += "LandVIEW=" + moduleCLASSES.LandVIEW.ToString() + Constants.vbCrLf;
-            errorMessage += "LandON=" + moduleCLASSES.LandON.ToString() + Constants.vbCrLf;
-            errorMessage += "ObjectON=" + moduleOBJECTS.ObjectON.ToString() + Constants.vbCrLf;
-            errorMessage += "ObjectVIEW=" + moduleOBJECTS.ObjectVIEW.ToString() + Constants.vbCrLf;
-            errorMessage += "NoOfRwy12Categories=" + moduleOBJECTS.NoOfRwy12Categories.ToString() + Constants.vbCrLf;
-            errorMessage += "NoOfLibCategories=" + moduleOBJECTS.NoOfLibCategories.ToString() + Constants.vbCrLf;
-            errorMessage += "LibObjectsIsOn=" + moduleOBJECTS.LibObjectsIsOn.ToString() + Constants.vbCrLf;
-            errorMessage += "NoOfGenBObjects=" + moduleOBJECTS.NoOfGenBObjects.ToString() + Constants.vbCrLf;
-            errorMessage += "NoOfMacroCategories=" + moduleMACROS.NoOfMacroCategories.ToString() + Constants.vbCrLf;
-            errorMessage += "MacroAPIIsOn=" + moduleMACROS.MacroAPIIsOn.ToString() + Constants.vbCrLf;
-            errorMessage += "MacroASDIsOn=" + moduleMACROS.MacroASDIsOn.ToString() + Constants.vbCrLf;
-            errorMessage += "MakeOnMany=" + moduleMAIN.MakeOnMany.ToString() + Constants.vbCrLf;
-            errorMessage += "AllVIEW=" + moduleMAIN.AllVIEW.ToString() + Constants.vbCrLf;
-            errorMessage += "ViewON=" + moduleMAIN.ViewON.ToString() + Constants.vbCrLf;
-            errorMessage += "AircraftVIEW=" + moduleMAIN.AircraftVIEW.ToString() + Constants.vbCrLf;
-            errorMessage += "PointerON=" + moduleMAIN.PointerON.ToString() + Constants.vbCrLf;
-            errorMessage += "ZoomON=" + moduleMAIN.ZoomON.ToString() + Constants.vbCrLf;
-            errorMessage += "PanON=" + moduleMAIN.PanON.ToString() + Constants.vbCrLf;
-            errorMessage += "SelectON=" + moduleMAIN.SelectON.ToString() + Constants.vbCrLf;
-            errorMessage += "MoveON=" + moduleMAIN.MoveON.ToString() + Constants.vbCrLf;
-            errorMessage += "FirstMOVE=" + moduleMAIN.FirstMOVE.ToString() + Constants.vbCrLf;
-            errorMessage += "InsertON=" + moduleMAIN.InsertON.ToString() + Constants.vbCrLf;
-            errorMessage += "DeleteON=" + moduleMAIN.DeleteON.ToString() + Constants.vbCrLf;
-            errorMessage += "AskDelete=" + moduleMAIN.AskDelete.ToString() + Constants.vbCrLf;
-            errorMessage += "Dirty=" + moduleMAIN.Dirty.ToString() + Constants.vbCrLf;
-            errorMessage += "DecimalDegrees=" + moduleMAIN.DecimalDegrees.ToString() + Constants.vbCrLf;
-            errorMessage += "LatDispNorth=" + moduleMAIN.LatDispNorth.ToString() + Constants.vbCrLf;
-            errorMessage += "LatDispSouth=" + moduleMAIN.LatDispSouth.ToString() + Constants.vbCrLf;
-            errorMessage += "LonDispWest=" + moduleMAIN.LonDispWest.ToString() + Constants.vbCrLf;
-            errorMessage += "LonDispEast=" + moduleMAIN.LonDispEast.ToString() + Constants.vbCrLf;
+            errorMessage = "Error Report created by SBuilderX on " + DateTime.Now.ToString() + nl + nl;
+            errorMessage += e.Exception.Message + nl + nl;
+            errorMessage += e.Exception.ToString() + nl + nl;
+            errorMessage += "Name=" + moduleMAIN.ProjectName.ToString() + nl;
+            errorMessage += "NoOfMaps=" + moduleMAPS.NoOfMaps.ToString() + nl;
+            errorMessage += "NoOfLands=" + moduleCLASSES.NoOfLands.ToString() + nl;
+            errorMessage += "NoOfLines=" + moduleLINES.NoOfLines.ToString() + nl;
+            errorMessage += "NoOfPolys=" + modulePOLYS.NoOfPolys.ToString() + nl;
+            errorMessage += "NoOfWaters=" + moduleCLASSES.NoOfWaters.ToString() + nl;
+            errorMessage += "NoOfObjects=" + moduleOBJECTS.NoOfObjects.ToString() + nl;
+            errorMessage += "NoOfExcludes=" + moduleEXCLUDES.NoOfExcludes.ToString() + nl;
+            errorMessage += "NoOfLWCIs=" + moduleCLASSES.NoOfLWCIs.ToString() + nl;
+            errorMessage += "BGLProjectFolder=" + moduleMAIN.BGLProjectFolder.ToString() + nl;
+            errorMessage += "LatDispCenter=" + moduleMAIN.LatDispCenter.ToString() + nl;
+            errorMessage += "LonDispCenter=" + moduleMAIN.LonDispCenter.ToString() + nl;
+            errorMessage += "Zoom=" + moduleMAIN.Zoom.ToString() + nl;
+            errorMessage += "PolyON=" + modulePOLYS.PolyON.ToString() + nl;
+            errorMessage += "PolyVIEW=" + modulePOLYS.PolyVIEW.ToString() + nl;
+            errorMessage += "LineON=" + moduleLINES.LineON.ToString() + nl;
+            errorMessage += "LineVIEW=" + moduleLINES.LineVIEW.ToString() + nl;
+            errorMessage += "MapVIEW=" + moduleMAPS.MapVIEW.ToString() + nl;
+            errorMessage += "TilesToCome=" + moduleTILES.TilesToCome.ToString() + nl;
+            errorMessage += "NoOfServerTypes=" + moduleTILES.NoOfServerTypes.ToString() + nl;
+            errorMessage += "TileVIEW=" + moduleTILES.TileVIEW.ToString() + nl;
+            errorMessage += "ActiveTileFolder=" + moduleTILES.ActiveTileFolder.ToString() + nl;
+            errorMessage += "WaterVIEW=" + moduleCLASSES.WaterVIEW.ToString() + nl;
+            errorMessage += "WaterON=" + moduleCLASSES.WaterON.ToString() + nl;
+            errorMessage += "LandVIEW=" + moduleCLASSES.LandVIEW.ToString() + nl;
+            errorMessage += "LandON=" + moduleCLASSES.LandON.ToString() + nl;
+            errorMessage += "ObjectON=" + moduleOBJECTS.ObjectON.ToString() + nl;
+            errorMessage += "ObjectVIEW=" + moduleOBJECTS.ObjectVIEW.ToString() + nl;
+            errorMessage += "NoOfRwy12Categories=" + moduleOBJECTS.NoOfRwy12Categories.ToString() + nl;
+            errorMessage += "NoOfLibCategories=" + moduleOBJECTS.NoOfLibCategories.ToString() + nl;
+            errorMessage += "LibObjectsIsOn=" + moduleOBJECTS.LibObjectsIsOn.ToString() + nl;
+            errorMessage += "NoOfGenBObjects=" + moduleOBJECTS.NoOfGenBObjects.ToString() + nl;
+            errorMessage += "NoOfMacroCategories=" + moduleMACROS.NoOfMacroCategories.ToString() + nl;
+            errorMessage += "MacroAPIIsOn=" + moduleMACROS.MacroAPIIsOn.ToString() + nl;
+            errorMessage += "MacroASDIsOn=" + moduleMACROS.MacroASDIsOn.ToString() + nl;
+            errorMessage += "MakeOnMany=" + moduleMAIN.MakeOnMany.ToString() + nl;
+            errorMessage += "AllVIEW=" + moduleMAIN.AllVIEW.ToString() + nl;
+            errorMessage += "ViewON=" + moduleMAIN.ViewON.ToString() + nl;
+            errorMessage += "AircraftVIEW=" + moduleMAIN.AircraftVIEW.ToString() + nl;
+            errorMessage += "PointerON=" + moduleMAIN.PointerON.ToString() + nl;
+            errorMessage += "ZoomON=" + moduleMAIN.ZoomON.ToString() + nl;
+            errorMessage += "PanON=" + moduleMAIN.PanON.ToString() + nl;
+            errorMessage += "SelectON=" + moduleMAIN.SelectON.ToString() + nl;
+            errorMessage += "MoveON=" + moduleMAIN.MoveON.ToString() + nl;
+            errorMessage += "FirstMOVE=" + moduleMAIN.FirstMOVE.ToString() + nl;
+            errorMessage += "InsertON=" + moduleMAIN.InsertON.ToString() + nl;
+            errorMessage += "DeleteON=" + moduleMAIN.DeleteON.ToString() + nl;
+            errorMessage += "AskDelete=" + moduleMAIN.AskDelete.ToString() + nl;
+            errorMessage += "Dirty=" + moduleMAIN.Dirty.ToString() + nl;
+            errorMessage += "DecimalDegrees=" + moduleMAIN.DecimalDegrees.ToString() + nl;
+            errorMessage += "LatDispNorth=" + moduleMAIN.LatDispNorth.ToString() + nl;
+            errorMessage += "LatDispSouth=" + moduleMAIN.LatDispSouth.ToString() + nl;
+            errorMessage += "LonDispWest=" + moduleMAIN.LonDispWest.ToString() + nl;
+            errorMessage += "LonDispEast=" + moduleMAIN.LonDispEast.ToString() + nl;
             errorFile = moduleMAIN.AppPath + @"\Tools\Work\ERROR_REPORT.TXT";
             MyProject.Computer.FileSystem.WriteAllText(errorFile, errorMessage, false);
         }

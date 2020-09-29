@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -112,9 +111,9 @@ namespace SBuilderX
                     C = C + 1;
                     if (B == 13)
                         break;
-                    S = Conversions.ToString(Convert.ToChar(B)) + reader.ReadChars(10);
-                    Fields[NoOfFields].Name = Strings.Left(S, Strings.InStr(S, Constants.vbNullChar) - 1);
-                    S = Conversions.ToString(reader.ReadChar());
+                    S = B.ToString() + reader.ReadChars(10);
+                    Fields[NoOfFields].Name = S.Substring(0, S.IndexOf("\0"));
+                    S = reader.ReadChar().ToString();
                     if (S == "C")
                     {
                         Fields[NoOfFields].Type = FieldType.FTString;
@@ -144,7 +143,7 @@ namespace SBuilderX
                     Fields[NoOfFields].DecCount = reader.ReadByte();
                     reader.ReadBytes(14);
                     NoOfFields = NoOfFields + 1;
-                    C = C + 31;
+                    C += 31;
                 }
                 while (true);
                 // check if there is something before the records
@@ -177,7 +176,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox(ex);
+                MessageBox.Show(ex.ToString(), "Exception", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             // should I reaaly comment the following? October 2017

@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -220,8 +219,8 @@ namespace SBuilderX
         private void CmdOK_Click(object sender, EventArgs e)
         {
             string B, C;
-            moduleMAIN.NameOfSim = Strings.Trim(txtNameOfSim.Text);
-            moduleMAIN.SimPath = Strings.Trim(txtFSPath.Text);
+            moduleMAIN.NameOfSim = txtNameOfSim.Text.Trim();
+            moduleMAIN.SimPath = txtFSPath.Text.Trim();
 
             // FSX
             moduleMAIN.FSPath = txtFSPath.Text + @"\";

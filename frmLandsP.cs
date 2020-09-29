@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -45,8 +44,7 @@ namespace SBuilderX
             var loopTo = moduleMAPS.NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
-                A = Strings.Mid(moduleMAPS.Maps[N].Name, 1, 5);
-                A = Strings.UCase(A);
+                A = moduleMAPS.Maps[N].Name.Substring(0, 5).ToUpper();
                 if (A != "CLASS")
                     goto NextMap;
                 moduleCLASSES.FillLand(N);
@@ -61,11 +59,11 @@ namespace SBuilderX
             moduleMAIN.RebuildDisplay();
             if (Flag)
             {
-                Interaction.MsgBox("Class Maps have been processed!", MsgBoxStyle.Information);
+                MessageBox.Show("Class Maps have been processed!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                Interaction.MsgBox("No Class Map was found!", MsgBoxStyle.Information);
+                MessageBox.Show("No Class Map was found!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

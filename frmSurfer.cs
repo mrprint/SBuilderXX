@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -40,12 +38,12 @@ namespace SBuilderX
             double W1, W2;
             try
             {
-                W1 = Conversions.ToDouble(txtStartW.Text);
-                W2 = Conversions.ToDouble(txtEndW.Text);
+                W1 = Convert.ToDouble(txtStartW.Text);
+                W2 = Convert.ToDouble(txtEndW.Text);
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Check width values!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check width values!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 

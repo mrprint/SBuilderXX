@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualBasic;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -93,7 +93,7 @@ namespace SBuilderX
             {
                 Text = "SBuilderX - Point Properties";
                 txtWidth.Visible = true;
-                if (Strings.Mid(moduleLINES.Lines[modulePOPUP.POPIndex].Type, 1, 3) == "OBJ")
+                if (moduleLINES.Lines[modulePOPUP.POPIndex].Type.Substring(0, 3) == "OBJ")
                 {
                     lbWidth.Text = "Heading";
                 }
@@ -153,9 +153,9 @@ namespace SBuilderX
             if (X < -180)
                 return ValidateEntriesRet;
             if (!(modulePOPUP.POPType == "Goto"))
-                X = Conversion.Val(txtAltitude.Text);
+                X = Convert.ToDouble(txtAltitude.Text);
             if (modulePOPUP.POPType == "PtInLine")
-                X = Conversion.Val(txtWidth.Text);
+                X = Convert.ToDouble(txtWidth.Text);
             ValidateEntriesRet = true;
             return ValidateEntriesRet;
         }
@@ -171,8 +171,8 @@ namespace SBuilderX
             {
                 if (modulePOPUP.POPType == "PtInLine" | modulePOPUP.POPType == "PtInLineX")
                 {
-                    moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[modulePOPUP.POPIndexPT].alt = Conversion.Val(txtAltitude.Text);
-                    moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[modulePOPUP.POPIndexPT].wid = Conversion.Val(txtWidth.Text);
+                    moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[modulePOPUP.POPIndexPT].alt = Convert.ToDouble(txtAltitude.Text);
+                    moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[modulePOPUP.POPIndexPT].wid = Convert.ToDouble(txtWidth.Text);
                     moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[modulePOPUP.POPIndexPT].lon = moduleMAIN.Str2Lon(txtLon.Text);
                     moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[modulePOPUP.POPIndexPT].lat = moduleMAIN.Str2Lat(txtLat.Text);
                     moduleLINES.AddLatLonToLine(modulePOPUP.POPIndex);
@@ -180,7 +180,7 @@ namespace SBuilderX
 
                 if (modulePOPUP.POPType == "PtInPoly" | modulePOPUP.POPType == "PtInPolyX")
                 {
-                    modulePOLYS.Polys[modulePOPUP.POPIndex].GPoints[modulePOPUP.POPIndexPT].alt = Conversion.Val(txtAltitude.Text);
+                    modulePOLYS.Polys[modulePOPUP.POPIndex].GPoints[modulePOPUP.POPIndexPT].alt = Convert.ToDouble(txtAltitude.Text);
                     modulePOLYS.Polys[modulePOPUP.POPIndex].GPoints[modulePOPUP.POPIndexPT].lon = moduleMAIN.Str2Lon(txtLon.Text);
                     modulePOLYS.Polys[modulePOPUP.POPIndex].GPoints[modulePOPUP.POPIndexPT].lat = moduleMAIN.Str2Lat(txtLat.Text);
                     modulePOLYS.AddLatLonToPoly(modulePOPUP.POPIndex);
@@ -199,7 +199,7 @@ namespace SBuilderX
             }
             else
             {
-                Interaction.MsgBox("Check your entries!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check your entries!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

@@ -4,8 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Xml;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -518,7 +517,7 @@ namespace SBuilderX
             int N;
             string a, b;
             string myFile = "000_" + moduleMAIN.ProjectName;
-            myFile = Strings.Replace(myFile, " ", "_");
+            myFile = myFile.Replace(" ", "_");
             a = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".xml";
             var settings = new XmlWriterSettings()
             {
@@ -528,7 +527,7 @@ namespace SBuilderX
             };
             var writer = XmlWriter.Create(a, settings);
             writer.WriteStartDocument();
-            writer.WriteComment("Created by SBuilderX on " + DateAndTime.Now);
+            writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
             writer.WriteStartElement("FSData");
             writer.WriteAttributeString("version", "9.0");
             writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
@@ -540,10 +539,10 @@ namespace SBuilderX
                 {
                     GetFlag(N);
                     writer.WriteStartElement("ExclusionRectangle");
-                    writer.WriteAttributeString("latitudeMinimum", Conversion.Str(Excludes[N].SLAT));
-                    writer.WriteAttributeString("latitudeMaximum", Conversion.Str(Excludes[N].NLAT));
-                    writer.WriteAttributeString("longitudeMinimum", Conversion.Str(Excludes[N].WLON));
-                    writer.WriteAttributeString("longitudeMaximum", Conversion.Str(Excludes[N].ELON));
+                    writer.WriteAttributeString("latitudeMinimum", Excludes[N].SLAT.ToString());
+                    writer.WriteAttributeString("latitudeMaximum", Excludes[N].NLAT.ToString());
+                    writer.WriteAttributeString("longitudeMinimum", Excludes[N].WLON.ToString());
+                    writer.WriteAttributeString("longitudeMaximum", Excludes[N].ELON.ToString());
                     writer.WriteAttributeString("excludeAllObjects", excludeAllObjects);
                     writer.WriteAttributeString("excludeBeaconObjects", excludeBeaconObjects);
                     writer.WriteAttributeString("excludeEffectObjects", excludeEffectObjects);
@@ -564,8 +563,7 @@ namespace SBuilderX
             string BGLFile = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".BGL";
             if (File.Exists(BGLFile))
                 File.Delete(BGLFile);
-            FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-            FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
+            Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bglcomp.exe";
             b = @"work\" + myFile + ".xml";
             var myProcess = new Process();
@@ -576,10 +574,10 @@ namespace SBuilderX
             // added this to catch errors June 30 2009
             if (!File.Exists(BGLFile))
             {
-                a = "BGLComp could not produce the file" + Constants.vbCrLf + BGLFile + Constants.vbCrLf;
-                a = a + @"Try to compile the file ..\tools\" + b + " in a MSDOS window" + Constants.vbCrLf;
+                a = "BGLComp could not produce the file" + Environment.NewLine + BGLFile + Environment.NewLine;
+                a = a + @"Try to compile the file ..\tools\" + b + " in a MSDOS window" + Environment.NewLine;
                 a = a + "to read the error report!";
-                Interaction.MsgBox(a, MsgBoxStyle.Critical);
+                MessageBox.Show(a, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             if (!CopyBGLs)
@@ -594,7 +592,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Copying BGL files failed! Try to close FSX.", MsgBoxStyle.Information);
+                MessageBox.Show("Copying BGL files failed! Try to close FSX.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -610,23 +608,23 @@ namespace SBuilderX
             excludeTaxiwaySignObjects = "FALSE";
             excludeTriggerObjects = "FALSE";
             excludeWindsockObjects = "FALSE";
-            if (Conversions.ToBoolean(N & 1))
+            if (Convert.ToBoolean(N & 1))
                 excludeAllObjects = "TRUE";
-            if (Conversions.ToBoolean(N & 2))
+            if (Convert.ToBoolean(N & 2))
                 excludeBeaconObjects = "TRUE";
-            if (Conversions.ToBoolean(N & 4))
+            if (Convert.ToBoolean(N & 4))
                 excludeEffectObjects = "TRUE";
-            if (Conversions.ToBoolean(N & 8))
+            if (Convert.ToBoolean(N & 8))
                 excludeGenericBuildingObjects = "TRUE";
-            if (Conversions.ToBoolean(N & 16))
+            if (Convert.ToBoolean(N & 16))
                 excludeLibraryObjects = "TRUE";
-            if (Conversions.ToBoolean(N & 32))
+            if (Convert.ToBoolean(N & 32))
                 excludeTaxiwaySignObjects = "TRUE";
-            if (Conversions.ToBoolean(N & 64))
+            if (Convert.ToBoolean(N & 64))
                 excludeTriggerObjects = "TRUE";
-            if (Conversions.ToBoolean(N & 128))
+            if (Convert.ToBoolean(N & 128))
                 excludeWindsockObjects = "TRUE";
-            if (Conversions.ToBoolean(N & 256))
+            if (Convert.ToBoolean(N & 256))
                 excludeExtrusionBridgeObjects = "TRUE";
         }
     }

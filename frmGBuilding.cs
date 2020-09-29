@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 using SlimDX;
 using SlimDX.Direct3D9;
 
@@ -1077,7 +1076,7 @@ namespace SBuilderX
 
         private void LoadBottomTexture(object sender, EventArgs e)
         {
-            string textB = Strings.Trim(nUPbottomTexture.Value.ToString());
+            string textB = nUPbottomTexture.Value.ToString().Trim();
             string textBfile = texFolder + "bottom" + textB + ".jpg";
             try
             {
@@ -1095,7 +1094,7 @@ namespace SBuilderX
 
         private void LoadWindowTexture(object sender, EventArgs e)
         {
-            string textW = Strings.Trim(nUPwindowTexture.Value.ToString());
+            string textW = nUPwindowTexture.Value.ToString().Trim();
             string textWfile = texFolder + "window" + textW + ".jpg";
             try
             {
@@ -1113,7 +1112,7 @@ namespace SBuilderX
 
         private void LoadTopTexture(object sender, EventArgs e)
         {
-            string textT = Strings.Trim(nUPtopTexture.Value.ToString());
+            string textT = nUPtopTexture.Value.ToString().Trim();
             string textTfile = texFolder + "top" + textT + ".jpg";
             try
             {
@@ -1131,7 +1130,7 @@ namespace SBuilderX
 
         private void LoadRoofTexture(object sender, EventArgs e)
         {
-            string textR = Strings.Trim(nUProofTexture.Value.ToString());
+            string textR = nUProofTexture.Value.ToString().Trim();
             string textRfile = texFolder + "roof" + textR + ".jpg";
             try
             {
@@ -1153,11 +1152,11 @@ namespace SBuilderX
             int T = (int)nUPfaceTexture.Value;
             if (T >= 1000)
             {
-                textFfile = texFolder + "window" + Strings.Trim((T - 1000).ToString()) + ".jpg";
+                textFfile = texFolder + "window" + (T - 1000).ToString().Trim() + ".jpg";
             }
             else
             {
-                textFfile = texFolder + "face" + Strings.Trim(T.ToString()) + ".jpg";
+                textFfile = texFolder + "face" + T.ToString().Trim() + ".jpg";
             }
 
             try
@@ -1180,11 +1179,11 @@ namespace SBuilderX
             int T = (int)nUPgableTexture.Value;
             if (T >= 1000)
             {
-                textGfile = texFolder + "window" + Strings.Trim((T - 1000).ToString()) + ".jpg";
+                textGfile = texFolder + "window" + (T - 1000).ToString().Trim() + ".jpg";
             }
             else
             {
-                textGfile = texFolder + "gable" + Strings.Trim(T.ToString()) + ".jpg";
+                textGfile = texFolder + "gable" + T.ToString().Trim() + ".jpg";
             }
 
             try
@@ -1204,7 +1203,7 @@ namespace SBuilderX
         private void LoadTextures()
         {
             texture0 = Texture.FromFile(renderDevice, texFolder + "base00.jpg");
-            string textB = Strings.Trim(nUPbottomTexture.Value.ToString());
+            string textB = nUPbottomTexture.Value.ToString().Trim();
             string textBfile = texFolder + "bottom" + textB + ".jpg";
             try
             {
@@ -1215,7 +1214,7 @@ namespace SBuilderX
                 textureB = Texture.FromFile(renderDevice, texFolder + "bottom00.jpg");
             }
 
-            string textW = Strings.Trim(nUPwindowTexture.Value.ToString());
+            string textW = nUPwindowTexture.Value.ToString().Trim();
             string textWfile = texFolder + "window" + textW + ".jpg";
             try
             {
@@ -1226,7 +1225,7 @@ namespace SBuilderX
                 textureW = Texture.FromFile(renderDevice, texFolder + "window00.jpg");
             }
 
-            string textT = Strings.Trim(nUPtopTexture.Value.ToString());
+            string textT = nUPtopTexture.Value.ToString().Trim();
             string textTfile = texFolder + "top" + textT + ".jpg";
             try
             {
@@ -1237,7 +1236,7 @@ namespace SBuilderX
                 textureT = Texture.FromFile(renderDevice, texFolder + "top00.jpg");
             }
 
-            string textR = Strings.Trim(nUProofTexture.Value.ToString());
+            string textR = nUProofTexture.Value.ToString().Trim();
             string textRfile = texFolder + "roof" + textR + ".jpg";
             try
             {
@@ -1252,11 +1251,11 @@ namespace SBuilderX
             int T = (int)nUPfaceTexture.Value;
             if (T >= 1000)
             {
-                textFfile = texFolder + "window" + Strings.Trim((T - 1000).ToString()) + ".jpg";
+                textFfile = texFolder + "window" + (T - 1000).ToString().Trim() + ".jpg";
             }
             else
             {
-                textFfile = texFolder + "face" + Strings.Trim(T.ToString()) + ".jpg";
+                textFfile = texFolder + "face" + T.ToString().Trim() + ".jpg";
             }
 
             try
@@ -1272,11 +1271,11 @@ namespace SBuilderX
             T = (int)nUPgableTexture.Value;
             if (T >= 1000)
             {
-                textGfile = texFolder + "window" + Strings.Trim((T - 1000).ToString()) + ".jpg";
+                textGfile = texFolder + "window" + (T - 1000).ToString().Trim() + ".jpg";
             }
             else
             {
-                textGfile = texFolder + "gable" + Strings.Trim(T.ToString()) + ".jpg";
+                textGfile = texFolder + "gable" + T.ToString().Trim() + ".jpg";
             }
 
             try

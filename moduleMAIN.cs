@@ -2,8 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -554,68 +553,68 @@ namespace SBuilderX
             {
                 if (DecimalDegrees)
                 {
-                    Str2LatRet = Conversions.ToDouble(lat);
+                    Str2LatRet = Convert.ToDouble(lat);
                 }
                 else
                 {
-                    lat = Strings.Replace(lat, "s", "S");
-                    lat = Strings.Replace(lat, "n", "N");
+                    lat = lat.Replace("s", "S");
+                    lat = lat.Replace("n", "N");
                     Neg = false;
-                    N = Strings.InStr(lat, "S");
-                    if (N > 0)
+                    N = lat.IndexOf("S");
+                    if (N != -1)
                     {
                         Neg = true;
-                        lat = Strings.Replace(lat, "S", "");
+                        lat = lat.Replace("S", "");
                     }
 
-                    N = Strings.InStr(lat, "-");
-                    if (N > 0)
+                    N = lat.IndexOf("-");
+                    if (N != -1)
                     {
                         Neg = true;
-                        lat = Strings.Replace(lat, "-", "");
+                        lat = lat.Replace("-", "");
                     }
 
-                    N = Strings.InStr(lat, "N");
-                    if (N > 0)
-                        lat = Strings.Replace(lat, "N", "");
-                    lat = Strings.Replace(lat, ":", " ");
-                    lat = Strings.Replace(lat, Conversions.ToString('°'), " ");
-                    lat = Strings.Replace(lat, "'", " ");
+                    N = lat.IndexOf("N");
+                    if (N != -1)
+                        lat = lat.Replace("N", "");
+                    lat = lat.Replace(":", " ");
+                    lat = lat.Replace("°", " ");
+                    lat = lat.Replace("'", " ");
                     // lat = Replace(lat, "''", " ")
-                    lat = Strings.Replace(lat, "''", "");
-                    lat = Strings.Replace(lat, "   ", " ");
-                    lat = Strings.Replace(lat, "  ", " ");
-                    lat = Strings.Trim(lat);
-                    N = Strings.InStr(lat, " ");
-                    if (N == 0)
+                    lat = lat.Replace("''", "");
+                    lat = lat.Replace("   ", " ");
+                    lat = lat.Replace("  ", " ");
+                    lat = lat.Trim();
+                    N = lat.IndexOf(" ");
+                    if (N == -1)
                     {
-                        Str2LatRet = Conversions.ToDouble(lat);
+                        Str2LatRet = Convert.ToDouble(lat);
                         if (Neg)
                             Str2LatRet = (double)-1 * Str2LatRet;
                         return Str2LatRet;
                     }
 
-                    a = Strings.Mid(lat, 1, N - 1);
-                    Str2LatRet = Conversions.ToDouble(a);
-                    M = Strings.InStr(N + 1, lat, " ");
-                    if (M == 0)
+                    a = lat.Substring(0, N);
+                    Str2LatRet = Convert.ToDouble(a);
+                    M = lat.IndexOf(" ", N + 1);
+                    if (M == -1)
                     {
-                        a = Strings.Mid(lat, N + 1);
-                        Str2LatRet = Str2LatRet + Conversions.ToDouble(a) / 60d;
+                        a = lat.Substring(N + 1);
+                        Str2LatRet = Str2LatRet + Convert.ToDouble(a) / 60d;
                         if (Neg)
                             Str2LatRet = (double)-1 * Str2LatRet;
                         return Str2LatRet;
                     }
 
-                    a = Strings.Mid(lat, N + 1, M - N - 1);
-                    Str2LatRet = Str2LatRet + Conversions.ToDouble(a) / 60d;
-                    a = Strings.Mid(lat, M + 1);
-                    Str2LatRet = Str2LatRet + Conversions.ToDouble(a) / 3600d;
+                    a = lat.Substring(N + 1, M - N - 1);
+                    Str2LatRet = Str2LatRet + Convert.ToDouble(a) / 60d;
+                    a = lat.Substring(M + 1);
+                    Str2LatRet = Str2LatRet + Convert.ToDouble(a) / 3600d;
                     if (Neg)
                         Str2LatRet = (double)-1 * Str2LatRet;
                 }
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 Str2LatRet = 100d;
             }
@@ -633,68 +632,68 @@ namespace SBuilderX
             {
                 if (DecimalDegrees)
                 {
-                    Str2LonRet = Conversions.ToDouble(lon);
+                    Str2LonRet = Convert.ToDouble(lon);
                 }
                 else
                 {
-                    lon = Strings.Replace(lon, "e", "E");
-                    lon = Strings.Replace(lon, "w", "W");
+                    lon = lon.Replace("e", "E");
+                    lon = lon.Replace("w", "W");
                     Neg = false;
-                    N = Strings.InStr(lon, "W");
-                    if (N > 0)
+                    N = lon.IndexOf("W");
+                    if (N != -1)
                     {
                         Neg = true;
-                        lon = Strings.Replace(lon, "W", "");
+                        lon = lon.Replace("W", "");
                     }
 
-                    N = Strings.InStr(lon, "-");
-                    if (N > 0)
+                    N = lon.IndexOf("-");
+                    if (N != -1)
                     {
                         Neg = true;
-                        lon = Strings.Replace(lon, "-", "");
+                        lon = lon.Replace("-", "");
                     }
 
-                    N = Strings.InStr(lon, "E");
-                    if (N > 0)
-                        lon = Strings.Replace(lon, "E", "");
-                    lon = Strings.Replace(lon, ":", " ");
-                    lon = Strings.Replace(lon, Conversions.ToString('°'), " ");
-                    lon = Strings.Replace(lon, "'", " ");
+                    N = lon.IndexOf("E");
+                    if (N != -1)
+                        lon = lon.Replace("E", "");
+                    lon = lon.Replace(":", " ");
+                    lon = lon.Replace("°", " ");
+                    lon = lon.Replace("'", " ");
                     // lon = Replace(lon, "''", " ")
-                    lon = Strings.Replace(lon, "''", "'");
-                    lon = Strings.Replace(lon, "   ", " ");
-                    lon = Strings.Replace(lon, "  ", " ");
-                    lon = Strings.Trim(lon);
-                    N = Strings.InStr(lon, " ");
-                    if (N == 0)
+                    lon = lon.Replace("''", "'");
+                    lon = lon.Replace("   ", " ");
+                    lon = lon.Replace("  ", " ");
+                    lon = lon.Trim();
+                    N = lon.IndexOf(" ");
+                    if (N == -1)
                     {
-                        Str2LonRet = Conversions.ToDouble(lon);
+                        Str2LonRet = Convert.ToDouble(lon);
                         if (Neg)
                             Str2LonRet = (double)-1 * Str2LonRet;
                         return Str2LonRet;
                     }
 
-                    a = Strings.Mid(lon, 1, N - 1);
-                    Str2LonRet = Conversions.ToDouble(a);
-                    M = Strings.InStr(N + 1, lon, " ");
-                    if (M == 0)
+                    a = lon.Substring(0, N);
+                    Str2LonRet = Convert.ToDouble(a);
+                    M = lon.IndexOf(" ", N + 1);
+                    if (M == -1)
                     {
-                        a = Strings.Mid(lon, N + 1);
-                        Str2LonRet = Str2LonRet + Conversions.ToDouble(a) / 60d;
+                        a = lon.Substring(N + 1);
+                        Str2LonRet = Str2LonRet + Convert.ToDouble(a) / 60d;
                         if (Neg)
                             Str2LonRet = (double)-1 * Str2LonRet;
                         return Str2LonRet;
                     }
 
-                    a = Strings.Mid(lon, N + 1, M - N - 1);
-                    Str2LonRet = Str2LonRet + Conversions.ToDouble(a) / 60d;
-                    a = Strings.Mid(lon, M + 1);
-                    Str2LonRet = Str2LonRet + Conversions.ToDouble(a) / 3600d;
+                    a = lon.Substring(N + 1, M - N - 1);
+                    Str2LonRet = Str2LonRet + Convert.ToDouble(a) / 60d;
+                    a = lon.Substring(M + 1);
+                    Str2LonRet = Str2LonRet + Convert.ToDouble(a) / 3600d;
                     if (Neg)
                         Str2LonRet = (double)-1 * Str2LonRet;
                 }
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 Str2LonRet = 200d;
             }
@@ -709,7 +708,7 @@ namespace SBuilderX
             int N;
             if (DecimalDegrees)
             {
-                Lon2StrRet = Strings.Format(lon, "00.0000000");
+                Lon2StrRet = lon.ToString("00.0000000");
             }
             else
             {
@@ -723,14 +722,14 @@ namespace SBuilderX
                     a = "E";
                 }
 
-                N = (int)Conversion.Int(lon);
+                N = (int)lon;
                 Lon2StrRet = N.ToString();
                 X = (lon - N) * 60d;
-                N = (int)Conversion.Int(X);
-                Lon2StrRet = Lon2StrRet + '°' + " " + Strings.Format(N, "00");
+                N = (int)X;
+                Lon2StrRet = Lon2StrRet + '°' + " " + N.ToString("00");
                 X = (X - N) * 60d;
                 X = Math.Round(X, 4);
-                Lon2StrRet = Lon2StrRet + "' " + Strings.Format(X, "00.0000") + "'' " + a;
+                Lon2StrRet = Lon2StrRet + "' " + X.ToString("00.0000") + "'' " + a;
             }
 
             return Lon2StrRet;
@@ -744,7 +743,7 @@ namespace SBuilderX
             int N;
             if (DecimalDegrees)
             {
-                Lat2StrRet = Strings.Format(lat, "00.0000000");
+                Lat2StrRet = lat.ToString("00.0000000");
             }
             else
             {
@@ -758,14 +757,14 @@ namespace SBuilderX
                     b = "N";
                 }
 
-                N = (int)Conversion.Int(lat);
+                N = (int)lat;
                 Lat2StrRet = N.ToString();
                 X = (lat - N) * 60d;
-                N = (int)Conversion.Int(X);
-                Lat2StrRet = Lat2StrRet + '°' + " " + Strings.Format(N, "00");
+                N = (int)X;
+                Lat2StrRet = Lat2StrRet + '°' + " " + N.ToString("00");
                 X = (X - N) * 60d;
                 X = Math.Round(X, 4);
-                Lat2StrRet = Lat2StrRet + "' " + Strings.Format(X, "00.0000") + "'' " + b;
+                Lat2StrRet = Lat2StrRet + "' " + X.ToString("00.0000") + "'' " + b;
             }
 
             return Lat2StrRet;
@@ -973,8 +972,8 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                A = "Could not create " + Constants.vbCrLf + BGLProjectFolder;
-                Interaction.MsgBox(A, MsgBoxStyle.Exclamation);
+                A = "Could not create " + Environment.NewLine + BGLProjectFolder;
+                MessageBox.Show(A, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 BGLProjectFolder = BGLFolder;
             }
         }
@@ -1004,11 +1003,11 @@ namespace SBuilderX
 
             X = X + 180d;
             X = X / D5Lon;
-            J = (int)Conversion.Fix(X);
+            J = (int)X;
             JKCRFromLLRet.J = J;
             Y = 90d - Y;
             Y = Y / D5Lat;
-            K = (int)Conversion.Fix(Y);
+            K = (int)Y;
             JKCRFromLLRet.K = K;
             JKCRFromLLRet.C = (int)Math.Round((X - J) * D5Lon / D13Lon);
             JKCRFromLLRet.R = (int)Math.Round((Y - K) * D5Lat / D13Lat);
@@ -1020,11 +1019,11 @@ namespace SBuilderX
             int ExecCmdRet = default;
             string myCommand;
             string myArgs;
-            int N = Strings.InStr(str, " ");
+            int N = str.IndexOf(" ");
             ExecCmdRet = 0;
             try
             {
-                if (N == 0)
+                if (N == -1)
                 {
                     var myProcess = new Process();
                     myProcess = Process.Start(str);
@@ -1034,8 +1033,8 @@ namespace SBuilderX
                 }
                 else
                 {
-                    myCommand = Strings.Mid(str, 1, N - 1);
-                    myArgs = Strings.Mid(str, N + 1);
+                    myCommand = str.Substring(0, N);
+                    myArgs = str.Substring(N + 1);
                     var myProcess = new Process();
                     myProcess = Process.Start(myCommand, myArgs);
                     myProcess.WaitForExit();
@@ -1045,9 +1044,9 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                myCommand = "Error in processing the following command:" + Constants.vbCrLf;
+                myCommand = "Error in processing the following command:" + Environment.NewLine;
                 myCommand = myCommand + str;
-                Interaction.MsgBox(str, MsgBoxStyle.Critical);
+                MessageBox.Show(str, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             return ExecCmdRet;

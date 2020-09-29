@@ -4,8 +4,9 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Xml;
+using System.Media;
+using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -289,7 +290,7 @@ namespace SBuilderX
             NoOfPolys = NoOfPolys + 1;
             Array.Resize(ref Polys, NoOfPolys + 1);
             Polys[NoOfPolys] = NewPoly;
-            Polys[NoOfPolys].Name = Conversion.Str(Polys[NoOfPolys].NoOfPoints) + "_Pts_Polygon_of_Type_None";
+            Polys[NoOfPolys].Name = Polys[NoOfPolys].NoOfPoints.ToString() + "_Pts_Polygon_of_Type_None";
             Polys[NoOfPolys].Guid = DefaultPolyNoneGuid;
             Polys[NoOfPolys].NoOfChilds = 0;
             moduleMAIN.Dirty = true;
@@ -297,7 +298,7 @@ namespace SBuilderX
             {
                 if (TryThisPolyJoin(NoOfPolys))
                 {
-                    Interaction.Beep();
+                    SystemSounds.Beep.Play();
                     AddLatLonToPoly(NoOfPolys);
                     return;
                 }
@@ -352,13 +353,13 @@ namespace SBuilderX
             N = modulePOPUP.IsPolyUP(X, Y);  // N parent
             if (N == 0)
             {
-                Interaction.MsgBox("You need to click on the border of a polygon!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("You need to click on the border of a polygon!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             if (Polys[N].NoOfChilds < 0)
             {
-                Interaction.MsgBox("The selected polygon is a hole!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("The selected polygon is a hole!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -375,7 +376,7 @@ namespace SBuilderX
                 K = modulePOPUP.POPIndex;  // K  child
                 if (N == K)
                 {
-                    Interaction.MsgBox("A polygon can not be an hole of itself!", MsgBoxStyle.Exclamation);
+                    MessageBox.Show("A polygon can not be an hole of itself!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -389,7 +390,7 @@ namespace SBuilderX
                     Flag = true;
                 if (Flag)
                 {
-                    Interaction.MsgBox("The selected polygon can not contain the hole!", MsgBoxStyle.Exclamation);
+                    MessageBox.Show("The selected polygon can not contain the hole!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -1412,7 +1413,7 @@ namespace SBuilderX
             for (N = 1; N <= loopTo1; N++)
             {
                 if (Done[N])
-                    goto next_n;
+                    continue;
                 if (N > NoOfPolys - 1)
                     goto end_here;
                 if (Polys[N].Selected)
@@ -1438,8 +1439,6 @@ namespace SBuilderX
                 }
 
                 Done[N] = true;
-            next_n:
-                ;
             }
 
             Done = new bool[1];
@@ -1647,7 +1646,7 @@ namespace SBuilderX
 
             AddLatLonToPoly(N1);
             DeletePoly(N2);
-            Interaction.Beep();
+            SystemSounds.Beep.Play();
             Try2PolyJoinRet = true;
             return Try2PolyJoinRet;
         }
@@ -1713,7 +1712,7 @@ namespace SBuilderX
                 {
                     TryThisPolyJoinRet = true;
                     moduleMAIN.RebuildDisplay();
-                    Interaction.Beep();
+                    SystemSounds.Beep.Play();
                     return TryThisPolyJoinRet;
                 }
             }
@@ -1725,7 +1724,7 @@ namespace SBuilderX
                 {
                     TryThisPolyJoinRet = true;
                     moduleMAIN.RebuildDisplay();
-                    Interaction.Beep();
+                    SystemSounds.Beep.Play();
                     return TryThisPolyJoinRet;
                 }
             }
@@ -1939,7 +1938,7 @@ namespace SBuilderX
                 JoinPolysRet = true;
                 moduleMAIN.Dirty = true;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
             }
             return JoinPolysRet;
@@ -2104,7 +2103,7 @@ namespace SBuilderX
             }
 
             L = NP + 1;
-            M = (int)Conversion.Int(L / 2d);
+            M = (int)(L / 2d);
             var loopTo1 = M;
             for (N = 1; N <= loopTo1; N++)
             {
@@ -2237,7 +2236,7 @@ namespace SBuilderX
             }
 
             L = NP + 1;
-            M = (int)Conversion.Int(L / 2d);
+            M = (int)(L / 2d);
             var loopTo1 = M;
             for (N = 1; N <= loopTo1; N++)
             {
@@ -2333,12 +2332,12 @@ namespace SBuilderX
 
             if (Reset_Renamed)
                 goto reset_string;
-            J = 1;
+            J = 0;
             var loopTo = NP;
             for (N = 1; N <= loopTo; N++)
             {
-                K = Strings.InStr(J, PolyTexString, "//");
-                if (K == 0)
+                K = PolyTexString.IndexOf("//", J);
+                if (K == -1)
                     goto reset_string;
                 J = K + 2;
             }
@@ -2404,7 +2403,7 @@ namespace SBuilderX
                     A = moduleLINES.Lines[N].Type;
                     if (string.IsNullOrEmpty(A))
                         goto next_N0;
-                    B = Strings.Mid(A, 1, 5);
+                    B = A.Substring(0, 5);
                     if (B == "TEX|S")
                     {
                         IsStanding = true;
@@ -2445,7 +2444,7 @@ namespace SBuilderX
             int Complex = 0;
             int Night = default, Tiled = default;
             string myFileBase = moduleMAIN.ProjectName + "_TESL";
-            myFileBase = Strings.Replace(myFileBase, " ", "_");
+            myFileBase = myFileBase.Replace(" ", "_");
             string myFile = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFileBase;
             string myFileXN;
             string myFileXLM = myFile + ".xml";
@@ -2455,13 +2454,13 @@ namespace SBuilderX
             settings.NewLineOnAttributes = true;
             var writer = XmlWriter.Create(myFileXLM, settings);
             writer.WriteStartDocument();
-            writer.WriteComment("Created by SBuilderX on " + DateAndTime.Now);
+            writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
             writer.WriteStartElement("FSData");
             writer.WriteAttributeString("version", "9.0");
             writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
             writer.WriteAttributeString("noNamespaceSchemaLocation", "http://www.w3.org/2001/XMLSchema-instance", "bglcomp.xsd");
             writer.WriteComment("Standing Textured Lines FSX Models");
-            header = "xof 0302txt 0032" + Constants.vbCrLf + Constants.vbCrLf + "// Direct3D X file created by SBuilderX on " + DateAndTime.Now.ToString() + Constants.vbCrLf + Constants.vbCrLf;
+            header = "xof 0302txt 0032" + Environment.NewLine + Environment.NewLine + "// Direct3D X file created by SBuilderX on " + DateTime.Now.ToString() + Environment.NewLine + Environment.NewLine;
             template = My.MyProject.Computer.FileSystem.ReadAllText(My.MyProject.Application.Info.DirectoryPath + @"\tools\x_templates.txt");
             material = My.MyProject.Computer.FileSystem.ReadAllText(My.MyProject.Application.Info.DirectoryPath + @"\tools\x_material.txt");
             var loopTo = moduleLINES.NoOfLines;
@@ -2472,10 +2471,10 @@ namespace SBuilderX
                 {
                     A = moduleLINES.Lines[N].Type;
                     if (string.IsNullOrEmpty(A))
-                        goto next_N;
-                    B = Strings.Mid(A, 1, 5);
+                        continue;
+                    B = A.Substring(0, 5);
                     if (B != "TEX|S")
-                        goto next_N;
+                        continue;
                     // Ok, go and get Tiled, Night Texture ....
                     L[N] = true;
                     Set_Tex_T_N_C(ref Tiled, ref Night, ref Complex, N);
@@ -2485,8 +2484,8 @@ namespace SBuilderX
                     X_lon = (moduleLINES.Lines[N].ELON + moduleLINES.Lines[N].WLON) / 2d;
                     writer.WriteComment("Line # " + N.ToString());
                     writer.WriteStartElement("SceneryObject");
-                    writer.WriteAttributeString("lat", Strings.Trim(Conversion.Str(X_lat)));
-                    writer.WriteAttributeString("lon", Strings.Trim(Conversion.Str(X_lon)));
+                    writer.WriteAttributeString("lat", X_lat.ToString().Trim());
+                    writer.WriteAttributeString("lon", X_lon.ToString().Trim());
                     writer.WriteAttributeString("alt", "0");
                     writer.WriteAttributeString("altitudeIsAgl", Get_Is__AGL(N));
                     writer.WriteAttributeString("pitch", "0");
@@ -2505,9 +2504,9 @@ namespace SBuilderX
                     My.MyProject.Computer.FileSystem.WriteAllText(myFileXN, header, false, Encoding.ASCII);
                     My.MyProject.Computer.FileSystem.WriteAllText(myFileXN, template, true);
                     My.MyProject.Computer.FileSystem.WriteAllText(myFileXN, Make_X_Header(), true);
-                    st = "GuidToName {" + Constants.vbCrLf;
-                    st = st + "   \"" + myGuid + "\";" + Constants.vbCrLf;
-                    st = st + "   \"StandingTexLine\";" + Constants.vbCrLf + "}" + Constants.vbCrLf + Constants.vbCrLf;
+                    st = "GuidToName {" + Environment.NewLine;
+                    st = st + "   \"" + myGuid + "\";" + Environment.NewLine;
+                    st = st + "   \"StandingTexLine\";" + Environment.NewLine + "}" + Environment.NewLine + Environment.NewLine;
                     My.MyProject.Computer.FileSystem.WriteAllText(myFileXN, st, true);
                     My.MyProject.Computer.FileSystem.WriteAllText(myFileXN, Make_X_Frame(), true);
                     My.MyProject.Computer.FileSystem.WriteAllText(myFileXN, Make_X_Mesh(N), true);
@@ -2517,15 +2516,11 @@ namespace SBuilderX
                     My.MyProject.Computer.FileSystem.WriteAllText(myFileXN, Make_X_MeshNormals(N), true);
                     My.MyProject.Computer.FileSystem.WriteAllText(myFileXN, Make_X_MeshTextureCoords(N, Tiled), true);
                 }
-
-            next_N:
-                ;
             }
 
             writer.WriteFullEndElement();
             writer.Close();
-            FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-            FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
+            Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
 
             // make the mdls from the X's
             var loopTo1 = moduleLINES.NoOfLines;
@@ -2550,10 +2545,10 @@ namespace SBuilderX
             myProcess.Dispose();
             if (!File.Exists(BGLFile))
             {
-                A = "BGLComp could not produce the file" + Constants.vbCrLf + BGLFile + Constants.vbCrLf;
-                A = A + @"Try to compile the file ..\tools\" + B + " in a MSDOS window" + Constants.vbCrLf;
+                A = "BGLComp could not produce the file" + Environment.NewLine + BGLFile + Environment.NewLine;
+                A = A + @"Try to compile the file ..\tools\" + B + " in a MSDOS window" + Environment.NewLine;
                 A = A + "to read the error report!";
-                Interaction.MsgBox(A, MsgBoxStyle.Critical);
+                MessageBox.Show(A, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             if (!CopyBGLs)
@@ -2568,7 +2563,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Copying BGL files failed! Try to close FSX.", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -2617,9 +2612,9 @@ namespace SBuilderX
         private static string Make_X_MaterialStart(int L, int Night)
         {
             int P = 4 * (moduleLINES.Lines[L].NoOfPoints - 1);
-            int N = Strings.InStr(PolyTex, ".");
-            string @base = Strings.Mid(PolyTex, 1, N - 1);
-            string ext = Strings.Mid(PolyTex, N);
+            int N = PolyTex.IndexOf(".");
+            string @base = PolyTex.Substring(0, N);
+            string ext = PolyTex.Substring(N);
             var A = new StringBuilder(500);
             A.AppendLine("MeshMaterialList {");
             A.AppendLine("1;");
@@ -2634,13 +2629,13 @@ namespace SBuilderX
             A.AppendLine("  0.000; 0.000; 0.000;;");
             A.AppendLine("  0.000; 0.000; 0.000;;");
             A.AppendLine("  TextureFileName {");
-            A.AppendLine("    \"" + @base + ext + "\";" + Constants.vbCrLf + "  }");
+            A.AppendLine("    \"" + @base + ext + "\";" + Environment.NewLine + "  }");
             A.AppendLine("  DiffuseTextureFileName  {");
-            A.AppendLine("    \"" + @base + ext + "\";" + Constants.vbCrLf + "  }");
+            A.AppendLine("    \"" + @base + ext + "\";" + Environment.NewLine + "  }");
             if (Night == 1)
             {
                 A.AppendLine("  EmissiveTextureFileName  {");
-                A.AppendLine("    \"" + @base + "_lm" + ext + "\";" + Constants.vbCrLf + "  }");
+                A.AppendLine("    \"" + @base + "_lm" + ext + "\";" + Environment.NewLine + "  }");
             }
 
             return A.ToString();
@@ -2648,19 +2643,19 @@ namespace SBuilderX
 
         private static string Make_X_MaterialEnd(int Night)
         {
-            int N = Strings.InStr(PolyTex, ".");
-            string @base = Strings.Mid(PolyTex, 1, N - 1);
-            string ext = Strings.Mid(PolyTex, N);
+            int N = PolyTex.IndexOf(".");
+            string @base = PolyTex.Substring(0, N);
+            string ext = PolyTex.Substring(N);
             var A = new StringBuilder(200);
             A.AppendLine("    DiffuseTextureFileName  {");
-            A.AppendLine("      \"" + @base + ext + "\";" + Constants.vbCrLf + "    }");
+            A.AppendLine("      \"" + @base + ext + "\";" + Environment.NewLine + "    }");
             if (Night == 1)
             {
                 A.AppendLine("    EmissiveTextureFileName  {");
-                A.AppendLine("      \"" + @base + "_lm" + ext + "\";" + Constants.vbCrLf + "    }");
+                A.AppendLine("      \"" + @base + "_lm" + ext + "\";" + Environment.NewLine + "    }");
             }
 
-            A.AppendLine("  }" + Constants.vbCrLf + "}" + Constants.vbCrLf + "}" + Constants.vbCrLf);
+            A.AppendLine("  }" + Environment.NewLine + "}" + Environment.NewLine + "}" + Environment.NewLine);
             return A.ToString();
         }
 
@@ -2677,8 +2672,8 @@ namespace SBuilderX
             string ZL = "";
             string ZH = "";
             var A = new StringBuilder(32000);
-            string B = "Mesh Part2 {" + Constants.vbCrLf;
-            B = B + (8 * (moduleLINES.Lines[N].NoOfPoints - 1)).ToString() + ";" + Constants.vbCrLf;
+            string B = "Mesh Part2 {" + Environment.NewLine;
+            B = B + (8 * (moduleLINES.Lines[N].NoOfPoints - 1)).ToString() + ";" + Environment.NewLine;
             Make_X_XYZ(ref X, ref Y, ref ZL, ref ZH, N, 1);
             A.AppendLine(X + "; " + Y + "; " + ZH + ";,");
             A.AppendLine(X + "; " + Y + "; " + ZL + ";,");
@@ -2695,7 +2690,7 @@ namespace SBuilderX
             Make_X_XYZ(ref X, ref Y, ref ZL, ref ZH, N, moduleLINES.Lines[N].NoOfPoints);
             A.AppendLine(X + "; " + Y + "; " + ZL + ";,");
             A.Append(X + "; " + Y + "; " + ZH);
-            A.AppendLine(";," + Constants.vbCrLf + A.ToString() + ";;" + Constants.vbCrLf);
+            A.AppendLine(";," + Environment.NewLine + A.ToString() + ";;" + Environment.NewLine);
             A.Insert(0, B);
             P = 0;
             A.AppendLine((4 * (moduleLINES.Lines[N].NoOfPoints - 1)).ToString() + ";");
@@ -2716,7 +2711,7 @@ namespace SBuilderX
             }
 
             A.AppendLine("3; " + P.ToString() + ", " + (P + 1).ToString() + ", " + (P + 2).ToString() + ";,");
-            A.AppendLine("3; " + P.ToString() + ", " + (P + 2).ToString() + ", " + (P + 3).ToString() + ";;" + Constants.vbCrLf);
+            A.AppendLine("3; " + P.ToString() + ", " + (P + 2).ToString() + ", " + (P + 3).ToString() + ";;" + Environment.NewLine);
             return A.ToString();
         }
 
@@ -2768,7 +2763,7 @@ namespace SBuilderX
             }
 
             A1.AppendLine("3; " + P.ToString() + ", " + (P + 1).ToString() + ", " + (P + 2).ToString() + ";,");
-            A1.AppendLine("3; " + P.ToString() + ", " + (P + 2).ToString() + ", " + (P + 3).ToString() + ";;" + Constants.vbCrLf + "}" + Constants.vbCrLf);
+            A1.AppendLine("3; " + P.ToString() + ", " + (P + 2).ToString() + ", " + (P + 3).ToString() + ";;" + Environment.NewLine + "}" + Environment.NewLine);
             return A1.ToString();
         }
 
@@ -2811,25 +2806,25 @@ namespace SBuilderX
         private static string Format_TU(float X)
         {
             string Format_TURet = default;
-            Format_TURet = Strings.Format(X, "0.000");
-            Format_TURet = Strings.Replace(Format_TURet, ",", ".");
+            Format_TURet = X.ToString("0.000");
+            Format_TURet = Format_TURet.Replace(",", ".");
             return Format_TURet;
         }
 
         private static void Make_X_XYZ(ref string X, ref string Y, ref string H0, ref string H1, int N, int K)
         {
             double V = (moduleLINES.Lines[N].GLPoints[K].lon - X_lon) * X_MetPerDegLon;
-            X = Strings.Format(V, "0.000");
-            X = Strings.Replace(X, ",", ".");
+            X = V.ToString("0.000");
+            X = X.Replace(",", ".");
             V = (moduleLINES.Lines[N].GLPoints[K].lat - X_lat) * X_MetPerDegLat;
-            Y = Strings.Format(V, "0.000");
-            Y = Strings.Replace(Y, ",", ".");
+            Y = V.ToString("0.000");
+            Y = Y.Replace(",", ".");
             V = moduleLINES.Lines[N].GLPoints[K].alt;
-            H0 = Strings.Format(V, "0.000");
-            H0 = Strings.Replace(H0, ",", ".");
+            H0 = V.ToString("0.000");
+            H0 = H0.Replace(",", ".");
             V = V + moduleLINES.Lines[N].GLPoints[K].wid;
-            H1 = Strings.Format(V, "0.000");
-            H1 = Strings.Replace(H1, ",", ".");
+            H1 = V.ToString("0.000");
+            H1 = H1.Replace(",", ".");
         }
 
         private static void Make_X_XZN(ref string X1, ref string Z1, ref string X2, ref string Z2, int N, int K)
@@ -2843,14 +2838,14 @@ namespace SBuilderX
             X = U;
             U = V;   // rotate clockwise
             V = -X;
-            X1 = Strings.Format(U, "0.000");
-            X1 = Strings.Replace(X1, ",", ".");
-            Z1 = Strings.Format(V, "0.000");
-            Z1 = Strings.Replace(Z1, ",", ".");
-            X2 = Strings.Format(-U, "0.000");
-            X2 = Strings.Replace(X2, ",", ".");
-            Z2 = Strings.Format(-V, "0.000");
-            Z2 = Strings.Replace(Z2, ",", ".");
+            X1 = U.ToString("0.000");
+            X1 = X1.Replace(",", ".");
+            Z1 = V.ToString("0.000");
+            Z1 = Z1.Replace(",", ".");
+            X2 = (-U).ToString("0.000");
+            X2 = X2.Replace(",", ".");
+            Z2 = (-V).ToString("0.000");
+            Z2 = Z2.Replace(",", ".");
         }
 
         private static void Set_Tex_T_N_C(ref int Tiled, ref int Night, ref int Complex, int Line)
@@ -2860,24 +2855,24 @@ namespace SBuilderX
 
             // sets global variable PolyTex
 
-            A = Strings.Mid(moduleLINES.Lines[Line].Type, 14);   // TEX|Standing|   is removed
-            M = Strings.InStr(1, A, "|");
-            PolyTex = Strings.Mid(A, 1, M - 1);
-            A = Strings.Mid(A, M + 1);
-            M = Strings.InStr(1, A, "|");
-            A = Strings.Mid(A, M + 1);
-            M = Strings.InStr(1, A, "|");
-            A = Strings.Mid(A, M + 1);
-            M = Strings.InStr(1, A, "|");
-            B = Strings.Mid(A, 1, M - 1);
-            Complex = Conversions.ToInteger(B);
-            A = Strings.Mid(A, M + 1);
-            M = Strings.InStr(1, A, "|");
-            B = Strings.Mid(A, 1, M - 1);
+            A = moduleLINES.Lines[Line].Type.Substring(13);   // TEX|Standing|   is removed
+            M = A.IndexOf("|");
+            PolyTex = A.Substring(0, M);
+            A = A.Substring(M + 1);
+            M = A.IndexOf("|");
+            A = A.Substring(M + 1);
+            M = A.IndexOf("|");
+            A = A.Substring(M + 1);
+            M = A.IndexOf("|");
+            B = A.Substring(0, M);
+            Complex = Convert.ToInt32(B);
+            A = A.Substring(M + 1);
+            M = A.IndexOf("|");
+            B = A.Substring(0, M);
             Night = 0;
-            if (Conversions.ToBoolean(B))
+            if (Convert.ToBoolean(B))
                 Night = 1;
-            A = Strings.Mid(A, M + 1, 1);
+            A = A.Substring(M + 1, 1);
             Tiled = 0;
             if (A == "T")
                 Tiled = 1;
@@ -2915,17 +2910,17 @@ namespace SBuilderX
             moduleMAIN.Double_XYZ LZL;
             string Longitude, Latitude, Altitude;
             myFile = moduleMAIN.ProjectName + "_TELL";
-            myFile = Strings.Replace(myFile, " ", "_");
+            myFile = myFile.Replace(" ", "_");
             FileSystem.FileOpen(3, My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".scm", OpenMode.Output);
             A = "Header( 1 ";
-            A = A + Conversion.Str(Conversion.Int(H_NLat + 1.5d)) + " ";
-            A = A + Conversion.Str(Conversion.Int(H_SLat - 0.5d)) + " ";
-            A = A + Conversion.Str(Conversion.Int(H_ELon + 1.5d)) + " ";
-            A = A + Conversion.Str(Conversion.Int(H_WLon - 0.5d)) + " )";
+            A = A + ((int)(H_NLat + 1.5d)).ToString() + " ";
+            A = A + ((int)(H_SLat - 0.5d)).ToString() + " ";
+            A = A + ((int)(H_ELon + 1.5d)).ToString() + " ";
+            A = A + ((int)(H_WLon - 0.5d)).ToString() + " )";
             FileSystem.PrintLine(3, A);
             A = "LatRange( ";
-            A = A + Conversion.Str(Conversion.Int(H_SLat - 0.5d)) + " ";
-            A = A + Conversion.Str(Conversion.Int(H_NLat + 1.5d)) + " )";
+            A = A + ((int)(H_SLat - 0.5d)).ToString() + " ";
+            A = A + ((int)(H_NLat + 1.5d)).ToString() + " )";
             FileSystem.PrintLine(3, A);
             FileSystem.PrintLine(3);
             var loopTo = moduleLINES.NoOfLines;
@@ -2935,48 +2930,48 @@ namespace SBuilderX
                 {
                     A = moduleLINES.Lines[N].Type;
                     if (string.IsNullOrEmpty(A))
-                        goto next_N;
-                    B = Strings.Mid(A, 1, 5);
+                        continue;
+                    B = A.Substring(0, 5);
                     if (B != "TEX|L")
-                        goto next_N;
-                    A = Strings.Mid(A, 11);   // TEX|Lying|   is removed
-                    M = Strings.InStr(1, A, "|");
-                    PolyTex = Strings.Mid(A, 1, M - 1);
-                    A = Strings.Mid(A, M + 1);
-                    M = Strings.InStr(1, A, "|");
-                    B = Strings.Mid(A, 1, M - 1);
-                    Priority = Conversions.ToInteger(B).ToString();
-                    A = Strings.Mid(A, M + 1);
-                    M = Strings.InStr(1, A, "|");
-                    B = Strings.Mid(A, 1, M - 1);
-                    Visibility = Conversions.ToInteger(B).ToString();
-                    A = Strings.Mid(A, M + 1);
-                    M = Strings.InStr(1, A, "|");
-                    B = Strings.Mid(A, 1, M - 1);
-                    Complex = Conversions.ToInteger(B).ToString();
-                    A = Strings.Mid(A, M + 1);
-                    M = Strings.InStr(1, A, "|");
-                    B = Strings.Mid(A, 1, M - 1);
+                        continue;
+                    A = A.Substring(10);   // TEX|Lying|   is removed
+                    M = A.IndexOf("|");
+                    PolyTex = A.Substring(0, M);
+                    A = A.Substring(M + 1);
+                    M = A.IndexOf("|");
+                    B = A.Substring(0, M);
+                    Priority = Convert.ToInt32(B).ToString();
+                    A = A.Substring(M + 1);
+                    M = A.IndexOf("|"); ;
+                    B = A.Substring(0, M);
+                    Visibility = Convert.ToInt32(B).ToString();
+                    A = A.Substring(M + 1);
+                    M = A.IndexOf("|");
+                    B = A.Substring(0, M);
+                    Complex = Convert.ToInt32(B).ToString();
+                    A = A.Substring(M + 1);
+                    M = A.IndexOf("|");
+                    B = A.Substring(0, M);
                     Night = 0;
-                    if (Conversions.ToBoolean(B))
+                    if (Convert.ToBoolean(B))
                         Night = 1;
-                    A = Strings.Mid(A, M + 1, 1);
+                    A = A.Substring(M + 1, 1);
                     Tiled = 0;
                     if (A == "T")
                         Tiled = 1;
                     MakePoly_0_FromLine(N);
                     LZL = GetLatZLonTexPoly(0);
                     AuxLatPoly = LZL.Y;
-                    Latitude = Strings.Format(AuxLatPoly, "0.00000000");
+                    Latitude = AuxLatPoly.ToString("0.00000000");
                     AuxLonPoly = LZL.X;
-                    Longitude = Strings.Format(AuxLonPoly, "0.00000000");
+                    Longitude = AuxLonPoly.ToString("0.00000000");
                     AuxZPoly = LZL.Z;
-                    Altitude = Strings.Format(AuxZPoly, "0.00000000");
-                    Latitude = Strings.Replace(Latitude, ",", ".");
-                    Longitude = Strings.Replace(Longitude, ",", ".");
-                    Altitude = Strings.Replace(Altitude, ",", ".");
-                    Visibility = Strings.Replace(Visibility, ",", ".");
-                    A = "; Textured Line #" + Conversion.Str(N) + Constants.vbCrLf + Constants.vbCrLf;
+                    Altitude = AuxZPoly.ToString("0.00000000");
+                    Latitude = Latitude.Replace(",", ".");
+                    Longitude = Longitude.Replace(",", ".");
+                    Altitude = Altitude.Replace(",", ".");
+                    Visibility = Visibility.Replace(",", ".");
+                    A = "; Textured Line #" + N + Environment.NewLine + Environment.NewLine;
                     A = A + "Area( 5 ";
                     A = A + Latitude + " " + Longitude + " 50 )";
                     FileSystem.PrintLine(3, A);
@@ -2984,7 +2979,7 @@ namespace SBuilderX
                     FileSystem.PrintLine(3, A);
                     A = "LayerCall( :lcall " + Priority + " )";
                     FileSystem.PrintLine(3, A);
-                    A = "Jump( : )" + Constants.vbCrLf + ":lcall";
+                    A = "Jump( : )" + Environment.NewLine + ":lcall";
                     FileSystem.PrintLine(3, A);
                     A = "RefPoint( 2 :return 1 " + Latitude + " " + Longitude;
                     A = A + " E= " + Altitude + " v1= " + Visibility + " v2= " + GetV2(0) + " )";
@@ -3015,12 +3010,9 @@ namespace SBuilderX
                     FileSystem.PrintLine(3, A);
                     A = "EndVersion";
                     FileSystem.PrintLine(3, A);
-                    A = ":return" + Constants.vbCrLf + "Return" + Constants.vbCrLf + "EndA" + Constants.vbCrLf;
+                    A = ":return" + Environment.NewLine + "Return" + Environment.NewLine + "EndA" + Environment.NewLine;
                     FileSystem.PrintLine(3, A);
                 }
-
-            next_N:
-                ;
             }
 
             FileSystem.FileClose(3);
@@ -3029,16 +3021,14 @@ namespace SBuilderX
             A = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".BGL";
             if (File.Exists(A))
                 File.Delete(A);
-            FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-            FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
+            Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             A = @"scasm work\" + myFile + ".scm -s -l";
             N = moduleMAIN.ExecCmd(A);
             if (N > 0)
             {
-                A = "There was a compilation error in the textured" + Constants.vbCrLf;
+                A = "There was a compilation error in the textured" + Environment.NewLine;
                 A = A + " lines! Do you want to read a SCASM report?";
-                N = (int)Interaction.MsgBox(A, MsgBoxStyle.OkCancel);
-                if (N == 1)
+                if (DialogResult.Yes == MessageBox.Show(A, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 {
                     A = "notepad SCAERROR.LOG";
                     N = moduleMAIN.ExecCmd(A);
@@ -3059,7 +3049,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Copying BGL files failed! Try to close FSX.", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -3215,7 +3205,7 @@ namespace SBuilderX
             float[] TU;
             TU = Make_TU_Tiling(N, Tiled);
             string A;
-            FillVextexList_0Ret = "VertexList( 0 " + Constants.vbCrLf;
+            FillVextexList_0Ret = "VertexList( 0 " + Environment.NewLine;
             var loopTo = NP;
             for (K = 1; K <= loopTo; K++)
             {
@@ -3223,39 +3213,39 @@ namespace SBuilderX
                 A = "";
                 X = (Polys[0].GPoints[K].lon - AuxLonPoly) * moduleMAIN.MetersPerDegLon(AuxLatPoly);
                 if (X < 0d)
-                    A = Strings.Format(X, "0000.0000") + " ";
+                    A = X.ToString("0000.0000") + " ";
                 if (X >= 0d)
-                    A = Strings.Format(X, " 0000.0000") + " ";
+                    A = X.ToString(" 0000.0000") + " ";
                 Z = Polys[0].GPoints[K].alt - AuxZPoly;
-                A = A + Strings.Format(Z, "0000.0000000") + " ";
+                A = A + Z.ToString("0000.0000000") + " ";
                 Y = (Polys[0].GPoints[K].lat - AuxLatPoly) * moduleMAIN.MetersPerDegLat;
                 if (Y < 0d)
-                    A = A + Strings.Format(Y, "0000.0000") + " 0.0 1.0 0.0 ";
+                    A = A + Y.ToString("0000.0000") + " 0.0 1.0 0.0 ";
                 if (Y >= 0d)
-                    A = A + Strings.Format(Y, " 0000.0000") + " 0.0 1.0 0.0 ";
-                A = A + Strings.Format(TU[K], "00.000") + " " + Strings.Format(1, "00.000");
-                A = Strings.Replace(A, ",", ".");
-                A = A + " ; vertex #" + Strings.Format(2 * K - 2, "000");
-                FillVextexList_0Ret = FillVextexList_0Ret + "      " + A + Constants.vbCrLf;
+                    A = A + Y.ToString(" 0000.0000") + " 0.0 1.0 0.0 ";
+                A = A + TU[K].ToString("00.000") + " " + 1.ToString("00.000");
+                A = A.Replace(",", ".");
+                A = A + " ; vertex #" + (2 * K - 2).ToString("000");
+                FillVextexList_0Ret = FillVextexList_0Ret + "      " + A + Environment.NewLine;
                 // the right side point
                 A = "";
                 J = 2 * NP + 1 - K;
                 X = (Polys[0].GPoints[J].lon - AuxLonPoly) * moduleMAIN.MetersPerDegLon(AuxLatPoly);
                 if (X < 0d)
-                    A = Strings.Format(X, "0000.0000") + " ";
+                    A = X.ToString("0000.0000") + " ";
                 if (X >= 0d)
-                    A = Strings.Format(X, " 0000.0000") + " ";
+                    A = X.ToString(" 0000.0000") + " ";
                 Z = Polys[0].GPoints[J].alt - AuxZPoly;
-                A = A + Strings.Format(Z, "0000.0000000") + " ";
+                A = A + Z.ToString("0000.0000000") + " ";
                 Y = (Polys[0].GPoints[J].lat - AuxLatPoly) * moduleMAIN.MetersPerDegLat;
                 if (Y < 0d)
-                    A = A + Strings.Format(Y, "0000.0000") + " 0.0 1.0 0.0 ";
+                    A = A + Y.ToString("0000.0000") + " 0.0 1.0 0.0 ";
                 if (Y >= 0d)
-                    A = A + Strings.Format(Y, " 0000.0000") + " 0.0 1.0 0.0 ";
-                A = A + Strings.Format(TU[K], "00.000") + " " + Strings.Format(0, "00.000");
-                A = Strings.Replace(A, ",", ".");
-                A = A + " ; vertex #" + Strings.Format(2 * K - 1, "000");
-                FillVextexList_0Ret = FillVextexList_0Ret + "      " + A + Constants.vbCrLf;
+                    A = A + Y.ToString(" 0000.0000") + " 0.0 1.0 0.0 ";
+                A = A + TU[K].ToString("00.000") + " " + 0.ToString("00.000");
+                A = A.Replace(",", ".");
+                A = A + " ; vertex #" + (2 * K - 1).ToString("000");
+                FillVextexList_0Ret = FillVextexList_0Ret + "      " + A + Environment.NewLine;
             }
 
             FillVextexList_0Ret = FillVextexList_0Ret + "       )";
@@ -3305,7 +3295,7 @@ namespace SBuilderX
                 var loopTo3 = NP;
                 for (K = 2; K <= loopTo3; K++)
                 {
-                    TU[K] = Conversion.Int(TU[K] + 0.5f);
+                    TU[K] = (int)(TU[K] + 0.5f);
                     if (TU[K] == TU[K - 1])
                         TU[K] = TU[K] + 1f;
                 }
@@ -3319,8 +3309,7 @@ namespace SBuilderX
             double GetImageRatioRet = default;
             try
             {
-                FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-                FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\Tools\");
+                Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\Tools\");
                 string BmpPath = moduleMAIN.AppPath + @"\Tools\Work\temp.bmp";
                 string TexPath = moduleMAIN.AppPath + @"\Texture\" + PolyTex;
                 string ImageTool = @"imagetool -nowarning -nogui -nomip -8 Work\temp.bmp";
@@ -3333,7 +3322,7 @@ namespace SBuilderX
             catch (Exception ex)
             {
                 GetImageRatioRet = 1d;
-                Interaction.MsgBox("There is a problem with " + PolyTex, MsgBoxStyle.Critical);
+                MessageBox.Show("There is a problem with " + PolyTex, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             return GetImageRatioRet;
@@ -3344,17 +3333,17 @@ namespace SBuilderX
             string FillDrawTriList_0Ret = default;
             int NP = moduleLINES.Lines[N].NoOfPoints;
             int K, J;
-            FillDrawTriList_0Ret = "DrawTriList( 0 " + Constants.vbCrLf + "       ";
+            FillDrawTriList_0Ret = "DrawTriList( 0 " + Environment.NewLine + "       ";
             var loopTo = NP;
             for (K = 2; K <= loopTo; K++)
             {
                 J = 2 * K;
-                FillDrawTriList_0Ret = FillDrawTriList_0Ret + Strings.Format(J - 2, "000") + " ";
-                FillDrawTriList_0Ret = FillDrawTriList_0Ret + Strings.Format(J - 4, "000") + " ";
-                FillDrawTriList_0Ret = FillDrawTriList_0Ret + Strings.Format(J - 3, "000") + Constants.vbCrLf + "       ";
-                FillDrawTriList_0Ret = FillDrawTriList_0Ret + Strings.Format(J - 3, "000") + " ";
-                FillDrawTriList_0Ret = FillDrawTriList_0Ret + Strings.Format(J - 1, "000") + " ";
-                FillDrawTriList_0Ret = FillDrawTriList_0Ret + Strings.Format(J - 2, "000") + Constants.vbCrLf + "       ";
+                FillDrawTriList_0Ret = FillDrawTriList_0Ret + (J - 2).ToString("000") + " ";
+                FillDrawTriList_0Ret = FillDrawTriList_0Ret + (J - 4).ToString("000") + " ";
+                FillDrawTriList_0Ret = FillDrawTriList_0Ret + (J - 3).ToString("000") + Environment.NewLine + "       ";
+                FillDrawTriList_0Ret = FillDrawTriList_0Ret + (J - 3).ToString("000") + " ";
+                FillDrawTriList_0Ret = FillDrawTriList_0Ret + (J - 1).ToString("000") + " ";
+                FillDrawTriList_0Ret = FillDrawTriList_0Ret + (J - 2).ToString("000") + Environment.NewLine + "       ";
             }
 
             FillDrawTriList_0Ret = FillDrawTriList_0Ret + ")";
@@ -3398,8 +3387,8 @@ namespace SBuilderX
                 {
                     a = Polys[N].Type;
                     if (string.IsNullOrEmpty(a))
-                        goto next_N0;
-                    b = Strings.Mid(a, 1, 3);
+                        continue;
+                    b = a.Substring(0, 3);
                     if (b == "TEX")
                     {
                         if (Polys[N].ELON > H_ELon)
@@ -3412,23 +3401,20 @@ namespace SBuilderX
                             H_SLat = Polys[N].SLAT;
                     }
                 }
-
-            next_N0:
-                ;
             }
 
             myFile = moduleMAIN.ProjectName + "_TEXP";
-            myFile = Strings.Replace(myFile, " ", "_");
+            myFile = myFile.Replace(" ", "_");
             FileSystem.FileOpen(3, My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".scm", OpenMode.Output);
             a = "Header( 1 ";
-            a = a + Conversion.Str(Conversion.Int(H_NLat + 1.5d)) + " ";
-            a = a + Conversion.Str(Conversion.Int(H_SLat - 0.5d)) + " ";
-            a = a + Conversion.Str(Conversion.Int(H_ELon + 1.5d)) + " ";
-            a = a + Conversion.Str(Conversion.Int(H_WLon - 0.5d)) + " )";
+            a = a + (int)(H_NLat + 1.5d) + " ";
+            a = a + (int)(H_SLat - 0.5d) + " ";
+            a = a + (int)(H_ELon + 1.5d) + " ";
+            a = a + (int)(H_WLon - 0.5d) + " )";
             FileSystem.PrintLine(3, a);
             a = "LatRange( ";
-            a = a + Conversion.Str(Conversion.Int(H_SLat - 0.5d)) + " ";
-            a = a + Conversion.Str(Conversion.Int(H_NLat + 1.5d)) + " )";
+            a = a + (int)(H_SLat - 0.5d) + " ";
+            a = a + (int)(H_NLat + 1.5d) + " )";
             FileSystem.PrintLine(3, a);
             FileSystem.PrintLine(3);
             var loopTo1 = NoOfPolys;
@@ -3438,52 +3424,52 @@ namespace SBuilderX
                 {
                     a = Polys[N].Type;
                     if (string.IsNullOrEmpty(a))
-                        goto next_N;
-                    b = Strings.Mid(a, 1, 3);
+                        continue;
+                    b = a.Substring(0, 3);
                     if (b != "TEX")
-                        goto next_N;
-                    M = Strings.InStr(1, a, "//");
-                    b = Strings.Mid(a, 1, M - 1);
+                        continue;
+                    M = a.IndexOf("//");
+                    b = a.Substring(0, M);
                     // b = "TEX"
 
-                    a = Strings.Mid(a, M + 2);
-                    M = Strings.InStr(1, a, "//");
-                    PolyTex = Strings.Mid(a, 1, M - 1);
-                    a = Strings.Mid(a, M + 2);
-                    M = Strings.InStr(1, a, "//");
-                    Priority = Strings.Mid(a, 1, M - 1);
-                    a = Strings.Mid(a, M + 2);
-                    M = Strings.InStr(1, a, "//");
-                    TileX = Conversions.ToInteger(Strings.Mid(a, 1, M - 1));
-                    a = Strings.Mid(a, M + 2);
-                    M = Strings.InStr(1, a, "//");
-                    TileY = Conversions.ToInteger(Strings.Mid(a, 1, M - 1));
-                    a = Strings.Mid(a, M + 2);
-                    M = Strings.InStr(1, a, "//");
-                    Visibility = Strings.Mid(a, 1, M - 1);
-                    a = Strings.Mid(a, M + 2);
-                    M = Strings.InStr(1, a, "//");
-                    Night = Conversions.ToInteger(Strings.Mid(a, 1, M - 1));
-                    PolyTexString = Strings.Mid(a, M + 2);
+                    a = a.Substring(M + 2);
+                    M = a.IndexOf("//");
+                    PolyTex = a.Substring(0, M);
+                    a = a.Substring(M + 2);
+                    M = a.IndexOf("//");
+                    Priority = a.Substring(0, M);
+                    a = a.Substring(M + 2);
+                    M = a.IndexOf("//");
+                    TileX = Convert.ToInt32(a.Substring(0, M));
+                    a = a.Substring(M + 2);
+                    M = a.IndexOf("//");
+                    TileY = Convert.ToInt32(a.Substring(0, M));
+                    a = a.Substring(M + 2);
+                    M = a.IndexOf("//");
+                    Visibility = a.Substring(0, M);
+                    a = a.Substring(M + 2);
+                    M = a.IndexOf("//");
+                    Night = Convert.ToInt32(a.Substring(0, M));
+                    PolyTexString = a.Substring(M + 2);
                     MakePolyTexString(N, false);
                     LZL = GetLatZLonTexPoly(N);
                     AuxLatPoly = LZL.Y;
-                    Latitude = Strings.Format(AuxLatPoly, "0.00000000");
+                    Latitude = AuxLatPoly.ToString("0.00000000");
                     AuxLonPoly = LZL.X;
-                    Longitude = Strings.Format(AuxLonPoly, "0.00000000");
+                    Longitude = AuxLonPoly.ToString("0.00000000");
                     AuxZPoly = LZL.Z;
-                    Altitude = Strings.Format(AuxZPoly, "0.00000000");
-                    Latitude = Strings.Replace(Latitude, ",", ".");
-                    Longitude = Strings.Replace(Longitude, ",", ".");
-                    Altitude = Strings.Replace(Altitude, ",", ".");
-                    Visibility = Strings.Replace(Visibility, ",", ".");
-                    a = "; Textured Poly #" + Conversion.Str(N) + Constants.vbCrLf + Constants.vbCrLf;
+                    Altitude = AuxZPoly.ToString("0.00000000");
+                    Latitude = Latitude.Replace(",", ".");
+                    Longitude = Longitude.Replace(",", ".");
+                    Altitude = Altitude.Replace(",", ".");
+                    Visibility = Visibility.Replace(",", ".");
+                    a = "; Textured Poly #" + N + Environment.NewLine + Environment.NewLine;
                     a = a + "Area( 5 ";
                     a = a + Latitude + " " + Longitude + " 50 )";
                     FileSystem.PrintLine(3, a);
                     a = "LayerCall( :lcall " + Priority + " )";
                     FileSystem.PrintLine(3, a);
-                    a = "Jump( : )" + Constants.vbCrLf + ":lcall";
+                    a = "Jump( : )" + Environment.NewLine + ":lcall";
                     FileSystem.PrintLine(3, a);
                     a = "RefPoint( 2 :return 1 " + Latitude + " " + Longitude;
                     a = a + " E= " + Altitude + " v1= " + Visibility + " v2= " + GetV2(N) + " )";
@@ -3514,12 +3500,9 @@ namespace SBuilderX
                     FileSystem.PrintLine(3, a);
                     a = "EndVersion";
                     FileSystem.PrintLine(3, a);
-                    a = ":return" + Constants.vbCrLf + "Return" + Constants.vbCrLf + "EndA" + Constants.vbCrLf;
+                    a = ":return" + Environment.NewLine + "Return" + Environment.NewLine + "EndA" + Environment.NewLine;
                     FileSystem.PrintLine(3, a);
                 }
-
-            next_N:
-                ;
             }
 
             FileSystem.FileClose(3);
@@ -3528,16 +3511,14 @@ namespace SBuilderX
             a = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".BGL";
             if (File.Exists(a))
                 File.Delete(a);
-            FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-            FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
+            Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             a = @"scasm work\" + myFile + ".scm -s -l";
             N = moduleMAIN.ExecCmd(a);
             if (N > 0)
             {
-                a = "There was a compilation error in the textured" + Constants.vbCrLf;
+                a = "There was a compilation error in the textured" + Environment.NewLine;
                 a = a + " polygons! Do you want to read a SCASM report?";
-                N = (int)Interaction.MsgBox(a, MsgBoxStyle.OkCancel);
-                if (N == 1)
+                if (DialogResult.Yes == MessageBox.Show(a, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 {
                     a = "notepad SCAERROR.LOG";
                     N = moduleMAIN.ExecCmd(a);
@@ -3558,7 +3539,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
-                Interaction.MsgBox("Copying BGL files failed!", MsgBoxStyle.Exclamation);
+                MessageBox.Show("Copying BGL files failed!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -3611,7 +3592,7 @@ namespace SBuilderX
 
             X = DX * DX + DY * DY + DZ * DZ;
             X = Math.Sqrt(X);
-            X = Conversion.Int(X + 20d);
+            X = (int)(X + 20d);
             GetV2Ret = X.ToString();
             return GetV2Ret;
         }
@@ -3621,14 +3602,14 @@ namespace SBuilderX
             string FillTextureListRet = default;
             string a, File;
             int K;
-            a = "TextureList( 0 " + Constants.vbCrLf;
-            K = Strings.Len(PolyTex);
+            a = "TextureList( 0 " + Environment.NewLine;
+            K = PolyTex.Length;
             K = K - 4;
-            File = Strings.Mid(PolyTex, 1, K);
-            a = a + "       6 FF 255 255 255 0 50.000000 " + File + ".bmp" + Constants.vbCrLf;
+            File = PolyTex.Substring(0, K);
+            a = a + "       6 FF 255 255 255 0 50.000000 " + File + ".bmp" + Environment.NewLine;
             if (Nite == 1)
             {
-                a = a + "     256 FF 255 255 255 0 50.000000 " + File + "_lm.bmp" + Constants.vbCrLf;
+                a = a + "     256 FF 255 255 255 0 50.000000 " + File + "_lm.bmp" + Environment.NewLine;
             }
 
             FillTextureListRet = a + "       )";
@@ -3642,10 +3623,10 @@ namespace SBuilderX
             string a;
             C = Polys[P].Color;
             FillMaterialListRet = "MaterialList( 0   ";
-            a = Strings.Format(C.R / 255d, "0.000") + " ";
-            a = a + Strings.Format(C.G / 255d, "0.000") + " ";
-            a = a + Strings.Format(C.B / 255d, "0.000") + " 1.00   ";
-            a = Strings.Replace(a, ",", ".");
+            a = (C.R / 255d).ToString("0.000") + " ";
+            a = a + (C.G / 255d).ToString("0.000") + " ";
+            a = a + (C.B / 255d).ToString("0.000") + " 1.00   ";
+            a = a.Replace(",", ".");
             FillMaterialListRet = FillMaterialListRet + a + a + "0.00 0.00 0.00 1.00   0.00 0.00 0.00 1.00   0.00 )";
             return FillMaterialListRet;
         }
@@ -3667,18 +3648,18 @@ namespace SBuilderX
             var loopTo = NP;
             for (M = 1; M <= loopTo; M++)
             {
-                K = Strings.InStr(1, a, "//");
-                b = Strings.Mid(a, 1, K - 1);
-                a = Strings.Mid(a, K + 2);
-                K = Strings.InStr(1, b, ",");
-                LP[M].X = Conversions.ToInteger(Strings.Mid(b, 1, K - 1));
-                LP[M].Y = Conversions.ToInteger(Strings.Mid(b, K + 1));
+                K = a.IndexOf("//");
+                b = a.Substring(0, K);
+                a = a.Substring(K + 2);
+                K = b.IndexOf(",");
+                LP[M].X = Convert.ToInt32(b.Substring(0, K));
+                LP[M].Y = Convert.ToInt32(b.Substring(K + 1));
             }
 
             if (MakePolyClockWise(P))
             {
                 L = NP + 1;
-                M = (int)Conversion.Int(L / 2d);
+                M = (int)(L / 2d);
                 var loopTo1 = M;
                 for (N = 1; N <= loopTo1; N++)
                 {
@@ -3688,28 +3669,28 @@ namespace SBuilderX
                 }
             }
 
-            FillVextexListRet = "VertexList( 0 " + Constants.vbCrLf;
+            FillVextexListRet = "VertexList( 0 " + Environment.NewLine;
             var loopTo2 = NP;
             for (N = 1; N <= loopTo2; N++)
             {
                 X = (Polys[P].GPoints[N].lon - AuxLonPoly) * moduleMAIN.MetersPerDegLon(AuxLatPoly);
                 if (X < 0d)
-                    a = Strings.Format(X, "0000.0000") + " ";
+                    a = X.ToString("0000.0000") + " ";
                 if (X >= 0d)
-                    a = Strings.Format(X, " 0000.0000") + " ";
+                    a = X.ToString(" 0000.0000") + " ";
                 Z = Polys[P].GPoints[N].alt - AuxZPoly;
-                a = a + Strings.Format(Z, "0000.0000000") + " ";
+                a = a + Z.ToString("0000.0000000") + " ";
                 Y = (Polys[P].GPoints[N].lat - AuxLatPoly) * moduleMAIN.MetersPerDegLat;
                 if (Y < 0d)
-                    a = a + Strings.Format(Y, "0000.0000") + " 0.0 1.0 0.0 ";
+                    a = a + Y.ToString("0000.0000") + " 0.0 1.0 0.0 ";
                 if (Y >= 0d)
-                    a = a + Strings.Format(Y, " 0000.0000") + " 0.0 1.0 0.0 ";
+                    a = a + Y.ToString(" 0000.0000") + " 0.0 1.0 0.0 ";
                 TX = (float)(LP[N].X * TileX / 256d);
                 TY = (float)(LP[N].Y * TileY / 256d);
-                a = a + Strings.Format(TX, "00.000") + " " + Strings.Format(TY, "00.000");
-                a = Strings.Replace(a, ",", ".");
-                a = a + " ; vertex #" + Strings.Format(N - 1, "000");
-                FillVextexListRet = FillVextexListRet + "      " + a + Constants.vbCrLf;
+                a = a + TX.ToString("00.000") + " " + TY.ToString("00.000");
+                a = a.Replace(",", ".");
+                a = a + " ; vertex #" + (N - 1).ToString("000");
+                FillVextexListRet = FillVextexListRet + "      " + a + Environment.NewLine;
             }
 
             FillVextexListRet = FillVextexListRet + "       )";
@@ -3734,16 +3715,16 @@ namespace SBuilderX
             moduleTRIANGLES.Pts2Tris[0] = moduleTRIANGLES.Pts2Tris[S];
             moduleTRIANGLES.Pts2Tris[S + 1] = moduleTRIANGLES.Pts2Tris[1];
             moduleTRIANGLES.MakeTris(); // make the triangles!
-            FillDrawTriListRet = "DrawTriList( 0 " + Constants.vbCrLf + "       ";
+            FillDrawTriListRet = "DrawTriList( 0 " + Environment.NewLine + "       ";
             var loopTo1 = moduleTRIANGLES.NoOfTris;
             for (N = 1; N <= loopTo1; N++)
             {
                 K = moduleTRIANGLES.Tris[N].N3;
-                FillDrawTriListRet = FillDrawTriListRet + Strings.Format(K, "000") + " ";
+                FillDrawTriListRet = FillDrawTriListRet + K.ToString("000") + " ";
                 K = moduleTRIANGLES.Tris[N].N2;
-                FillDrawTriListRet = FillDrawTriListRet + Strings.Format(K, "000") + " ";
+                FillDrawTriListRet = FillDrawTriListRet + K.ToString("000") + " ";
                 K = moduleTRIANGLES.Tris[N].N1;
-                FillDrawTriListRet = FillDrawTriListRet + Strings.Format(K, "000") + Constants.vbCrLf + "       ";
+                FillDrawTriListRet = FillDrawTriListRet + K.ToString("000") + Environment.NewLine + "       ";
             }
 
             FillDrawTriListRet = FillDrawTriListRet + ")";

@@ -1,6 +1,5 @@
 ﻿using System;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -55,7 +54,7 @@ namespace SBuilderX
 
             try
             {
-                L = Conversions.ToInteger(Conversion.Fix(txtL.Text));
+                L = (int)Convert.ToSingle(txtL.Text);
                 if (L < 0)
                     Good = false;
                 if (L > 25)
@@ -74,22 +73,22 @@ namespace SBuilderX
                 {
                     PU = (int)(3d * Math.Pow(2d, L));
                     PV = (int)(2d * Math.Pow(2d, L));
-                    U = (int)Conversion.Int(PU * (X + 180d) / 360d);
-                    V = (int)Conversion.Int(PV * (90d - Y) / 180d);
+                    U = (int)(PU * (X + 180d) / 360d);
+                    V = (int)(PV * (90d - Y) / 180d);
                     FillValues(X, Y, L, U, V);
                 }
                 else
                 {
                     FillValues(X0, Y0, L0, U0, V0);
-                    Interaction.MsgBox("Check your entry!", MsgBoxStyle.Critical);
+                    MessageBox.Show("Check your entry!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 FillValues(X0, Y0, L0, U0, V0);
-                Interaction.MsgBox("Check your entry!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check your entry!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -102,9 +101,9 @@ namespace SBuilderX
 
             try
             {
-                L = Conversions.ToInteger(Conversion.Fix(txtL.Text));
-                U = Conversions.ToInteger(Conversion.Fix(txtU.Text));
-                V = Conversions.ToInteger(Conversion.Fix(txtV.Text));
+                L = (int)Convert.ToSingle(txtL.Text);
+                U = (int)Convert.ToSingle(txtU.Text);
+                V = (int)Convert.ToSingle(txtV.Text);
                 if (L < 0)
                     Good = false;
                 if (L > 27)
@@ -128,15 +127,15 @@ namespace SBuilderX
                 else
                 {
                     FillValues(X0, Y0, L0, U0, V0);
-                    Interaction.MsgBox("Check your entry!", MsgBoxStyle.Critical);
+                    MessageBox.Show("Check your entry!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
                 return;
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 FillValues(X0, Y0, L0, U0, V0);
-                Interaction.MsgBox("Check your entry!", MsgBoxStyle.Critical);
+                MessageBox.Show("Check your entry!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

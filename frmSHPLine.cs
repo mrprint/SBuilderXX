@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderX
 {
@@ -213,8 +212,8 @@ namespace SBuilderX
         {
             moduleSHAPE.ShapeLineGuid = txtGUID.Text;
             moduleSHAPE.ShapeLineName = txtName.Text;
-            moduleSHAPE.ShapeLineAltitude = Conversions.ToDouble(txtAltitude.Text);
-            moduleSHAPE.ShapeLineWidth = Conversions.ToDouble(txtWidth.Text);
+            moduleSHAPE.ShapeLineAltitude = Convert.ToDouble(txtAltitude.Text);
+            moduleSHAPE.ShapeLineWidth = Convert.ToDouble(txtWidth.Text);
             moduleSHAPE.ShapeLineColor = lbColor.BackColor;
             moduleSHAPE.ShapeLineGuidField = cmbGUID.SelectedIndex;
             moduleSHAPE.ShapeLineNameField = cmbName.SelectedIndex;
