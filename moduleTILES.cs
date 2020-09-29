@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -41,8 +42,9 @@ namespace SBuilderX
 
         internal static MapTile MapBackground;  // final
         internal static MapTile MapBackground0; // temp
-        internal static ArrayList TilesDownloading = new ArrayList();
-        internal static ArrayList TilesFailed = new ArrayList();
+        internal static HashSet<string> TilesDownloading = new HashSet<string>();
+        internal static HashSet<string> TilesFailed = new HashSet<string>();
+        internal static readonly object downloadLock = new object();
 
         internal struct TileHandlerState
         {
@@ -148,6 +150,7 @@ namespace SBuilderX
             else
             {
                 My.MyProject.Forms.FrmStart.lbTilesRemaining.Visible = false;
+                My.MyProject.Forms.FrmStart.lbTilesRemaining.Refresh();
                 if (TimeToUpdate)
                 {
                     My.MyProject.Forms.FrmStart.MakeBackground();

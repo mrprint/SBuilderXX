@@ -5836,7 +5836,7 @@ namespace SBuilderX
                 int X, Y, X0, X1, Y0, Y1;
                 int HH;
                 int[] H = new int[7];
-                Bitmap img_tile;
+                Bitmap img_tile = moduleTILES.blankjpg;
                 string TileExtension = moduleTILES.TileServer.ImageType;
                 string TilePrefix = @"\L" + moduleMAIN.Zoom.ToString().Trim() + "X";
                 moduleTILES.TileFolder = moduleMAIN.AppPath + @"\Tiles\" + moduleTILES.TileServer.ServerName;
@@ -5884,27 +5884,35 @@ namespace SBuilderX
                         }
                         else
                         {
+                            bool no_tile = false;
                             try
                             {
                                 TileFull = moduleTILES.TileFolder + TileDir + TileName;
                                 img_tile = (Bitmap)Image.FromFile(TileFull);
                             }
-                            catch (Exception)
+                            catch (FileNotFoundException)
+                            {
+                                no_tile = true;
+                            }
+                            if (no_tile)
                             {
                                 img_tile = moduleTILES.blankjpg;
-                                if (!moduleTILES.TilesFailed.Contains(TileName))
+                                lock (moduleTILES.downloadLock)
                                 {
-                                    if (!moduleTILES.TilesDownloading.Contains(TileName))
+                                    if (!moduleTILES.TilesFailed.Contains(TileName))
                                     {
-                                        Download = true;
-                                        TileTemp = moduleMAIN.AppPath + @"\Tiles" + TileName;
-                                        moduleTILES.TilesDownloading.Add(TileName);
-                                        moduleTILES.TilesToCome = moduleTILES.TilesToCome + 1;
-                                        moduleTILES.TileHasArrived(moduleTILES.TilesToCome);
-                                        myTileHandlerState.handler = myDownloadTileHandler;
-                                        myTileHandlerState.tile = TileName;
-                                        myTileHandlerState.dir = TileDir;
-                                        AR = myDownloadTileHandler.BeginInvoke(X, Y, moduleMAIN.Zoom, TileTemp, moduleTILES.myDownloadTileCallback, myTileHandlerState);
+                                        if (!moduleTILES.TilesDownloading.Contains(TileName))
+                                        {
+                                            Download = true;
+                                            TileTemp = moduleMAIN.AppPath + @"\Tiles" + TileName;
+                                            moduleTILES.TilesDownloading.Add(TileName);
+                                            moduleTILES.TilesToCome = moduleTILES.TilesToCome + 1;
+                                            moduleTILES.TileHasArrived(moduleTILES.TilesToCome);
+                                            myTileHandlerState.handler = myDownloadTileHandler;
+                                            myTileHandlerState.tile = TileName;
+                                            myTileHandlerState.dir = TileDir;
+                                            AR = myDownloadTileHandler.BeginInvoke(X, Y, moduleMAIN.Zoom, TileTemp, moduleTILES.myDownloadTileCallback, myTileHandlerState);
+                                        }
                                     }
                                 }
                             }
@@ -5963,35 +5971,38 @@ namespace SBuilderX
             {
             }
 
-            moduleTILES.TilesDownloading.Remove(Tilename);
-            moduleTILES.TilesToCome = moduleTILES.TilesToCome - 1;
-            if (retval) // not failed
+            lock (moduleTILES.downloadLock)
             {
-                if (My.MyProject.Computer.FileSystem.FileExists(TileTemp))
+                moduleTILES.TilesDownloading.Remove(Tilename);
+                moduleTILES.TilesToCome = moduleTILES.TilesToCome - 1;
+                if (retval) // not failed
                 {
-                    My.MyProject.Computer.FileSystem.CopyFile(TileTemp, TileFull);
-                    My.MyProject.Computer.FileSystem.DeleteFile(TileTemp);
+                    if (My.MyProject.Computer.FileSystem.FileExists(TileTemp))
+                    {
+                        My.MyProject.Computer.FileSystem.CopyFile(TileTemp, TileFull);
+                        My.MyProject.Computer.FileSystem.DeleteFile(TileTemp);
+                    }
+                    // Debug.Print("Success = " & Tilename)
+                    else // as if failed
+                    {
+                        moduleTILES.TilesFailed.Add(Tilename);
+                        // Debug.Print("Failed = " & Tilename)
+                    }
                 }
-                // Debug.Print("Success = " & Tilename)
-                else // as if failed
+                else //
                 {
+                    if (My.MyProject.Computer.FileSystem.FileExists(TileTemp))
+                    {
+                        My.MyProject.Computer.FileSystem.DeleteFile(TileTemp);
+                    }
+
                     moduleTILES.TilesFailed.Add(Tilename);
                     // Debug.Print("Failed = " & Tilename)
                 }
-            }
-            else // 
-            {
-                if (My.MyProject.Computer.FileSystem.FileExists(TileTemp))
-                {
-                    My.MyProject.Computer.FileSystem.DeleteFile(TileTemp);
-                }
 
-                moduleTILES.TilesFailed.Add(Tilename);
-                // Debug.Print("Failed = " & Tilename)
+                if (moduleTILES.TilesToCome < 0)
+                    moduleTILES.TilesToCome = 0;
             }
-
-            if (moduleTILES.TilesToCome < 0)
-                moduleTILES.TilesToCome = 0;
             UpdateUI(moduleTILES.TilesToCome);
         }
 

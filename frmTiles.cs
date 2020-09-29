@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SBuilderX
@@ -433,27 +434,35 @@ namespace SBuilderX
                         labelCount.Refresh();
                         TileName = TilePrefix + (X00 + C).ToString().Trim() + "Y" + (Y00 + R).ToString().Trim() + TileExtension;
                         TileDir = moduleTILES.TileDirFromXYZ(X00 + C, Y00 + R, ZZZ);
+                        bool no_tile = false;
                         try
                         {
                             TileFull = moduleTILES.TileFolder + TileDir + TileName;
                             // ImgTile = Image.FromFile(TileFull)      'was like this in October 2017
                             ImgTile = (Bitmap)Image.FromFile(TileFull);
                         }
-                        catch (Exception)
+                        catch (FileNotFoundException)
+                        {
+                            no_tile = true;
+                        }
+                        if (no_tile)
                         {
                             ImgTile = blankjpg;
-                            if (!moduleTILES.TilesFailed.Contains(TileName))
+                            lock (moduleTILES.downloadLock)
                             {
-                                if (!moduleTILES.TilesDownloading.Contains(TileName))
+                                if (!moduleTILES.TilesFailed.Contains(TileName))
                                 {
-                                    TileTemp = moduleMAIN.AppPath + @"\Tiles" + TileName;
-                                    moduleTILES.TilesDownloading.Add(TileName);
-                                    moduleTILES.TilesToCome = moduleTILES.TilesToCome + 1;
-                                    moduleTILES.TileHasArrived(moduleTILES.TilesToCome);
-                                    myTileHandlerState.handler = myDownloadTileHandler;
-                                    myTileHandlerState.tile = TileName;
-                                    myTileHandlerState.dir = TileDir;
-                                    AR = myDownloadTileHandler.BeginInvoke(X00 + C, Y00 + R, ZZZ, TileTemp, moduleTILES.myDownloadTileCallback, myTileHandlerState);
+                                    if (!moduleTILES.TilesDownloading.Contains(TileName))
+                                    {
+                                        TileTemp = moduleMAIN.AppPath + @"\Tiles" + TileName;
+                                        moduleTILES.TilesDownloading.Add(TileName);
+                                        moduleTILES.TilesToCome = moduleTILES.TilesToCome + 1;
+                                        moduleTILES.TileHasArrived(moduleTILES.TilesToCome);
+                                        myTileHandlerState.handler = myDownloadTileHandler;
+                                        myTileHandlerState.tile = TileName;
+                                        myTileHandlerState.dir = TileDir;
+                                        AR = myDownloadTileHandler.BeginInvoke(X00 + C, Y00 + R, ZZZ, TileTemp, moduleTILES.myDownloadTileCallback, myTileHandlerState);
+                                    }
                                 }
                             }
                         }
