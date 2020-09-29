@@ -40,13 +40,13 @@ namespace SBuilderX
         {
             if (mem1 is object)
                 mem1.Dispose();
-            if (mem1 is object)
+            if (mem2 is object)
                 mem2.Dispose();
-            if (mem1 is object)
+            if (mem3 is object)
                 mem3.Dispose();
-            if (mem1 is object)
+            if (mem4 is object)
                 mem4.Dispose();
-            if (mem1 is object)
+            if (mem5 is object)
                 mem5.Dispose();
             My.MyProject.Forms.FrmStart.UndoMenuItem.Enabled = false;
             My.MyProject.Forms.FrmStart.RedoMenuItem.Enabled = false;

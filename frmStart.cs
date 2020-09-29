@@ -1880,7 +1880,7 @@ namespace SBuilderX
                         regKey = My.MyProject.Computer.Registry.Users.OpenSubKey(s);
                     if (regKey is object)
                     {
-                        GetPath = regKey.GetValue("SetupPath").ToString();
+                        GetPath = regKey.GetValue("SetupPath")?.ToString();
                         if (GetPath is object && !GetPath.EndsWith(@"\"))
                         {
                             GetPath = GetPath + @"\";
@@ -4978,6 +4978,8 @@ namespace SBuilderX
                 {
                     A = FileSystem.LineInput(2);
                     Marker = Marker + A.Length + 2;
+                    if (A.Length < 4)
+                        continue;
                     B = A.Substring(0, 4).Trim();
                     if (B == "[Tex")
                     {
@@ -5013,7 +5015,7 @@ namespace SBuilderX
 
                     if (B == "Type")
                     {
-                        C = A.Substring(5, 3).Trim(); // ''' skip legacy
+                        C = (A.Length < 8) ? "" : A.Substring(5, 3).Trim(); // ''' skip legacy
                         moduleLINES.LineTypes[K].Type = C;
                     }
                 }
@@ -5027,6 +5029,7 @@ namespace SBuilderX
             }
             catch (Exception)
             {
+                FileSystem.FileClose();
                 MessageBox.Show("Check your Lines.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
@@ -5048,6 +5051,8 @@ namespace SBuilderX
                 {
                     A = FileSystem.LineInput(2);
                     Marker = Marker + A.Length + 2;
+                    if (A.Length < 4)
+                        continue;
                     B = A.Substring(0, 4).Trim().ToUpper();
                     if (B == "[TEX")
                     {
@@ -5083,7 +5088,7 @@ namespace SBuilderX
 
                     if (B == "TYPE")
                     {
-                        C = A.Substring(5, 3).Trim(); // ''' landclasses
+                        C = (A.Length < 8) ? "" : A.Substring(5, 3).Trim(); // ''' landclasses
                                                                 // C = Mid(C, 1, 3)
                         modulePOLYS.PolyTypes[K].Type = C;
                     }
@@ -5099,6 +5104,7 @@ namespace SBuilderX
             }
             catch (Exception)
             {
+                FileSystem.FileClose();
                 MessageBox.Show("Check your Polys.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
@@ -5121,6 +5127,8 @@ namespace SBuilderX
                 {
                     A = FileSystem.LineInput(2);
                     Marker = Marker + A.Length + 2;
+                    if (A.Length < 4)
+                        continue;
                     B = A.Substring(0, 4).Trim().ToUpper();
                     if (B == "NAME")
                     {
@@ -5159,6 +5167,7 @@ namespace SBuilderX
             }
             catch (Exception)
             {
+                FileSystem.FileClose();
                 MessageBox.Show("Check your Lands.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
@@ -5180,6 +5189,8 @@ namespace SBuilderX
                 {
                     A = FileSystem.LineInput(2);
                     Marker = Marker + A.Length + 2;
+                    if (A.Length < 4)
+                        continue;
                     B = A.Substring(0, 4).Trim().ToUpper();
                     if (B == "NAME")
                     {
@@ -5218,6 +5229,7 @@ namespace SBuilderX
             }
             catch (Exception)
             {
+                FileSystem.FileClose();
                 MessageBox.Show("Check your Waters.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
@@ -5239,6 +5251,8 @@ namespace SBuilderX
                 {
                     A = FileSystem.LineInput(2);
                     Marker = Marker + A.Length + 2;
+                    if (A.Length < 3)
+                        continue;
                     B = A.Substring(0, 3).Trim().ToUpper();
                     if (B == "NAM")
                     {
@@ -5279,6 +5293,7 @@ namespace SBuilderX
             }
             catch (Exception)
             {
+                FileSystem.FileClose();
                 MessageBox.Show("Check your Bridges.txt file!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
@@ -6098,7 +6113,7 @@ namespace SBuilderX
             }
 
             A = Path.GetFileNameWithoutExtension(C).ToUpper();
-            B = A.Substring(0, 3);
+            B = (A.Length < 3) ? "" : A.Substring(0, 3);
             if (B == "LC_" | B == "WC_")
                 Good = true;
             if (Good)

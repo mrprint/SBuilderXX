@@ -60,8 +60,10 @@ namespace SBuilderX
             txtSlope.Text = (sxy * 1000d).ToString();
             txtAlt0.Text = modulePOLYS.Polys[modulePOPUP.POPIndex].GPoints[n1].alt.ToString();
             txtPt0.Text = n1.ToString();
-            lbSX.Text = "SlopeX = " + k1.ToString().Substring(0, 13);
-            lbSY.Text = "SlopeY = " + k2.ToString().Substring(0, 13);
+            var k1s = k1.ToString();
+            var k2s = k2.ToString();
+            lbSX.Text = "SlopeX = " + ((k1s.Length < 13) ? k1s : k1s.Substring(0, 13));
+            lbSY.Text = "SlopeY = " + ((k2s.Length < 13) ? k2s : k2s.Substring(0, 13));
         }
 
         private void CmdSlope_Click(object sender, EventArgs e)

@@ -1441,16 +1441,13 @@ namespace SBuilderX
                     Marker = Marker + a.Length + 2;
                     a = a.Trim();
                     if (string.IsNullOrEmpty(a))
-                        goto next_1;
-                    b = a.Substring(0, 8);
+                        continue;
+                    b = (a.Length < 8) ? "" : a.Substring(0, 8);
                     if (b == "include=")
                     {
                         NoIncFiles = NoIncFiles + 1;
                         IncFiles[NoIncFiles] = a.Substring(8);
                     }
-
-                next_1:
-                    ;
                 }
 
                 FileSystem.FileClose();
@@ -1476,6 +1473,7 @@ namespace SBuilderX
             }
             catch (Exception ex)
             {
+                FileSystem.FileClose();
                 string s = "There was an error related to <objects.txt>. Library Objects were turned off.";
                 MessageBox.Show(s, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 LibObjectsIsOn = false;
@@ -1604,7 +1602,7 @@ namespace SBuilderX
                 a = a.Replace("\t", "");
                 a = a.Trim();
                 M = a.Length;
-                b = a.Substring(0, 15);
+                b = (M < 15) ? "" : a.Substring(0, 15);
                 if (b == "<category name=")
                 {
                     NoOfRwy12Categories = NoOfRwy12Categories + 1;
@@ -1614,7 +1612,7 @@ namespace SBuilderX
                     K = 1;
                 }
 
-                b = a.Substring(0, 10);
+                b = (M < 10) ? "" : a.Substring(0, 10);
                 if (b == "<obj name=")
                 {
                     Rwy12Categories[NoOfRwy12Categories].NOB = K;
@@ -1624,13 +1622,13 @@ namespace SBuilderX
                     K = K + 1;
                 }
 
-                b = a.Substring(0, 5);
+                b = (M < 5) ? "" : a.Substring(0, 5);
                 if (b == "guid=")
                 {
                     Rwy12Categories[NoOfRwy12Categories].Rwy12Objects[K - 1].ID = a.Substring(6, 32);
                 }
 
-                b = a.Substring(0, 6);
+                b = (M < 6) ? "" : a.Substring(0, 6);
                 if (b == "image=")
                 {
                     L = a.IndexOf("\"", 7);

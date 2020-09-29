@@ -74,7 +74,7 @@ namespace SBuilderX
                 {
                     A = FileSystem.LineInput(2);
                     A = A.Trim();
-                    B = A.Substring(0, 10);
+                    B = (A.Length < 10) ? "" : A.Substring(0, 10);
                     if (B == ";DEFAULTSC")
                     {
                         A = A.Substring(14);
@@ -139,8 +139,8 @@ namespace SBuilderX
             }
             catch (Exception)
             {
-                MessageBox.Show("Error on Show API routine!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 FileSystem.FileClose();
+                MessageBox.Show("Error on Show API routine!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -542,7 +542,7 @@ namespace SBuilderX
             // line number 1
             A = FileSystem.LineInput(2);
             A = A.Replace("\t", "").Trim();
-            B = A.Substring(0, 9);
+            B = (A.Length < 9) ? "" : A.Substring(0, 9);
             if (B == ";CATEGORY")
             {
                 B = A.Substring(10).Trim();
@@ -558,7 +558,7 @@ namespace SBuilderX
             for (N = 1; N <= 5; N++)
             {
                 A = A.Trim();
-                B = A.Substring(0, 10);
+                B = (A.Length < 10) ? "" : A.Substring(0, 10);
                 if (B == ";MACRODESC")
                 {
                     A = A.Substring(11).Trim();

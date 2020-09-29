@@ -93,7 +93,7 @@ namespace SBuilderX
             {
                 Text = "SBuilderX - Point Properties";
                 txtWidth.Visible = true;
-                if (moduleLINES.Lines[modulePOPUP.POPIndex].Type.Substring(0, 3) == "OBJ")
+                if (moduleLINES.Lines[modulePOPUP.POPIndex].Type.Length >= 3 && moduleLINES.Lines[modulePOPUP.POPIndex].Type.Substring(0, 3) == "OBJ")
                 {
                     lbWidth.Text = "Heading";
                 }

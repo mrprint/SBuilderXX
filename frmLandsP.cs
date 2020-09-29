@@ -44,7 +44,7 @@ namespace SBuilderX
             var loopTo = moduleMAPS.NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
-                A = moduleMAPS.Maps[N].Name.Substring(0, 5).ToUpper();
+                A = (moduleMAPS.Maps[N].Name.Length < 5) ? "" : moduleMAPS.Maps[N].Name.Substring(0, 5).ToUpper();
                 if (A != "CLASS")
                     goto NextMap;
                 moduleCLASSES.FillLand(N);

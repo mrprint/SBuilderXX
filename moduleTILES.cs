@@ -627,7 +627,7 @@ namespace SBuilderX
             {
                 if (moduleMAPS.Maps[N].Selected)
                 {
-                    A = moduleMAPS.Maps[N].Name.Substring(0, 5).ToUpper();
+                    A = (moduleMAPS.Maps[N].Name.Length < 5) ? "" : moduleMAPS.Maps[N].Name.Substring(0, 5).ToUpper();
                     if (A == "PHOTO")
                     {
                         A = Path.GetExtension(moduleMAPS.Maps[N].BMPSu).ToUpper();

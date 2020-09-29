@@ -20,6 +20,11 @@ namespace SBuilderX
                 components.Dispose();
             }
 
+            if (disposing && imgBuffer is object)
+            {
+                imgBuffer.Dispose();
+            }
+
             base.Dispose(disposing);
         }
 

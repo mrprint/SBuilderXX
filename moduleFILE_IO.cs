@@ -52,8 +52,8 @@ namespace SBuilderX
             try
             {
                 // [Main]
-                IniSettings.Add("LonIniCenter", "-9.136076");
-                IniSettings.Add("LatIniCenter", "38.7813203");
+                IniSettings.Add("LonIniCenter", (-9.136076).ToString());
+                IniSettings.Add("LatIniCenter", (38.7813203).ToString());
                 IniSettings.Add("DecimalDegrees", "False");
                 IniSettings.Add("MeasuringMeters", "True");
                 IniSettings.Add("BGLFolder", My.MyProject.Application.Info.DirectoryPath + @"\Scenery");
@@ -96,7 +96,7 @@ namespace SBuilderX
 
                 // [Aircraft]
                 IniSettings.Add("ShowAircraftPeriod", "5000");
-                IniSettings.Add("AircraftAltitudeOffset", "0.5");
+                IniSettings.Add("AircraftAltitudeOffset", (0.5).ToString());
                 IniSettings.Add("ExtraExtrusionAltitude", "-20M");
 
                 // [Objects]
@@ -926,8 +926,6 @@ namespace SBuilderX
                 if (moduleCLASSES.NoOfLWCIs > 0)
                     moduleCLASSES.LWCIs = (moduleCLASSES.LWCIndex[])BFormatter.Deserialize(oFile);
                 oFile.Close();
-                UpdateFileMenu(filename);
-                return;
             }
             catch (Exception)
             {
@@ -941,7 +939,10 @@ namespace SBuilderX
                 moduleOBJECTS.NoOfObjects = 0;
                 moduleEXCLUDES.NoOfExcludes = 0;
                 moduleCLASSES.NoOfLWCIs = 0;
+                return;
             }
+            UpdateFileMenu(filename);
+            return;
         }
 
         internal static void SaveFile(string filename)
@@ -1224,7 +1225,7 @@ namespace SBuilderX
             string A, Version;
             string argVariable = "CopyRight";
             KEY = ReadIniValue(Filename, "Main", ref argVariable);
-            KEY = KEY.Substring(0, 11);
+            KEY = (KEY.Length < 11) ? KEY : KEY.Substring(0, 11);
             if (KEY == "PTSIM")
             {
                 ImportSBX205(Filename, "");
@@ -1845,7 +1846,7 @@ namespace SBuilderX
             double EL, SL, NL, WL, X;
             string argVariable = "CopyRight";
             KEY = ReadIniValue(Filename, "Main", ref argVariable);
-            KEY = KEY.Substring(0, 11);
+            KEY = (KEY.Length < 11) ? KEY : KEY.Substring(0, 11);
             if (KEY == "PTSIM SB205" | KEY == "PTSIM")
             {
                 MessageBox.Show("You can not Append this file! Try to Import it!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -2496,7 +2497,7 @@ namespace SBuilderX
             {
                 A = FileSystem.LineInput(2);
                 Marker = Marker + A.Length + 2;
-                B = A.Substring(0, 4).Trim().ToUpper();
+                B = (A.Length < 4) ? "" : A.Substring(0, 4).Trim().ToUpper();
                 if (B == "GUID")
                 {
                     C = A.Substring(5).Trim();
@@ -2505,7 +2506,7 @@ namespace SBuilderX
 
                 if (B == "TYPE")
                 {
-                    C = A.Substring(5, 3).Trim();
+                    C = (A.Length < 8) ? A : A.Substring(5, 3).Trim();
                     if (C == "LCP")
                     {
                         if (A.Length > 8)
@@ -2548,7 +2549,7 @@ namespace SBuilderX
             {
                 A = FileSystem.LineInput(2);
                 Marker = Marker + A.Length + 2;
-                B = A.Substring(0, 4).Trim().ToUpper();
+                B = (A.Length < 4) ? "" : A.Substring(0, 4).Trim().ToUpper();
                 if (B == "GUID")
                 {
                     C = A.Substring(5).Trim();
@@ -2601,7 +2602,7 @@ namespace SBuilderX
             {
                 int J, K;
                 bool Flag;
-                B = A.Substring(0, 3);
+                B = (A.Length < 3) ? "" : A.Substring(0, 3);
                 if (B == "VTP")
                 {
                     J = A.IndexOf("//");
@@ -2714,7 +2715,7 @@ namespace SBuilderX
                 moduleLINES.Lines[N].Guid = "{00000000-0000-0000-0000-444444444444}";
                 int J, K;
                 bool Flag;
-                B = A.Substring(0, 3);
+                B = (A.Length < 3) ? "" : A.Substring(0, 3);
                 if (B == "VTP")
                 {
                     J = A.IndexOf("//");

@@ -75,7 +75,8 @@ namespace SBuilderX
             if ((moduleLINES.LineTypes[ThisLineType].Guid ?? "") != (moduleLINES.DefaultLineFS9Guid ?? ""))
             {
                 string A;
-                A = moduleLINES.LineTypes[ThisLineType].Type.Substring(0, 3);
+                A = moduleLINES.LineTypes[ThisLineType].Type;
+                A = (A.Length < 3) ? "" : A.Substring(0, 3);
                 if (A == "FWX")
                 {
                     moduleLINES.Lines[N].Type = "FWX" + cbLanes.SelectedItem + cbDir.SelectedItem;
@@ -326,7 +327,8 @@ namespace SBuilderX
             Init = false;   // before the opts
             try
             {
-                string A = moduleLINES.Lines[modulePOPUP.POPIndex].Type.Substring(0, 3).ToUpper();
+                string A = moduleLINES.Lines[modulePOPUP.POPIndex].Type;
+                A = (A.Length < 3) ? "" : A.Substring(0, 3).ToUpper();
                 if (A == "EXT")
                 {
                     optExtrusion.Checked = true;
@@ -662,11 +664,13 @@ namespace SBuilderX
         private void CheckIfFWX(int K)
         {
             string A, B;
-            A = moduleLINES.LineTypes[K].Type.Substring(0, 3);
+            A = moduleLINES.LineTypes[K].Type;
+            A = (A.Length < 3) ? "" : A.Substring(0, 3);
             if (A == "FWX")
             {
                 EnableTraffic(true);
-                B = moduleLINES.Lines[modulePOPUP.POPIndex].Type.Substring(0, 3);
+                B = moduleLINES.Lines[modulePOPUP.POPIndex].Type;
+                B = (B.Length < 3) ? "" : B.Substring(0, 3);
                 if (B == "FWX")
                 {
                     cbLanes.Text = moduleLINES.Lines[modulePOPUP.POPIndex].Type.Substring(3, 1);

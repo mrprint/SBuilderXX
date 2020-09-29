@@ -2403,7 +2403,7 @@ namespace SBuilderX
                     A = moduleLINES.Lines[N].Type;
                     if (string.IsNullOrEmpty(A))
                         goto next_N0;
-                    B = A.Substring(0, 5);
+                    B = (A.Length < 5) ? "" : A.Substring(0, 5);
                     if (B == "TEX|S")
                     {
                         IsStanding = true;
@@ -2472,7 +2472,7 @@ namespace SBuilderX
                     A = moduleLINES.Lines[N].Type;
                     if (string.IsNullOrEmpty(A))
                         continue;
-                    B = A.Substring(0, 5);
+                    B = (A.Length < 5) ? "" : A.Substring(0, 5);
                     if (B != "TEX|S")
                         continue;
                     // Ok, go and get Tiled, Night Texture ....
@@ -2931,7 +2931,7 @@ namespace SBuilderX
                     A = moduleLINES.Lines[N].Type;
                     if (string.IsNullOrEmpty(A))
                         continue;
-                    B = A.Substring(0, 5);
+                    B = (A.Length < 5) ? "" : A.Substring(0, 5);
                     if (B != "TEX|L")
                         continue;
                     A = A.Substring(10);   // TEX|Lying|   is removed
@@ -3388,7 +3388,7 @@ namespace SBuilderX
                     a = Polys[N].Type;
                     if (string.IsNullOrEmpty(a))
                         continue;
-                    b = a.Substring(0, 3);
+                    b = (a.Length < 3) ? "" : a.Substring(0, 3);
                     if (b == "TEX")
                     {
                         if (Polys[N].ELON > H_ELon)
@@ -3425,7 +3425,7 @@ namespace SBuilderX
                     a = Polys[N].Type;
                     if (string.IsNullOrEmpty(a))
                         continue;
-                    b = a.Substring(0, 3);
+                    b = (a.Length < 3) ? "" : a.Substring(0, 3);
                     if (b != "TEX")
                         continue;
                     M = a.IndexOf("//");

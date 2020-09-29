@@ -361,7 +361,7 @@ namespace SBuilderX
             var loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
-                if (Lines[N].Type.Substring(0, 3) == "OBJ")
+                if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "OBJ")
                 {
                     SetLenWidFromObject(N);
                     var loopTo1 = Lines[N].NoOfPoints;
@@ -1070,9 +1070,9 @@ namespace SBuilderX
                 myPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
                 if (Lines[N].Type != default)
                 {
-                    if (Lines[N].Type.Substring(0, 3) == "EXT")
+                    if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "EXT")
                         IsExtrusion = true;
-                    if (Lines[N].Type.Substring(0, 3) == "OBJ")
+                    if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "OBJ")
                     {
                         IsObjects = true;
                         // myPen.DashStyle = Drawing2D.DashStyle.Dash
@@ -1372,7 +1372,7 @@ namespace SBuilderX
             {
                 if (Lines[N].Selected)
                 {
-                    if (Lines[N].Type.Substring(0, 3) == "OBJ")
+                    if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "OBJ")
                     {
                         if (Lines[N].Guid.Substring(0, 1) == "{")
                         {
@@ -1410,7 +1410,7 @@ namespace SBuilderX
                 {
                     if (Lines[N].Selected)
                     {
-                        if (Lines[N].Type.Substring(0, 3) == "OBJ")
+                        if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "OBJ")
                         {
                             if (Lines[N].Guid.Substring(0, 1) == "{")
                             {
@@ -1481,7 +1481,7 @@ namespace SBuilderX
                 {
                     if (Lines[N].Selected)
                     {
-                        if (Lines[N].Type.Substring(0, 3) == "OBJ")
+                        if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "OBJ")
                         {
                             if (Lines[N].Guid.Substring(0, 1) != "{")
                             {
@@ -1607,7 +1607,7 @@ namespace SBuilderX
             {
                 if (Lines[N].Selected)
                 {
-                    if (Lines[N].Type.Substring(0, 3) == "EXT")
+                    if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "EXT")
                     {
                         GetExtrusionLineParameters(N);
                         writer.WriteComment("Extrusion Line " + N.ToString());
@@ -1730,7 +1730,7 @@ namespace SBuilderX
             A = Lines[N].Type.Substring(4);
             J = A.IndexOf("|");
             MaterialGuid = A.Substring(0, J);
-            A = A.Substring(J);
+            A = A.Substring(J + 1);
             J = A.IndexOf("|");
             PylonGuid = A.Substring(0, J);
             A = A.Substring(J + 1);

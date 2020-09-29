@@ -130,7 +130,8 @@ namespace SBuilderX
             {
                 if (modulePOLYS.Polys[N].Selected)
                 {
-                    A = modulePOLYS.Polys[N].Type.Substring(0, 3);
+                    A = modulePOLYS.Polys[N].Type;
+                    A = (A.Length < 3) ? "" : A.Substring(0, 3);
                     if (A == "XXX")
                         EXX = true;
                     if (A == "EXX")
@@ -158,7 +159,8 @@ namespace SBuilderX
             {
                 if (moduleLINES.Lines[N].Selected)
                 {
-                    A = moduleLINES.Lines[N].Type.Substring(0, 3);
+                    A = moduleLINES.Lines[N].Type;
+                    A = (A.Length < 3) ? "" : A.Substring(0, 3);
                     if (A == "STX")
                         STX = true;
                     if (A == "FWX")
