@@ -103,7 +103,7 @@ namespace SBuilderX
             LibCategoriesX = new moduleOBJECTS.LibCategory[NoOfLibCategoriesX + 1];
             CatOrderChanged = new bool[NoOfLibCategoriesX + 1];
             CatObjectsAdded = new bool[NoOfLibCategoriesX + 1];
-            var loopTo = NoOfLibCategoriesX;
+            int loopTo = NoOfLibCategoriesX;
             for (K = 1; K <= loopTo; K++)
             {
                 LibCategoriesX[K].Objs = new List<moduleOBJECTS.LibObject>();
@@ -112,17 +112,17 @@ namespace SBuilderX
             }
 
             LibCategoriesX = moduleOBJECTS.LibCategories;
-            var loopTo1 = moduleOBJECTS.NoOfLibCategories;
+            int loopTo1 = moduleOBJECTS.NoOfLibCategories;
             for (K = 1; K <= loopTo1; K++)
 
                 // Dim g As LibCategory
                 cmbLibCat.Items.Add(moduleOBJECTS.LibCategories[K].Name);   // display
-            foreach (var g in moduleOBJECTS.LibCategories[1].Objs)
+            foreach (moduleOBJECTS.LibObject g in moduleOBJECTS.LibCategories[1].Objs)
                 lstLib.Items.Add(g.Name);
             cmbLibCat.SelectedIndex = 0;
             lstLib.SelectedIndex = 0;
             LibCat = moduleOBJECTS.LibCategories[1].Name;
-            var myLibObj = moduleOBJECTS.LibCategories[1].Objs[0];
+            moduleOBJECTS.LibObject myLibObj = moduleOBJECTS.LibCategories[1].Objs[0];
             txtLibID.Text = myLibObj.ID;
             txtLibWidth.Text = myLibObj.Width.ToString();
             txtLibLength.Text = myLibObj.Length.ToString();
@@ -157,7 +157,7 @@ namespace SBuilderX
 
             // Dim g As LibCategory
             K = cmbLibCat.SelectedIndex + 1;
-            foreach (var g in moduleOBJECTS.LibCategories[K].Objs)
+            foreach (moduleOBJECTS.LibObject g in moduleOBJECTS.LibCategories[K].Objs)
                 lstLib.Items.Add(g.Name);
             if (moduleOBJECTS.LibCategories[K].Objs.Count == 0)
             {
@@ -170,7 +170,7 @@ namespace SBuilderX
             }
 
             LibCat = moduleOBJECTS.LibCategories[K].Name;
-            var myLibObj = moduleOBJECTS.LibCategories[K].Objs[0];
+            moduleOBJECTS.LibObject myLibObj = moduleOBJECTS.LibCategories[K].Objs[0];
             lstLib.SelectedIndex = 0;
             txtLibID.Text = myLibObj.ID;
             txtLibWidth.Text = myLibObj.Width.ToString();
@@ -206,7 +206,7 @@ namespace SBuilderX
                 return;
             IsLib = true;
             LibCat = moduleOBJECTS.LibCategories[K].Name;
-            var myLibObj = moduleOBJECTS.LibCategories[K].Objs[N];
+            moduleOBJECTS.LibObject myLibObj = moduleOBJECTS.LibCategories[K].Objs[N];
             txtLibID.Text = myLibObj.ID;
             txtLibWidth.Text = myLibObj.Width.ToString();
             txtLibLength.Text = myLibObj.Length.ToString();
@@ -271,7 +271,7 @@ namespace SBuilderX
 
             // Dim g As LibCategory
             lstLib.Items.Clear();
-            foreach (var g in moduleOBJECTS.LibCategories[K].Objs)
+            foreach (moduleOBJECTS.LibObject g in moduleOBJECTS.LibCategories[K].Objs)
                 lstLib.Items.Add(g.Name);
             ChangeIsOFF = false;
             IsLib = false;
@@ -316,7 +316,7 @@ namespace SBuilderX
             for (J = N; J >= 0; J -= 1)
                 TempCategory.RemoveAt(JJ[J]);
             lstBGL.Items.Clear();
-            foreach (var g in TempCategory)
+            foreach (moduleOBJECTS.LibObject g in TempCategory)
                 lstBGL.Items.Add(g.Name);
             ChangeIsOFF = false;
             IsLib = true;
@@ -403,13 +403,13 @@ namespace SBuilderX
                 {
                     imgLib.Image.Dispose();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                 }
 
                 string A, B, C;
                 int K, N;
-                var newCatNames = new List<string>();
+                List<string> newCatNames = new List<string>();
                 FileStream stream;
                 StreamWriter fileWriter;
                 StreamReader fileReader;
@@ -421,7 +421,7 @@ namespace SBuilderX
 
                 // put removed jpegs in the bin
                 A = moduleOBJECTS.LibObjectsPath + @"\NewJpegs\";
-                var loopTo = RemovedObjs.Count - 1;
+                int loopTo = RemovedObjs.Count - 1;
                 for (N = 0; N <= loopTo; N++)
                 {
                     B = RemovedObjs[N].ToString();
@@ -444,7 +444,7 @@ namespace SBuilderX
                 counter = My.MyProject.Computer.FileSystem.GetFiles(moduleOBJECTS.LibObjectsPath + @"\NewJpegs");
                 moduleOBJECTS.NoOfJpegs = counter.Count;
                 moduleOBJECTS.LibObject g;
-                var loopTo1 = moduleOBJECTS.NoOfLibCategories;
+                int loopTo1 = moduleOBJECTS.NoOfLibCategories;
                 for (N = 1; N <= loopTo1; N++)
                 {
                     // put backups of changed TXTs in LibObjects\BackUps and create new one in LibObjects
@@ -464,7 +464,7 @@ namespace SBuilderX
                             stream = new FileStream(moduleOBJECTS.LibObjectsPath + @"\" + moduleOBJECTS.LibCategories[N].Name + ".txt", FileMode.Create);
                             fileWriter = new StreamWriter(stream);
                             fileWriter.WriteLine("[" + moduleOBJECTS.LibCategories[N].Name + "]");
-                            foreach (var currentG in moduleOBJECTS.LibCategories[N].Objs)
+                            foreach (moduleOBJECTS.LibObject currentG in moduleOBJECTS.LibCategories[N].Objs)
                             {
                                 g = currentG;
                                 A = g.ID + " " + g.Type + " " + g.Width + " " + g.Length + " " + g.Scaling + " " + g.Name;
@@ -479,7 +479,7 @@ namespace SBuilderX
                         {
                             if (moduleOBJECTS.NoOfJpegs > 0)
                             {
-                                foreach (var currentG1 in moduleOBJECTS.LibCategories[N].Objs)
+                                foreach (moduleOBJECTS.LibObject currentG1 in moduleOBJECTS.LibCategories[N].Objs)
                                 {
                                     g = currentG1;
                                     LibCatFolder = moduleOBJECTS.LibObjectsPath + @"\" + moduleOBJECTS.LibCategories[N].Name;
@@ -487,7 +487,7 @@ namespace SBuilderX
                                     if (!My.MyProject.Computer.FileSystem.FileExists(B))
                                     {
                                         C = g.ID + "*.jpg";
-                                        var myfiles = My.MyProject.Computer.FileSystem.GetFiles(moduleOBJECTS.LibObjectsPath + @"\NewJpegs", Microsoft.VisualBasic.FileIO.SearchOption.SearchAllSubDirectories, C);
+                                        System.Collections.ObjectModel.ReadOnlyCollection<string> myfiles = My.MyProject.Computer.FileSystem.GetFiles(moduleOBJECTS.LibObjectsPath + @"\NewJpegs", Microsoft.VisualBasic.FileIO.SearchOption.SearchAllSubDirectories, C);
                                         foreach (string myfile in myfiles)
                                         {
                                             My.MyProject.Computer.FileSystem.MoveFile(myfile, B, true);
@@ -563,11 +563,11 @@ namespace SBuilderX
                 B = moduleOBJECTS.LibObjectsPath + @"\BackUps\";
                 foreach (string foundFile in My.MyProject.Computer.FileSystem.GetFiles(A, Microsoft.VisualBasic.FileIO.SearchOption.SearchAllSubDirectories, "*.*"))
                 {
-                    var foundFileInfo = new FileInfo(foundFile);
+                    FileInfo foundFileInfo = new FileInfo(foundFile);
                     My.MyProject.Computer.FileSystem.MoveFile(foundFile, B + foundFileInfo.Name, true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Could not update Categories!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -591,7 +591,7 @@ namespace SBuilderX
                 return;
             IsLib = false;
             LibCat = moduleOBJECTS.LibCategories[K].Name;
-            var myLibObj = TempCategory[N];
+            moduleOBJECTS.LibObject myLibObj = TempCategory[N];
             txtBGLID.Text = myLibObj.ID;
             txtLibWidth.Text = myLibObj.Width.ToString();
             txtLibLength.Text = myLibObj.Length.ToString();
@@ -628,7 +628,7 @@ namespace SBuilderX
                 if (N == 0)
                     return;
                 A = A.Replace(" ", "_");
-                var loopTo = moduleOBJECTS.NoOfLibCategories;
+                int loopTo = moduleOBJECTS.NoOfLibCategories;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if ((moduleOBJECTS.LibCategories[N].Name ?? "") == (A ?? ""))
@@ -674,7 +674,7 @@ namespace SBuilderX
             if (N == 0)
                 return;
             A = A.Replace(" ", "_");
-            var loopTo = moduleOBJECTS.NoOfLibCategories;
+            int loopTo = moduleOBJECTS.NoOfLibCategories;
             for (N = 1; N <= loopTo; N++)
             {
                 if ((moduleOBJECTS.LibCategories[N].Name ?? "") == (A ?? ""))
@@ -687,7 +687,7 @@ namespace SBuilderX
             CatOrderChanged[K] = true;
             moduleOBJECTS.LibCategories[K].Name = A;
             cmbLibCat.Items.Clear();
-            var loopTo1 = moduleOBJECTS.NoOfLibCategories;
+            int loopTo1 = moduleOBJECTS.NoOfLibCategories;
             for (N = 1; N <= loopTo1; N++)
                 cmbLibCat.Items.Add(moduleOBJECTS.LibCategories[N].Name);   // display
             cmbLibCat.SelectedIndex = K - 1;
@@ -705,7 +705,7 @@ namespace SBuilderX
             moduleOBJECTS.LibCategories[K].Objs.Sort();
             // Dim g As LibCategory
             lstLib.Items.Clear();
-            foreach (var g in moduleOBJECTS.LibCategories[K].Objs)
+            foreach (moduleOBJECTS.LibObject g in moduleOBJECTS.LibCategories[K].Objs)
                 lstLib.Items.Add(g.Name);
             ChangeIsOFF = false;
             CatOrderChanged[K] = true;
@@ -724,7 +724,7 @@ namespace SBuilderX
                 moduleOBJECTS.LibCategories[K].Objs.Reverse(N - 1, 2);
                 // Dim g As LibCategory
                 lstLib.Items.Clear();
-                foreach (var g in moduleOBJECTS.LibCategories[K].Objs)
+                foreach (moduleOBJECTS.LibObject g in moduleOBJECTS.LibCategories[K].Objs)
                     lstLib.Items.Add(g.Name);
                 lstLib.SelectedIndex = N - 1;
                 CatOrderChanged[K] = true;
@@ -744,7 +744,7 @@ namespace SBuilderX
                 moduleOBJECTS.LibCategories[K].Objs.Reverse(N, 2);
                 // Dim g As LibCategory
                 lstLib.Items.Clear();
-                foreach (var g in moduleOBJECTS.LibCategories[K].Objs)
+                foreach (moduleOBJECTS.LibObject g in moduleOBJECTS.LibCategories[K].Objs)
                     lstLib.Items.Add(g.Name);
                 lstLib.SelectedIndex = N + 1;
                 CatOrderChanged[K] = true;
@@ -773,7 +773,7 @@ namespace SBuilderX
 
         private void CmdUpdate_Click(object sender, EventArgs e)
         {
-            var myObj = new moduleOBJECTS.LibObject();
+            moduleOBJECTS.LibObject myObj = new moduleOBJECTS.LibObject();
             if (IsLib)
             {
                 int K = cmbLibCat.SelectedIndex + 1;
@@ -791,7 +791,7 @@ namespace SBuilderX
                 moduleOBJECTS.LibCategories[K].Objs[N] = myObj;
                 // Dim g As LibCategory
                 lstLib.Items.Clear();
-                foreach (var g in moduleOBJECTS.LibCategories[K].Objs)
+                foreach (moduleOBJECTS.LibObject g in moduleOBJECTS.LibCategories[K].Objs)
                     lstLib.Items.Add(g.Name);
                 lstLib.SelectedIndex = N;
                 CatOrderChanged[K] = true;
@@ -809,7 +809,7 @@ namespace SBuilderX
                 myObj.Scaling = Convert.ToSingle(txtLibScale.Text);
                 TempCategory[N] = myObj;
                 lstBGL.Items.Clear();
-                foreach (var g in TempCategory)
+                foreach (moduleOBJECTS.LibObject g in TempCategory)
                     lstBGL.Items.Add(g.Name);
                 lstBGL.SelectedIndex = N;
             }
@@ -830,9 +830,9 @@ namespace SBuilderX
             }
 
             Cursor = Cursors.WaitCursor;
-            var fs = new FileStream(A, FileMode.Open, FileAccess.Read);
-            var reader = new BinaryReader(fs);
-            var bgl = new BGLReader();
+            FileStream fs = new FileStream(A, FileMode.Open, FileAccess.Read);
+            BinaryReader reader = new BinaryReader(fs);
+            BGLReader bgl = new BGLReader();
             if (bgl.read(reader) == false)
             {
                 Cursor = Cursors.Default;
@@ -860,9 +860,9 @@ namespace SBuilderX
             A = Path.GetFileNameWithoutExtension(A);
             if (bgl.Type == 2)
                 A = "";
-            var myLibObj = new moduleOBJECTS.LibObject();
+            moduleOBJECTS.LibObject myLibObj = new moduleOBJECTS.LibObject();
             int N;
-            var loopTo = bgl.NoOfMDLs;
+            int loopTo = bgl.NoOfMDLs;
             for (N = 1; N <= loopTo; N++)
             {
                 myLibObj.ID = bgl.MDLs[N].Guid;

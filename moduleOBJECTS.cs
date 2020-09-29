@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -7,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using VB = Microsoft.VisualBasic;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -254,7 +254,7 @@ namespace SBuilderX
                 My.MyProject.Forms.FrmStart.SelectAllObjectsMenuItem.Checked = false;
             }
 
-            var loopTo = NoOfObjects;
+            int loopTo = NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Flag)
@@ -277,10 +277,10 @@ namespace SBuilderX
             int N;
             bool Flag;
             int type;
-            var myPen = new Pen(Color.Black);
-            var myBrush = new SolidBrush(Color.Green);
+            Pen myPen = new Pen(Color.Black);
+            SolidBrush myBrush = new SolidBrush(Color.Green);
             Image myImage;
-            var loopTo = NoOfObjects;
+            int loopTo = NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Objects[N].NLAT < moduleMAIN.LatDispSouth)
@@ -392,7 +392,7 @@ namespace SBuilderX
         internal static void AddLatLonToObjects(int N)
         {
             float W2, L2;
-            var P = default(PointF);
+            PointF P = default(PointF);
             float C, teta, S;
             if (Objects[N].Type < 8 | Objects[N].Type > 127)
             {
@@ -509,13 +509,13 @@ namespace SBuilderX
                 int R, G, B;
                 bool HasBias = false;
                 bool AppendNewObject = false;
-                var alt = default(double);
+                double alt = default(double);
                 FN = Path.GetFileNameWithoutExtension(filename);
                 int K = 1;
                 int N = NoOfObjects + 1;
                 NoOfObjects = NoOfObjects + 10;
                 Array.Resize(ref Objects, NoOfObjects + 1);
-                var reader = XmlReader.Create(filename);
+                XmlReader reader = XmlReader.Create(filename);
                 reader.MoveToContent();
 
                 // Parse the file and display each of the nodes.
@@ -981,7 +981,7 @@ namespace SBuilderX
             int N;
             PointF PC = default, P = default;
             IsObjectTurnRet = false;
-            var loopTo = NoOfObjects;
+            int loopTo = NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
                 if ((Objects[N].Width + Objects[N].Length) * moduleMAIN.PixelsPerMeter < 20d)
@@ -1015,7 +1015,7 @@ namespace SBuilderX
             int N;
             moduleMAIN.Double_XY PC, P;
             IsObjectSizeRet = false;
-            var loopTo = NoOfObjects;
+            int loopTo = NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
                 if ((Objects[N].Width + Objects[N].Length) * moduleMAIN.PixelsPerMeter < 20d)
@@ -1094,7 +1094,7 @@ namespace SBuilderX
         internal static void MoveSelectedObjects(double X, double Y)
         {
             int N;
-            var loopTo = NoOfObjects;
+            int loopTo = NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Objects[N].Selected == false)
@@ -1115,7 +1115,7 @@ namespace SBuilderX
                 moduleEDIT.BackUp();
             if (N < NoOfObjects)
             {
-                var loopTo = NoOfObjects - 1;
+                int loopTo = NoOfObjects - 1;
                 for (K = N; K <= loopTo; K++)
                     Objects[K] = Objects[K + 1];
             }
@@ -1146,7 +1146,7 @@ namespace SBuilderX
             ELON = (X - 5d) / moduleMAIN.PixelsPerLonDeg;
             NLAT = (Y - 5d) / moduleMAIN.PixelsPerLatDeg;
             SLAT = (Y + 5d) / moduleMAIN.PixelsPerLatDeg;
-            var loopTo = NoOfObjects;
+            int loopTo = NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
                 if (WLON < Objects[N].WLON)
@@ -1256,7 +1256,7 @@ namespace SBuilderX
             int N;
             if (!ObjectVIEW)
                 return;
-            var loopTo = NoOfObjects;
+            int loopTo = NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Objects[N].ELON < X1)
@@ -1408,7 +1408,7 @@ namespace SBuilderX
                 NoOfGenBObjects = K - 1;
                 Array.Resize(ref GenBObjects, NoOfGenBObjects + 1);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 NoOfGenBObjects = 0;
                 GenBObjects = new GenBObject[1];
@@ -1428,7 +1428,7 @@ namespace SBuilderX
                     return;
                 int Marker, N;
                 LibCategories = new LibCategory[501];
-                var IncFiles = new string[501];
+                string[] IncFiles = new string[501];
                 NoOfLibCategories = 0;
                 int NoIncFiles = 0;
                 File = LibObjectsPath + @"\objects.txt";
@@ -1454,7 +1454,7 @@ namespace SBuilderX
                 System.Collections.ObjectModel.ReadOnlyCollection<string> counter;
                 counter = My.MyProject.Computer.FileSystem.GetFiles(LibObjectsPath + @"\NewJpegs");
                 NoOfJpegs = counter.Count;
-                var loopTo = NoIncFiles;
+                int loopTo = NoIncFiles;
                 for (N = 1; N <= loopTo; N++)
                     SetLibObjectFile(IncFiles[N]);
                 if (NoOfLibCategories > 0)
@@ -1467,11 +1467,11 @@ namespace SBuilderX
                 b = LibObjectsPath + @"\BackUps\";
                 foreach (string foundFile in My.MyProject.Computer.FileSystem.GetFiles(a, VB.FileIO.SearchOption.SearchAllSubDirectories, "*.*"))
                 {
-                    var foundFileInfo = new FileInfo(foundFile);
+                    FileInfo foundFileInfo = new FileInfo(foundFile);
                     My.MyProject.Computer.FileSystem.MoveFile(foundFile, b + foundFileInfo.Name, true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 FileSystem.FileClose();
                 string s = "There was an error related to <objects.txt>. Library Objects were turned off.";
@@ -1487,7 +1487,7 @@ namespace SBuilderX
             int J;
             int M1, M2;
             string LibCatFolder = "";
-            var myLibObj = new LibObject();
+            LibObject myLibObj = new LibObject();
             int NoC = NoOfLibCategories;
 
             try
@@ -1540,7 +1540,7 @@ namespace SBuilderX
                             if (!My.MyProject.Computer.FileSystem.FileExists(b))
                             {
                                 c = myLibObj.ID + "*.jpg";
-                                var myfiles = My.MyProject.Computer.FileSystem.GetFiles(LibObjectsPath + @"\NewJpegs", VB.FileIO.SearchOption.SearchAllSubDirectories, c);
+                                System.Collections.ObjectModel.ReadOnlyCollection<string> myfiles = My.MyProject.Computer.FileSystem.GetFiles(LibObjectsPath + @"\NewJpegs", VB.FileIO.SearchOption.SearchAllSubDirectories, c);
 
                                 foreach (string myfile in myfiles)
                                 {
@@ -1980,7 +1980,7 @@ namespace SBuilderX
             FS9 = false;
             FS9xml = false;
             FSX = false;
-            var loopTo = NoOfObjects;
+            int loopTo = NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Objects[N].Selected)
@@ -2037,13 +2037,13 @@ namespace SBuilderX
                 File2 = moduleMAIN.ProjectName + "_OBX";
                 File2 = File2.Replace(" ", "_");
                 a = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File2 + ".xml";
-                var settings = new XmlWriterSettings()
+                XmlWriterSettings settings = new XmlWriterSettings()
                 {
                     Indent = true,
                     Encoding = Encoding.GetEncoding(28591),
                     NewLineOnAttributes = true
                 };
-                var writer = XmlWriter.Create(a, settings);
+                XmlWriter writer = XmlWriter.Create(a, settings);
                 writer.WriteStartDocument();
                 writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
                 writer.WriteStartElement("FSData");
@@ -2051,7 +2051,7 @@ namespace SBuilderX
                 writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
                 writer.WriteAttributeString("noNamespaceSchemaLocation", "http://www.w3.org/2001/XMLSchema-instance", "bglcomp.xsd");
                 writer.WriteComment("FSX library objects");
-                var loopTo1 = NoOfObjects;
+                int loopTo1 = NoOfObjects;
                 for (N = 1; N <= loopTo1; N++)
                 {
                     if (Objects[N].Selected)
@@ -2093,7 +2093,7 @@ namespace SBuilderX
                 }
 
                 writer.WriteComment("FSX Windsock objects");
-                var loopTo2 = NoOfObjects;
+                int loopTo2 = NoOfObjects;
                 for (N = 1; N <= loopTo2; N++)
                 {
                     if (Objects[N].Selected)
@@ -2145,7 +2145,7 @@ namespace SBuilderX
                 }
 
                 writer.WriteComment("FSX Effect objects");
-                var loopTo3 = NoOfObjects;
+                int loopTo3 = NoOfObjects;
                 for (N = 1; N <= loopTo3; N++)
                 {
                     if (Objects[N].Selected)
@@ -2193,7 +2193,7 @@ namespace SBuilderX
                     writer.WriteAttributeString("lon", TaxLon.ToString().Trim());
                     writer.WriteAttributeString("alt", TaxAlt.ToString().Trim());
                     writer.WriteAttributeString("ident", "AAAA");
-                    var loopTo4 = NoOfObjects;
+                    int loopTo4 = NoOfObjects;
                     for (N = 1; N <= loopTo4; N++)
                     {
                         if (Objects[N].Selected)
@@ -2219,7 +2219,7 @@ namespace SBuilderX
                 }
 
                 writer.WriteComment("FSX Model objects");
-                var loopTo5 = NoOfObjects;
+                int loopTo5 = NoOfObjects;
                 for (N = 1; N <= loopTo5; N++)
                 {
                     if (Objects[N].Selected)
@@ -2251,7 +2251,7 @@ namespace SBuilderX
                 }
 
                 writer.WriteComment("FSX Beacon objects");
-                var loopTo6 = NoOfObjects;
+                int loopTo6 = NoOfObjects;
                 for (N = 1; N <= loopTo6; N++)
                 {
                     if (Objects[N].Selected)
@@ -2280,7 +2280,7 @@ namespace SBuilderX
                 }
 
                 writer.WriteComment("FSX General Buildings");
-                var loopTo7 = NoOfObjects;
+                int loopTo7 = NoOfObjects;
                 for (N = 1; N <= loopTo7; N++)
                 {
                     if (Objects[N].Selected)
@@ -2451,7 +2451,7 @@ namespace SBuilderX
                 Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
                 a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bglcomp.exe";
                 b = @"work\" + File2 + ".xml";
-                var myProcess = new Process();
+                Process myProcess = new Process();
                 myProcess = Process.Start(a, b);
                 myProcess.WaitForExit();
                 myProcess.Dispose();
@@ -2469,13 +2469,13 @@ namespace SBuilderX
                 File3 = moduleMAIN.ProjectName + "_OB1X";
                 File3 = File3.Replace(" ", "_");
                 a = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File3 + ".xml";
-                var settings = new XmlWriterSettings()
+                XmlWriterSettings settings = new XmlWriterSettings()
                 {
                     Indent = true,
                     Encoding = Encoding.GetEncoding(28591),
                     NewLineOnAttributes = true
                 };
-                var writer = XmlWriter.Create(a, settings);
+                XmlWriter writer = XmlWriter.Create(a, settings);
                 writer.WriteStartDocument();
                 writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
                 writer.WriteStartElement("FSData");
@@ -2483,7 +2483,7 @@ namespace SBuilderX
                 writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
                 writer.WriteAttributeString("noNamespaceSchemaLocation", "http://www.w3.org/2001/XMLSchema-instance", "bglcomp.xsd");
                 writer.WriteComment("FS9 Model objects - to be compiled by FS9 BGLComp");
-                var loopTo8 = NoOfObjects;
+                int loopTo8 = NoOfObjects;
                 for (N = 1; N <= loopTo8; N++)
                 {
                     if (Objects[N].Selected)
@@ -2525,7 +2525,7 @@ namespace SBuilderX
                 Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
                 a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bglcom9.exe"; // NOTE THE NAME!
                 b = @"work\" + File3 + ".xml";
-                var myProcess = new Process();
+                Process myProcess = new Process();
                 myProcess = Process.Start(a, b);
                 myProcess.WaitForExit();
                 myProcess.Dispose();
@@ -2540,7 +2540,7 @@ namespace SBuilderX
                 FileSystem.PrintLine(3, a);
                 FileSystem.PrintLine(3);
                 a = "; FS9 objects";
-                var loopTo9 = NoOfObjects;
+                int loopTo9 = NoOfObjects;
                 for (N = 1; N <= loopTo9; N++)
                 {
                     if (Objects[N].Selected)
@@ -2600,7 +2600,7 @@ namespace SBuilderX
                 {
                     a = "There was a compilation error in this project!" + Environment.NewLine;
                     a = a + "Do you want to read a SCASM report?";
-                    var dr = MessageBox.Show(a, "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    DialogResult dr = MessageBox.Show(a, "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     if (dr == DialogResult.OK)
                     {
                         a = "notepad SCAERROR.LOG";
@@ -2627,7 +2627,7 @@ namespace SBuilderX
                 a = a + (int)(H_NLat + 1.5d) + " )";
                 FileSystem.PrintLine(3, a);
                 FileSystem.PrintLine(3);
-                var loopTo10 = NoOfObjects;
+                int loopTo10 = NoOfObjects;
                 for (N = 1; N <= loopTo10; N++)
                 {
                     if (Objects[N].Selected)
@@ -2778,7 +2778,7 @@ namespace SBuilderX
                 {
                     a = "There was a compilation error in this project!" + Environment.NewLine;
                     a = a + "Do you want to read a SCASM report?";
-                    var dr = MessageBox.Show(a, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question); ;
+                    DialogResult dr = MessageBox.Show(a, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question); ;
                     if (dr == DialogResult.OK)
                     {
                         a = "notepad SCAERROR.LOG";
@@ -2823,7 +2823,7 @@ namespace SBuilderX
                         File.Copy(BGLFile3, BGLFileTarget, true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Copying BGL files failed! Try to close FSX.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -2907,7 +2907,7 @@ namespace SBuilderX
                 return IsMouseOnObjectRet;
             x = moduleMAIN.LonDispCenter * moduleMAIN.PixelsPerLonDeg + x;
             y = moduleMAIN.LatDispCenter * moduleMAIN.PixelsPerLatDeg - y;
-            var loopTo = NoOfObjects;
+            int loopTo = NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
                 PC.X = Objects[N].lon * moduleMAIN.PixelsPerLonDeg;
@@ -3033,7 +3033,7 @@ namespace SBuilderX
 
             PN = new string[NP + 1]; // parameter names
             PV = new string[NP + 1]; // parameter values
-            var loopTo = NP;
+            int loopTo = NP;
             for (J = 1; J <= loopTo; J++)
                 PN[J] = GetNextMacroParameterName();
             lat = Objects[N].lat;
@@ -3060,7 +3060,7 @@ namespace SBuilderX
             Scaling = moduleMACROS.MacroScale.ToString().Trim();
             Length = Objects[N].Length.ToString().Trim();
             Width = Objects[N].Width.ToString().Trim();
-            var loopTo1 = NP;
+            int loopTo1 = NP;
             for (J = 1; J <= loopTo1; J++)
             {
                 if (PN[J] == "Latitude")
@@ -3172,7 +3172,7 @@ namespace SBuilderX
             }
 
             a = "macro( \"" + moduleMACROS.MacroASDPath + @"\" + moduleMACROS.MacroID + "\"" + " ";
-            var loopTo2 = NP;
+            int loopTo2 = NP;
             for (J = 1; J <= loopTo2; J++)
                 a = a + PV[J].Replace(",", ".") + " ";
             PackASDMacroRet = a + ")";
@@ -3233,7 +3233,7 @@ namespace SBuilderX
             int N;
             if (!ObjectVIEW)
                 return;
-            var loopTo = NoOfObjects;
+            int loopTo = NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Objects[N].Selected)

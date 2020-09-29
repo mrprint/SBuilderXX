@@ -25,18 +25,18 @@ namespace SBuilderX
                 X = Convert.ToDouble(txtWidth.Text);
                 if (modulePOPUP.POPMode == "One")
                 {
-                    var loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
+                    int loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
                     for (K = 1; K <= loopTo; K++)
                         moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[K].wid = X;
                 }
                 else
                 {
-                    var loopTo1 = moduleLINES.NoOfLines;
+                    int loopTo1 = moduleLINES.NoOfLines;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         if (moduleLINES.Lines[N].Selected)
                         {
-                            var loopTo2 = moduleLINES.Lines[N].NoOfPoints;
+                            int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
                             for (K = 1; K <= loopTo2; K++)
                                 moduleLINES.Lines[N].GLPoints[K].wid = X;
                         }
@@ -65,7 +65,7 @@ namespace SBuilderX
             double W;
             int K;
             W = 0d;
-            var loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
+            int loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
                 W = W + moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[K].wid;
             txtWidth.Text = (W / moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints).ToString();
@@ -85,7 +85,7 @@ namespace SBuilderX
                 {
                     W = W1;
                     DW = W21 / (moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints - 1);
-                    var loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
+                    int loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
                     for (K = 1; K <= loopTo; K++)
                     {
                         moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[K].wid = W;
@@ -94,14 +94,14 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo1 = moduleLINES.NoOfLines;
+                    int loopTo1 = moduleLINES.NoOfLines;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         if (moduleLINES.Lines[N].Selected)
                         {
                             W = W1;
                             DW = W21 / (moduleLINES.Lines[N].NoOfPoints - 1);
-                            var loopTo2 = moduleLINES.Lines[N].NoOfPoints;
+                            int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
                             for (K = 1; K <= loopTo2; K++)
                             {
                                 moduleLINES.Lines[N].GLPoints[K].wid = W;
@@ -133,7 +133,7 @@ namespace SBuilderX
             }
             else
             {
-                var loopTo = moduleLINES.NoOfLines;
+                int loopTo = moduleLINES.NoOfLines;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (moduleLINES.Lines[N].Selected)
@@ -151,13 +151,13 @@ namespace SBuilderX
             NP = moduleLINES.Lines[N].NoOfPoints;
             myLine.NoOfPoints = NP;
             myLine.GLPoints = new modulePOINTS.GLPoint[NP + 1];
-            var loopTo = NP;
+            int loopTo = NP;
             for (K = 1; K <= loopTo; K++)
                 // myLine.GLPoints(K).lon = Lines(N).GLPoints(K).lon
                 // myLine.GLPoints(K).lat = Lines(N).GLPoints(K).lat
                 // myLine.GLPoints(K).alt = Lines(N).GLPoints(K).alt
                 myLine.GLPoints[K].wid = moduleLINES.Lines[N].GLPoints[K].wid;
-            var loopTo1 = NP;
+            int loopTo1 = NP;
             for (K = 1; K <= loopTo1; K++)
                 // Lines(N).GLPoints(K).lon = myLine.GLPoints(NP + 1 - K).lon
                 // Lines(N).GLPoints(K).lat = myLine.GLPoints(NP + 1 - K).lat
@@ -174,7 +174,7 @@ namespace SBuilderX
             }
             else
             {
-                var loopTo = moduleLINES.NoOfLines;
+                int loopTo = moduleLINES.NoOfLines;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (moduleLINES.Lines[N].Selected)
@@ -192,7 +192,7 @@ namespace SBuilderX
             NP = moduleLINES.Lines[N].NoOfPoints;
             myLine.NoOfPoints = NP;
             myLine.GLPoints = new modulePOINTS.GLPoint[NP + 1];
-            var loopTo = NP;
+            int loopTo = NP;
             for (K = 1; K <= loopTo; K++)
             {
                 myLine.GLPoints[K].lon = moduleLINES.Lines[N].GLPoints[K].lon;
@@ -201,7 +201,7 @@ namespace SBuilderX
                 myLine.GLPoints[K].wid = moduleLINES.Lines[N].GLPoints[K].wid;
             }
 
-            var loopTo1 = NP;
+            int loopTo1 = NP;
             for (K = 1; K <= loopTo1; K++)
             {
                 moduleLINES.Lines[N].GLPoints[K].lon = myLine.GLPoints[NP + 1 - K].lon;

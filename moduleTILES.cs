@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 using TileServer;
 
 namespace SBuilderX
@@ -91,12 +91,12 @@ namespace SBuilderX
             // AppDomain.CurrentDomain.AppendPrivatePath("Tiles")
 
             K = 0;
-            foreach (var Dll in myFiles)
+            foreach (string Dll in myFiles)
             {
                 DllBase = Path.GetFileNameWithoutExtension(Dll);
                 myAssembly = Assembly.Load(DllBase);
                 myTypes = myAssembly.GetTypes();
-                foreach (var myType in myTypes)
+                foreach (Type myType in myTypes)
                 {
                     if (myType.GetInterface("TileServer.IServer") is object)
                     {
@@ -114,7 +114,7 @@ namespace SBuilderX
             if (string.IsNullOrEmpty(ActiveTileFolder))
                 return;
             bool Flag = true;
-            var loopTo = NoOfServerTypes;
+            int loopTo = NoOfServerTypes;
             for (K = 1; K <= loopTo; K++)
             {
                 if ((ActiveTileFolder ?? "") == (ServerTypes[K].Name ?? ""))
@@ -137,7 +137,7 @@ namespace SBuilderX
         {
             if (N > 0)
             {
-                var XY = default(Point);
+                Point XY = default(Point);
                 XY.X = 0;
                 XY.Y = moduleMAIN.DisplayHeight - 35;
                 My.MyProject.Forms.FrmStart.lbTilesRemaining.Location = XY;
@@ -333,14 +333,14 @@ namespace SBuilderX
         {
             int R;
             double NS;
-            var X = new double[N + 1];
-            var loopTo = N;
+            double[] X = new double[N + 1];
+            int loopTo = N;
             for (R = 0; R <= loopTo; R++)
                 X[R] = LatFromYMerc(Y + R, Z);
             // Debug.Print(vbCrLf)
 
             NS = 256 * N / (X[0] - X[N]);
-            var loopTo1 = N - 1;
+            int loopTo1 = N - 1;
             for (R = 0; R <= loopTo1; R++)
                 // Debug.Print(H(R))
                 H[R] = (int)((X[R] - X[R + 1]) * NS);
@@ -413,9 +413,9 @@ namespace SBuilderX
         internal static void DisplayTiles(Graphics g)
         {
             double MapPixelsPerDegree;
-            var screen = new Rectangle();
-            var source = new RectangleF();
-            var units = GraphicsUnit.Pixel;
+            Rectangle screen = new Rectangle();
+            RectangleF source = new RectangleF();
+            GraphicsUnit units = GraphicsUnit.Pixel;
             if (MapBackground.NLAT < moduleMAIN.LatDispSouth)
                 return;
             if (MapBackground.SLAT > moduleMAIN.LatDispNorth)
@@ -520,7 +520,7 @@ namespace SBuilderX
         internal static void SaveBackground(string Filename)
         {
             Image GeoTiff;
-            var Stream = new MemoryStream();
+            MemoryStream Stream = new MemoryStream();
             ImageBackground.Save(Stream, ImageFormat.Tiff);
             GeoTiff = Image.FromStream(Stream);
             PropertyItem propItem;
@@ -622,7 +622,7 @@ namespace SBuilderX
         {
             int N;
             string A;
-            var loopTo = moduleMAPS.NoOfMaps;
+            int loopTo = moduleMAPS.NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
                 if (moduleMAPS.Maps[N].Selected)
@@ -644,8 +644,8 @@ namespace SBuilderX
         {
             int K;
             int NoOfSources;
-            var SourceFiles = new string[7];
-            var Variations = new string[7];
+            string[] SourceFiles = new string[7];
+            string[] Variations = new string[7];
             bool All;
             bool Day;
             SourceFiles[1] = moduleMAPS.Maps[N].BMPSu;
@@ -785,7 +785,7 @@ namespace SBuilderX
             FileSystem.PrintLine(3, "[Source]");
             FileSystem.PrintLine(3, "   Type = MultiSource");
             FileSystem.PrintLine(3, "   NumberOfSources = " + (NoOfSources + ExtraNoOfSources).ToString());
-            var loopTo = NoOfSources;
+            int loopTo = NoOfSources;
             for (K = 1; K <= loopTo; K++)
             {
                 SourceFile = Path.GetFileName(SourceFiles[K]);
@@ -864,7 +864,7 @@ namespace SBuilderX
                 if (File.Exists(BGLFile))
                     File.Copy(BGLFile, BGLFileTarget, true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -986,7 +986,7 @@ namespace SBuilderX
                 if (File.Exists(BGLFile))
                     File.Copy(BGLFile, BGLFileTarget, true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -1064,7 +1064,7 @@ namespace SBuilderX
                 if (File.Exists(BGLFile))
                     File.Copy(BGLFile, BGLFileTarget, true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -1201,7 +1201,7 @@ namespace SBuilderX
                 if (File.Exists(BGLFile))
                     File.Copy(BGLFile, BGLFileTarget, true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }

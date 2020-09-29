@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -100,7 +100,7 @@ namespace SBuilderX
                 moduleLINES.Lines[N].Type = "EXT|" + MaterialGuid + "|" + PylonGuid + "|" + Complexity.ToString() + "|" + ExtrusionWidth.ToString() + "|" + ExtrusionProbability.ToString() + "|" + SuppressPlatform.ToString();
 
                 int K;
-                var loopTo = moduleLINES.Lines[N].NoOfPoints;
+                int loopTo = moduleLINES.Lines[N].NoOfPoints;
                 for (K = 1; K <= loopTo; K++)
                     moduleLINES.Lines[N].GLPoints[K].wid = ExtrusionWidth;
                 return;
@@ -350,7 +350,7 @@ namespace SBuilderX
                     optVector.Checked = true;
                 }
             }
-            catch (Exception ex)   // line has no type yet
+            catch (Exception)   // line has no type yet
             {
                 optVector.Checked = false;
                 optVector.Checked = true;
@@ -363,7 +363,7 @@ namespace SBuilderX
             listVector.Items.Clear();
             LT = 1;
             K = 0;
-            var loopTo = moduleLINES.NoOfLineTypes;
+            int loopTo = moduleLINES.NoOfLineTypes;
             for (N = 1; N <= loopTo; N++)
             {
                 K = K + 1;
@@ -384,7 +384,7 @@ namespace SBuilderX
             listExtrusion.Items.Clear();
             LT = 1;
             K = 0;
-            var loopTo = moduleLINES.NoOfExtrusionTypes;
+            int loopTo = moduleLINES.NoOfExtrusionTypes;
             for (N = 1; N <= loopTo; N++)
             {
                 K = K + 1;
@@ -412,15 +412,15 @@ namespace SBuilderX
             // first remove
             lstLib.Items.Clear();
             cmbLibCat.Items.Clear();
-            var loopTo = moduleOBJECTS.NoOfLibCategories;
+            int loopTo = moduleOBJECTS.NoOfLibCategories;
             for (K = 1; K <= loopTo; K++)
                 cmbLibCat.Items.Add(moduleOBJECTS.LibCategories[K].Name);
             bool Flag = false;
-            var loopTo1 = moduleOBJECTS.NoOfLibCategories;
+            int loopTo1 = moduleOBJECTS.NoOfLibCategories;
             for (K = 1; K <= loopTo1; K++)
             {
                 N = 0;
-                foreach (var currentG in moduleOBJECTS.LibCategories[K].Objs)
+                foreach (moduleOBJECTS.LibObject currentG in moduleOBJECTS.LibCategories[K].Objs)
                 {
                     g = currentG;
                     if (g.ID == Guid)
@@ -447,7 +447,7 @@ namespace SBuilderX
             LibCat = moduleOBJECTS.LibCategories[K].Name;
             cmbLibCat.SelectedIndex = K - 1;
             // fill objects and set selected
-            foreach (var currentG1 in moduleOBJECTS.LibCategories[K].Objs)
+            foreach (moduleOBJECTS.LibObject currentG1 in moduleOBJECTS.LibCategories[K].Objs)
             {
                 g = currentG1;
                 lstLib.Items.Add(g.Name);
@@ -468,7 +468,7 @@ namespace SBuilderX
                 }
             }
 
-            var fs = new FileStream(a, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(a, FileMode.Open, FileAccess.Read);
             imgLib.Image = Image.FromStream(fs);
             fs.Close();
             moduleMAIN.ImageFileName = a;
@@ -547,7 +547,7 @@ namespace SBuilderX
 
             // altitude
             X = 0d;
-            var loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
+            int loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
             for (N = 1; N <= loopTo; N++)
                 X = X + moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[N].alt;
             txtAlt.Text = (X / moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints).ToString();
@@ -557,7 +557,7 @@ namespace SBuilderX
             txtWidth2.Text = moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints].wid.ToString();
             double W;
             W = 0d;
-            var loopTo1 = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
+            int loopTo1 = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
             for (N = 1; N <= loopTo1; N++)
                 W = W + moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[N].wid;
             txtWidth.Text = (W / moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints).ToString();
@@ -653,7 +653,7 @@ namespace SBuilderX
             A = A.Substring(J + 1);
             cmbComplexity.SelectedIndex = Convert.ToInt32(A);
             double X = 0d;
-            var loopTo = moduleLINES.Lines[N].NoOfPoints;
+            int loopTo = moduleLINES.Lines[N].NoOfPoints;
             for (J = 1; J <= loopTo; J++)
                 X = X + moduleLINES.Lines[N].GLPoints[J].wid;
             txtHeading.Text = (X / moduleLINES.Lines[N].NoOfPoints).ToString("0.00");
@@ -771,7 +771,7 @@ namespace SBuilderX
             if (modulePOPUP.POPMode == "Many") // many to set
             {
                 moduleMAIN.Dirty = true;
-                var loopTo = moduleLINES.NoOfLines;
+                int loopTo = moduleLINES.NoOfLines;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (moduleLINES.Lines[N].Selected)
@@ -936,18 +936,18 @@ namespace SBuilderX
                 X = Convert.ToDouble(txtWidth.Text);
                 if (modulePOPUP.POPMode == "One")
                 {
-                    var loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
+                    int loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
                     for (K = 1; K <= loopTo; K++)
                         moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[K].wid = X;
                 }
                 else
                 {
-                    var loopTo1 = moduleLINES.NoOfLines;
+                    int loopTo1 = moduleLINES.NoOfLines;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         if (moduleLINES.Lines[N].Selected)
                         {
-                            var loopTo2 = moduleLINES.Lines[N].NoOfPoints;
+                            int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
                             for (K = 1; K <= loopTo2; K++)
                                 moduleLINES.Lines[N].GLPoints[K].wid = X;
                         }
@@ -972,18 +972,18 @@ namespace SBuilderX
                 X = Convert.ToDouble(txtAlt.Text);
                 if (modulePOPUP.POPMode == "One")
                 {
-                    var loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
+                    int loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
                     for (K = 1; K <= loopTo; K++)
                         moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[K].alt = X;
                 }
                 else
                 {
-                    var loopTo1 = moduleLINES.NoOfLines;
+                    int loopTo1 = moduleLINES.NoOfLines;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         if (moduleLINES.Lines[N].Selected)
                         {
-                            var loopTo2 = moduleLINES.Lines[N].NoOfPoints;
+                            int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
                             for (K = 1; K <= loopTo2; K++)
                                 moduleLINES.Lines[N].GLPoints[K].alt = X;
                         }
@@ -1012,7 +1012,7 @@ namespace SBuilderX
                 {
                     W = W1;
                     DW = W21 / (moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints - 1);
-                    var loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
+                    int loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
                     for (K = 1; K <= loopTo; K++)
                     {
                         moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[K].wid = W;
@@ -1021,14 +1021,14 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo1 = moduleLINES.NoOfLines;
+                    int loopTo1 = moduleLINES.NoOfLines;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         if (moduleLINES.Lines[N].Selected)
                         {
                             W = W1;
                             DW = W21 / (moduleLINES.Lines[N].NoOfPoints - 1);
-                            var loopTo2 = moduleLINES.Lines[N].NoOfPoints;
+                            int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
                             for (K = 1; K <= loopTo2; K++)
                             {
                                 moduleLINES.Lines[N].GLPoints[K].wid = W;
@@ -1060,7 +1060,7 @@ namespace SBuilderX
             }
             else
             {
-                var loopTo = moduleLINES.NoOfLines;
+                int loopTo = moduleLINES.NoOfLines;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (moduleLINES.Lines[N].Selected)
@@ -1078,13 +1078,13 @@ namespace SBuilderX
             NP = moduleLINES.Lines[N].NoOfPoints;
             myLine.NoOfPoints = NP;
             myLine.GLPoints = new modulePOINTS.GLPoint[NP + 1];
-            var loopTo = NP;
+            int loopTo = NP;
             for (K = 1; K <= loopTo; K++)
                 // myLine.GLPoints(K).lon = Lines(N).GLPoints(K).lon
                 // myLine.GLPoints(K).lat = Lines(N).GLPoints(K).lat
                 // myLine.GLPoints(K).alt = Lines(N).GLPoints(K).alt
                 myLine.GLPoints[K].wid = moduleLINES.Lines[N].GLPoints[K].wid;
-            var loopTo1 = NP;
+            int loopTo1 = NP;
             for (K = 1; K <= loopTo1; K++)
                 // Lines(N).GLPoints(K).lon = myLine.GLPoints(NP + 1 - K).lon
                 // Lines(N).GLPoints(K).lat = myLine.GLPoints(NP + 1 - K).lat
@@ -1101,7 +1101,7 @@ namespace SBuilderX
             }
             else
             {
-                var loopTo = moduleLINES.NoOfLines;
+                int loopTo = moduleLINES.NoOfLines;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (moduleLINES.Lines[N].Selected)
@@ -1119,7 +1119,7 @@ namespace SBuilderX
             NP = moduleLINES.Lines[N].NoOfPoints;
             myLine.NoOfPoints = NP;
             myLine.GLPoints = new modulePOINTS.GLPoint[NP + 1];
-            var loopTo = NP;
+            int loopTo = NP;
             for (K = 1; K <= loopTo; K++)
             {
                 myLine.GLPoints[K].lon = moduleLINES.Lines[N].GLPoints[K].lon;
@@ -1128,7 +1128,7 @@ namespace SBuilderX
                 myLine.GLPoints[K].wid = moduleLINES.Lines[N].GLPoints[K].wid;
             }
 
-            var loopTo1 = NP;
+            int loopTo1 = NP;
             for (K = 1; K <= loopTo1; K++)
             {
                 moduleLINES.Lines[N].GLPoints[K].lon = myLine.GLPoints[NP + 1 - K].lon;
@@ -1268,7 +1268,7 @@ namespace SBuilderX
                     File.Copy(A, TexPath, true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("The file could not be loaded!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -1302,18 +1302,18 @@ namespace SBuilderX
                     FileSystem.FileCopy(moduleMAIN.AppPath + @"\Tools\BMPs\none.jpg", BmpPath);
                 }
 
-                var bmp = Image.FromFile(BmpPath);
+                Image bmp = Image.FromFile(BmpPath);
                 int width = bmp.Width;
                 int height = imgTex.Height;
-                var thumb = new Bitmap(width, height);
-                var g = Graphics.FromImage(thumb);
+                Bitmap thumb = new Bitmap(width, height);
+                Graphics g = Graphics.FromImage(thumb);
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                 g.DrawImage(bmp, new Rectangle(0, 0, width, height), new Rectangle(0, 0, bmp.Width, bmp.Height), GraphicsUnit.Pixel);
                 g.Dispose();
                 bmp.Dispose();
                 imgTex.BackgroundImage = thumb;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("There is a problem with the display of this image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -1398,7 +1398,7 @@ namespace SBuilderX
             K = cmbLibCat.SelectedIndex + 1;
             LibCat = moduleOBJECTS.LibCategories[K].Name;
             N = lstLib.SelectedIndex;
-            var myLibObj = moduleOBJECTS.LibCategories[K].Objs[N];
+            moduleOBJECTS.LibObject myLibObj = moduleOBJECTS.LibCategories[K].Objs[N];
             labelLibID.Text = myLibObj.ID;
             ObjWidth = myLibObj.Width;
             ObjLength = myLibObj.Length;
@@ -1409,7 +1409,7 @@ namespace SBuilderX
                 a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\none.jpg";
             }
 
-            var fs = new FileStream(a, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(a, FileMode.Open, FileAccess.Read);
             imgLib.Image = Image.FromStream(fs);
             fs.Close();
             moduleMAIN.ImageFileName = a;
@@ -1427,7 +1427,7 @@ namespace SBuilderX
 
             // get the category index
             K = cmbLibCat.SelectedIndex + 1;
-            foreach (var g in moduleOBJECTS.LibCategories[K].Objs)
+            foreach (moduleOBJECTS.LibObject g in moduleOBJECTS.LibCategories[K].Objs)
                 lstLib.Items.Add(g.Name);
             if (moduleOBJECTS.LibCategories[K].Objs.Count == 0)
             {
@@ -1439,7 +1439,7 @@ namespace SBuilderX
             }
 
             LibCat = moduleOBJECTS.LibCategories[K].Name;
-            var myLibObj = moduleOBJECTS.LibCategories[K].Objs[0];
+            moduleOBJECTS.LibObject myLibObj = moduleOBJECTS.LibCategories[K].Objs[0];
             lstLib.SelectedIndex = 0;
             labelLibID.Text = myLibObj.ID;
             ObjWidth = myLibObj.Width;
@@ -1451,7 +1451,7 @@ namespace SBuilderX
                 a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\none.jpg";
             }
 
-            var fs = new FileStream(a, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(a, FileMode.Open, FileAccess.Read);
             imgLib.Image = Image.FromStream(fs);
             fs.Close();
             moduleMAIN.ImageFileName = a;
@@ -1475,7 +1475,7 @@ namespace SBuilderX
             int K;
             if (ckRandom.Checked)
                 VBMath.Randomize();
-            var loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
+            int loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
             {
                 if (ckRandom.Checked == false)

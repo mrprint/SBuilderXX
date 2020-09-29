@@ -40,7 +40,7 @@ namespace SBuilderX
                 {
                     backupLine = new moduleLINES.GLine[moduleMAIN.MakeOnMany];
                     K = 0;
-                    var loopTo = moduleLINES.NoOfLines;
+                    int loopTo = moduleLINES.NoOfLines;
                     for (N = 1; N <= loopTo; N++)
                     {
                         if (moduleLINES.Lines[N].Selected)
@@ -63,7 +63,7 @@ namespace SBuilderX
                 {
                     backupPoly = new modulePOLYS.GPoly[moduleMAIN.MakeOnMany];
                     K = 0;
-                    var loopTo1 = modulePOLYS.NoOfPolys;
+                    int loopTo1 = modulePOLYS.NoOfPolys;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         if (modulePOLYS.Polys[N].Selected)
@@ -90,7 +90,7 @@ namespace SBuilderX
                 else
                 {
                     K = 0;
-                    var loopTo = moduleLINES.NoOfLines;
+                    int loopTo = moduleLINES.NoOfLines;
                     for (N = 1; N <= loopTo; N++)
                     {
                         if (moduleLINES.Lines[N].Selected)
@@ -111,7 +111,7 @@ namespace SBuilderX
                 else
                 {
                     K = 0;
-                    var loopTo1 = modulePOLYS.NoOfPolys;
+                    int loopTo1 = modulePOLYS.NoOfPolys;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         if (modulePOLYS.Polys[N].Selected)
@@ -160,7 +160,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo = moduleLINES.NoOfLines;
+                    int loopTo = moduleLINES.NoOfLines;
                     for (N = 1; N <= loopTo; N++)
                     {
                         if (moduleLINES.Lines[N].Selected)
@@ -179,7 +179,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo1 = modulePOLYS.NoOfPolys;
+                    int loopTo1 = modulePOLYS.NoOfPolys;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         if (modulePOLYS.Polys[N].Selected)
@@ -275,7 +275,7 @@ namespace SBuilderX
             // M is the point in AuxLine
             // returns 1 2 or 3
 
-            double X1, X2, X, Y, Y2;
+            double X1, X2, X;
             double XN, YN;
             double V1X, V1Y;
             double V2X, V2Y;
@@ -352,7 +352,7 @@ namespace SBuilderX
                     SmoothThisLineRet = SmoothThisLineRet + 1;
                 }
             }
-            catch(Exception e)
+            catch (Exception)
             {
             }
             return SmoothThisLineRet;
@@ -431,7 +431,7 @@ namespace SBuilderX
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception)
             {
             }
             return Get2DistancesLineRet;
@@ -445,7 +445,7 @@ namespace SBuilderX
             // M is the point in AuxPoly
             // returns 1 2 or 3
 
-            double X1, X2, X, Y, Y2;
+            double X1, X2, X;
             double XN, YN;
             double V1X, V1Y;
             double V2X, V2Y;
@@ -526,7 +526,7 @@ namespace SBuilderX
                     SmoothThisPolyRet = SmoothThisPolyRet + 1;
                 }
             }
-            catch(Exception e)
+            catch (Exception)
             {
             }
 
@@ -613,7 +613,7 @@ namespace SBuilderX
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception)
             {
             }
             return Get2DistancesPolyRet;

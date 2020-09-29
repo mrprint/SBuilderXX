@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -232,7 +232,7 @@ namespace SBuilderX
         private void CmdGeoTiff_Click(object sender, EventArgs e)
         {
             Image GeoTiff;
-            var Stream = new MemoryStream();
+            MemoryStream Stream = new MemoryStream();
             moduleMAPS.ImgMaps[modulePOPUP.POPIndex].Save(Stream, ImageFormat.Tiff);
             GeoTiff = Image.FromStream(Stream);
             PropertyItem propItem;

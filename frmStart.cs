@@ -1,16 +1,16 @@
-﻿using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Windows.Forms;
-using System.Media;
-using System.Globalization;
-using System.Threading;
-using FSUIPC;
+﻿using FSUIPC;
 using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using ScruffyDuck.Flightsim.Scenery.SceneryFile;
+using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Globalization;
+using System.IO;
+using System.Media;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace SBuilderX
 {
@@ -277,7 +277,7 @@ namespace SBuilderX
         {
             if (moduleMAIN.BitmapBuffer is object)
             {
-                var g = Graphics.FromImage(moduleMAIN.BitmapBuffer);
+                Graphics g = Graphics.FromImage(moduleMAIN.BitmapBuffer);
                 if (BackColorGray)
                 {
                     g.Clear(Color.Gray);
@@ -317,7 +317,7 @@ namespace SBuilderX
 
             if (moduleMAIN.BitmapBuffer is object)
             {
-                var gr = CreateGraphics();
+                Graphics gr = CreateGraphics();
                 gr.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);   // copy buffer to display
                 if (moduleLINES.CheckLine > 0)
                     DisplayCheckLine(gr);
@@ -337,7 +337,7 @@ namespace SBuilderX
             lbScale.ForeColor = Color.Black;
             if (moduleTILES.TileVIEW)
                 lbScale.ForeColor = Color.White;
-            var XY = default(Point);
+            Point XY = default(Point);
             XY.X = moduleMAIN.DisplayWidth - X - 10;
             XY.Y = moduleMAIN.DisplayHeight - 35;
             lbScaleBar.Location = XY;
@@ -552,14 +552,14 @@ namespace SBuilderX
 
         private void DrawThisGrid(int G, Graphics gr)
         {
-            var myColor = moduleMAIN.GridColor;
+            Color myColor = moduleMAIN.GridColor;
             if (G < 1)
             {
                 myColor = moduleMAIN.GridLODColor;
                 G = 2 - G;
             }
 
-            var p = new Pen(myColor)
+            Pen p = new Pen(myColor)
             {
                 Width = moduleMAIN.GridWidth,
                 DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
@@ -592,9 +592,9 @@ namespace SBuilderX
             }
 
             LA1 = (int)(Convert.ToInt32(LatSouth / LatDelta) + 1d);
-            LA2 = (int)Convert.ToInt32(LatNorth / LatDelta);
+            LA2 = Convert.ToInt32(LatNorth / LatDelta);
             LO1 = (int)(Convert.ToInt32(LonWest / LonDelta) + 1d);
-            LO2 = (int)Convert.ToInt32(LonEast / LonDelta);
+            LO2 = Convert.ToInt32(LonEast / LonDelta);
             LatDelta = (LA1 * LatDelta - moduleMAIN.LatDispSouth) * moduleMAIN.PixelsPerLatDeg;
             if (G == 0)
             {
@@ -611,7 +611,7 @@ namespace SBuilderX
             X2 = moduleMAIN.DisplayWidth;
             Y1 = 0;
             Y2 = moduleMAIN.DisplayHeight;
-            var loopTo = LA2;
+            int loopTo = LA2;
             for (LA = LA1; LA <= loopTo; LA++)
             {
                 PY = moduleMAIN.DisplayHeight - (int)LatDelta;
@@ -619,7 +619,7 @@ namespace SBuilderX
                 LatDelta = LatDelta + LatDeltaPix;
             }
 
-            var loopTo1 = LO2;
+            int loopTo1 = LO2;
             for (LO = LO1; LO <= loopTo1; LO++)
             {
                 PX = (int)LonDelta;
@@ -634,7 +634,7 @@ namespace SBuilderX
         {
             string A;
             A = "Line #" + moduleLINES.CheckLine.ToString().Trim() + Environment.NewLine + "Point #" + moduleLINES.CheckLinePt.ToString().Trim();
-            var drawFont = new Font("MS Reference Sans Serif", 8f);
+            Font drawFont = new Font("MS Reference Sans Serif", 8f);
             g.DrawString(A, drawFont, Brushes.Black, moduleMAIN.DisplayCenterX + 6, moduleMAIN.DisplayCenterY - 12);
             drawFont.Dispose();
         }
@@ -643,7 +643,7 @@ namespace SBuilderX
         {
             string A;
             A = "Poly #" + modulePOLYS.CheckPoly.ToString().Trim() + Environment.NewLine + "Point #" + modulePOLYS.CheckPolyPt.ToString().Trim();
-            var drawFont = new Font("MS Reference Sans Serif", 8f);
+            Font drawFont = new Font("MS Reference Sans Serif", 8f);
             g.DrawString(A, drawFont, Brushes.Black, moduleMAIN.DisplayCenterX + 6, moduleMAIN.DisplayCenterY - 12);
             drawFont.Dispose();
         }
@@ -1023,7 +1023,7 @@ namespace SBuilderX
         private void FrmStart_FormClosing(object sender, FormClosingEventArgs e)
         {
             bool Cancel = e.Cancel;
-            var UnloadMode = e.CloseReason;
+            CloseReason UnloadMode = e.CloseReason;
             if (!moduleMAIN.Dirty)
             {
                 Cancel = false;
@@ -1636,7 +1636,7 @@ namespace SBuilderX
             }
 
             moduleMAPS.ShowSimpleMaps = false;
-            var loopTo = moduleMAPS.NoOfMaps;
+            int loopTo = moduleMAPS.NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
                 if (moduleMAPS.ImgMaps[N] is object)
@@ -1908,7 +1908,7 @@ namespace SBuilderX
                     GetPath = "";
                 return GetPath;
             }
-            catch (System.Security.SecurityException sE)
+            catch (System.Security.SecurityException)
             {
                 MessageBox.Show("You do not have sufficient privileges to run SBuilderX.  Please log on as administrator.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return "";
@@ -1999,7 +1999,7 @@ namespace SBuilderX
         {
             int N;
             DisableSelections(true);
-            var loopTo = moduleMAPS.NoOfMaps;
+            int loopTo = moduleMAPS.NoOfMaps;
             for (N = 1; N <= loopTo; N++)
                 moduleMAPS.ImgMaps[N].Dispose();
             moduleMAPS.Maps = new moduleMAPS.Map[1];
@@ -3413,7 +3413,7 @@ namespace SBuilderX
         {
             int DX, DY;
             int PX, PY;
-            var p = new Pen(Color.Red);
+            Pen p = new Pen(Color.Red);
             Graphics g;
             p.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             g = CreateGraphics();
@@ -3444,7 +3444,7 @@ namespace SBuilderX
         {
             int DX, DY;
             int PX, PY;
-            var p = new Pen(Color.Black);
+            Pen p = new Pen(Color.Black);
             Graphics g;
             p.Width = 2f;
             g = CreateGraphics();
@@ -4014,7 +4014,7 @@ namespace SBuilderX
             A = A + Environment.NewLine + "Heading = " + moduleOBJECTS.ObjMHead.ToString("0.000") + " deg";
             A = A + Environment.NewLine + Environment.NewLine + "Lat. = " + moduleMAIN.Lat2Str(CLat) + Environment.NewLine + "Lon. = " + moduleMAIN.Lon2Str(CLon);
             Graphics g;
-            var p = new Pen(moduleLINES.DefaultLineColor);
+            Pen p = new Pen(moduleLINES.DefaultLineColor);
             g = CreateGraphics();
             if (moduleMAIN.BitmapBuffer is object)
                 g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
@@ -4052,7 +4052,7 @@ namespace SBuilderX
                 g = CreateGraphics();
                 if (moduleMAIN.BitmapBuffer is object)
                     g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-                var drawFont = new Font("Arial", 10f);
+                Font drawFont = new Font("Arial", 10f);
                 g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, A.Length * 7, 18));
                 g.DrawString(A, drawFont, Brushes.Black, X, Y - 20);
                 drawFont.Dispose();
@@ -4083,7 +4083,7 @@ namespace SBuilderX
                 g = CreateGraphics();
                 if (moduleMAIN.BitmapBuffer is object)
                     g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-                var drawFont = new Font("Arial", 10f);
+                Font drawFont = new Font("Arial", 10f);
                 g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, A.Length * 7, 18));
                 g.DrawString(A, drawFont, Brushes.Black, X, Y - 20);
                 drawFont.Dispose();
@@ -4098,7 +4098,7 @@ namespace SBuilderX
             g = CreateGraphics();
             if (moduleMAIN.BitmapBuffer is object)
                 g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-            var drawFont = new Font("Arial", 10f);
+            Font drawFont = new Font("Arial", 10f);
             g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, A.Length * 6 + 3, 18));
             g.DrawString(A, drawFont, Brushes.Black, X, Y - 20);
             drawFont.Dispose();
@@ -4115,7 +4115,7 @@ namespace SBuilderX
                 g = CreateGraphics();
                 if (moduleMAIN.BitmapBuffer is object)
                     g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-                var drawFont = new Font("Arial", 10f);
+                Font drawFont = new Font("Arial", 10f);
                 g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, A.Length * 7, 18));
                 g.DrawString(A, drawFont, Brushes.Black, X, Y - 20);
                 drawFont.Dispose();
@@ -4129,7 +4129,7 @@ namespace SBuilderX
             X0 = (int)((moduleLINES.AuxLonLine - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
             Y0 = (int)((moduleMAIN.LatDispNorth - moduleLINES.AuxLatLine) * moduleMAIN.PixelsPerLatDeg);
             Graphics g;
-            var p = new Pen(moduleLINES.DefaultLineColor) { Width = moduleLINES.LinePenWidth };
+            Pen p = new Pen(moduleLINES.DefaultLineColor) { Width = moduleLINES.LinePenWidth };
             g = CreateGraphics();
             if (moduleMAIN.BitmapBuffer is object)
                 g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
@@ -4151,11 +4151,11 @@ namespace SBuilderX
             if (moduleLINES.LinePenWidth == 2)
                 P1 = 3;
             P2 = 2 * P1;
-            var myPen = new Pen(moduleLINES.DefaultLineColor, moduleLINES.LinePenWidth);
-            var myBrush = new SolidBrush(modulePOINTS.UnselectedPointColor);
+            Pen myPen = new Pen(moduleLINES.DefaultLineColor, moduleLINES.LinePenWidth);
+            SolidBrush myBrush = new SolidBrush(modulePOINTS.UnselectedPointColor);
             PX1 = (int)((moduleLINES.NewLine.GLPoints[1].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
             PY1 = (int)((moduleMAIN.LatDispNorth - moduleLINES.NewLine.GLPoints[1].lat) * moduleMAIN.PixelsPerLatDeg);
-            var loopTo = moduleLINES.NewLine.NoOfPoints;
+            int loopTo = moduleLINES.NewLine.NoOfPoints;
             for (K = 2; K <= loopTo; K++)
             {
                 PX0 = PX1;
@@ -4166,7 +4166,7 @@ namespace SBuilderX
             }
 
             // now draw point
-            var loopTo1 = moduleLINES.NewLine.NoOfPoints - 1;
+            int loopTo1 = moduleLINES.NewLine.NoOfPoints - 1;
             for (K = 1; K <= loopTo1; K++)
             {
                 PX0 = (int)((moduleLINES.NewLine.GLPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
@@ -4192,15 +4192,15 @@ namespace SBuilderX
             X0 = (int)((modulePOLYS.AuxLonPoly - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
             Y0 = (int)((moduleMAIN.LatDispNorth - modulePOLYS.AuxLatPoly) * moduleMAIN.PixelsPerLatDeg);
             Graphics g;
-            var myPen = new Pen(modulePOLYS.PolyColorBorder, modulePOLYS.PolyPenWidth);
-            var myBrush = new SolidBrush(modulePOLYS.DefaultPolyColor);
+            Pen myPen = new Pen(modulePOLYS.PolyColorBorder, modulePOLYS.PolyPenWidth);
+            SolidBrush myBrush = new SolidBrush(modulePOLYS.DefaultPolyColor);
             g = CreateGraphics();
             if (moduleMAIN.BitmapBuffer is object)
                 g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
             if (modulePOLYS.PtPolyCounter > 2)
             {
                 modulePOLYS.PTS = new Point[modulePOLYS.NewPoly.NoOfPoints + 1];
-                var loopTo = modulePOLYS.NewPoly.NoOfPoints - 1;
+                int loopTo = modulePOLYS.NewPoly.NoOfPoints - 1;
                 for (K = 0; K <= loopTo; K++)
                 {
                     modulePOLYS.PTS[K].X = (int)((modulePOLYS.NewPoly.GPoints[K + 1].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
@@ -4214,7 +4214,7 @@ namespace SBuilderX
 
                 // now draw points
                 myBrush.Color = modulePOINTS.UnselectedPointColor;
-                var loopTo1 = modulePOLYS.NewPoly.NoOfPoints - 1;
+                int loopTo1 = modulePOLYS.NewPoly.NoOfPoints - 1;
                 for (K = 0; K <= loopTo1; K++)
                     g.FillRectangle(myBrush, modulePOLYS.PTS[K].X - P1, modulePOLYS.PTS[K].Y - P1, P2, P2);
             }
@@ -4607,7 +4607,7 @@ namespace SBuilderX
                 moduleLINES.Lines[L].NoOfPoints = N + 1;
             moduleLINES.Lines[L].GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[L].NoOfPoints + 1];
             moduleLINES.Lines[L].Color = moduleLINES.DefaultLineColor;
-            var loopTo = N;
+            int loopTo = N;
             for (K = 1; K <= loopTo; K++)
             {
                 moduleLINES.Lines[L].GLPoints[K].lat = modulePOLYS.Polys[P].GPoints[N - K + 1].lat;
@@ -4634,7 +4634,7 @@ namespace SBuilderX
             modulePOLYS.Polys[L].NoOfPoints = N;
             modulePOLYS.Polys[L].GPoints = new modulePOINTS.GPoint[modulePOLYS.Polys[L].NoOfPoints + 1];
             modulePOLYS.Polys[L].Color = modulePOLYS.DefaultPolyColor;
-            var loopTo = N;
+            int loopTo = N;
             for (K = 1; K <= loopTo; K++)
             {
                 modulePOLYS.Polys[L].GPoints[K].lat = moduleLINES.Lines[P].GLPoints[K].lat;
@@ -4948,7 +4948,7 @@ namespace SBuilderX
                 if (B == "BGL")
                 {
                     C = A + ".XML";
-                    var SceneryFile = new SceneryFile(A, FileType.BGL);   // was = then I placed As
+                    SceneryFile SceneryFile = new SceneryFile(A, FileType.BGL);   // was = then I placed As
                     SceneryFile.Bgl2Xml(C);
                     SceneryFile.Dispose();
                     moduleOBJECTS.AppendOBJFile(C);
@@ -4965,7 +4965,7 @@ namespace SBuilderX
                 FileOpenTrailer();
                 moduleMAIN.Dirty = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("SBuilderX can not decompile file " + A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -4973,7 +4973,7 @@ namespace SBuilderX
 
         private void SetLineTypes()
         {
-            string A, B, C, D, File;
+            string A, B, C, File;
             int Marker, N, K;
             moduleLINES.LineTypes = new moduleLINES.LineType[2001];
 
@@ -5046,7 +5046,7 @@ namespace SBuilderX
 
         private void SetPolyTypes()
         {
-            string A, B, C, D, File;
+            string A, B, C, File;
             int Marker, N, K;
 
             try
@@ -5099,7 +5099,7 @@ namespace SBuilderX
                     if (B == "TYPE")
                     {
                         C = (A.Length < 8) ? "" : A.Substring(5, 3).Trim(); // ''' landclasses
-                                                                // C = Mid(C, 1, 3)
+                                                                            // C = Mid(C, 1, 3)
                         modulePOLYS.PolyTypes[K].Type = C;
                     }
                 }
@@ -5164,7 +5164,7 @@ namespace SBuilderX
                 FileSystem.FileClose();
                 moduleCLASSES.NoOfLCs = K;
                 B = "sel";
-                var loopTo = moduleCLASSES.NoOfLCs;
+                int loopTo = moduleCLASSES.NoOfLCs;
                 for (K = 1; K <= loopTo; K++)
                 {
                     moduleCLASSES.LC[K + 128].Color = Color.FromArgb(255, 0, 255, 0);
@@ -5226,7 +5226,7 @@ namespace SBuilderX
                 FileSystem.FileClose();
                 moduleCLASSES.NoOfWCs = K;
                 B = "sel";
-                var loopTo = moduleCLASSES.NoOfLCs;
+                int loopTo = moduleCLASSES.NoOfLCs;
                 for (K = 1; K <= loopTo; K++)
                 {
                     moduleCLASSES.WC[K + 128].Color = Color.FromArgb(255, 0, 255, 0);
@@ -5246,7 +5246,7 @@ namespace SBuilderX
 
         private void SetExtrusionsTypes()
         {
-            string A, B, C, File;
+            string A, B, File;
             int N, Marker, K;
 
             try
@@ -5338,7 +5338,7 @@ namespace SBuilderX
                     My.MyProject.Forms.frmWaiting.bar.Value = 0;
                 }
 
-                var loopTo = moduleCLASSES.NoOfWCs;
+                int loopTo = moduleCLASSES.NoOfWCs;
                 for (K = 1; K <= loopTo; K++)
                 {
                     FileJPG = BmpFolder + moduleCLASSES.WC[K].Texture + jpg;
@@ -5370,7 +5370,7 @@ namespace SBuilderX
 
                 if (ShowWait)
                     My.MyProject.Forms.frmWaiting.Refresh();
-                var loopTo1 = moduleCLASSES.NoOfLCs;
+                int loopTo1 = moduleCLASSES.NoOfLCs;
                 for (K = 1; K <= loopTo1; K++)
                 {
                     FileJPG = BmpFolder + moduleCLASSES.LC[K].Texture + jpg;
@@ -5400,7 +5400,7 @@ namespace SBuilderX
                     }
                 }
 
-                var loopTo2 = moduleLINES.NoOfLineTypes;
+                int loopTo2 = moduleLINES.NoOfLineTypes;
                 for (K = 1; K <= loopTo2; K++)
                 {
                     FileJPG = BmpFolder + moduleLINES.LineTypes[K].Texture + jpg;
@@ -5427,7 +5427,7 @@ namespace SBuilderX
                     }
                 }
 
-                var loopTo3 = modulePOLYS.NoOfPolyTypes;
+                int loopTo3 = modulePOLYS.NoOfPolyTypes;
                 for (K = 1; K <= loopTo3; K++)
                 {
                     FileJPG = BmpFolder + modulePOLYS.PolyTypes[K].Texture + jpg;
@@ -5457,7 +5457,7 @@ namespace SBuilderX
                 My.MyProject.Forms.frmWaiting.Close();
                 My.MyProject.Forms.frmWaiting.Dispose();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show(@"Some textures referred to in polys.txt, lines.txt, lands.txt, or waters.txt could not be copied into the \Tools\Bmps\ folder!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -5466,7 +5466,7 @@ namespace SBuilderX
         private void OuterPopUpMenu_Click(object sender, EventArgs e)
         {
             int K;
-            var Flag = default(bool);
+            bool Flag = default(bool);
             if (moduleMAIN.PointerON)  // make just one outer
             {
                 Flag = false;
@@ -5478,7 +5478,7 @@ namespace SBuilderX
             {
                 modulePOLYS.Polys[modulePOPUP.POPIndex].Selected = true; // make sure POPIndex is selected 
                 Flag = true;
-                var loopTo = modulePOLYS.NoOfPolys;
+                int loopTo = modulePOLYS.NoOfPolys;
                 for (K = 1; K <= loopTo; K++)
                 {
                     if (modulePOLYS.Polys[K].Selected) // it is selected then is a candidate
@@ -5511,7 +5511,7 @@ namespace SBuilderX
             K = -K;
             modulePOLYS.Polys[N].NoOfChilds = 0;
             C = 0;
-            var loopTo = modulePOLYS.Polys[K].NoOfChilds;
+            int loopTo = modulePOLYS.Polys[K].NoOfChilds;
             for (J = 1; J <= loopTo; J++)
             {
                 if (modulePOLYS.Polys[K].Childs[J] == N)
@@ -5574,7 +5574,7 @@ namespace SBuilderX
                     AircraftLongitude = LonAircraft.Value;
                     AircraftLongitude = AircraftLongitude * 360.0d / (65536.0d * 65536.0d * 65536.0d * 65536.0d);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     FSUIPCConnection.Close();
                     MessageBox.Show("Error communicating with FSUIPC!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -5624,7 +5624,7 @@ namespace SBuilderX
                 AircraftLongitude = LonAircraft.Value;
                 AircraftLongitude = AircraftLongitude * 360.0d / (65536.0d * 65536.0d * 65536.0d * 65536.0d);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Error communicating with FSUIPC!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ShowAircraftMenuItem.Checked = false;
@@ -5665,7 +5665,7 @@ namespace SBuilderX
                 FSUIPCConnection.Process();
                 FSUIPCConnection.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Error communicating with FSUIPC!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -5694,7 +5694,7 @@ namespace SBuilderX
                 FSUIPCConnection.Process();
                 FSUIPCConnection.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Error communicating with FSUIPC!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -5702,7 +5702,7 @@ namespace SBuilderX
 
         private void DisplayAircraft(Graphics g)
         {
-            var myPen = new Pen(Color.Red);
+            Pen myPen = new Pen(Color.Red);
             int X1, Y1, X2, Y2;
             int CenterX, CenterY;
             CenterX = (int)((AircraftLongitude - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
@@ -5813,7 +5813,7 @@ namespace SBuilderX
 
         private void ColorFromMap(int X, int y)
         {
-            var myColor = moduleMAIN.BitmapBuffer.GetPixel(X, y);
+            Color myColor = moduleMAIN.BitmapBuffer.GetPixel(X, y);
             int N = My.MyProject.Forms.FrmProjectP.lstClassItems.SelectedIndex + 1;
             moduleCLASSES.LWCIs[N].Color = myColor;
             My.MyProject.Forms.FrmProjectP.lbClassItem.BackColor = myColor;
@@ -5835,7 +5835,7 @@ namespace SBuilderX
                 moduleTILES.TimeToUpdate = false;
                 int X, Y, X0, X1, Y0, Y1;
                 int HH;
-                var H = new int[7];
+                int[] H = new int[7];
                 Bitmap img_tile;
                 string TileExtension = moduleTILES.TileServer.ImageType;
                 string TilePrefix = @"\L" + moduleMAIN.Zoom.ToString().Trim() + "X";
@@ -5850,7 +5850,7 @@ namespace SBuilderX
                 moduleTILES.TileHandlerState myTileHandlerState;
                 IAsyncResult AR;
                 string TileDir;
-                var box = default(Rectangle);
+                Rectangle box = default(Rectangle);
                 box.Width = 256;
                 X = moduleTILES.XTilesFromLon(moduleMAIN.LonDispCenter, moduleMAIN.Zoom);
                 Y = moduleTILES.YTilesFromLat(moduleMAIN.LatDispCenter, moduleMAIN.Zoom);
@@ -5866,14 +5866,14 @@ namespace SBuilderX
                 // ImageBackground = ImageBackground0
                 moduleTILES.ImageBackground0 = null;
                 moduleTILES.ImageBackground0 = new Bitmap(2816, HH);
-                var g = Graphics.FromImage(moduleTILES.ImageBackground0);
+                Graphics g = Graphics.FromImage(moduleTILES.ImageBackground0);
                 box.Y = 0;
-                var loopTo = Y1;
+                int loopTo = Y1;
                 for (Y = Y0; Y <= loopTo; Y++)
                 {
                     box.Height = H[Y - Y0];
                     box.X = 0;
-                    var loopTo1 = X1;
+                    int loopTo1 = X1;
                     for (X = X0; X <= loopTo1; X++)
                     {
                         TileDir = moduleTILES.TileDirFromXYZ(X, Y, moduleMAIN.Zoom);
@@ -5889,7 +5889,7 @@ namespace SBuilderX
                                 TileFull = moduleTILES.TileFolder + TileDir + TileName;
                                 img_tile = (Bitmap)Image.FromFile(TileFull);
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                                 img_tile = moduleTILES.blankjpg;
                                 if (!moduleTILES.TilesFailed.Contains(TileName))
@@ -5959,7 +5959,7 @@ namespace SBuilderX
             {
                 retval = caller.EndInvoke(ar);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 
@@ -6003,7 +6003,7 @@ namespace SBuilderX
             // *** check to see if thread switch is required
             if (InvokeRequired)
             {
-                var handler = new UpdateUIHandler(moduleTILES.TileHasArrived);
+                UpdateUIHandler handler = new UpdateUIHandler(moduleTILES.TileHasArrived);
                 BeginInvoke(handler, (object)remain);
             }
             else
@@ -6133,7 +6133,7 @@ namespace SBuilderX
                     J = Convert.ToInt32(A.Substring(3, 2));
                     K = Convert.ToInt32(A.Substring(5, 2));
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     Good = false;
                 }
@@ -6229,7 +6229,7 @@ namespace SBuilderX
             {
                 if (modulePOPUP.POPMode == "Many") // many to set
                 {
-                    var loopTo = NP;
+                    int loopTo = NP;
                     for (N = 1; N <= loopTo; N++)
                     {
                         if (modulePOLYS.Polys[N].Selected)
@@ -6239,7 +6239,7 @@ namespace SBuilderX
                                 SliceGuid = modulePOLYS.Polys[N].Guid;
                                 SliceThisQMIDPoly(N);
                                 modulePOLYS.Polys[N].Guid = "Delete!";
-                                var loopTo1 = modulePOLYS.Polys[N].NoOfChilds;
+                                int loopTo1 = modulePOLYS.Polys[N].NoOfChilds;
                                 for (K = 1; K <= loopTo1; K++)
                                     modulePOLYS.Polys[modulePOLYS.Polys[N].Childs[K]].Guid = "Delete!";
                             }
@@ -6253,7 +6253,7 @@ namespace SBuilderX
                         SliceGuid = modulePOLYS.Polys[modulePOPUP.POPIndex].Guid;
                         SliceThisQMIDPoly(modulePOPUP.POPIndex);
                         modulePOLYS.Polys[modulePOPUP.POPIndex].Guid = "Delete!";
-                        var loopTo2 = modulePOLYS.Polys[modulePOPUP.POPIndex].NoOfChilds;
+                        int loopTo2 = modulePOLYS.Polys[modulePOPUP.POPIndex].NoOfChilds;
                         for (K = 1; K <= loopTo2; K++)
                             modulePOLYS.Polys[modulePOLYS.Polys[modulePOPUP.POPIndex].Childs[K]].Guid = "Delete!";
                     }
@@ -6275,7 +6275,7 @@ namespace SBuilderX
             {
                 if (modulePOPUP.POPMode == "Many") // many to set
                 {
-                    var loopTo3 = moduleLINES.NoOfLines;
+                    int loopTo3 = moduleLINES.NoOfLines;
                     for (N = 1; N <= loopTo3; N++)
                     {
                         if (moduleLINES.Lines[N].Selected)
@@ -6321,13 +6321,13 @@ namespace SBuilderX
             if (LO == 0d)
                 N = N - 1;
             LOE = N * LongitudeDelta;
-            var P = new ClipPoly();
+            ClipPoly P = new ClipPoly();
             moduleMAIN.NoOfSlices = 0;
             P.SetPoly(Pl);
-            var loopTo = LAN;
+            double loopTo = LAN;
             for (LA = LAS; LatitudeDelta >= 0 ? LA <= loopTo : LA >= loopTo; LA += LatitudeDelta)
                 P.InsertLatCrossing(LA);
-            var loopTo1 = LOE;
+            double loopTo1 = LOE;
             for (LO = LOW; LongitudeDelta >= 0 ? LO <= loopTo1 : LO >= loopTo1; LO += LongitudeDelta)
                 P.InsertLonCrossing(LO);
             LAS = LAS - LatitudeDelta / 2d;
@@ -6336,10 +6336,10 @@ namespace SBuilderX
             LOE = LOE + LongitudeDelta / 2d;
 
             // going trought the center of quads
-            var loopTo2 = LAN;
+            double loopTo2 = LAN;
             for (LA = LAS; LatitudeDelta >= 0 ? LA <= loopTo2 : LA >= loopTo2; LA += LatitudeDelta)
             {
-                var loopTo3 = LOE;
+                double loopTo3 = LOE;
                 for (LO = LOW; LongitudeDelta >= 0 ? LO <= loopTo3 : LO >= loopTo3; LO += LongitudeDelta)
                 {
                     P.SetQuad(moduleMAIN.QMIDLevel, LA, LO);
@@ -6379,13 +6379,13 @@ namespace SBuilderX
             if (LO == 0d)
                 N = N - 1;
             LOE = N * LongitudeDelta;
-            var L = new ClipLine();
+            ClipLine L = new ClipLine();
             moduleMAIN.NoOfSlices = 0;
             L.SetLine(Ln);
-            var loopTo = LAN;
+            double loopTo = LAN;
             for (LA = LAS; LatitudeDelta >= 0 ? LA <= loopTo : LA >= loopTo; LA += LatitudeDelta)
                 L.InsertLatCrossing(LA);
-            var loopTo1 = LOE;
+            double loopTo1 = LOE;
             for (LO = LOW; LongitudeDelta >= 0 ? LO <= loopTo1 : LO >= loopTo1; LO += LongitudeDelta)
                 L.InsertLonCrossing(LO);
             LAS = LAS - LatitudeDelta / 2d;
@@ -6394,10 +6394,10 @@ namespace SBuilderX
             LOE = LOE + LongitudeDelta / 2d;
 
             // going trought the center of quads
-            var loopTo2 = LAN;
+            double loopTo2 = LAN;
             for (LA = LAS; LatitudeDelta >= 0 ? LA <= loopTo2 : LA >= loopTo2; LA += LatitudeDelta)
             {
-                var loopTo3 = LOE;
+                double loopTo3 = LOE;
                 for (LO = LOW; LongitudeDelta >= 0 ? LO <= loopTo3 : LO >= loopTo3; LO += LongitudeDelta)
                 {
                     L.SetQuad(moduleMAIN.QMIDLevel, LA, LO);
@@ -6434,7 +6434,7 @@ namespace SBuilderX
             {
                 if (modulePOPUP.POPMode == "Many") // many to set
                 {
-                    var loopTo = NP;
+                    int loopTo = NP;
                     for (N = 1; N <= loopTo; N++)
                     {
                         if (modulePOLYS.Polys[N].Selected)
@@ -6444,7 +6444,7 @@ namespace SBuilderX
                                 SliceGuid = modulePOLYS.Polys[N].Guid;
                                 FillThisQMIDPoly(N);
                                 modulePOLYS.Polys[N].Guid = "Delete!";
-                                var loopTo1 = modulePOLYS.Polys[N].NoOfChilds;
+                                int loopTo1 = modulePOLYS.Polys[N].NoOfChilds;
                                 for (K = 1; K <= loopTo1; K++)
                                     modulePOLYS.Polys[modulePOLYS.Polys[N].Childs[K]].Guid = "Delete!";
                             }
@@ -6458,7 +6458,7 @@ namespace SBuilderX
                         SliceGuid = modulePOLYS.Polys[modulePOPUP.POPIndex].Guid;
                         FillThisQMIDPoly(modulePOPUP.POPIndex);
                         modulePOLYS.Polys[modulePOPUP.POPIndex].Guid = "Delete!";
-                        var loopTo2 = modulePOLYS.Polys[modulePOPUP.POPIndex].NoOfChilds;
+                        int loopTo2 = modulePOLYS.Polys[modulePOPUP.POPIndex].NoOfChilds;
                         for (K = 1; K <= loopTo2; K++)
                             modulePOLYS.Polys[modulePOLYS.Polys[modulePOPUP.POPIndex].Childs[K]].Guid = "Delete!";
                     }
@@ -6507,13 +6507,13 @@ namespace SBuilderX
             if (LO == 0d)
                 N = N - 1;
             LOE = N * LongitudeDelta;
-            var P = new ClipPoly();
+            ClipPoly P = new ClipPoly();
             moduleMAIN.NoOfSlices = 0;
             P.SetPoly(Pl);
-            var loopTo = LAN;
+            double loopTo = LAN;
             for (LA = LAS; LatitudeDelta >= 0 ? LA <= loopTo : LA >= loopTo; LA += LatitudeDelta)
                 P.InsertLatCrossing(LA);
-            var loopTo1 = LOE;
+            double loopTo1 = LOE;
             for (LO = LOW; LongitudeDelta >= 0 ? LO <= loopTo1 : LO >= loopTo1; LO += LongitudeDelta)
                 P.InsertLonCrossing(LO);
             LAS = LAS - LatitudeDelta / 2d;
@@ -6522,10 +6522,10 @@ namespace SBuilderX
             LOE = LOE + LongitudeDelta / 2d;
 
             // going trought the center of quads
-            var loopTo2 = LAN;
+            double loopTo2 = LAN;
             for (LA = LAS; LatitudeDelta >= 0 ? LA <= loopTo2 : LA >= loopTo2; LA += LatitudeDelta)
             {
-                var loopTo3 = LOE;
+                double loopTo3 = LOE;
                 for (LO = LOW; LongitudeDelta >= 0 ? LO <= loopTo3 : LO >= loopTo3; LO += LongitudeDelta)
                 {
                     P.SetQuad(moduleMAIN.QMIDLevel, LA, LO);
@@ -6550,14 +6550,14 @@ namespace SBuilderX
             int N, K, J;
             string Name = modulePOLYS.Polys[P].Name;
             string Type = modulePOLYS.Polys[P].Type;
-            var Color = modulePOLYS.Polys[P].Color;
+            Color Color = modulePOLYS.Polys[P].Color;
             bool Selected = modulePOLYS.Polys[P].Selected;
             int n0 = default, n1 = default, n2 = default;
             double k1 = default, k2 = default, k3 = default, lat = default, lon;
             modulePOLYS.Get3Points(P, ref n0, ref n1, ref n2, ref lat);
             modulePOLYS.GetSlopes(P, n0, n1, n2, ref k1, ref k2, ref k3);
             Array.Resize(ref modulePOLYS.Polys, modulePOLYS.NoOfPolys + moduleMAIN.NoOfSlices + 1);
-            var loopTo = moduleMAIN.NoOfSlices;
+            int loopTo = moduleMAIN.NoOfSlices;
             for (N = 1; N <= loopTo; N++)
             {
                 modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].Name = Name;
@@ -6567,7 +6567,7 @@ namespace SBuilderX
                 modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].Selected = Selected;
                 modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].NoOfPoints = moduleMAIN.Slices[N].N;
                 modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].GPoints = new modulePOINTS.GPoint[moduleMAIN.Slices[N].N + 1];
-                var loopTo1 = moduleMAIN.Slices[N].N;
+                int loopTo1 = moduleMAIN.Slices[N].N;
                 for (K = 1; K <= loopTo1; K++)
                 {
                     lat = moduleMAIN.Slices[N].P[K].Y;
@@ -6589,7 +6589,7 @@ namespace SBuilderX
                 {
                     modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].NoOfChilds = moduleMAIN.Slices[N].NC;
                     modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].Childs = new int[moduleMAIN.Slices[N].NC + 1];
-                    var loopTo2 = moduleMAIN.Slices[N].NC;
+                    int loopTo2 = moduleMAIN.Slices[N].NC;
                     for (J = 1; J <= loopTo2; J++)
                         modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].Childs[J] = modulePOLYS.NoOfPolys + moduleMAIN.Slices[N].C[J];
                 }
@@ -6608,7 +6608,7 @@ namespace SBuilderX
             string Name = moduleLINES.Lines[L].Name;
             string Type = moduleLINES.Lines[L].Type;
             string Guid = moduleLINES.Lines[L].Guid;
-            var Color = moduleLINES.Lines[L].Color;
+            Color Color = moduleLINES.Lines[L].Color;
             bool Selected = moduleLINES.Lines[L].Selected;
             moduleLINES.Lines[L].Name = Name;
             moduleLINES.Lines[L].Type = Type;
@@ -6617,7 +6617,7 @@ namespace SBuilderX
             moduleLINES.Lines[L].Selected = Selected;
             moduleLINES.Lines[L].NoOfPoints = moduleMAIN.Fragments[1].N;
             moduleLINES.Lines[L].GLPoints = new modulePOINTS.GLPoint[moduleMAIN.Fragments[1].N + 1];
-            var loopTo = moduleMAIN.Fragments[1].N;
+            int loopTo = moduleMAIN.Fragments[1].N;
             for (K = 1; K <= loopTo; K++)
             {
                 moduleLINES.Lines[L].GLPoints[K].lat = moduleMAIN.Fragments[1].P[K].Y;
@@ -6629,7 +6629,7 @@ namespace SBuilderX
             moduleLINES.AddLatLonToLine(L);
             Array.Resize(ref moduleLINES.Lines, moduleLINES.NoOfLines + moduleMAIN.NoOfFragments);
             int M;
-            var loopTo1 = moduleMAIN.NoOfFragments;
+            int loopTo1 = moduleMAIN.NoOfFragments;
             for (N = 2; N <= loopTo1; N++)
             {
                 M = moduleLINES.NoOfLines + N - 1;
@@ -6640,7 +6640,7 @@ namespace SBuilderX
                 moduleLINES.Lines[M].Selected = Selected;
                 moduleLINES.Lines[M].NoOfPoints = moduleMAIN.Fragments[N].N;
                 moduleLINES.Lines[M].GLPoints = new modulePOINTS.GLPoint[moduleMAIN.Fragments[N].N + 1];
-                var loopTo2 = moduleMAIN.Fragments[N].N;
+                int loopTo2 = moduleMAIN.Fragments[N].N;
                 for (K = 1; K <= loopTo2; K++)
                 {
                     moduleLINES.Lines[M].GLPoints[K].lat = moduleMAIN.Fragments[N].P[K].Y;
@@ -6688,7 +6688,7 @@ namespace SBuilderX
                 My.MyProject.Forms.FrmLPPointsP.Longitude = Longitude;
                 My.MyProject.Forms.FrmLPPointsP.ShowDialog();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 FSUIPCConnection.Close();
                 MessageBox.Show("Error communicating with FSUIPC!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -7004,7 +7004,7 @@ namespace SBuilderX
         private void EditINIFileMenuItem_Click(object sender, EventArgs e)
         {
             Hide();
-            var myProcess = new Process();
+            Process myProcess = new Process();
             myProcess = Process.Start("notepad.exe", moduleMAIN.AppIni);
             myProcess.WaitForExit();
             myProcess.Dispose();

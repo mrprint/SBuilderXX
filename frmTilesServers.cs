@@ -34,7 +34,7 @@ namespace SBuilderX
 
             int N, K;
             K = 0;
-            var loopTo = moduleTILES.NoOfServerTypes;
+            int loopTo = moduleTILES.NoOfServerTypes;
             for (N = 1; N <= loopTo; N++)
             {
                 ListMapServers.Items.Add(moduleTILES.ServerTypes[N].Name);
@@ -60,7 +60,7 @@ namespace SBuilderX
 
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            var K = default(int);
+            int K = default(int);
             moduleTILES.ActiveTileFolder = "";
             moduleTILES.TileServer = null;
             moduleTILES.TilesDownloading.Clear();

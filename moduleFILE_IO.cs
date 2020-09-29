@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -47,7 +47,7 @@ namespace SBuilderX
 
         internal static void GetSettings()
         {
-            var IniSettings = new Dictionary<string, string>();
+            Dictionary<string, string> IniSettings = new Dictionary<string, string>();
 
             try
             {
@@ -548,7 +548,7 @@ namespace SBuilderX
             int NF;
             string Temp;
             string LcaseTemp;
-            var ReadyToRead = default(bool);
+            bool ReadyToRead = default(bool);
             NF = FileSystem.FreeFile();
             ReadIniValueRet = "";
             KEY = "[" + KEY.ToLower() + "]";
@@ -666,7 +666,7 @@ namespace SBuilderX
         {
             string FileNameToOpenRet = default;
             string TheDir;
-            
+
             TheDir = "";
             My.MyProject.Forms.FrmStart.OpenFileDialog1.Filter = s_filter + "|All Files|*.*";
             if (s_dir == "SBX")
@@ -705,7 +705,7 @@ namespace SBuilderX
                 {
                     cDir = Path.GetDirectoryName(FileNameToOpenRet);
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                 }
                 if (s_dir == "SBX")
@@ -727,7 +727,7 @@ namespace SBuilderX
                 if (s_dir == "BMP")
                     BMPDir = cDir;
                 try
-                { 
+                {
                     WriteSettings();
                 }
                 catch (Exception)
@@ -743,8 +743,6 @@ namespace SBuilderX
         {
             string FileNameToSaveRet = default;
             string TheDir, TheFile = default;
-            int N;
-            string A;
             try
             {
                 TheFile = Path.GetFileNameWithoutExtension(moduleMAIN.WorkFile);
@@ -875,7 +873,7 @@ namespace SBuilderX
             try
             {
                 oFile = new FileStream(filename, FileMode.Open);
-                var BFormatter = new BinaryFormatter() { Binder = new SbuilderBinder() };
+                BinaryFormatter BFormatter = new BinaryFormatter() { Binder = new SbuilderBinder() };
                 string Version;
                 Version = Convert.ToString(BFormatter.Deserialize(oFile));
                 SetFileBackUp(filename);
@@ -947,8 +945,8 @@ namespace SBuilderX
 
         internal static void SaveFile(string filename)
         {
-            var sFile = new FileStream(filename, FileMode.Create);
-            var BFormatter = new BinaryFormatter();
+            FileStream sFile = new FileStream(filename, FileMode.Create);
+            BinaryFormatter BFormatter = new BinaryFormatter();
             BFormatter.Serialize(sFile, "SB314");
             BFormatter.Serialize(sFile, moduleMAIN.ProjectName);
             BFormatter.Serialize(sFile, moduleMAIN.BGLProjectFolder);
@@ -1018,7 +1016,7 @@ namespace SBuilderX
             FileSystem.PrintLine(FN, "LatDispCenter=" + moduleMAIN.LatDispCenter.ToString());
             FileSystem.PrintLine(FN, "LonDispCenter=" + moduleMAIN.LonDispCenter.ToString());
             FileSystem.PrintLine(FN, "Zoom=" + moduleMAIN.Zoom);
-            var loopTo = moduleMAPS.NoOfMaps;
+            int loopTo = moduleMAPS.NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
                 FileSystem.PrintLine(FN);
@@ -1039,7 +1037,7 @@ namespace SBuilderX
                 FileSystem.PrintLine(FN, "WLon=" + moduleMAPS.Maps[N].WLON.ToString());
             }
 
-            var loopTo1 = moduleLINES.NoOfLines;
+            int loopTo1 = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo1; N++)
             {
                 FileSystem.PrintLine(FN);
@@ -1050,7 +1048,7 @@ namespace SBuilderX
                 FileSystem.PrintLine(FN, "Guid=" + moduleLINES.Lines[N].Guid);
                 FileSystem.PrintLine(FN, "Color=" + ArgbFromColor(moduleLINES.Lines[N].Color));
                 FileSystem.PrintLine(FN, "NoOfPoints=" + moduleLINES.Lines[N].NoOfPoints.ToString());
-                var loopTo2 = moduleLINES.Lines[N].NoOfPoints;
+                int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
                 for (M = 1; M <= loopTo2; M++)
                 {
                     FileSystem.PrintLine(FN, "Lat" + M.ToString().Trim() + "=" + moduleLINES.Lines[N].GLPoints[M].lat.ToString());
@@ -1060,7 +1058,7 @@ namespace SBuilderX
                 }
             }
 
-            var loopTo3 = modulePOLYS.NoOfPolys;
+            int loopTo3 = modulePOLYS.NoOfPolys;
             for (N = 1; N <= loopTo3; N++)
             {
                 FileSystem.PrintLine(FN);
@@ -1071,11 +1069,11 @@ namespace SBuilderX
                 FileSystem.PrintLine(FN, "Guid=" + modulePOLYS.Polys[N].Guid);
                 FileSystem.PrintLine(FN, "Color=" + ArgbFromColor(modulePOLYS.Polys[N].Color));
                 FileSystem.PrintLine(FN, "NoOfChilds=" + modulePOLYS.Polys[N].NoOfChilds.ToString());
-                var loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
+                int loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
                 for (M = 1; M <= loopTo4; M++)
                     FileSystem.PrintLine(FN, "Child" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].Childs[M].ToString());
                 FileSystem.PrintLine(FN, "NoOfPoints=" + modulePOLYS.Polys[N].NoOfPoints.ToString());
-                var loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
+                int loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
                 for (M = 1; M <= loopTo5; M++)
                 {
                     FileSystem.PrintLine(FN, "Lat" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].GPoints[M].lat.ToString());
@@ -1164,7 +1162,7 @@ namespace SBuilderX
                 }
             }
 
-            var loopTo6 = moduleEXCLUDES.NoOfExcludes;
+            int loopTo6 = moduleEXCLUDES.NoOfExcludes;
             for (N = 1; N <= loopTo6; N++)
             {
                 FileSystem.PrintLine(FN);
@@ -1178,7 +1176,7 @@ namespace SBuilderX
                 FileSystem.PrintLine(FN, "WLon=" + moduleEXCLUDES.Excludes[N].WLON.ToString());
             }
 
-            var loopTo7 = moduleOBJECTS.NoOfObjects;
+            int loopTo7 = moduleOBJECTS.NoOfObjects;
             for (N = 1; N <= loopTo7; N++)
             {
                 FileSystem.PrintLine(FN);
@@ -1201,7 +1199,7 @@ namespace SBuilderX
                 FileSystem.PrintLine(FN, "Complexity=" + moduleOBJECTS.Objects[N].Complexity.ToString());
             }
 
-            var loopTo8 = moduleCLASSES.NoOfLWCIs;
+            int loopTo8 = moduleCLASSES.NoOfLWCIs;
             for (N = 1; N <= loopTo8; N++)
             {
                 FileSystem.PrintLine(FN);
@@ -1306,7 +1304,7 @@ namespace SBuilderX
                 moduleEXCLUDES.Excludes = new moduleEXCLUDES.Exclude[moduleEXCLUDES.NoOfExcludes + 1];
             if (moduleCLASSES.NoOfLWCIs > 0)
                 moduleCLASSES.LWCIs = new moduleCLASSES.LWCIndex[moduleCLASSES.NoOfLWCIs + 1];
-            var loopTo = moduleMAPS.NoOfMaps;
+            int loopTo = moduleMAPS.NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
                 KEY = "Map." + N.ToString().Trim();
@@ -1333,7 +1331,7 @@ namespace SBuilderX
             }
 
             FileSystem.FileOpen(5, Filename, OpenMode.Input);
-            var loopTo1 = moduleLINES.NoOfLines;
+            int loopTo1 = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo1; N++)
             {
                 KEY = "[Line." + N.ToString().Trim() + "]";
@@ -1359,7 +1357,7 @@ namespace SBuilderX
                 SL = 90d;
                 EL = -180;
                 WL = 180d;
-                var loopTo2 = moduleLINES.Lines[N].NoOfPoints;
+                int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
                 for (M = 1; M <= loopTo2; M++)
                 {
                     if (M > 9)
@@ -1396,7 +1394,7 @@ namespace SBuilderX
                 moduleLINES.Lines[N].SLAT = SL;
             }
 
-            var loopTo3 = modulePOLYS.NoOfPolys;
+            int loopTo3 = modulePOLYS.NoOfPolys;
             for (N = 1; N <= loopTo3; N++)
             {
                 KEY = "[Poly." + N.ToString().Trim() + "]";
@@ -1425,7 +1423,7 @@ namespace SBuilderX
                 }
 
                 J = 8;
-                var loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
+                int loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
                 for (M = 1; M <= loopTo4; M++)
                 {
                     if (M > 9)
@@ -1452,7 +1450,7 @@ namespace SBuilderX
                 SL = 90d;
                 EL = -180;
                 WL = 180d;
-                var loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
+                int loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
                 for (M = 1; M <= loopTo5; M++)
                 {
                     if (M > 9)
@@ -1492,7 +1490,7 @@ namespace SBuilderX
             {
                 N = 0;
                 moduleCLASSES.LLands = new byte[257, 257, moduleCLASSES.NoOfLLXYs];
-                var loopTo6 = moduleCLASSES.NoOfLLXYs;
+                int loopTo6 = moduleCLASSES.NoOfLLXYs;
                 for (P = 1; P <= loopTo6; P++)
                 {
                     KEY = "[LC_LOD5." + P + "]";
@@ -1502,7 +1500,7 @@ namespace SBuilderX
                     L = Convert.ToInt32(FileSystem.LineInput(5).Substring(10));
                     moduleCLASSES.LL_XY[J, K].Pointer = P - 1;
                     moduleCLASSES.LL_XY[J, K].NoOfLWs = L;
-                    var loopTo7 = L;
+                    int loopTo7 = L;
                     for (M = 1; M <= loopTo7; M++)
                     {
                         A = FileSystem.LineInput(5);
@@ -1521,7 +1519,7 @@ namespace SBuilderX
             {
                 N = 0;
                 moduleCLASSES.WWaters = new byte[257, 257, moduleCLASSES.NoOfWWXYs];
-                var loopTo8 = moduleCLASSES.NoOfWWXYs;
+                int loopTo8 = moduleCLASSES.NoOfWWXYs;
                 for (P = 1; P <= loopTo8; P++)
                 {
                     KEY = "[WC_LOD5." + P + "]";
@@ -1531,7 +1529,7 @@ namespace SBuilderX
                     L = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
                     moduleCLASSES.WW_XY[J, K].Pointer = P - 1;
                     moduleCLASSES.WW_XY[J, K].NoOfLWs = L;
-                    var loopTo9 = L;
+                    int loopTo9 = L;
                     for (M = 1; M <= loopTo9; M++)
                     {
                         A = FileSystem.LineInput(5);
@@ -1546,7 +1544,7 @@ namespace SBuilderX
                 moduleCLASSES.NoOfWaters = N;
             }
 
-            var loopTo10 = moduleEXCLUDES.NoOfExcludes;
+            int loopTo10 = moduleEXCLUDES.NoOfExcludes;
             for (N = 1; N <= loopTo10; N++)
             {
                 KEY = "[Exclude." + N.ToString().Trim() + "]";
@@ -1558,7 +1556,7 @@ namespace SBuilderX
                 moduleEXCLUDES.Excludes[N].WLON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
             }
 
-            var loopTo11 = moduleOBJECTS.NoOfObjects;
+            int loopTo11 = moduleOBJECTS.NoOfObjects;
             for (N = 1; N <= loopTo11; N++)
             {
                 KEY = "[Object." + N.ToString().Trim() + "]";
@@ -1581,7 +1579,7 @@ namespace SBuilderX
                 moduleOBJECTS.AddLatLonToObjects(N);
             }
 
-            var loopTo12 = moduleCLASSES.NoOfLWCIs;
+            int loopTo12 = moduleCLASSES.NoOfLWCIs;
             for (N = 1; N <= loopTo12; N++)
             {
                 KEY = "[LWCI." + N.ToString().Trim() + "]";
@@ -1637,7 +1635,7 @@ namespace SBuilderX
                 moduleOBJECTS.Objects = new moduleOBJECTS.Objecto[moduleOBJECTS.NoOfObjects + 1];
             if (moduleEXCLUDES.NoOfExcludes > 0)
                 moduleEXCLUDES.Excludes = new moduleEXCLUDES.Exclude[moduleEXCLUDES.NoOfExcludes + 1];
-            var loopTo = moduleMAPS.NoOfMaps;
+            int loopTo = moduleMAPS.NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
                 KEY = "Map." + N.ToString().Trim();
@@ -1664,7 +1662,7 @@ namespace SBuilderX
             }
 
             FileSystem.FileOpen(5, Filename, OpenMode.Input);
-            var loopTo1 = moduleLINES.NoOfLines;
+            int loopTo1 = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo1; N++)
             {
                 KEY = "[Line." + N.ToString().Trim() + "]";
@@ -1688,7 +1686,7 @@ namespace SBuilderX
                 SL = 90d;
                 EL = -180;
                 WL = 180d;
-                var loopTo2 = moduleLINES.Lines[N].NoOfPoints;
+                int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
                 for (M = 1; M <= loopTo2; M++)
                 {
                     if (M > 9)
@@ -1725,7 +1723,7 @@ namespace SBuilderX
                 moduleLINES.Lines[N].SLAT = SL;
             }
 
-            var loopTo3 = modulePOLYS.NoOfPolys;
+            int loopTo3 = modulePOLYS.NoOfPolys;
             for (N = 1; N <= loopTo3; N++)
             {
                 KEY = "[Poly." + N.ToString().Trim() + "]";
@@ -1751,7 +1749,7 @@ namespace SBuilderX
                 SL = 90d;
                 EL = -180;
                 WL = 180d;
-                var loopTo4 = modulePOLYS.Polys[N].NoOfPoints;
+                int loopTo4 = modulePOLYS.Polys[N].NoOfPoints;
                 for (M = 1; M <= loopTo4; M++)
                 {
                     if (M > 9)
@@ -1795,7 +1793,7 @@ namespace SBuilderX
                 modulePOLYS.Polys[N].SLAT = SL;
             }
 
-            var loopTo5 = moduleEXCLUDES.NoOfExcludes;
+            int loopTo5 = moduleEXCLUDES.NoOfExcludes;
             for (N = 1; N <= loopTo5; N++)
             {
                 KEY = "[Exclude." + N.ToString().Trim() + "]";
@@ -1807,7 +1805,7 @@ namespace SBuilderX
                 moduleEXCLUDES.Excludes[N].WLON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
             }
 
-            var loopTo6 = moduleOBJECTS.NoOfObjects;
+            int loopTo6 = moduleOBJECTS.NoOfObjects;
             for (N = 1; N <= loopTo6; N++)
             {
                 KEY = "[Object." + N.ToString().Trim() + "]";
@@ -1914,7 +1912,7 @@ namespace SBuilderX
                 Array.Resize(ref moduleEXCLUDES.Excludes, moduleEXCLUDES.NoOfExcludes + NoOfExcludesX + 1);
             if (NoOfLWCIsX > 0)
                 Array.Resize(ref moduleCLASSES.LWCIs, moduleCLASSES.NoOfLWCIs + NoOfLWCIsX + 1);
-            var loopTo = NoOfMapsX;
+            int loopTo = NoOfMapsX;
             for (K = 1; K <= loopTo; K++)
             {
                 N = moduleMAPS.NoOfMaps + K;
@@ -1942,7 +1940,7 @@ namespace SBuilderX
             }
 
             FileSystem.FileOpen(5, Filename, OpenMode.Input);
-            var loopTo1 = NoOfLinesX;
+            int loopTo1 = NoOfLinesX;
             for (K = 1; K <= loopTo1; K++)
             {
                 N = K + moduleLINES.NoOfLines;
@@ -1969,7 +1967,7 @@ namespace SBuilderX
                 SL = 90d;
                 EL = -180;
                 WL = 180d;
-                var loopTo2 = moduleLINES.Lines[N].NoOfPoints;
+                int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
                 for (M = 1; M <= loopTo2; M++)
                 {
                     if (M > 9)
@@ -2006,7 +2004,7 @@ namespace SBuilderX
                 moduleLINES.Lines[N].SLAT = SL;
             }
 
-            var loopTo3 = NoOfPolysX;
+            int loopTo3 = NoOfPolysX;
             for (K = 1; K <= loopTo3; K++)
             {
                 N = K + modulePOLYS.NoOfPolys;
@@ -2042,7 +2040,7 @@ namespace SBuilderX
                 }
 
                 J = 8;
-                var loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
+                int loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
                 for (M = 1; M <= loopTo4; M++)
                 {
                     if (M > 9)
@@ -2070,7 +2068,7 @@ namespace SBuilderX
                 SL = 90d;
                 EL = -180;
                 WL = 180d;
-                var loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
+                int loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
                 for (M = 1; M <= loopTo5; M++)
                 {
                     if (M > 9)
@@ -2115,12 +2113,12 @@ namespace SBuilderX
             if (Convert.ToBoolean(NoOfLLXYsX))
             {
                 D = 0;
-                var oldLLands = moduleCLASSES.LLands;
+                byte[,,] oldLLands = moduleCLASSES.LLands;
                 moduleCLASSES.LLands = new byte[257, 257, (moduleCLASSES.NoOfLLXYs + NoOfLLXYsX)];
                 if (oldLLands is object)
-                    for (var i1 = 0; i1 <= oldLLands.Length / oldLLands.GetLength(2) - 1; ++i1)
+                    for (int i1 = 0; i1 <= oldLLands.Length / oldLLands.GetLength(2) - 1; ++i1)
                         Array.Copy(oldLLands, i1 * oldLLands.GetLength(2), moduleCLASSES.LLands, i1 * moduleCLASSES.LLands.GetLength(2), Math.Min(oldLLands.GetLength(2), moduleCLASSES.LLands.GetLength(2)));
-                var loopTo6 = NoOfLLXYsX;
+                int loopTo6 = NoOfLLXYsX;
                 for (P = 1; P <= loopTo6; P++)
                 {
                     KEY = "[LC_LOD5." + P + "]";
@@ -2143,7 +2141,7 @@ namespace SBuilderX
                     }
 
                     LL = 0;
-                    var loopTo7 = L;
+                    int loopTo7 = L;
                     for (M = 1; M <= loopTo7; M++)
                     {
                         A = FileSystem.LineInput(5);
@@ -2170,10 +2168,10 @@ namespace SBuilderX
                 moduleCLASSES.NoOfLLXYs = moduleCLASSES.NoOfLLXYs + NoOfLLXYsX - D;
                 if (D > 0)
                 {
-                    var oldLLands1 = moduleCLASSES.LLands;
+                    byte[,,] oldLLands1 = moduleCLASSES.LLands;
                     moduleCLASSES.LLands = new byte[257, 257, moduleCLASSES.NoOfLLXYs + NoOfLLXYsX - 1 - D + 1];
                     if (oldLLands1 is object)
-                        for (var i2 = 0; i2 <= oldLLands1.Length / oldLLands1.GetLength(2) - 1; ++i2)
+                        for (int i2 = 0; i2 <= oldLLands1.Length / oldLLands1.GetLength(2) - 1; ++i2)
                             Array.Copy(oldLLands1, i2 * oldLLands1.GetLength(2), moduleCLASSES.LLands, i2 * moduleCLASSES.LLands.GetLength(2), Math.Min(oldLLands1.GetLength(2), moduleCLASSES.LLands.GetLength(2)));
                 }
             }
@@ -2182,12 +2180,12 @@ namespace SBuilderX
             if (Convert.ToBoolean(NoOfWWXYsX))
             {
                 D = 0;
-                var oldWWaters = moduleCLASSES.WWaters;
+                byte[,,] oldWWaters = moduleCLASSES.WWaters;
                 moduleCLASSES.WWaters = new byte[257, 257, (moduleCLASSES.NoOfWWXYs + NoOfWWXYsX)];
                 if (oldWWaters is object)
-                    for (var i3 = 0; i3 <= oldWWaters.Length / oldWWaters.GetLength(2) - 1; ++i3)
+                    for (int i3 = 0; i3 <= oldWWaters.Length / oldWWaters.GetLength(2) - 1; ++i3)
                         Array.Copy(oldWWaters, i3 * oldWWaters.GetLength(2), moduleCLASSES.WWaters, i3 * moduleCLASSES.WWaters.GetLength(2), Math.Min(oldWWaters.GetLength(2), moduleCLASSES.WWaters.GetLength(2)));
-                var loopTo8 = NoOfWWXYsX;
+                int loopTo8 = NoOfWWXYsX;
                 for (P = 1; P <= loopTo8; P++)
                 {
                     KEY = "[WC_LOD5." + P + "]";
@@ -2210,7 +2208,7 @@ namespace SBuilderX
                     }
 
                     LL = 0;
-                    var loopTo9 = L;
+                    int loopTo9 = L;
                     for (M = 1; M <= loopTo9; M++)
                     {
                         A = FileSystem.LineInput(5);
@@ -2237,15 +2235,15 @@ namespace SBuilderX
                 moduleCLASSES.NoOfWWXYs = moduleCLASSES.NoOfWWXYs + NoOfWWXYsX - D;
                 if (D > 0)
                 {
-                    var oldWWaters1 = moduleCLASSES.WWaters;
+                    byte[,,] oldWWaters1 = moduleCLASSES.WWaters;
                     moduleCLASSES.WWaters = new byte[257, 257, moduleCLASSES.NoOfWWXYs + NoOfWWXYsX - 1 - D + 1];
                     if (oldWWaters1 is object)
-                        for (var i4 = 0; i4 <= oldWWaters1.Length / oldWWaters1.GetLength(2) - 1; ++i4)
+                        for (int i4 = 0; i4 <= oldWWaters1.Length / oldWWaters1.GetLength(2) - 1; ++i4)
                             Array.Copy(oldWWaters1, i4 * oldWWaters1.GetLength(2), moduleCLASSES.WWaters, i4 * moduleCLASSES.WWaters.GetLength(2), Math.Min(oldWWaters1.GetLength(2), moduleCLASSES.WWaters.GetLength(2)));
                 }
             }
 
-            var loopTo10 = NoOfExcludesX;
+            int loopTo10 = NoOfExcludesX;
             for (K = 1; K <= loopTo10; K++)
             {
                 N = K + moduleEXCLUDES.NoOfExcludes;
@@ -2258,7 +2256,7 @@ namespace SBuilderX
                 moduleEXCLUDES.Excludes[N].WLON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
             }
 
-            var loopTo11 = NoOfObjectsX;
+            int loopTo11 = NoOfObjectsX;
             for (K = 1; K <= loopTo11; K++)
             {
                 N = K + moduleOBJECTS.NoOfObjects;
@@ -2282,7 +2280,7 @@ namespace SBuilderX
                 moduleOBJECTS.AddLatLonToObjects(N);
             }
 
-            var loopTo12 = NoOfLWCIsX;
+            int loopTo12 = NoOfLWCIsX;
             for (K = 1; K <= loopTo12; K++)
             {
                 N = K + moduleCLASSES.NoOfLWCIs;
@@ -2300,7 +2298,7 @@ namespace SBuilderX
             moduleEXCLUDES.NoOfExcludes = moduleEXCLUDES.NoOfExcludes + NoOfExcludesX;
             moduleCLASSES.NoOfLWCIs = moduleCLASSES.NoOfLWCIs + NoOfLWCIsX;
             SetLWCIs();
-            var loopTo13 = moduleCLASSES.NoOfLWCIs;
+            int loopTo13 = moduleCLASSES.NoOfLWCIs;
             for (K = 1; K <= loopTo13; K++)
                 MessageBox.Show(moduleCLASSES.LWCIs[2].Color.ToString() + " " + moduleCLASSES.LWCIs[2].IsLand.ToString() + " Text= " + moduleCLASSES.LWCIs[2].Text);
             My.MyProject.Forms.FrmStart.SetMouseIcon();
@@ -2362,7 +2360,7 @@ namespace SBuilderX
 
             try
             {
-                var loopTo = moduleCLASSES.NoOfLWCIs;
+                int loopTo = moduleCLASSES.NoOfLWCIs;
                 for (J = 1; J <= loopTo; J++)
                 {
                     A = moduleCLASSES.LWCIs[J].Text.Trim() + " ";
@@ -2387,7 +2385,7 @@ namespace SBuilderX
                     P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                     if (IsLand)
                     {
-                        var loopTo1 = moduleCLASSES.NoOfLCs;
+                        int loopTo1 = moduleCLASSES.NoOfLCs;
                         for (N = 1; N <= loopTo1; N++)
                         {
                             if (P0 == moduleCLASSES.LC[N].Index)
@@ -2399,7 +2397,7 @@ namespace SBuilderX
                     }
                     else
                     {
-                        var loopTo2 = moduleCLASSES.NoOfWCs;
+                        int loopTo2 = moduleCLASSES.NoOfWCs;
                         for (N = 1; N <= loopTo2; N++)
                         {
                             if (P0 == moduleCLASSES.WC[N].Index)
@@ -2416,7 +2414,7 @@ namespace SBuilderX
                     P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                     if (IsLand)
                     {
-                        var loopTo3 = moduleCLASSES.NoOfLCs;
+                        int loopTo3 = moduleCLASSES.NoOfLCs;
                         for (N = 1; N <= loopTo3; N++)
                         {
                             if (P0 == moduleCLASSES.LC[N].Index)
@@ -2428,7 +2426,7 @@ namespace SBuilderX
                     }
                     else
                     {
-                        var loopTo4 = moduleCLASSES.NoOfWCs;
+                        int loopTo4 = moduleCLASSES.NoOfWCs;
                         for (N = 1; N <= loopTo4; N++)
                         {
                             if (P0 == moduleCLASSES.WC[N].Index)
@@ -2445,7 +2443,7 @@ namespace SBuilderX
                     P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                     if (IsLand)
                     {
-                        var loopTo5 = moduleCLASSES.NoOfLCs;
+                        int loopTo5 = moduleCLASSES.NoOfLCs;
                         for (N = 1; N <= loopTo5; N++)
                         {
                             if (P0 == moduleCLASSES.LC[N].Index)
@@ -2457,7 +2455,7 @@ namespace SBuilderX
                     }
                     else
                     {
-                        var loopTo6 = moduleCLASSES.NoOfWCs;
+                        int loopTo6 = moduleCLASSES.NoOfWCs;
                         for (N = 1; N <= loopTo6; N++)
                         {
                             if (P0 == moduleCLASSES.WC[N].Index)
@@ -2477,7 +2475,7 @@ namespace SBuilderX
 
                 return;
             }
-            catch (ArgumentException exc)
+            catch (ArgumentException)
             {
                 MessageBox.Show("Land/Water Class indexes could not be read!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -2515,7 +2513,7 @@ namespace SBuilderX
                             {
                                 J = Convert.ToInt32(A.Substring(8).Trim());
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                                 J = 0;
                             }
@@ -2564,7 +2562,7 @@ namespace SBuilderX
                         {
                             J = Convert.ToInt32(A.Substring(8).Trim());
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             J = 0;
                         }
@@ -2613,7 +2611,7 @@ namespace SBuilderX
                     A = A.Substring(0, J);
                     J = Convert.ToInt32(A);
                     Flag = false;
-                    var loopTo = NoOfLegacyPolys;
+                    int loopTo = NoOfLegacyPolys;
                     for (K = 1; K <= loopTo; K++)
                     {
                         if (J == LegacyPolys[K].LClass)
@@ -2726,7 +2724,7 @@ namespace SBuilderX
                     A = A.Substring(0, J);
                     J = Convert.ToInt32(A);
                     Flag = false;
-                    var loopTo = NoOfLegacyLines;
+                    int loopTo = NoOfLegacyLines;
                     for (K = 1; K <= loopTo; K++)
                     {
                         if (J == LegacyLines[K].Legacy)

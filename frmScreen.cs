@@ -23,17 +23,11 @@ namespace SBuilderX
         private int PX, PY;
         private Bitmap _myCapture;
 
-        internal Bitmap MyCapture
-        {
-            get
-            {
-                return _myCapture;
-            }
-        }
+        internal Bitmap MyCapture => _myCapture;
 
         private void FrmSCREEN_KeyDown(object sender, KeyEventArgs e)
         {
-            var KeyCode = e.KeyCode;
+            Keys KeyCode = e.KeyCode;
             if (KeyCode == Keys.Escape)
                 DialogResult = DialogResult.Cancel;
             if (KeyCode == Keys.Space)
@@ -43,8 +37,8 @@ namespace SBuilderX
                 if (DY < 5)
                     return;
                 UpDateDisplay();
-                var myScreen = new Bitmap(DX, DY);
-                var GS = Graphics.FromImage(myScreen);
+                Bitmap myScreen = new Bitmap(DX, DY);
+                Graphics GS = Graphics.FromImage(myScreen);
                 GS.CopyFromScreen(new Point(PX, PY), new Point(), new Size(DX, DY)); // Takes a screen shot of the screen
                 GS.Dispose();
                 _myCapture = myScreen;
@@ -56,8 +50,8 @@ namespace SBuilderX
         {
             string A = "  You are in screen capture mode! Select a region with the mouse and press" + Environment.NewLine;
             A = A + " <Esc> (or right click) to cancel or <Space> to capture the selected region.";
-            var GS = Graphics.FromImage(Screen);
-            var drawFont = new Font("Arial", 10f);
+            Graphics GS = Graphics.FromImage(Screen);
+            Font drawFont = new Font("Arial", 10f);
             GS.CopyFromScreen(new Point(), new Point(), Screensize); // Takes a screen shot of the screen
             GS.FillRectangle(Brushes.Beige, new Rectangle(0, 0, 460, 45));
             GS.DrawString(A, drawFont, Brushes.Black, 0f, 5f);
@@ -102,7 +96,7 @@ namespace SBuilderX
         private void DrawSelectBox(int X, int Y)
         {
             UpDateDisplay();
-            var p = new Pen(Color.Red);
+            Pen p = new Pen(Color.Red);
             Graphics g;
             p.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             g = CreateGraphics();
@@ -129,7 +123,7 @@ namespace SBuilderX
 
         private void UpDateDisplay()
         {
-            var gr = CreateGraphics();
+            Graphics gr = CreateGraphics();
             gr.DrawImageUnscaled(Screen, new Point(0, 0));   // copy buffer to display
             gr.Dispose();
         }

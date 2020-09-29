@@ -590,7 +590,7 @@ namespace SBuilderX
                     {
                         Str2LatRet = Convert.ToDouble(lat);
                         if (Neg)
-                            Str2LatRet = (double)-1 * Str2LatRet;
+                            Str2LatRet = -1 * Str2LatRet;
                         return Str2LatRet;
                     }
 
@@ -602,7 +602,7 @@ namespace SBuilderX
                         a = lat.Substring(N + 1);
                         Str2LatRet = Str2LatRet + Convert.ToDouble(a) / 60d;
                         if (Neg)
-                            Str2LatRet = (double)-1 * Str2LatRet;
+                            Str2LatRet = -1 * Str2LatRet;
                         return Str2LatRet;
                     }
 
@@ -611,7 +611,7 @@ namespace SBuilderX
                     a = lat.Substring(M + 1);
                     Str2LatRet = Str2LatRet + Convert.ToDouble(a) / 3600d;
                     if (Neg)
-                        Str2LatRet = (double)-1 * Str2LatRet;
+                        Str2LatRet = -1 * Str2LatRet;
                 }
             }
             catch (Exception)
@@ -669,7 +669,7 @@ namespace SBuilderX
                     {
                         Str2LonRet = Convert.ToDouble(lon);
                         if (Neg)
-                            Str2LonRet = (double)-1 * Str2LonRet;
+                            Str2LonRet = -1 * Str2LonRet;
                         return Str2LonRet;
                     }
 
@@ -681,7 +681,7 @@ namespace SBuilderX
                         a = lon.Substring(N + 1);
                         Str2LonRet = Str2LonRet + Convert.ToDouble(a) / 60d;
                         if (Neg)
-                            Str2LonRet = (double)-1 * Str2LonRet;
+                            Str2LonRet = -1 * Str2LonRet;
                         return Str2LonRet;
                     }
 
@@ -690,7 +690,7 @@ namespace SBuilderX
                     a = lon.Substring(M + 1);
                     Str2LonRet = Str2LonRet + Convert.ToDouble(a) / 3600d;
                     if (Neg)
-                        Str2LonRet = (double)-1 * Str2LonRet;
+                        Str2LonRet = -1 * Str2LonRet;
                 }
             }
             catch (Exception)
@@ -970,7 +970,7 @@ namespace SBuilderX
                 if (Directory.Exists(BGLProjectFolder) == false)
                     Directory.CreateDirectory(BGLProjectFolder);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 A = "Could not create " + Environment.NewLine + BGLProjectFolder;
                 MessageBox.Show(A, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1025,7 +1025,7 @@ namespace SBuilderX
             {
                 if (N == -1)
                 {
-                    var myProcess = new Process();
+                    Process myProcess = new Process();
                     myProcess = Process.Start(str);
                     myProcess.WaitForExit();
                     ExecCmdRet = myProcess.ExitCode;
@@ -1035,14 +1035,14 @@ namespace SBuilderX
                 {
                     myCommand = str.Substring(0, N);
                     myArgs = str.Substring(N + 1);
-                    var myProcess = new Process();
+                    Process myProcess = new Process();
                     myProcess = Process.Start(myCommand, myArgs);
                     myProcess.WaitForExit();
                     ExecCmdRet = myProcess.ExitCode;
                     myProcess.Dispose();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 myCommand = "Error in processing the following command:" + Environment.NewLine;
                 myCommand = myCommand + str;

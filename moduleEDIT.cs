@@ -150,7 +150,7 @@ namespace SBuilderX
 
         private static void StoreMem(ref MemoryStream sfile)
         {
-            var BFormatter = new BinaryFormatter();
+            BinaryFormatter BFormatter = new BinaryFormatter();
             sfile.Position = 0L;
             BFormatter.Serialize(sfile, moduleMAPS.NoOfMaps);
             BFormatter.Serialize(sfile, moduleCLASSES.NoOfLands);
@@ -228,7 +228,7 @@ namespace SBuilderX
 
         private static void RestoreMem(ref MemoryStream ofile)
         {
-            var BFormatter = new BinaryFormatter();
+            BinaryFormatter BFormatter = new BinaryFormatter();
             ofile.Position = 0L;
             moduleMAPS.NoOfMaps = Convert.ToInt32(BFormatter.Deserialize(ofile));
             moduleCLASSES.NoOfLands = Convert.ToInt32(BFormatter.Deserialize(ofile));
@@ -427,7 +427,7 @@ namespace SBuilderX
                 GetLineFromClip(moduleLINES.NoOfLines);
                 DX = DX - moduleLINES.Lines[moduleLINES.NoOfLines].GLPoints[1].lon;
                 DY = moduleLINES.Lines[moduleLINES.NoOfLines].GLPoints[1].lat - DY;
-                var loopTo = moduleLINES.Lines[moduleLINES.NoOfLines].NoOfPoints;
+                int loopTo = moduleLINES.Lines[moduleLINES.NoOfLines].NoOfPoints;
                 for (N = 1; N <= loopTo; N++)
                 {
                     moduleLINES.Lines[moduleLINES.NoOfLines].GLPoints[N].lat = moduleLINES.Lines[moduleLINES.NoOfLines].GLPoints[N].lat - DY;
@@ -446,7 +446,7 @@ namespace SBuilderX
                 GetPolyFromClip(modulePOLYS.NoOfPolys);
                 DX = DX - modulePOLYS.Polys[modulePOLYS.NoOfPolys].GPoints[1].lon;
                 DY = modulePOLYS.Polys[modulePOLYS.NoOfPolys].GPoints[1].lat - DY;
-                var loopTo1 = modulePOLYS.Polys[modulePOLYS.NoOfPolys].NoOfPoints;
+                int loopTo1 = modulePOLYS.Polys[modulePOLYS.NoOfPolys].NoOfPoints;
                 for (N = 1; N <= loopTo1; N++)
                 {
                     modulePOLYS.Polys[modulePOLYS.NoOfPolys].GPoints[N].lat = modulePOLYS.Polys[modulePOLYS.NoOfPolys].GPoints[N].lat - DY;
@@ -484,7 +484,7 @@ namespace SBuilderX
             moduleLINES.Lines[N].Selected = ClipLine.Selected;
             moduleLINES.Lines[N].NoOfPoints = ClipLine.NoOfPoints;
             moduleLINES.Lines[N].GLPoints = new modulePOINTS.GLPoint[ClipLine.NoOfPoints + 1];
-            var loopTo = ClipLine.NoOfPoints;
+            int loopTo = ClipLine.NoOfPoints;
             for (K = 1; K <= loopTo; K++)
                 moduleLINES.Lines[N].GLPoints[K] = ClipLine.GLPoints[K];
         }
@@ -499,7 +499,7 @@ namespace SBuilderX
             ClipLine.Selected = moduleLINES.Lines[N].Selected;
             ClipLine.NoOfPoints = moduleLINES.Lines[N].NoOfPoints;
             ClipLine.GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[N].NoOfPoints + 1];
-            var loopTo = moduleLINES.Lines[N].NoOfPoints;
+            int loopTo = moduleLINES.Lines[N].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
                 ClipLine.GLPoints[K] = moduleLINES.Lines[N].GLPoints[K];
         }
@@ -517,7 +517,7 @@ namespace SBuilderX
             modulePOLYS.Polys[N].NoOfChilds = 0;
             modulePOLYS.Polys[N].NoOfPoints = ClipPoly.NoOfPoints;
             modulePOLYS.Polys[N].GPoints = new modulePOINTS.GPoint[ClipPoly.NoOfPoints + 1];
-            var loopTo = ClipPoly.NoOfPoints;
+            int loopTo = ClipPoly.NoOfPoints;
             for (K = 1; K <= loopTo; K++)
                 modulePOLYS.Polys[N].GPoints[K] = ClipPoly.GPoints[K];
         }
@@ -533,7 +533,7 @@ namespace SBuilderX
             ClipPoly.NoOfChilds = 0;
             ClipPoly.NoOfPoints = modulePOLYS.Polys[N].NoOfPoints;
             ClipPoly.GPoints = new modulePOINTS.GPoint[modulePOLYS.Polys[N].NoOfPoints + 1];
-            var loopTo = modulePOLYS.Polys[N].NoOfPoints;
+            int loopTo = modulePOLYS.Polys[N].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
                 ClipPoly.GPoints[K] = modulePOLYS.Polys[N].GPoints[K];
         }

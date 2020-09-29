@@ -102,7 +102,7 @@ namespace SBuilderX
                 return;
             moduleMAIN.WAIT = true;
             Cursor = Cursors.WaitCursor;
-            var loopTo = moduleMAPS.NoOfMaps;
+            int loopTo = moduleMAPS.NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
                 A = (moduleMAPS.Maps[N].Name.Length < 5) ? "" : moduleMAPS.Maps[N].Name.Substring(0, 5).ToUpper();
@@ -149,7 +149,7 @@ namespace SBuilderX
 
             // SetLWCIs()
 
-            var loopTo = moduleCLASSES.NoOfWCs;
+            int loopTo = moduleCLASSES.NoOfWCs;
             for (N = 1; N <= loopTo; N++)
                 List1.Items.Add(moduleCLASSES.WC[N].Caption);
             EntryWC = moduleCLASSES.DefaultWC;

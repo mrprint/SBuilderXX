@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Text;
-using System.Xml;
 using System.Media;
+using System.Text;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
+using System.Xml;
 
 namespace SBuilderX
 {
@@ -316,7 +316,7 @@ namespace SBuilderX
             SL = 90d;
             EL = -180;
             WL = 180d;
-            var loopTo = Polys[N].NoOfPoints;
+            int loopTo = Polys[N].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
             {
                 x = Polys[N].GPoints[K].lat;
@@ -413,9 +413,9 @@ namespace SBuilderX
                 Polys[modulePOPUP.POPIndex].Selected = true;
             if (Polys[N].Selected == true)
                 Polys[N].Selected = false;
-            var OK = new bool[NoOfPolys + 1]; // if OK then polygon can be a child
+            bool[] OK = new bool[NoOfPolys + 1]; // if OK then polygon can be a child
             int NoOfOKs = 0;
-            var loopTo = NoOfPolys;
+            int loopTo = NoOfPolys;
             for (K = 1; K <= loopTo; K++)
             {
                 OK[K] = false;
@@ -448,7 +448,7 @@ namespace SBuilderX
 
             MakePolyClockWise(N);
             Array.Resize(ref Polys[N].Childs, Polys[N].NoOfChilds + NoOfOKs + 1);
-            var loopTo1 = NoOfPolys;
+            int loopTo1 = NoOfPolys;
             for (K = 1; K <= loopTo1; K++)
             {
                 if (OK[K])
@@ -475,7 +475,7 @@ namespace SBuilderX
                 My.MyProject.Forms.FrmStart.SelectAllPolysMenuItem.Checked = false;
             }
 
-            var loopTo = NoOfPolys;
+            int loopTo = NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Flag)
@@ -486,7 +486,7 @@ namespace SBuilderX
                 }
                 else if (Polys[N].Selected)
                     NoOfPolysSelected = NoOfPolysSelected - 1;
-                var loopTo1 = Polys[N].NoOfPoints;
+                int loopTo1 = Polys[N].NoOfPoints;
                 for (K = 1; K <= loopTo1; K++)
                     Polys[N].GPoints[K].Selected = false;
                 Polys[N].Selected = Flag;
@@ -499,7 +499,7 @@ namespace SBuilderX
             bool Flag;
             if (!PolyVIEW)
                 return;
-            var loopTo = NoOfPolys;
+            int loopTo = NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Polys[N].Selected)
@@ -512,7 +512,7 @@ namespace SBuilderX
                 else
                 {
                     Flag = false;
-                    var loopTo1 = Polys[N].NoOfPoints;
+                    int loopTo1 = Polys[N].NoOfPoints;
                     for (K = 1; K <= loopTo1; K++)
                     {
                         if (Polys[N].GPoints[K].Selected)
@@ -537,7 +537,7 @@ namespace SBuilderX
         internal static void SelectPolysInBox(double X0, double Y0, double X1, double Y1)
         {
             int N;
-            var loopTo = NoOfPolys;
+            int loopTo = NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Polys[N].ELON < X1)
@@ -637,15 +637,15 @@ namespace SBuilderX
             int X, Y;
             bool Flag;
             int J, K, N, M, NC, NP;
-            var myPen = new Pen(PolyColorBorder, PolyPenWidth);
-            var myBrush = new SolidBrush(Color.Yellow);
-            var path = new System.Drawing.Drawing2D.GraphicsPath();
+            Pen myPen = new Pen(PolyColorBorder, PolyPenWidth);
+            SolidBrush myBrush = new SolidBrush(Color.Yellow);
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
             int P1, P2;  // to draw the points
             P1 = 2;
             if (PolyPenWidth == 2)
                 P1 = 3;
             P2 = 2 * P1;
-            var loopTo = NoOfPolys;
+            int loopTo = NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (!moduleMAIN.MoveON)
@@ -670,7 +670,7 @@ namespace SBuilderX
 
                 NP = Polys[N].NoOfPoints;
                 PTS = new Point[NP];
-                var loopTo1 = NP;
+                int loopTo1 = NP;
                 for (K = 1; K <= loopTo1; K++)
                 {
                     PTS[K - 1].X = (int)((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
@@ -682,14 +682,14 @@ namespace SBuilderX
                 path.CloseFigure();
                 if (Polys[N].NoOfChilds > 0)
                 {
-                    var loopTo2 = Polys[N].NoOfChilds;
+                    int loopTo2 = Polys[N].NoOfChilds;
                     for (J = 1; J <= loopTo2; J++)
                     {
                         M = Polys[N].Childs[J];
                         Polys[M].OnScreen = true;
                         NC = Polys[M].NoOfPoints;
                         PTS = new Point[NC];
-                        var loopTo3 = NC;
+                        int loopTo3 = NC;
                         for (K = 1; K <= loopTo3; K++)
                         {
                             PTS[K - 1].X = (int)((Polys[M].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
@@ -714,7 +714,7 @@ namespace SBuilderX
                 if (Polys[N].Selected)
                 {
                     myBrush.Color = moduleLINES.SelectedLineColor;
-                    var loopTo4 = NP;
+                    int loopTo4 = NP;
                     for (K = 1; K <= loopTo4; K++)
                     {
                         X = (int)((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
@@ -725,7 +725,7 @@ namespace SBuilderX
                 else
                 {
                     Flag = false;
-                    var loopTo5 = NP;
+                    int loopTo5 = NP;
                     for (K = 1; K <= loopTo5; K++)
                     {
                         if (Polys[N].GPoints[K].Selected)
@@ -737,7 +737,7 @@ namespace SBuilderX
 
                     if (PolyON | Flag)
                     {
-                        var loopTo6 = NP;
+                        int loopTo6 = NP;
                         for (K = 1; K <= loopTo6; K++)
                         {
                             myBrush.Color = modulePOINTS.UnselectedPointColor;
@@ -767,7 +767,7 @@ namespace SBuilderX
                 moduleEDIT.BackUp();
             if (PT < Polys[PL].NoOfPoints)
             {
-                var loopTo = Polys[PL].NoOfPoints - 1;
+                int loopTo = Polys[PL].NoOfPoints - 1;
                 for (P = PT; P <= loopTo; P++)
                     Polys[PL].GPoints[P] = Polys[PL].GPoints[P + 1];
             }
@@ -786,7 +786,7 @@ namespace SBuilderX
                 moduleEDIT.BackUp();
 
             // check all that are childs and set the index of parent
-            var loopTo = NoOfPolys;
+            int loopTo = NoOfPolys;
             for (K = 1; K <= loopTo; K++)
             {
                 if (Polys[K].NoOfChilds < 0)
@@ -804,13 +804,13 @@ namespace SBuilderX
             }
 
             // check all that are parents and set the index of childs
-            var loopTo1 = NoOfPolys;
+            int loopTo1 = NoOfPolys;
             for (K = 1; K <= loopTo1; K++)
             {
                 if (Polys[K].NoOfChilds > 0)
                 {
                     D = 0;
-                    var loopTo2 = Polys[K].NoOfChilds;
+                    int loopTo2 = Polys[K].NoOfChilds;
                     for (J = 1; J <= loopTo2; J++)
                     {
                         C = Polys[K].Childs[J];
@@ -831,7 +831,7 @@ namespace SBuilderX
 
             if (N < NoOfPolys)
             {
-                var loopTo3 = NoOfPolys - 1;
+                int loopTo3 = NoOfPolys - 1;
                 for (K = N; K <= loopTo3; K++)
                     Polys[K] = Polys[K + 1];
             }
@@ -850,7 +850,7 @@ namespace SBuilderX
             int N;
             if (C < Polys[P].NoOfChilds)
             {
-                var loopTo = Polys[P].NoOfChilds - 1;
+                int loopTo = Polys[P].NoOfChilds - 1;
                 for (N = C; N <= loopTo; N++)
                     Polys[P].Childs[N] = Polys[P].Childs[N + 1];
             }
@@ -867,7 +867,7 @@ namespace SBuilderX
         {
             int K;
             Polys[N].Guid = "Delete!";
-            var loopTo = Polys[N].NoOfChilds;
+            int loopTo = Polys[N].NoOfChilds;
             for (K = 1; K <= loopTo; K++)
                 Polys[Polys[N].Childs[K]].Guid = "Delete!";
             for (K = NoOfPolys; K >= 1; K -= 1)
@@ -932,7 +932,7 @@ namespace SBuilderX
             Y = moduleMAIN.LatDispNorth * moduleMAIN.PixelsPerLatDeg - Y1;
 
             // check if we are over a Line
-            var loopTo = NoOfPolys;
+            int loopTo = NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 K = Polys[N].NoOfPoints;
@@ -967,7 +967,7 @@ namespace SBuilderX
             Y1 = Y / moduleMAIN.PixelsPerLatDeg;
             InsertPointInPolyRet = 0;
             N = Polys[Poly].NoOfPoints;
-            var loopTo = N;
+            int loopTo = N;
             for (K = 1; K <= loopTo; K++)
             {
                 if (Math.Abs(Polys[Poly].GPoints[K].lat - Y1) < moduleMAIN.D22Lat)
@@ -986,7 +986,7 @@ namespace SBuilderX
             Array.Resize(ref Polys[Poly].GPoints, N + 1);
             if (Point == 1)
                 Point = N;
-            var loopTo1 = Point;
+            int loopTo1 = Point;
             for (K = N - 1; K >= loopTo1; K -= 1)
                 Polys[Poly].GPoints[K + 1] = Polys[Poly].GPoints[K];
             Polys[Poly].GPoints[Point].lat = Y1;
@@ -1069,7 +1069,7 @@ namespace SBuilderX
             SLAT = moduleMAIN.LatDispNorth - (Y1 - 5) / moduleMAIN.PixelsPerLatDeg;
             X = moduleMAIN.LonDispWest * moduleMAIN.PixelsPerLonDeg + X1;  // longitude in pixels
             Y = moduleMAIN.LatDispNorth * moduleMAIN.PixelsPerLatDeg - Y1; // latitude in pixels
-            var loopTo = NoOfPolys;
+            int loopTo = NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Polys[N].Selected)
@@ -1123,7 +1123,7 @@ namespace SBuilderX
                 return IsMouseOnPolyRet;
             X = moduleMAIN.LonDispWest * moduleMAIN.PixelsPerLonDeg + X1;
             Y = moduleMAIN.LatDispNorth * moduleMAIN.PixelsPerLatDeg - Y1;
-            var loopTo = NoOfPolys;
+            int loopTo = NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Polys[N].OnScreen == false)
@@ -1177,7 +1177,7 @@ namespace SBuilderX
             ELON = (X - 5d) / moduleMAIN.PixelsPerLonDeg;
             NLAT = (Y - 5d) / moduleMAIN.PixelsPerLatDeg;
             SLAT = (Y + 5d) / moduleMAIN.PixelsPerLatDeg;
-            var loopTo = NoOfPolys;
+            int loopTo = NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (WLON < Polys[N].WLON)
@@ -1202,7 +1202,7 @@ namespace SBuilderX
                     if (Polys[N].Selected == false)
                         NoOfPolysSelected = NoOfPolysSelected + 1;
                     Polys[N].Selected = true;
-                    var loopTo1 = Polys[N].NoOfPoints;
+                    int loopTo1 = Polys[N].NoOfPoints;
                     for (K = 1; K <= loopTo1; K++)
                     {
                         if (Polys[N].GPoints[K].Selected)
@@ -1226,7 +1226,7 @@ namespace SBuilderX
             int N, K, J, L;
             bool Flag = false;
             double X1, Y1;
-            var loopTo = NoOfPolys;
+            int loopTo = NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Polys[N].OnScreen)
@@ -1235,7 +1235,7 @@ namespace SBuilderX
                     {
                         if (Polys[N].NoOfChilds >= 0) // has not children
                         {
-                            var loopTo1 = Polys[N].NoOfPoints;
+                            int loopTo1 = Polys[N].NoOfPoints;
                             for (K = 1; K <= loopTo1; K++)
                             {
                                 Polys[N].GPoints[K].lat = Polys[N].GPoints[K].lat - Y;
@@ -1246,11 +1246,11 @@ namespace SBuilderX
                             // childs move with parents except if parent is selected
                             if (Polys[N].NoOfChilds > 0)
                             {
-                                var loopTo2 = Polys[N].NoOfChilds;
+                                int loopTo2 = Polys[N].NoOfChilds;
                                 for (K = 1; K <= loopTo2; K++)
                                 {
                                     J = Polys[N].Childs[K];
-                                    var loopTo3 = Polys[J].NoOfPoints;
+                                    int loopTo3 = Polys[J].NoOfPoints;
                                     for (L = 1; L <= loopTo3; L++)
                                     {
                                         Polys[J].GPoints[L].lat = Polys[J].GPoints[L].lat - Y;
@@ -1275,7 +1275,7 @@ namespace SBuilderX
                                             if (Polys[J].ELON > Polys[N].ELON + X)
                                             {
                                                 // ok it can be moved
-                                                var loopTo4 = Polys[N].NoOfPoints;
+                                                int loopTo4 = Polys[N].NoOfPoints;
                                                 for (L = 1; L <= loopTo4; L++)
                                                 {
                                                     Polys[N].GPoints[L].lat = Polys[N].GPoints[L].lat - Y;
@@ -1294,7 +1294,7 @@ namespace SBuilderX
                                                        // is not children so move freely
                     {
                         Flag = false;
-                        var loopTo5 = Polys[N].NoOfPoints;
+                        int loopTo5 = Polys[N].NoOfPoints;
                         for (K = 1; K <= loopTo5; K++)
                         {
                             if (Polys[N].GPoints[K].Selected)
@@ -1314,7 +1314,7 @@ namespace SBuilderX
                         if (!Polys[J].Selected)
                         {
                             Flag = false;
-                            var loopTo6 = Polys[N].NoOfPoints;
+                            int loopTo6 = Polys[N].NoOfPoints;
                             for (K = 1; K <= loopTo6; K++)
                             {
                                 if (Polys[N].GPoints[K].Selected)
@@ -1383,7 +1383,7 @@ namespace SBuilderX
             moduleEDIT.SkipBackUp = false;
 
             // comentei e descomentei pois nгo percebi pq!!!
-            var loopTo = NoOfPolys;
+            int loopTo = NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Polys[N].GPoints[1].Selected)
@@ -1403,13 +1403,13 @@ namespace SBuilderX
         internal static void TryAllPolyJoin()
         {
             int N, K;
-            var Done = new bool[NoOfPolys + 1];
-            var loopTo = NoOfPolys;
+            bool[] Done = new bool[NoOfPolys + 1];
+            int loopTo = NoOfPolys;
             for (N = 1; N <= loopTo; N++)
                 MakePolyClockWise(N);
             jump_here:
             ;
-            var loopTo1 = NoOfPolys;
+            int loopTo1 = NoOfPolys;
             for (N = 1; N <= loopTo1; N++)
             {
                 if (Done[N])
@@ -1418,7 +1418,7 @@ namespace SBuilderX
                     goto end_here;
                 if (Polys[N].Selected)
                 {
-                    var loopTo2 = NoOfPolys;
+                    int loopTo2 = NoOfPolys;
                     for (K = N + 1; K <= loopTo2; K++)
                     {
                         if (K > NoOfPolys)
@@ -1444,7 +1444,7 @@ namespace SBuilderX
             Done = new bool[1];
         end_here:
             ;
-            var loopTo3 = NoOfPolys;
+            int loopTo3 = NoOfPolys;
             for (N = 1; N <= loopTo3; N++)
             {
                 if (Polys[N].Selected)
@@ -1486,13 +1486,13 @@ namespace SBuilderX
 
             N1T = Polys[N1].NoOfPoints;
             N2T = Polys[N2].NoOfPoints;
-            var loopTo = N1T;
+            int loopTo = N1T;
             for (N = 1; N <= loopTo; N++)
             {
                 Common = false;
                 X1.Y = Polys[N1].GPoints[N].lat;
                 X1.X = Polys[N1].GPoints[N].lon;
-                var loopTo1 = N2T;
+                int loopTo1 = N2T;
                 for (M = 1; M <= loopTo1; M++)
                 {
                     if (Math.Abs(X1.Y - Polys[N2].GPoints[M].lat) < DeltaLat)
@@ -1526,10 +1526,10 @@ namespace SBuilderX
         Return_Here:
             ;
             Flag = Flag + 1;
-            var loopTo2 = N1T;
+            int loopTo2 = N1T;
             for (N = 1; N <= loopTo2; N++)
             {
-                var loopTo3 = N2T;
+                int loopTo3 = N2T;
                 for (M = 1; M <= loopTo3; M++)
                 {
                     if (Math.Abs(Polys[N1].GPoints[N].lat - Polys[N2].GPoints[M].lat) < DeltaLat)
@@ -1606,7 +1606,7 @@ namespace SBuilderX
             NX = 2 * NX;
             NT = N1T + N2T - NX;
             Pts = new modulePOINTS.GPoint[N1T + 1];
-            var loopTo4 = N1T;
+            int loopTo4 = N1T;
             for (K = 1; K <= loopTo4; K++)
             {
                 Pts[K].lat = Polys[N1].GPoints[K].lat;
@@ -1617,7 +1617,7 @@ namespace SBuilderX
             Polys[N1].NoOfPoints = NT;
             Polys[N1].GPoints = new modulePOINTS.GPoint[NT + 1];
             K = 1;
-            var loopTo5 = N1A;
+            int loopTo5 = N1A;
             for (M = 1; M <= loopTo5; M++)
             {
                 Polys[N1].GPoints[K].lat = Pts[M].lat;
@@ -1626,7 +1626,7 @@ namespace SBuilderX
                 K = K + 1;
             }
 
-            var loopTo6 = N2B - 1;
+            int loopTo6 = N2B - 1;
             for (M = 1; M <= loopTo6; M++)
             {
                 Polys[N1].GPoints[K].lat = Polys[N2].GPoints[M].lat;
@@ -1635,7 +1635,7 @@ namespace SBuilderX
                 K = K + 1;
             }
 
-            var loopTo7 = N1T;
+            int loopTo7 = N1T;
             for (M = N1B; M <= loopTo7; M++)
             {
                 Polys[N1].GPoints[K].lat = Pts[M].lat;
@@ -1659,7 +1659,7 @@ namespace SBuilderX
         jump_here:
             ;
             NP = Polys[N].NoOfPoints - 1;
-            var loopTo = NP;
+            int loopTo = NP;
             for (K = 2; K <= loopTo; K++)
             {
                 X1 = Polys[N].GPoints[K - 1].lon;
@@ -1705,7 +1705,7 @@ namespace SBuilderX
             bool TryThisPolyJoinRet = default;
             int N;
             TryThisPolyJoinRet = false;
-            var loopTo = N1 - 1;
+            int loopTo = N1 - 1;
             for (N = 1; N <= loopTo; N++)
             {
                 if (JoinPolys(N, N1))
@@ -1717,7 +1717,7 @@ namespace SBuilderX
                 }
             }
 
-            var loopTo1 = NoOfPolys;
+            int loopTo1 = NoOfPolys;
             for (N = N1 + 1; N <= loopTo1; N++)
             {
                 if (JoinPolys(N, N1))
@@ -1780,13 +1780,13 @@ namespace SBuilderX
 
                 // this gets (in N) the index of the first point in poly N1
                 // that does not coincide with any point in poly N2
-                var loopTo = N1T;
+                int loopTo = N1T;
                 for (N = 1; N <= loopTo; N++)
                 {
                     Common = false;
                     Lat = Polys[N1].GPoints[N].lat;
                     Lon = Polys[N1].GPoints[N].lon;
-                    var loopTo1 = N2T;
+                    int loopTo1 = N2T;
                     for (M = 1; M <= loopTo1; M++)
                     {
                         if (Math.Abs(Lat - Polys[N2].GPoints[M].lat) < DeltaLat)
@@ -1816,10 +1816,10 @@ namespace SBuilderX
             Return_Here:
                 ;
                 Flag = Flag + 1;
-                var loopTo2 = N1T;
+                int loopTo2 = N1T;
                 for (N = 1; N <= loopTo2; N++)
                 {
-                    var loopTo3 = N2T;
+                    int loopTo3 = N2T;
                     for (M = 1; M <= loopTo3; M++)
                     {
                         if (Math.Abs(Polys[N1].GPoints[N].lat - Polys[N2].GPoints[M].lat) < DeltaLat)
@@ -1885,7 +1885,7 @@ namespace SBuilderX
 
                 // now copy poly N1 in myPoly
                 myPoly.GPoints = new modulePOINTS.GPoint[N1T + 1];
-                var loopTo4 = N1T;
+                int loopTo4 = N1T;
                 for (K = 1; K <= loopTo4; K++)
                 {
                     myPoly.GPoints[K].lat = Polys[N1].GPoints[K].lat;
@@ -1896,7 +1896,7 @@ namespace SBuilderX
                 Polys[N1].NoOfPoints = NT;
                 Polys[N1].GPoints = new modulePOINTS.GPoint[NT + 1];
                 K = 1;
-                var loopTo5 = N1A;
+                int loopTo5 = N1A;
                 for (M = 1; M <= loopTo5; M++)
                 {
                     Polys[N1].GPoints[K].lat = myPoly.GPoints[M].lat;
@@ -1905,7 +1905,7 @@ namespace SBuilderX
                     K = K + 1;
                 }
 
-                var loopTo6 = N2T;
+                int loopTo6 = N2T;
                 for (M = N2A + 1; M <= loopTo6; M++)
                 {
                     Polys[N1].GPoints[K].lat = Polys[N2].GPoints[M].lat;
@@ -1914,7 +1914,7 @@ namespace SBuilderX
                     K = K + 1;
                 }
 
-                var loopTo7 = N2B;
+                int loopTo7 = N2B;
                 for (M = 1; M <= loopTo7; M++)
                 {
                     Polys[N1].GPoints[K].lat = Polys[N2].GPoints[M].lat;
@@ -1923,7 +1923,7 @@ namespace SBuilderX
                     K = K + 1;
                 }
 
-                var loopTo8 = N1T;
+                int loopTo8 = N1T;
                 for (M = N1B + 1; M <= loopTo8; M++)
                 {
                     Polys[N1].GPoints[K].lat = myPoly.GPoints[M].lat;
@@ -1950,7 +1950,7 @@ namespace SBuilderX
             GPoly myPoly;
             NP = Polys[N].NoOfPoints;
             myPoly.GPoints = new modulePOINTS.GPoint[NP + 1];
-            var loopTo = NP;
+            int loopTo = NP;
             for (K = 1; K <= loopTo; K++)
             {
                 myPoly.GPoints[K].lat = Polys[N].GPoints[K].lat;
@@ -1959,7 +1959,7 @@ namespace SBuilderX
             }
 
             M = 1;
-            var loopTo1 = NP;
+            int loopTo1 = NP;
             for (K = N1; K <= loopTo1; K++)
             {
                 Polys[N].GPoints[M].lat = myPoly.GPoints[K].lat;
@@ -1968,7 +1968,7 @@ namespace SBuilderX
                 M = M + 1;
             }
 
-            var loopTo2 = N1 - 1;
+            int loopTo2 = N1 - 1;
             for (K = 1; K <= loopTo2; K++)
             {
                 Polys[N].GPoints[M].lat = myPoly.GPoints[K].lat;
@@ -1997,7 +1997,7 @@ namespace SBuilderX
             // get southest point in M (if 2 then the right most)
             Lat = Polys[P].GPoints[1].lat;
             M = 1;
-            var loopTo = NP;
+            int loopTo = NP;
             for (N = 2; N <= loopTo; N++)
             {
                 LatN = Polys[P].GPoints[N].lat;
@@ -2104,7 +2104,7 @@ namespace SBuilderX
 
             L = NP + 1;
             M = (int)(L / 2d);
-            var loopTo1 = M;
+            int loopTo1 = M;
             for (N = 1; N <= loopTo1; N++)
             {
                 PT = Polys[P].GPoints[N];
@@ -2130,7 +2130,7 @@ namespace SBuilderX
             // get southest point in M (if 2 then the right most)
             Lat = Polys[P].GPoints[1].lat;
             M = 1;
-            var loopTo = NP;
+            int loopTo = NP;
             for (N = 2; N <= loopTo; N++)
             {
                 LatN = Polys[P].GPoints[N].lat;
@@ -2237,7 +2237,7 @@ namespace SBuilderX
 
             L = NP + 1;
             M = (int)(L / 2d);
-            var loopTo1 = M;
+            int loopTo1 = M;
             for (N = 1; N <= loopTo1; N++)
             {
                 PT = Polys[P].GPoints[N];
@@ -2333,7 +2333,7 @@ namespace SBuilderX
             if (Reset_Renamed)
                 goto reset_string;
             J = 0;
-            var loopTo = NP;
+            int loopTo = NP;
             for (N = 1; N <= loopTo; N++)
             {
                 K = PolyTexString.IndexOf("//", J);
@@ -2350,7 +2350,7 @@ namespace SBuilderX
             LatMax = -90;
             LonMin = 180d;
             LonMax = -180;
-            var loopTo1 = NP;
+            int loopTo1 = NP;
             for (N = 1; N <= loopTo1; N++)
             {
                 x = Polys[P].GPoints[N].lat;
@@ -2375,7 +2375,7 @@ namespace SBuilderX
             if (y >= 1d)
                 y = 1d;
             y = y * 256.0d / LatMax;
-            var loopTo2 = NP;
+            int loopTo2 = NP;
             for (N = 1; N <= loopTo2; N++)
             {
                 K = (int)(x * (Polys[P].GPoints[N].lon - LonMin));
@@ -2395,7 +2395,7 @@ namespace SBuilderX
             double H_SLat = 90d;
             double H_WLon = 180d;
             double H_ELon = -180;
-            var loopTo = moduleLINES.NoOfLines;
+            int loopTo = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (moduleLINES.Lines[N].Selected)
@@ -2448,11 +2448,13 @@ namespace SBuilderX
             string myFile = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFileBase;
             string myFileXN;
             string myFileXLM = myFile + ".xml";
-            var settings = new XmlWriterSettings();
-            settings.Indent = true;
-            settings.Encoding = Encoding.GetEncoding(28591);
-            settings.NewLineOnAttributes = true;
-            var writer = XmlWriter.Create(myFileXLM, settings);
+            XmlWriterSettings settings = new XmlWriterSettings
+            {
+                Indent = true,
+                Encoding = Encoding.GetEncoding(28591),
+                NewLineOnAttributes = true
+            };
+            XmlWriter writer = XmlWriter.Create(myFileXLM, settings);
             writer.WriteStartDocument();
             writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
             writer.WriteStartElement("FSData");
@@ -2463,7 +2465,7 @@ namespace SBuilderX
             header = "xof 0302txt 0032" + Environment.NewLine + Environment.NewLine + "// Direct3D X file created by SBuilderX on " + DateTime.Now.ToString() + Environment.NewLine + Environment.NewLine;
             template = My.MyProject.Computer.FileSystem.ReadAllText(My.MyProject.Application.Info.DirectoryPath + @"\tools\x_templates.txt");
             material = My.MyProject.Computer.FileSystem.ReadAllText(My.MyProject.Application.Info.DirectoryPath + @"\tools\x_material.txt");
-            var loopTo = moduleLINES.NoOfLines;
+            int loopTo = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 L[N] = false;
@@ -2478,7 +2480,7 @@ namespace SBuilderX
                     // Ok, go and get Tiled, Night Texture ....
                     L[N] = true;
                     Set_Tex_T_N_C(ref Tiled, ref Night, ref Complex, N);
-                    var G = Guid.NewGuid();  // create a random Guid
+                    Guid G = Guid.NewGuid();  // create a random Guid
                     string myGuid = G.ToString("B");
                     X_lat = (moduleLINES.Lines[N].NLAT + moduleLINES.Lines[N].SLAT) / 2d;
                     X_lon = (moduleLINES.Lines[N].ELON + moduleLINES.Lines[N].WLON) / 2d;
@@ -2523,7 +2525,7 @@ namespace SBuilderX
             Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
 
             // make the mdls from the X's
-            var loopTo1 = moduleLINES.NoOfLines;
+            int loopTo1 = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo1; N++)
             {
                 if (L[N])
@@ -2539,7 +2541,7 @@ namespace SBuilderX
                 File.Delete(BGLFile);
             A = My.MyProject.Application.Info.DirectoryPath + @"\tools\bglcomp.exe";
             B = @"work\" + myFileBase + ".xml";
-            var myProcess = new Process();
+            Process myProcess = new Process();
             myProcess = Process.Start(A, B);
             myProcess.WaitForExit();
             myProcess.Dispose();
@@ -2561,7 +2563,7 @@ namespace SBuilderX
                     File.Copy(A, moduleMAIN.BGLProjectFolder + @"\" + myFileBase + ".BGL", true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -2572,7 +2574,7 @@ namespace SBuilderX
             string Get_Is__AGLRet = default;
             Get_Is__AGLRet = "TRUE";
             int K;
-            var loopTo = moduleLINES.Lines[N].NoOfPoints;
+            int loopTo = moduleLINES.Lines[N].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
             {
                 if (moduleLINES.Lines[N].GLPoints[K].alt != 0d)
@@ -2587,7 +2589,7 @@ namespace SBuilderX
 
         private static string Make_X_Header()
         {
-            var A = new StringBuilder();
+            StringBuilder A = new StringBuilder();
             A.AppendLine("Header {");
             A.AppendLine("   1;");
             A.AppendLine("   0;");
@@ -2598,7 +2600,7 @@ namespace SBuilderX
 
         private static string Make_X_Frame()
         {
-            var A = new StringBuilder(200);
+            StringBuilder A = new StringBuilder(200);
             A.AppendLine("Frame masterfrm {");
             A.AppendLine("FrameTransformMatrix {");
             A.AppendLine("   1.0, 0.0, 0.0, 0.0,");
@@ -2615,11 +2617,11 @@ namespace SBuilderX
             int N = PolyTex.IndexOf(".");
             string @base = PolyTex.Substring(0, N);
             string ext = PolyTex.Substring(N);
-            var A = new StringBuilder(500);
+            StringBuilder A = new StringBuilder(500);
             A.AppendLine("MeshMaterialList {");
             A.AppendLine("1;");
             A.AppendLine("" + P.ToString() + ";");
-            var loopTo = P;
+            int loopTo = P;
             for (N = 2; N <= loopTo; N++)
                 A.AppendLine("0,");
             A.AppendLine("0;");
@@ -2646,7 +2648,7 @@ namespace SBuilderX
             int N = PolyTex.IndexOf(".");
             string @base = PolyTex.Substring(0, N);
             string ext = PolyTex.Substring(N);
-            var A = new StringBuilder(200);
+            StringBuilder A = new StringBuilder(200);
             A.AppendLine("    DiffuseTextureFileName  {");
             A.AppendLine("      \"" + @base + ext + "\";" + Environment.NewLine + "    }");
             if (Night == 1)
@@ -2671,13 +2673,13 @@ namespace SBuilderX
             string Y = "";
             string ZL = "";
             string ZH = "";
-            var A = new StringBuilder(32000);
+            StringBuilder A = new StringBuilder(32000);
             string B = "Mesh Part2 {" + Environment.NewLine;
             B = B + (8 * (moduleLINES.Lines[N].NoOfPoints - 1)).ToString() + ";" + Environment.NewLine;
             Make_X_XYZ(ref X, ref Y, ref ZL, ref ZH, N, 1);
             A.AppendLine(X + "; " + Y + "; " + ZH + ";,");
             A.AppendLine(X + "; " + Y + "; " + ZL + ";,");
-            var loopTo = moduleLINES.Lines[N].NoOfPoints - 1;
+            int loopTo = moduleLINES.Lines[N].NoOfPoints - 1;
             for (K = 2; K <= loopTo; K++)
             {
                 Make_X_XYZ(ref X, ref Y, ref ZL, ref ZH, N, K);
@@ -2694,7 +2696,7 @@ namespace SBuilderX
             A.Insert(0, B);
             P = 0;
             A.AppendLine((4 * (moduleLINES.Lines[N].NoOfPoints - 1)).ToString() + ";");
-            var loopTo1 = moduleLINES.Lines[N].NoOfPoints - 1;
+            int loopTo1 = moduleLINES.Lines[N].NoOfPoints - 1;
             for (K = 1; K <= loopTo1; K++)
             {
                 A.AppendLine("3; " + P.ToString() + ", " + (P + 2).ToString() + ", " + (P + 1).ToString() + ";,");
@@ -2702,7 +2704,7 @@ namespace SBuilderX
                 P = P + 4;
             }
 
-            var loopTo2 = moduleLINES.Lines[N].NoOfPoints - 2;
+            int loopTo2 = moduleLINES.Lines[N].NoOfPoints - 2;
             for (K = 1; K <= loopTo2; K++)
             {
                 A.AppendLine("3; " + P.ToString() + ", " + (P + 1).ToString() + ", " + (P + 2).ToString() + ";,");
@@ -2723,11 +2725,11 @@ namespace SBuilderX
             string Z2 = "";
             int K, P;
             string B = "";
-            var A1 = new StringBuilder(48000);
+            StringBuilder A1 = new StringBuilder(48000);
             A1.AppendLine("MeshNormals {");
             A1.AppendLine((8 * (moduleLINES.Lines[N].NoOfPoints - 1)).ToString() + ";");
-            var A2 = new StringBuilder(16000);
-            var loopTo = moduleLINES.Lines[N].NoOfPoints - 2;
+            StringBuilder A2 = new StringBuilder(16000);
+            int loopTo = moduleLINES.Lines[N].NoOfPoints - 2;
             for (K = 1; K <= loopTo; K++)
             {
                 Make_X_XZN(ref X1, ref Z1, ref X2, ref Z2, N, K);
@@ -2746,7 +2748,7 @@ namespace SBuilderX
             A1.AppendLine(A2.ToString());
             P = 0;
             A1.AppendLine((4 * (moduleLINES.Lines[N].NoOfPoints - 1)).ToString() + ";");
-            var loopTo1 = moduleLINES.Lines[N].NoOfPoints - 1;
+            int loopTo1 = moduleLINES.Lines[N].NoOfPoints - 1;
             for (K = 1; K <= loopTo1; K++)
             {
                 A1.AppendLine("3; " + P.ToString() + ", " + (P + 2).ToString() + ", " + (P + 1).ToString() + ";,");
@@ -2754,7 +2756,7 @@ namespace SBuilderX
                 P = P + 4;
             }
 
-            var loopTo2 = moduleLINES.Lines[N].NoOfPoints - 2;
+            int loopTo2 = moduleLINES.Lines[N].NoOfPoints - 2;
             for (K = 1; K <= loopTo2; K++)
             {
                 A1.AppendLine("3; " + P.ToString() + ", " + (P + 1).ToString() + ", " + (P + 2).ToString() + ";,");
@@ -2773,11 +2775,11 @@ namespace SBuilderX
             int NP = moduleLINES.Lines[N].NoOfPoints;
             float[] TU;
             TU = Make_TU_Tiling(N, Tiled);
-            var A1 = new StringBuilder(48000);
+            StringBuilder A1 = new StringBuilder(48000);
             A1.AppendLine("MeshTextureCoords {");
             A1.AppendLine((8 * (moduleLINES.Lines[N].NoOfPoints - 1)).ToString() + ";");
-            var A2 = new StringBuilder(16000);
-            var loopTo = moduleLINES.Lines[N].NoOfPoints - 2;
+            StringBuilder A2 = new StringBuilder(16000);
+            int loopTo = moduleLINES.Lines[N].NoOfPoints - 2;
             for (K = 1; K <= loopTo; K++)
             {
                 A1.AppendLine(Format_TU(TU[K]) + "; 0.000;,");
@@ -2923,7 +2925,7 @@ namespace SBuilderX
             A = A + ((int)(H_NLat + 1.5d)).ToString() + " )";
             FileSystem.PrintLine(3, A);
             FileSystem.PrintLine(3);
-            var loopTo = moduleLINES.NoOfLines;
+            int loopTo = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (moduleLINES.Lines[N].Selected)
@@ -3047,7 +3049,7 @@ namespace SBuilderX
                     File.Copy(A, moduleMAIN.BGLProjectFolder + @"\" + myFile + ".BGL", true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -3058,18 +3060,18 @@ namespace SBuilderX
             int P, M;
             double UX, UY, U, K;
             int NP = moduleLINES.Lines[N].NoOfPoints;
-            var Line = new moduleMAIN.Double_XY[NP + 1];  // line in meter coordinates
-            var loopTo = NP;
+            moduleMAIN.Double_XY[] Line = new moduleMAIN.Double_XY[NP + 1];  // line in meter coordinates
+            int loopTo = NP;
             for (P = 1; P <= loopTo; P++)
             {
                 Line[P].X = moduleLINES.Lines[N].GLPoints[P].lon * moduleMAIN.MetersPerDegLon(moduleMAIN.LatDispCenter);
                 Line[P].Y = moduleLINES.Lines[N].GLPoints[P].lat * moduleMAIN.MetersPerDegLat;
             }
 
-            var D1 = new moduleMAIN.Double_XY[NP + 1];
-            var D2 = new moduleMAIN.Double_XY[NP + 1];
+            moduleMAIN.Double_XY[] D1 = new moduleMAIN.Double_XY[NP + 1];
+            moduleMAIN.Double_XY[] D2 = new moduleMAIN.Double_XY[NP + 1];
             double W;
-            var loopTo1 = NP - 1;
+            int loopTo1 = NP - 1;
             for (P = 1; P <= loopTo1; P++)
             {
                 UX = Line[P + 1].X - Line[P].X;
@@ -3088,12 +3090,12 @@ namespace SBuilderX
                 D1[P + 1].Y = UY * W;
             }
 
-            var PR1 = new moduleMAIN.Double_XY[NP + 1];   // right side
-            var PR2 = new moduleMAIN.Double_XY[NP + 1];
-            var PR = new moduleMAIN.Double_XY[NP + 1];
-            var PL1 = new moduleMAIN.Double_XY[NP + 1];   // left side
-            var PL2 = new moduleMAIN.Double_XY[NP + 1];
-            var PL = new moduleMAIN.Double_XY[NP + 1];
+            moduleMAIN.Double_XY[] PR1 = new moduleMAIN.Double_XY[NP + 1];   // right side
+            moduleMAIN.Double_XY[] PR2 = new moduleMAIN.Double_XY[NP + 1];
+            moduleMAIN.Double_XY[] PR = new moduleMAIN.Double_XY[NP + 1];
+            moduleMAIN.Double_XY[] PL1 = new moduleMAIN.Double_XY[NP + 1];   // left side
+            moduleMAIN.Double_XY[] PL2 = new moduleMAIN.Double_XY[NP + 1];
+            moduleMAIN.Double_XY[] PL = new moduleMAIN.Double_XY[NP + 1];
             PL[1].X = Line[1].X - D2[1].Y;
             PL[1].Y = Line[1].Y + D2[1].X;
             PR[1].X = Line[1].X + D2[1].Y;
@@ -3102,7 +3104,7 @@ namespace SBuilderX
             PL[NP].Y = Line[NP].Y + D1[NP].X;
             PR[NP].X = Line[NP].X + D1[NP].Y;
             PR[NP].Y = Line[NP].Y - D1[NP].X;
-            var loopTo2 = NP - 1;
+            int loopTo2 = NP - 1;
             for (P = 2; P <= loopTo2; P++)
             {
                 PL1[P].X = Line[P].X - D1[P].Y;
@@ -3140,7 +3142,7 @@ namespace SBuilderX
             Polys[0].Color = DefaultPolyColor;
             Polys[0].GPoints = new modulePOINTS.GPoint[2 * NP + 1];
             M = 1;
-            var loopTo3 = NP;
+            int loopTo3 = NP;
             for (P = 1; P <= loopTo3; P++)
             {
                 Polys[0].GPoints[M].lat = PL[P].Y / moduleMAIN.MetersPerDegLat;
@@ -3206,7 +3208,7 @@ namespace SBuilderX
             TU = Make_TU_Tiling(N, Tiled);
             string A;
             FillVextexList_0Ret = "VertexList( 0 " + Environment.NewLine;
-            var loopTo = NP;
+            int loopTo = NP;
             for (K = 1; K <= loopTo; K++)
             {
                 // the left side point
@@ -3256,21 +3258,21 @@ namespace SBuilderX
         {
             int K;
             int NP = moduleLINES.Lines[N].NoOfPoints;
-            var TU = new float[NP + 1];
+            float[] TU = new float[NP + 1];
             double X;
             if (Tiled == 0)
             {
-                var loopTo = NP;
+                int loopTo = NP;
                 for (K = 1; K <= loopTo; K++)
                     TU[K] = K - 1;
             }
 
             if (Tiled > 0)
             {
-                var L = new double[NP + 1];
+                double[] L = new double[NP + 1];
                 L[1] = 0d;
                 double W = moduleLINES.Lines[N].GLPoints[1].wid;
-                var loopTo1 = NP;
+                int loopTo1 = NP;
                 for (K = 2; K <= loopTo1; K++)
                 {
                     L[K] = L[K - 1] + GetDistanceP1P2(N, K - 1, K);
@@ -3280,7 +3282,7 @@ namespace SBuilderX
                 W = W / NP;
                 double R = GetImageRatio();
                 TU[1] = 0f;
-                var loopTo2 = NP;
+                int loopTo2 = NP;
                 for (K = 2; K <= loopTo2; K++)
                 {
                     X = L[K] - L[K - 1];
@@ -3292,7 +3294,7 @@ namespace SBuilderX
 
             if (Tiled == 2)
             {
-                var loopTo3 = NP;
+                int loopTo3 = NP;
                 for (K = 2; K <= loopTo3; K++)
                 {
                     TU[K] = (int)(TU[K] + 0.5f);
@@ -3315,11 +3317,11 @@ namespace SBuilderX
                 string ImageTool = @"imagetool -nowarning -nogui -nomip -8 Work\temp.bmp";
                 File.Copy(TexPath, BmpPath, true);
                 moduleMAIN.ExecCmd(ImageTool);
-                var bmp = Image.FromFile(BmpPath);
+                Image bmp = Image.FromFile(BmpPath);
                 GetImageRatioRet = bmp.Width / (double)bmp.Height;
                 bmp.Dispose();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 GetImageRatioRet = 1d;
                 MessageBox.Show("There is a problem with " + PolyTex, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -3334,7 +3336,7 @@ namespace SBuilderX
             int NP = moduleLINES.Lines[N].NoOfPoints;
             int K, J;
             FillDrawTriList_0Ret = "DrawTriList( 0 " + Environment.NewLine + "       ";
-            var loopTo = NP;
+            int loopTo = NP;
             for (K = 2; K <= loopTo; K++)
             {
                 J = 2 * K;
@@ -3380,7 +3382,7 @@ namespace SBuilderX
             double H_SLat = 90d;
             double H_WLon = 180d;
             double H_ELon = -180;
-            var loopTo = NoOfPolys;
+            int loopTo = NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Polys[N].Selected)
@@ -3417,7 +3419,7 @@ namespace SBuilderX
             a = a + (int)(H_NLat + 1.5d) + " )";
             FileSystem.PrintLine(3, a);
             FileSystem.PrintLine(3);
-            var loopTo1 = NoOfPolys;
+            int loopTo1 = NoOfPolys;
             for (N = 1; N <= loopTo1; N++)
             {
                 if (Polys[N].Selected)
@@ -3537,7 +3539,7 @@ namespace SBuilderX
                     File.Copy(a, moduleMAIN.BGLProjectFolder + @"\" + myFile + ".BGL", true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Copying BGL files failed!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -3552,7 +3554,7 @@ namespace SBuilderX
             Y = 0d;
             Z = 0d;
             NP = Polys[P].NoOfPoints;
-            var loopTo = NP;
+            int loopTo = NP;
             for (N = 1; N <= loopTo; N++)
             {
                 X = X + Polys[P].GPoints[N].lon;
@@ -3569,14 +3571,14 @@ namespace SBuilderX
         private static string GetV2(int P)
         {
             string GetV2Ret = default;
-            var lat = default(double);
+            double lat = default(double);
             int N, NP;
             double DZ, DX, X, DY;
             DX = 0d;
             DY = 0d;
             DZ = 0d;
             NP = Polys[P].NoOfPoints;
-            var loopTo = NP;
+            int loopTo = NP;
             for (N = 1; N <= loopTo; N++)
             {
                 X = Math.Abs(AuxLonPoly - Polys[P].GPoints[N].lon) * moduleMAIN.MetersPerDegLon(lat);
@@ -3645,7 +3647,7 @@ namespace SBuilderX
             a = PolyTexString;
             NP = Polys[P].NoOfPoints;
             LP = new Point[NP + 1];
-            var loopTo = NP;
+            int loopTo = NP;
             for (M = 1; M <= loopTo; M++)
             {
                 K = a.IndexOf("//");
@@ -3660,7 +3662,7 @@ namespace SBuilderX
             {
                 L = NP + 1;
                 M = (int)(L / 2d);
-                var loopTo1 = M;
+                int loopTo1 = M;
                 for (N = 1; N <= loopTo1; N++)
                 {
                     PT = LP[N];
@@ -3670,7 +3672,7 @@ namespace SBuilderX
             }
 
             FillVextexListRet = "VertexList( 0 " + Environment.NewLine;
-            var loopTo2 = NP;
+            int loopTo2 = NP;
             for (N = 1; N <= loopTo2; N++)
             {
                 X = (Polys[P].GPoints[N].lon - AuxLonPoly) * moduleMAIN.MetersPerDegLon(AuxLatPoly);
@@ -3704,7 +3706,7 @@ namespace SBuilderX
             S = Polys[P].NoOfPoints;
             moduleTRIANGLES.NoOfPts2Tris = S;
             moduleTRIANGLES.Pts2Tris = new moduleTRIANGLES.Pts2Tri[S + 1 + 1];
-            var loopTo = S;
+            int loopTo = S;
             for (N = 1; N <= loopTo; N++)
             {
                 moduleTRIANGLES.Pts2Tris[N].X = Polys[P].GPoints[N].lon;
@@ -3716,7 +3718,7 @@ namespace SBuilderX
             moduleTRIANGLES.Pts2Tris[S + 1] = moduleTRIANGLES.Pts2Tris[1];
             moduleTRIANGLES.MakeTris(); // make the triangles!
             FillDrawTriListRet = "DrawTriList( 0 " + Environment.NewLine + "       ";
-            var loopTo1 = moduleTRIANGLES.NoOfTris;
+            int loopTo1 = moduleTRIANGLES.NoOfTris;
             for (N = 1; N <= loopTo1; N++)
             {
                 K = moduleTRIANGLES.Tris[N].N3;
@@ -3741,7 +3743,7 @@ namespace SBuilderX
             X1 = Polys[N].GPoints[1].lon;
             X2 = Polys[N].GPoints[1].lon;
             lat = 0d;
-            var loopTo = NP;
+            int loopTo = NP;
             for (J = 1; J <= loopTo; J++)
             {
                 lat = lat + Polys[N].GPoints[J].lat;
@@ -3764,7 +3766,7 @@ namespace SBuilderX
             X2 = Polys[N].GPoints[N1].lat - Polys[N].GPoints[N2].lat;
             X2 = X2 * X2;
             D = Math.Sqrt(X1 + X2);
-            var loopTo1 = NP;
+            int loopTo1 = NP;
             for (K = 1; K <= loopTo1; K++)
             {
                 if (K != N1 & K != N2)
@@ -3883,7 +3885,7 @@ namespace SBuilderX
                 Lon = @int * DeltaLon - 180d;
                 Polys[P].GPoints[N].lat = Lat;
                 Polys[P].GPoints[N].lon = Lon;
-                var loopTo = N - 1;
+                int loopTo = N - 1;
                 for (J = 1; J <= loopTo; J++)
                 {
                     if (Polys[P].GPoints[J].lat == Lat)

@@ -91,7 +91,6 @@ namespace SBuilderX
             int N;
             string A;
             bool Flag1 = false;
-            bool Flag2 = false;
             Init = true;
             ckLand.Enabled = false;
             ckVector.Enabled = false;
@@ -125,7 +124,7 @@ namespace SBuilderX
             HLX = false;
             RRX = false;
             UTX = false;
-            var loopTo = modulePOLYS.NoOfPolys;
+            int loopTo = modulePOLYS.NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (modulePOLYS.Polys[N].Selected)
@@ -154,7 +153,7 @@ namespace SBuilderX
                 }
             }
 
-            var loopTo1 = moduleLINES.NoOfLines;
+            int loopTo1 = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo1; N++)
             {
                 if (moduleLINES.Lines[N].Selected)
@@ -224,7 +223,7 @@ namespace SBuilderX
             }
 
             Flag1 = false;
-            var loopTo2 = moduleMAPS.NoOfMaps;
+            int loopTo2 = moduleMAPS.NoOfMaps;
             for (N = 1; N <= loopTo2; N++)
             {
                 if (moduleMAPS.Maps[N].Selected)
@@ -251,7 +250,7 @@ namespace SBuilderX
             }
 
             Flag1 = false;
-            var loopTo3 = moduleOBJECTS.NoOfObjects;
+            int loopTo3 = moduleOBJECTS.NoOfObjects;
             for (N = 1; N <= loopTo3; N++)
             {
                 if (moduleOBJECTS.Objects[N].Selected)
@@ -270,7 +269,7 @@ namespace SBuilderX
             }
 
             Flag1 = false;
-            var loopTo4 = moduleEXCLUDES.NoOfExcludes;
+            int loopTo4 = moduleEXCLUDES.NoOfExcludes;
             for (N = 1; N <= loopTo4; N++)
             {
                 if (moduleEXCLUDES.Excludes[N].Selected)
@@ -299,7 +298,7 @@ namespace SBuilderX
             string ProjectNameNoSpaces;
             ProjectNameNoSpaces = moduleMAIN.ProjectName.Replace(" ", "_");
             shpfiles = Directory.GetFiles(moduleMAIN.AppPath + @"\Tools\Shapes");
-            foreach (var currentShapefile in shpfiles)
+            foreach (string currentShapefile in shpfiles)
             {
                 shapefile = currentShapefile;
                 File.Delete(shapefile);
@@ -435,7 +434,7 @@ namespace SBuilderX
                     File.Copy(source, dest, true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

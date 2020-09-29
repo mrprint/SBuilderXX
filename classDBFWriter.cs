@@ -45,7 +45,7 @@ namespace SBuilderX
                     File.Delete(DBFile);
                 fs = new FileStream(DBFile, FileMode.Create);
                 bw = new BinaryWriter(fs);
-                var today = DateTime.Now;
+                DateTime today = DateTime.Now;
                 bw.Write((byte)3);
                 bw.Write((byte)(today.Year - 1900));
                 bw.Write((byte)today.Month);
@@ -60,7 +60,7 @@ namespace SBuilderX
                 fileIsOpened = true;
                 return FileWriterRet;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Could not create database file!", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 fileIsOpened = false;
@@ -126,7 +126,7 @@ namespace SBuilderX
                 nBytesInRecord = (short)(nBytesInRecord + len);
                 CreateFieldRet = true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Could not create database field: " + name + "!", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 CreateFieldRet = false;
@@ -164,7 +164,7 @@ namespace SBuilderX
                 headerDone = true;
                 return AppendFieldsRet;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 MessageBox.Show("Could not append database fields!", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 AppendFieldsRet = false;
@@ -198,7 +198,7 @@ namespace SBuilderX
                 bw.Write(b);
                 AddRecordRet = true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
             }
             return AddRecordRet;

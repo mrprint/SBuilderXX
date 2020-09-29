@@ -39,8 +39,8 @@ namespace SBuilderX
             a = a + modulePOLYS.PolyTex.ToUpper();
             Text = a;
             string BmpPath = moduleMAIN.AppPath + @"\Tools\Work\temp.bmp";
-            var bmp = Image.FromFile(BmpPath);
-            var cpy = new Bitmap(bmp);
+            Image bmp = Image.FromFile(BmpPath);
+            Bitmap cpy = new Bitmap(bmp);
             bmp.Dispose();
             imgBuffer = cpy;
             String2Pts();
@@ -56,7 +56,7 @@ namespace SBuilderX
             Pts = new Point[NoOfPts + 1];
             a = modulePOLYS.PolyTexString;
             SelPt = 1;
-            var loopTo = NoOfPts;
+            int loopTo = NoOfPts;
             for (N = 1; N <= loopTo; N++)
             {
                 K = a.IndexOf("//");
@@ -127,7 +127,7 @@ namespace SBuilderX
         {
             int N;
             modulePOLYS.PolyTexString = "";
-            var loopTo = NoOfPts;
+            int loopTo = NoOfPts;
             for (N = 1; N <= loopTo; N++)
             {
                 modulePOLYS.PolyTexString = modulePOLYS.PolyTexString + Pt2X(N).ToString() + ",";
@@ -198,16 +198,16 @@ namespace SBuilderX
         private void DisplayPoly()
         {
             int N;
-            var g = imgText.CreateGraphics();
-            var myPen = new Pen(Color.Black);
-            var myBrush = new SolidBrush(Color.White);
+            Graphics g = imgText.CreateGraphics();
+            Pen myPen = new Pen(Color.Black);
+            SolidBrush myBrush = new SolidBrush(Color.White);
             g.DrawImage(imgBuffer, 0, 0, 512, 512);
             myPen.Color = Color.Black;
-            var loopTo = NoOfPts - 1;
+            int loopTo = NoOfPts - 1;
             for (N = 1; N <= loopTo; N++)
                 g.DrawLine(myPen, Pts[N], Pts[N + 1]);
             g.DrawLine(myPen, Pts[NoOfPts], Pts[1]);
-            var loopTo1 = NoOfPts;
+            int loopTo1 = NoOfPts;
             for (N = 1; N <= loopTo1; N++)
             {
                 if (N == SelPt)
@@ -365,7 +365,7 @@ namespace SBuilderX
             MouseDownDone = true;
             PX = x;
             PY = y;
-            var loopTo = NoOfPts;
+            int loopTo = NoOfPts;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Math.Abs(PX - Pts[N].X) > 3)
@@ -414,7 +414,7 @@ namespace SBuilderX
         {
             if (IsInit)
                 return;
-            int N, N0, N1;
+            int N, N0;
             N0 = Pts[SelPt].X;
 
             try
@@ -440,7 +440,7 @@ namespace SBuilderX
         {
             if (IsInit)
                 return;
-            int N, N0, N1;
+            int N, N0;
             N0 = Pts[SelPt].Y;
 
             try

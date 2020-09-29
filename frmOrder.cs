@@ -31,12 +31,12 @@ namespace SBuilderX
             }
 
             // and add in new order
-            var loopTo = N - 1;
+            int loopTo = N - 1;
             for (K = 1; K <= loopTo; K++)
                 lstObject.Items.Add(O[K]);
             lstObject.Items.Add(O[N + 1]);
             lstObject.Items.Add(O[N]);
-            var loopTo1 = moduleOBJECTS.NoOfObjects;
+            int loopTo1 = moduleOBJECTS.NoOfObjects;
             for (K = N + 2; K <= loopTo1; K++)
                 lstObject.Items.Add(O[K]);
             lstObject.SelectedIndex = N;
@@ -52,7 +52,7 @@ namespace SBuilderX
 
             // ObjectCopies = VB6.CopyArray(Objects)
             Array.Copy(moduleOBJECTS.Objects, ObjectCopies, moduleOBJECTS.NoOfObjects);
-            var loopTo = moduleOBJECTS.NoOfObjects;
+            int loopTo = moduleOBJECTS.NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
                 A = lstObject.GetItemText(N - 1);
@@ -86,12 +86,12 @@ namespace SBuilderX
             }
 
             // and add in new order
-            var loopTo = N - 2;
+            int loopTo = N - 2;
             for (K = 1; K <= loopTo; K++)
                 lstObject.Items.Add(O[K]);
             lstObject.Items.Add(O[N]);
             lstObject.Items.Add(O[N - 1]);
-            var loopTo1 = moduleOBJECTS.NoOfObjects;
+            int loopTo1 = moduleOBJECTS.NoOfObjects;
             for (K = N + 1; K <= loopTo1; K++)
                 lstObject.Items.Add(O[K]);
             lstObject.SelectedIndex = N - 2;
@@ -105,7 +105,7 @@ namespace SBuilderX
 
             // UPGRADE_WARNING: Lower bound of array O was changed from 1 to 0. Click for more: 'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="0F1C9BE1-AF9D-476E-83B1-17D43BECFF20"'
             O = new string[moduleOBJECTS.NoOfObjects + 1];
-            var loopTo = moduleOBJECTS.NoOfObjects;
+            int loopTo = moduleOBJECTS.NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
                 K = moduleOBJECTS.Objects[N].Type;

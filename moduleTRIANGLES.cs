@@ -29,7 +29,7 @@ namespace SBuilderX
 
         internal static void MakeTris()
         {
-            var N1 = default(int);
+            int N1 = default(int);
             NoOfTris = 0;
             SetTriConcaves();
             do
@@ -48,7 +48,7 @@ namespace SBuilderX
         private static void FindTri(ref int N1)
         {
             int N;
-            var loopTo = NoOfPts2Tris;
+            int loopTo = NoOfPts2Tris;
             for (N = 2; N <= loopTo; N++)
             {
                 if (!IsTri(N))
@@ -72,7 +72,7 @@ namespace SBuilderX
 
             // fazer o novo Pts2Tri
             NoOfPts2Tris = NoOfPts2Tris - 1;
-            var loopTo = NoOfPts2Tris;
+            int loopTo = NoOfPts2Tris;
             for (K = N1; K <= loopTo; K++)
                 Pts2Tris[K] = Pts2Tris[K + 1];
             SetTriConcaves();
@@ -87,7 +87,7 @@ namespace SBuilderX
             IsTriRet = false;
             if (Pts2Tris[N1].T < 0d)
                 return IsTriRet;
-            var loopTo = NoOfPts2Tris;
+            int loopTo = NoOfPts2Tris;
             for (K = N1 + 2; K <= loopTo; K++)
             {
                 // If Pts2Tris(K).T < 0 Then GoTo next_1:
@@ -97,7 +97,7 @@ namespace SBuilderX
                 //;
             }
 
-            var loopTo1 = N1 - 2;
+            int loopTo1 = N1 - 2;
             for (K = 1; K <= loopTo1; K++)
             {
                 // If Pts2Tri(K).T < 0 Then GoTo next_2:
@@ -114,7 +114,7 @@ namespace SBuilderX
         private static void SetTriConcaves()
         {
             int N;
-            var loopTo = NoOfPts2Tris;
+            int loopTo = NoOfPts2Tris;
             for (N = 1; N <= loopTo; N++)
                 Pts2Tris[N].T = GetTriTurn(N);
         }
@@ -134,7 +134,7 @@ namespace SBuilderX
         private static bool IsPtInTri(int N1, int K)
         {
             bool IsPtInTriRet = default;
-            var P = new moduleMAIN.Double_XY[5];
+            moduleMAIN.Double_XY[] P = new moduleMAIN.Double_XY[5];
             int C;
             double X1, Y1;
             double X0, Y0;

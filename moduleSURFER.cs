@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -28,11 +28,11 @@ namespace SBuilderX
             My.MyProject.Forms.FrmStart.Cursor = Cursors.WaitCursor;
             FN = FileSystem.FreeFile();
             FileSystem.FileOpen(FN, FileName, OpenMode.Output);
-            var loopTo = moduleLINES.NoOfLines;
+            int loopTo = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 FileSystem.PrintLine(FN, moduleLINES.Lines[N].NoOfPoints.ToString() + BLNSeparator + moduleLINES.Lines[N].Name.Trim());
-                var loopTo1 = moduleLINES.Lines[N].NoOfPoints;
+                int loopTo1 = moduleLINES.Lines[N].NoOfPoints;
                 for (M = 1; M <= loopTo1; M++)
                 {
                     A = moduleLINES.Lines[N].GLPoints[M].lon.ToString().Trim() + BLNSeparator;
@@ -43,11 +43,11 @@ namespace SBuilderX
                 }
             }
 
-            var loopTo2 = modulePOLYS.NoOfPolys;
+            int loopTo2 = modulePOLYS.NoOfPolys;
             for (N = 1; N <= loopTo2; N++)
             {
                 FileSystem.PrintLine(FN, (modulePOLYS.Polys[N].NoOfPoints + 1).ToString() + BLNSeparator + modulePOLYS.Polys[N].Name.Trim());
-                var loopTo3 = modulePOLYS.Polys[N].NoOfPoints;
+                int loopTo3 = modulePOLYS.Polys[N].NoOfPoints;
                 for (M = 1; M <= loopTo3; M++)
                 {
                     A = modulePOLYS.Polys[N].GPoints[M].lon.ToString().Trim() + BLNSeparator;
@@ -116,7 +116,7 @@ namespace SBuilderX
                     }
 
                     myLine.GLPoints = new modulePOINTS.GLPoint[N + 1];
-                    var loopTo = N;
+                    int loopTo = N;
                     for (M = 1; M <= loopTo; M++)
                     {
                         A = FileSystem.LineInput(2);
@@ -195,7 +195,7 @@ namespace SBuilderX
                         SL = 90d;
                         EL = -180;
                         WL = 180d;
-                        var loopTo1 = N - 1;
+                        int loopTo1 = N - 1;
                         for (M = 1; M <= loopTo1; M++)
                         {
                             // X = myLine.GLPoints(M).lat
@@ -265,7 +265,7 @@ namespace SBuilderX
                             moduleLINES.Lines[NoL].GLPoints = new modulePOINTS.GLPoint[N + 1];
                             d = (BLNEndWidth - BLNStartWidth) / (N - 1);
                             X0 = BLNStartWidth;
-                            var loopTo2 = N;
+                            int loopTo2 = N;
                             for (M = 1; M <= loopTo2; M++)
                             {
                                 moduleLINES.Lines[NoL].GLPoints[M].lat = myLine.GLPoints[M].lat;
@@ -324,7 +324,7 @@ namespace SBuilderX
                         WL = 180d;
                         d = (BLNEndWidth - BLNStartWidth) / (N - 1);
                         X0 = BLNStartWidth;
-                        var loopTo3 = N;
+                        int loopTo3 = N;
                         for (M = 1; M <= loopTo3; M++)
                         {
                             // X = myLine.GLPoints(M).lat

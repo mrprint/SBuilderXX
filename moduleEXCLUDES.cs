@@ -3,8 +3,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text;
-using System.Xml;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace SBuilderX
 {
@@ -118,7 +118,7 @@ namespace SBuilderX
             double dlat, dlon;
             bool Flag;
             IsExcludeSizeIndexRet = 0;
-            var loopTo = NoOfExcludes;
+            int loopTo = NoOfExcludes;
             for (N = 1; N <= loopTo; N++)
             {
                 dlat = Excludes[N].NLAT - Excludes[N].SLAT;
@@ -255,7 +255,7 @@ namespace SBuilderX
             int N;
             if (!ExcludeVIEW)
                 return;
-            var loopTo = NoOfExcludes;
+            int loopTo = NoOfExcludes;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Excludes[N].ELON < X1)
@@ -291,7 +291,7 @@ namespace SBuilderX
                 My.MyProject.Forms.FrmStart.SelectAllExcludesMenuItem.Checked = false;
             }
 
-            var loopTo = NoOfExcludes;
+            int loopTo = NoOfExcludes;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Flag)
@@ -312,10 +312,10 @@ namespace SBuilderX
             PointF P1 = default, P2 = default, P3 = default, P4 = default;
             int N;
             bool Flag;
-            var myPen = new Pen(Color.Black);
-            var myBrush = new SolidBrush(Color.SpringGreen);
+            Pen myPen = new Pen(Color.Black);
+            SolidBrush myBrush = new SolidBrush(Color.SpringGreen);
             double lat, lon, dlat, dlon;
-            var loopTo = NoOfExcludes;
+            int loopTo = NoOfExcludes;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Excludes[N].NLAT < moduleMAIN.LatDispSouth)
@@ -399,7 +399,7 @@ namespace SBuilderX
                 NoOfExcludesSelected = NoOfExcludesSelected - 1;
             if (N < NoOfExcludes)
             {
-                var loopTo = NoOfExcludes - 1;
+                int loopTo = NoOfExcludes - 1;
                 for (K = N; K <= loopTo; K++)
                 {
                     Excludes[K].Flag = Excludes[K + 1].Flag;
@@ -427,7 +427,7 @@ namespace SBuilderX
             IsExcludeSelectedRet = false;
             if (!ExcludeVIEW)
                 return IsExcludeSelectedRet;
-            var loopTo = NoOfExcludes;
+            int loopTo = NoOfExcludes;
             for (N = 1; N <= loopTo; N++)
             {
                 retval = IsPtInExclude(N, X, Y);
@@ -451,7 +451,7 @@ namespace SBuilderX
             X = moduleMAIN.LonDispCenter * moduleMAIN.PixelsPerLonDeg + X;
             Y = moduleMAIN.LatDispCenter * moduleMAIN.PixelsPerLatDeg - Y;
             IsPointInExcludeRet = 0;
-            var loopTo = NoOfExcludes;
+            int loopTo = NoOfExcludes;
             for (N = 1; N <= loopTo; N++)
             {
                 X1 = Excludes[N].WLON * moduleMAIN.PixelsPerLonDeg;
@@ -499,7 +499,7 @@ namespace SBuilderX
         internal static void MoveSelectedExcludes(double x, double y)
         {
             int N;
-            var loopTo = NoOfExcludes;
+            int loopTo = NoOfExcludes;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Excludes[N].Selected)
@@ -519,20 +519,20 @@ namespace SBuilderX
             string myFile = "000_" + moduleMAIN.ProjectName;
             myFile = myFile.Replace(" ", "_");
             a = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".xml";
-            var settings = new XmlWriterSettings()
+            XmlWriterSettings settings = new XmlWriterSettings()
             {
                 Indent = true,
                 Encoding = Encoding.GetEncoding(28591),
                 NewLineOnAttributes = true
             };
-            var writer = XmlWriter.Create(a, settings);
+            XmlWriter writer = XmlWriter.Create(a, settings);
             writer.WriteStartDocument();
             writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
             writer.WriteStartElement("FSData");
             writer.WriteAttributeString("version", "9.0");
             writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
             writer.WriteAttributeString("noNamespaceSchemaLocation", "http://www.w3.org/2001/XMLSchema-instance", "bglcomp.xsd");
-            var loopTo = NoOfExcludes;
+            int loopTo = NoOfExcludes;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Excludes[N].Selected)
@@ -566,7 +566,7 @@ namespace SBuilderX
             Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bglcomp.exe";
             b = @"work\" + myFile + ".xml";
-            var myProcess = new Process();
+            Process myProcess = new Process();
             myProcess = Process.Start(a, b);
             myProcess.WaitForExit();
             myProcess.Dispose();
@@ -590,7 +590,7 @@ namespace SBuilderX
                     File.Copy(a, moduleMAIN.BGLProjectFolder + @"\" + myFile + ".BGL", true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Copying BGL files failed! Try to close FSX.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

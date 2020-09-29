@@ -70,7 +70,7 @@ namespace SBuilderX
             A = A + "|Portable Network Graphics (*.PNG)|*.png";
             string B = "SBuilderX: Open Image File";
             string myFile = moduleFILE_IO.FileNameToOpen(A, B, "BMP");
-            var geoTiff = default(bool);
+            bool geoTiff = default(bool);
             int Cols = default, Rows = default;
             My.MyProject.Forms.FrmStart.Cursor = Cursors.AppStarting;
             if (!string.IsNullOrEmpty(myFile))
@@ -319,7 +319,7 @@ namespace SBuilderX
                 ImgMaps[NoOfMaps] = Image.FromStream(res.GetResponseStream());
                 res.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // MsgBox("Could not get a Arc Gis Map image!", MsgBoxStyle.Critical)
                 MessageBox.Show("Could not get an image at Zoom=" + moduleMAIN.Zoom + "!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -342,7 +342,7 @@ namespace SBuilderX
                     ImgMaps[NoOfMaps].Save(myfile);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("There was a problem saving the image!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -385,7 +385,7 @@ namespace SBuilderX
                 myfile = myfile + "get your_google_api_key, open SBuilderX.ini file and edit the following line" + Environment.NewLine;
                 myfile = myfile + "GoogleMapsAPI=your_google_api_key!" + Environment.NewLine + Environment.NewLine;
                 myfile = myfile + "Do you want to learn how to get a Google API key?";
-                var A = MessageBox.Show(myfile, "Google Maps API is missing", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult A = MessageBox.Show(myfile, "Google Maps API is missing", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (A == DialogResult.Yes)
                 {
                     myfile = "https://developers.google.com/maps/documentation/static-maps/get-api-key";
@@ -420,7 +420,7 @@ namespace SBuilderX
                 ImgMaps[NoOfMaps] = Image.FromStream(res.GetResponseStream());
                 res.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Could not get an image at Zoom=" + moduleMAIN.Zoom + "!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
@@ -442,7 +442,7 @@ namespace SBuilderX
                     ImgMaps[NoOfMaps].Save(myfile);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("There was a problem saving the image!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -490,14 +490,14 @@ namespace SBuilderX
             double lat, dlat;
             double merc, dmerc;
             double north_m, south_m;
-            var img = Image.FromFile(inputfile);
-            var imgformat = img.RawFormat;
+            Image img = Image.FromFile(inputfile);
+            ImageFormat imgformat = img.RawFormat;
             int rows = img.Height;
             int cols = img.Width;
-            var bmp = ImageFormat.Bmp;
-            var ms1 = new MemoryStream();
+            ImageFormat bmp = ImageFormat.Bmp;
+            MemoryStream ms1 = new MemoryStream();
             img.Save(ms1, bmp);
-            var inp = ms1.GetBuffer();
+            byte[] inp = ms1.GetBuffer();
             ms1.Close();
             img.Dispose();
             byte[] @out = (byte[])inp.Clone();
@@ -514,7 +514,7 @@ namespace SBuilderX
             south_m = YMercFromLat(South);
             dmerc = (north_m - south_m) / (rows - 1);
             lat = South + dlat;
-            var loopTo = rows - 2;
+            int loopTo = rows - 2;
             for (N = 1; N <= loopTo; N++)
             {
                 merc = YMercFromLat(lat);
@@ -531,7 +531,7 @@ namespace SBuilderX
                 lat = lat + dlat;
             }
 
-            var ms2 = new MemoryStream(@out);
+            MemoryStream ms2 = new MemoryStream(@out);
             img = Image.FromStream(ms2);
             img.Save(outfile, imgformat);
             ms2.Close();
@@ -608,7 +608,6 @@ namespace SBuilderX
 
         internal static void SetBitmapSeason()
         {
-            int R;
             int N;
             string A;
             My.MyProject.Forms.FrmStart.Cursor = Cursors.WaitCursor;
@@ -638,7 +637,7 @@ namespace SBuilderX
                     case var @case when @case == "Summer":
                         {
                             My.MyProject.Forms.FrmStart.SummerMapMenuItem.Checked = true;
-                            var loopTo = NoOfMaps;
+                            int loopTo = NoOfMaps;
                             for (N = 1; N <= loopTo; N++)
                             {
                                 A = Maps[N].BMPSu;
@@ -651,7 +650,7 @@ namespace SBuilderX
                     case var case1 when case1 == "Winter":
                         {
                             My.MyProject.Forms.FrmStart.WinterMapMenuItem.Checked = true;
-                            var loopTo1 = NoOfMaps;
+                            int loopTo1 = NoOfMaps;
                             for (N = 1; N <= loopTo1; N++)
                             {
                                 A = Maps[N].BMPWi;
@@ -664,7 +663,7 @@ namespace SBuilderX
                     case var case2 when case2 == "HardWinter":
                         {
                             My.MyProject.Forms.FrmStart.HardWinterMapMenuItem.Checked = true;
-                            var loopTo2 = NoOfMaps;
+                            int loopTo2 = NoOfMaps;
                             for (N = 1; N <= loopTo2; N++)
                             {
                                 A = Maps[N].BMPHw;
@@ -677,7 +676,7 @@ namespace SBuilderX
                     case var case3 when case3 == "Spring":
                         {
                             My.MyProject.Forms.FrmStart.SpringMapMenuItem.Checked = true;
-                            var loopTo3 = NoOfMaps;
+                            int loopTo3 = NoOfMaps;
                             for (N = 1; N <= loopTo3; N++)
                             {
                                 A = Maps[N].BMPSp;
@@ -690,7 +689,7 @@ namespace SBuilderX
                     case var case4 when case4 == "Fall":
                         {
                             My.MyProject.Forms.FrmStart.FallMapMenuItem.Checked = true;
-                            var loopTo4 = NoOfMaps;
+                            int loopTo4 = NoOfMaps;
                             for (N = 1; N <= loopTo4; N++)
                             {
                                 A = Maps[N].BMPFa;
@@ -703,7 +702,7 @@ namespace SBuilderX
                     case var case5 when case5 == "Night":
                         {
                             My.MyProject.Forms.FrmStart.NightMapMenuItem.Checked = true;
-                            var loopTo5 = NoOfMaps;
+                            int loopTo5 = NoOfMaps;
                             for (N = 1; N <= loopTo5; N++)
                             {
                                 A = Maps[N].BMPLm;
@@ -768,12 +767,12 @@ namespace SBuilderX
             {
                 int N;
                 double MapPixelsPerDegree;
-                var screen = new Rectangle();
-                var source = new RectangleF();
-                var units = GraphicsUnit.Pixel;
-                var mypen = new Pen(Color.Black);
-                var mybrush = new SolidBrush(modulePOINTS.UnselectedPointColor);
-                var loopTo = NoOfMaps;
+                Rectangle screen = new Rectangle();
+                RectangleF source = new RectangleF();
+                GraphicsUnit units = GraphicsUnit.Pixel;
+                Pen mypen = new Pen(Color.Black);
+                SolidBrush mybrush = new SolidBrush(modulePOINTS.UnselectedPointColor);
+                int loopTo = NoOfMaps;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (Maps[N].NLAT < moduleMAIN.LatDispSouth)
@@ -887,7 +886,7 @@ namespace SBuilderX
                 mypen.Dispose();
                 mybrush.Dispose();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 CheckMaps();
                 // MsgBox("Can not display maps! Map View was turned OFF!", MsgBoxStyle.Exclamation)
@@ -907,7 +906,7 @@ namespace SBuilderX
                 NoOfMapsSelected = NoOfMapsSelected - 1;
             if (N < NoOfMaps)
             {
-                var loopTo = NoOfMaps - 1;
+                int loopTo = NoOfMaps - 1;
                 for (K = N; K <= loopTo; K++)
                 {
                     Maps[K].Name = Maps[K + 1].Name;
@@ -943,7 +942,7 @@ namespace SBuilderX
             IsMapSelectedRet = false;
             if (!MapVIEW)
                 return IsMapSelectedRet;
-            var loopTo = NoOfMaps;
+            int loopTo = NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
                 retval = IsPointInMap(N, X, Y);
@@ -964,7 +963,7 @@ namespace SBuilderX
         internal static void MoveSelectedMaps(double X, double Y)
         {
             int N;
-            var loopTo = NoOfMaps;
+            int loopTo = NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Maps[N].Selected)
@@ -1036,7 +1035,7 @@ namespace SBuilderX
             int N;
             if (!MapVIEW)
                 return;
-            var loopTo = NoOfMaps;
+            int loopTo = NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Maps[N].ELON < X1)
@@ -1072,7 +1071,7 @@ namespace SBuilderX
                 My.MyProject.Forms.FrmStart.SelectAllMapsMenuItem.Checked = false;
             }
 
-            var loopTo = NoOfMaps;
+            int loopTo = NoOfMaps;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Flag)
@@ -1094,15 +1093,15 @@ namespace SBuilderX
             bool IsTiff = false;
             bool Swap = false;
             bool Flag;
-            var tiff = ImageFormat.Tiff;
-            var jpeg = ImageFormat.Jpeg;
-            var bmp = ImageFormat.Bmp;
-            var png = ImageFormat.Png;
-            var gif = ImageFormat.Gif;
+            ImageFormat tiff = ImageFormat.Tiff;
+            ImageFormat jpeg = ImageFormat.Jpeg;
+            ImageFormat bmp = ImageFormat.Bmp;
+            ImageFormat png = ImageFormat.Png;
+            ImageFormat gif = ImageFormat.Gif;
 
             try
             {
-                var BB = new byte[2];
+                byte[] BB = new byte[2];
 
                 // FileOpen(3, myFile, OpenMode.Binary)
                 // FileGet(3, BB)
@@ -1156,9 +1155,9 @@ namespace SBuilderX
                 // Get the GeoTiff PropertyItems property from image.
                 int N;
                 byte[] bytes;
-                var piScale = ImgMaps[NoOfMaps].GetPropertyItem(33550);
-                var piTiePoint = ImgMaps[NoOfMaps].GetPropertyItem(33922);
-                var piGeoDir = ImgMaps[NoOfMaps].GetPropertyItem(34735);
+                PropertyItem piScale = ImgMaps[NoOfMaps].GetPropertyItem(33550);
+                PropertyItem piTiePoint = ImgMaps[NoOfMaps].GetPropertyItem(33922);
+                PropertyItem piGeoDir = ImgMaps[NoOfMaps].GetPropertyItem(34735);
 
                 // check the GeoKey for valid geographic projection and WGS84 datum
                 N = piGeoDir.Value.Length;
@@ -1234,7 +1233,7 @@ namespace SBuilderX
             F2 = false;
             N = arr.Length;
             N = (long)(8d * (int)(N / 8d) - 1d);
-            var loopTo = N;
+            long loopTo = N;
             for (J = 8L; J <= loopTo; J += 8L)
             {
                 key = (short)BitConverter.ToUInt16(arr, (int)J);
@@ -1264,7 +1263,7 @@ namespace SBuilderX
             byte B0;
             N = arr.Length;
             N = (int)(8d * (int)(N / 8d) - 1d);
-            var loopTo = N;
+            int loopTo = N;
             for (J = 0; J <= loopTo; J += 8)
             {
                 B0 = arr[J];

@@ -86,12 +86,12 @@ namespace SBuilderX
         {
             if (Init)
                 return;
-            var mycolor = Color.FromArgb(Alpha, Red, Green, Blue);
-            var mybrush1 = new SolidBrush(mycolor);
-            var mybrush2 = new SolidBrush(Color.White);
-            var mybrush3 = new SolidBrush(Color.Black);
-            var myPen = new Pen(Color.Black);
-            var drawFont = new Font("Arial", 46f);
+            Color mycolor = Color.FromArgb(Alpha, Red, Green, Blue);
+            SolidBrush mybrush1 = new SolidBrush(mycolor);
+            SolidBrush mybrush2 = new SolidBrush(Color.White);
+            SolidBrush mybrush3 = new SolidBrush(Color.Black);
+            Pen myPen = new Pen(Color.Black);
+            Font drawFont = new Font("Arial", 46f);
             Graphics g;
             g = e.Graphics;
             g.FillRectangle(mybrush2, new Rectangle(15, 20, 110, 80));
@@ -151,7 +151,7 @@ namespace SBuilderX
                     Alpha = 255;
                 UpDateValues();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Alpha = EC;
                 txtA.Text = EC.ToString();
@@ -172,7 +172,7 @@ namespace SBuilderX
                     Red = 255;
                 UpDateValues();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Red = EC;
                 txtR.Text = EC.ToString();
@@ -193,7 +193,7 @@ namespace SBuilderX
                     Green = 255;
                 UpDateValues();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Green = EC;
                 txtG.Text = EC.ToString();
@@ -214,7 +214,7 @@ namespace SBuilderX
                     Blue = 255;
                 UpDateValues();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Blue = EC;
                 txtB.Text = EC.ToString();
@@ -373,7 +373,7 @@ namespace SBuilderX
 
         public void SetThisColor(int N)
         {
-            var myColor = default(Color);
+            Color myColor = default(Color);
             Label1.BorderStyle = BorderStyle.None;
             Label2.BorderStyle = BorderStyle.None;
             Label3.BorderStyle = BorderStyle.None;

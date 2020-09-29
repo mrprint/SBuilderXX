@@ -36,7 +36,7 @@ namespace SBuilderX
         {
             double GetHeightRet = default;
             int NP = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
-            var L = new double[NP + 1];
+            double[] L = new double[NP + 1];
             L[1] = 0d;
             for (int K = 2, loopTo = NP; K <= loopTo; K++)
                 L[K] = L[K - 1] + GetDistanceP1P2(modulePOPUP.POPIndex, K - 1, K);
@@ -100,9 +100,9 @@ namespace SBuilderX
         {
             int K, NP;
             NP = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
-            var L = new double[NP + 1];
+            double[] L = new double[NP + 1];
             L[1] = 0d;
-            var loopTo = NP;
+            int loopTo = NP;
             for (K = 2; K <= loopTo; K++)
                 L[K] = L[K - 1] + GetDistanceP1P2(modulePOPUP.POPIndex, K - 1, K);
             double W = L[NP] / 2d;
@@ -113,7 +113,7 @@ namespace SBuilderX
             K1 = K1 * W / 2d;
             double X2, X3;
             moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[1].alt = 0d;
-            var loopTo1 = NP;
+            int loopTo1 = NP;
             for (K = 2; K <= loopTo1; K++)
             {
                 if (L[K] > W)

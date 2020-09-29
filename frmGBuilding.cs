@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SlimDX;
+using SlimDX.Direct3D9;
+using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using SlimDX;
-using SlimDX.Direct3D9;
 
 namespace SBuilderX
 {
@@ -369,8 +369,8 @@ namespace SBuilderX
             }
 
             Show();
-            var s = new object();
-            var e = new EventArgs();
+            object s = new object();
+            EventArgs e = new EventArgs();
             RebuildBuilding(s, e);
             IsInit = false;
             while (Created)
@@ -382,8 +382,8 @@ namespace SBuilderX
 
         private bool InitializeGraphics()
         {
-            var d3D = new Direct3D();
-            var presentParams = new PresentParameters();
+            Direct3D d3D = new Direct3D();
+            PresentParameters presentParams = new PresentParameters();
             try
             {
                 renderDevice = new Device(d3D, 0, DeviceType.Hardware, imgGenB.Handle, CreateFlags.HardwareVertexProcessing, presentParams);
@@ -397,7 +397,7 @@ namespace SBuilderX
                 pause = false;
                 return true;
             }
-            catch (Direct3D9Exception e)
+            catch (Direct3D9Exception)
             {
                 return false;
             }
@@ -517,7 +517,7 @@ namespace SBuilderX
             int N;
 
             // never we have 300 vertices; they are i at the end
-            var v = new VertexPT[301];
+            VertexPT[] v = new VertexPT[301];
             int i = 0;
             float sX0, sX1, y0, y1, sZ0, sZ1, tX, tY, tZ, gY, gZ, fX, fY;
             float t0 = 0f;
@@ -541,7 +541,7 @@ namespace SBuilderX
                 tX = texIndexBottomX;
                 if (sizBottomY > 0f)
                 {
-                    var loopTo = sides;
+                    int loopTo = sides;
                     for (N = 1; N <= loopTo; N++)
                     {
                         sX0 = (float)(rX * Math.Cos((N - 1) * pi2 - pi1));
@@ -562,7 +562,7 @@ namespace SBuilderX
                 tY = texIndexWindowY;
                 if (sizWindowY > 0f)
                 {
-                    var loopTo1 = sides;
+                    int loopTo1 = sides;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         sX0 = (float)(rX * Math.Cos((N - 1) * pi2 - pi1));
@@ -582,7 +582,7 @@ namespace SBuilderX
                 tX = texIndexTopX;
                 if (sizTopY > 0f)
                 {
-                    var loopTo2 = sides;
+                    int loopTo2 = sides;
                     for (N = 1; N <= loopTo2; N++)
                     {
                         sX0 = (float)(rX * Math.Cos((N - 1) * pi2 - pi1));
@@ -602,7 +602,7 @@ namespace SBuilderX
                 y1 = y0 + sizRoofY;
                 tX = texIndexRoofX;
                 tZ = texIndexRoofZ;
-                var loopTo3 = sides;
+                int loopTo3 = sides;
                 for (N = 1; N <= loopTo3; N++)
                 {
                     sX0 = (float)(rX * Math.Cos((N - 1) * pi2 - pi1));
@@ -833,13 +833,13 @@ namespace SBuilderX
             // MsgBox(i.ToString & "  " & sizeVector.ToString) ' size vector should be 20 (in bytes)
 
             vertexBuffer = new VertexBuffer(renderDevice, sizeVector * i, Usage.WriteOnly, VertexFormat.Position | VertexFormat.Texture2, Pool.Managed);
-            var stream = vertexBuffer.Lock(0, 0, LockFlags.None);
+            DataStream stream = vertexBuffer.Lock(0, 0, LockFlags.None);
             stream.WriteRange(v);
             vertexBuffer.Unlock();
-            var C = Color.White;
+            Color C = Color.White;
 
             // this time there will be 43 vertices, no need to ReDim!
-            var v0 = new VertexPC[44];
+            VertexPC[] v0 = new VertexPC[44];
             i = -1;
             sX0 = -6 * Grid;
             sZ0 = -5 * Grid;
@@ -876,7 +876,7 @@ namespace SBuilderX
             sizeVector = Marshal.SizeOf(typeof(VertexPC));
             // MsgBox(i.ToString & "  " & sizeVector.ToString)
             vertexBuffer0 = new VertexBuffer(renderDevice, sizeVector * 44, Usage.WriteOnly, VertexFormat.Position | VertexFormat.Diffuse, Pool.Managed);
-            var stream0 = vertexBuffer0.Lock(0, 0, LockFlags.None);
+            DataStream stream0 = vertexBuffer0.Lock(0, 0, LockFlags.None);
             stream0.WriteRange(v0);
             vertexBuffer0.Unlock();
         } // OnCreateVertexBuffer
@@ -920,7 +920,7 @@ namespace SBuilderX
                 if (sizBottomY > 0f)
                 {
                     renderDevice.SetTexture(0, textureB);
-                    var loopTo = sides;
+                    int loopTo = sides;
                     for (N = 1; N <= loopTo; N++)
                     {
                         renderDevice.DrawPrimitives(PrimitiveType.TriangleFan, i + 0, 2);
@@ -931,7 +931,7 @@ namespace SBuilderX
                 if (sizWindowY > 0f)
                 {
                     renderDevice.SetTexture(0, textureW);
-                    var loopTo1 = sides;
+                    int loopTo1 = sides;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         renderDevice.DrawPrimitives(PrimitiveType.TriangleFan, i + 0, 2);
@@ -942,7 +942,7 @@ namespace SBuilderX
                 if (sizTopY > 0f)
                 {
                     renderDevice.SetTexture(0, textureT);
-                    var loopTo2 = sides;
+                    int loopTo2 = sides;
                     for (N = 1; N <= loopTo2; N++)
                     {
                         renderDevice.DrawPrimitives(PrimitiveType.TriangleFan, i + 0, 2);
@@ -951,7 +951,7 @@ namespace SBuilderX
                 }
 
                 renderDevice.SetTexture(0, textureR);
-                var loopTo3 = sides;
+                int loopTo3 = sides;
                 for (N = 1; N <= loopTo3; N++)
                 {
                     renderDevice.DrawPrimitives(PrimitiveType.TriangleList, i + 0, 1);
@@ -1082,7 +1082,7 @@ namespace SBuilderX
             {
                 textureB = Texture.FromFile(renderDevice, textBfile);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 textureB = Texture.FromFile(renderDevice, texFolder + "bottom00.jpg");
             }
@@ -1100,7 +1100,7 @@ namespace SBuilderX
             {
                 textureW = Texture.FromFile(renderDevice, textWfile);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 textureW = Texture.FromFile(renderDevice, texFolder + "window00.jpg");
             }
@@ -1118,7 +1118,7 @@ namespace SBuilderX
             {
                 textureT = Texture.FromFile(renderDevice, textTfile);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 textureT = Texture.FromFile(renderDevice, texFolder + "top00.jpg");
             }
@@ -1136,7 +1136,7 @@ namespace SBuilderX
             {
                 textureR = Texture.FromFile(renderDevice, textRfile);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 textureR = Texture.FromFile(renderDevice, texFolder + "roof00.jpg");
             }
@@ -1163,7 +1163,7 @@ namespace SBuilderX
             {
                 textureF = Texture.FromFile(renderDevice, textFfile);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 textureF = Texture.FromFile(renderDevice, texFolder + "face00.jpg");
             }
@@ -1190,7 +1190,7 @@ namespace SBuilderX
             {
                 textureG = Texture.FromFile(renderDevice, textGfile);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 textureG = Texture.FromFile(renderDevice, texFolder + "gable00.jpg");
             }
@@ -1209,7 +1209,7 @@ namespace SBuilderX
             {
                 textureB = Texture.FromFile(renderDevice, textBfile);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 textureB = Texture.FromFile(renderDevice, texFolder + "bottom00.jpg");
             }
@@ -1220,7 +1220,7 @@ namespace SBuilderX
             {
                 textureW = Texture.FromFile(renderDevice, textWfile);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 textureW = Texture.FromFile(renderDevice, texFolder + "window00.jpg");
             }
@@ -1231,7 +1231,7 @@ namespace SBuilderX
             {
                 textureT = Texture.FromFile(renderDevice, textTfile);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 textureT = Texture.FromFile(renderDevice, texFolder + "top00.jpg");
             }
@@ -1242,7 +1242,7 @@ namespace SBuilderX
             {
                 textureR = Texture.FromFile(renderDevice, textRfile);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 textureR = Texture.FromFile(renderDevice, texFolder + "roof00.jpg");
             }
@@ -1262,7 +1262,7 @@ namespace SBuilderX
             {
                 textureF = Texture.FromFile(renderDevice, textFfile);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 textureF = Texture.FromFile(renderDevice, texFolder + "face00.jpg");
             }
@@ -1282,7 +1282,7 @@ namespace SBuilderX
             {
                 textureG = Texture.FromFile(renderDevice, textGfile);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 textureG = Texture.FromFile(renderDevice, texFolder + "gable00.jpg");
             }

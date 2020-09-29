@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -147,7 +147,7 @@ namespace SBuilderX
         internal static void ShowASD(int C, int M)
         {
             string B, A, Name, FileName;
-            int J, N;
+            int N;
             FileName = MacroCategories[C].MacroObjects[M].File;
             FileName = MacroASDPath + @"\" + FileName;
             MacroBitmap = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\na.bmp";
@@ -598,7 +598,7 @@ namespace SBuilderX
             }
 
             NewCat = true;
-            var loopTo = NoOfMacroCategories;
+            int loopTo = NoOfMacroCategories;
             for (N = 1; N <= loopTo; N++)
             {
                 if ((MacroCategories[N].Name ?? "") == (Name ?? ""))

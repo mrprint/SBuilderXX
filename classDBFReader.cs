@@ -26,23 +26,11 @@ namespace SBuilderX
         private Field[] Fields = new Field[129];
         private int NoOfRecords;
 
-        public int RecordCount
-        {
-            get
-            {
-                return NoOfRecords;
-            }
-        }
+        public int RecordCount => NoOfRecords;
 
         private int NoOfFields;
 
-        public int FieldCount
-        {
-            get
-            {
-                return NoOfFields;
-            }
-        }
+        public int FieldCount => NoOfFields;
 
         public Field get_FieldInfo(int N)
         {
@@ -67,7 +55,7 @@ namespace SBuilderX
             int N, J, K;
             J = SF[F];
             K = J + Fields[F].Lenght - 1;
-            var loopTo = K;
+            int loopTo = K;
             for (N = J; N <= loopTo; N++)
             {
                 B = BB[R, N];
@@ -85,8 +73,8 @@ namespace SBuilderX
             bool FileReaderRet = default;
             FileReaderRet = false;
             string myFile = Path.ChangeExtension(filename, ".dbf");
-            var fs = new FileStream(myFile, FileMode.Open, FileAccess.Read);
-            var reader = new BinaryReader(fs);
+            FileStream fs = new FileStream(myFile, FileMode.Open, FileAccess.Read);
+            BinaryReader reader = new BinaryReader(fs);
             int LenHeader, LenRecord;
             byte B;
             string S;
@@ -156,10 +144,10 @@ namespace SBuilderX
                 Array.Resize(ref Fields, NoOfFields);
                 Array.Resize(ref SF, NoOfFields);
                 BB = new byte[RecordCount, LenRecord];
-                var loopTo = RecordCount - 1;
+                int loopTo = RecordCount - 1;
                 for (R = 0; R <= loopTo; R++)
                 {
-                    var loopTo1 = LenRecord - 1;
+                    int loopTo1 = LenRecord - 1;
                     for (C = 0; C <= loopTo1; C++)
                         BB[R, C] = reader.ReadByte();
                     if (BB[R, 0] == 32)

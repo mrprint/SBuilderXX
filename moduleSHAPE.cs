@@ -49,7 +49,7 @@ namespace SBuilderX
 
         internal static void AppendSHPFile(string filename)
         {
-            var SHP = new SHPReader();
+            SHPReader SHP = new SHPReader();
             int shpType;
             int NoOfItems = 0;
             double xMin, xMax, yMin, yMax;
@@ -152,7 +152,7 @@ namespace SBuilderX
             DBFReader.FieldType[] FieldTypes;
 
             // open the dbase file
-            var DBF = new DBFReader();
+            DBFReader DBF = new DBFReader();
             if (!DBF.FileReader(filename))
             {
                 MessageBox.Show("SBuilderX can not read the database Shapefile!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -177,11 +177,11 @@ namespace SBuilderX
             // these are to catch the case of FWX lines
             bool IsLanes = false;
             bool IsDirT = false;
-            var LanesField = default(int);
-            var DirTField = default(int);
-            var myLanes = new byte[2];
-            var myDirT = new string[2];
-            var loopTo = NoOfFields - 1;
+            int LanesField = default(int);
+            int DirTField = default(int);
+            byte[] myLanes = new byte[2];
+            string[] myDirT = new string[2];
+            int loopTo = NoOfFields - 1;
             for (N = 0; N <= loopTo; N++)
             {
                 FieldTypes[N] = DBF.get_FieldInfo(N).Type;
@@ -291,7 +291,7 @@ namespace SBuilderX
                 myLanes = new byte[NoOfItems];
             if (IsDirT)
                 myDirT = new string[NoOfItems];
-            var loopTo1 = NoOfItems - 1;
+            int loopTo1 = NoOfItems - 1;
             for (N = 0; N <= loopTo1; N++)
             {
                 if (ShapeLineNameField == 0)
@@ -441,16 +441,16 @@ namespace SBuilderX
             try
             {
                 // open shape file
-                var SHP = new SHPReader();
+                SHPReader SHP = new SHPReader();
                 SHP.FileReader(filename);
-                var loopTo2 = NoOfItems;
+                int loopTo2 = NoOfItems;
                 for (N = 1; N <= loopTo2; N++)
                 {
                     SHP.MoveTo(N);  // set the current record
                     NV = SHP.NumPoints;
                     myLines[N - 1].NoOfPoints = NV;
                     myLines[N - 1].GLPoints = new modulePOINTS.GLPoint[NV + 1];
-                    var loopTo3 = NV;
+                    int loopTo3 = NV;
                     for (K = 1; K <= loopTo3; K++)
                     {
                         myLines[N - 1].GLPoints[K].lon = SHP.get_Points(K).X;
@@ -471,7 +471,7 @@ namespace SBuilderX
                 // close the shape file
                 SHP.Close();
                 Array.Resize(ref moduleLINES.Lines, moduleLINES.NoOfLines + NoOfItems + 1);
-                var loopTo4 = NoOfItems;
+                int loopTo4 = NoOfItems;
                 for (N = 1; N <= loopTo4; N++)
                 {
                     moduleLINES.Lines[moduleLINES.NoOfLines + N] = myLines[N - 1];
@@ -494,7 +494,7 @@ namespace SBuilderX
             string GetLineTypeFromGuidRet = default;
             GetLineTypeFromGuidRet = "";
             int K;
-            var loopTo = moduleLINES.NoOfLineTypes;
+            int loopTo = moduleLINES.NoOfLineTypes;
             for (K = 1; K <= loopTo; K++)
             {
                 if ((moduleLINES.LineTypes[K].Guid ?? "") == (guid ?? ""))
@@ -525,7 +525,7 @@ namespace SBuilderX
             DBFReader.FieldType[] FieldTypes;
 
             // open the dbase file
-            var DBF = new DBFReader();
+            DBFReader DBF = new DBFReader();
             if (!DBF.FileReader(filename))
             {
                 MessageBox.Show("SBuilderX can not read the database Shapefile!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -543,7 +543,7 @@ namespace SBuilderX
             FieldNames = new string[NoOfFields];
             FieldTypes = new DBFReader.FieldType[NoOfFields];
             int TypeField = -1;  // added because of Luis Feliz - type for traffic lines was lost!
-            var loopTo = NoOfFields - 1;
+            int loopTo = NoOfFields - 1;
             for (N = 0; N <= loopTo; N++)
             {
                 FieldTypes[N] = DBF.get_FieldInfo(N).Type;
@@ -618,7 +618,7 @@ namespace SBuilderX
             myNames = new string[NoOfItems];
             myGuids = new string[NoOfItems];
             myTypes = new string[NoOfItems];
-            var loopTo1 = NoOfItems - 1;
+            int loopTo1 = NoOfItems - 1;
             for (N = 0; N <= loopTo1; N++)
             {
                 if (ShapePolyNameField == 0)
@@ -717,14 +717,14 @@ namespace SBuilderX
             try
             {
                 // open shape file
-                var SHP = new SHPReader();
+                SHPReader SHP = new SHPReader();
                 SHP.FileReader(filename);
 
                 // K is to count number of polygons
                 K = modulePOLYS.NoOfPolys;
                 Array.Resize(ref modulePOLYS.Polys, K + 100 + 1);   // allow 100 polygons to be added!
                 int[] P;  // to store the index of the starting vertice of the part
-                var loopTo2 = NoOfItems;
+                int loopTo2 = NoOfItems;
                 for (N = 1; N <= loopTo2; N++)     // NoOfItems taken from the DBF file also means parent polys!
                 {
                     SHP.MoveTo(N);  // set the current record
@@ -733,12 +733,12 @@ namespace SBuilderX
                     P = new int[NP];
                     if (NP > 1)
                     {
-                        var loopTo3 = NP;
+                        int loopTo3 = NP;
                         for (J = 1; J <= loopTo3; J++)
                             P[J - 1] = SHP.get_Begins(J);
                     }
 
-                    var loopTo4 = NP;
+                    int loopTo4 = NP;
                     for (J = 1; J <= loopTo4; J++)
                     {
                         K = K + 1;
@@ -757,7 +757,7 @@ namespace SBuilderX
                         {
                             modulePOLYS.Polys[K].Childs = new int[NP];
                             modulePOLYS.Polys[K].NoOfChilds = NP - 1;
-                            var loopTo5 = NP - 1;
+                            int loopTo5 = NP - 1;
                             for (I = 1; I <= loopTo5; I++)
                                 modulePOLYS.Polys[K].Childs[I] = K + I;
                             // N1 = 1
@@ -790,7 +790,7 @@ namespace SBuilderX
 
                         modulePOLYS.Polys[K].GPoints = new modulePOINTS.GPoint[N2 - N1 + 1 + 1];
                         modulePOLYS.Polys[K].NoOfPoints = N2 - N1 + 1;
-                        var loopTo6 = N2;
+                        int loopTo6 = N2;
                         for (I = N1; I <= loopTo6; I++)
                         {
                             M = I - N1 + 1;
@@ -850,7 +850,7 @@ namespace SBuilderX
             string GetPolyTypeFromGuidRet = default;
             GetPolyTypeFromGuidRet = "";
             int K;
-            var loopTo = modulePOLYS.NoOfPolyTypes;
+            int loopTo = modulePOLYS.NoOfPolyTypes;
             for (K = 1; K <= loopTo; K++)
             {
                 if ((modulePOLYS.PolyTypes[K].Guid ?? "") == (guid ?? ""))
@@ -866,7 +866,7 @@ namespace SBuilderX
         internal static void ExportSHPLines(string filename)
         {
             int N;
-            var DBF = new DBFWriter();
+            DBFWriter DBF = new DBFWriter();
             My.MyProject.Forms.FrmStart.Cursor = Cursors.WaitCursor;
 
             try
@@ -889,7 +889,7 @@ namespace SBuilderX
                     return;
 
                 // populate the fields
-                var loopTo = moduleLINES.NoOfLines;
+                int loopTo = moduleLINES.NoOfLines;
                 for (N = 1; N <= loopTo; N++)
                 {
                     DBF.AddRecord(N, 1, moduleLINES.Lines[N].Name);
@@ -922,7 +922,7 @@ namespace SBuilderX
             {
                 // to be used by SHX creation and DBFile creation
                 int nRecords = NumberOfRecordsInPolys();
-                var DBF = new DBFWriter();
+                DBFWriter DBF = new DBFWriter();
                 if (!DBF.FileWriter(filename, nRecords))
                     return;
 
@@ -942,7 +942,7 @@ namespace SBuilderX
 
                 // populate the fields
                 K = 0;
-                var loopTo = modulePOLYS.NoOfPolys;
+                int loopTo = modulePOLYS.NoOfPolys;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (modulePOLYS.Polys[N].NoOfChilds >= 0)
@@ -1010,8 +1010,8 @@ namespace SBuilderX
                 int[] RecLenght;
                 RecLenght = new int[nRecords + 1];
                 int ShapeType = 15;   // polygonZ
-                var fs = new FileStream(filename, FileMode.Create);
-                var bw = new BinaryWriter(fs);
+                FileStream fs = new FileStream(filename, FileMode.Create);
+                BinaryWriter bw = new BinaryWriter(fs);
                 bw.Write(BigEndian(9994));   // write fixed initial number
                 bw.Seek(96, SeekOrigin.Current);
                 REC = 0;
@@ -1022,7 +1022,7 @@ namespace SBuilderX
                 ZZmin = 100000d;
                 ZZmax = -100000;
                 int[] P;   // point to the 1st index of a part in the sequence of points
-                var loopTo = modulePOLYS.NoOfPolys;
+                int loopTo = modulePOLYS.NoOfPolys;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (modulePOLYS.Polys[N].NoOfChilds >= 0)
@@ -1038,7 +1038,7 @@ namespace SBuilderX
                             P[1] = 0;     // always zero!
                                           // find nPoints for the record and build P()
                             nPoints = modulePOLYS.Polys[N].NoOfPoints + 1;
-                            var loopTo1 = nParts;
+                            int loopTo1 = nParts;
                             for (M = 2; M <= loopTo1; M++)
                             {
                                 P[M] = nPoints;
@@ -1054,7 +1054,7 @@ namespace SBuilderX
                             Xmax = -180;
                             Ymin = 90d;
                             Ymax = -90;
-                            var loopTo2 = modulePOLYS.Polys[N].NoOfPoints;
+                            int loopTo2 = modulePOLYS.Polys[N].NoOfPoints;
                             for (J = 1; J <= loopTo2; J++)
                             {
                                 X = modulePOLYS.Polys[N].GPoints[J].lon;
@@ -1075,11 +1075,11 @@ namespace SBuilderX
                             bw.Write(X);
                             Y = modulePOLYS.Polys[N].GPoints[1].lat;
                             bw.Write(Y);
-                            var loopTo3 = nParts;
+                            int loopTo3 = nParts;
                             for (M = 2; M <= loopTo3; M++)
                             {
                                 K = modulePOLYS.Polys[N].Childs[M - 1];
-                                var loopTo4 = modulePOLYS.Polys[K].NoOfPoints;
+                                int loopTo4 = modulePOLYS.Polys[K].NoOfPoints;
                                 for (J = 1; J <= loopTo4; J++)
                                 {
                                     X = modulePOLYS.Polys[K].GPoints[J].lon;
@@ -1106,7 +1106,7 @@ namespace SBuilderX
                             bw.Seek(16, SeekOrigin.Current);     // leave space for Zmin & Zmax
                             Zmin = 100000d;
                             Zmax = -100000;
-                            var loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
+                            int loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
                             for (J = 1; J <= loopTo5; J++)
                             {
                                 Z = modulePOLYS.Polys[N].GPoints[J].alt;
@@ -1119,11 +1119,11 @@ namespace SBuilderX
 
                             Z = modulePOLYS.Polys[N].GPoints[1].alt;
                             bw.Write(Z);
-                            var loopTo6 = nParts;
+                            int loopTo6 = nParts;
                             for (M = 2; M <= loopTo6; M++)
                             {
                                 K = modulePOLYS.Polys[N].Childs[M - 1];
-                                var loopTo7 = modulePOLYS.Polys[K].NoOfPoints;
+                                int loopTo7 = modulePOLYS.Polys[K].NoOfPoints;
                                 for (J = 1; J <= loopTo7; J++)
                                 {
                                     Z = modulePOLYS.Polys[K].GPoints[J].alt;
@@ -1168,7 +1168,7 @@ namespace SBuilderX
                             bw.Write(nParts);
                             bw.Write(nPoints);    // total number of points
                             bw.Write(P[1]);       // the index for the first point of the first part 
-                            var loopTo8 = nParts;
+                            int loopTo8 = nParts;
                             for (M = 2; M <= loopTo8; M++)
                                 bw.Write(P[M]);   // the index for the first point of part M
                                                   // do not forget to fill Zmin & Zmax
@@ -1219,7 +1219,7 @@ namespace SBuilderX
                 bw.Write(0d);     // Mmin
                 bw.Write(0d);     // Mmax
                                   // bw.Seek(16, SeekOrigin.Current)  ' skip Mmin and Mmax
-                var loopTo9 = nRecords;
+                int loopTo9 = nRecords;
                 for (N = 1; N <= loopTo9; N++)
                 {
                     bw.Write(BigEndian(RecOffset[N]));
@@ -1251,7 +1251,7 @@ namespace SBuilderX
 
             try
             {
-                int N, M, J, K, REC, np;
+                int N, J, REC;
                 double Xmin, Xmax;
                 double Ymin, Ymax;
                 double Zmin, Zmax;
@@ -1280,8 +1280,8 @@ namespace SBuilderX
                 int[] RecLenght;
                 RecLenght = new int[nRecords + 1];
                 int ShapeType = 13;   // polylineZ
-                var fs = new FileStream(filename, FileMode.Create);
-                var bw = new BinaryWriter(fs);
+                FileStream fs = new FileStream(filename, FileMode.Create);
+                BinaryWriter bw = new BinaryWriter(fs);
                 bw.Write(BigEndian(9994));   // write fixed initial number
                 bw.Seek(96, SeekOrigin.Current);
                 XXmin = 180d;
@@ -1291,7 +1291,7 @@ namespace SBuilderX
                 ZZmin = 100000d;
                 ZZmax = -100000;
                 REC = 0;
-                var loopTo = moduleLINES.NoOfLines;
+                int loopTo = moduleLINES.NoOfLines;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (type == "ALL" | (type ?? "") == ((moduleLINES.Lines[N].Type.Length >= 3) ? moduleLINES.Lines[N].Type.Substring(0, 3) : ""))
@@ -1310,7 +1310,7 @@ namespace SBuilderX
                         Xmax = -180;
                         Ymin = 90d;
                         Ymax = -90;
-                        var loopTo1 = nPoints;
+                        int loopTo1 = nPoints;
                         for (J = 1; J <= loopTo1; J++)
                         {
                             X = moduleLINES.Lines[N].GLPoints[J].lon;
@@ -1331,7 +1331,7 @@ namespace SBuilderX
                         bw.Seek(16, SeekOrigin.Current);     // leave space for Zmin & Zmax
                         Zmin = 100000d;
                         Zmax = -100000;
-                        var loopTo2 = nPoints;
+                        int loopTo2 = nPoints;
                         for (J = 1; J <= loopTo2; J++)
                         {
                             Z = moduleLINES.Lines[N].GLPoints[J].alt;
@@ -1419,7 +1419,7 @@ namespace SBuilderX
                 bw.Write(0d);     // Mmin
                 bw.Write(0d);     // Mmax
                                   // bw.Seek(16, SeekOrigin.Current)  ' skip Mmin and Mmax
-                var loopTo3 = nRecords;
+                int loopTo3 = nRecords;
                 for (N = 1; N <= loopTo3; N++)
                 {
                     bw.Write(BigEndian(RecOffset[N]));
@@ -1445,7 +1445,7 @@ namespace SBuilderX
 
             // returns the big endian representation of a Int32 number
             byte BB;
-            var B = BitConverter.GetBytes(n);
+            byte[] B = BitConverter.GetBytes(n);
             BB = B[0];
             B[0] = B[3];
             B[3] = BB;
@@ -1461,7 +1461,7 @@ namespace SBuilderX
             int NumberOfRecordsInSelectedLinesRet = default;
             int N;
             NumberOfRecordsInSelectedLinesRet = 0;
-            var loopTo = moduleLINES.NoOfLines;
+            int loopTo = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (moduleLINES.Lines[N].Selected)
@@ -1481,7 +1481,7 @@ namespace SBuilderX
             int NumberOfRecordsInPolysRet = default;
             int N;
             NumberOfRecordsInPolysRet = 0;
-            var loopTo = modulePOLYS.NoOfPolys;
+            int loopTo = modulePOLYS.NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (modulePOLYS.Polys[N].NoOfChilds >= 0)
@@ -1498,7 +1498,7 @@ namespace SBuilderX
             int NumberOfRecordsInSelectedPolysRet = default;
             int N;
             NumberOfRecordsInSelectedPolysRet = 0;
-            var loopTo = modulePOLYS.NoOfPolys;
+            int loopTo = modulePOLYS.NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (modulePOLYS.Polys[N].Selected)
@@ -1528,7 +1528,7 @@ namespace SBuilderX
 
             // to be used by SHX creation and DBFile creation
             int nRecords = NumberOfRecordsInSelectedPolys(type);
-            var DBF = new DBFWriter();
+            DBFWriter DBF = new DBFWriter();
             if (!DBF.FileWriter(filename, nRecords))
                 return;
 
@@ -1558,12 +1558,12 @@ namespace SBuilderX
             // UiidTrail = "-0000-0000-0000-000000000000}"
             Guid myGuid;
             myGuid = Guid.NewGuid();
-            var GS = myGuid.ToString("B");
+            string GS = myGuid.ToString("B");
             UiidTrail = GS.Substring(GS.Length - 29).ToUpper();
 
             // populate the fields
             K = 0;
-            var loopTo = modulePOLYS.NoOfPolys;
+            int loopTo = modulePOLYS.NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (modulePOLYS.Polys[N].Selected)
@@ -1610,7 +1610,7 @@ namespace SBuilderX
             double X;
             Flag = true;
             X = modulePOLYS.Polys[N].GPoints[1].alt;
-            var loopTo = modulePOLYS.Polys[N].NoOfPoints;
+            int loopTo = modulePOLYS.Polys[N].NoOfPoints;
             for (K = 2; K <= loopTo; K++)
             {
                 if (X != modulePOLYS.Polys[N].GPoints[K].alt)
@@ -1635,7 +1635,7 @@ namespace SBuilderX
             N2 = 1;
             X1 = modulePOLYS.Polys[N].GPoints[1].lon;
             X2 = modulePOLYS.Polys[N].GPoints[1].lon;
-            var loopTo1 = NP;
+            int loopTo1 = NP;
             for (J = 1; J <= loopTo1; J++)
             {
                 if (modulePOLYS.Polys[N].GPoints[J].lon < X1)
@@ -1656,7 +1656,7 @@ namespace SBuilderX
             X2 = modulePOLYS.Polys[N].GPoints[N1].lat - modulePOLYS.Polys[N].GPoints[N2].lat;
             X2 = X2 * X2;
             D = Math.Sqrt(X1 + X2);
-            var loopTo2 = NP;
+            int loopTo2 = NP;
             for (K = 1; K <= loopTo2; K++)
             {
                 if (K != N1 & K != N2)
@@ -1738,7 +1738,7 @@ namespace SBuilderX
 
             // to be used by SHX creation and DBFile creation
             int nRecords = NumberOfRecordsInSelectedLines(type);
-            var DBF = new DBFWriter();
+            DBFWriter DBF = new DBFWriter();
 
             // If Not DBF.FileWriter(filename, NoOfLines) Then Exit Sub
             if (!DBF.FileWriter(filename, nRecords))
@@ -1771,12 +1771,12 @@ namespace SBuilderX
             // UiidTrail = "-0000-0000-0000-000000000000}"
             Guid myGuid;
             myGuid = Guid.NewGuid();
-            var GS = myGuid.ToString("B");
+            string GS = myGuid.ToString("B");
             UiidTrail = GS.Substring(GS.Length - 29).ToUpper();
 
             // populate the fields
             K = 1;
-            var loopTo = moduleLINES.NoOfLines;
+            int loopTo = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (moduleLINES.Lines[N].Selected)

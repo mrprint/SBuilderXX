@@ -7,43 +7,19 @@ namespace SBuilderX
     {
         private int TypeValue;
 
-        public int Type
-        {
-            get
-            {
-                return TypeValue;
-            }
-        }
+        public int Type => TypeValue;
 
         private string GuidValue;
 
-        public string Guid
-        {
-            get
-            {
-                return GuidValue;
-            }
-        }
+        public string Guid => GuidValue;
 
         private string NameValue;
 
-        public string Name
-        {
-            get
-            {
-                return NameValue;
-            }
-        }
+        public string Name => NameValue;
 
         private MDLBBox BBoxValue;
 
-        public MDLBBox BBox
-        {
-            get
-            {
-                return BBoxValue;
-            }
-        }
+        public MDLBBox BBox => BBoxValue;
 
         public struct MDLBBox
         {
@@ -55,13 +31,7 @@ namespace SBuilderX
             public float Zmax;
         }
 
-        public float Width
-        {
-            get
-            {
-                return (float)Math.Round(BBoxValue.Xmax - BBoxValue.Xmin, 2);
-            }
-        }
+        public float Width => (float)Math.Round(BBoxValue.Xmax - BBoxValue.Xmin, 2);
 
         public float Lenght
         {
@@ -115,7 +85,7 @@ namespace SBuilderX
                     {
                         reader.ReadBytes(4);
                         B = reader.ReadBytes(16);
-                        var G = new Guid(B);
+                        Guid G = new Guid(B);
                         GuidValue = G.ToString("B");
                         GuidOK = true;
                     }
@@ -152,7 +122,7 @@ namespace SBuilderX
                 while (true);
                 ReadRet = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 

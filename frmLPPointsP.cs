@@ -16,45 +16,27 @@ namespace SBuilderX
 
         public double Altitude
         {
-            get
-            {
-                return _Altitude;
-            }
+            get => _Altitude;
 
-            set
-            {
-                _Altitude = value;
-            }
+            set => _Altitude = value;
         }
 
         private double _Latitude;
 
         public double Latitude
         {
-            get
-            {
-                return _Latitude;
-            }
+            get => _Latitude;
 
-            set
-            {
-                _Latitude = value;
-            }
+            set => _Latitude = value;
         }
 
         private double _Longitude;
 
         public double Longitude
         {
-            get
-            {
-                return _Longitude;
-            }
+            get => _Longitude;
 
-            set
-            {
-                _Longitude = value;
-            }
+            set => _Longitude = value;
         }
 
         private void FrmPointsP_Load(object sender, EventArgs e)

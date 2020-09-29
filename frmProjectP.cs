@@ -35,7 +35,7 @@ namespace SBuilderX
             lbLands.Text = "Lands = " + moduleCLASSES.NoOfLands;
             txtName.Text = moduleMAIN.ProjectName;
             txtBGLFolder.Text = moduleMAIN.BGLProjectFolder;
-            var loopTo = moduleCLASSES.NoOfLWCIs;
+            int loopTo = moduleCLASSES.NoOfLWCIs;
             for (N = 1; N <= loopTo; N++)
                 lstClassItems.Items.Add(moduleCLASSES.LWCIs[N].Text);
             N = moduleCLASSES.NoOfLWCIs;
@@ -130,7 +130,7 @@ namespace SBuilderX
                 P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                 if (IsLand)
                 {
-                    var loopTo = moduleCLASSES.NoOfLCs;
+                    int loopTo = moduleCLASSES.NoOfLCs;
                     for (N = 1; N <= loopTo; N++)
                     {
                         if (P0 == moduleCLASSES.LC[N].Index)
@@ -142,7 +142,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo1 = moduleCLASSES.NoOfWCs;
+                    int loopTo1 = moduleCLASSES.NoOfWCs;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         if (P0 == moduleCLASSES.WC[N].Index)
@@ -159,7 +159,7 @@ namespace SBuilderX
                 P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                 if (IsLand)
                 {
-                    var loopTo2 = moduleCLASSES.NoOfLCs;
+                    int loopTo2 = moduleCLASSES.NoOfLCs;
                     for (N = 1; N <= loopTo2; N++)
                     {
                         if (P0 == moduleCLASSES.LC[N].Index)
@@ -171,7 +171,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo3 = moduleCLASSES.NoOfWCs;
+                    int loopTo3 = moduleCLASSES.NoOfWCs;
                     for (N = 1; N <= loopTo3; N++)
                     {
                         if (P0 == moduleCLASSES.WC[N].Index)
@@ -188,7 +188,7 @@ namespace SBuilderX
                 P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                 if (IsLand)
                 {
-                    var loopTo4 = moduleCLASSES.NoOfLCs;
+                    int loopTo4 = moduleCLASSES.NoOfLCs;
                     for (N = 1; N <= loopTo4; N++)
                     {
                         if (P0 == moduleCLASSES.LC[N].Index)
@@ -200,7 +200,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo5 = moduleCLASSES.NoOfWCs;
+                    int loopTo5 = moduleCLASSES.NoOfWCs;
                     for (N = 1; N <= loopTo5; N++)
                     {
                         if (P0 == moduleCLASSES.WC[N].Index)
@@ -279,7 +279,7 @@ namespace SBuilderX
                 return;
             }
 
-            var loopTo = moduleCLASSES.NoOfLWCIs - 1;
+            int loopTo = moduleCLASSES.NoOfLWCIs - 1;
             for (K = N; K <= loopTo; K++)
             {
                 moduleCLASSES.LWCIs[K].Class1 = moduleCLASSES.LWCIs[K + 1].Class1;
@@ -339,7 +339,7 @@ namespace SBuilderX
                 P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                 if (IsLand)
                 {
-                    var loopTo = moduleCLASSES.NoOfLCs;
+                    int loopTo = moduleCLASSES.NoOfLCs;
                     for (N = 1; N <= loopTo; N++)
                     {
                         if (P0 == moduleCLASSES.LC[N].Index)
@@ -351,7 +351,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo1 = moduleCLASSES.NoOfWCs;
+                    int loopTo1 = moduleCLASSES.NoOfWCs;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         if (P0 == moduleCLASSES.WC[N].Index)
@@ -368,7 +368,7 @@ namespace SBuilderX
                 P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                 if (IsLand)
                 {
-                    var loopTo2 = moduleCLASSES.NoOfLCs;
+                    int loopTo2 = moduleCLASSES.NoOfLCs;
                     for (N = 1; N <= loopTo2; N++)
                     {
                         if (P0 == moduleCLASSES.LC[N].Index)
@@ -380,7 +380,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo3 = moduleCLASSES.NoOfWCs;
+                    int loopTo3 = moduleCLASSES.NoOfWCs;
                     for (N = 1; N <= loopTo3; N++)
                     {
                         if (P0 == moduleCLASSES.WC[N].Index)
@@ -397,7 +397,7 @@ namespace SBuilderX
                 P0 = Convert.ToByte(A.Substring(N1, N2 - N1));
                 if (IsLand)
                 {
-                    var loopTo4 = moduleCLASSES.NoOfLCs;
+                    int loopTo4 = moduleCLASSES.NoOfLCs;
                     for (N = 1; N <= loopTo4; N++)
                     {
                         if (P0 == moduleCLASSES.LC[N].Index)
@@ -409,7 +409,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo5 = moduleCLASSES.NoOfWCs;
+                    int loopTo5 = moduleCLASSES.NoOfWCs;
                     for (N = 1; N <= loopTo5; N++)
                     {
                         if (P0 == moduleCLASSES.WC[N].Index)

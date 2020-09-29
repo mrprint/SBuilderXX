@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Text;
-using System.Xml;
 using System.Media;
+using System.Text;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
+using System.Xml;
 
 namespace SBuilderX
 {
@@ -358,13 +358,13 @@ namespace SBuilderX
 
             int N, K;
             IsLineObjectTurnRet = false;
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "OBJ")
                 {
                     SetLenWidFromObject(N);
-                    var loopTo1 = Lines[N].NoOfPoints;
+                    int loopTo1 = Lines[N].NoOfPoints;
                     for (K = 1; K <= loopTo1; K++)
                     {
                         SetHeadingsFromObject(N, K);
@@ -449,7 +449,7 @@ namespace SBuilderX
             Y1J = Lines[LJ].GLPoints[1].lat;
             XNJ = Lines[LJ].GLPoints[K].lon;
             YNJ = Lines[LJ].GLPoints[K].lat;
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (N == LJ)
@@ -467,8 +467,8 @@ namespace SBuilderX
                 Y1 = Lines[N].GLPoints[1].lat;
                 XN = Lines[N].GLPoints[NP].lon;
                 YN = Lines[N].GLPoints[NP].lat;
-            //Nextx0:
-            //    ;
+                //Nextx0:
+                //    ;
                 DX = Math.Abs(X1 - XNJ);
                 if (DX > DeltaLon)
                     goto Next1;
@@ -531,7 +531,7 @@ namespace SBuilderX
                 ReverseLine(N2);
             Lines[N1].NoOfPoints = P1 + P2 - 1;
             Array.Resize(ref Lines[N1].GLPoints, Lines[N1].NoOfPoints + 1);
-            var loopTo = P2;
+            int loopTo = P2;
             for (N = 2; N <= loopTo; N++)
             {
                 Lines[N1].GLPoints[N + P1 - 1].wid = Lines[N2].GLPoints[N].wid;
@@ -548,10 +548,10 @@ namespace SBuilderX
         internal static void TryAllLineJoin()
         {
             int N, K;
-            var Done = new bool[NoOfLines + 1];
+            bool[] Done = new bool[NoOfLines + 1];
         jump_here:
             ;
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Done[N])
@@ -560,7 +560,7 @@ namespace SBuilderX
                     return;
                 if (Lines[N].Selected)
                 {
-                    var loopTo1 = NoOfLines;
+                    int loopTo1 = NoOfLines;
                     for (K = N + 1; K <= loopTo1; K++)
                     {
                         if (K > NoOfLines)
@@ -796,7 +796,7 @@ namespace SBuilderX
             moduleEDIT.SkipBackUp = false;
             if (Flag)
                 moduleMAIN.RebuildDisplay();
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Lines[N].GLPoints[1].Selected)
@@ -819,13 +819,13 @@ namespace SBuilderX
 
             // BackUp
 
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Lines[N].Selected)
                     goto NextN;
                 p = Lines[N].NoOfPoints;
-                var loopTo1 = p - 1;
+                int loopTo1 = p - 1;
                 for (K = 2; K <= loopTo1; K++)
                 {
                     if (Lines[N].GLPoints[K].Selected)
@@ -836,7 +836,7 @@ namespace SBuilderX
                         Lines[NoOfLines].NoOfPoints = p - K + 1;
                         Lines[NoOfLines].GLPoints = new modulePOINTS.GLPoint[Lines[NoOfLines].NoOfPoints + 1];
                         // For L = K + 1 To p
-                        var loopTo2 = p;
+                        int loopTo2 = p;
                         for (L = K; L <= loopTo2; L++)
                         {
                             // Lines(NoOfLines).GLPoints(L - K).alt = Lines(N).GLPoints(L).alt
@@ -876,12 +876,12 @@ namespace SBuilderX
 
             // BackUp
 
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Lines[N].Selected)
                     goto NextN;
-                var loopTo1 = Lines[N].NoOfPoints;
+                int loopTo1 = Lines[N].NoOfPoints;
                 for (K = 1; K <= loopTo1; K++)
                 {
                     if (Lines[N].GLPoints[K].Selected)
@@ -906,12 +906,12 @@ namespace SBuilderX
 
             // BackUp
 
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Lines[N].Selected)
                     goto NextN;
-                var loopTo1 = Lines[N].NoOfPoints;
+                int loopTo1 = Lines[N].NoOfPoints;
                 for (K = 1; K <= loopTo1; K++)
                 {
                     if (Lines[N].GLPoints[K].Selected)
@@ -943,7 +943,7 @@ namespace SBuilderX
                 My.MyProject.Forms.FrmStart.SelectAllLinesMenuItem.Checked = false;
             }
 
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Flag)
@@ -954,7 +954,7 @@ namespace SBuilderX
                 }
                 else if (Lines[N].Selected)
                     NoOfLinesSelected = NoOfLinesSelected - 1;
-                var loopTo1 = Lines[N].NoOfPoints;
+                int loopTo1 = Lines[N].NoOfPoints;
                 for (K = 1; K <= loopTo1; K++)
                     Lines[N].GLPoints[K].Selected = false;
                 Lines[N].Selected = Flag;
@@ -967,7 +967,7 @@ namespace SBuilderX
             bool Flag;
             if (!LineVIEW)
                 return;
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Lines[N].Selected)
@@ -980,7 +980,7 @@ namespace SBuilderX
                 else
                 {
                     Flag = false;
-                    var loopTo1 = Lines[N].NoOfPoints;
+                    int loopTo1 = Lines[N].NoOfPoints;
                     for (K = 1; K <= loopTo1; K++)
                     {
                         if (Lines[N].GLPoints[K].Selected)
@@ -1005,7 +1005,7 @@ namespace SBuilderX
         internal static void SelectLinesInBox(double X0, double Y0, double X1, double Y1)
         {
             int N;
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Lines[N].ELON < X1)
@@ -1043,14 +1043,14 @@ namespace SBuilderX
             bool SkipSegment;
             double UY, UX, U;
             int DX, DY;
-            var myPen = new Pen(Color.Red);
-            var myBrush = new SolidBrush(Color.Red);
+            Pen myPen = new Pen(Color.Red);
+            SolidBrush myBrush = new SolidBrush(Color.Red);
             int P1, P2;  // to draw the points
             P1 = 2;
             if (LinePenWidth == 2)
                 P1 = 3;
             P2 = 2 * P1;
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (!moduleMAIN.MoveON)
@@ -1103,7 +1103,7 @@ namespace SBuilderX
                 L1 = (int)(Lines[N].GLPoints[1].wid * moduleMAIN.PixelsPerMeter / 2d);
                 if (L1 < LinePenWidth)
                     L1 = LinePenWidth;
-                var loopTo1 = NP;
+                int loopTo1 = NP;
                 for (K = 2; K <= loopTo1; K++)
                 {
                     Flag = Flag | Lines[N].GLPoints[K].Selected; // was before on another for next
@@ -1189,7 +1189,7 @@ namespace SBuilderX
                 // now draw selected points
                 if (IsExtrusion)
                     myPen.Width = LinePenWidth;
-                var loopTo2 = NP;
+                int loopTo2 = NP;
                 for (K = 1; K <= loopTo2; K++)
                 {
                     if (PointOnDisplay[K])
@@ -1367,7 +1367,7 @@ namespace SBuilderX
             FSXml = false;
             int Complexity;
             string Latitude, Longitude, Heading, Altitude; // used for FS9 - SCASM
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Lines[N].Selected)
@@ -1391,13 +1391,13 @@ namespace SBuilderX
                 File2 = moduleMAIN.ProjectName + "_LOBX";
                 File2 = File2.Replace(" ", "_");
                 A = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File2 + ".xml";
-                var settings = new XmlWriterSettings()
+                XmlWriterSettings settings = new XmlWriterSettings()
                 {
                     Indent = true,
                     Encoding = Encoding.GetEncoding(28591),
                     NewLineOnAttributes = true
                 };
-                var writer = XmlWriter.Create(A, settings);
+                XmlWriter writer = XmlWriter.Create(A, settings);
                 writer.WriteStartDocument();
                 writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
                 writer.WriteStartElement("FSData");
@@ -1405,7 +1405,7 @@ namespace SBuilderX
                 writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
                 writer.WriteAttributeString("noNamespaceSchemaLocation", "http://www.w3.org/2001/XMLSchema-instance", "bglcomp.xsd");
                 writer.WriteComment("FSX Line(s) of Library Objects");
-                var loopTo1 = NoOfLines;
+                int loopTo1 = NoOfLines;
                 for (N = 1; N <= loopTo1; N++)
                 {
                     if (Lines[N].Selected)
@@ -1421,7 +1421,7 @@ namespace SBuilderX
                                 J = A.IndexOf("|");
                                 A = A.Substring(J + 1);
                                 Complexity = Convert.ToInt32(A);
-                                var loopTo2 = Lines[N].NoOfPoints;
+                                int loopTo2 = Lines[N].NoOfPoints;
                                 for (K = 1; K <= loopTo2; K++)
                                 {
                                     writer.WriteStartElement("SceneryObject");
@@ -1454,7 +1454,7 @@ namespace SBuilderX
                 Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
                 A = My.MyProject.Application.Info.DirectoryPath + @"\tools\bglcomp.exe";
                 B = @"work\" + File2 + ".xml";
-                var myProcess = new Process();
+                Process myProcess = new Process();
                 myProcess = Process.Start(A, B);
                 myProcess.WaitForExit();
                 myProcess.Dispose();
@@ -1476,7 +1476,7 @@ namespace SBuilderX
                 FileSystem.PrintLine(3, A);
                 FileSystem.PrintLine(3);
                 A = "; FS9 Line(s) of Library Objects";
-                var loopTo3 = NoOfLines;
+                int loopTo3 = NoOfLines;
                 for (N = 1; N <= loopTo3; N++)
                 {
                     if (Lines[N].Selected)
@@ -1492,7 +1492,7 @@ namespace SBuilderX
                                 J = A.IndexOf("|");
                                 A = A.Substring(J + 1);
                                 Complexity = Convert.ToInt32(A);
-                                var loopTo4 = Lines[N].NoOfPoints;
+                                int loopTo4 = Lines[N].NoOfPoints;
                                 for (K = 1; K <= loopTo4; K++)
                                 {
                                     Latitude = Lines[N].GLPoints[K].lat.ToString("0.00000000");
@@ -1559,7 +1559,7 @@ namespace SBuilderX
                         File.Copy(BGLFile2, BGLFileTarget, true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Copying BGL files failed! Try to close FSX.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -1581,20 +1581,18 @@ namespace SBuilderX
             Guid g;
             string lat0 = "";
             string lon0 = "";
-            string alt0 = "";
             string latN = "";
             string lonN = "";
-            string altN = "";
             string myFile = moduleMAIN.ProjectName + "_EXT";
             myFile = myFile.Replace(" ", "_");
             string a = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".xml";
-            var settings = new XmlWriterSettings()
+            XmlWriterSettings settings = new XmlWriterSettings()
             {
                 Indent = true,
                 Encoding = Encoding.GetEncoding(28591),
                 NewLineOnAttributes = true
             };
-            var writer = XmlWriter.Create(a, settings);
+            XmlWriter writer = XmlWriter.Create(a, settings);
             writer.WriteStartDocument();
             writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
             writer.WriteStartElement("FSData");
@@ -1602,7 +1600,7 @@ namespace SBuilderX
             writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
             writer.WriteAttributeString("noNamespaceSchemaLocation", "http://www.w3.org/2001/XMLSchema-instance", "bglcomp.xsd");
             writer.WriteComment("FSX Extrusion Bridges");
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Lines[N].Selected)
@@ -1637,7 +1635,7 @@ namespace SBuilderX
                         writer.WriteAttributeString("longitude", lon0);
                         writer.WriteAttributeString("altitude", ExtraExtrusionAltitude);
                         writer.WriteEndElement();
-                        var loopTo1 = Lines[N].NoOfPoints;
+                        int loopTo1 = Lines[N].NoOfPoints;
                         for (K = 1; K <= loopTo1; K++)
                         {
                             writer.WriteStartElement("PolylinePoint");
@@ -1673,7 +1671,7 @@ namespace SBuilderX
             Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bglcomp.exe";
             string b = @"work\" + myFile + ".xml";
-            var myProcess = new Process();
+            Process myProcess = new Process();
             myProcess = Process.Start(a, b);
             myProcess.WaitForExit();
             myProcess.Dispose();
@@ -1695,7 +1693,7 @@ namespace SBuilderX
                 if (File.Exists(BGLFile))
                     File.Copy(BGLFile, BGLFileTarget, true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Copying BGL files failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -1770,18 +1768,18 @@ namespace SBuilderX
             int P, M;
             double UX, UY, U, K;
             int NP = Lines[N].NoOfPoints;
-            var Line = new moduleMAIN.Double_XY[NP + 1];  // line in meter coordinates
-            var loopTo = NP;
+            moduleMAIN.Double_XY[] Line = new moduleMAIN.Double_XY[NP + 1];  // line in meter coordinates
+            int loopTo = NP;
             for (P = 1; P <= loopTo; P++)
             {
                 Line[P].X = Lines[N].GLPoints[P].lon * moduleMAIN.MetersPerDegLon(moduleMAIN.LatDispCenter);
                 Line[P].Y = Lines[N].GLPoints[P].lat * moduleMAIN.MetersPerDegLat;
             }
 
-            var D1 = new moduleMAIN.Double_XY[NP + 1];
-            var D2 = new moduleMAIN.Double_XY[NP + 1];
+            moduleMAIN.Double_XY[] D1 = new moduleMAIN.Double_XY[NP + 1];
+            moduleMAIN.Double_XY[] D2 = new moduleMAIN.Double_XY[NP + 1];
             double W;
-            var loopTo1 = NP - 1;
+            int loopTo1 = NP - 1;
             for (P = 1; P <= loopTo1; P++)
             {
                 UX = Line[P + 1].X - Line[P].X;
@@ -1800,12 +1798,12 @@ namespace SBuilderX
                 D1[P + 1].Y = UY * W;
             }
 
-            var PR1 = new moduleMAIN.Double_XY[NP + 1];   // right side
-            var PR2 = new moduleMAIN.Double_XY[NP + 1];
-            var PR = new moduleMAIN.Double_XY[NP + 1];
-            var PL1 = new moduleMAIN.Double_XY[NP + 1];   // left side
-            var PL2 = new moduleMAIN.Double_XY[NP + 1];
-            var PL = new moduleMAIN.Double_XY[NP + 1];
+            moduleMAIN.Double_XY[] PR1 = new moduleMAIN.Double_XY[NP + 1];   // right side
+            moduleMAIN.Double_XY[] PR2 = new moduleMAIN.Double_XY[NP + 1];
+            moduleMAIN.Double_XY[] PR = new moduleMAIN.Double_XY[NP + 1];
+            moduleMAIN.Double_XY[] PL1 = new moduleMAIN.Double_XY[NP + 1];   // left side
+            moduleMAIN.Double_XY[] PL2 = new moduleMAIN.Double_XY[NP + 1];
+            moduleMAIN.Double_XY[] PL = new moduleMAIN.Double_XY[NP + 1];
             PL[1].X = Line[1].X - D2[1].Y;
             PL[1].Y = Line[1].Y + D2[1].X;
             PR[1].X = Line[1].X + D2[1].Y;
@@ -1814,7 +1812,7 @@ namespace SBuilderX
             PL[NP].Y = Line[NP].Y + D1[NP].X;
             PR[NP].X = Line[NP].X + D1[NP].Y;
             PR[NP].Y = Line[NP].Y - D1[NP].X;
-            var loopTo2 = NP - 1;
+            int loopTo2 = NP - 1;
             for (P = 2; P <= loopTo2; P++)
             {
                 PL1[P].X = Line[P].X - D1[P].Y;
@@ -1854,7 +1852,7 @@ namespace SBuilderX
             modulePOLYS.Polys[modulePOLYS.NoOfPolys].Color = modulePOLYS.DefaultPolyColor;
             modulePOLYS.Polys[modulePOLYS.NoOfPolys].GPoints = new modulePOINTS.GPoint[2 * NP + 1];
             M = 1;
-            var loopTo3 = NP;
+            int loopTo3 = NP;
             for (P = 1; P <= loopTo3; P++)
             {
                 modulePOLYS.Polys[modulePOLYS.NoOfPolys].GPoints[M].lat = PL[P].Y / moduleMAIN.MetersPerDegLat;
@@ -1942,7 +1940,7 @@ namespace SBuilderX
                 moduleEDIT.BackUp();
             if (PT < Lines[Ln].NoOfPoints)
             {
-                var loopTo = Lines[Ln].NoOfPoints - 1;
+                int loopTo = Lines[Ln].NoOfPoints - 1;
                 for (p = PT; p <= loopTo; p++)
                 {
                     Lines[Ln].GLPoints[p].lat = Lines[Ln].GLPoints[p + 1].lat;
@@ -1967,7 +1965,7 @@ namespace SBuilderX
                 moduleEDIT.BackUp();
             if (N < NoOfLines)
             {
-                var loopTo = NoOfLines - 1;
+                int loopTo = NoOfLines - 1;
                 for (K = N; K <= loopTo; K++)
                     Lines[K] = Lines[K + 1];
             }
@@ -1988,7 +1986,7 @@ namespace SBuilderX
             // returns true if point was inserted
             // on entry X1 Y1 contain distance from the origin of display in pixels
 
-            var retval = default(bool);
+            bool retval = default(bool);
             int N, K;
             double X, Y;
             IsInsertPointInLineRet = false;
@@ -2000,7 +1998,7 @@ namespace SBuilderX
             Y = moduleMAIN.LatDispNorth * moduleMAIN.PixelsPerLatDeg - Y1;
 
             // check if we are over a Line
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 K = 2;
@@ -2033,7 +2031,7 @@ namespace SBuilderX
             Y1 = Y / moduleMAIN.PixelsPerLatDeg;
             InsertPointInLineRet = 0;
             N = Lines[Line].NoOfPoints;
-            var loopTo = N;
+            int loopTo = N;
             for (K = 1; K <= loopTo; K++)
             {
                 if (Math.Abs(Lines[Line].GLPoints[K].lat - Y1) < moduleMAIN.D22Lat)
@@ -2050,7 +2048,7 @@ namespace SBuilderX
             N = Lines[Line].NoOfPoints + 1;
             Lines[Line].NoOfPoints = N;
             Array.Resize(ref Lines[Line].GLPoints, N + 1);
-            var loopTo1 = Point;
+            int loopTo1 = Point;
             for (K = N - 1; K >= loopTo1; K -= 1)
             {
                 Lines[Line].GLPoints[K + 1].lat = Lines[Line].GLPoints[K].lat;
@@ -2093,7 +2091,7 @@ namespace SBuilderX
             SLAT = moduleMAIN.LatDispNorth - (Y1 - 5) / moduleMAIN.PixelsPerLatDeg;
             X = moduleMAIN.LonDispWest * moduleMAIN.PixelsPerLonDeg + X1;  // longitude in pixels
             Y = moduleMAIN.LatDispNorth * moduleMAIN.PixelsPerLatDeg - Y1; // latitude in pixels
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Lines[N].Selected)
@@ -2154,7 +2152,7 @@ namespace SBuilderX
             ELON = (X - 5d) / moduleMAIN.PixelsPerLonDeg;
             NLAT = (Y - 5d) / moduleMAIN.PixelsPerLatDeg;
             SLAT = (Y + 5d) / moduleMAIN.PixelsPerLatDeg;
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 retval = false;
@@ -2180,7 +2178,7 @@ namespace SBuilderX
                     if (Lines[N].Selected == false)
                         NoOfLinesSelected = NoOfLinesSelected + 1;
                     Lines[N].Selected = true;
-                    var loopTo1 = Lines[N].NoOfPoints;
+                    int loopTo1 = Lines[N].NoOfPoints;
                     for (K = 1; K <= loopTo1; K++)
                     {
                         if (Lines[N].GLPoints[K].Selected)
@@ -2208,7 +2206,7 @@ namespace SBuilderX
             SL = 90d;
             EL = -180;
             WL = 180d;
-            var loopTo = Lines[N].NoOfPoints;
+            int loopTo = Lines[N].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
             {
                 x = Lines[N].GLPoints[K].lat;
@@ -2233,14 +2231,14 @@ namespace SBuilderX
         {
             int N, K;
             bool Flag;
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Lines[N].OnScreen)
                 {
                     if (Lines[N].Selected)
                     {
-                        var loopTo1 = Lines[N].NoOfPoints;
+                        int loopTo1 = Lines[N].NoOfPoints;
                         for (K = 1; K <= loopTo1; K++)
                         {
                             Lines[N].GLPoints[K].lat = Lines[N].GLPoints[K].lat - Y;
@@ -2252,7 +2250,7 @@ namespace SBuilderX
                     else // If Not LineON Then ' ??? that was not permitting point movements in Line Mode
                     {
                         Flag = false;
-                        var loopTo2 = Lines[N].NoOfPoints;
+                        int loopTo2 = Lines[N].NoOfPoints;
                         for (K = 1; K <= loopTo2; K++)
                         {
                             if (Lines[N].GLPoints[K].Selected)
@@ -2357,7 +2355,7 @@ namespace SBuilderX
                 return IsMouseOnLineRet;
             X = moduleMAIN.LonDispWest * moduleMAIN.PixelsPerLonDeg + X1;
             Y = moduleMAIN.LatDispNorth * moduleMAIN.PixelsPerLatDeg - Y1;
-            var loopTo = NoOfLines;
+            int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Lines[N].OnScreen == false)
@@ -2390,7 +2388,7 @@ namespace SBuilderX
             NP = Lines[N].NoOfPoints;
             M = (int)(NP / 2d);
             NP = NP + 1;
-            var loopTo = M;
+            int loopTo = M;
             for (K = 1; K <= loopTo; K++)
             {
                 x = Lines[N].GLPoints[NP - K];

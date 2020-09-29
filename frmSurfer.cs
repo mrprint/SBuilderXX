@@ -41,7 +41,7 @@ namespace SBuilderX
                 W1 = Convert.ToDouble(txtStartW.Text);
                 W2 = Convert.ToDouble(txtEndW.Text);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Check width values!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
@@ -122,7 +122,7 @@ namespace SBuilderX
             string GetLineTypeFromGuidRet = default;
             GetLineTypeFromGuidRet = "";
             int K;
-            var loopTo = moduleLINES.NoOfLineTypes;
+            int loopTo = moduleLINES.NoOfLineTypes;
             for (K = 1; K <= loopTo; K++)
             {
                 if ((moduleLINES.LineTypes[K].Guid ?? "") == (guid ?? ""))
@@ -140,7 +140,7 @@ namespace SBuilderX
             string GetPolyTypeFromGuidRet = default;
             GetPolyTypeFromGuidRet = "";
             int K;
-            var loopTo = modulePOLYS.NoOfPolyTypes;
+            int loopTo = modulePOLYS.NoOfPolyTypes;
             for (K = 1; K <= loopTo; K++)
             {
                 if ((modulePOLYS.PolyTypes[K].Guid ?? "") == (guid ?? ""))

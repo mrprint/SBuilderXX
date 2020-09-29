@@ -1,10 +1,10 @@
-﻿using System;
+﻿using FSUIPC;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
-using FSUIPC;
 
 namespace SBuilderX
 {
@@ -98,7 +98,7 @@ namespace SBuilderX
 
             // get the category index
             K = cmbLibCat.SelectedIndex + 1;
-            foreach (var g in moduleOBJECTS.LibCategories[K].Objs)
+            foreach (moduleOBJECTS.LibObject g in moduleOBJECTS.LibCategories[K].Objs)
                 lstLib.Items.Add(g.Name);
             if (moduleOBJECTS.LibCategories[K].Objs.Count == 0)
             {
@@ -116,7 +116,7 @@ namespace SBuilderX
             }
 
             LibCat = moduleOBJECTS.LibCategories[K].Name;
-            var myLibObj = moduleOBJECTS.LibCategories[K].Objs[0];
+            moduleOBJECTS.LibObject myLibObj = moduleOBJECTS.LibCategories[K].Objs[0];
             lstLib.SelectedIndex = 0;
             txtLibID.Text = myLibObj.ID;
             txtLibWidth.Text = myLibObj.Width.ToString();
@@ -149,7 +149,7 @@ namespace SBuilderX
                 a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\na.jpg";
             }
 
-            var fs = new FileStream(a, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(a, FileMode.Open, FileAccess.Read);
             // imgLib.Image = System.Drawing.Image.FromFile(a)
             imgLib.Image = Image.FromStream(fs);
             fs.Close();
@@ -169,7 +169,7 @@ namespace SBuilderX
 
             // get the category index
             K = cmbMacroCat.SelectedIndex + 1;
-            var loopTo = moduleMACROS.MacroCategories[K].NOB;
+            int loopTo = moduleMACROS.MacroCategories[K].NOB;
             for (N = 1; N <= loopTo; N++)
                 lstMacro.Items.Add(moduleMACROS.MacroCategories[K].MacroObjects[N].Name);
             lstMacro.SelectedIndex = 0;
@@ -192,7 +192,7 @@ namespace SBuilderX
 
             // get the category index
             K = cmbRwy12Cat.SelectedIndex + 1;
-            var loopTo = moduleOBJECTS.Rwy12Categories[K].NOB;
+            int loopTo = moduleOBJECTS.Rwy12Categories[K].NOB;
             for (N = 1; N <= loopTo; N++)
                 lstRwy12.Items.Add(moduleOBJECTS.Rwy12Categories[K].Rwy12Objects[N].Name);
             lstRwy12.SelectedIndex = 0;
@@ -207,7 +207,7 @@ namespace SBuilderX
                 a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\na.jpg";
             }
 
-            var fs = new FileStream(a, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(a, FileMode.Open, FileAccess.Read);
             // imgRwy12.Image = System.Drawing.Image.FromFile(a)
             imgRwy12.Image = Image.FromStream(fs);
             fs.Close();
@@ -477,7 +477,7 @@ namespace SBuilderX
             // RGNPointType2 = MakeRGNPointType2
             else if (Mode == "Many")
             {
-                var loopTo = moduleOBJECTS.NoOfObjects;
+                int loopTo = moduleOBJECTS.NoOfObjects;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (moduleOBJECTS.Objects[N].Selected)
@@ -564,7 +564,7 @@ namespace SBuilderX
                     Heading = Heading + 360f;
                 FSUIPCConnection.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 FSUIPCConnection.Close();
                 MessageBox.Show("Error communicating with FSUIPC!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1136,7 +1136,7 @@ namespace SBuilderX
             K = cmbLibCat.SelectedIndex + 1;
             LibCat = moduleOBJECTS.LibCategories[K].Name;
             N = lstLib.SelectedIndex;
-            var myLibObj = moduleOBJECTS.LibCategories[K].Objs[N];
+            moduleOBJECTS.LibObject myLibObj = moduleOBJECTS.LibCategories[K].Objs[N];
             txtLibID.Text = myLibObj.ID;
             txtLibWidth.Text = myLibObj.Width.ToString();
             txtLibLength.Text = myLibObj.Length.ToString();
@@ -1170,7 +1170,7 @@ namespace SBuilderX
                 a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\na.jpg";
             }
 
-            var fs = new FileStream(a, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(a, FileMode.Open, FileAccess.Read);
             // imgLib.Image = System.Drawing.Image.FromFile(a)
             imgLib.Image = Image.FromStream(fs);
             fs.Close();
@@ -1208,7 +1208,7 @@ namespace SBuilderX
             moduleMAIN.ImageFileNameTrue = a;
             if (!File.Exists(a))
                 a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\na.jpg";
-            var fs = new FileStream(a, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(a, FileMode.Open, FileAccess.Read);
             // imgRwy12.Image = System.Drawing.Image.FromFile(a)
             imgRwy12.Image = Image.FromStream(fs);
             fs.Close();
@@ -1387,7 +1387,7 @@ namespace SBuilderX
             // first remove
             lstLib.Items.Clear();
             cmbLibCat.Items.Clear();
-            var loopTo = moduleOBJECTS.NoOfLibCategories;
+            int loopTo = moduleOBJECTS.NoOfLibCategories;
             for (K = 1; K <= loopTo; K++)
                 cmbLibCat.Items.Add(moduleOBJECTS.LibCategories[K].Name);
             bool Found = false;
@@ -1402,11 +1402,11 @@ namespace SBuilderX
             }
             else
             {
-                var loopTo1 = moduleOBJECTS.NoOfLibCategories;
+                int loopTo1 = moduleOBJECTS.NoOfLibCategories;
                 for (K = 1; K <= loopTo1; K++)
                 {
                     N = 0;
-                    foreach (var currentG in moduleOBJECTS.LibCategories[K].Objs)
+                    foreach (moduleOBJECTS.LibObject currentG in moduleOBJECTS.LibCategories[K].Objs)
                     {
                         g = currentG;
                         if (g.ID == moduleOBJECTS.ObjLibID)
@@ -1437,7 +1437,7 @@ namespace SBuilderX
             cmbLibCat.SelectedIndex = K - 1;
 
             // fill objects and set selected
-            foreach (var currentG1 in moduleOBJECTS.LibCategories[K].Objs)
+            foreach (moduleOBJECTS.LibObject currentG1 in moduleOBJECTS.LibCategories[K].Objs)
             {
                 g = currentG1;
                 lstLib.Items.Add(g.Name);
@@ -1482,7 +1482,7 @@ namespace SBuilderX
                 }
             }
 
-            var fs = new FileStream(a, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(a, FileMode.Open, FileAccess.Read);
             imgLib.Image = Image.FromStream(fs);
             fs.Close();
             moduleMAIN.ImageFileName = a;
@@ -1513,14 +1513,14 @@ namespace SBuilderX
             N = lstRwy12.Items.Count;
             for (K = N; K >= 1; K -= 1)
                 lstRwy12.Items.RemoveAt(K - 1);
-            var loopTo = moduleOBJECTS.NoOfRwy12Categories;
+            int loopTo = moduleOBJECTS.NoOfRwy12Categories;
             for (K = 1; K <= loopTo; K++)
                 cmbRwy12Cat.Items.Add(moduleOBJECTS.Rwy12Categories[K].Name);
             Flag = true;
-            var loopTo1 = moduleOBJECTS.NoOfRwy12Categories;
+            int loopTo1 = moduleOBJECTS.NoOfRwy12Categories;
             for (K = 1; K <= loopTo1; K++)
             {
-                var loopTo2 = moduleOBJECTS.Rwy12Categories[K].NOB;
+                int loopTo2 = moduleOBJECTS.Rwy12Categories[K].NOB;
                 for (N = 1; N <= loopTo2; N++)
                 {
                     if ((moduleOBJECTS.Rwy12Categories[K].Rwy12Objects[N].ID ?? "") == (moduleOBJECTS.ObjLibID ?? ""))
@@ -1540,7 +1540,7 @@ namespace SBuilderX
             }
 
             cmbRwy12Cat.SelectedIndex = K - 1;
-            var loopTo3 = moduleOBJECTS.Rwy12Categories[K].NOB;
+            int loopTo3 = moduleOBJECTS.Rwy12Categories[K].NOB;
             for (J = 1; J <= loopTo3; J++)
                 lstRwy12.Items.Add(moduleOBJECTS.Rwy12Categories[K].Rwy12Objects[J].Name);
             lstRwy12.SelectedIndex = N - 1;
@@ -1552,7 +1552,7 @@ namespace SBuilderX
             moduleMAIN.ImageFileNameTrue = a;
             if (!File.Exists(a))
                 a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\na.jpg";
-            var fs = new FileStream(a, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(a, FileMode.Open, FileAccess.Read);
             // imgRwy12.Image = System.Drawing.Image.FromFile(a)
             imgRwy12.Image = Image.FromStream(fs);
             fs.Close();
@@ -1582,14 +1582,14 @@ namespace SBuilderX
             N = lstMacro.Items.Count;
             for (K = N; K >= 1; K -= 1)
                 lstMacro.Items.RemoveAt(K - 1);
-            var loopTo = moduleMACROS.NoOfMacroCategories;
+            int loopTo = moduleMACROS.NoOfMacroCategories;
             for (K = 1; K <= loopTo; K++)
                 cmbMacroCat.Items.Add(moduleMACROS.MacroCategories[K].Name);
             Flag = true;
-            var loopTo1 = moduleMACROS.NoOfMacroCategories;
+            int loopTo1 = moduleMACROS.NoOfMacroCategories;
             for (K = 1; K <= loopTo1; K++)
             {
-                var loopTo2 = moduleMACROS.MacroCategories[K].NOB;
+                int loopTo2 = moduleMACROS.MacroCategories[K].NOB;
                 for (N = 1; N <= loopTo2; N++)
                 {
                     if ((moduleMACROS.MacroCategories[K].MacroObjects[N].File ?? "") == (moduleMACROS.MacroID ?? ""))
@@ -1609,7 +1609,7 @@ namespace SBuilderX
             }
 
             cmbMacroCat.SelectedIndex = K - 1;
-            var loopTo3 = moduleMACROS.MacroCategories[K].NOB;
+            int loopTo3 = moduleMACROS.MacroCategories[K].NOB;
             for (J = 1; J <= loopTo3; J++)
                 lstMacro.Items.Add(moduleMACROS.MacroCategories[K].MacroObjects[J].Name);
             lstMacro.SelectedIndex = N - 1;
@@ -1643,7 +1643,7 @@ namespace SBuilderX
                 txtMacroRange.Text = moduleMACROS.MacroRange.ToString();
                 txtMacroWidth.Text = moduleMACROS.MacroWidth.ToString();
                 txtMacroLength.Text = moduleMACROS.MacroLength.ToString();
-                var fs = new FileStream(moduleMACROS.MacroBitmap, FileMode.Open, FileAccess.Read);
+                FileStream fs = new FileStream(moduleMACROS.MacroBitmap, FileMode.Open, FileAccess.Read);
                 imgMacro.Image = Image.FromFile(moduleMACROS.MacroBitmap);
                 imgMacro.Image = Image.FromStream(fs);
                 fs.Close();
@@ -1674,7 +1674,7 @@ namespace SBuilderX
                 txtMacroRange.Text = moduleMACROS.MacroRange.ToString();
                 txtMacroWidth.Text = moduleMACROS.MacroWidth.ToString();
                 txtMacroLength.Text = moduleMACROS.MacroLength.ToString();
-                var fs = new FileStream(moduleMACROS.MacroBitmap, FileMode.Open, FileAccess.Read);
+                FileStream fs = new FileStream(moduleMACROS.MacroBitmap, FileMode.Open, FileAccess.Read);
                 imgMacro.Image = Image.FromFile(moduleMACROS.MacroBitmap);
                 imgMacro.Image = Image.FromStream(fs);
                 fs.Close();
@@ -1774,9 +1774,9 @@ namespace SBuilderX
                 File.Copy(A, B);
             }
 
-            var fs = new FileStream(B, FileMode.Open, FileAccess.Read);
-            var reader = new BinaryReader(fs);
-            var mdl = new MDLReader();
+            FileStream fs = new FileStream(B, FileMode.Open, FileAccess.Read);
+            BinaryReader reader = new BinaryReader(fs);
+            MDLReader mdl = new MDLReader();
             if (mdl.Read(reader))
             {
                 txtMDLFile.Text = mdlFile;
@@ -1784,7 +1784,7 @@ namespace SBuilderX
                 txtMDLLength.Text = mdl.Lenght.ToString();
                 if (mdl.Type == 1)  // it is FS9
                 {
-                    var G = Guid.NewGuid(); // create one!
+                    Guid G = Guid.NewGuid(); // create one!
                     labelMDLName.Text = Path.GetFileNameWithoutExtension(mdlFile);
                     labelMDLguid.Text = G.ToString("N");   // present the guid in FS9 format
                 }
@@ -1908,7 +1908,7 @@ namespace SBuilderX
 
         private void CmdUpDefault_Click(object sender, EventArgs e)
         {
-            var myObj = new moduleOBJECTS.LibObject();
+            moduleOBJECTS.LibObject myObj = new moduleOBJECTS.LibObject();
             int K = cmbLibCat.SelectedIndex + 1;
             if (K < 1)
                 return;
@@ -1924,7 +1924,7 @@ namespace SBuilderX
             moduleOBJECTS.LibCategories[K].Objs[N] = myObj;
             lstLib.Items.Clear();
             moduleOBJECTS.LibObject g;
-            foreach (var currentG in moduleOBJECTS.LibCategories[K].Objs)
+            foreach (moduleOBJECTS.LibObject currentG in moduleOBJECTS.LibCategories[K].Objs)
             {
                 g = currentG;
                 lstLib.Items.Add(g.Name);
@@ -1937,7 +1937,7 @@ namespace SBuilderX
             stream = new FileStream(moduleOBJECTS.LibObjectsPath + @"\" + moduleOBJECTS.LibCategories[K].Name + ".txt", FileMode.Create);
             fileWriter = new StreamWriter(stream);
             fileWriter.WriteLine("[" + moduleOBJECTS.LibCategories[K].Name + "]");
-            foreach (var currentG1 in moduleOBJECTS.LibCategories[K].Objs)
+            foreach (moduleOBJECTS.LibObject currentG1 in moduleOBJECTS.LibCategories[K].Objs)
             {
                 g = currentG1;
                 A = g.ID + " " + g.Type + " " + g.Width + " " + g.Length + " " + g.Scaling + " " + g.Name;
@@ -1982,7 +1982,7 @@ namespace SBuilderX
                         imgGenB.Image.Save(moduleMAIN.ImageFileNameTrue, ImageFormat.Jpeg);  // saves the screen shot
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     MessageBox.Show("Could not save the image!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -2128,7 +2128,7 @@ namespace SBuilderX
                 moduleMAIN.ImageFileName = na;
                 File.Delete(moduleMAIN.ImageFileNameTrue);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 string a = "Could not delete the file:" + Environment.NewLine;
                 a = a + moduleMAIN.ImageFileNameTrue;
@@ -2174,7 +2174,7 @@ namespace SBuilderX
                     moduleMAIN.ImageFileNameTrue = FileName;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 a = "The file can not be used as a thumbnail" + Environment.NewLine;
                 MessageBox.Show(a, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -2193,14 +2193,14 @@ namespace SBuilderX
             int K;
             string fileName = "";
             string foundFile = "";
-            var FilesToCheck = new List<string>();
+            List<string> FilesToCheck = new List<string>();
             if (optLib.Checked)
             {
                 // get the category index
                 K = cmbLibCat.SelectedIndex + 1;
-                foreach (var g in moduleOBJECTS.LibCategories[K].Objs)
+                foreach (moduleOBJECTS.LibObject g in moduleOBJECTS.LibCategories[K].Objs)
                     FilesToCheck.Add(g.ID);
-                foreach (var currentFoundFile in My.MyProject.Computer.FileSystem.GetFiles(moduleOBJECTS.LibObjectsPath + @"\" + moduleOBJECTS.LibCategories[K].Name))
+                foreach (string currentFoundFile in My.MyProject.Computer.FileSystem.GetFiles(moduleOBJECTS.LibObjectsPath + @"\" + moduleOBJECTS.LibCategories[K].Name))
                 {
                     foundFile = currentFoundFile;
                     fileName = Path.GetFileNameWithoutExtension(foundFile);
@@ -2216,7 +2216,7 @@ namespace SBuilderX
 
             if (optGenB.Checked)
             {
-                foreach (var currentFoundFile1 in My.MyProject.Computer.FileSystem.GetFiles(moduleMAIN.AppPath + @"\GenBuildings"))
+                foreach (string currentFoundFile1 in My.MyProject.Computer.FileSystem.GetFiles(moduleMAIN.AppPath + @"\GenBuildings"))
                 {
                     foundFile = currentFoundFile1;
                     fileName = Path.GetFileNameWithoutExtension(foundFile);
@@ -2266,7 +2266,7 @@ namespace SBuilderX
 
             lstGenB.Items.Clear();
             int K;
-            var loopTo = moduleOBJECTS.NoOfGenBObjects;
+            int loopTo = moduleOBJECTS.NoOfGenBObjects;
             for (K = 1; K <= loopTo; K++)
                 lstGenB.Items.Add(moduleOBJECTS.GenBObjects[K].name);
             IsReady = true;
@@ -2277,7 +2277,7 @@ namespace SBuilderX
         private void CmdGbStore_Click(object sender, EventArgs e)
         {
             IsReady = false;
-            var type = default(int);
+            int type = default(int);
             if (optGbFlat.Checked)
                 type = 256;
             if (optGbPeaked.Checked)
@@ -2315,7 +2315,7 @@ namespace SBuilderX
             }
 
             int N;
-            var loopTo = K + 1;
+            int loopTo = K + 1;
             for (N = moduleOBJECTS.NoOfGenBObjects; N >= loopTo; N -= 1)
                 moduleOBJECTS.GenBObjects[N] = moduleOBJECTS.GenBObjects[N - 1];
             moduleOBJECTS.GenBObjects[K].type = type;
@@ -2326,7 +2326,7 @@ namespace SBuilderX
             moduleOBJECTS.GenBObjects[K].indexes = indexes;
             moduleOBJECTS.GenBObjects[K].name = name;
             lstGenB.Items.Clear();
-            var loopTo1 = moduleOBJECTS.NoOfGenBObjects;
+            int loopTo1 = moduleOBJECTS.NoOfGenBObjects;
             for (N = 1; N <= loopTo1; N++)
                 lstGenB.Items.Add(moduleOBJECTS.GenBObjects[N].name);
             if (moduleOBJECTS.NoOfGenBObjects > 0)
@@ -2334,8 +2334,8 @@ namespace SBuilderX
             string newText = "";
             N = 0;
             string myFile = moduleMAIN.AppPath + @"\GenBuildings\GenBuildings.txt";
-            var stream = new FileStream(myFile, FileMode.Open);
-            var fileReader = new StreamReader(stream);
+            FileStream stream = new FileStream(myFile, FileMode.Open);
+            StreamReader fileReader = new StreamReader(stream);
             string line = "";
             while (!fileReader.EndOfStream)
             {
@@ -2362,14 +2362,14 @@ namespace SBuilderX
             IsReady = false;
             int K = lstGenB.SelectedIndex + 1;
             int N;
-            var loopTo = moduleOBJECTS.NoOfGenBObjects;
+            int loopTo = moduleOBJECTS.NoOfGenBObjects;
             for (N = K + 1; N <= loopTo; N++)
                 moduleOBJECTS.GenBObjects[N - 1] = moduleOBJECTS.GenBObjects[N];
             moduleOBJECTS.NoOfGenBObjects = moduleOBJECTS.NoOfGenBObjects - 1;
             // ReDim Preserve GenBObjects(NoOfGenBObjects)
 
             lstGenB.Items.Clear();
-            var loopTo1 = moduleOBJECTS.NoOfGenBObjects;
+            int loopTo1 = moduleOBJECTS.NoOfGenBObjects;
             for (N = 1; N <= loopTo1; N++)
                 lstGenB.Items.Add(moduleOBJECTS.GenBObjects[N].name);
             if (K > moduleOBJECTS.NoOfGenBObjects)
@@ -2382,8 +2382,8 @@ namespace SBuilderX
             string newText = "";
             N = 0;
             string myFile = moduleMAIN.AppPath + @"\GenBuildings\GenBuildings.txt";
-            var stream = new FileStream(myFile, FileMode.Open);
-            var fileReader = new StreamReader(stream);
+            FileStream stream = new FileStream(myFile, FileMode.Open);
+            StreamReader fileReader = new StreamReader(stream);
             string line = "";
             while (!fileReader.EndOfStream)
             {
@@ -2453,7 +2453,7 @@ namespace SBuilderX
                 a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\na.jpg";
             }
 
-            var fs = new FileStream(a, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(a, FileMode.Open, FileAccess.Read);
             // imgGenB.Image = System.Drawing.Image.FromFile(a)
             imgGenB.Image = Image.FromStream(fs);
             fs.Close();

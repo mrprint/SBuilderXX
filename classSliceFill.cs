@@ -53,7 +53,7 @@ namespace SBuilderX
             // Childs = Polys(N).Childs
             PolyIndex = N;
             int NP = modulePOLYS.Polys[N].NoOfPoints;
-            var loopTo = NoOfChilds;
+            int loopTo = NoOfChilds;
             for (J = 1; J <= loopTo; J++)
             {
                 M = modulePOLYS.Polys[N].Childs[J];
@@ -62,7 +62,7 @@ namespace SBuilderX
 
             NoOfPathPts = NP;
             Path = new PathPt[NP + 1];
-            var loopTo1 = modulePOLYS.Polys[N].NoOfPoints;
+            int loopTo1 = modulePOLYS.Polys[N].NoOfPoints;
             for (J = 1; J <= loopTo1; J++)
             {
                 Path[J].X = modulePOLYS.Polys[N].GPoints[J].lon;
@@ -77,11 +77,11 @@ namespace SBuilderX
             Path[0].T = 0;
             if (NoOfChilds > 0)
             {
-                var loopTo2 = NoOfChilds;
+                int loopTo2 = NoOfChilds;
                 for (I = 1; I <= loopTo2; I++)
                 {
                     M = modulePOLYS.Polys[N].Childs[I];
-                    var loopTo3 = modulePOLYS.Polys[M].NoOfPoints;
+                    int loopTo3 = modulePOLYS.Polys[M].NoOfPoints;
                     for (K = 1; K <= loopTo3; K++)
                     {
                         J = J + 1;
@@ -133,7 +133,7 @@ namespace SBuilderX
             bool PresentIsIn, PresentIsOut;
             bool PreviousIsIn = default, PreviousIsOut = default;
             int N, NS = default;  // NS start of a subpath
-            var loopTo = NoOfPathPts;
+            int loopTo = NoOfPathPts;
             for (N = 0; N <= loopTo; N++)
             {
                 PresentIsIn = IsPtInQuad(N);
@@ -253,7 +253,7 @@ namespace SBuilderX
             }
 
             NoOfQPts = 4;
-            var loopTo1 = NoOfPathPts;
+            int loopTo1 = NoOfPathPts;
             for (N = 1; N <= loopTo1; N++)
             {
                 // Debug.Print("Pt#" & N & "   Type=" & Path(N).T.ToString & "   IO=" & Path(N).IO.ToString)
@@ -267,7 +267,7 @@ namespace SBuilderX
             QPts = new QuadPt[NoOfQPts + 1];
             MakeQuadCorners();
             Q = 5;
-            var loopTo2 = NoOfPathPts;
+            int loopTo2 = NoOfPathPts;
             for (N = 1; N <= loopTo2; N++)
             {
                 if (Path[N].IO == 2)
@@ -434,7 +434,7 @@ namespace SBuilderX
             int K;
             NoOfPathPts = NoOfPathPts + 1;
             Array.Resize(ref Path, NoOfPathPts + 1);
-            var loopTo = Point;
+            int loopTo = Point;
             for (K = NoOfPathPts - 1; K >= loopTo; K -= 1)
                 Path[K + 1] = Path[K];
             Path[Point].Y = Y;
@@ -497,7 +497,7 @@ namespace SBuilderX
 
             // test = going to infinitum_north and counting the jumps across borders
             IsPtInPathRet = false;
-            var loopTo = NoOfPathPts;
+            int loopTo = NoOfPathPts;
             for (N = 1; N <= loopTo; N++)
             {
                 if (Path[N].T == 0)
@@ -555,7 +555,7 @@ namespace SBuilderX
             if (NoOfQPts == 4)     // no crossings meaning there is a hole inside
             {
                 AddFullSlice();
-                var loopTo = NoOfChilds;
+                int loopTo = NoOfChilds;
                 for (N = 1; N <= loopTo; N++)
                 {
                     lat = modulePOLYS.Polys[modulePOLYS.Polys[PolyIndex].Childs[N]].GPoints[1].lat;
@@ -625,7 +625,7 @@ namespace SBuilderX
                 moduleMAIN.Slices[moduleMAIN.NoOfSlices].N = K - 1;
                 moduleMAIN.Slices[moduleMAIN.NoOfSlices].P = new moduleMAIN.Double_XY[moduleMAIN.Slices[moduleMAIN.NoOfSlices].N + 1];
                 moduleMAIN.Slices[moduleMAIN.NoOfSlices].NC = 0;
-                var loopTo1 = moduleMAIN.Slices[moduleMAIN.NoOfSlices].N;
+                int loopTo1 = moduleMAIN.Slices[moduleMAIN.NoOfSlices].N;
                 for (K = 1; K <= loopTo1; K++)
                 {
                     moduleMAIN.Slices[moduleMAIN.NoOfSlices].P[K].X = S.P[K].X;
@@ -639,12 +639,12 @@ namespace SBuilderX
             while (Rest > 1);
             Rest = NoOfInside - C;   // Rest is now used for unused Inside points
             int NOfS = moduleMAIN.NoOfSlices;
-            var loopTo2 = NoOfChilds;
+            int loopTo2 = NoOfChilds;
             for (C = 1; C <= loopTo2; C++)
             {
                 if (modulePOLYS.Polys[modulePOLYS.Polys[PolyIndex].Childs[C]].NoOfPoints <= Rest)
                 {
-                    var loopTo3 = NOfS;
+                    int loopTo3 = NOfS;
                     for (N = 1; N <= loopTo3; N++)
                     {
                         if (ChildInSlice(C, N))
@@ -668,7 +668,7 @@ namespace SBuilderX
             ChildInSliceRet = false;
             int K;
             double lat, lon;
-            var loopTo = modulePOLYS.Polys[modulePOLYS.Polys[PolyIndex].Childs[C]].NoOfPoints;
+            int loopTo = modulePOLYS.Polys[modulePOLYS.Polys[PolyIndex].Childs[C]].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
             {
                 lat = modulePOLYS.Polys[modulePOLYS.Polys[PolyIndex].Childs[C]].GPoints[K].lat;
@@ -696,7 +696,7 @@ namespace SBuilderX
 
             // test = going to infinitum_north and counting the jumps across borders
             IsPtInSliceRet = false;
-            var loopTo = moduleMAIN.Slices[I].N;
+            int loopTo = moduleMAIN.Slices[I].N;
             for (N = 1; N <= loopTo; N++)
             {
                 // If Path(N).T = 0 Then GoTo next_N
@@ -754,7 +754,7 @@ namespace SBuilderX
             int GetQPtFromPathRet = default;
             int N;
             GetQPtFromPathRet = 0;
-            var loopTo = NoOfQPts;
+            int loopTo = NoOfQPts;
             for (N = 1; N <= loopTo; N++)
             {
                 if (QPts[N].I == I)
@@ -803,7 +803,7 @@ namespace SBuilderX
             moduleMAIN.Slices[moduleMAIN.NoOfSlices].N = modulePOLYS.Polys[M].NoOfPoints;
             moduleMAIN.Slices[moduleMAIN.NoOfSlices].P = new moduleMAIN.Double_XY[moduleMAIN.Slices[moduleMAIN.NoOfSlices].N + 1];
             moduleMAIN.Slices[moduleMAIN.NoOfSlices].NC = -P;
-            var loopTo = modulePOLYS.Polys[M].NoOfPoints;
+            int loopTo = modulePOLYS.Polys[M].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
             {
                 moduleMAIN.Slices[moduleMAIN.NoOfSlices].P[K].X = modulePOLYS.Polys[M].GPoints[K].lon;
@@ -820,7 +820,7 @@ namespace SBuilderX
             moduleMAIN.Slices[1].N = modulePOLYS.Polys[PolyIndex].NoOfPoints;
             moduleMAIN.Slices[1].P = new moduleMAIN.Double_XY[moduleMAIN.Slices[1].N + 1];
             moduleMAIN.Slices[moduleMAIN.NoOfSlices].NC = -1;
-            var loopTo = modulePOLYS.Polys[PolyIndex].NoOfPoints;
+            int loopTo = modulePOLYS.Polys[PolyIndex].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
             {
                 moduleMAIN.Slices[1].P[K].X = modulePOLYS.Polys[PolyIndex].GPoints[K].lon;
@@ -831,7 +831,7 @@ namespace SBuilderX
             if (M > 0)
             {
                 moduleMAIN.Slices[1].C = new int[M + 1];
-                var loopTo1 = M;
+                int loopTo1 = M;
                 for (K = 1; K <= loopTo1; K++)
                 {
                     moduleMAIN.Slices[1].C[K] = K + 1;
@@ -842,7 +842,7 @@ namespace SBuilderX
                     moduleMAIN.Slices[K + 1].N = N;
                     moduleMAIN.Slices[K + 1].P = new moduleMAIN.Double_XY[N + 1];
                     moduleMAIN.Slices[K + 1].NC = -1;
-                    var loopTo2 = N;
+                    int loopTo2 = N;
                     for (J = 1; J <= loopTo2; J++)
                     {
                         moduleMAIN.Slices[K + 1].P[J].X = modulePOLYS.Polys[C].GPoints[J].lon;
@@ -897,7 +897,7 @@ namespace SBuilderX
             int J;
             NoOfPathPts = moduleLINES.Lines[N].NoOfPoints - 1;
             Path = new moduleMAIN.Double_XYZW[NoOfPathPts + 1];
-            var loopTo = NoOfPathPts;
+            int loopTo = NoOfPathPts;
             for (J = 0; J <= loopTo; J++)
             {
                 Path[J].X = moduleLINES.Lines[N].GLPoints[J + 1].lon;
@@ -941,7 +941,7 @@ namespace SBuilderX
             int N;
             if (PreviousIsOut)
                 AllInside = false;
-            var loopTo = NoOfPathPts;
+            int loopTo = NoOfPathPts;
             for (N = 1; N <= loopTo; N++)
             {
                 PresentIsIn = IsPtInQuad(N);
@@ -1029,7 +1029,7 @@ namespace SBuilderX
             int K;
             NoOfPathPts = NoOfPathPts + 1;
             Array.Resize(ref Path, NoOfPathPts + 1);
-            var loopTo = Point;
+            int loopTo = Point;
             for (K = NoOfPathPts - 1; K >= loopTo; K -= 1)
                 Path[K + 1] = Path[K];
             Path[Point].Y = Y;
@@ -1103,7 +1103,7 @@ namespace SBuilderX
                 // Fragments(NoOfFragments).N = NoOfPathPts
 
                 moduleMAIN.Fragments[moduleMAIN.NoOfFragments].P = new moduleMAIN.Double_XYZW[NoOfPathPts + 1 + 1];
-                var loopTo = NoOfPathPts + 1;
+                int loopTo = NoOfPathPts + 1;
                 for (N = 1; N <= loopTo; N++)
                 {
                     moduleMAIN.Fragments[moduleMAIN.NoOfFragments].P[N].X = Path[N - 1].X;
@@ -1124,7 +1124,7 @@ namespace SBuilderX
             bool PresentIsIn;
             int K;
             K = 1; // index to fragments()
-            var loopTo1 = NoOfPathPts;
+            int loopTo1 = NoOfPathPts;
             for (N = FirstIn; N <= loopTo1; N++)
             {
                 PresentIsIn = IsPtInQuad(N);
@@ -1156,7 +1156,7 @@ namespace SBuilderX
                 PreviousIsIn = PresentIsIn;
             }
 
-            var loopTo2 = FirstIn - 1;
+            int loopTo2 = FirstIn - 1;
             for (N = 0; N <= loopTo2; N++)
             {
                 PresentIsIn = IsPtInQuad(N);

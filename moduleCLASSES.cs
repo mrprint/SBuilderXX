@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -220,10 +220,10 @@ namespace SBuilderX
             int N1, N2, L, M, CC, RR;
             N1 = 1 - BrushSize;
             N2 = BrushSize - 1;
-            var loopTo = N2;
+            int loopTo = N2;
             for (L = N1; L <= loopTo; L++)
             {
-                var loopTo1 = N2;
+                int loopTo1 = N2;
                 for (M = N1; M <= loopTo1; M++)
                 {
                     CC = C + L;
@@ -257,10 +257,10 @@ namespace SBuilderX
             int N1, N2, L, M, CC, RR;
             N1 = 1 - BrushSize;
             N2 = BrushSize - 1;
-            var loopTo = N2;
+            int loopTo = N2;
             for (L = N1; L <= loopTo; L++)
             {
-                var loopTo1 = N2;
+                int loopTo1 = N2;
                 for (M = N1; M <= loopTo1; M++)
                 {
                     CC = C + L;
@@ -344,10 +344,10 @@ namespace SBuilderX
                 if (P == 0)
                 {
                     LL_XY[J, K].Pointer = NoOfLLXYs;
-                    var oldLLands = LLands;
+                    byte[,,] oldLLands = LLands;
                     LLands = new byte[257, 257, NoOfLLXYs + 1];
                     if (oldLLands is object)
-                        for (var i = 0; i <= oldLLands.Length / oldLLands.GetLength(2) - 1; ++i)
+                        for (int i = 0; i <= oldLLands.Length / oldLLands.GetLength(2) - 1; ++i)
                             Array.Copy(oldLLands, i * oldLLands.GetLength(2), LLands, i * LLands.GetLength(2), Math.Min(oldLLands.GetLength(2), LLands.GetLength(2)));
                     LLands[C, R, NoOfLLXYs] = LC;
                     LL_XY[J, K].NoOfLWs = 1;
@@ -383,10 +383,10 @@ namespace SBuilderX
                 if (P == 0)
                 {
                     WW_XY[J, K].Pointer = NoOfWWXYs;
-                    var oldWWaters = WWaters;
+                    byte[,,] oldWWaters = WWaters;
                     WWaters = new byte[257, 257, NoOfWWXYs + 1];
                     if (oldWWaters is object)
-                        for (var i = 0; i <= oldWWaters.Length / oldWWaters.GetLength(2) - 1; ++i)
+                        for (int i = 0; i <= oldWWaters.Length / oldWWaters.GetLength(2) - 1; ++i)
                             Array.Copy(oldWWaters, i * oldWWaters.GetLength(2), WWaters, i * WWaters.GetLength(2), Math.Min(oldWWaters.GetLength(2), WWaters.GetLength(2)));
                     WWaters[C, R, NoOfWWXYs] = WC;
                     WW_XY[J, K].NoOfLWs = 1;
@@ -418,7 +418,7 @@ namespace SBuilderX
             My.MyProject.Forms.FrmStart.Cursor = Cursors.WaitCursor;
             AppendRawLandRet = false;
             string A = Path.GetFileNameWithoutExtension(fname);
-            var LL = new byte[257, 257];
+            byte[,] LL = new byte[257, 257];
             try
             {
                 FileSystem.FileOpen(3, fname, OpenMode.Binary);
@@ -426,7 +426,7 @@ namespace SBuilderX
                 FileSystem.FileGet(3, ref argValue);
                 FileSystem.FileClose(3);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return default;
             }
@@ -456,7 +456,7 @@ namespace SBuilderX
             My.MyProject.Forms.FrmStart.Cursor = Cursors.WaitCursor;
             AppendRawWaterRet = false;
             string A = Path.GetFileNameWithoutExtension(fname);
-            var WW = new byte[257, 257];
+            byte[,] WW = new byte[257, 257];
             try
             {
                 FileSystem.FileOpen(3, fname, OpenMode.Binary);
@@ -464,7 +464,7 @@ namespace SBuilderX
                 FileSystem.FileGet(3, ref argValue);
                 FileSystem.FileClose(3);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return default;
             }
@@ -686,7 +686,7 @@ namespace SBuilderX
             string jpg = ".jpg";
             string bmp = ".bmp";
             Image myImage;
-            var myBrush = new SolidBrush(Color.Yellow);
+            SolidBrush myBrush = new SolidBrush(Color.Yellow);
             double LatNorth;
             double LonWest;
             X1 = (float)(moduleMAIN.LonDispWest + 180d);
@@ -702,11 +702,11 @@ namespace SBuilderX
             Y1 = (float)(Y1 / moduleMAIN.D5Lat);
             LA2 = (int)Y1;
             int C, C0, R, R0, N;
-            var loopTo = LA2;
+            int loopTo = LA2;
             for (LA = LA1; LA <= loopTo; LA++)
             {
                 LatNorth = 90d - LA * moduleMAIN.D5Lat;
-                var loopTo1 = LO2;
+                int loopTo1 = LO2;
                 for (LO = LO1; LO <= loopTo1; LO++)
                 {
                     LonWest = LO * moduleMAIN.D5Lon - 180d;
@@ -785,7 +785,7 @@ namespace SBuilderX
             string jpg = ".jpg";
             string bmp = ".bmp";
             Image myImage;
-            var myBrush = new SolidBrush(Color.Yellow);
+            SolidBrush myBrush = new SolidBrush(Color.Yellow);
             double LatNorth;
             double LonWest;
             X1 = (float)(moduleMAIN.LonDispWest + 180d);
@@ -801,11 +801,11 @@ namespace SBuilderX
             Y1 = (float)(Y1 / moduleMAIN.D5Lat);
             LA2 = (int)Y1;
             int C, C0, R, R0, N;
-            var loopTo = LA2;
+            int loopTo = LA2;
             for (LA = LA1; LA <= loopTo; LA++)
             {
                 LatNorth = 90d - LA * moduleMAIN.D5Lat;
-                var loopTo1 = LO2;
+                int loopTo1 = LO2;
                 for (LO = LO1; LO <= loopTo1; LO++)
                 {
                     LonWest = LO * moduleMAIN.D5Lon - 180d;
@@ -1141,7 +1141,7 @@ namespace SBuilderX
             K1 = PT.K;
             C1 = PT.C;
             R1 = PT.R;
-            var loopTo = J1;
+            int loopTo = J1;
             for (J = J0; J <= loopTo; J++)
             {
                 C00 = 0;
@@ -1150,7 +1150,7 @@ namespace SBuilderX
                 C11 = 256;
                 if (J == J1)
                     C11 = C1;
-                var loopTo1 = K1;
+                int loopTo1 = K1;
                 for (K = K0; K <= loopTo1; K++)
                 {
                     if (LL_XY[J, K].NoOfLWs > 0)
@@ -1162,10 +1162,10 @@ namespace SBuilderX
                         if (K == K1)
                             R11 = R1;
                         P = LL_XY[J, K].Pointer;
-                        var loopTo2 = R11;
+                        int loopTo2 = R11;
                         for (R = R00; R <= loopTo2; R++)
                         {
-                            var loopTo3 = C11;
+                            int loopTo3 = C11;
                             for (C = C00; C <= loopTo3; C++)
                             {
                                 BT0 = LLands[C, R, P];
@@ -1206,7 +1206,7 @@ namespace SBuilderX
             K1 = PT.K;
             C1 = PT.C;
             R1 = PT.R;
-            var loopTo = J1;
+            int loopTo = J1;
             for (J = J0; J <= loopTo; J++)
             {
                 C00 = 0;
@@ -1215,7 +1215,7 @@ namespace SBuilderX
                 C11 = 256;
                 if (J == J1)
                     C11 = C1;
-                var loopTo1 = K1;
+                int loopTo1 = K1;
                 for (K = K0; K <= loopTo1; K++)
                 {
                     if (WW_XY[J, K].NoOfLWs > 0)
@@ -1227,10 +1227,10 @@ namespace SBuilderX
                         if (K == K1)
                             R11 = R1;
                         P = WW_XY[J, K].Pointer;
-                        var loopTo2 = R11;
+                        int loopTo2 = R11;
                         for (R = R00; R <= loopTo2; R++)
                         {
-                            var loopTo3 = C11;
+                            int loopTo3 = C11;
                             for (C = C00; C <= loopTo3; C++)
                             {
                                 BT0 = WWaters[C, R, P];
@@ -1255,7 +1255,7 @@ namespace SBuilderX
         internal static void MakeBglLand(ref bool CopyBGLs)
         {
             int J, K, C, R, P;
-            var Flag = new bool[96, 64];
+            bool[,] Flag = new bool[96, 64];
             int NoOfQuads = 0;
             int Counter = 0;
             for (J = 0; J <= 95; J++)
@@ -1285,10 +1285,9 @@ namespace SBuilderX
             }
 
             string InfFile, RawFile, BGLFile, BGLFileTarget;
-            var BGL = new string[NoOfQuads + 1];
-            var Command = new string[NoOfQuads + 1];
-            var Quad = new byte[257, 257];
-            string A;
+            string[] BGL = new string[NoOfQuads + 1];
+            string[] Command = new string[NoOfQuads + 1];
+            byte[,] Quad = new byte[257, 257];
 
             // create RAW files
             for (J = 0; J <= 95; J++)
@@ -1326,7 +1325,7 @@ namespace SBuilderX
             }
 
             // delete BGL files
-            var loopTo = NoOfQuads;
+            int loopTo = NoOfQuads;
             for (J = 1; J <= loopTo; J++)
             {
                 BGLFile = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + BGL[J];
@@ -1373,7 +1372,7 @@ namespace SBuilderX
 
             FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
             FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
-            var loopTo1 = NoOfQuads;
+            int loopTo1 = NoOfQuads;
             for (J = 1; J <= loopTo1; J++)
                 moduleMAIN.ExecCmd(Command[J]);
             if (!CopyBGLs)
@@ -1382,7 +1381,7 @@ namespace SBuilderX
             try
             {
                 // copy BGL files
-                var loopTo2 = NoOfQuads;
+                int loopTo2 = NoOfQuads;
                 for (J = 1; J <= loopTo2; J++)
                 {
                     BGLFile = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + BGL[J];
@@ -1405,7 +1404,7 @@ namespace SBuilderX
         internal static void MakeBglWater(ref bool CopyBGLs)
         {
             int J, K, C, R, P;
-            var Flag = new bool[96, 64];
+            bool[,] Flag = new bool[96, 64];
             int NoOfQuads = 0;
             int Counter = 0;
             for (J = 0; J <= 95; J++)
@@ -1435,10 +1434,9 @@ namespace SBuilderX
             }
 
             string InfFile, RawFile, BGLFile, BGLFileTarget;
-            var BGL = new string[NoOfQuads + 1];
-            var Command = new string[NoOfQuads + 1];
-            var Quad = new byte[257, 257];
-            string A;
+            string[] BGL = new string[NoOfQuads + 1];
+            string[] Command = new string[NoOfQuads + 1];
+            byte[,] Quad = new byte[257, 257];
 
             // create RAW files
             for (J = 0; J <= 95; J++)
@@ -1476,7 +1474,7 @@ namespace SBuilderX
             }
 
             // delete BGL files
-            var loopTo = NoOfQuads;
+            int loopTo = NoOfQuads;
             for (J = 1; J <= loopTo; J++)
             {
                 BGLFile = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + BGL[J];
@@ -1522,7 +1520,7 @@ namespace SBuilderX
             }
 
             Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
-            var loopTo1 = NoOfQuads;
+            int loopTo1 = NoOfQuads;
             for (J = 1; J <= loopTo1; J++)
                 moduleMAIN.ExecCmd(Command[J]);
             if (!CopyBGLs)
@@ -1530,7 +1528,7 @@ namespace SBuilderX
             try
             {
                 // copy BGL files
-                var loopTo2 = NoOfQuads;
+                int loopTo2 = NoOfQuads;
                 for (J = 1; J <= loopTo2; J++)
                 {
                     BGLFile = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + BGL[J];
@@ -1594,7 +1592,7 @@ namespace SBuilderX
                 K1 = PT.K;
                 C1 = PT.C;
                 R1 = PT.R;
-                var loopTo = J1;
+                int loopTo = J1;
                 for (J = J0; J <= loopTo; J++)
                 {
                     C00 = 0;
@@ -1603,7 +1601,7 @@ namespace SBuilderX
                     C11 = 256;
                     if (J == J1)
                         C11 = C1;
-                    var loopTo1 = K1;
+                    int loopTo1 = K1;
                     for (K = K0; K <= loopTo1; K++)
                     {
                         R00 = 0;
@@ -1615,18 +1613,18 @@ namespace SBuilderX
                         LL = moduleMAIN.LLFromJKCR(J, K, 0, 0);
                         Lat0 = LL.Y;
                         Lon0 = LL.X;
-                        var loopTo2 = R11;
+                        int loopTo2 = R11;
                         for (R = R00; R <= loopTo2; R++)
                         {
                             Lat = Lat0 - R * moduleMAIN.D13Lat;
                             PY = (int)Math.Round((Y0 - Lat) / DY);
-                            var loopTo3 = C11;
+                            int loopTo3 = C11;
                             for (C = C00; C <= loopTo3; C++)
                             {
                                 Lon = Lon0 + C * moduleMAIN.D13Lon;
                                 PX = (int)Math.Round((Lon - X0) / DX);
                                 myColor = image.GetPixel(PX, PY);
-                                var loopTo4 = NoOfLWCIs;
+                                int loopTo4 = NoOfLWCIs;
                                 for (N = 1; N <= loopTo4; N++)
                                 {
                                     if (LWCIs[N].IsLand)
@@ -1705,7 +1703,7 @@ namespace SBuilderX
                 K1 = PT.K;
                 C1 = PT.C;
                 R1 = PT.R;
-                var loopTo = J1;
+                int loopTo = J1;
                 for (J = J0; J <= loopTo; J++)
                 {
                     C00 = 0;
@@ -1714,7 +1712,7 @@ namespace SBuilderX
                     C11 = 256;
                     if (J == J1)
                         C11 = C1;
-                    var loopTo1 = K1;
+                    int loopTo1 = K1;
                     for (K = K0; K <= loopTo1; K++)
                     {
                         R00 = 0;
@@ -1726,18 +1724,18 @@ namespace SBuilderX
                         LL = moduleMAIN.LLFromJKCR(J, K, 0, 0);
                         Lat0 = LL.Y;
                         Lon0 = LL.X;
-                        var loopTo2 = R11;
+                        int loopTo2 = R11;
                         for (R = R00; R <= loopTo2; R++)
                         {
                             Lat = Lat0 - R * moduleMAIN.D13Lat;
                             PY = (int)Math.Round((Y0 - Lat) / DY);
-                            var loopTo3 = C11;
+                            int loopTo3 = C11;
                             for (C = C00; C <= loopTo3; C++)
                             {
                                 Lon = Lon0 + C * moduleMAIN.D13Lon;
                                 PX = (int)Math.Round((Lon - X0) / DX);
                                 myColor = image.GetPixel(PX, PY);
-                                var loopTo4 = NoOfLWCIs;
+                                int loopTo4 = NoOfLWCIs;
                                 for (N = 1; N <= loopTo4; N++)
                                 {
                                     if (!LWCIs[N].IsLand)

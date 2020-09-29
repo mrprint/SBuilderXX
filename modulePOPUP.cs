@@ -33,7 +33,7 @@ namespace SBuilderX
             HidePopUPMenu();
             if (moduleLINES.LineON & moduleLINES.NoOfLinesSelected > 1)
             {
-                var loopTo = moduleLINES.NoOfLines;
+                int loopTo = moduleLINES.NoOfLines;
                 for (N = 1; N <= loopTo; N++)
                 {
                     POPIndex = N;
@@ -68,7 +68,7 @@ namespace SBuilderX
             {
 
                 // check if there are possible outers and possible holes
-                var loopTo1 = modulePOLYS.NoOfPolys;
+                int loopTo1 = modulePOLYS.NoOfPolys;
                 for (N = 1; N <= loopTo1; N++)
                 {
                     if (modulePOLYS.Polys[N].Selected)
@@ -404,7 +404,7 @@ namespace SBuilderX
             Y1 = Y / moduleMAIN.PixelsPerLatDeg;
             if ((moduleMAIN.PointerON | moduleLINES.LineON) & moduleLINES.LineVIEW)
             {
-                var loopTo = moduleLINES.NoOfLines;
+                int loopTo = moduleLINES.NoOfLines;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (X1 < moduleLINES.Lines[N].WLON - DX)
@@ -454,7 +454,7 @@ namespace SBuilderX
             Y1 = Y / moduleMAIN.PixelsPerLatDeg;
             if ((moduleMAIN.PointerON | modulePOLYS.PolyON) & modulePOLYS.PolyVIEW)
             {
-                var loopTo = modulePOLYS.NoOfPolys;
+                int loopTo = modulePOLYS.NoOfPolys;
                 for (N = 1; N <= loopTo; N++)
                 {
                     K = 1;
@@ -494,7 +494,7 @@ namespace SBuilderX
             ELON = (X - 5d) / moduleMAIN.PixelsPerLonDeg;
             NLAT = (Y - 5d) / moduleMAIN.PixelsPerLatDeg;
             SLAT = (Y + 5d) / moduleMAIN.PixelsPerLatDeg;
-            var loopTo = moduleLINES.NoOfLines;
+            int loopTo = moduleLINES.NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
                 retval = false;
@@ -539,7 +539,7 @@ namespace SBuilderX
             IsPolyUPRet = 0;
             if ((moduleMAIN.PointerON | modulePOLYS.PolyON) & modulePOLYS.PolyVIEW)
             {
-                var loopTo = modulePOLYS.NoOfPolys;
+                int loopTo = modulePOLYS.NoOfPolys;
                 for (N = 1; N <= loopTo; N++)
                 {
                     K = 2;
@@ -576,7 +576,7 @@ namespace SBuilderX
             IsExcludeUPRet = 0;
             if ((moduleMAIN.PointerON | moduleEXCLUDES.ExcludeON) & moduleEXCLUDES.ExcludeVIEW)
             {
-                var loopTo = moduleEXCLUDES.NoOfExcludes;
+                int loopTo = moduleEXCLUDES.NoOfExcludes;
                 for (N = 1; N <= loopTo; N++)
                 {
                     retval = moduleEXCLUDES.IsPtInExclude(N, X, Y);
@@ -599,7 +599,7 @@ namespace SBuilderX
             IsObjectUPRet = 0;
             if ((moduleMAIN.PointerON | moduleOBJECTS.ObjectON) & moduleOBJECTS.ObjectVIEW)
             {
-                var loopTo = moduleOBJECTS.NoOfObjects;
+                int loopTo = moduleOBJECTS.NoOfObjects;
                 for (N = 1; N <= loopTo; N++)
                 {
                     X1 = moduleOBJECTS.Objects[N].lon * moduleMAIN.PixelsPerLonDeg;
@@ -723,7 +723,7 @@ namespace SBuilderX
             IsMapUPRet = 0;
             if (moduleMAIN.PointerON & moduleMAPS.MapVIEW)
             {
-                var loopTo = moduleMAPS.NoOfMaps;
+                int loopTo = moduleMAPS.NoOfMaps;
                 for (N = 1; N <= loopTo; N++)
                 {
                     retval = moduleMAPS.IsPointInMap(N, X, Y);

@@ -139,7 +139,7 @@ namespace SBuilderX
                 LineInd = LineInd + 1;
                 if (LineInd == moduleLINES.NoOfLines)
                     LineInd = 1;
-                var loopTo = moduleLINES.NoOfLines;
+                int loopTo = moduleLINES.NoOfLines;
                 for (N = LineInd; N <= loopTo; N++)
                 {
                     if (string.IsNullOrEmpty(Search))
@@ -168,7 +168,7 @@ namespace SBuilderX
 
                 if (All == 1)
                     return FindLinesRet;
-                var loopTo1 = LineInd;
+                int loopTo1 = LineInd;
                 for (N = 1; N <= loopTo1; N++)
                 {
                     if (string.IsNullOrEmpty(Search))
@@ -194,7 +194,7 @@ namespace SBuilderX
                     }
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
             }
             return FindLinesRet;
@@ -213,7 +213,7 @@ namespace SBuilderX
                 LineInd = LineInd + 1;
                 if (LineInd == moduleLINES.NoOfLines)
                     LineInd = 1;
-                var loopTo = moduleLINES.NoOfLines;
+                int loopTo = moduleLINES.NoOfLines;
                 for (N = LineInd; N <= loopTo; N++)
                 {
                     if (moduleLINES.Lines[N].Guid.ToUpper().IndexOf(Search, 0) != -1)
@@ -231,7 +231,7 @@ namespace SBuilderX
 
                 if (All == 1)
                     return FindLTypesRet;
-                var loopTo1 = LineInd;
+                int loopTo1 = LineInd;
                 for (N = 1; N <= loopTo1; N++)
                 {
                     if (moduleLINES.Lines[N].Guid.ToUpper().IndexOf(Search, 0) != -1)
@@ -266,7 +266,7 @@ namespace SBuilderX
                 PolyInd = PolyInd + 1;
                 if (PolyInd == modulePOLYS.NoOfPolys)
                     PolyInd = 1;
-                var loopTo = modulePOLYS.NoOfPolys;
+                int loopTo = modulePOLYS.NoOfPolys;
                 for (N = PolyInd; N <= loopTo; N++)
                 {
                     if (string.IsNullOrEmpty(Search))
@@ -295,7 +295,7 @@ namespace SBuilderX
 
                 if (All == 1)
                     return FindPolysRet;
-                var loopTo1 = PolyInd;
+                int loopTo1 = PolyInd;
                 for (N = 1; N <= loopTo1; N++)
                 {
                     if (string.IsNullOrEmpty(Search))
@@ -340,7 +340,7 @@ namespace SBuilderX
                 PolyInd = PolyInd + 1;
                 if (PolyInd == modulePOLYS.NoOfPolys)
                     PolyInd = 1;
-                var loopTo = modulePOLYS.NoOfPolys;
+                int loopTo = modulePOLYS.NoOfPolys;
                 for (N = PolyInd; N <= loopTo; N++)
                 {
                     if (modulePOLYS.Polys[N].Guid.ToUpper().IndexOf(Search, 0) != -1)
@@ -358,7 +358,7 @@ namespace SBuilderX
 
                 if (All == 1)
                     return FindPTypesRet;
-                var loopTo1 = PolyInd;
+                int loopTo1 = PolyInd;
                 for (N = 1; N <= loopTo1; N++)
                 {
                     if (modulePOLYS.Polys[N].Guid.ToUpper().IndexOf(Search, 0) != -1)

@@ -31,23 +31,11 @@ namespace SBuilderX
 
         private int _NumPoints;
 
-        public int NumPoints
-        {
-            get
-            {
-                return _NumPoints;
-            }
-        }
+        public int NumPoints => _NumPoints;
 
         private int _NumParts;
 
-        public int NumParts
-        {
-            get
-            {
-                return _NumParts;
-            }
-        }
+        public int NumParts => _NumParts;
 
         public int get_Begins(int N)
         {
@@ -56,63 +44,27 @@ namespace SBuilderX
 
         private int _shpType;
 
-        public int shpType
-        {
-            get
-            {
-                return _shpType;
-            }
-        }
+        public int shpType => _shpType;
 
         private double _xMin;
 
-        public double xMin
-        {
-            get
-            {
-                return _xMin;
-            }
-        }
+        public double xMin => _xMin;
 
         private double _xMax;
 
-        public double xMax
-        {
-            get
-            {
-                return _xMax;
-            }
-        }
+        public double xMax => _xMax;
 
         private double _yMin;
 
-        public double yMin
-        {
-            get
-            {
-                return _yMin;
-            }
-        }
+        public double yMin => _yMin;
 
         private double _yMax;
 
-        public double yMax
-        {
-            get
-            {
-                return _yMax;
-            }
-        }
+        public double yMax => _yMax;
 
         private int _recordCount;
 
-        public double recordCount
-        {
-            get
-            {
-                return _recordCount;
-            }
-        }
+        public double recordCount => _recordCount;
 
         public bool FileReader(string filename)
         {
@@ -139,7 +91,7 @@ namespace SBuilderX
                 N = shxbuffer.Length - 100;    // total number of bytes - the 100 from the header
                 _recordCount = (int)(N / 8d);
                 RecInd = new int[_recordCount + 1];
-                var loopTo = _recordCount;
+                int loopTo = _recordCount;
                 for (N = 1; N <= loopTo; N++)
                 {
                     M = 100 + (N - 1) * 8;
@@ -149,7 +101,7 @@ namespace SBuilderX
 
                 FileReaderRet = true;
             }
-            catch(Exception e)
+            catch (Exception)
             {
             }
             return FileReaderRet;
@@ -165,8 +117,8 @@ namespace SBuilderX
                 int N, M;
 
                 // read first 100 bytes of SHP file
-                var header = new byte[101];
-                var fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
+                byte[] header = new byte[101];
+                FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
                 fs.Read(header, 0, 100);
                 fs.Close();
                 N = BigEndian(BitConverter.ToInt32(header, 0));
@@ -185,7 +137,7 @@ namespace SBuilderX
                 N = shxbuffer.Length - 100;    // total number of bytes - the 100 from the header
                 _recordCount = (int)(N / 8d);
                 RecInd = new int[_recordCount + 1];
-                var loopTo = _recordCount;
+                int loopTo = _recordCount;
                 for (N = 1; N <= loopTo; N++)
                 {
                     M = 100 + (N - 1) * 8;
@@ -195,7 +147,7 @@ namespace SBuilderX
 
                 GetInfoRet = true;
             }
-            catch(Exception e)
+            catch (Exception)
             {
             }
             return GetInfoRet;
@@ -211,7 +163,7 @@ namespace SBuilderX
             _NumPoints = BitConverter.ToInt32(buffer, pointer);
             _Begins = new int[_NumParts + 1];
             _Points = new Double_XYZ[_NumPoints + 1];
-            var loopTo = _NumParts;
+            int loopTo = _NumParts;
             for (P = 1; P <= loopTo; P++)
             {
                 pointer = pointer + 4;
@@ -223,7 +175,7 @@ namespace SBuilderX
             pointerZ = pointerXY + (_NumPoints + 1) * 16;
             if (_shpType == 3 | shpType == 5)
             {
-                var loopTo1 = _NumPoints;
+                int loopTo1 = _NumPoints;
                 for (P = 1; P <= loopTo1; P++)
                 {
                     _Points[P].X = BitConverter.ToDouble(buffer, pointerXY);
@@ -233,7 +185,7 @@ namespace SBuilderX
             }
             else
             {
-                var loopTo2 = _NumPoints;
+                int loopTo2 = _NumPoints;
                 for (P = 1; P <= loopTo2; P++)
                 {
                     _Points[P].X = BitConverter.ToDouble(buffer, pointerXY);
@@ -251,7 +203,7 @@ namespace SBuilderX
 
             // returns the big endian representation of a Int32 number
             byte BB;
-            var B = BitConverter.GetBytes(n);
+            byte[] B = BitConverter.GetBytes(n);
             BB = B[0];
             B[0] = B[3];
             B[3] = BB;

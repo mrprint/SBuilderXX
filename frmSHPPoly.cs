@@ -26,7 +26,7 @@ namespace SBuilderX
                 cmbAltitude.Items.Remove("From Shape file");
             }
 
-            var loopTo = moduleSHAPE.NoOfFields;
+            int loopTo = moduleSHAPE.NoOfFields;
             for (N = 1; N <= loopTo; N++)
             {
                 cmbName.Items.Remove(moduleSHAPE.FieldNames[N - 1]);
@@ -44,7 +44,7 @@ namespace SBuilderX
                 cmbAltitude.Items.Add("From Shape file");
             }
 
-            var loopTo = moduleSHAPE.NoOfFields;
+            int loopTo = moduleSHAPE.NoOfFields;
             for (N = 1; N <= loopTo; N++)
             {
                 cmbName.Items.Add(moduleSHAPE.FieldNames[N - 1]);
@@ -54,7 +54,7 @@ namespace SBuilderX
             }
 
             cmbName.SelectedIndex = 0;
-            var loopTo1 = moduleSHAPE.NoOfFields - 1;
+            int loopTo1 = moduleSHAPE.NoOfFields - 1;
             for (N = 0; N <= loopTo1; N++)
             {
                 if (moduleSHAPE.FieldNames[N].ToUpper() == "NAME")
@@ -65,7 +65,7 @@ namespace SBuilderX
             }
 
             cmbGUID.SelectedIndex = 0;
-            var loopTo2 = moduleSHAPE.NoOfFields - 1;
+            int loopTo2 = moduleSHAPE.NoOfFields - 1;
             for (N = 0; N <= loopTo2; N++)
             {
                 if (moduleSHAPE.FieldNames[N].ToUpper() == "GUID")
@@ -76,7 +76,7 @@ namespace SBuilderX
             }
 
             cmbColor.SelectedIndex = 0;
-            var loopTo3 = moduleSHAPE.NoOfFields - 1;
+            int loopTo3 = moduleSHAPE.NoOfFields - 1;
             for (N = 0; N <= loopTo3; N++)
             {
                 if (moduleSHAPE.FieldNames[N].ToUpper() == "COLOR")
@@ -94,7 +94,7 @@ namespace SBuilderX
             else
             {
                 cmbAltitude.SelectedIndex = 0;
-                var loopTo4 = moduleSHAPE.NoOfFields - 1;
+                int loopTo4 = moduleSHAPE.NoOfFields - 1;
                 for (N = 0; N <= loopTo4; N++)
                 {
                     if (moduleSHAPE.FieldNames[N].ToUpper() == "ALTITUDE")

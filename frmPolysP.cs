@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -59,7 +59,7 @@ namespace SBuilderX
             ThisPoly = modulePOPUP.POPIndex;
             int N;
             NoOfParents = 0;
-            var loopTo = modulePOLYS.NoOfPolys;
+            int loopTo = modulePOLYS.NoOfPolys;
             for (N = 1; N <= loopTo; N++)
             {
                 if (modulePOLYS.Polys[N].NoOfChilds >= 0)
@@ -145,7 +145,7 @@ namespace SBuilderX
             if (!(modulePOLYS.Polys[0].Type == "XXX"))
             {
                 K = 0;
-                var loopTo = modulePOLYS.NoOfPolyTypes;
+                int loopTo = modulePOLYS.NoOfPolyTypes;
                 for (N = 1; N <= loopTo; N++)
                 {
                     K = K + 1;
@@ -157,7 +157,7 @@ namespace SBuilderX
             else
             {
                 K = 0;
-                var loopTo1 = modulePOLYS.NoOfPolyTypes;
+                int loopTo1 = modulePOLYS.NoOfPolyTypes;
                 for (N = 1; N <= loopTo1; N++)
                 {
                     K = K + 1;
@@ -227,12 +227,12 @@ namespace SBuilderX
                     FileSystem.FileCopy(moduleMAIN.AppPath + @"\Tools\BMPs\none.jpg", BmpPath);
                 }
 
-                var bmp = Image.FromFile(BmpPath);
-                var cpy = new Bitmap(bmp);
+                Image bmp = Image.FromFile(BmpPath);
+                Bitmap cpy = new Bitmap(bmp);
                 bmp.Dispose();
                 imgTex.Image = cpy;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("There is a problem with the display of this image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -244,7 +244,7 @@ namespace SBuilderX
             if (modulePOPUP.POPMode == "Many") // many to set
             {
                 moduleMAIN.Dirty = true;
-                var loopTo = modulePOLYS.NoOfPolys;
+                int loopTo = modulePOLYS.NoOfPolys;
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (modulePOLYS.Polys[N].Selected & !IsTexPoly(N))
@@ -336,7 +336,7 @@ namespace SBuilderX
 
                 if (modulePOLYS.Polys[N].NoOfChilds > 0)
                 {
-                    var loopTo = modulePOLYS.Polys[N].NoOfChilds;
+                    int loopTo = modulePOLYS.Polys[N].NoOfChilds;
                     for (M = 1; M <= loopTo; M++)
                         CopyProperties(N, modulePOLYS.Polys[N].Childs[M]);
                 }
@@ -512,7 +512,7 @@ namespace SBuilderX
             string GetNameFromGuidRet = default;
             int N;
             GetNameFromGuidRet = "Nothing to Exclude";
-            var loopTo = modulePOLYS.NoOfPolyTypes;
+            int loopTo = modulePOLYS.NoOfPolyTypes;
             for (N = moduleMAIN.PolyInit; N <= loopTo; N++)
             {
                 if ((modulePOLYS.PolyTypes[N].Guid ?? "") == (GUID ?? ""))
@@ -522,7 +522,7 @@ namespace SBuilderX
                 }
             }
 
-            var loopTo1 = moduleLINES.NoOfLineTypes;
+            int loopTo1 = moduleLINES.NoOfLineTypes;
             for (N = moduleMAIN.LineInit; N <= loopTo1; N++)
             {
                 if ((moduleLINES.LineTypes[N].Guid ?? "") == (GUID ?? ""))
@@ -568,14 +568,14 @@ namespace SBuilderX
             P1 = modulePOLYS.Polys[NP];
             modulePOLYS.Polys[NP] = modulePOLYS.Polys[ThisPoly];
             modulePOLYS.Polys[ThisPoly] = P1;
-            var loopTo = modulePOLYS.Polys[ThisPoly].NoOfChilds;
+            int loopTo = modulePOLYS.Polys[ThisPoly].NoOfChilds;
             for (N = 1; N <= loopTo; N++)
             {
                 J = modulePOLYS.Polys[ThisPoly].Childs[N];
                 modulePOLYS.Polys[J].NoOfChilds = -ThisPoly;
             }
 
-            var loopTo1 = modulePOLYS.Polys[NP].NoOfChilds;
+            int loopTo1 = modulePOLYS.Polys[NP].NoOfChilds;
             for (N = 1; N <= loopTo1; N++)
             {
                 J = modulePOLYS.Polys[NP].Childs[N];
@@ -627,14 +627,14 @@ namespace SBuilderX
             P1 = modulePOLYS.Polys[PP];
             modulePOLYS.Polys[PP] = modulePOLYS.Polys[ThisPoly];
             modulePOLYS.Polys[ThisPoly] = P1;
-            var loopTo = modulePOLYS.Polys[ThisPoly].NoOfChilds;
+            int loopTo = modulePOLYS.Polys[ThisPoly].NoOfChilds;
             for (N = 1; N <= loopTo; N++)
             {
                 J = modulePOLYS.Polys[ThisPoly].Childs[N];
                 modulePOLYS.Polys[J].NoOfChilds = -ThisPoly;
             }
 
-            var loopTo1 = modulePOLYS.Polys[PP].NoOfChilds;
+            int loopTo1 = modulePOLYS.Polys[PP].NoOfChilds;
             for (N = 1; N <= loopTo1; N++)
             {
                 J = modulePOLYS.Polys[PP].Childs[N];
@@ -660,7 +660,7 @@ namespace SBuilderX
             {
                 NP = NextParent();
                 modulePOLYS.Polys[N] = modulePOLYS.Polys[NP];
-                var loopTo = modulePOLYS.Polys[N].NoOfChilds;
+                int loopTo = modulePOLYS.Polys[N].NoOfChilds;
                 for (K = 1; K <= loopTo; K++)
                 {
                     J = modulePOLYS.Polys[N].Childs[K];
@@ -675,7 +675,7 @@ namespace SBuilderX
             }
             while (true);
             modulePOLYS.Polys[NP] = P1;
-            var loopTo1 = modulePOLYS.Polys[NP].NoOfChilds;
+            int loopTo1 = modulePOLYS.Polys[NP].NoOfChilds;
             for (K = 1; K <= loopTo1; K++)
             {
                 J = modulePOLYS.Polys[NP].Childs[K];
@@ -715,7 +715,7 @@ namespace SBuilderX
             {
                 PP = PreParent();
                 modulePOLYS.Polys[N] = modulePOLYS.Polys[PP];
-                var loopTo = modulePOLYS.Polys[N].NoOfChilds;
+                int loopTo = modulePOLYS.Polys[N].NoOfChilds;
                 for (K = 1; K <= loopTo; K++)
                 {
                     J = modulePOLYS.Polys[N].Childs[K];
@@ -730,7 +730,7 @@ namespace SBuilderX
             }
             while (true);
             modulePOLYS.Polys[PP] = P1;
-            var loopTo1 = modulePOLYS.Polys[PP].NoOfChilds;
+            int loopTo1 = modulePOLYS.Polys[PP].NoOfChilds;
             for (K = 1; K <= loopTo1; K++)
             {
                 J = modulePOLYS.Polys[PP].Childs[K];
@@ -813,7 +813,7 @@ namespace SBuilderX
             bool Flag = false;
             int n0 = default, n1 = default, n2 = default;
             double k1 = default, k2 = default, k3 = default;
-            var lat = default(double);
+            double lat = default(double);
             double sxy = default, head = default;
 
             // added March 2009 Scott Smart 
@@ -826,7 +826,7 @@ namespace SBuilderX
 
             X = 0d;
             Y = modulePOLYS.Polys[modulePOPUP.POPIndex].GPoints[1].alt;
-            var loopTo = modulePOLYS.Polys[modulePOPUP.POPIndex].NoOfPoints;
+            int loopTo = modulePOLYS.Polys[modulePOPUP.POPIndex].NoOfPoints;
             for (N = 1; N <= loopTo; N++)
             {
                 X = X + modulePOLYS.Polys[modulePOPUP.POPIndex].GPoints[N].alt;
@@ -851,8 +851,8 @@ namespace SBuilderX
             txtSlope.Text = (sxy * 1000d).ToString();
             txtAlt0.Text = modulePOLYS.Polys[modulePOPUP.POPIndex].GPoints[n1].alt.ToString();
             txtPt0.Text = n1.ToString();
-            var k1s = k1.ToString();
-            var k2s = k2.ToString();
+            string k1s = k1.ToString();
+            string k2s = k2.ToString();
             lbSX.Text = "SlopeX = " + ((k1s.Length < 13) ? k1s : k1s.Substring(0, 13));
             lbSY.Text = "SlopeY = " + ((k2s.Length < 13) ? k2s : k2s.Substring(0, 13));
         }
@@ -869,7 +869,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo = modulePOLYS.NoOfPolys;
+                    int loopTo = modulePOLYS.NoOfPolys;
                     for (N = 1; N <= loopTo; N++)
                     {
                         if (modulePOLYS.Polys[N].Selected & modulePOLYS.Polys[N].NoOfChilds >= 0)
@@ -898,7 +898,7 @@ namespace SBuilderX
             Head = Convert.ToDouble(txtHead.Text);
             sxy = Convert.ToDouble(txtSlope.Text);
             lat = 0d;
-            var loopTo = modulePOLYS.Polys[N].NoOfPoints;
+            int loopTo = modulePOLYS.Polys[N].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
                 lat = lat + modulePOLYS.Polys[N].GPoints[K].lat;
             lat = lat / modulePOLYS.Polys[N].NoOfPoints;
@@ -913,7 +913,7 @@ namespace SBuilderX
             y0 = modulePOLYS.Polys[N].GPoints[P].lat;
             z0 = Convert.ToDouble(txtAlt0.Text);
             k3 = z0 - k1 * x0 - k2 * y0;
-            var loopTo1 = modulePOLYS.Polys[N].NoOfPoints;
+            int loopTo1 = modulePOLYS.Polys[N].NoOfPoints;
             for (K = 1; K <= loopTo1; K++)
             {
                 lat = modulePOLYS.Polys[N].GPoints[K].lat;
@@ -921,11 +921,11 @@ namespace SBuilderX
                 modulePOLYS.Polys[N].GPoints[K].alt = k1 * lon + k2 * lat + k3;
             }
 
-            var loopTo2 = modulePOLYS.Polys[N].NoOfChilds;
+            int loopTo2 = modulePOLYS.Polys[N].NoOfChilds;
             for (P = 1; P <= loopTo2; P++)
             {
                 J = modulePOLYS.Polys[N].Childs[P];
-                var loopTo3 = modulePOLYS.Polys[J].NoOfPoints;
+                int loopTo3 = modulePOLYS.Polys[J].NoOfPoints;
                 for (K = 1; K <= loopTo3; K++)
                 {
                     lat = modulePOLYS.Polys[J].GPoints[K].lat;
@@ -949,7 +949,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo = modulePOLYS.NoOfPolys;
+                    int loopTo = modulePOLYS.NoOfPolys;
                     for (N = 1; N <= loopTo; N++)
                     {
                         if (modulePOLYS.Polys[N].Selected & modulePOLYS.Polys[N].NoOfChilds >= 0)
@@ -971,14 +971,14 @@ namespace SBuilderX
         private void SetConstantAltitude(int N, double H)
         {
             int K, P, J;
-            var loopTo = modulePOLYS.Polys[N].NoOfPoints;
+            int loopTo = modulePOLYS.Polys[N].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
                 modulePOLYS.Polys[N].GPoints[K].alt = H;
-            var loopTo1 = modulePOLYS.Polys[N].NoOfChilds;
+            int loopTo1 = modulePOLYS.Polys[N].NoOfChilds;
             for (P = 1; P <= loopTo1; P++)
             {
                 J = modulePOLYS.Polys[N].Childs[P];
-                var loopTo2 = modulePOLYS.Polys[J].NoOfPoints;
+                int loopTo2 = modulePOLYS.Polys[J].NoOfPoints;
                 for (K = 1; K <= loopTo2; K++)
                     modulePOLYS.Polys[J].GPoints[K].alt = H;
             }
@@ -1149,7 +1149,7 @@ namespace SBuilderX
         {
             bool IsTexPolyRet = default;
             IsTexPolyRet = false;
-            var type = modulePOLYS.Polys[N].Type;
+            string type = modulePOLYS.Polys[N].Type;
             if (!string.IsNullOrEmpty(type) && type.Length >= 3 && type.Substring(0, 3) == "TEX")
                 IsTexPolyRet = true;
             return IsTexPolyRet;
@@ -1218,7 +1218,7 @@ namespace SBuilderX
                     File.Copy(A, TexPath, true);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("The file could not be loaded!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;

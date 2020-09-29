@@ -33,7 +33,7 @@ namespace SBuilderX
                 {
                     backupLine = new moduleLINES.GLine[moduleMAIN.MakeOnMany];
                     K = 0;
-                    var loopTo = moduleLINES.NoOfLines;
+                    int loopTo = moduleLINES.NoOfLines;
                     for (N = 1; N <= loopTo; N++)
                     {
                         if (moduleLINES.Lines[N].Selected)
@@ -56,7 +56,7 @@ namespace SBuilderX
                 {
                     backupPoly = new modulePOLYS.GPoly[moduleMAIN.MakeOnMany];
                     K = 0;
-                    var loopTo1 = modulePOLYS.NoOfPolys;
+                    int loopTo1 = modulePOLYS.NoOfPolys;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         if (modulePOLYS.Polys[N].Selected)
@@ -83,7 +83,7 @@ namespace SBuilderX
                 else
                 {
                     K = 0;
-                    var loopTo = moduleLINES.NoOfLines;
+                    int loopTo = moduleLINES.NoOfLines;
                     for (N = 1; N <= loopTo; N++)
                     {
                         if (moduleLINES.Lines[N].Selected)
@@ -104,7 +104,7 @@ namespace SBuilderX
                 else
                 {
                     K = 0;
-                    var loopTo1 = modulePOLYS.NoOfPolys;
+                    int loopTo1 = modulePOLYS.NoOfPolys;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         if (modulePOLYS.Polys[N].Selected)
@@ -147,7 +147,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo = moduleLINES.NoOfLines;
+                    int loopTo = moduleLINES.NoOfLines;
                     for (N = 1; N <= loopTo; N++)
                     {
                         if (moduleLINES.Lines[N].Selected)
@@ -166,7 +166,7 @@ namespace SBuilderX
                 }
                 else
                 {
-                    var loopTo1 = modulePOLYS.NoOfPolys;
+                    int loopTo1 = modulePOLYS.NoOfPolys;
                     for (N = 1; N <= loopTo1; N++)
                     {
                         if (modulePOLYS.Polys[N].Selected)
@@ -183,7 +183,7 @@ namespace SBuilderX
         private void SampleMyLine(int Ln)
         {
             int K, N, M;
-            var Near = default(bool);
+            bool Near = default(bool);
             moduleLINES.GLine auxLine;
             if (moduleLINES.Lines[Ln].NoOfPoints == 2)
                 return;
@@ -244,7 +244,7 @@ namespace SBuilderX
         private void SampleMyPoly(int Pl)
         {
             int K, N, M;
-            var Near = default(bool);
+            bool Near = default(bool);
             modulePOLYS.GPoly auxPoly;
             auxPoly = modulePOLYS.Polys[Pl];
             K = 1;
@@ -317,7 +317,7 @@ namespace SBuilderX
             J = modulePOLYS.Polys[N].NoOfPoints;
             backupPoly[K].GPoints = new modulePOINTS.GPoint[J + 1];
             backupPoly[K].NoOfPoints = J;
-            var loopTo = J;
+            int loopTo = J;
             for (L = 1; L <= loopTo; L++)
                 backupPoly[K].GPoints[L] = modulePOLYS.Polys[N].GPoints[L];
         }
@@ -329,7 +329,7 @@ namespace SBuilderX
             J = moduleLINES.Lines[N].NoOfPoints;
             backupLine[K].GLPoints = new modulePOINTS.GLPoint[J + 1];
             backupLine[K].NoOfPoints = J;
-            var loopTo = J;
+            int loopTo = J;
             for (L = 1; L <= loopTo; L++)
                 backupLine[K].GLPoints[L] = moduleLINES.Lines[N].GLPoints[L];
         }

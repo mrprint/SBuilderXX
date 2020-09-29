@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace SBuilderX
 {
@@ -98,7 +98,7 @@ namespace SBuilderX
             int N, K, LT;
             LT = 1;
             K = 0;
-            var loopTo = modulePOLYS.NoOfPolyTypes;
+            int loopTo = modulePOLYS.NoOfPolyTypes;
             for (N = moduleMAIN.PolyInit; N <= loopTo; N++)
             {
                 K = K + 1;
@@ -107,7 +107,7 @@ namespace SBuilderX
                     LT = K;
             }
 
-            var loopTo1 = moduleLINES.NoOfLineTypes;
+            int loopTo1 = moduleLINES.NoOfLineTypes;
             for (N = moduleMAIN.LineInit; N <= loopTo1; N++)
             {
                 K = K + 1;
@@ -135,7 +135,7 @@ namespace SBuilderX
             int N;
             Guid = "{00000000-0000-0000-0000-000000000000}";
             Index = -1;
-            var loopTo = modulePOLYS.NoOfPolyTypes;
+            int loopTo = modulePOLYS.NoOfPolyTypes;
             for (N = moduleMAIN.PolyInit; N <= loopTo; N++)
             {
                 if ((modulePOLYS.PolyTypes[N].Name ?? "") == (name ?? ""))
@@ -146,7 +146,7 @@ namespace SBuilderX
                 }
             }
 
-            var loopTo1 = moduleLINES.NoOfLineTypes;
+            int loopTo1 = moduleLINES.NoOfLineTypes;
             for (N = moduleMAIN.LineInit; N <= loopTo1; N++)
             {
                 if ((moduleLINES.LineTypes[N].Name ?? "") == (name ?? ""))

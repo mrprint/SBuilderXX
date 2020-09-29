@@ -18,33 +18,15 @@ namespace SBuilderX
 
         private int _K;
 
-        internal int K
-        {
-            get
-            {
-                return _K;
-            }
-        }
+        internal int K => _K;
 
         private int _J;
 
-        internal int J
-        {
-            get
-            {
-                return _J;
-            }
-        }
+        internal int J => _J;
 
         private string _C;  // LC_ is land WC_ is water
 
-        internal string C
-        {
-            get
-            {
-                return _C;
-            }
-        }
+        internal string C => _C;
 
         private void CmdCancel_Click(object sender, EventArgs e)
         {
@@ -66,7 +48,7 @@ namespace SBuilderX
             {
                 _J = Convert.ToInt32(txtJ.Text);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _J = -1;
                 // txtJ.Text = "-1"
@@ -76,7 +58,7 @@ namespace SBuilderX
             {
                 _K = Convert.ToInt32(txtK.Text);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _K = -1;
                 // txtK.Text = "-1"

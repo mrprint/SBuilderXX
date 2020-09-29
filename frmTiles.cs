@@ -125,7 +125,7 @@ namespace SBuilderX
             int DX, DY;
             int PX, PY;
             UpDateDisplay();
-            var p = new Pen(Color.Red);
+            Pen p = new Pen(Color.Red);
             Graphics g;
             p.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             g = CreateGraphics();
@@ -152,7 +152,7 @@ namespace SBuilderX
 
         private void BuildImageBuffer()
         {
-            var g = Graphics.FromImage(ImgBuffer);
+            Graphics g = Graphics.FromImage(ImgBuffer);
             g.DrawImage(moduleTILES.ImageBackground, 0, 0, XW, YH);
             int Z = ZZZ - moduleMAIN.Zoom;
             Z = (int)Math.Pow(2d, Z);
@@ -170,7 +170,7 @@ namespace SBuilderX
 
         private void DisplayGrids(Graphics g)
         {
-            var p = new Pen(moduleMAIN.GridColor) { DashStyle = System.Drawing.Drawing2D.DashStyle.Dash };
+            Pen p = new Pen(moduleMAIN.GridColor) { DashStyle = System.Drawing.Drawing2D.DashStyle.Dash };
             int R, C;
             int NX, NY;
             int DX, PX;
@@ -183,7 +183,7 @@ namespace SBuilderX
             NY = Z * 7;
             DX = (int)(XW / (double)NX);
             PX = DX;
-            var loopTo = NX - 1;
+            int loopTo = NX - 1;
             for (C = 1; C <= loopTo; C++)
             {
                 g.DrawLine(p, PX, 0, PX, YH);
@@ -191,7 +191,7 @@ namespace SBuilderX
             }
 
             PY = H[0];
-            var loopTo1 = NY - 1;
+            int loopTo1 = NY - 1;
             for (R = 1; R <= loopTo1; R++)
             {
                 g.DrawLine(p, 0, PY, XW, PY);
@@ -203,7 +203,7 @@ namespace SBuilderX
 
         private void UpDateDisplay()
         {
-            var gr = CreateGraphics();
+            Graphics gr = CreateGraphics();
             gr.DrawImageUnscaled(ImgBuffer, XS, YS);   // copy buffer to display
             gr.Dispose();
         }
@@ -362,14 +362,14 @@ namespace SBuilderX
         {
             int R;
             double NS;
-            var X = new double[N + 1];
-            var loopTo = N;
+            double[] X = new double[N + 1];
+            int loopTo = N;
             for (R = 0; R <= loopTo; R++)
                 X[R] = moduleTILES.LatFromYMerc(Y + R, Z);
 
             // NS = 441 / (X(0) - X(N))
             NS = 491d / (X[0] - X[N]);
-            var loopTo1 = N - 1;
+            int loopTo1 = N - 1;
             for (R = 0; R <= loopTo1; R++)
                 H[R] = (int)((X[R] - X[R + 1]) * NS);
         }
@@ -401,31 +401,31 @@ namespace SBuilderX
                 IAsyncResult AR;
                 moduleTILES.DownloadTileHandler myDownloadTileHandler = moduleTILES.TileServer.DownloadTile;
                 moduleTILES.TileHandlerState myTileHandlerState;
-                var box = default(Rectangle);
+                Rectangle box = default(Rectangle);
                 box.Width = 256;
                 int HH;
-                var H = new int[NY + 1];
+                int[] H = new int[NY + 1];
                 HH = 0;
                 moduleTILES.PixelHeightFromY(Y00, ref H, NY + 1, ZZZ);
-                var loopTo = NY;
+                int loopTo = NY;
                 for (R = 0; R <= loopTo; R++)
                     HH = HH + H[R];
-                var ImgTile = new Bitmap(256, 256);
+                Bitmap ImgTile = new Bitmap(256, 256);
                 moduleMAPS.NoOfMaps = moduleMAPS.NoOfMaps + 1;
                 Array.Resize(ref moduleMAPS.ImgMaps, moduleMAPS.NoOfMaps + 1);
                 Array.Resize(ref moduleMAPS.Maps, moduleMAPS.NoOfMaps + 1);
                 moduleMAPS.ImgMaps[moduleMAPS.NoOfMaps] = new Bitmap(256 * (NX + 1), HH);
-                var g = Graphics.FromImage(moduleMAPS.ImgMaps[moduleMAPS.NoOfMaps]);
+                Graphics g = Graphics.FromImage(moduleMAPS.ImgMaps[moduleMAPS.NoOfMaps]);
                 box.Y = 0;
                 KT = (NY + 1) * (NX + 1);
                 K = 0;
                 labelCount.Visible = true;
-                var loopTo1 = NY;
+                int loopTo1 = NY;
                 for (R = 0; R <= loopTo1; R++)
                 {
                     box.Height = H[R];
                     box.X = 0;
-                    var loopTo2 = NX;
+                    int loopTo2 = NX;
                     for (C = 0; C <= loopTo2; C++)
                     {
                         K = K + 1;
@@ -439,7 +439,7 @@ namespace SBuilderX
                             // ImgTile = Image.FromFile(TileFull)      'was like this in October 2017
                             ImgTile = (Bitmap)Image.FromFile(TileFull);
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             ImgTile = blankjpg;
                             if (!moduleTILES.TilesFailed.Contains(TileName))
@@ -468,7 +468,7 @@ namespace SBuilderX
                 ImgTile.Dispose();
                 g.Dispose();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Could not make an image!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Cursor = Cursors.Default;
@@ -501,7 +501,7 @@ namespace SBuilderX
                     moduleMAPS.ImgMaps[moduleMAPS.NoOfMaps].Save(myfile, ImageFormat.Bmp);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("There was a problem saving the image!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }

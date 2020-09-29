@@ -16,33 +16,15 @@ namespace SBuilderX
 
         private MDL[] MDLsValue;
 
-        public MDL[] MDLs
-        {
-            get
-            {
-                return MDLsValue;
-            }
-        }
+        public MDL[] MDLs => MDLsValue;
 
         private int NoOfMDLsValue;
 
-        public int NoOfMDLs
-        {
-            get
-            {
-                return NoOfMDLsValue;
-            }
-        }
+        public int NoOfMDLs => NoOfMDLsValue;
 
         private int TypeValue;
 
-        public int Type
-        {
-            get
-            {
-                return TypeValue;
-            }
-        }
+        public int Type => TypeValue;
 
         public bool read(BinaryReader reader)
         {
@@ -61,7 +43,7 @@ namespace SBuilderX
             Guid G;
             readRet = false;
             NoOfMDLsValue = 0;
-            var mdl = new MDLReader();
+            MDLReader mdl = new MDLReader();
             MDL myMDL;
             try
             {
@@ -72,7 +54,7 @@ namespace SBuilderX
                 reader.ReadBytes(16);  // skip 16 bytes
                 NoOfSPs = (int)reader.ReadUInt32();
                 reader.ReadBytes(32);  // skip 132 bytes
-                var loopTo = NoOfSPs;
+                int loopTo = NoOfSPs;
                 for (N = 1; N <= loopTo; N++) // read all section pointers
                 {
                     SType = reader.ReadUInt32();
@@ -83,7 +65,7 @@ namespace SBuilderX
                     if (SType == 43L)  // section type = 2b (mdl)
                     {
                         reader.BaseStream.Position = SOffset; // point to begin of section
-                        var loopTo1 = NoOfSubSPs;
+                        int loopTo1 = NoOfSubSPs;
                         for (J = 1; J <= loopTo1; J++)    // read all section headers
                         {
                             reader.ReadBytes(4);  // skip ID - 4 bytes
@@ -93,7 +75,7 @@ namespace SBuilderX
                             SPos = reader.BaseStream.Position;
                             reader.BaseStream.Position = SubSOffset;
                             MDLsValue = new MDL[NoOfRs + 1];
-                            var loopTo2 = NoOfRs;
+                            int loopTo2 = NoOfRs;
                             for (K = 1; K <= loopTo2; K++)  // read all records
                             {
                                 B = reader.ReadBytes(16);
@@ -133,7 +115,7 @@ namespace SBuilderX
 
                 readRet = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 
