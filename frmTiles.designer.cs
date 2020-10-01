@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmTiles : Form
@@ -33,177 +33,178 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTiles));
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            GroupBox1 = new GroupBox();
-            _RadioButton5 = new RadioButton();
-            _RadioButton5.CheckedChanged += new EventHandler(RadioButton5_CheckedChanged);
-            _RadioButton4 = new RadioButton();
-            _RadioButton4.CheckedChanged += new EventHandler(RadioButton4_CheckedChanged);
-            _RadioButton3 = new RadioButton();
-            _RadioButton3.CheckedChanged += new EventHandler(RadioButton3_CheckedChanged);
-            _RadioButton2 = new RadioButton();
-            _RadioButton2.CheckedChanged += new EventHandler(RadioButton2_CheckedChanged);
-            _RadioButton1 = new RadioButton();
-            _RadioButton1.CheckedChanged += new EventHandler(RadioButton1_CheckedChanged);
-            Label1 = new Label();
-            Label2 = new Label();
-            labelSize = new Label();
-            labelCount = new Label();
-            GroupBox1.SuspendLayout();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTiles));
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this._RadioButton5 = new System.Windows.Forms.RadioButton();
+            this._RadioButton4 = new System.Windows.Forms.RadioButton();
+            this._RadioButton3 = new System.Windows.Forms.RadioButton();
+            this._RadioButton2 = new System.Windows.Forms.RadioButton();
+            this._RadioButton1 = new System.Windows.Forms.RadioButton();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.labelSize = new System.Windows.Forms.Label();
+            this.labelCount = new System.Windows.Forms.Label();
+            this.GroupBox1.SuspendLayout();
+            this.SuspendLayout();
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.BackColor = Color.Transparent;
-            _cmdCancel.Location = new Point(855, 430);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(59, 23);
-            _cmdCancel.TabIndex = 0;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.BackColor = System.Drawing.Color.Transparent;
+            this._cmdCancel.Location = new System.Drawing.Point(855, 430);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(59, 23);
+            this._cmdCancel.TabIndex = 0;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.BackColor = Color.Transparent;
-            _cmdOK.Location = new Point(855, 468);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.Size = new Size(59, 23);
-            _cmdOK.TabIndex = 1;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = false;
+            this._cmdOK.BackColor = System.Drawing.Color.Transparent;
+            this._cmdOK.Location = new System.Drawing.Point(855, 468);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.Size = new System.Drawing.Size(59, 23);
+            this._cmdOK.TabIndex = 1;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = false;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
             // GroupBox1
             // 
-            GroupBox1.BackColor = Color.Transparent;
-            GroupBox1.Controls.Add(_RadioButton5);
-            GroupBox1.Controls.Add(_RadioButton4);
-            GroupBox1.Controls.Add(_RadioButton3);
-            GroupBox1.Controls.Add(_RadioButton2);
-            GroupBox1.Controls.Add(_RadioButton1);
-            GroupBox1.Location = new Point(809, 85);
-            GroupBox1.Name = "GroupBox1";
-            GroupBox1.Size = new Size(160, 141);
-            GroupBox1.TabIndex = 2;
-            GroupBox1.TabStop = false;
-            GroupBox1.Text = "Size in Tiles";
+            this.GroupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.GroupBox1.Controls.Add(this._RadioButton5);
+            this.GroupBox1.Controls.Add(this._RadioButton4);
+            this.GroupBox1.Controls.Add(this._RadioButton3);
+            this.GroupBox1.Controls.Add(this._RadioButton2);
+            this.GroupBox1.Controls.Add(this._RadioButton1);
+            this.GroupBox1.Location = new System.Drawing.Point(809, 85);
+            this.GroupBox1.Name = "GroupBox1";
+            this.GroupBox1.Size = new System.Drawing.Size(160, 141);
+            this.GroupBox1.TabIndex = 2;
+            this.GroupBox1.TabStop = false;
+            this.GroupBox1.Text = "Size in Tiles";
             // 
-            // RadioButton5
+            // _RadioButton5
             // 
-            _RadioButton5.AutoSize = true;
-            _RadioButton5.Checked = true;
-            _RadioButton5.Location = new Point(15, 119);
-            _RadioButton5.Name = "_RadioButton5";
-            _RadioButton5.Size = new Size(14, 13);
-            _RadioButton5.TabIndex = 9;
-            _RadioButton5.TabStop = true;
-            _RadioButton5.UseVisualStyleBackColor = true;
+            this._RadioButton5.AutoSize = true;
+            this._RadioButton5.Checked = true;
+            this._RadioButton5.Location = new System.Drawing.Point(15, 119);
+            this._RadioButton5.Name = "_RadioButton5";
+            this._RadioButton5.Size = new System.Drawing.Size(14, 13);
+            this._RadioButton5.TabIndex = 9;
+            this._RadioButton5.TabStop = true;
+            this._RadioButton5.UseVisualStyleBackColor = true;
+            this._RadioButton5.CheckedChanged += new System.EventHandler(this.RadioButton5_CheckedChanged);
             // 
-            // RadioButton4
+            // _RadioButton4
             // 
-            _RadioButton4.AutoSize = true;
-            _RadioButton4.Location = new Point(15, 95);
-            _RadioButton4.Name = "_RadioButton4";
-            _RadioButton4.Size = new Size(14, 13);
-            _RadioButton4.TabIndex = 8;
-            _RadioButton4.UseVisualStyleBackColor = true;
+            this._RadioButton4.AutoSize = true;
+            this._RadioButton4.Location = new System.Drawing.Point(15, 95);
+            this._RadioButton4.Name = "_RadioButton4";
+            this._RadioButton4.Size = new System.Drawing.Size(14, 13);
+            this._RadioButton4.TabIndex = 8;
+            this._RadioButton4.UseVisualStyleBackColor = true;
+            this._RadioButton4.CheckedChanged += new System.EventHandler(this.RadioButton4_CheckedChanged);
             // 
-            // RadioButton3
+            // _RadioButton3
             // 
-            _RadioButton3.AutoSize = true;
-            _RadioButton3.Location = new Point(14, 71);
-            _RadioButton3.Name = "_RadioButton3";
-            _RadioButton3.Size = new Size(14, 13);
-            _RadioButton3.TabIndex = 7;
-            _RadioButton3.UseVisualStyleBackColor = true;
+            this._RadioButton3.AutoSize = true;
+            this._RadioButton3.Location = new System.Drawing.Point(14, 71);
+            this._RadioButton3.Name = "_RadioButton3";
+            this._RadioButton3.Size = new System.Drawing.Size(14, 13);
+            this._RadioButton3.TabIndex = 7;
+            this._RadioButton3.UseVisualStyleBackColor = true;
+            this._RadioButton3.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
             // 
-            // RadioButton2
+            // _RadioButton2
             // 
-            _RadioButton2.AutoSize = true;
-            _RadioButton2.Location = new Point(14, 47);
-            _RadioButton2.Name = "_RadioButton2";
-            _RadioButton2.Size = new Size(14, 13);
-            _RadioButton2.TabIndex = 6;
-            _RadioButton2.UseVisualStyleBackColor = true;
+            this._RadioButton2.AutoSize = true;
+            this._RadioButton2.Location = new System.Drawing.Point(14, 47);
+            this._RadioButton2.Name = "_RadioButton2";
+            this._RadioButton2.Size = new System.Drawing.Size(14, 13);
+            this._RadioButton2.TabIndex = 6;
+            this._RadioButton2.UseVisualStyleBackColor = true;
+            this._RadioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
             // 
-            // RadioButton1
+            // _RadioButton1
             // 
-            _RadioButton1.AutoSize = true;
-            _RadioButton1.BackColor = Color.Transparent;
-            _RadioButton1.Location = new Point(14, 23);
-            _RadioButton1.Name = "_RadioButton1";
-            _RadioButton1.Size = new Size(14, 13);
-            _RadioButton1.TabIndex = 0;
-            _RadioButton1.UseVisualStyleBackColor = false;
+            this._RadioButton1.AutoSize = true;
+            this._RadioButton1.BackColor = System.Drawing.Color.Transparent;
+            this._RadioButton1.Location = new System.Drawing.Point(14, 23);
+            this._RadioButton1.Name = "_RadioButton1";
+            this._RadioButton1.Size = new System.Drawing.Size(14, 13);
+            this._RadioButton1.TabIndex = 0;
+            this._RadioButton1.UseVisualStyleBackColor = false;
+            this._RadioButton1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
             // 
             // Label1
             // 
-            Label1.BackColor = Color.Transparent;
-            Label1.Location = new Point(806, 15);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(165, 34);
-            Label1.TabIndex = 5;
-            Label1.Text = "To change the map size make a selection box with the mouse";
+            this.Label1.BackColor = System.Drawing.Color.Transparent;
+            this.Label1.Location = new System.Drawing.Point(806, 15);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(165, 34);
+            this.Label1.TabIndex = 5;
+            this.Label1.Text = "To change the map size make a selection box with the mouse";
             // 
             // Label2
             // 
-            Label2.BackColor = Color.Transparent;
-            Label2.Location = new Point(806, 239);
-            Label2.Name = "Label2";
-            Label2.Size = new Size(178, 172);
-            Label2.TabIndex = 5;
-            Label2.Text = resources.GetString("Label2.Text");
-            Label2.TextAlign = ContentAlignment.MiddleLeft;
+            this.Label2.BackColor = System.Drawing.Color.Transparent;
+            this.Label2.Location = new System.Drawing.Point(806, 239);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(178, 172);
+            this.Label2.TabIndex = 5;
+            this.Label2.Text = resources.GetString("Label2.Text");
+            this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelSize
             // 
-            labelSize.AutoSize = true;
-            labelSize.ForeColor = SystemColors.Desktop;
-            labelSize.Location = new Point(806, 58);
-            labelSize.Name = "labelSize";
-            labelSize.Size = new Size(89, 13);
-            labelSize.TabIndex = 6;
-            labelSize.Text = "Size = 20,185 KB";
+            this.labelSize.AutoSize = true;
+            this.labelSize.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.labelSize.Location = new System.Drawing.Point(806, 58);
+            this.labelSize.Name = "labelSize";
+            this.labelSize.Size = new System.Drawing.Size(89, 13);
+            this.labelSize.TabIndex = 6;
+            this.labelSize.Text = "Size = 20,185 KB";
             // 
             // labelCount
             // 
-            labelCount.AutoSize = true;
-            labelCount.BackColor = Color.White;
-            labelCount.Location = new Point(15, 15);
-            labelCount.Name = "labelCount";
-            labelCount.Size = new Size(39, 13);
-            labelCount.TabIndex = 7;
-            labelCount.Text = "Label3";
+            this.labelCount.AutoSize = true;
+            this.labelCount.BackColor = System.Drawing.Color.White;
+            this.labelCount.Location = new System.Drawing.Point(15, 15);
+            this.labelCount.Name = "labelCount";
+            this.labelCount.Size = new System.Drawing.Size(39, 13);
+            this.labelCount.TabIndex = 7;
+            this.labelCount.Text = "Label3";
             // 
-            // frmTiles
+            // FrmTiles
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(983, 523);
-            Controls.Add(labelCount);
-            Controls.Add(labelSize);
-            Controls.Add(GroupBox1);
-            Controls.Add(_cmdOK);
-            Controls.Add(_cmdCancel);
-            Controls.Add(Label2);
-            Controls.Add(Label1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            Name = "frmTiles";
-            Text = "SBuilderX - Add Map from Background";
-            GroupBox1.ResumeLayout(false);
-            GroupBox1.PerformLayout();
-            Load += new EventHandler(FrmTiles_Load);
-            MouseDown += new MouseEventHandler(FrmTiles_MouseDown);
-            MouseMove += new MouseEventHandler(FrmTiles_MouseMove);
-            MouseUp += new MouseEventHandler(FrmTiles_MouseUp);
-            Paint += new PaintEventHandler(FrmTiles_Paint);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(983, 523);
+            this.Controls.Add(this.labelCount);
+            this.Controls.Add(this.labelSize);
+            this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this.Label2);
+            this.Controls.Add(this.Label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.Name = "FrmTiles";
+            this.Text = "SBuilderXX - Add Map from Background";
+            this.Load += new System.EventHandler(this.FrmTiles_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FrmTiles_Paint);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FrmTiles_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmTiles_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FrmTiles_MouseUp);
+            this.GroupBox1.ResumeLayout(false);
+            this.GroupBox1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         private Button _cmdCancel;

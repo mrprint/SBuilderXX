@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     public partial class frmTexPoly
     {
@@ -35,7 +35,7 @@ namespace SBuilderX
         private void FrmTexPoly_Load(object eventSender, EventArgs eventArgs)
         {
             string a;
-            a = "SBuilderX - Set Tying Points for Texture ";
+            a = "SBuilderXX - Set Tying Points for Texture ";
             a = a + modulePOLYS.PolyTex.ToUpper();
             Text = a;
             string BmpPath = moduleMAIN.AppPath + @"\Tools\Work\temp.bmp";

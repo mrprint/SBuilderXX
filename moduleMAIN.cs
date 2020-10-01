@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     static class moduleMAIN
     {
@@ -60,13 +60,13 @@ namespace SBuilderX
 
         internal static Fragment[] Fragments;
         internal static int NoOfFragments;
-        internal static string AppTitle = "SBuilderX";
+        internal static string AppTitle = "SBuilderXX";
         internal static string ProjectName = "";
         internal static string AppPath = My.MyProject.Application.Info.DirectoryPath; // INI File App constant.
-        internal static string AppIni = My.MyProject.Application.Info.DirectoryPath + @"\SBuilderX.ini"; // INI File App constant.
+        internal static string AppIni = My.MyProject.Application.Info.DirectoryPath + @"\SBuilderXX.ini"; // INI File App constant.
 
         // for Registration
-        internal static bool ShowDonation;
+        internal static bool ShowAbout;
         internal static bool IsFSX;   // if terrain.cfg detected
         internal static string SDKPath;
         internal static string SDKTerrain;

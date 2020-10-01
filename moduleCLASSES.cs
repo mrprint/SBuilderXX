@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     static class moduleCLASSES
     {
@@ -18,7 +18,7 @@ namespace SBuilderX
             public Color Color;
         }
 
-        // File Lands.txt holds 120 classes of land. When SBuilderX starts it
+        // File Lands.txt holds 120 classes of land. When SBuilderXX starts it
         // fills the array LC() which has 256 elements (0 to 255) by reading
         // that file. For example the 3rd entry in Lands.txt is:
         // Name=135_Y_Golf_Course
@@ -31,7 +31,7 @@ namespace SBuilderX
         // LC(3).Caption = Y_Golf_Course
         // LC(3).Color = FF646946
         // Since elements from 121 to 255 are not used, we use the free space
-        // to handle the selection state of class tiles (shown in green in SBuilderX). So:
+        // to handle the selection state of class tiles (shown in green in SBuilderXX). So:
         // LC(3 + 128).Index = 135
         // LC(3 + 128).Texture = sel        sel.bmp is a green texture
         // LC(3 + 128).Caption =            leave blank as we do not use it

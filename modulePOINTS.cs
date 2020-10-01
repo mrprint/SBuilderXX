@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     static class modulePOINTS
     {

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class frmExtraMacro
@@ -76,209 +76,211 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(frmExtraMacro));
-            ToolTip1 = new ToolTip(components);
-            txtPD = new TextBox();
-            txtPC = new TextBox();
-            txtPB = new TextBox();
-            txtPA = new TextBox();
-            _cmdClose = new Button();
-            _cmdClose.Click += new EventHandler(CmdClose_Click);
-            txtP9 = new TextBox();
-            lbPA = new Label();
-            lbP9 = new Label();
-            lbPD = new Label();
-            lbPC = new Label();
-            lbPB = new Label();
-            SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmExtraMacro));
+            this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.txtPD = new System.Windows.Forms.TextBox();
+            this.txtPC = new System.Windows.Forms.TextBox();
+            this.txtPB = new System.Windows.Forms.TextBox();
+            this.txtPA = new System.Windows.Forms.TextBox();
+            this._cmdClose = new System.Windows.Forms.Button();
+            this.txtP9 = new System.Windows.Forms.TextBox();
+            this.lbPA = new System.Windows.Forms.Label();
+            this.lbP9 = new System.Windows.Forms.Label();
+            this.lbPD = new System.Windows.Forms.Label();
+            this.lbPC = new System.Windows.Forms.Label();
+            this.lbPB = new System.Windows.Forms.Label();
+            this.SuspendLayout();
             // 
             // txtPD
             // 
-            txtPD.AcceptsReturn = true;
-            txtPD.BackColor = SystemColors.Window;
-            txtPD.Cursor = Cursors.IBeam;
-            txtPD.ForeColor = SystemColors.WindowText;
-            txtPD.Location = new Point(102, 150);
-            txtPD.MaxLength = 0;
-            txtPD.Name = "txtPD";
-            txtPD.RightToLeft = RightToLeft.No;
-            txtPD.Size = new Size(94, 20);
-            txtPD.TabIndex = 7;
-            txtPD.TextAlign = HorizontalAlignment.Center;
-            txtPD.Visible = false;
+            this.txtPD.AcceptsReturn = true;
+            this.txtPD.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPD.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPD.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPD.Location = new System.Drawing.Point(102, 150);
+            this.txtPD.MaxLength = 0;
+            this.txtPD.Name = "txtPD";
+            this.txtPD.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtPD.Size = new System.Drawing.Size(94, 20);
+            this.txtPD.TabIndex = 7;
+            this.txtPD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPD.Visible = false;
             // 
             // txtPC
             // 
-            txtPC.AcceptsReturn = true;
-            txtPC.BackColor = SystemColors.Window;
-            txtPC.Cursor = Cursors.IBeam;
-            txtPC.ForeColor = SystemColors.WindowText;
-            txtPC.Location = new Point(102, 117);
-            txtPC.MaxLength = 0;
-            txtPC.Name = "txtPC";
-            txtPC.RightToLeft = RightToLeft.No;
-            txtPC.Size = new Size(94, 20);
-            txtPC.TabIndex = 5;
-            txtPC.TextAlign = HorizontalAlignment.Center;
-            txtPC.Visible = false;
+            this.txtPC.AcceptsReturn = true;
+            this.txtPC.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPC.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPC.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPC.Location = new System.Drawing.Point(102, 117);
+            this.txtPC.MaxLength = 0;
+            this.txtPC.Name = "txtPC";
+            this.txtPC.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtPC.Size = new System.Drawing.Size(94, 20);
+            this.txtPC.TabIndex = 5;
+            this.txtPC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPC.Visible = false;
             // 
             // txtPB
             // 
-            txtPB.AcceptsReturn = true;
-            txtPB.BackColor = SystemColors.Window;
-            txtPB.Cursor = Cursors.IBeam;
-            txtPB.ForeColor = SystemColors.WindowText;
-            txtPB.Location = new Point(102, 84);
-            txtPB.MaxLength = 0;
-            txtPB.Name = "txtPB";
-            txtPB.RightToLeft = RightToLeft.No;
-            txtPB.Size = new Size(94, 20);
-            txtPB.TabIndex = 3;
-            txtPB.TextAlign = HorizontalAlignment.Center;
-            txtPB.Visible = false;
+            this.txtPB.AcceptsReturn = true;
+            this.txtPB.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPB.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPB.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPB.Location = new System.Drawing.Point(102, 84);
+            this.txtPB.MaxLength = 0;
+            this.txtPB.Name = "txtPB";
+            this.txtPB.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtPB.Size = new System.Drawing.Size(94, 20);
+            this.txtPB.TabIndex = 3;
+            this.txtPB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPB.Visible = false;
             // 
             // txtPA
             // 
-            txtPA.AcceptsReturn = true;
-            txtPA.BackColor = SystemColors.Window;
-            txtPA.Cursor = Cursors.IBeam;
-            txtPA.ForeColor = SystemColors.WindowText;
-            txtPA.Location = new Point(102, 51);
-            txtPA.MaxLength = 0;
-            txtPA.Name = "txtPA";
-            txtPA.RightToLeft = RightToLeft.No;
-            txtPA.Size = new Size(94, 20);
-            txtPA.TabIndex = 2;
-            txtPA.TextAlign = HorizontalAlignment.Center;
-            txtPA.Visible = false;
+            this.txtPA.AcceptsReturn = true;
+            this.txtPA.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPA.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPA.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPA.Location = new System.Drawing.Point(102, 51);
+            this.txtPA.MaxLength = 0;
+            this.txtPA.Name = "txtPA";
+            this.txtPA.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtPA.Size = new System.Drawing.Size(94, 20);
+            this.txtPA.TabIndex = 2;
+            this.txtPA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPA.Visible = false;
             // 
-            // cmdClose
+            // _cmdClose
             // 
-            _cmdClose.BackColor = SystemColors.Control;
-            _cmdClose.Cursor = Cursors.Default;
-            _cmdClose.ForeColor = SystemColors.ControlText;
-            _cmdClose.Location = new Point(225, 147);
-            _cmdClose.Name = "_cmdClose";
-            _cmdClose.RightToLeft = RightToLeft.No;
-            _cmdClose.Size = new Size(70, 25);
-            _cmdClose.TabIndex = 1;
-            _cmdClose.Text = "Close";
-            _cmdClose.UseVisualStyleBackColor = false;
+            this._cmdClose.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdClose.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdClose.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdClose.Location = new System.Drawing.Point(225, 147);
+            this._cmdClose.Name = "_cmdClose";
+            this._cmdClose.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdClose.Size = new System.Drawing.Size(70, 25);
+            this._cmdClose.TabIndex = 1;
+            this._cmdClose.Text = "Close";
+            this._cmdClose.UseVisualStyleBackColor = false;
+            this._cmdClose.Click += new System.EventHandler(this.CmdClose_Click);
             // 
             // txtP9
             // 
-            txtP9.AcceptsReturn = true;
-            txtP9.BackColor = SystemColors.Window;
-            txtP9.Cursor = Cursors.IBeam;
-            txtP9.ForeColor = SystemColors.WindowText;
-            txtP9.Location = new Point(102, 18);
-            txtP9.MaxLength = 0;
-            txtP9.Name = "txtP9";
-            txtP9.RightToLeft = RightToLeft.No;
-            txtP9.Size = new Size(94, 20);
-            txtP9.TabIndex = 0;
-            txtP9.TextAlign = HorizontalAlignment.Center;
-            txtP9.Visible = false;
+            this.txtP9.AcceptsReturn = true;
+            this.txtP9.BackColor = System.Drawing.SystemColors.Window;
+            this.txtP9.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtP9.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtP9.Location = new System.Drawing.Point(102, 18);
+            this.txtP9.MaxLength = 0;
+            this.txtP9.Name = "txtP9";
+            this.txtP9.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtP9.Size = new System.Drawing.Size(94, 20);
+            this.txtP9.TabIndex = 0;
+            this.txtP9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtP9.Visible = false;
             // 
             // lbPA
             // 
-            lbPA.BackColor = SystemColors.Control;
-            lbPA.Cursor = Cursors.Default;
-            lbPA.ForeColor = SystemColors.ControlText;
-            lbPA.Location = new Point(12, 54);
-            lbPA.Name = "lbPA";
-            lbPA.RightToLeft = RightToLeft.No;
-            lbPA.Size = new Size(82, 16);
-            lbPA.TabIndex = 10;
-            lbPA.Text = "Label1";
-            lbPA.TextAlign = ContentAlignment.TopRight;
-            lbPA.Visible = false;
+            this.lbPA.BackColor = System.Drawing.SystemColors.Control;
+            this.lbPA.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbPA.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbPA.Location = new System.Drawing.Point(12, 54);
+            this.lbPA.Name = "lbPA";
+            this.lbPA.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbPA.Size = new System.Drawing.Size(82, 16);
+            this.lbPA.TabIndex = 10;
+            this.lbPA.Text = "Label1";
+            this.lbPA.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbPA.Visible = false;
             // 
             // lbP9
             // 
-            lbP9.BackColor = SystemColors.Control;
-            lbP9.Cursor = Cursors.Default;
-            lbP9.ForeColor = SystemColors.ControlText;
-            lbP9.Location = new Point(12, 21);
-            lbP9.Name = "lbP9";
-            lbP9.RightToLeft = RightToLeft.No;
-            lbP9.Size = new Size(82, 16);
-            lbP9.TabIndex = 9;
-            lbP9.Text = "Label1";
-            lbP9.TextAlign = ContentAlignment.TopRight;
-            lbP9.Visible = false;
+            this.lbP9.BackColor = System.Drawing.SystemColors.Control;
+            this.lbP9.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbP9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbP9.Location = new System.Drawing.Point(12, 21);
+            this.lbP9.Name = "lbP9";
+            this.lbP9.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbP9.Size = new System.Drawing.Size(82, 16);
+            this.lbP9.TabIndex = 9;
+            this.lbP9.Text = "Label1";
+            this.lbP9.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbP9.Visible = false;
             // 
             // lbPD
             // 
-            lbPD.BackColor = SystemColors.Control;
-            lbPD.Cursor = Cursors.Default;
-            lbPD.ForeColor = SystemColors.ControlText;
-            lbPD.Location = new Point(12, 153);
-            lbPD.Name = "lbPD";
-            lbPD.RightToLeft = RightToLeft.No;
-            lbPD.Size = new Size(82, 16);
-            lbPD.TabIndex = 8;
-            lbPD.Text = "Label1";
-            lbPD.TextAlign = ContentAlignment.TopRight;
-            lbPD.Visible = false;
+            this.lbPD.BackColor = System.Drawing.SystemColors.Control;
+            this.lbPD.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbPD.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbPD.Location = new System.Drawing.Point(12, 153);
+            this.lbPD.Name = "lbPD";
+            this.lbPD.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbPD.Size = new System.Drawing.Size(82, 16);
+            this.lbPD.TabIndex = 8;
+            this.lbPD.Text = "Label1";
+            this.lbPD.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbPD.Visible = false;
             // 
             // lbPC
             // 
-            lbPC.BackColor = SystemColors.Control;
-            lbPC.Cursor = Cursors.Default;
-            lbPC.ForeColor = SystemColors.ControlText;
-            lbPC.Location = new Point(12, 120);
-            lbPC.Name = "lbPC";
-            lbPC.RightToLeft = RightToLeft.No;
-            lbPC.Size = new Size(82, 16);
-            lbPC.TabIndex = 6;
-            lbPC.Text = "Label1";
-            lbPC.TextAlign = ContentAlignment.TopRight;
-            lbPC.Visible = false;
+            this.lbPC.BackColor = System.Drawing.SystemColors.Control;
+            this.lbPC.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbPC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbPC.Location = new System.Drawing.Point(12, 120);
+            this.lbPC.Name = "lbPC";
+            this.lbPC.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbPC.Size = new System.Drawing.Size(82, 16);
+            this.lbPC.TabIndex = 6;
+            this.lbPC.Text = "Label1";
+            this.lbPC.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbPC.Visible = false;
             // 
             // lbPB
             // 
-            lbPB.BackColor = SystemColors.Control;
-            lbPB.Cursor = Cursors.Default;
-            lbPB.ForeColor = SystemColors.ControlText;
-            lbPB.Location = new Point(12, 87);
-            lbPB.Name = "lbPB";
-            lbPB.RightToLeft = RightToLeft.No;
-            lbPB.Size = new Size(82, 16);
-            lbPB.TabIndex = 4;
-            lbPB.Text = "Label1";
-            lbPB.TextAlign = ContentAlignment.TopRight;
-            lbPB.Visible = false;
+            this.lbPB.BackColor = System.Drawing.SystemColors.Control;
+            this.lbPB.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbPB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbPB.Location = new System.Drawing.Point(12, 87);
+            this.lbPB.Name = "lbPB";
+            this.lbPB.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbPB.Size = new System.Drawing.Size(82, 16);
+            this.lbPB.TabIndex = 4;
+            this.lbPB.Text = "Label1";
+            this.lbPB.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lbPB.Visible = false;
             // 
             // frmExtraMacro
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
-            ClientSize = new Size(318, 189);
-            Controls.Add(txtPD);
-            Controls.Add(txtPC);
-            Controls.Add(txtPB);
-            Controls.Add(txtPA);
-            Controls.Add(_cmdClose);
-            Controls.Add(txtP9);
-            Controls.Add(lbPA);
-            Controls.Add(lbP9);
-            Controls.Add(lbPD);
-            Controls.Add(lbPC);
-            Controls.Add(lbPB);
-            Cursor = Cursors.Default;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Location = new Point(3, 29);
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmExtraMacro";
-            RightToLeft = RightToLeft.No;
-            Text = "SBuilderX - Extra Macro Parameters";
-            Load += new EventHandler(FrmExtraMacro_Load);
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(318, 189);
+            this.Controls.Add(this.txtPD);
+            this.Controls.Add(this.txtPC);
+            this.Controls.Add(this.txtPB);
+            this.Controls.Add(this.txtPA);
+            this.Controls.Add(this._cmdClose);
+            this.Controls.Add(this.txtP9);
+            this.Controls.Add(this.lbPA);
+            this.Controls.Add(this.lbP9);
+            this.Controls.Add(this.lbPD);
+            this.Controls.Add(this.lbPC);
+            this.Controls.Add(this.lbPB);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(3, 29);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "frmExtraMacro";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Text = "SBuilderXX - Extra Macro Parameters";
+            this.Load += new System.EventHandler(this.FrmExtraMacro_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
         /* TODO ERROR: Skipped EndRegionDirectiveTrivia */
     }

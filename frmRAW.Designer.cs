@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     public partial class FrmRAW : Form
@@ -32,134 +32,135 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRAW));
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            GroupBox1 = new GroupBox();
-            _optWater = new RadioButton();
-            _optWater.CheckedChanged += new EventHandler(OptWater_CheckedChanged);
-            _optLand = new RadioButton();
-            _optLand.CheckedChanged += new EventHandler(OptLand_CheckedChanged);
-            _txtJ = new TextBox();
-            _txtJ.TextChanged += new EventHandler(TxtJ_TextChanged);
-            _txtK = new TextBox();
-            _txtK.TextChanged += new EventHandler(TxtK_TextChanged);
-            Label1 = new Label();
-            Label2 = new Label();
-            GroupBox1.SuspendLayout();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRAW));
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this._optWater = new System.Windows.Forms.RadioButton();
+            this._optLand = new System.Windows.Forms.RadioButton();
+            this._txtJ = new System.Windows.Forms.TextBox();
+            this._txtK = new System.Windows.Forms.TextBox();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.GroupBox1.SuspendLayout();
+            this.SuspendLayout();
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.Location = new Point(248, 25);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(56, 26);
-            _cmdCancel.TabIndex = 0;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Location = new System.Drawing.Point(248, 25);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(56, 26);
+            this._cmdCancel.TabIndex = 0;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.Location = new Point(248, 68);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.Size = new Size(56, 26);
-            _cmdOK.TabIndex = 0;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Location = new System.Drawing.Point(248, 68);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.Size = new System.Drawing.Size(56, 26);
+            this._cmdOK.TabIndex = 0;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
             // GroupBox1
             // 
-            GroupBox1.Controls.Add(_optWater);
-            GroupBox1.Controls.Add(_optLand);
-            GroupBox1.Location = new Point(21, 12);
-            GroupBox1.Name = "GroupBox1";
-            GroupBox1.Size = new Size(79, 79);
-            GroupBox1.TabIndex = 1;
-            GroupBox1.TabStop = false;
-            GroupBox1.Text = "Class Type";
+            this.GroupBox1.Controls.Add(this._optWater);
+            this.GroupBox1.Controls.Add(this._optLand);
+            this.GroupBox1.Location = new System.Drawing.Point(21, 12);
+            this.GroupBox1.Name = "GroupBox1";
+            this.GroupBox1.Size = new System.Drawing.Size(79, 79);
+            this.GroupBox1.TabIndex = 1;
+            this.GroupBox1.TabStop = false;
+            this.GroupBox1.Text = "Class Type";
             // 
-            // optWater
+            // _optWater
             // 
-            _optWater.AutoSize = true;
-            _optWater.Location = new Point(15, 47);
-            _optWater.Name = "_optWater";
-            _optWater.Size = new Size(54, 17);
-            _optWater.TabIndex = 0;
-            _optWater.Text = "Water";
-            _optWater.UseVisualStyleBackColor = true;
+            this._optWater.AutoSize = true;
+            this._optWater.Location = new System.Drawing.Point(15, 47);
+            this._optWater.Name = "_optWater";
+            this._optWater.Size = new System.Drawing.Size(54, 17);
+            this._optWater.TabIndex = 0;
+            this._optWater.Text = "Water";
+            this._optWater.UseVisualStyleBackColor = true;
+            this._optWater.CheckedChanged += new System.EventHandler(this.OptWater_CheckedChanged);
             // 
-            // optLand
+            // _optLand
             // 
-            _optLand.AutoSize = true;
-            _optLand.Checked = true;
-            _optLand.Location = new Point(15, 24);
-            _optLand.Name = "_optLand";
-            _optLand.Size = new Size(49, 17);
-            _optLand.TabIndex = 0;
-            _optLand.TabStop = true;
-            _optLand.Text = "Land";
-            _optLand.UseVisualStyleBackColor = true;
+            this._optLand.AutoSize = true;
+            this._optLand.Checked = true;
+            this._optLand.Location = new System.Drawing.Point(15, 24);
+            this._optLand.Name = "_optLand";
+            this._optLand.Size = new System.Drawing.Size(49, 17);
+            this._optLand.TabIndex = 0;
+            this._optLand.TabStop = true;
+            this._optLand.Text = "Land";
+            this._optLand.UseVisualStyleBackColor = true;
+            this._optLand.CheckedChanged += new System.EventHandler(this.OptLand_CheckedChanged);
             // 
-            // txtJ
+            // _txtJ
             // 
-            _txtJ.Location = new Point(124, 25);
-            _txtJ.Name = "_txtJ";
-            _txtJ.Size = new Size(33, 20);
-            _txtJ.TabIndex = 2;
-            _txtJ.Text = "95";
-            _txtJ.TextAlign = HorizontalAlignment.Center;
+            this._txtJ.Location = new System.Drawing.Point(124, 25);
+            this._txtJ.Name = "_txtJ";
+            this._txtJ.Size = new System.Drawing.Size(33, 20);
+            this._txtJ.TabIndex = 2;
+            this._txtJ.Text = "95";
+            this._txtJ.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtJ.TextChanged += new System.EventHandler(this.TxtJ_TextChanged);
             // 
-            // txtK
+            // _txtK
             // 
-            _txtK.Location = new Point(124, 68);
-            _txtK.Name = "_txtK";
-            _txtK.Size = new Size(33, 20);
-            _txtK.TabIndex = 2;
-            _txtK.Text = "63";
-            _txtK.TextAlign = HorizontalAlignment.Center;
+            this._txtK.Location = new System.Drawing.Point(124, 68);
+            this._txtK.Name = "_txtK";
+            this._txtK.Size = new System.Drawing.Size(33, 20);
+            this._txtK.TabIndex = 2;
+            this._txtK.Text = "63";
+            this._txtK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtK.TextChanged += new System.EventHandler(this.TxtK_TextChanged);
             // 
             // Label1
             // 
-            Label1.Location = new Point(163, 22);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(64, 31);
-            Label1.TabIndex = 3;
-            Label1.Text = "W/E QMID (0 up to 95)";
+            this.Label1.Location = new System.Drawing.Point(163, 22);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(64, 31);
+            this.Label1.TabIndex = 3;
+            this.Label1.Text = "W/E QMID (0 up to 95)";
             // 
             // Label2
             // 
-            Label2.Location = new Point(163, 64);
-            Label2.Name = "Label2";
-            Label2.Size = new Size(64, 27);
-            Label2.TabIndex = 3;
-            Label2.Text = "N/S QMID (0 up to 63)";
+            this.Label2.Location = new System.Drawing.Point(163, 64);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(64, 27);
+            this.Label2.TabIndex = 3;
+            this.Label2.Text = "N/S QMID (0 up to 63)";
             // 
-            // frmRAW
+            // FrmRAW
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(326, 108);
-            Controls.Add(Label2);
-            Controls.Add(Label1);
-            Controls.Add(_txtK);
-            Controls.Add(_txtJ);
-            Controls.Add(GroupBox1);
-            Controls.Add(_cmdOK);
-            Controls.Add(_cmdCancel);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmRAW";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - Raw file parameters";
-            GroupBox1.ResumeLayout(false);
-            GroupBox1.PerformLayout();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(326, 108);
+            this.Controls.Add(this.Label2);
+            this.Controls.Add(this.Label1);
+            this.Controls.Add(this._txtK);
+            this.Controls.Add(this._txtJ);
+            this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this._cmdCancel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmRAW";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - Raw file parameters";
+            this.GroupBox1.ResumeLayout(false);
+            this.GroupBox1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         private Button _cmdCancel;

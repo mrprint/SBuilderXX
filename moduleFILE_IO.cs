@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     static class moduleFILE_IO
     {
@@ -65,7 +65,7 @@ namespace SBuilderX
                 IniSettings.Add("BackUpON", "False");
                 IniSettings.Add("BackUpSeconds", "60");
                 IniSettings.Add("AskDelete", "True");
-                IniSettings.Add("ShowDonation", "True");
+                IniSettings.Add("ShowAbout", "True");
                 IniSettings.Add("BorderON", "True");
                 IniSettings.Add("ShowLabels", "True");
                 IniSettings.Add("SelectedPointColor", ArgbFromColor(Color.Green));
@@ -174,8 +174,7 @@ namespace SBuilderX
                 if (File.Exists(moduleMAIN.AppIni))
                 {
 
-                    // added this October 2017
-                    File.Copy(moduleMAIN.AppIni, moduleMAIN.AppPath + @"\SBuilderX_backup.ini", true);
+                    File.Copy(moduleMAIN.AppIni, moduleMAIN.AppPath + @"\SBuilderXX_backup.ini", true);
                     FileSystem.FileOpen(NF, moduleMAIN.AppIni, OpenMode.Input);
                     while (!FileSystem.EOF(NF))
                     {
@@ -211,7 +210,7 @@ namespace SBuilderX
                 BackUpSeconds = (int)Convert.ToDouble(IniSettings["BackUpSeconds"]);
                 moduleMAPS.BorderON = Convert.ToBoolean(IniSettings["BorderON"]);
                 moduleMAIN.AskDelete = Convert.ToBoolean(IniSettings["AskDelete"]);
-                moduleMAIN.ShowDonation = Convert.ToBoolean(IniSettings["ShowDonation"]);
+                moduleMAIN.ShowAbout = Convert.ToBoolean(IniSettings["ShowAbout"]);
                 moduleMAIN.ShowLabels = Convert.ToBoolean(IniSettings["ShowLabels"]);
                 modulePOINTS.SelectedPointColor = ColorFromArgb(IniSettings["SelectedPointColor"]);
                 modulePOINTS.UnselectedPointColor = ColorFromArgb(IniSettings["UnselectedPointColor"]);
@@ -333,7 +332,7 @@ namespace SBuilderX
             {
                 string A = "Error in reading/writing the INI file! If you can not" + Environment.NewLine;
                 A = A + "determine the cause of this error, delete the INI file" + Environment.NewLine;
-                A = A + "and SBuilderX will recreate it! SBuilderX will stop now!";
+                A = A + "and SBuilderXX will recreate it! SBuilderXX will stop now!";
                 MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Environment.Exit(0);
             }
@@ -377,7 +376,7 @@ namespace SBuilderX
             FileSystem.PrintLine(NF, "BackUpSeconds=" + BackUpSeconds.ToString());
             FileSystem.PrintLine(NF, "AskDelete=" + moduleMAIN.AskDelete.ToString());
             FileSystem.PrintLine(NF, "BorderON=" + moduleMAPS.BorderON.ToString());
-            FileSystem.PrintLine(NF, "ShowDonation=" + moduleMAIN.ShowDonation.ToString());
+            FileSystem.PrintLine(NF, "ShowAbout=" + moduleMAIN.ShowAbout.ToString());
             FileSystem.PrintLine(NF, "ShowLabels=" + moduleMAIN.ShowLabels.ToString());
             FileSystem.PrintLine(NF, "SelectedPointColor=" + ArgbFromColor(modulePOINTS.SelectedPointColor));
             FileSystem.PrintLine(NF, "UnselectedPointColor=" + ArgbFromColor(modulePOINTS.UnselectedPointColor));
@@ -928,7 +927,7 @@ namespace SBuilderX
             catch (Exception)
             {
                 oFile.Close();
-                MessageBox.Show("This file is not a SBuilderX 3.XX project!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("This file is not a SBuilderXX 3.XX project!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 moduleMAPS.NoOfMaps = 0;
                 moduleCLASSES.NoOfLands = 0;
                 moduleLINES.NoOfLines = 0;
@@ -947,7 +946,7 @@ namespace SBuilderX
         {
             FileStream sFile = new FileStream(filename, FileMode.Create);
             BinaryFormatter BFormatter = new BinaryFormatter();
-            BFormatter.Serialize(sFile, "SB314");
+            BFormatter.Serialize(sFile, "SBXX316");
             BFormatter.Serialize(sFile, moduleMAIN.ProjectName);
             BFormatter.Serialize(sFile, moduleMAIN.BGLProjectFolder);
             double savedZoom = Convert.ToDouble(moduleMAIN.Zoom);
@@ -1002,7 +1001,7 @@ namespace SBuilderX
             FN = FileSystem.FreeFile();
             FileSystem.FileOpen(FN, FileName, OpenMode.Output);
             FileSystem.PrintLine(FN, "[Main]");
-            FileSystem.PrintLine(FN, "CopyRight=" + "PTSIM SB314");
+            FileSystem.PrintLine(FN, "CopyRight=" + "MRPRINT SBXX316");
             FileSystem.PrintLine(FN, "Name=" + moduleMAIN.ProjectName);
             FileSystem.PrintLine(FN, "NoOfMaps=" + moduleMAPS.NoOfMaps);
             FileSystem.PrintLine(FN, "NoOfLines=" + moduleLINES.NoOfLines);
@@ -1223,47 +1222,55 @@ namespace SBuilderX
             string A, Version;
             string argVariable = "CopyRight";
             KEY = ReadIniValue(Filename, "Main", ref argVariable);
-            KEY = (KEY.Length < 11) ? KEY : KEY.Substring(0, 11);
-            if (KEY == "PTSIM")
+            KEY = (KEY.Length < 15) ? KEY : KEY.Substring(0, 15);
+            if (KEY == "MRPRINT SBXX316")
             {
-                ImportSBX205(Filename, "");
-                return;
-            }
-
-            if (KEY == "PTSIM SB205")
-            {
-                ImportSBX205(Filename, "SB205");
-                return;
-            }
-
-            if (KEY == "PTSIM SB301")
-            {
-                Version = "SB301";
-            }
-            else if (KEY == "PTSIM SB302")
-            {
-                Version = "SB302";
-            }
-            else if (KEY == "PTSIM SB303")
-            {
-                Version = "SB303";
-            }
-            else if (KEY == "PTSIM SB310")
-            {
-                Version = "SB310";
-            }
-            else if (KEY == "PTSIM SB313")
-            {
-                Version = "SB313";
-            }
-            else if (KEY == "PTSIM SB314")
-            {
-                Version = "SB314";
+                Version = "SBXX316";
             }
             else
             {
-                MessageBox.Show("Not a Valid SBX SBuilderX File!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                KEY = (KEY.Length < 11) ? KEY : KEY.Substring(0, 11);
+                if (KEY == "PTSIM")
+                {
+                    ImportSBX205(Filename, "");
+                    return;
+                }
+
+                if (KEY == "PTSIM SB205")
+                {
+                    ImportSBX205(Filename, "SB205");
+                    return;
+                }
+
+                if (KEY == "PTSIM SB301")
+                {
+                    Version = "SB301";
+                }
+                else if (KEY == "PTSIM SB302")
+                {
+                    Version = "SB302";
+                }
+                else if (KEY == "PTSIM SB303")
+                {
+                    Version = "SB303";
+                }
+                else if (KEY == "PTSIM SB310")
+                {
+                    Version = "SB310";
+                }
+                else if (KEY == "PTSIM SB313")
+                {
+                    Version = "SB313";
+                }
+                else if (KEY == "PTSIM SB314")
+                {
+                    Version = "SB314";
+                }
+                else
+                {
+                    MessageBox.Show("Not a Valid SBX SBuilderXX File!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
             }
 
             SetFileBackUp(Filename);
@@ -1275,7 +1282,7 @@ namespace SBuilderX
             modulePOLYS.NoOfPolys = ReadIniInteger(Filename, "Main", "NoOfPolys");
             moduleCLASSES.NoOfLLXYs = 0;
             moduleCLASSES.NoOfWWXYs = 0;
-            if (Version == "SB314")
+            if (Version == "SB314" || Version == "SBXX316")
             {
                 moduleCLASSES.NoOfLLXYs = ReadIniInteger(Filename, "Main", "NoOfLC_LOD5s");
                 moduleCLASSES.NoOfWWXYs = ReadIniInteger(Filename, "Main", "NoOfWC_LOD5s");
@@ -1843,43 +1850,50 @@ namespace SBuilderX
             int NoOfLLXYsX, NoOfWWXYsX;
             double EL, SL, NL, WL, X;
             string argVariable = "CopyRight";
-            KEY = ReadIniValue(Filename, "Main", ref argVariable);
-            KEY = (KEY.Length < 11) ? KEY : KEY.Substring(0, 11);
-            if (KEY == "PTSIM SB205" | KEY == "PTSIM")
-            {
-                MessageBox.Show("You can not Append this file! Try to Import it!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
             string Version;
-            if (KEY == "PTSIM SB301")
+            KEY = ReadIniValue(Filename, "Main", ref argVariable);
+            if (KEY == "MRPRINT SBXX316")
             {
-                Version = "SB301";
-            }
-            else if (KEY == "PTSIM SB302")
-            {
-                Version = "SB302";
-            }
-            else if (KEY == "PTSIM SB303")
-            {
-                Version = "SB303";
-            }
-            else if (KEY == "PTSIM SB310")
-            {
-                Version = "SB310";
-            }
-            else if (KEY == "PTSIM SB313")
-            {
-                Version = "SB313";
-            }
-            else if (KEY == "PTSIM SB314")
-            {
-                Version = "SB314";
+                Version = "SBXX316";
             }
             else
             {
-                MessageBox.Show("Not a Valid SBX SBuilderX File!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                KEY = (KEY.Length < 11) ? KEY : KEY.Substring(0, 11);
+                if (KEY == "PTSIM SB205" | KEY == "PTSIM")
+                {
+                    MessageBox.Show("You can not Append this file! Try to Import it!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (KEY == "PTSIM SB301")
+                {
+                    Version = "SB301";
+                }
+                else if (KEY == "PTSIM SB302")
+                {
+                    Version = "SB302";
+                }
+                else if (KEY == "PTSIM SB303")
+                {
+                    Version = "SB303";
+                }
+                else if (KEY == "PTSIM SB310")
+                {
+                    Version = "SB310";
+                }
+                else if (KEY == "PTSIM SB313")
+                {
+                    Version = "SB313";
+                }
+                else if (KEY == "PTSIM SB314")
+                {
+                    Version = "SB314";
+                }
+                else
+                {
+                    MessageBox.Show("Not a Valid SBX SBuilderXX File!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
             }
 
             My.MyProject.Forms.FrmStart.Cursor = Cursors.WaitCursor;
@@ -1894,7 +1908,7 @@ namespace SBuilderX
                 NoOfLWCIsX = ReadIniInteger(Filename, "Main", "NoOfLWCIs");
             NoOfLLXYsX = 0;
             NoOfWWXYsX = 0;
-            if (Version == "SB314")
+            if (Version == "SB314" || Version == "SBXX316")
             {
                 NoOfLLXYsX = ReadIniInteger(Filename, "Main", "NoOfLC_LOD5s");
                 NoOfWWXYsX = ReadIniInteger(Filename, "Main", "NoOfWC_LOD5s");
@@ -2774,7 +2788,7 @@ namespace SBuilderX
         public override Type BindToType(string assemblyName, string typeName)
         {
             Type typeToDeserialize = null;
-            typeName = typeName.Replace("WindowsApplication1", "SBuilderX");
+            typeName = typeName.Replace("WindowsApplication1", "SBuilderXX");
             typeToDeserialize = Type.GetType(string.Format("{0}, {1}", typeName, assemblyName));
             return typeToDeserialize;
         }

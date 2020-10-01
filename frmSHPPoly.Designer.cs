@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmSHPPoly : Form
@@ -32,273 +32,278 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSHPPoly));
-            cmdHelp = new Button();
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            GroupBox4 = new GroupBox();
-            Label7 = new Label();
-            Label6 = new Label();
-            _txtGUID = new TextBox();
-            _txtGUID.Click += new EventHandler(TxtGUID_Click);
-            _cmbGUID = new ComboBox();
-            _cmbGUID.SelectedIndexChanged += new EventHandler(CmbGUID_SelectedIndexChanged);
-            GroupBox3 = new GroupBox();
-            Label9 = new Label();
-            Label8 = new Label();
-            _lbColor = new Label();
-            _lbColor.Click += new EventHandler(LbColor_Click);
-            Label2 = new Label();
-            Label3 = new Label();
-            txtAltitude = new TextBox();
-            _cmbAltitude = new ComboBox();
-            _cmbAltitude.SelectedIndexChanged += new EventHandler(CmbAltitude_SelectedIndexChanged);
-            _cmbColor = new ComboBox();
-            _cmbColor.SelectedIndexChanged += new EventHandler(CmbColor_SelectedIndexChanged);
-            GroupBox1 = new GroupBox();
-            Label1 = new Label();
-            txtName = new TextBox();
-            _cmbName = new ComboBox();
-            _cmbName.SelectedIndexChanged += new EventHandler(CmbName_SelectedIndexChanged);
-            GroupBox4.SuspendLayout();
-            GroupBox3.SuspendLayout();
-            GroupBox1.SuspendLayout();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSHPPoly));
+            this.cmdHelp = new System.Windows.Forms.Button();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this.GroupBox4 = new System.Windows.Forms.GroupBox();
+            this.Label7 = new System.Windows.Forms.Label();
+            this.Label6 = new System.Windows.Forms.Label();
+            this._txtGUID = new System.Windows.Forms.TextBox();
+            this._cmbGUID = new System.Windows.Forms.ComboBox();
+            this.GroupBox3 = new System.Windows.Forms.GroupBox();
+            this.Label9 = new System.Windows.Forms.Label();
+            this.Label8 = new System.Windows.Forms.Label();
+            this._lbColor = new System.Windows.Forms.Label();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.txtAltitude = new System.Windows.Forms.TextBox();
+            this._cmbAltitude = new System.Windows.Forms.ComboBox();
+            this._cmbColor = new System.Windows.Forms.ComboBox();
+            this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this._cmbName = new System.Windows.Forms.ComboBox();
+            this.GroupBox4.SuspendLayout();
+            this.GroupBox3.SuspendLayout();
+            this.GroupBox1.SuspendLayout();
+            this.SuspendLayout();
             // 
             // cmdHelp
             // 
-            cmdHelp.Location = new Point(344, 163);
-            cmdHelp.Name = "cmdHelp";
-            cmdHelp.Size = new Size(65, 26);
-            cmdHelp.TabIndex = 17;
-            cmdHelp.Text = "Help";
-            cmdHelp.UseVisualStyleBackColor = true;
+            this.cmdHelp.Location = new System.Drawing.Point(344, 163);
+            this.cmdHelp.Name = "cmdHelp";
+            this.cmdHelp.Size = new System.Drawing.Size(65, 26);
+            this.cmdHelp.TabIndex = 17;
+            this.cmdHelp.Text = "Help";
+            this.cmdHelp.UseVisualStyleBackColor = true;
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.Location = new Point(511, 163);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.Size = new Size(65, 26);
-            _cmdOK.TabIndex = 16;
-            _cmdOK.Text = "Continue";
-            _cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Location = new System.Drawing.Point(511, 163);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.Size = new System.Drawing.Size(65, 26);
+            this._cmdOK.TabIndex = 16;
+            this._cmdOK.Text = "Continue";
+            this._cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.Location = new Point(429, 163);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(65, 26);
-            _cmdCancel.TabIndex = 15;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Location = new System.Drawing.Point(429, 163);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(65, 26);
+            this._cmdCancel.TabIndex = 15;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
             // GroupBox4
             // 
-            GroupBox4.Controls.Add(Label7);
-            GroupBox4.Controls.Add(Label6);
-            GroupBox4.Controls.Add(_txtGUID);
-            GroupBox4.Controls.Add(_cmbGUID);
-            GroupBox4.Location = new Point(12, 119);
-            GroupBox4.Name = "GroupBox4";
-            GroupBox4.Size = new Size(269, 97);
-            GroupBox4.TabIndex = 14;
-            GroupBox4.TabStop = false;
-            GroupBox4.Text = "GUID of Imported Polys";
+            this.GroupBox4.Controls.Add(this.Label7);
+            this.GroupBox4.Controls.Add(this.Label6);
+            this.GroupBox4.Controls.Add(this._txtGUID);
+            this.GroupBox4.Controls.Add(this._cmbGUID);
+            this.GroupBox4.Location = new System.Drawing.Point(12, 119);
+            this.GroupBox4.Name = "GroupBox4";
+            this.GroupBox4.Size = new System.Drawing.Size(269, 97);
+            this.GroupBox4.TabIndex = 14;
+            this.GroupBox4.TabStop = false;
+            this.GroupBox4.Text = "GUID of Imported Polys";
             // 
             // Label7
             // 
-            Label7.AutoSize = true;
-            Label7.Location = new Point(11, 18);
-            Label7.Name = "Label7";
-            Label7.Size = new Size(148, 13);
-            Label7.TabIndex = 8;
-            Label7.Text = "Click to set the GUID (or type)";
+            this.Label7.AutoSize = true;
+            this.Label7.Location = new System.Drawing.Point(11, 18);
+            this.Label7.Name = "Label7";
+            this.Label7.Size = new System.Drawing.Size(148, 13);
+            this.Label7.TabIndex = 8;
+            this.Label7.Text = "Click to set the GUID (or type)";
             // 
             // Label6
             // 
-            Label6.AutoSize = true;
-            Label6.Location = new Point(46, 66);
-            Label6.Name = "Label6";
-            Label6.Size = new Size(91, 13);
-            Label6.TabIndex = 7;
-            Label6.Text = "Get from this Field";
+            this.Label6.AutoSize = true;
+            this.Label6.Location = new System.Drawing.Point(46, 66);
+            this.Label6.Name = "Label6";
+            this.Label6.Size = new System.Drawing.Size(91, 13);
+            this.Label6.TabIndex = 7;
+            this.Label6.Text = "Get from this Field";
             // 
-            // txtGUID
+            // _txtGUID
             // 
-            _txtGUID.BackColor = Color.White;
-            _txtGUID.Location = new Point(14, 34);
-            _txtGUID.Name = "_txtGUID";
-            _txtGUID.ReadOnly = true;
-            _txtGUID.Size = new Size(239, 20);
-            _txtGUID.TabIndex = 6;
-            _txtGUID.TextAlign = HorizontalAlignment.Center;
+            this._txtGUID.BackColor = System.Drawing.Color.White;
+            this._txtGUID.Location = new System.Drawing.Point(14, 34);
+            this._txtGUID.Name = "_txtGUID";
+            this._txtGUID.ReadOnly = true;
+            this._txtGUID.Size = new System.Drawing.Size(239, 20);
+            this._txtGUID.TabIndex = 6;
+            this._txtGUID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtGUID.Click += new System.EventHandler(this.TxtGUID_Click);
             // 
-            // cmbGUID
+            // _cmbGUID
             // 
-            _cmbGUID.FormattingEnabled = true;
-            _cmbGUID.Items.AddRange(new object[] { "Use GUID above" });
-            _cmbGUID.Location = new Point(143, 63);
-            _cmbGUID.Name = "_cmbGUID";
-            _cmbGUID.Size = new Size(110, 21);
-            _cmbGUID.TabIndex = 5;
+            this._cmbGUID.FormattingEnabled = true;
+            this._cmbGUID.Items.AddRange(new object[] {
+            "Use GUID above"});
+            this._cmbGUID.Location = new System.Drawing.Point(143, 63);
+            this._cmbGUID.Name = "_cmbGUID";
+            this._cmbGUID.Size = new System.Drawing.Size(110, 21);
+            this._cmbGUID.TabIndex = 5;
+            this._cmbGUID.SelectedIndexChanged += new System.EventHandler(this.CmbGUID_SelectedIndexChanged);
             // 
             // GroupBox3
             // 
-            GroupBox3.Controls.Add(Label9);
-            GroupBox3.Controls.Add(Label8);
-            GroupBox3.Controls.Add(_lbColor);
-            GroupBox3.Controls.Add(Label2);
-            GroupBox3.Controls.Add(Label3);
-            GroupBox3.Controls.Add(txtAltitude);
-            GroupBox3.Controls.Add(_cmbAltitude);
-            GroupBox3.Controls.Add(_cmbColor);
-            GroupBox3.Location = new Point(304, 12);
-            GroupBox3.Name = "GroupBox3";
-            GroupBox3.Size = new Size(298, 122);
-            GroupBox3.TabIndex = 13;
-            GroupBox3.TabStop = false;
-            GroupBox3.Text = "Altitude and Color of Imported Polys";
+            this.GroupBox3.Controls.Add(this.Label9);
+            this.GroupBox3.Controls.Add(this.Label8);
+            this.GroupBox3.Controls.Add(this._lbColor);
+            this.GroupBox3.Controls.Add(this.Label2);
+            this.GroupBox3.Controls.Add(this.Label3);
+            this.GroupBox3.Controls.Add(this.txtAltitude);
+            this.GroupBox3.Controls.Add(this._cmbAltitude);
+            this.GroupBox3.Controls.Add(this._cmbColor);
+            this.GroupBox3.Location = new System.Drawing.Point(304, 12);
+            this.GroupBox3.Name = "GroupBox3";
+            this.GroupBox3.Size = new System.Drawing.Size(298, 122);
+            this.GroupBox3.TabIndex = 13;
+            this.GroupBox3.TabStop = false;
+            this.GroupBox3.Text = "Altitude and Color of Imported Polys";
             // 
             // Label9
             // 
-            Label9.AutoSize = true;
-            Label9.Location = new Point(95, 26);
-            Label9.Name = "Label9";
-            Label9.Size = new Size(55, 13);
-            Label9.TabIndex = 17;
-            Label9.Text = "Use these";
+            this.Label9.AutoSize = true;
+            this.Label9.Location = new System.Drawing.Point(95, 26);
+            this.Label9.Name = "Label9";
+            this.Label9.Size = new System.Drawing.Size(55, 13);
+            this.Label9.TabIndex = 17;
+            this.Label9.Text = "Use these";
             // 
             // Label8
             // 
-            Label8.AutoSize = true;
-            Label8.Location = new Point(166, 26);
-            Label8.Name = "Label8";
-            Label8.Size = new Size(106, 13);
-            Label8.TabIndex = 16;
-            Label8.Text = "Get from these Fields";
+            this.Label8.AutoSize = true;
+            this.Label8.Location = new System.Drawing.Point(166, 26);
+            this.Label8.Name = "Label8";
+            this.Label8.Size = new System.Drawing.Size(106, 13);
+            this.Label8.TabIndex = 16;
+            this.Label8.Text = "Get from these Fields";
             // 
-            // lbColor
+            // _lbColor
             // 
-            _lbColor.BorderStyle = BorderStyle.Fixed3D;
-            _lbColor.FlatStyle = FlatStyle.Popup;
-            _lbColor.Location = new Point(128, 80);
-            _lbColor.Name = "_lbColor";
-            _lbColor.Size = new Size(20, 21);
-            _lbColor.TabIndex = 15;
+            this._lbColor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._lbColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this._lbColor.Location = new System.Drawing.Point(128, 80);
+            this._lbColor.Name = "_lbColor";
+            this._lbColor.Size = new System.Drawing.Size(20, 21);
+            this._lbColor.TabIndex = 15;
+            this._lbColor.Click += new System.EventHandler(this.LbColor_Click);
             // 
             // Label2
             // 
-            Label2.AutoSize = true;
-            Label2.Location = new Point(6, 84);
-            Label2.Name = "Label2";
-            Label2.Size = new Size(113, 13);
-            Label2.TabIndex = 7;
-            Label2.Text = "Color (click to change)";
+            this.Label2.AutoSize = true;
+            this.Label2.Location = new System.Drawing.Point(6, 84);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(113, 13);
+            this.Label2.TabIndex = 7;
+            this.Label2.Text = "Color (click to change)";
             // 
             // Label3
             // 
-            Label3.AutoSize = true;
-            Label3.Location = new Point(10, 48);
-            Label3.Name = "Label3";
-            Label3.Size = new Size(82, 13);
-            Label3.TabIndex = 9;
-            Label3.Text = "Altitude (meters)";
+            this.Label3.AutoSize = true;
+            this.Label3.Location = new System.Drawing.Point(10, 48);
+            this.Label3.Name = "Label3";
+            this.Label3.Size = new System.Drawing.Size(82, 13);
+            this.Label3.TabIndex = 9;
+            this.Label3.Text = "Altitude (meters)";
             // 
             // txtAltitude
             // 
-            txtAltitude.Location = new Point(98, 44);
-            txtAltitude.Name = "txtAltitude";
-            txtAltitude.Size = new Size(52, 20);
-            txtAltitude.TabIndex = 12;
-            txtAltitude.TextAlign = HorizontalAlignment.Center;
+            this.txtAltitude.Location = new System.Drawing.Point(98, 44);
+            this.txtAltitude.Name = "txtAltitude";
+            this.txtAltitude.Size = new System.Drawing.Size(52, 20);
+            this.txtAltitude.TabIndex = 12;
+            this.txtAltitude.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cmbAltitude
+            // _cmbAltitude
             // 
-            _cmbAltitude.FormattingEnabled = true;
-            _cmbAltitude.Items.AddRange(new object[] { "Value on the left" });
-            _cmbAltitude.Location = new Point(169, 43);
-            _cmbAltitude.Name = "_cmbAltitude";
-            _cmbAltitude.Size = new Size(111, 21);
-            _cmbAltitude.TabIndex = 11;
+            this._cmbAltitude.FormattingEnabled = true;
+            this._cmbAltitude.Items.AddRange(new object[] {
+            "Value on the left"});
+            this._cmbAltitude.Location = new System.Drawing.Point(169, 43);
+            this._cmbAltitude.Name = "_cmbAltitude";
+            this._cmbAltitude.Size = new System.Drawing.Size(111, 21);
+            this._cmbAltitude.TabIndex = 11;
+            this._cmbAltitude.SelectedIndexChanged += new System.EventHandler(this.CmbAltitude_SelectedIndexChanged);
             // 
-            // cmbColor
+            // _cmbColor
             // 
-            _cmbColor.FormattingEnabled = true;
-            _cmbColor.Items.AddRange(new object[] { "Color on the left" });
-            _cmbColor.Location = new Point(167, 80);
-            _cmbColor.Name = "_cmbColor";
-            _cmbColor.Size = new Size(111, 21);
-            _cmbColor.TabIndex = 8;
+            this._cmbColor.FormattingEnabled = true;
+            this._cmbColor.Items.AddRange(new object[] {
+            "Color on the left"});
+            this._cmbColor.Location = new System.Drawing.Point(167, 80);
+            this._cmbColor.Name = "_cmbColor";
+            this._cmbColor.Size = new System.Drawing.Size(111, 21);
+            this._cmbColor.TabIndex = 8;
+            this._cmbColor.SelectedIndexChanged += new System.EventHandler(this.CmbColor_SelectedIndexChanged);
             // 
             // GroupBox1
             // 
-            GroupBox1.Controls.Add(Label1);
-            GroupBox1.Controls.Add(txtName);
-            GroupBox1.Controls.Add(_cmbName);
-            GroupBox1.Location = new Point(12, 12);
-            GroupBox1.Name = "GroupBox1";
-            GroupBox1.Size = new Size(269, 82);
-            GroupBox1.TabIndex = 12;
-            GroupBox1.TabStop = false;
-            GroupBox1.Text = "Name or Label of Imported Polys";
+            this.GroupBox1.Controls.Add(this.Label1);
+            this.GroupBox1.Controls.Add(this.txtName);
+            this.GroupBox1.Controls.Add(this._cmbName);
+            this.GroupBox1.Location = new System.Drawing.Point(12, 12);
+            this.GroupBox1.Name = "GroupBox1";
+            this.GroupBox1.Size = new System.Drawing.Size(269, 82);
+            this.GroupBox1.TabIndex = 12;
+            this.GroupBox1.TabStop = false;
+            this.GroupBox1.Text = "Name or Label of Imported Polys";
             // 
             // Label1
             // 
-            Label1.AutoSize = true;
-            Label1.Location = new Point(46, 51);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(91, 13);
-            Label1.TabIndex = 7;
-            Label1.Text = "Get from this Field";
+            this.Label1.AutoSize = true;
+            this.Label1.Location = new System.Drawing.Point(46, 51);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(91, 13);
+            this.Label1.TabIndex = 7;
+            this.Label1.Text = "Get from this Field";
             // 
             // txtName
             // 
-            txtName.Location = new Point(14, 19);
-            txtName.Name = "txtName";
-            txtName.Size = new Size(239, 20);
-            txtName.TabIndex = 6;
-            txtName.Text = "Polygon imported from a shape file";
-            txtName.TextAlign = HorizontalAlignment.Center;
+            this.txtName.Location = new System.Drawing.Point(14, 19);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(239, 20);
+            this.txtName.TabIndex = 6;
+            this.txtName.Text = "Polygon imported from a shape file";
+            this.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cmbName
+            // _cmbName
             // 
-            _cmbName.FormattingEnabled = true;
-            _cmbName.Items.AddRange(new object[] { "Use text above" });
-            _cmbName.Location = new Point(143, 48);
-            _cmbName.Name = "_cmbName";
-            _cmbName.Size = new Size(110, 21);
-            _cmbName.TabIndex = 5;
+            this._cmbName.FormattingEnabled = true;
+            this._cmbName.Items.AddRange(new object[] {
+            "Use text above"});
+            this._cmbName.Location = new System.Drawing.Point(143, 48);
+            this._cmbName.Name = "_cmbName";
+            this._cmbName.Size = new System.Drawing.Size(110, 21);
+            this._cmbName.TabIndex = 5;
+            this._cmbName.SelectedIndexChanged += new System.EventHandler(this.CmbName_SelectedIndexChanged);
             // 
-            // frmSHPPoly
+            // FrmSHPPoly
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(616, 232);
-            Controls.Add(cmdHelp);
-            Controls.Add(_cmdOK);
-            Controls.Add(_cmdCancel);
-            Controls.Add(GroupBox4);
-            Controls.Add(GroupBox3);
-            Controls.Add(GroupBox1);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmSHPPoly";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - Appending a Polygon ShapeFile";
-            GroupBox4.ResumeLayout(false);
-            GroupBox4.PerformLayout();
-            GroupBox3.ResumeLayout(false);
-            GroupBox3.PerformLayout();
-            GroupBox1.ResumeLayout(false);
-            GroupBox1.PerformLayout();
-            FormClosing += new FormClosingEventHandler(FrmSHPPoly_FormClosing);
-            Load += new EventHandler(FrmSHPPoly_Load);
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(616, 232);
+            this.Controls.Add(this.cmdHelp);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this.GroupBox4);
+            this.Controls.Add(this.GroupBox3);
+            this.Controls.Add(this.GroupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmSHPPoly";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - Appending a Polygon ShapeFile";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSHPPoly_FormClosing);
+            this.Load += new System.EventHandler(this.FrmSHPPoly_Load);
+            this.GroupBox4.ResumeLayout(false);
+            this.GroupBox4.PerformLayout();
+            this.GroupBox3.ResumeLayout(false);
+            this.GroupBox3.PerformLayout();
+            this.GroupBox1.ResumeLayout(false);
+            this.GroupBox1.PerformLayout();
+            this.ResumeLayout(false);
+
         }
 
         internal Button cmdHelp;

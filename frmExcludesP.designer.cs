@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmExcludesP
@@ -107,328 +107,329 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExcludesP));
-            txtSouth = new TextBox();
-            txtEast = new TextBox();
-            txtNorth = new TextBox();
-            txtWest = new TextBox();
-            ckWind = new CheckBox();
-            ckTrigger = new CheckBox();
-            ckTaxi = new CheckBox();
-            ckLibrary = new CheckBox();
-            ckGenBuilds = new CheckBox();
-            ckEffects = new CheckBox();
-            ckBeacons = new CheckBox();
-            ckAll = new CheckBox();
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            Label4 = new Label();
-            Label3 = new Label();
-            Label2 = new Label();
-            Label1 = new Label();
-            ckBridges = new CheckBox();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExcludesP));
+            this.txtSouth = new System.Windows.Forms.TextBox();
+            this.txtEast = new System.Windows.Forms.TextBox();
+            this.txtNorth = new System.Windows.Forms.TextBox();
+            this.txtWest = new System.Windows.Forms.TextBox();
+            this.ckWind = new System.Windows.Forms.CheckBox();
+            this.ckTrigger = new System.Windows.Forms.CheckBox();
+            this.ckTaxi = new System.Windows.Forms.CheckBox();
+            this.ckLibrary = new System.Windows.Forms.CheckBox();
+            this.ckGenBuilds = new System.Windows.Forms.CheckBox();
+            this.ckEffects = new System.Windows.Forms.CheckBox();
+            this.ckBeacons = new System.Windows.Forms.CheckBox();
+            this.ckAll = new System.Windows.Forms.CheckBox();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this.Label4 = new System.Windows.Forms.Label();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.ckBridges = new System.Windows.Forms.CheckBox();
+            this.SuspendLayout();
             // 
             // txtSouth
             // 
-            txtSouth.AcceptsReturn = true;
-            txtSouth.BackColor = SystemColors.Window;
-            txtSouth.Cursor = Cursors.IBeam;
-            txtSouth.ForeColor = SystemColors.WindowText;
-            txtSouth.Location = new Point(182, 143);
-            txtSouth.MaxLength = 0;
-            txtSouth.Name = "txtSouth";
-            txtSouth.RightToLeft = RightToLeft.No;
-            txtSouth.Size = new Size(110, 20);
-            txtSouth.TabIndex = 15;
-            txtSouth.Text = "Text1";
-            txtSouth.TextAlign = HorizontalAlignment.Center;
+            this.txtSouth.AcceptsReturn = true;
+            this.txtSouth.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSouth.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSouth.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSouth.Location = new System.Drawing.Point(182, 143);
+            this.txtSouth.MaxLength = 0;
+            this.txtSouth.Name = "txtSouth";
+            this.txtSouth.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtSouth.Size = new System.Drawing.Size(110, 20);
+            this.txtSouth.TabIndex = 15;
+            this.txtSouth.Text = "Text1";
+            this.txtSouth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtEast
             // 
-            txtEast.AcceptsReturn = true;
-            txtEast.BackColor = SystemColors.Window;
-            txtEast.Cursor = Cursors.IBeam;
-            txtEast.ForeColor = SystemColors.WindowText;
-            txtEast.Location = new Point(182, 191);
-            txtEast.MaxLength = 0;
-            txtEast.Name = "txtEast";
-            txtEast.RightToLeft = RightToLeft.No;
-            txtEast.Size = new Size(110, 20);
-            txtEast.TabIndex = 14;
-            txtEast.Text = "Text1";
-            txtEast.TextAlign = HorizontalAlignment.Center;
+            this.txtEast.AcceptsReturn = true;
+            this.txtEast.BackColor = System.Drawing.SystemColors.Window;
+            this.txtEast.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtEast.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtEast.Location = new System.Drawing.Point(182, 191);
+            this.txtEast.MaxLength = 0;
+            this.txtEast.Name = "txtEast";
+            this.txtEast.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtEast.Size = new System.Drawing.Size(110, 20);
+            this.txtEast.TabIndex = 14;
+            this.txtEast.Text = "Text1";
+            this.txtEast.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtNorth
             // 
-            txtNorth.AcceptsReturn = true;
-            txtNorth.BackColor = SystemColors.Window;
-            txtNorth.Cursor = Cursors.IBeam;
-            txtNorth.ForeColor = SystemColors.WindowText;
-            txtNorth.Location = new Point(27, 40);
-            txtNorth.MaxLength = 0;
-            txtNorth.Name = "txtNorth";
-            txtNorth.RightToLeft = RightToLeft.No;
-            txtNorth.Size = new Size(110, 20);
-            txtNorth.TabIndex = 11;
-            txtNorth.Text = "Text1";
-            txtNorth.TextAlign = HorizontalAlignment.Center;
+            this.txtNorth.AcceptsReturn = true;
+            this.txtNorth.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNorth.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtNorth.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNorth.Location = new System.Drawing.Point(27, 40);
+            this.txtNorth.MaxLength = 0;
+            this.txtNorth.Name = "txtNorth";
+            this.txtNorth.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtNorth.Size = new System.Drawing.Size(110, 20);
+            this.txtNorth.TabIndex = 11;
+            this.txtNorth.Text = "Text1";
+            this.txtNorth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtWest
             // 
-            txtWest.AcceptsReturn = true;
-            txtWest.BackColor = SystemColors.Window;
-            txtWest.Cursor = Cursors.IBeam;
-            txtWest.ForeColor = SystemColors.WindowText;
-            txtWest.Location = new Point(27, 88);
-            txtWest.MaxLength = 0;
-            txtWest.Name = "txtWest";
-            txtWest.RightToLeft = RightToLeft.No;
-            txtWest.Size = new Size(110, 20);
-            txtWest.TabIndex = 10;
-            txtWest.Text = "Text1";
-            txtWest.TextAlign = HorizontalAlignment.Center;
+            this.txtWest.AcceptsReturn = true;
+            this.txtWest.BackColor = System.Drawing.SystemColors.Window;
+            this.txtWest.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtWest.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtWest.Location = new System.Drawing.Point(27, 88);
+            this.txtWest.MaxLength = 0;
+            this.txtWest.Name = "txtWest";
+            this.txtWest.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtWest.Size = new System.Drawing.Size(110, 20);
+            this.txtWest.TabIndex = 10;
+            this.txtWest.Text = "Text1";
+            this.txtWest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ckWind
             // 
-            ckWind.AutoSize = true;
-            ckWind.BackColor = SystemColors.Control;
-            ckWind.Cursor = Cursors.Default;
-            ckWind.ForeColor = SystemColors.ControlText;
-            ckWind.Location = new Point(182, 90);
-            ckWind.Name = "ckWind";
-            ckWind.RightToLeft = RightToLeft.No;
-            ckWind.Size = new Size(113, 17);
-            ckWind.TabIndex = 9;
-            ckWind.Text = "Windsock Objects";
-            ckWind.UseVisualStyleBackColor = false;
+            this.ckWind.AutoSize = true;
+            this.ckWind.BackColor = System.Drawing.SystemColors.Control;
+            this.ckWind.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckWind.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckWind.Location = new System.Drawing.Point(182, 90);
+            this.ckWind.Name = "ckWind";
+            this.ckWind.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ckWind.Size = new System.Drawing.Size(113, 17);
+            this.ckWind.TabIndex = 9;
+            this.ckWind.Text = "Windsock Objects";
+            this.ckWind.UseVisualStyleBackColor = false;
             // 
             // ckTrigger
             // 
-            ckTrigger.AutoSize = true;
-            ckTrigger.BackColor = SystemColors.Control;
-            ckTrigger.Cursor = Cursors.Default;
-            ckTrigger.ForeColor = SystemColors.ControlText;
-            ckTrigger.Location = new Point(182, 64);
-            ckTrigger.Name = "ckTrigger";
-            ckTrigger.RightToLeft = RightToLeft.No;
-            ckTrigger.Size = new Size(98, 17);
-            ckTrigger.TabIndex = 8;
-            ckTrigger.Text = "Trigger Objects";
-            ckTrigger.UseVisualStyleBackColor = false;
+            this.ckTrigger.AutoSize = true;
+            this.ckTrigger.BackColor = System.Drawing.SystemColors.Control;
+            this.ckTrigger.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckTrigger.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckTrigger.Location = new System.Drawing.Point(182, 64);
+            this.ckTrigger.Name = "ckTrigger";
+            this.ckTrigger.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ckTrigger.Size = new System.Drawing.Size(98, 17);
+            this.ckTrigger.TabIndex = 8;
+            this.ckTrigger.Text = "Trigger Objects";
+            this.ckTrigger.UseVisualStyleBackColor = false;
             // 
             // ckTaxi
             // 
-            ckTaxi.AutoSize = true;
-            ckTaxi.BackColor = SystemColors.Control;
-            ckTaxi.Cursor = Cursors.Default;
-            ckTaxi.ForeColor = SystemColors.ControlText;
-            ckTaxi.Location = new Point(182, 38);
-            ckTaxi.Name = "ckTaxi";
-            ckTaxi.RightToLeft = RightToLeft.No;
-            ckTaxi.Size = new Size(125, 17);
-            ckTaxi.TabIndex = 7;
-            ckTaxi.Text = "TaxiwaySign Objects";
-            ckTaxi.UseVisualStyleBackColor = false;
+            this.ckTaxi.AutoSize = true;
+            this.ckTaxi.BackColor = System.Drawing.SystemColors.Control;
+            this.ckTaxi.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckTaxi.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckTaxi.Location = new System.Drawing.Point(182, 38);
+            this.ckTaxi.Name = "ckTaxi";
+            this.ckTaxi.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ckTaxi.Size = new System.Drawing.Size(125, 17);
+            this.ckTaxi.TabIndex = 7;
+            this.ckTaxi.Text = "TaxiwaySign Objects";
+            this.ckTaxi.UseVisualStyleBackColor = false;
             // 
             // ckLibrary
             // 
-            ckLibrary.AutoSize = true;
-            ckLibrary.BackColor = SystemColors.Control;
-            ckLibrary.Cursor = Cursors.Default;
-            ckLibrary.ForeColor = SystemColors.ControlText;
-            ckLibrary.Location = new Point(182, 12);
-            ckLibrary.Name = "ckLibrary";
-            ckLibrary.RightToLeft = RightToLeft.No;
-            ckLibrary.Size = new Size(96, 17);
-            ckLibrary.TabIndex = 6;
-            ckLibrary.Text = "Library Objects";
-            ckLibrary.UseVisualStyleBackColor = false;
+            this.ckLibrary.AutoSize = true;
+            this.ckLibrary.BackColor = System.Drawing.SystemColors.Control;
+            this.ckLibrary.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckLibrary.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckLibrary.Location = new System.Drawing.Point(182, 12);
+            this.ckLibrary.Name = "ckLibrary";
+            this.ckLibrary.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ckLibrary.Size = new System.Drawing.Size(96, 17);
+            this.ckLibrary.TabIndex = 6;
+            this.ckLibrary.Text = "Library Objects";
+            this.ckLibrary.UseVisualStyleBackColor = false;
             // 
             // ckGenBuilds
             // 
-            ckGenBuilds.AutoSize = true;
-            ckGenBuilds.BackColor = SystemColors.Control;
-            ckGenBuilds.Cursor = Cursors.Default;
-            ckGenBuilds.ForeColor = SystemColors.ControlText;
-            ckGenBuilds.Location = new Point(30, 205);
-            ckGenBuilds.Name = "ckGenBuilds";
-            ckGenBuilds.RightToLeft = RightToLeft.No;
-            ckGenBuilds.Size = new Size(108, 17);
-            ckGenBuilds.TabIndex = 5;
-            ckGenBuilds.Text = "Generic Buildings";
-            ckGenBuilds.UseVisualStyleBackColor = false;
+            this.ckGenBuilds.AutoSize = true;
+            this.ckGenBuilds.BackColor = System.Drawing.SystemColors.Control;
+            this.ckGenBuilds.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckGenBuilds.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckGenBuilds.Location = new System.Drawing.Point(30, 205);
+            this.ckGenBuilds.Name = "ckGenBuilds";
+            this.ckGenBuilds.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ckGenBuilds.Size = new System.Drawing.Size(108, 17);
+            this.ckGenBuilds.TabIndex = 5;
+            this.ckGenBuilds.Text = "Generic Buildings";
+            this.ckGenBuilds.UseVisualStyleBackColor = false;
             // 
             // ckEffects
             // 
-            ckEffects.AutoSize = true;
-            ckEffects.BackColor = SystemColors.Control;
-            ckEffects.Cursor = Cursors.Default;
-            ckEffects.ForeColor = SystemColors.ControlText;
-            ckEffects.Location = new Point(30, 179);
-            ckEffects.Name = "ckEffects";
-            ckEffects.RightToLeft = RightToLeft.No;
-            ckEffects.Size = new Size(93, 17);
-            ckEffects.TabIndex = 4;
-            ckEffects.Text = "Effect Objects";
-            ckEffects.UseVisualStyleBackColor = false;
+            this.ckEffects.AutoSize = true;
+            this.ckEffects.BackColor = System.Drawing.SystemColors.Control;
+            this.ckEffects.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckEffects.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckEffects.Location = new System.Drawing.Point(30, 179);
+            this.ckEffects.Name = "ckEffects";
+            this.ckEffects.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ckEffects.Size = new System.Drawing.Size(93, 17);
+            this.ckEffects.TabIndex = 4;
+            this.ckEffects.Text = "Effect Objects";
+            this.ckEffects.UseVisualStyleBackColor = false;
             // 
             // ckBeacons
             // 
-            ckBeacons.AutoSize = true;
-            ckBeacons.BackColor = SystemColors.Control;
-            ckBeacons.Cursor = Cursors.Default;
-            ckBeacons.ForeColor = SystemColors.ControlText;
-            ckBeacons.Location = new Point(30, 153);
-            ckBeacons.Name = "ckBeacons";
-            ckBeacons.RightToLeft = RightToLeft.No;
-            ckBeacons.Size = new Size(102, 17);
-            ckBeacons.TabIndex = 3;
-            ckBeacons.Text = "Beacon Objects";
-            ckBeacons.UseVisualStyleBackColor = false;
+            this.ckBeacons.AutoSize = true;
+            this.ckBeacons.BackColor = System.Drawing.SystemColors.Control;
+            this.ckBeacons.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckBeacons.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckBeacons.Location = new System.Drawing.Point(30, 153);
+            this.ckBeacons.Name = "ckBeacons";
+            this.ckBeacons.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ckBeacons.Size = new System.Drawing.Size(102, 17);
+            this.ckBeacons.TabIndex = 3;
+            this.ckBeacons.Text = "Beacon Objects";
+            this.ckBeacons.UseVisualStyleBackColor = false;
             // 
             // ckAll
             // 
-            ckAll.AutoSize = true;
-            ckAll.BackColor = SystemColors.Control;
-            ckAll.Cursor = Cursors.Default;
-            ckAll.ForeColor = SystemColors.ControlText;
-            ckAll.Location = new Point(30, 127);
-            ckAll.Name = "ckAll";
-            ckAll.RightToLeft = RightToLeft.No;
-            ckAll.Size = new Size(76, 17);
-            ckAll.TabIndex = 2;
-            ckAll.Text = "All Objects";
-            ckAll.UseVisualStyleBackColor = false;
+            this.ckAll.AutoSize = true;
+            this.ckAll.BackColor = System.Drawing.SystemColors.Control;
+            this.ckAll.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckAll.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckAll.Location = new System.Drawing.Point(30, 127);
+            this.ckAll.Name = "ckAll";
+            this.ckAll.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ckAll.Size = new System.Drawing.Size(76, 17);
+            this.ckAll.TabIndex = 2;
+            this.ckAll.Text = "All Objects";
+            this.ckAll.UseVisualStyleBackColor = false;
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.BackColor = SystemColors.Control;
-            _cmdCancel.Cursor = Cursors.Default;
-            _cmdCancel.ForeColor = SystemColors.ControlText;
-            _cmdCancel.Location = new Point(182, 233);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.RightToLeft = RightToLeft.No;
-            _cmdCancel.Size = new Size(49, 25);
-            _cmdCancel.TabIndex = 1;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdCancel.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdCancel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdCancel.Location = new System.Drawing.Point(182, 233);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdCancel.Size = new System.Drawing.Size(49, 25);
+            this._cmdCancel.TabIndex = 1;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.BackColor = SystemColors.Control;
-            _cmdOK.Cursor = Cursors.Default;
-            _cmdOK.ForeColor = SystemColors.ControlText;
-            _cmdOK.Location = new Point(243, 233);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.RightToLeft = RightToLeft.No;
-            _cmdOK.Size = new Size(49, 25);
-            _cmdOK.TabIndex = 0;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = false;
+            this._cmdOK.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdOK.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdOK.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdOK.Location = new System.Drawing.Point(243, 233);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdOK.Size = new System.Drawing.Size(49, 25);
+            this._cmdOK.TabIndex = 0;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = false;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
             // Label4
             // 
-            Label4.BackColor = SystemColors.Control;
-            Label4.Cursor = Cursors.Default;
-            Label4.ForeColor = SystemColors.ControlText;
-            Label4.Location = new Point(182, 176);
-            Label4.Name = "Label4";
-            Label4.RightToLeft = RightToLeft.No;
-            Label4.Size = new Size(109, 22);
-            Label4.TabIndex = 17;
-            Label4.Text = "East Boundary :";
+            this.Label4.BackColor = System.Drawing.SystemColors.Control;
+            this.Label4.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label4.Location = new System.Drawing.Point(182, 176);
+            this.Label4.Name = "Label4";
+            this.Label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label4.Size = new System.Drawing.Size(109, 22);
+            this.Label4.TabIndex = 17;
+            this.Label4.Text = "East Boundary :";
             // 
             // Label3
             // 
-            Label3.BackColor = SystemColors.Control;
-            Label3.Cursor = Cursors.Default;
-            Label3.ForeColor = SystemColors.ControlText;
-            Label3.Location = new Point(182, 128);
-            Label3.Name = "Label3";
-            Label3.RightToLeft = RightToLeft.No;
-            Label3.Size = new Size(109, 22);
-            Label3.TabIndex = 16;
-            Label3.Text = "South Boundary :";
+            this.Label3.BackColor = System.Drawing.SystemColors.Control;
+            this.Label3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label3.Location = new System.Drawing.Point(182, 128);
+            this.Label3.Name = "Label3";
+            this.Label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label3.Size = new System.Drawing.Size(109, 22);
+            this.Label3.TabIndex = 16;
+            this.Label3.Text = "South Boundary :";
             // 
             // Label2
             // 
-            Label2.BackColor = SystemColors.Control;
-            Label2.Cursor = Cursors.Default;
-            Label2.ForeColor = SystemColors.ControlText;
-            Label2.Location = new Point(27, 73);
-            Label2.Name = "Label2";
-            Label2.RightToLeft = RightToLeft.No;
-            Label2.Size = new Size(112, 22);
-            Label2.TabIndex = 13;
-            Label2.Text = "West Boundary :";
+            this.Label2.BackColor = System.Drawing.SystemColors.Control;
+            this.Label2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label2.Location = new System.Drawing.Point(27, 73);
+            this.Label2.Name = "Label2";
+            this.Label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label2.Size = new System.Drawing.Size(112, 22);
+            this.Label2.TabIndex = 13;
+            this.Label2.Text = "West Boundary :";
             // 
             // Label1
             // 
-            Label1.BackColor = SystemColors.Control;
-            Label1.Cursor = Cursors.Default;
-            Label1.ForeColor = SystemColors.ControlText;
-            Label1.Location = new Point(27, 22);
-            Label1.Name = "Label1";
-            Label1.RightToLeft = RightToLeft.No;
-            Label1.Size = new Size(106, 22);
-            Label1.TabIndex = 12;
-            Label1.Text = "North Boundary :";
+            this.Label1.BackColor = System.Drawing.SystemColors.Control;
+            this.Label1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label1.Location = new System.Drawing.Point(27, 22);
+            this.Label1.Name = "Label1";
+            this.Label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label1.Size = new System.Drawing.Size(106, 22);
+            this.Label1.TabIndex = 12;
+            this.Label1.Text = "North Boundary :";
             // 
             // ckBridges
             // 
-            ckBridges.AutoSize = true;
-            ckBridges.BackColor = SystemColors.Control;
-            ckBridges.Cursor = Cursors.Default;
-            ckBridges.ForeColor = SystemColors.ControlText;
-            ckBridges.Location = new Point(30, 231);
-            ckBridges.Name = "ckBridges";
-            ckBridges.RightToLeft = RightToLeft.No;
-            ckBridges.Size = new Size(107, 17);
-            ckBridges.TabIndex = 18;
-            ckBridges.Text = "Extrusion Bridges";
-            ckBridges.UseVisualStyleBackColor = false;
+            this.ckBridges.AutoSize = true;
+            this.ckBridges.BackColor = System.Drawing.SystemColors.Control;
+            this.ckBridges.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckBridges.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckBridges.Location = new System.Drawing.Point(30, 231);
+            this.ckBridges.Name = "ckBridges";
+            this.ckBridges.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ckBridges.Size = new System.Drawing.Size(107, 17);
+            this.ckBridges.TabIndex = 18;
+            this.ckBridges.Text = "Extrusion Bridges";
+            this.ckBridges.UseVisualStyleBackColor = false;
             // 
-            // frmExcludesP
+            // FrmExcludesP
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
-            ClientSize = new Size(315, 273);
-            Controls.Add(ckBridges);
-            Controls.Add(txtSouth);
-            Controls.Add(txtEast);
-            Controls.Add(txtNorth);
-            Controls.Add(txtWest);
-            Controls.Add(ckWind);
-            Controls.Add(ckTrigger);
-            Controls.Add(ckTaxi);
-            Controls.Add(ckLibrary);
-            Controls.Add(ckGenBuilds);
-            Controls.Add(ckEffects);
-            Controls.Add(ckBeacons);
-            Controls.Add(ckAll);
-            Controls.Add(_cmdCancel);
-            Controls.Add(_cmdOK);
-            Controls.Add(Label4);
-            Controls.Add(Label3);
-            Controls.Add(Label2);
-            Controls.Add(Label1);
-            Cursor = Cursors.Default;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Location = new Point(3, 29);
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmExcludesP";
-            RightToLeft = RightToLeft.No;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - Exclusion Rectangle Properties";
-            Load += new EventHandler(FrmExcludesP_Load);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(315, 273);
+            this.Controls.Add(this.ckBridges);
+            this.Controls.Add(this.txtSouth);
+            this.Controls.Add(this.txtEast);
+            this.Controls.Add(this.txtNorth);
+            this.Controls.Add(this.txtWest);
+            this.Controls.Add(this.ckWind);
+            this.Controls.Add(this.ckTrigger);
+            this.Controls.Add(this.ckTaxi);
+            this.Controls.Add(this.ckLibrary);
+            this.Controls.Add(this.ckGenBuilds);
+            this.Controls.Add(this.ckEffects);
+            this.Controls.Add(this.ckBeacons);
+            this.Controls.Add(this.ckAll);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this.Label4);
+            this.Controls.Add(this.Label3);
+            this.Controls.Add(this.Label2);
+            this.Controls.Add(this.Label1);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(3, 29);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmExcludesP";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - Exclusion Rectangle Properties";
+            this.Load += new System.EventHandler(this.FrmExcludesP_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         public CheckBox ckBridges;

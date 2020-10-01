@@ -6,7 +6,7 @@ using System.IO;
 using System.Net;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     static class moduleMAPS
     {
@@ -68,7 +68,7 @@ namespace SBuilderX
             A = A + "|Tag Image File Format (*.TIF)|*.tif";
             A = A + "|Graphics Interchange Format (*.GIF)|*.gif";
             A = A + "|Portable Network Graphics (*.PNG)|*.png";
-            string B = "SBuilderX: Open Image File";
+            string B = "SBuilderXX: Open Image File";
             string myFile = moduleFILE_IO.FileNameToOpen(A, B, "BMP");
             bool geoTiff = default(bool);
             int Cols = default, Rows = default;
@@ -175,7 +175,7 @@ namespace SBuilderX
         // myfile = "You are using demo application Id and Code keys! In order to" & vbCrLf
         // myfile = myfile & "avoid this message, please go to the Here/Nokia web site:" & vbCrLf & vbCrLf
         // myfile = myfile & "http://developer.here.com/rest-apis" & vbCrLf & vbCrLf
-        // myfile = myfile & "and apply for your own keys. Then, open the SBuilderX.ini" & vbCrLf
+        // myfile = myfile & "and apply for your own keys. Then, open the SBuilderXX.ini" & vbCrLf
         // myfile = myfile & "file and replace the demo keys with your own keys!"
         // MsgBox(myfile, MsgBoxStyle.Information)
         // End If
@@ -382,7 +382,7 @@ namespace SBuilderX
             if (string.IsNullOrEmpty(GoogleMapsAPI))
             {
                 myfile = "You need to have a valid and active Google Static Maps API Key! Once you" + Environment.NewLine;
-                myfile = myfile + "get your_google_api_key, open SBuilderX.ini file and edit the following line" + Environment.NewLine;
+                myfile = myfile + "get your_google_api_key, open SBuilderXX.ini file and edit the following line" + Environment.NewLine;
                 myfile = myfile + "GoogleMapsAPI=your_google_api_key!" + Environment.NewLine + Environment.NewLine;
                 myfile = myfile + "Do you want to learn how to get a Google API key?";
                 DialogResult A = MessageBox.Show(myfile, "Google Maps API is missing", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

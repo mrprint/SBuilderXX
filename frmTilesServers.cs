@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     public partial class frmTilesServers
     {
@@ -15,7 +15,7 @@ namespace SBuilderX
         private void frmTilesServers_Load(object sender, EventArgs e)
         {
             string A = "TileServer plug-ins that conform to the  ";
-            A = A + "SBuilderX TileServer Interface can generate ";
+            A = A + "SBuilderXX TileServer Interface can generate ";
             A = A + "image backgrounds. You should comply with ";
             A = A + "any copyrights that such images may hold.";
             Label1.Text = A;

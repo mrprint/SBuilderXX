@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     static class modulePOLYS
     {
@@ -2456,13 +2456,13 @@ namespace SBuilderX
             };
             XmlWriter writer = XmlWriter.Create(myFileXLM, settings);
             writer.WriteStartDocument();
-            writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
+            writer.WriteComment("Created by SBuilderXX on " + DateTime.Now);
             writer.WriteStartElement("FSData");
             writer.WriteAttributeString("version", "9.0");
             writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
             writer.WriteAttributeString("noNamespaceSchemaLocation", "http://www.w3.org/2001/XMLSchema-instance", "bglcomp.xsd");
             writer.WriteComment("Standing Textured Lines FSX Models");
-            header = "xof 0302txt 0032" + Environment.NewLine + Environment.NewLine + "// Direct3D X file created by SBuilderX on " + DateTime.Now.ToString() + Environment.NewLine + Environment.NewLine;
+            header = "xof 0302txt 0032" + Environment.NewLine + Environment.NewLine + "// Direct3D X file created by SBuilderXX on " + DateTime.Now.ToString() + Environment.NewLine + Environment.NewLine;
             template = My.MyProject.Computer.FileSystem.ReadAllText(My.MyProject.Application.Info.DirectoryPath + @"\tools\x_templates.txt");
             material = My.MyProject.Computer.FileSystem.ReadAllText(My.MyProject.Application.Info.DirectoryPath + @"\tools\x_material.txt");
             int loopTo = moduleLINES.NoOfLines;

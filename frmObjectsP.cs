@@ -6,7 +6,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     internal partial class FrmObjectsP
     {
@@ -1760,7 +1760,7 @@ namespace SBuilderX
             string A, B, mdlFile;
             string MDLDir = moduleMAIN.AppPath + @"\Mdls";
             A = "Object Model file (*.MDL)|*.mdl";
-            B = "SBuilderX: Select Object Model file";
+            B = "SBuilderXX: Select Object Model file";
             A = moduleFILE_IO.FileNameToOpen(A, B, "MDL");
             if (string.IsNullOrEmpty(A))
             {
@@ -2143,7 +2143,7 @@ namespace SBuilderX
             try
             {
                 a = "JPEG Files (*.JPG)|*.JPG";
-                b = "SBuilderX - Find a JPEG Thumbnail";
+                b = "SBuilderXX - Find a JPEG Thumbnail";
                 FileName = moduleFILE_IO.FileNameToOpen(a, b, "");
                 if (string.IsNullOrEmpty(FileName))
                     return;

@@ -1,5 +1,5 @@
 ﻿
-namespace SBuilderX
+namespace SBuilderXX
 {
     public partial class frmWaiting
     {

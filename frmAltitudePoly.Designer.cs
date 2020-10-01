@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmAltitudePoly : Form
@@ -32,259 +32,260 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAltitudePoly));
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            GroupBox1 = new GroupBox();
-            txtAlt = new TextBox();
-            _cmdAlt = new Button();
-            _cmdAlt.Click += new EventHandler(CmdAlt_Click);
-            GroupBox3 = new GroupBox();
-            txtHead = new TextBox();
-            txtAlt0 = new TextBox();
-            _cmdHelpSlope = new Button();
-            _cmdHelpSlope.Click += new EventHandler(CmdHelpSlope_Click);
-            _cmdSlope = new Button();
-            _cmdSlope.Click += new EventHandler(CmdSlope_Click);
-            txtSlope = new TextBox();
-            Label8 = new Label();
-            Label6 = new Label();
-            Label2 = new Label();
-            Label1 = new Label();
-            txtPt0 = new TextBox();
-            lbSX = new Label();
-            lbSY = new Label();
-            GroupBox1.SuspendLayout();
-            GroupBox3.SuspendLayout();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAltitudePoly));
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtAlt = new System.Windows.Forms.TextBox();
+            this._cmdAlt = new System.Windows.Forms.Button();
+            this.GroupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtHead = new System.Windows.Forms.TextBox();
+            this.txtAlt0 = new System.Windows.Forms.TextBox();
+            this._cmdHelpSlope = new System.Windows.Forms.Button();
+            this._cmdSlope = new System.Windows.Forms.Button();
+            this.txtSlope = new System.Windows.Forms.TextBox();
+            this.Label8 = new System.Windows.Forms.Label();
+            this.Label6 = new System.Windows.Forms.Label();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.txtPt0 = new System.Windows.Forms.TextBox();
+            this.lbSX = new System.Windows.Forms.Label();
+            this.lbSY = new System.Windows.Forms.Label();
+            this.GroupBox1.SuspendLayout();
+            this.GroupBox3.SuspendLayout();
+            this.SuspendLayout();
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.Location = new Point(396, 99);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(57, 25);
-            _cmdCancel.TabIndex = 54;
-            _cmdCancel.Text = "Close";
-            _cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Location = new System.Drawing.Point(396, 99);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(57, 25);
+            this._cmdCancel.TabIndex = 54;
+            this._cmdCancel.Text = "Close";
+            this._cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
             // GroupBox1
             // 
-            GroupBox1.Controls.Add(txtAlt);
-            GroupBox1.Controls.Add(_cmdAlt);
-            GroupBox1.Location = new Point(264, 13);
-            GroupBox1.Name = "GroupBox1";
-            GroupBox1.Size = new Size(205, 59);
-            GroupBox1.TabIndex = 51;
-            GroupBox1.TabStop = false;
-            GroupBox1.Text = "Apply constant altitude to Points";
+            this.GroupBox1.Controls.Add(this.txtAlt);
+            this.GroupBox1.Controls.Add(this._cmdAlt);
+            this.GroupBox1.Location = new System.Drawing.Point(264, 13);
+            this.GroupBox1.Name = "GroupBox1";
+            this.GroupBox1.Size = new System.Drawing.Size(205, 59);
+            this.GroupBox1.TabIndex = 51;
+            this.GroupBox1.TabStop = false;
+            this.GroupBox1.Text = "Apply constant altitude to Points";
             // 
             // txtAlt
             // 
-            txtAlt.BackColor = SystemColors.Window;
-            txtAlt.Cursor = Cursors.IBeam;
-            txtAlt.ForeColor = SystemColors.WindowText;
-            txtAlt.Location = new Point(23, 27);
-            txtAlt.MaxLength = 0;
-            txtAlt.Name = "txtAlt";
-            txtAlt.RightToLeft = RightToLeft.No;
-            txtAlt.Size = new Size(85, 20);
-            txtAlt.TabIndex = 29;
-            txtAlt.TextAlign = HorizontalAlignment.Center;
+            this.txtAlt.BackColor = System.Drawing.SystemColors.Window;
+            this.txtAlt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtAlt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtAlt.Location = new System.Drawing.Point(23, 27);
+            this.txtAlt.MaxLength = 0;
+            this.txtAlt.Name = "txtAlt";
+            this.txtAlt.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtAlt.Size = new System.Drawing.Size(85, 20);
+            this.txtAlt.TabIndex = 29;
+            this.txtAlt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cmdAlt
+            // _cmdAlt
             // 
-            _cmdAlt.BackColor = SystemColors.Control;
-            _cmdAlt.Cursor = Cursors.Default;
-            _cmdAlt.ForeColor = SystemColors.ControlText;
-            _cmdAlt.Location = new Point(132, 24);
-            _cmdAlt.Name = "_cmdAlt";
-            _cmdAlt.RightToLeft = RightToLeft.No;
-            _cmdAlt.Size = new Size(57, 25);
-            _cmdAlt.TabIndex = 28;
-            _cmdAlt.Text = "Set";
-            _cmdAlt.UseVisualStyleBackColor = false;
+            this._cmdAlt.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdAlt.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdAlt.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdAlt.Location = new System.Drawing.Point(132, 24);
+            this._cmdAlt.Name = "_cmdAlt";
+            this._cmdAlt.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdAlt.Size = new System.Drawing.Size(57, 25);
+            this._cmdAlt.TabIndex = 28;
+            this._cmdAlt.Text = "Set";
+            this._cmdAlt.UseVisualStyleBackColor = false;
+            this._cmdAlt.Click += new System.EventHandler(this.CmdAlt_Click);
             // 
             // GroupBox3
             // 
-            GroupBox3.Controls.Add(txtHead);
-            GroupBox3.Controls.Add(txtAlt0);
-            GroupBox3.Controls.Add(_cmdHelpSlope);
-            GroupBox3.Controls.Add(_cmdSlope);
-            GroupBox3.Controls.Add(txtSlope);
-            GroupBox3.Controls.Add(Label8);
-            GroupBox3.Controls.Add(Label6);
-            GroupBox3.Controls.Add(Label2);
-            GroupBox3.Controls.Add(Label1);
-            GroupBox3.Controls.Add(txtPt0);
-            GroupBox3.Location = new Point(12, 12);
-            GroupBox3.Name = "GroupBox3";
-            GroupBox3.Size = new Size(234, 126);
-            GroupBox3.TabIndex = 55;
-            GroupBox3.TabStop = false;
-            GroupBox3.Text = "Set 1 point and maximum slope";
+            this.GroupBox3.Controls.Add(this.txtHead);
+            this.GroupBox3.Controls.Add(this.txtAlt0);
+            this.GroupBox3.Controls.Add(this._cmdHelpSlope);
+            this.GroupBox3.Controls.Add(this._cmdSlope);
+            this.GroupBox3.Controls.Add(this.txtSlope);
+            this.GroupBox3.Controls.Add(this.Label8);
+            this.GroupBox3.Controls.Add(this.Label6);
+            this.GroupBox3.Controls.Add(this.Label2);
+            this.GroupBox3.Controls.Add(this.Label1);
+            this.GroupBox3.Controls.Add(this.txtPt0);
+            this.GroupBox3.Location = new System.Drawing.Point(12, 12);
+            this.GroupBox3.Name = "GroupBox3";
+            this.GroupBox3.Size = new System.Drawing.Size(234, 126);
+            this.GroupBox3.TabIndex = 55;
+            this.GroupBox3.TabStop = false;
+            this.GroupBox3.Text = "Set 1 point and maximum slope";
             // 
             // txtHead
             // 
-            txtHead.BackColor = SystemColors.Window;
-            txtHead.Cursor = Cursors.IBeam;
-            txtHead.ForeColor = SystemColors.WindowText;
-            txtHead.Location = new Point(68, 66);
-            txtHead.MaxLength = 0;
-            txtHead.Name = "txtHead";
-            txtHead.RightToLeft = RightToLeft.No;
-            txtHead.Size = new Size(71, 20);
-            txtHead.TabIndex = 63;
-            txtHead.TextAlign = HorizontalAlignment.Center;
+            this.txtHead.BackColor = System.Drawing.SystemColors.Window;
+            this.txtHead.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtHead.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtHead.Location = new System.Drawing.Point(68, 66);
+            this.txtHead.MaxLength = 0;
+            this.txtHead.Name = "txtHead";
+            this.txtHead.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtHead.Size = new System.Drawing.Size(71, 20);
+            this.txtHead.TabIndex = 63;
+            this.txtHead.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtAlt0
             // 
-            txtAlt0.BackColor = SystemColors.Window;
-            txtAlt0.Cursor = Cursors.IBeam;
-            txtAlt0.ForeColor = SystemColors.WindowText;
-            txtAlt0.Location = new Point(18, 40);
-            txtAlt0.MaxLength = 0;
-            txtAlt0.Name = "txtAlt0";
-            txtAlt0.RightToLeft = RightToLeft.No;
-            txtAlt0.Size = new Size(81, 20);
-            txtAlt0.TabIndex = 62;
-            txtAlt0.TextAlign = HorizontalAlignment.Center;
+            this.txtAlt0.BackColor = System.Drawing.SystemColors.Window;
+            this.txtAlt0.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtAlt0.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtAlt0.Location = new System.Drawing.Point(18, 40);
+            this.txtAlt0.MaxLength = 0;
+            this.txtAlt0.Name = "txtAlt0";
+            this.txtAlt0.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtAlt0.Size = new System.Drawing.Size(81, 20);
+            this.txtAlt0.TabIndex = 62;
+            this.txtAlt0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cmdHelpSlope
+            // _cmdHelpSlope
             // 
-            _cmdHelpSlope.BackColor = SystemColors.Control;
-            _cmdHelpSlope.Cursor = Cursors.Default;
-            _cmdHelpSlope.ForeColor = SystemColors.ControlText;
-            _cmdHelpSlope.Location = new Point(161, 40);
-            _cmdHelpSlope.Name = "_cmdHelpSlope";
-            _cmdHelpSlope.RightToLeft = RightToLeft.No;
-            _cmdHelpSlope.Size = new Size(57, 25);
-            _cmdHelpSlope.TabIndex = 61;
-            _cmdHelpSlope.Text = "Help";
-            _cmdHelpSlope.UseVisualStyleBackColor = false;
+            this._cmdHelpSlope.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdHelpSlope.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdHelpSlope.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdHelpSlope.Location = new System.Drawing.Point(161, 40);
+            this._cmdHelpSlope.Name = "_cmdHelpSlope";
+            this._cmdHelpSlope.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdHelpSlope.Size = new System.Drawing.Size(57, 25);
+            this._cmdHelpSlope.TabIndex = 61;
+            this._cmdHelpSlope.Text = "Help";
+            this._cmdHelpSlope.UseVisualStyleBackColor = false;
+            this._cmdHelpSlope.Click += new System.EventHandler(this.CmdHelpSlope_Click);
             // 
-            // cmdSlope
+            // _cmdSlope
             // 
-            _cmdSlope.BackColor = SystemColors.Control;
-            _cmdSlope.Cursor = Cursors.Default;
-            _cmdSlope.ForeColor = SystemColors.ControlText;
-            _cmdSlope.Location = new Point(161, 87);
-            _cmdSlope.Name = "_cmdSlope";
-            _cmdSlope.RightToLeft = RightToLeft.No;
-            _cmdSlope.Size = new Size(57, 25);
-            _cmdSlope.TabIndex = 60;
-            _cmdSlope.Text = "Set";
-            _cmdSlope.UseVisualStyleBackColor = false;
+            this._cmdSlope.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdSlope.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdSlope.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdSlope.Location = new System.Drawing.Point(161, 87);
+            this._cmdSlope.Name = "_cmdSlope";
+            this._cmdSlope.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdSlope.Size = new System.Drawing.Size(57, 25);
+            this._cmdSlope.TabIndex = 60;
+            this._cmdSlope.Text = "Set";
+            this._cmdSlope.UseVisualStyleBackColor = false;
+            this._cmdSlope.Click += new System.EventHandler(this.CmdSlope_Click);
             // 
             // txtSlope
             // 
-            txtSlope.BackColor = SystemColors.Window;
-            txtSlope.Cursor = Cursors.IBeam;
-            txtSlope.ForeColor = SystemColors.WindowText;
-            txtSlope.Location = new Point(68, 92);
-            txtSlope.MaxLength = 0;
-            txtSlope.Name = "txtSlope";
-            txtSlope.RightToLeft = RightToLeft.No;
-            txtSlope.Size = new Size(71, 20);
-            txtSlope.TabIndex = 58;
-            txtSlope.TextAlign = HorizontalAlignment.Center;
+            this.txtSlope.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSlope.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSlope.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSlope.Location = new System.Drawing.Point(68, 92);
+            this.txtSlope.MaxLength = 0;
+            this.txtSlope.Name = "txtSlope";
+            this.txtSlope.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtSlope.Size = new System.Drawing.Size(71, 20);
+            this.txtSlope.TabIndex = 58;
+            this.txtSlope.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Label8
             // 
-            Label8.AutoSize = true;
-            Label8.Location = new Point(28, 95);
-            Label8.Name = "Label8";
-            Label8.Size = new Size(34, 13);
-            Label8.TabIndex = 59;
-            Label8.Text = "Slope";
+            this.Label8.AutoSize = true;
+            this.Label8.Location = new System.Drawing.Point(28, 95);
+            this.Label8.Name = "Label8";
+            this.Label8.Size = new System.Drawing.Size(34, 13);
+            this.Label8.TabIndex = 59;
+            this.Label8.Text = "Slope";
             // 
             // Label6
             // 
-            Label6.AutoSize = true;
-            Label6.Location = new Point(15, 68);
-            Label6.Name = "Label6";
-            Label6.Size = new Size(47, 13);
-            Label6.TabIndex = 57;
-            Label6.Text = "Heading";
+            this.Label6.AutoSize = true;
+            this.Label6.Location = new System.Drawing.Point(15, 68);
+            this.Label6.Name = "Label6";
+            this.Label6.Size = new System.Drawing.Size(47, 13);
+            this.Label6.TabIndex = 57;
+            this.Label6.Text = "Heading";
             // 
             // Label2
             // 
-            Label2.AutoSize = true;
-            Label2.BackColor = SystemColors.Control;
-            Label2.Cursor = Cursors.Default;
-            Label2.ForeColor = SystemColors.ControlText;
-            Label2.Location = new Point(102, 25);
-            Label2.Name = "Label2";
-            Label2.RightToLeft = RightToLeft.No;
-            Label2.Size = new Size(27, 13);
-            Label2.TabIndex = 56;
-            Label2.Text = "Pt #";
-            Label2.TextAlign = ContentAlignment.TopCenter;
+            this.Label2.AutoSize = true;
+            this.Label2.BackColor = System.Drawing.SystemColors.Control;
+            this.Label2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label2.Location = new System.Drawing.Point(102, 25);
+            this.Label2.Name = "Label2";
+            this.Label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label2.Size = new System.Drawing.Size(27, 13);
+            this.Label2.TabIndex = 56;
+            this.Label2.Text = "Pt #";
+            this.Label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Label1
             // 
-            Label1.AutoSize = true;
-            Label1.Location = new Point(15, 25);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(42, 13);
-            Label1.TabIndex = 53;
-            Label1.Text = "Altitude";
+            this.Label1.AutoSize = true;
+            this.Label1.Location = new System.Drawing.Point(15, 25);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(42, 13);
+            this.Label1.TabIndex = 53;
+            this.Label1.Text = "Altitude";
             // 
             // txtPt0
             // 
-            txtPt0.BackColor = SystemColors.Window;
-            txtPt0.Cursor = Cursors.IBeam;
-            txtPt0.ForeColor = SystemColors.WindowText;
-            txtPt0.Location = new Point(105, 40);
-            txtPt0.MaxLength = 0;
-            txtPt0.Name = "txtPt0";
-            txtPt0.RightToLeft = RightToLeft.No;
-            txtPt0.Size = new Size(34, 20);
-            txtPt0.TabIndex = 52;
-            txtPt0.TextAlign = HorizontalAlignment.Center;
+            this.txtPt0.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPt0.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPt0.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPt0.Location = new System.Drawing.Point(105, 40);
+            this.txtPt0.MaxLength = 0;
+            this.txtPt0.Name = "txtPt0";
+            this.txtPt0.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtPt0.Size = new System.Drawing.Size(34, 20);
+            this.txtPt0.TabIndex = 52;
+            this.txtPt0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbSX
             // 
-            lbSX.AutoSize = true;
-            lbSX.Location = new Point(261, 99);
-            lbSX.Name = "lbSX";
-            lbSX.Size = new Size(59, 13);
-            lbSX.TabIndex = 56;
-            lbSX.Text = "SlopeX = 0";
+            this.lbSX.AutoSize = true;
+            this.lbSX.Location = new System.Drawing.Point(261, 99);
+            this.lbSX.Name = "lbSX";
+            this.lbSX.Size = new System.Drawing.Size(59, 13);
+            this.lbSX.TabIndex = 56;
+            this.lbSX.Text = "SlopeX = 0";
             // 
             // lbSY
             // 
-            lbSY.AutoSize = true;
-            lbSY.Location = new Point(261, 115);
-            lbSY.Name = "lbSY";
-            lbSY.Size = new Size(59, 13);
-            lbSY.TabIndex = 57;
-            lbSY.Text = "SlopeY = 0";
+            this.lbSY.AutoSize = true;
+            this.lbSY.Location = new System.Drawing.Point(261, 115);
+            this.lbSY.Name = "lbSY";
+            this.lbSY.Size = new System.Drawing.Size(59, 13);
+            this.lbSY.TabIndex = 57;
+            this.lbSY.Text = "SlopeY = 0";
             // 
-            // frmAltitudePoly
+            // FrmAltitudePoly
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(485, 151);
-            Controls.Add(lbSY);
-            Controls.Add(lbSX);
-            Controls.Add(GroupBox3);
-            Controls.Add(_cmdCancel);
-            Controls.Add(GroupBox1);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmAltitudePoly";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - Set Polygon Altitude";
-            GroupBox1.ResumeLayout(false);
-            GroupBox1.PerformLayout();
-            GroupBox3.ResumeLayout(false);
-            GroupBox3.PerformLayout();
-            Load += new EventHandler(FrmLPAltitude_Load);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(485, 151);
+            this.Controls.Add(this.lbSY);
+            this.Controls.Add(this.lbSX);
+            this.Controls.Add(this.GroupBox3);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this.GroupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmAltitudePoly";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - Set Polygon Altitude";
+            this.Load += new System.EventHandler(this.FrmLPAltitude_Load);
+            this.GroupBox1.ResumeLayout(false);
+            this.GroupBox1.PerformLayout();
+            this.GroupBox3.ResumeLayout(false);
+            this.GroupBox3.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         private Button _cmdCancel;

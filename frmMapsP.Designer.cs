@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmMapsP : Form
@@ -32,705 +32,707 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMapsP));
-            _cmdCalibrateMain = new Button();
-            _cmdCalibrateMain.Click += new EventHandler(CmdCalibrateMain_Click);
-            _cmdData = new Button();
-            _cmdData.Click += new EventHandler(CmdData_Click);
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            SSTab1 = new TabControl();
-            _SSTab1_TabPage4 = new TabPage();
-            Label1 = new Label();
-            Label15 = new Label();
-            Label14 = new Label();
-            txtCellY = new TextBox();
-            txtCellX = new TextBox();
-            Label18 = new Label();
-            txtName = new TextBox();
-            lbRows = new Label();
-            Label13 = new Label();
-            Label12 = new Label();
-            lbCols = new Label();
-            Label11 = new Label();
-            Label10 = new Label();
-            Label9 = new Label();
-            Label8 = new Label();
-            txtELon = new TextBox();
-            txtSLat = new TextBox();
-            txtWLon = new TextBox();
-            txtNLat = new TextBox();
-            _SSTab1_TabPage1 = new TabPage();
-            _cmdSummer = new Button();
-            _cmdSummer.Click += new EventHandler(CmdSummer_Click);
-            Label21 = new Label();
-            txtBMPSummer = new TextBox();
-            txtBMPSpring = new TextBox();
-            txtBMPFall = new TextBox();
-            txtBMPWinter = new TextBox();
-            txtBMPHard = new TextBox();
-            txtBMPNight = new TextBox();
-            _cmdSpring = new Button();
-            _cmdSpring.Click += new EventHandler(CmdSpring_Click);
-            _cmdFall = new Button();
-            _cmdFall.Click += new EventHandler(CmdFall_Click);
-            _cmdWinter = new Button();
-            _cmdWinter.Click += new EventHandler(CmdWinter_Click);
-            _cmdHard = new Button();
-            _cmdHard.Click += new EventHandler(CmdHard_Click);
-            _cmdNight = new Button();
-            _cmdNight.Click += new EventHandler(CmdNight_Click);
-            Label2 = new Label();
-            Label3 = new Label();
-            Label4 = new Label();
-            Label5 = new Label();
-            Label6 = new Label();
-            _cmdGeoTiff = new Button();
-            _cmdGeoTiff.Click += new EventHandler(CmdGeoTiff_Click);
-            SSTab1.SuspendLayout();
-            _SSTab1_TabPage4.SuspendLayout();
-            _SSTab1_TabPage1.SuspendLayout();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMapsP));
+            this._cmdCalibrateMain = new System.Windows.Forms.Button();
+            this._cmdData = new System.Windows.Forms.Button();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this.SSTab1 = new System.Windows.Forms.TabControl();
+            this._SSTab1_TabPage4 = new System.Windows.Forms.TabPage();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.Label15 = new System.Windows.Forms.Label();
+            this.Label14 = new System.Windows.Forms.Label();
+            this.txtCellY = new System.Windows.Forms.TextBox();
+            this.txtCellX = new System.Windows.Forms.TextBox();
+            this.Label18 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.lbRows = new System.Windows.Forms.Label();
+            this.Label13 = new System.Windows.Forms.Label();
+            this.Label12 = new System.Windows.Forms.Label();
+            this.lbCols = new System.Windows.Forms.Label();
+            this.Label11 = new System.Windows.Forms.Label();
+            this.Label10 = new System.Windows.Forms.Label();
+            this.Label9 = new System.Windows.Forms.Label();
+            this.Label8 = new System.Windows.Forms.Label();
+            this.txtELon = new System.Windows.Forms.TextBox();
+            this.txtSLat = new System.Windows.Forms.TextBox();
+            this.txtWLon = new System.Windows.Forms.TextBox();
+            this.txtNLat = new System.Windows.Forms.TextBox();
+            this._SSTab1_TabPage1 = new System.Windows.Forms.TabPage();
+            this._cmdSummer = new System.Windows.Forms.Button();
+            this.Label21 = new System.Windows.Forms.Label();
+            this.txtBMPSummer = new System.Windows.Forms.TextBox();
+            this.txtBMPSpring = new System.Windows.Forms.TextBox();
+            this.txtBMPFall = new System.Windows.Forms.TextBox();
+            this.txtBMPWinter = new System.Windows.Forms.TextBox();
+            this.txtBMPHard = new System.Windows.Forms.TextBox();
+            this.txtBMPNight = new System.Windows.Forms.TextBox();
+            this._cmdSpring = new System.Windows.Forms.Button();
+            this._cmdFall = new System.Windows.Forms.Button();
+            this._cmdWinter = new System.Windows.Forms.Button();
+            this._cmdHard = new System.Windows.Forms.Button();
+            this._cmdNight = new System.Windows.Forms.Button();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.Label4 = new System.Windows.Forms.Label();
+            this.Label5 = new System.Windows.Forms.Label();
+            this.Label6 = new System.Windows.Forms.Label();
+            this._cmdGeoTiff = new System.Windows.Forms.Button();
+            this.SSTab1.SuspendLayout();
+            this._SSTab1_TabPage4.SuspendLayout();
+            this._SSTab1_TabPage1.SuspendLayout();
+            this.SuspendLayout();
             // 
-            // cmdCalibrateMain
+            // _cmdCalibrateMain
             // 
-            _cmdCalibrateMain.BackColor = SystemColors.Control;
-            _cmdCalibrateMain.Cursor = Cursors.Default;
-            _cmdCalibrateMain.ForeColor = SystemColors.ControlText;
-            _cmdCalibrateMain.Location = new Point(178, 247);
-            _cmdCalibrateMain.Name = "_cmdCalibrateMain";
-            _cmdCalibrateMain.RightToLeft = RightToLeft.No;
-            _cmdCalibrateMain.Size = new Size(62, 25);
-            _cmdCalibrateMain.TabIndex = 84;
-            _cmdCalibrateMain.Text = "Calibrate";
-            _cmdCalibrateMain.UseVisualStyleBackColor = false;
+            this._cmdCalibrateMain.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdCalibrateMain.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdCalibrateMain.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdCalibrateMain.Location = new System.Drawing.Point(178, 247);
+            this._cmdCalibrateMain.Name = "_cmdCalibrateMain";
+            this._cmdCalibrateMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdCalibrateMain.Size = new System.Drawing.Size(62, 25);
+            this._cmdCalibrateMain.TabIndex = 84;
+            this._cmdCalibrateMain.Text = "Calibrate";
+            this._cmdCalibrateMain.UseVisualStyleBackColor = false;
+            this._cmdCalibrateMain.Click += new System.EventHandler(this.CmdCalibrateMain_Click);
             // 
-            // cmdData
+            // _cmdData
             // 
-            _cmdData.BackColor = SystemColors.Control;
-            _cmdData.Cursor = Cursors.Default;
-            _cmdData.ForeColor = SystemColors.ControlText;
-            _cmdData.Location = new Point(97, 247);
-            _cmdData.Name = "_cmdData";
-            _cmdData.RightToLeft = RightToLeft.No;
-            _cmdData.Size = new Size(62, 25);
-            _cmdData.TabIndex = 83;
-            _cmdData.Text = "Data File";
-            _cmdData.UseVisualStyleBackColor = false;
+            this._cmdData.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdData.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdData.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdData.Location = new System.Drawing.Point(97, 247);
+            this._cmdData.Name = "_cmdData";
+            this._cmdData.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdData.Size = new System.Drawing.Size(62, 25);
+            this._cmdData.TabIndex = 83;
+            this._cmdData.Text = "Data File";
+            this._cmdData.UseVisualStyleBackColor = false;
+            this._cmdData.Click += new System.EventHandler(this.CmdData_Click);
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.BackColor = SystemColors.Control;
-            _cmdCancel.Cursor = Cursors.Default;
-            _cmdCancel.ForeColor = SystemColors.ControlText;
-            _cmdCancel.Location = new Point(259, 247);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.RightToLeft = RightToLeft.No;
-            _cmdCancel.Size = new Size(62, 25);
-            _cmdCancel.TabIndex = 82;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdCancel.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdCancel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdCancel.Location = new System.Drawing.Point(259, 247);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdCancel.Size = new System.Drawing.Size(62, 25);
+            this._cmdCancel.TabIndex = 82;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.BackColor = SystemColors.Control;
-            _cmdOK.Cursor = Cursors.Default;
-            _cmdOK.ForeColor = SystemColors.ControlText;
-            _cmdOK.Location = new Point(340, 247);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.RightToLeft = RightToLeft.No;
-            _cmdOK.Size = new Size(62, 25);
-            _cmdOK.TabIndex = 81;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = false;
+            this._cmdOK.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdOK.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdOK.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdOK.Location = new System.Drawing.Point(340, 247);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdOK.Size = new System.Drawing.Size(62, 25);
+            this._cmdOK.TabIndex = 81;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = false;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
             // SSTab1
             // 
-            SSTab1.Controls.Add(_SSTab1_TabPage4);
-            SSTab1.Controls.Add(_SSTab1_TabPage1);
-            SSTab1.ItemSize = new Size(42, 18);
-            SSTab1.Location = new Point(17, 13);
-            SSTab1.Name = "SSTab1";
-            SSTab1.SelectedIndex = 0;
-            SSTab1.Size = new Size(388, 224);
-            SSTab1.TabIndex = 80;
+            this.SSTab1.Controls.Add(this._SSTab1_TabPage4);
+            this.SSTab1.Controls.Add(this._SSTab1_TabPage1);
+            this.SSTab1.ItemSize = new System.Drawing.Size(42, 18);
+            this.SSTab1.Location = new System.Drawing.Point(17, 13);
+            this.SSTab1.Name = "SSTab1";
+            this.SSTab1.SelectedIndex = 0;
+            this.SSTab1.Size = new System.Drawing.Size(388, 224);
+            this.SSTab1.TabIndex = 80;
             // 
             // _SSTab1_TabPage4
             // 
-            _SSTab1_TabPage4.BackColor = Color.Transparent;
-            _SSTab1_TabPage4.Controls.Add(Label1);
-            _SSTab1_TabPage4.Controls.Add(Label15);
-            _SSTab1_TabPage4.Controls.Add(Label14);
-            _SSTab1_TabPage4.Controls.Add(txtCellY);
-            _SSTab1_TabPage4.Controls.Add(txtCellX);
-            _SSTab1_TabPage4.Controls.Add(Label18);
-            _SSTab1_TabPage4.Controls.Add(txtName);
-            _SSTab1_TabPage4.Controls.Add(lbRows);
-            _SSTab1_TabPage4.Controls.Add(Label13);
-            _SSTab1_TabPage4.Controls.Add(Label12);
-            _SSTab1_TabPage4.Controls.Add(lbCols);
-            _SSTab1_TabPage4.Controls.Add(Label11);
-            _SSTab1_TabPage4.Controls.Add(Label10);
-            _SSTab1_TabPage4.Controls.Add(Label9);
-            _SSTab1_TabPage4.Controls.Add(Label8);
-            _SSTab1_TabPage4.Controls.Add(txtELon);
-            _SSTab1_TabPage4.Controls.Add(txtSLat);
-            _SSTab1_TabPage4.Controls.Add(txtWLon);
-            _SSTab1_TabPage4.Controls.Add(txtNLat);
-            _SSTab1_TabPage4.Location = new Point(4, 22);
-            _SSTab1_TabPage4.Name = "_SSTab1_TabPage4";
-            _SSTab1_TabPage4.Size = new Size(380, 198);
-            _SSTab1_TabPage4.TabIndex = 4;
-            _SSTab1_TabPage4.Text = "General";
-            _SSTab1_TabPage4.UseVisualStyleBackColor = true;
+            this._SSTab1_TabPage4.BackColor = System.Drawing.Color.Transparent;
+            this._SSTab1_TabPage4.Controls.Add(this.Label1);
+            this._SSTab1_TabPage4.Controls.Add(this.Label15);
+            this._SSTab1_TabPage4.Controls.Add(this.Label14);
+            this._SSTab1_TabPage4.Controls.Add(this.txtCellY);
+            this._SSTab1_TabPage4.Controls.Add(this.txtCellX);
+            this._SSTab1_TabPage4.Controls.Add(this.Label18);
+            this._SSTab1_TabPage4.Controls.Add(this.txtName);
+            this._SSTab1_TabPage4.Controls.Add(this.lbRows);
+            this._SSTab1_TabPage4.Controls.Add(this.Label13);
+            this._SSTab1_TabPage4.Controls.Add(this.Label12);
+            this._SSTab1_TabPage4.Controls.Add(this.lbCols);
+            this._SSTab1_TabPage4.Controls.Add(this.Label11);
+            this._SSTab1_TabPage4.Controls.Add(this.Label10);
+            this._SSTab1_TabPage4.Controls.Add(this.Label9);
+            this._SSTab1_TabPage4.Controls.Add(this.Label8);
+            this._SSTab1_TabPage4.Controls.Add(this.txtELon);
+            this._SSTab1_TabPage4.Controls.Add(this.txtSLat);
+            this._SSTab1_TabPage4.Controls.Add(this.txtWLon);
+            this._SSTab1_TabPage4.Controls.Add(this.txtNLat);
+            this._SSTab1_TabPage4.Location = new System.Drawing.Point(4, 22);
+            this._SSTab1_TabPage4.Name = "_SSTab1_TabPage4";
+            this._SSTab1_TabPage4.Size = new System.Drawing.Size(380, 198);
+            this._SSTab1_TabPage4.TabIndex = 4;
+            this._SSTab1_TabPage4.Text = "General";
+            this._SSTab1_TabPage4.UseVisualStyleBackColor = true;
             // 
             // Label1
             // 
-            Label1.Location = new Point(12, 12);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(359, 33);
-            Label1.TabIndex = 71;
-            Label1.Text = "Class and Photo maps should have names starting by \"Class\" or \"Photo\". In additio" + "n Photo Maps need to be placed in the ../Tools/Work/ folder.";
+            this.Label1.Location = new System.Drawing.Point(12, 12);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(359, 33);
+            this.Label1.TabIndex = 71;
+            this.Label1.Text = "Class and Photo maps should have names starting by \"Class\" or \"Photo\". In additio" +
+    "n Photo Maps need to be placed in the ../Tools/Work/ folder.";
             // 
             // Label15
             // 
-            Label15.BackColor = Color.Transparent;
-            Label15.Cursor = Cursors.Default;
-            Label15.ForeColor = SystemColors.ControlText;
-            Label15.Location = new Point(207, 146);
-            Label15.Name = "Label15";
-            Label15.RightToLeft = RightToLeft.No;
-            Label15.Size = new Size(112, 16);
-            Label15.TabIndex = 69;
-            Label15.Text = "CellYDimensionDeg";
+            this.Label15.BackColor = System.Drawing.Color.Transparent;
+            this.Label15.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label15.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label15.Location = new System.Drawing.Point(207, 146);
+            this.Label15.Name = "Label15";
+            this.Label15.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label15.Size = new System.Drawing.Size(112, 16);
+            this.Label15.TabIndex = 69;
+            this.Label15.Text = "CellYDimensionDeg";
             // 
             // Label14
             // 
-            Label14.BackColor = Color.Transparent;
-            Label14.Cursor = Cursors.Default;
-            Label14.ForeColor = SystemColors.ControlText;
-            Label14.Location = new Point(23, 146);
-            Label14.Name = "Label14";
-            Label14.RightToLeft = RightToLeft.No;
-            Label14.Size = new Size(112, 16);
-            Label14.TabIndex = 70;
-            Label14.Text = "CellXDimensionDeg";
+            this.Label14.BackColor = System.Drawing.Color.Transparent;
+            this.Label14.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label14.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label14.Location = new System.Drawing.Point(23, 146);
+            this.Label14.Name = "Label14";
+            this.Label14.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label14.Size = new System.Drawing.Size(112, 16);
+            this.Label14.TabIndex = 70;
+            this.Label14.Text = "CellXDimensionDeg";
             // 
             // txtCellY
             // 
-            txtCellY.AcceptsReturn = true;
-            txtCellY.BackColor = SystemColors.Window;
-            txtCellY.Cursor = Cursors.IBeam;
-            txtCellY.ForeColor = SystemColors.WindowText;
-            txtCellY.Location = new Point(210, 165);
-            txtCellY.MaxLength = 0;
-            txtCellY.Name = "txtCellY";
-            txtCellY.ReadOnly = true;
-            txtCellY.RightToLeft = RightToLeft.No;
-            txtCellY.Size = new Size(149, 20);
-            txtCellY.TabIndex = 67;
-            txtCellY.TextAlign = HorizontalAlignment.Center;
+            this.txtCellY.AcceptsReturn = true;
+            this.txtCellY.BackColor = System.Drawing.SystemColors.Window;
+            this.txtCellY.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCellY.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtCellY.Location = new System.Drawing.Point(210, 165);
+            this.txtCellY.MaxLength = 0;
+            this.txtCellY.Name = "txtCellY";
+            this.txtCellY.ReadOnly = true;
+            this.txtCellY.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtCellY.Size = new System.Drawing.Size(149, 20);
+            this.txtCellY.TabIndex = 67;
+            this.txtCellY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCellX
             // 
-            txtCellX.AcceptsReturn = true;
-            txtCellX.BackColor = SystemColors.Window;
-            txtCellX.Cursor = Cursors.IBeam;
-            txtCellX.ForeColor = SystemColors.WindowText;
-            txtCellX.Location = new Point(26, 165);
-            txtCellX.MaxLength = 0;
-            txtCellX.Name = "txtCellX";
-            txtCellX.ReadOnly = true;
-            txtCellX.RightToLeft = RightToLeft.No;
-            txtCellX.Size = new Size(149, 20);
-            txtCellX.TabIndex = 68;
-            txtCellX.TextAlign = HorizontalAlignment.Center;
+            this.txtCellX.AcceptsReturn = true;
+            this.txtCellX.BackColor = System.Drawing.SystemColors.Window;
+            this.txtCellX.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCellX.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtCellX.Location = new System.Drawing.Point(26, 165);
+            this.txtCellX.MaxLength = 0;
+            this.txtCellX.Name = "txtCellX";
+            this.txtCellX.ReadOnly = true;
+            this.txtCellX.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtCellX.Size = new System.Drawing.Size(149, 20);
+            this.txtCellX.TabIndex = 68;
+            this.txtCellX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Label18
             // 
-            Label18.BackColor = Color.Transparent;
-            Label18.Cursor = Cursors.Default;
-            Label18.ForeColor = SystemColors.ControlText;
-            Label18.Location = new Point(4, 60);
-            Label18.Name = "Label18";
-            Label18.RightToLeft = RightToLeft.No;
-            Label18.Size = new Size(64, 13);
-            Label18.TabIndex = 66;
-            Label18.Text = "Map Name";
-            Label18.TextAlign = ContentAlignment.MiddleRight;
+            this.Label18.BackColor = System.Drawing.Color.Transparent;
+            this.Label18.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label18.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label18.Location = new System.Drawing.Point(4, 60);
+            this.Label18.Name = "Label18";
+            this.Label18.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label18.Size = new System.Drawing.Size(64, 13);
+            this.Label18.TabIndex = 66;
+            this.Label18.Text = "Map Name";
+            this.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtName
             // 
-            txtName.AcceptsReturn = true;
-            txtName.BackColor = SystemColors.Window;
-            txtName.Cursor = Cursors.IBeam;
-            txtName.ForeColor = SystemColors.WindowText;
-            txtName.Location = new Point(72, 57);
-            txtName.MaxLength = 0;
-            txtName.Name = "txtName";
-            txtName.RightToLeft = RightToLeft.No;
-            txtName.Size = new Size(103, 20);
-            txtName.TabIndex = 65;
+            this.txtName.AcceptsReturn = true;
+            this.txtName.BackColor = System.Drawing.SystemColors.Window;
+            this.txtName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtName.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtName.Location = new System.Drawing.Point(72, 57);
+            this.txtName.MaxLength = 0;
+            this.txtName.Name = "txtName";
+            this.txtName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtName.Size = new System.Drawing.Size(103, 20);
+            this.txtName.TabIndex = 65;
             // 
             // lbRows
             // 
-            lbRows.BackColor = Color.Transparent;
-            lbRows.Cursor = Cursors.Default;
-            lbRows.ForeColor = SystemColors.ControlText;
-            lbRows.Location = new Point(316, 64);
-            lbRows.Name = "lbRows";
-            lbRows.RightToLeft = RightToLeft.No;
-            lbRows.Size = new Size(46, 19);
-            lbRows.TabIndex = 54;
+            this.lbRows.BackColor = System.Drawing.Color.Transparent;
+            this.lbRows.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbRows.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbRows.Location = new System.Drawing.Point(316, 64);
+            this.lbRows.Name = "lbRows";
+            this.lbRows.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbRows.Size = new System.Drawing.Size(46, 19);
+            this.lbRows.TabIndex = 54;
             // 
             // Label13
             // 
-            Label13.BackColor = Color.Transparent;
-            Label13.Cursor = Cursors.Default;
-            Label13.ForeColor = SystemColors.ControlText;
-            Label13.Location = new Point(224, 64);
-            Label13.Name = "Label13";
-            Label13.RightToLeft = RightToLeft.No;
-            Label13.Size = new Size(95, 16);
-            Label13.TabIndex = 53;
-            Label13.Text = "No of Rows  =";
-            Label13.TextAlign = ContentAlignment.TopRight;
+            this.Label13.BackColor = System.Drawing.Color.Transparent;
+            this.Label13.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label13.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label13.Location = new System.Drawing.Point(224, 64);
+            this.Label13.Name = "Label13";
+            this.Label13.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label13.Size = new System.Drawing.Size(95, 16);
+            this.Label13.TabIndex = 53;
+            this.Label13.Text = "No of Rows  =";
+            this.Label13.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // Label12
             // 
-            Label12.BackColor = Color.Transparent;
-            Label12.Cursor = Cursors.Default;
-            Label12.ForeColor = SystemColors.ControlText;
-            Label12.Location = new Point(221, 48);
-            Label12.Name = "Label12";
-            Label12.RightToLeft = RightToLeft.No;
-            Label12.Size = new Size(98, 16);
-            Label12.TabIndex = 52;
-            Label12.Text = "No of Columns  =";
-            Label12.TextAlign = ContentAlignment.TopRight;
+            this.Label12.BackColor = System.Drawing.Color.Transparent;
+            this.Label12.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label12.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label12.Location = new System.Drawing.Point(221, 48);
+            this.Label12.Name = "Label12";
+            this.Label12.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label12.Size = new System.Drawing.Size(98, 16);
+            this.Label12.TabIndex = 52;
+            this.Label12.Text = "No of Columns  =";
+            this.Label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lbCols
             // 
-            lbCols.BackColor = Color.Transparent;
-            lbCols.Cursor = Cursors.Default;
-            lbCols.ForeColor = SystemColors.ControlText;
-            lbCols.Location = new Point(316, 48);
-            lbCols.Name = "lbCols";
-            lbCols.RightToLeft = RightToLeft.No;
-            lbCols.Size = new Size(46, 19);
-            lbCols.TabIndex = 51;
+            this.lbCols.BackColor = System.Drawing.Color.Transparent;
+            this.lbCols.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbCols.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbCols.Location = new System.Drawing.Point(316, 48);
+            this.lbCols.Name = "lbCols";
+            this.lbCols.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbCols.Size = new System.Drawing.Size(46, 19);
+            this.lbCols.TabIndex = 51;
             // 
             // Label11
             // 
-            Label11.BackColor = Color.Transparent;
-            Label11.Cursor = Cursors.Default;
-            Label11.ForeColor = SystemColors.ControlText;
-            Label11.Location = new Point(196, 117);
-            Label11.Name = "Label11";
-            Label11.RightToLeft = RightToLeft.No;
-            Label11.Size = new Size(61, 16);
-            Label11.TabIndex = 44;
-            Label11.Text = "East Long";
-            Label11.TextAlign = ContentAlignment.TopRight;
+            this.Label11.BackColor = System.Drawing.Color.Transparent;
+            this.Label11.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label11.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label11.Location = new System.Drawing.Point(196, 117);
+            this.Label11.Name = "Label11";
+            this.Label11.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label11.Size = new System.Drawing.Size(61, 16);
+            this.Label11.TabIndex = 44;
+            this.Label11.Text = "East Long";
+            this.Label11.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // Label10
             // 
-            Label10.BackColor = Color.Transparent;
-            Label10.Cursor = Cursors.Default;
-            Label10.ForeColor = SystemColors.ControlText;
-            Label10.Location = new Point(199, 88);
-            Label10.Name = "Label10";
-            Label10.RightToLeft = RightToLeft.No;
-            Label10.Size = new Size(58, 16);
-            Label10.TabIndex = 45;
-            Label10.Text = "South Lat";
-            Label10.TextAlign = ContentAlignment.TopRight;
+            this.Label10.BackColor = System.Drawing.Color.Transparent;
+            this.Label10.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label10.Location = new System.Drawing.Point(199, 88);
+            this.Label10.Name = "Label10";
+            this.Label10.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label10.Size = new System.Drawing.Size(58, 16);
+            this.Label10.TabIndex = 45;
+            this.Label10.Text = "South Lat";
+            this.Label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // Label9
             // 
-            Label9.BackColor = Color.Transparent;
-            Label9.Cursor = Cursors.Default;
-            Label9.ForeColor = SystemColors.ControlText;
-            Label9.Location = new Point(12, 122);
-            Label9.Name = "Label9";
-            Label9.RightToLeft = RightToLeft.No;
-            Label9.Size = new Size(56, 16);
-            Label9.TabIndex = 46;
-            Label9.Text = "West Lon";
-            Label9.TextAlign = ContentAlignment.TopRight;
+            this.Label9.BackColor = System.Drawing.Color.Transparent;
+            this.Label9.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label9.Location = new System.Drawing.Point(12, 122);
+            this.Label9.Name = "Label9";
+            this.Label9.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label9.Size = new System.Drawing.Size(56, 16);
+            this.Label9.TabIndex = 46;
+            this.Label9.Text = "West Lon";
+            this.Label9.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // Label8
             // 
-            Label8.BackColor = Color.Transparent;
-            Label8.Cursor = Cursors.Default;
-            Label8.ForeColor = SystemColors.ControlText;
-            Label8.Location = new Point(15, 92);
-            Label8.Name = "Label8";
-            Label8.RightToLeft = RightToLeft.No;
-            Label8.Size = new Size(55, 16);
-            Label8.TabIndex = 47;
-            Label8.Text = "North Lat";
-            Label8.TextAlign = ContentAlignment.TopRight;
+            this.Label8.BackColor = System.Drawing.Color.Transparent;
+            this.Label8.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label8.Location = new System.Drawing.Point(15, 92);
+            this.Label8.Name = "Label8";
+            this.Label8.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label8.Size = new System.Drawing.Size(55, 16);
+            this.Label8.TabIndex = 47;
+            this.Label8.Text = "North Lat";
+            this.Label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // txtELon
             // 
-            txtELon.AcceptsReturn = true;
-            txtELon.BackColor = SystemColors.Window;
-            txtELon.Cursor = Cursors.IBeam;
-            txtELon.ForeColor = SystemColors.WindowText;
-            txtELon.Location = new Point(259, 114);
-            txtELon.MaxLength = 0;
-            txtELon.Name = "txtELon";
-            txtELon.RightToLeft = RightToLeft.No;
-            txtELon.Size = new Size(100, 20);
-            txtELon.TabIndex = 40;
-            txtELon.TextAlign = HorizontalAlignment.Center;
+            this.txtELon.AcceptsReturn = true;
+            this.txtELon.BackColor = System.Drawing.SystemColors.Window;
+            this.txtELon.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtELon.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtELon.Location = new System.Drawing.Point(259, 114);
+            this.txtELon.MaxLength = 0;
+            this.txtELon.Name = "txtELon";
+            this.txtELon.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtELon.Size = new System.Drawing.Size(100, 20);
+            this.txtELon.TabIndex = 40;
+            this.txtELon.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtSLat
             // 
-            txtSLat.AcceptsReturn = true;
-            txtSLat.BackColor = SystemColors.Window;
-            txtSLat.Cursor = Cursors.IBeam;
-            txtSLat.ForeColor = SystemColors.WindowText;
-            txtSLat.Location = new Point(259, 84);
-            txtSLat.MaxLength = 0;
-            txtSLat.Name = "txtSLat";
-            txtSLat.RightToLeft = RightToLeft.No;
-            txtSLat.Size = new Size(100, 20);
-            txtSLat.TabIndex = 41;
-            txtSLat.TextAlign = HorizontalAlignment.Center;
+            this.txtSLat.AcceptsReturn = true;
+            this.txtSLat.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSLat.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSLat.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSLat.Location = new System.Drawing.Point(259, 84);
+            this.txtSLat.MaxLength = 0;
+            this.txtSLat.Name = "txtSLat";
+            this.txtSLat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtSLat.Size = new System.Drawing.Size(100, 20);
+            this.txtSLat.TabIndex = 41;
+            this.txtSLat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtWLon
             // 
-            txtWLon.AcceptsReturn = true;
-            txtWLon.BackColor = SystemColors.Window;
-            txtWLon.Cursor = Cursors.IBeam;
-            txtWLon.ForeColor = SystemColors.WindowText;
-            txtWLon.Location = new Point(72, 119);
-            txtWLon.MaxLength = 0;
-            txtWLon.Name = "txtWLon";
-            txtWLon.RightToLeft = RightToLeft.No;
-            txtWLon.Size = new Size(103, 20);
-            txtWLon.TabIndex = 42;
-            txtWLon.TextAlign = HorizontalAlignment.Center;
+            this.txtWLon.AcceptsReturn = true;
+            this.txtWLon.BackColor = System.Drawing.SystemColors.Window;
+            this.txtWLon.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtWLon.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtWLon.Location = new System.Drawing.Point(72, 119);
+            this.txtWLon.MaxLength = 0;
+            this.txtWLon.Name = "txtWLon";
+            this.txtWLon.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtWLon.Size = new System.Drawing.Size(103, 20);
+            this.txtWLon.TabIndex = 42;
+            this.txtWLon.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtNLat
             // 
-            txtNLat.AcceptsReturn = true;
-            txtNLat.BackColor = SystemColors.Window;
-            txtNLat.Cursor = Cursors.IBeam;
-            txtNLat.ForeColor = SystemColors.WindowText;
-            txtNLat.Location = new Point(72, 88);
-            txtNLat.MaxLength = 0;
-            txtNLat.Name = "txtNLat";
-            txtNLat.RightToLeft = RightToLeft.No;
-            txtNLat.Size = new Size(103, 20);
-            txtNLat.TabIndex = 43;
-            txtNLat.TextAlign = HorizontalAlignment.Center;
+            this.txtNLat.AcceptsReturn = true;
+            this.txtNLat.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNLat.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtNLat.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNLat.Location = new System.Drawing.Point(72, 88);
+            this.txtNLat.MaxLength = 0;
+            this.txtNLat.Name = "txtNLat";
+            this.txtNLat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtNLat.Size = new System.Drawing.Size(103, 20);
+            this.txtNLat.TabIndex = 43;
+            this.txtNLat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // _SSTab1_TabPage1
             // 
-            _SSTab1_TabPage1.BackColor = Color.Transparent;
-            _SSTab1_TabPage1.Controls.Add(_cmdSummer);
-            _SSTab1_TabPage1.Controls.Add(Label21);
-            _SSTab1_TabPage1.Controls.Add(txtBMPSummer);
-            _SSTab1_TabPage1.Controls.Add(txtBMPSpring);
-            _SSTab1_TabPage1.Controls.Add(txtBMPFall);
-            _SSTab1_TabPage1.Controls.Add(txtBMPWinter);
-            _SSTab1_TabPage1.Controls.Add(txtBMPHard);
-            _SSTab1_TabPage1.Controls.Add(txtBMPNight);
-            _SSTab1_TabPage1.Controls.Add(_cmdSpring);
-            _SSTab1_TabPage1.Controls.Add(_cmdFall);
-            _SSTab1_TabPage1.Controls.Add(_cmdWinter);
-            _SSTab1_TabPage1.Controls.Add(_cmdHard);
-            _SSTab1_TabPage1.Controls.Add(_cmdNight);
-            _SSTab1_TabPage1.Controls.Add(Label2);
-            _SSTab1_TabPage1.Controls.Add(Label3);
-            _SSTab1_TabPage1.Controls.Add(Label4);
-            _SSTab1_TabPage1.Controls.Add(Label5);
-            _SSTab1_TabPage1.Controls.Add(Label6);
-            _SSTab1_TabPage1.Location = new Point(4, 22);
-            _SSTab1_TabPage1.Name = "_SSTab1_TabPage1";
-            _SSTab1_TabPage1.Size = new Size(380, 198);
-            _SSTab1_TabPage1.TabIndex = 1;
-            _SSTab1_TabPage1.Text = "Seasons";
-            _SSTab1_TabPage1.UseVisualStyleBackColor = true;
+            this._SSTab1_TabPage1.BackColor = System.Drawing.Color.Transparent;
+            this._SSTab1_TabPage1.Controls.Add(this._cmdSummer);
+            this._SSTab1_TabPage1.Controls.Add(this.Label21);
+            this._SSTab1_TabPage1.Controls.Add(this.txtBMPSummer);
+            this._SSTab1_TabPage1.Controls.Add(this.txtBMPSpring);
+            this._SSTab1_TabPage1.Controls.Add(this.txtBMPFall);
+            this._SSTab1_TabPage1.Controls.Add(this.txtBMPWinter);
+            this._SSTab1_TabPage1.Controls.Add(this.txtBMPHard);
+            this._SSTab1_TabPage1.Controls.Add(this.txtBMPNight);
+            this._SSTab1_TabPage1.Controls.Add(this._cmdSpring);
+            this._SSTab1_TabPage1.Controls.Add(this._cmdFall);
+            this._SSTab1_TabPage1.Controls.Add(this._cmdWinter);
+            this._SSTab1_TabPage1.Controls.Add(this._cmdHard);
+            this._SSTab1_TabPage1.Controls.Add(this._cmdNight);
+            this._SSTab1_TabPage1.Controls.Add(this.Label2);
+            this._SSTab1_TabPage1.Controls.Add(this.Label3);
+            this._SSTab1_TabPage1.Controls.Add(this.Label4);
+            this._SSTab1_TabPage1.Controls.Add(this.Label5);
+            this._SSTab1_TabPage1.Controls.Add(this.Label6);
+            this._SSTab1_TabPage1.Location = new System.Drawing.Point(4, 22);
+            this._SSTab1_TabPage1.Name = "_SSTab1_TabPage1";
+            this._SSTab1_TabPage1.Size = new System.Drawing.Size(380, 198);
+            this._SSTab1_TabPage1.TabIndex = 1;
+            this._SSTab1_TabPage1.Text = "Seasons";
+            this._SSTab1_TabPage1.UseVisualStyleBackColor = true;
             // 
-            // cmdSummer
+            // _cmdSummer
             // 
-            _cmdSummer.BackColor = SystemColors.Control;
-            _cmdSummer.Cursor = Cursors.Default;
-            _cmdSummer.ForeColor = SystemColors.ControlText;
-            _cmdSummer.Location = new Point(329, 15);
-            _cmdSummer.Name = "_cmdSummer";
-            _cmdSummer.RightToLeft = RightToLeft.No;
-            _cmdSummer.Size = new Size(34, 20);
-            _cmdSummer.TabIndex = 52;
-            _cmdSummer.Text = " ...";
-            _cmdSummer.UseVisualStyleBackColor = false;
+            this._cmdSummer.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdSummer.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdSummer.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdSummer.Location = new System.Drawing.Point(329, 15);
+            this._cmdSummer.Name = "_cmdSummer";
+            this._cmdSummer.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdSummer.Size = new System.Drawing.Size(34, 20);
+            this._cmdSummer.TabIndex = 52;
+            this._cmdSummer.Text = " ...";
+            this._cmdSummer.UseVisualStyleBackColor = false;
+            this._cmdSummer.Click += new System.EventHandler(this.CmdSummer_Click);
             // 
             // Label21
             // 
-            Label21.BackColor = Color.Transparent;
-            Label21.Cursor = Cursors.Default;
-            Label21.ForeColor = SystemColors.ControlText;
-            Label21.Location = new Point(24, 17);
-            Label21.Name = "Label21";
-            Label21.RightToLeft = RightToLeft.No;
-            Label21.Size = new Size(53, 18);
-            Label21.TabIndex = 51;
-            Label21.Text = "Summer";
-            Label21.TextAlign = ContentAlignment.MiddleRight;
+            this.Label21.BackColor = System.Drawing.Color.Transparent;
+            this.Label21.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label21.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label21.Location = new System.Drawing.Point(24, 17);
+            this.Label21.Name = "Label21";
+            this.Label21.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label21.Size = new System.Drawing.Size(53, 18);
+            this.Label21.TabIndex = 51;
+            this.Label21.Text = "Summer";
+            this.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtBMPSummer
             // 
-            txtBMPSummer.AcceptsReturn = true;
-            txtBMPSummer.BackColor = SystemColors.Window;
-            txtBMPSummer.Cursor = Cursors.IBeam;
-            txtBMPSummer.ForeColor = SystemColors.WindowText;
-            txtBMPSummer.Location = new Point(83, 17);
-            txtBMPSummer.MaxLength = 0;
-            txtBMPSummer.Name = "txtBMPSummer";
-            txtBMPSummer.RightToLeft = RightToLeft.No;
-            txtBMPSummer.Size = new Size(228, 20);
-            txtBMPSummer.TabIndex = 49;
+            this.txtBMPSummer.AcceptsReturn = true;
+            this.txtBMPSummer.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBMPSummer.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtBMPSummer.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtBMPSummer.Location = new System.Drawing.Point(83, 17);
+            this.txtBMPSummer.MaxLength = 0;
+            this.txtBMPSummer.Name = "txtBMPSummer";
+            this.txtBMPSummer.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtBMPSummer.Size = new System.Drawing.Size(228, 20);
+            this.txtBMPSummer.TabIndex = 49;
             // 
             // txtBMPSpring
             // 
-            txtBMPSpring.AcceptsReturn = true;
-            txtBMPSpring.BackColor = SystemColors.Window;
-            txtBMPSpring.Cursor = Cursors.IBeam;
-            txtBMPSpring.ForeColor = SystemColors.WindowText;
-            txtBMPSpring.Location = new Point(83, 43);
-            txtBMPSpring.MaxLength = 0;
-            txtBMPSpring.Name = "txtBMPSpring";
-            txtBMPSpring.RightToLeft = RightToLeft.No;
-            txtBMPSpring.Size = new Size(228, 20);
-            txtBMPSpring.TabIndex = 14;
+            this.txtBMPSpring.AcceptsReturn = true;
+            this.txtBMPSpring.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBMPSpring.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtBMPSpring.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtBMPSpring.Location = new System.Drawing.Point(83, 43);
+            this.txtBMPSpring.MaxLength = 0;
+            this.txtBMPSpring.Name = "txtBMPSpring";
+            this.txtBMPSpring.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtBMPSpring.Size = new System.Drawing.Size(228, 20);
+            this.txtBMPSpring.TabIndex = 14;
             // 
             // txtBMPFall
             // 
-            txtBMPFall.AcceptsReturn = true;
-            txtBMPFall.BackColor = SystemColors.Window;
-            txtBMPFall.Cursor = Cursors.IBeam;
-            txtBMPFall.ForeColor = SystemColors.WindowText;
-            txtBMPFall.Location = new Point(83, 69);
-            txtBMPFall.MaxLength = 0;
-            txtBMPFall.Name = "txtBMPFall";
-            txtBMPFall.RightToLeft = RightToLeft.No;
-            txtBMPFall.Size = new Size(228, 20);
-            txtBMPFall.TabIndex = 13;
+            this.txtBMPFall.AcceptsReturn = true;
+            this.txtBMPFall.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBMPFall.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtBMPFall.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtBMPFall.Location = new System.Drawing.Point(83, 69);
+            this.txtBMPFall.MaxLength = 0;
+            this.txtBMPFall.Name = "txtBMPFall";
+            this.txtBMPFall.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtBMPFall.Size = new System.Drawing.Size(228, 20);
+            this.txtBMPFall.TabIndex = 13;
             // 
             // txtBMPWinter
             // 
-            txtBMPWinter.AcceptsReturn = true;
-            txtBMPWinter.BackColor = SystemColors.Window;
-            txtBMPWinter.Cursor = Cursors.IBeam;
-            txtBMPWinter.ForeColor = SystemColors.WindowText;
-            txtBMPWinter.Location = new Point(83, 95);
-            txtBMPWinter.MaxLength = 0;
-            txtBMPWinter.Name = "txtBMPWinter";
-            txtBMPWinter.RightToLeft = RightToLeft.No;
-            txtBMPWinter.Size = new Size(228, 20);
-            txtBMPWinter.TabIndex = 12;
+            this.txtBMPWinter.AcceptsReturn = true;
+            this.txtBMPWinter.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBMPWinter.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtBMPWinter.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtBMPWinter.Location = new System.Drawing.Point(83, 95);
+            this.txtBMPWinter.MaxLength = 0;
+            this.txtBMPWinter.Name = "txtBMPWinter";
+            this.txtBMPWinter.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtBMPWinter.Size = new System.Drawing.Size(228, 20);
+            this.txtBMPWinter.TabIndex = 12;
             // 
             // txtBMPHard
             // 
-            txtBMPHard.AcceptsReturn = true;
-            txtBMPHard.BackColor = SystemColors.Window;
-            txtBMPHard.Cursor = Cursors.IBeam;
-            txtBMPHard.ForeColor = SystemColors.WindowText;
-            txtBMPHard.Location = new Point(83, 121);
-            txtBMPHard.MaxLength = 0;
-            txtBMPHard.Name = "txtBMPHard";
-            txtBMPHard.RightToLeft = RightToLeft.No;
-            txtBMPHard.Size = new Size(228, 20);
-            txtBMPHard.TabIndex = 11;
+            this.txtBMPHard.AcceptsReturn = true;
+            this.txtBMPHard.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBMPHard.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtBMPHard.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtBMPHard.Location = new System.Drawing.Point(83, 121);
+            this.txtBMPHard.MaxLength = 0;
+            this.txtBMPHard.Name = "txtBMPHard";
+            this.txtBMPHard.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtBMPHard.Size = new System.Drawing.Size(228, 20);
+            this.txtBMPHard.TabIndex = 11;
             // 
             // txtBMPNight
             // 
-            txtBMPNight.AcceptsReturn = true;
-            txtBMPNight.BackColor = SystemColors.Window;
-            txtBMPNight.Cursor = Cursors.IBeam;
-            txtBMPNight.ForeColor = SystemColors.WindowText;
-            txtBMPNight.Location = new Point(83, 160);
-            txtBMPNight.MaxLength = 0;
-            txtBMPNight.Name = "txtBMPNight";
-            txtBMPNight.RightToLeft = RightToLeft.No;
-            txtBMPNight.Size = new Size(228, 20);
-            txtBMPNight.TabIndex = 10;
+            this.txtBMPNight.AcceptsReturn = true;
+            this.txtBMPNight.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBMPNight.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtBMPNight.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtBMPNight.Location = new System.Drawing.Point(83, 160);
+            this.txtBMPNight.MaxLength = 0;
+            this.txtBMPNight.Name = "txtBMPNight";
+            this.txtBMPNight.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtBMPNight.Size = new System.Drawing.Size(228, 20);
+            this.txtBMPNight.TabIndex = 10;
             // 
-            // cmdSpring
+            // _cmdSpring
             // 
-            _cmdSpring.BackColor = SystemColors.Control;
-            _cmdSpring.Cursor = Cursors.Default;
-            _cmdSpring.ForeColor = SystemColors.ControlText;
-            _cmdSpring.Location = new Point(329, 42);
-            _cmdSpring.Name = "_cmdSpring";
-            _cmdSpring.RightToLeft = RightToLeft.No;
-            _cmdSpring.Size = new Size(34, 20);
-            _cmdSpring.TabIndex = 8;
-            _cmdSpring.Text = "...";
-            _cmdSpring.UseVisualStyleBackColor = false;
+            this._cmdSpring.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdSpring.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdSpring.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdSpring.Location = new System.Drawing.Point(329, 42);
+            this._cmdSpring.Name = "_cmdSpring";
+            this._cmdSpring.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdSpring.Size = new System.Drawing.Size(34, 20);
+            this._cmdSpring.TabIndex = 8;
+            this._cmdSpring.Text = "...";
+            this._cmdSpring.UseVisualStyleBackColor = false;
+            this._cmdSpring.Click += new System.EventHandler(this.CmdSpring_Click);
             // 
-            // cmdFall
+            // _cmdFall
             // 
-            _cmdFall.BackColor = SystemColors.Control;
-            _cmdFall.Cursor = Cursors.Default;
-            _cmdFall.ForeColor = SystemColors.ControlText;
-            _cmdFall.Location = new Point(329, 68);
-            _cmdFall.Name = "_cmdFall";
-            _cmdFall.RightToLeft = RightToLeft.No;
-            _cmdFall.Size = new Size(34, 20);
-            _cmdFall.TabIndex = 7;
-            _cmdFall.Text = "...";
-            _cmdFall.UseVisualStyleBackColor = false;
+            this._cmdFall.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdFall.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdFall.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdFall.Location = new System.Drawing.Point(329, 68);
+            this._cmdFall.Name = "_cmdFall";
+            this._cmdFall.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdFall.Size = new System.Drawing.Size(34, 20);
+            this._cmdFall.TabIndex = 7;
+            this._cmdFall.Text = "...";
+            this._cmdFall.UseVisualStyleBackColor = false;
+            this._cmdFall.Click += new System.EventHandler(this.CmdFall_Click);
             // 
-            // cmdWinter
+            // _cmdWinter
             // 
-            _cmdWinter.BackColor = SystemColors.Control;
-            _cmdWinter.Cursor = Cursors.Default;
-            _cmdWinter.ForeColor = SystemColors.ControlText;
-            _cmdWinter.Location = new Point(329, 94);
-            _cmdWinter.Name = "_cmdWinter";
-            _cmdWinter.RightToLeft = RightToLeft.No;
-            _cmdWinter.Size = new Size(34, 20);
-            _cmdWinter.TabIndex = 6;
-            _cmdWinter.Text = "...";
-            _cmdWinter.UseVisualStyleBackColor = false;
+            this._cmdWinter.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdWinter.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdWinter.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdWinter.Location = new System.Drawing.Point(329, 94);
+            this._cmdWinter.Name = "_cmdWinter";
+            this._cmdWinter.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdWinter.Size = new System.Drawing.Size(34, 20);
+            this._cmdWinter.TabIndex = 6;
+            this._cmdWinter.Text = "...";
+            this._cmdWinter.UseVisualStyleBackColor = false;
+            this._cmdWinter.Click += new System.EventHandler(this.CmdWinter_Click);
             // 
-            // cmdHard
+            // _cmdHard
             // 
-            _cmdHard.BackColor = SystemColors.Control;
-            _cmdHard.Cursor = Cursors.Default;
-            _cmdHard.ForeColor = SystemColors.ControlText;
-            _cmdHard.Location = new Point(329, 121);
-            _cmdHard.Name = "_cmdHard";
-            _cmdHard.RightToLeft = RightToLeft.No;
-            _cmdHard.Size = new Size(34, 20);
-            _cmdHard.TabIndex = 5;
-            _cmdHard.Text = "...";
-            _cmdHard.UseVisualStyleBackColor = false;
+            this._cmdHard.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdHard.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdHard.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdHard.Location = new System.Drawing.Point(329, 121);
+            this._cmdHard.Name = "_cmdHard";
+            this._cmdHard.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdHard.Size = new System.Drawing.Size(34, 20);
+            this._cmdHard.TabIndex = 5;
+            this._cmdHard.Text = "...";
+            this._cmdHard.UseVisualStyleBackColor = false;
+            this._cmdHard.Click += new System.EventHandler(this.CmdHard_Click);
             // 
-            // cmdNight
+            // _cmdNight
             // 
-            _cmdNight.BackColor = SystemColors.Control;
-            _cmdNight.Cursor = Cursors.Default;
-            _cmdNight.ForeColor = SystemColors.ControlText;
-            _cmdNight.Location = new Point(329, 160);
-            _cmdNight.Name = "_cmdNight";
-            _cmdNight.RightToLeft = RightToLeft.No;
-            _cmdNight.Size = new Size(34, 20);
-            _cmdNight.TabIndex = 3;
-            _cmdNight.Text = "...";
-            _cmdNight.UseVisualStyleBackColor = false;
+            this._cmdNight.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdNight.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdNight.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdNight.Location = new System.Drawing.Point(329, 160);
+            this._cmdNight.Name = "_cmdNight";
+            this._cmdNight.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdNight.Size = new System.Drawing.Size(34, 20);
+            this._cmdNight.TabIndex = 3;
+            this._cmdNight.Text = "...";
+            this._cmdNight.UseVisualStyleBackColor = false;
+            this._cmdNight.Click += new System.EventHandler(this.CmdNight_Click);
             // 
             // Label2
             // 
-            Label2.BackColor = Color.Transparent;
-            Label2.Cursor = Cursors.Default;
-            Label2.ForeColor = SystemColors.ControlText;
-            Label2.Location = new Point(22, 46);
-            Label2.Name = "Label2";
-            Label2.RightToLeft = RightToLeft.No;
-            Label2.Size = new Size(55, 16);
-            Label2.TabIndex = 20;
-            Label2.Text = "Spring";
-            Label2.TextAlign = ContentAlignment.MiddleRight;
+            this.Label2.BackColor = System.Drawing.Color.Transparent;
+            this.Label2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label2.Location = new System.Drawing.Point(22, 46);
+            this.Label2.Name = "Label2";
+            this.Label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label2.Size = new System.Drawing.Size(55, 16);
+            this.Label2.TabIndex = 20;
+            this.Label2.Text = "Spring";
+            this.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Label3
             // 
-            Label3.BackColor = Color.Transparent;
-            Label3.Cursor = Cursors.Default;
-            Label3.ForeColor = SystemColors.ControlText;
-            Label3.Location = new Point(22, 73);
-            Label3.Name = "Label3";
-            Label3.RightToLeft = RightToLeft.No;
-            Label3.Size = new Size(55, 16);
-            Label3.TabIndex = 19;
-            Label3.Text = "Fall";
-            Label3.TextAlign = ContentAlignment.MiddleRight;
+            this.Label3.BackColor = System.Drawing.Color.Transparent;
+            this.Label3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label3.Location = new System.Drawing.Point(22, 73);
+            this.Label3.Name = "Label3";
+            this.Label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label3.Size = new System.Drawing.Size(55, 16);
+            this.Label3.TabIndex = 19;
+            this.Label3.Text = "Fall";
+            this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Label4
             // 
-            Label4.BackColor = Color.Transparent;
-            Label4.Cursor = Cursors.Default;
-            Label4.ForeColor = SystemColors.ControlText;
-            Label4.Location = new Point(22, 98);
-            Label4.Name = "Label4";
-            Label4.RightToLeft = RightToLeft.No;
-            Label4.Size = new Size(55, 16);
-            Label4.TabIndex = 18;
-            Label4.Text = "Winter";
-            Label4.TextAlign = ContentAlignment.MiddleRight;
+            this.Label4.BackColor = System.Drawing.Color.Transparent;
+            this.Label4.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label4.Location = new System.Drawing.Point(22, 98);
+            this.Label4.Name = "Label4";
+            this.Label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label4.Size = new System.Drawing.Size(55, 16);
+            this.Label4.TabIndex = 18;
+            this.Label4.Text = "Winter";
+            this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Label5
             // 
-            Label5.BackColor = Color.Transparent;
-            Label5.Cursor = Cursors.Default;
-            Label5.ForeColor = SystemColors.ControlText;
-            Label5.Location = new Point(2, 121);
-            Label5.Name = "Label5";
-            Label5.RightToLeft = RightToLeft.No;
-            Label5.Size = new Size(75, 19);
-            Label5.TabIndex = 17;
-            Label5.Text = "Hard Winter";
-            Label5.TextAlign = ContentAlignment.MiddleRight;
+            this.Label5.BackColor = System.Drawing.Color.Transparent;
+            this.Label5.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label5.Location = new System.Drawing.Point(2, 121);
+            this.Label5.Name = "Label5";
+            this.Label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label5.Size = new System.Drawing.Size(75, 19);
+            this.Label5.TabIndex = 17;
+            this.Label5.Text = "Hard Winter";
+            this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Label6
             // 
-            Label6.BackColor = Color.Transparent;
-            Label6.Cursor = Cursors.Default;
-            Label6.ForeColor = SystemColors.ControlText;
-            Label6.Location = new Point(22, 164);
-            Label6.Name = "Label6";
-            Label6.RightToLeft = RightToLeft.No;
-            Label6.Size = new Size(55, 16);
-            Label6.TabIndex = 16;
-            Label6.Text = "Night";
-            Label6.TextAlign = ContentAlignment.MiddleRight;
+            this.Label6.BackColor = System.Drawing.Color.Transparent;
+            this.Label6.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label6.Location = new System.Drawing.Point(22, 164);
+            this.Label6.Name = "Label6";
+            this.Label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label6.Size = new System.Drawing.Size(55, 16);
+            this.Label6.TabIndex = 16;
+            this.Label6.Text = "Night";
+            this.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // cmdGeoTiff
+            // _cmdGeoTiff
             // 
-            _cmdGeoTiff.BackColor = SystemColors.Control;
-            _cmdGeoTiff.Cursor = Cursors.Default;
-            _cmdGeoTiff.ForeColor = SystemColors.ControlText;
-            _cmdGeoTiff.Location = new Point(16, 247);
-            _cmdGeoTiff.Name = "_cmdGeoTiff";
-            _cmdGeoTiff.RightToLeft = RightToLeft.No;
-            _cmdGeoTiff.Size = new Size(62, 25);
-            _cmdGeoTiff.TabIndex = 85;
-            _cmdGeoTiff.Text = "GeoTiff";
-            _cmdGeoTiff.UseVisualStyleBackColor = false;
+            this._cmdGeoTiff.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdGeoTiff.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdGeoTiff.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdGeoTiff.Location = new System.Drawing.Point(16, 247);
+            this._cmdGeoTiff.Name = "_cmdGeoTiff";
+            this._cmdGeoTiff.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdGeoTiff.Size = new System.Drawing.Size(62, 25);
+            this._cmdGeoTiff.TabIndex = 85;
+            this._cmdGeoTiff.Text = "GeoTiff";
+            this._cmdGeoTiff.UseVisualStyleBackColor = false;
+            this._cmdGeoTiff.Click += new System.EventHandler(this.CmdGeoTiff_Click);
             // 
-            // frmMapsP
+            // FrmMapsP
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(421, 284);
-            Controls.Add(_cmdGeoTiff);
-            Controls.Add(_cmdCalibrateMain);
-            Controls.Add(_cmdData);
-            Controls.Add(_cmdCancel);
-            Controls.Add(_cmdOK);
-            Controls.Add(SSTab1);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmMapsP";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - Map Properties";
-            SSTab1.ResumeLayout(false);
-            _SSTab1_TabPage4.ResumeLayout(false);
-            _SSTab1_TabPage4.PerformLayout();
-            _SSTab1_TabPage1.ResumeLayout(false);
-            _SSTab1_TabPage1.PerformLayout();
-            Load += new EventHandler(FrmMapsP_Load);
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(421, 284);
+            this.Controls.Add(this._cmdGeoTiff);
+            this.Controls.Add(this._cmdCalibrateMain);
+            this.Controls.Add(this._cmdData);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this.SSTab1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmMapsP";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - Map Properties";
+            this.Load += new System.EventHandler(this.FrmMapsP_Load);
+            this.SSTab1.ResumeLayout(false);
+            this._SSTab1_TabPage4.ResumeLayout(false);
+            this._SSTab1_TabPage4.PerformLayout();
+            this._SSTab1_TabPage1.ResumeLayout(false);
+            this._SSTab1_TabPage1.PerformLayout();
+            this.ResumeLayout(false);
+
         }
 
         private Button _cmdCalibrateMain;

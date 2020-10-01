@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     public class SHPReader
     {

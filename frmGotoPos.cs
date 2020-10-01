@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     internal partial class FrmGotoPos
     {
@@ -24,7 +24,7 @@ namespace SBuilderX
 
         private void FrmGotoPos_Load(object sender, EventArgs e)
         {
-            Text = "SBuilderX - Goto this position";
+            Text = "SBuilderXX - Goto this position";
             X0 = moduleMAIN.LonDispCenter;
             Y0 = moduleMAIN.LatDispCenter;
             L0 = moduleMAIN.Zoom;

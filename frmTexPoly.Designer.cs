@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     public partial class frmTexPoly : Form
@@ -37,255 +37,257 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTexPoly));
-            Frame1 = new GroupBox();
-            _cmdLL = new Button();
-            _cmdLL.MouseDown += new MouseEventHandler(CmdLL_MouseDown);
-            _cmdLL.MouseUp += new MouseEventHandler(CmdLL_MouseUp);
-            _cmdRR = new Button();
-            _cmdRR.MouseDown += new MouseEventHandler(CmdRR_MouseDown);
-            _cmdRR.MouseUp += new MouseEventHandler(CmdRR_MouseUp);
-            _txtPY = new TextBox();
-            _txtPY.TextChanged += new EventHandler(TxtPY_TextChanged);
-            _cmdDD = new Button();
-            _cmdDD.MouseDown += new MouseEventHandler(CmdDD_MouseDown);
-            _cmdDD.MouseUp += new MouseEventHandler(CmdDD_MouseUp);
-            _cmdUU = new Button();
-            _cmdUU.MouseDown += new MouseEventHandler(CmdUU_MouseDown);
-            _cmdUU.MouseUp += new MouseEventHandler(CmdUU_MouseUp);
-            _txtPX = new TextBox();
-            _txtPX.TextChanged += new EventHandler(TxtPX_TextChanged);
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            _cmdReset = new Button();
-            _cmdReset.Click += new EventHandler(CmdReset_Click);
-            Label1 = new Label();
-            _imgText = new PictureBox();
-            _imgText.MouseDown += new MouseEventHandler(ImgText_MouseDown);
-            _imgText.MouseMove += new MouseEventHandler(ImgText_MouseMove);
-            _imgText.MouseUp += new MouseEventHandler(ImgText_MouseUp);
-            _Timer1 = new System.Timers.Timer();
-            _Timer1.Elapsed += new System.Timers.ElapsedEventHandler(Timer1_Elapsed);
-            Label2 = new Label();
-            Label3 = new Label();
-            Frame1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)_imgText).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)_Timer1).BeginInit();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTexPoly));
+            this.Frame1 = new System.Windows.Forms.GroupBox();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.Label2 = new System.Windows.Forms.Label();
+            this._cmdLL = new System.Windows.Forms.Button();
+            this._cmdRR = new System.Windows.Forms.Button();
+            this._txtPY = new System.Windows.Forms.TextBox();
+            this._cmdDD = new System.Windows.Forms.Button();
+            this._cmdUU = new System.Windows.Forms.Button();
+            this._txtPX = new System.Windows.Forms.TextBox();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this._cmdReset = new System.Windows.Forms.Button();
+            this.Label1 = new System.Windows.Forms.Label();
+            this._imgText = new System.Windows.Forms.PictureBox();
+            this._Timer1 = new System.Timers.Timer();
+            this.Frame1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._imgText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._Timer1)).BeginInit();
+            this.SuspendLayout();
             // 
             // Frame1
             // 
-            Frame1.BackColor = SystemColors.Control;
-            Frame1.Controls.Add(Label3);
-            Frame1.Controls.Add(Label2);
-            Frame1.Controls.Add(_cmdLL);
-            Frame1.Controls.Add(_cmdRR);
-            Frame1.Controls.Add(_txtPY);
-            Frame1.Controls.Add(_cmdDD);
-            Frame1.Controls.Add(_cmdUU);
-            Frame1.Controls.Add(_txtPX);
-            Frame1.ForeColor = SystemColors.ControlText;
-            Frame1.Location = new Point(554, 180);
-            Frame1.Name = "Frame1";
-            Frame1.RightToLeft = RightToLeft.No;
-            Frame1.Size = new Size(86, 172);
-            Frame1.TabIndex = 23;
-            Frame1.TabStop = false;
-            Frame1.Text = "Point # 1";
-            // 
-            // cmdLL
-            // 
-            _cmdLL.BackColor = SystemColors.Control;
-            _cmdLL.Cursor = Cursors.Default;
-            _cmdLL.ForeColor = SystemColors.ControlText;
-            _cmdLL.Image = (Image)resources.GetObject("cmdLL.Image");
-            _cmdLL.Location = new Point(13, 51);
-            _cmdLL.Name = "_cmdLL";
-            _cmdLL.RightToLeft = RightToLeft.No;
-            _cmdLL.Size = new Size(25, 25);
-            _cmdLL.TabIndex = 9;
-            _cmdLL.TextAlign = ContentAlignment.BottomCenter;
-            _cmdLL.UseVisualStyleBackColor = false;
-            // 
-            // cmdRR
-            // 
-            _cmdRR.BackColor = SystemColors.Control;
-            _cmdRR.Cursor = Cursors.Default;
-            _cmdRR.ForeColor = SystemColors.ControlText;
-            _cmdRR.Image = (Image)resources.GetObject("cmdRR.Image");
-            _cmdRR.Location = new Point(48, 51);
-            _cmdRR.Name = "_cmdRR";
-            _cmdRR.RightToLeft = RightToLeft.No;
-            _cmdRR.Size = new Size(25, 25);
-            _cmdRR.TabIndex = 8;
-            _cmdRR.TextAlign = ContentAlignment.BottomCenter;
-            _cmdRR.UseVisualStyleBackColor = false;
-            // 
-            // txtPY
-            // 
-            _txtPY.AcceptsReturn = true;
-            _txtPY.BackColor = SystemColors.Window;
-            _txtPY.Cursor = Cursors.IBeam;
-            _txtPY.ForeColor = SystemColors.WindowText;
-            _txtPY.Location = new Point(41, 100);
-            _txtPY.MaxLength = 0;
-            _txtPY.Name = "_txtPY";
-            _txtPY.RightToLeft = RightToLeft.No;
-            _txtPY.Size = new Size(32, 20);
-            _txtPY.TabIndex = 7;
-            _txtPY.Text = "255";
-            _txtPY.TextAlign = HorizontalAlignment.Center;
-            // 
-            // cmdDD
-            // 
-            _cmdDD.BackColor = SystemColors.Control;
-            _cmdDD.Cursor = Cursors.Default;
-            _cmdDD.ForeColor = SystemColors.ControlText;
-            _cmdDD.Image = (Image)resources.GetObject("cmdDD.Image");
-            _cmdDD.Location = new Point(13, 126);
-            _cmdDD.Name = "_cmdDD";
-            _cmdDD.RightToLeft = RightToLeft.No;
-            _cmdDD.Size = new Size(25, 25);
-            _cmdDD.TabIndex = 6;
-            _cmdDD.TextAlign = ContentAlignment.BottomCenter;
-            _cmdDD.UseVisualStyleBackColor = false;
-            // 
-            // cmdUU
-            // 
-            _cmdUU.BackColor = SystemColors.Control;
-            _cmdUU.Cursor = Cursors.Default;
-            _cmdUU.ForeColor = SystemColors.ControlText;
-            _cmdUU.Image = (Image)resources.GetObject("cmdUU.Image");
-            _cmdUU.Location = new Point(48, 126);
-            _cmdUU.Name = "_cmdUU";
-            _cmdUU.RightToLeft = RightToLeft.No;
-            _cmdUU.Size = new Size(25, 25);
-            _cmdUU.TabIndex = 5;
-            _cmdUU.TextAlign = ContentAlignment.BottomCenter;
-            _cmdUU.UseVisualStyleBackColor = false;
-            // 
-            // txtPX
-            // 
-            _txtPX.AcceptsReturn = true;
-            _txtPX.BackColor = SystemColors.Window;
-            _txtPX.Cursor = Cursors.IBeam;
-            _txtPX.ForeColor = SystemColors.WindowText;
-            _txtPX.Location = new Point(41, 25);
-            _txtPX.MaxLength = 0;
-            _txtPX.Name = "_txtPX";
-            _txtPX.RightToLeft = RightToLeft.No;
-            _txtPX.Size = new Size(32, 20);
-            _txtPX.TabIndex = 4;
-            _txtPX.Text = "0";
-            _txtPX.TextAlign = HorizontalAlignment.Center;
-            // 
-            // cmdOK
-            // 
-            _cmdOK.BackColor = SystemColors.Control;
-            _cmdOK.Cursor = Cursors.Default;
-            _cmdOK.ForeColor = SystemColors.ControlText;
-            _cmdOK.Location = new Point(566, 473);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.RightToLeft = RightToLeft.No;
-            _cmdOK.Size = new Size(61, 25);
-            _cmdOK.TabIndex = 21;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = false;
-            // 
-            // cmdCancel
-            // 
-            _cmdCancel.BackColor = SystemColors.Control;
-            _cmdCancel.Cursor = Cursors.Default;
-            _cmdCancel.ForeColor = SystemColors.ControlText;
-            _cmdCancel.Location = new Point(566, 428);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.RightToLeft = RightToLeft.No;
-            _cmdCancel.Size = new Size(61, 25);
-            _cmdCancel.TabIndex = 20;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = false;
-            // 
-            // cmdReset
-            // 
-            _cmdReset.BackColor = SystemColors.Control;
-            _cmdReset.Cursor = Cursors.Default;
-            _cmdReset.ForeColor = SystemColors.ControlText;
-            _cmdReset.Location = new Point(566, 383);
-            _cmdReset.Name = "_cmdReset";
-            _cmdReset.RightToLeft = RightToLeft.No;
-            _cmdReset.Size = new Size(61, 25);
-            _cmdReset.TabIndex = 19;
-            _cmdReset.Text = "Reset";
-            _cmdReset.UseVisualStyleBackColor = false;
-            // 
-            // Label1
-            // 
-            Label1.BackColor = SystemColors.Control;
-            Label1.Cursor = Cursors.Default;
-            Label1.ForeColor = SystemColors.ControlText;
-            Label1.Location = new Point(551, 51);
-            Label1.Name = "Label1";
-            Label1.RightToLeft = RightToLeft.No;
-            Label1.Size = new Size(89, 126);
-            Label1.TabIndex = 22;
-            Label1.Text = "Adjust the tie points by selecting and moving with the mouse or by using the arro" + "ws comands below.";
-            // 
-            // imgText
-            // 
-            _imgText.Location = new Point(12, 12);
-            _imgText.Name = "_imgText";
-            _imgText.Size = new Size(512, 512);
-            _imgText.SizeMode = PictureBoxSizeMode.StretchImage;
-            _imgText.TabIndex = 24;
-            _imgText.TabStop = false;
-            // 
-            // Timer1
-            // 
-            _Timer1.Enabled = true;
-            _Timer1.SynchronizingObject = this;
-            // 
-            // Label2
-            // 
-            Label2.AutoSize = true;
-            Label2.Location = new Point(18, 28);
-            Label2.Name = "Label2";
-            Label2.Size = new Size(17, 13);
-            Label2.TabIndex = 10;
-            Label2.Text = "X:";
+            this.Frame1.BackColor = System.Drawing.SystemColors.Control;
+            this.Frame1.Controls.Add(this.Label3);
+            this.Frame1.Controls.Add(this.Label2);
+            this.Frame1.Controls.Add(this._cmdLL);
+            this.Frame1.Controls.Add(this._cmdRR);
+            this.Frame1.Controls.Add(this._txtPY);
+            this.Frame1.Controls.Add(this._cmdDD);
+            this.Frame1.Controls.Add(this._cmdUU);
+            this.Frame1.Controls.Add(this._txtPX);
+            this.Frame1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Frame1.Location = new System.Drawing.Point(554, 180);
+            this.Frame1.Name = "Frame1";
+            this.Frame1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Frame1.Size = new System.Drawing.Size(86, 172);
+            this.Frame1.TabIndex = 23;
+            this.Frame1.TabStop = false;
+            this.Frame1.Text = "Point # 1";
             // 
             // Label3
             // 
-            Label3.AutoSize = true;
-            Label3.Location = new Point(18, 103);
-            Label3.Name = "Label3";
-            Label3.Size = new Size(17, 13);
-            Label3.TabIndex = 11;
-            Label3.Text = "Y:";
+            this.Label3.AutoSize = true;
+            this.Label3.Location = new System.Drawing.Point(18, 103);
+            this.Label3.Name = "Label3";
+            this.Label3.Size = new System.Drawing.Size(17, 13);
+            this.Label3.TabIndex = 11;
+            this.Label3.Text = "Y:";
+            // 
+            // Label2
+            // 
+            this.Label2.AutoSize = true;
+            this.Label2.Location = new System.Drawing.Point(18, 28);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(17, 13);
+            this.Label2.TabIndex = 10;
+            this.Label2.Text = "X:";
+            // 
+            // _cmdLL
+            // 
+            this._cmdLL.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdLL.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdLL.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdLL.Image = ((System.Drawing.Image)(resources.GetObject("_cmdLL.Image")));
+            this._cmdLL.Location = new System.Drawing.Point(13, 51);
+            this._cmdLL.Name = "_cmdLL";
+            this._cmdLL.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdLL.Size = new System.Drawing.Size(25, 25);
+            this._cmdLL.TabIndex = 9;
+            this._cmdLL.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdLL.UseVisualStyleBackColor = false;
+            this._cmdLL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CmdLL_MouseDown);
+            this._cmdLL.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CmdLL_MouseUp);
+            // 
+            // _cmdRR
+            // 
+            this._cmdRR.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdRR.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdRR.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdRR.Image = ((System.Drawing.Image)(resources.GetObject("_cmdRR.Image")));
+            this._cmdRR.Location = new System.Drawing.Point(48, 51);
+            this._cmdRR.Name = "_cmdRR";
+            this._cmdRR.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdRR.Size = new System.Drawing.Size(25, 25);
+            this._cmdRR.TabIndex = 8;
+            this._cmdRR.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdRR.UseVisualStyleBackColor = false;
+            this._cmdRR.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CmdRR_MouseDown);
+            this._cmdRR.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CmdRR_MouseUp);
+            // 
+            // _txtPY
+            // 
+            this._txtPY.AcceptsReturn = true;
+            this._txtPY.BackColor = System.Drawing.SystemColors.Window;
+            this._txtPY.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._txtPY.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._txtPY.Location = new System.Drawing.Point(41, 100);
+            this._txtPY.MaxLength = 0;
+            this._txtPY.Name = "_txtPY";
+            this._txtPY.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._txtPY.Size = new System.Drawing.Size(32, 20);
+            this._txtPY.TabIndex = 7;
+            this._txtPY.Text = "255";
+            this._txtPY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtPY.TextChanged += new System.EventHandler(this.TxtPY_TextChanged);
+            // 
+            // _cmdDD
+            // 
+            this._cmdDD.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdDD.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdDD.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdDD.Image = ((System.Drawing.Image)(resources.GetObject("_cmdDD.Image")));
+            this._cmdDD.Location = new System.Drawing.Point(13, 126);
+            this._cmdDD.Name = "_cmdDD";
+            this._cmdDD.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdDD.Size = new System.Drawing.Size(25, 25);
+            this._cmdDD.TabIndex = 6;
+            this._cmdDD.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdDD.UseVisualStyleBackColor = false;
+            this._cmdDD.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CmdDD_MouseDown);
+            this._cmdDD.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CmdDD_MouseUp);
+            // 
+            // _cmdUU
+            // 
+            this._cmdUU.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdUU.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdUU.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdUU.Image = ((System.Drawing.Image)(resources.GetObject("_cmdUU.Image")));
+            this._cmdUU.Location = new System.Drawing.Point(48, 126);
+            this._cmdUU.Name = "_cmdUU";
+            this._cmdUU.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdUU.Size = new System.Drawing.Size(25, 25);
+            this._cmdUU.TabIndex = 5;
+            this._cmdUU.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdUU.UseVisualStyleBackColor = false;
+            this._cmdUU.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CmdUU_MouseDown);
+            this._cmdUU.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CmdUU_MouseUp);
+            // 
+            // _txtPX
+            // 
+            this._txtPX.AcceptsReturn = true;
+            this._txtPX.BackColor = System.Drawing.SystemColors.Window;
+            this._txtPX.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._txtPX.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._txtPX.Location = new System.Drawing.Point(41, 25);
+            this._txtPX.MaxLength = 0;
+            this._txtPX.Name = "_txtPX";
+            this._txtPX.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._txtPX.Size = new System.Drawing.Size(32, 20);
+            this._txtPX.TabIndex = 4;
+            this._txtPX.Text = "0";
+            this._txtPX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtPX.TextChanged += new System.EventHandler(this.TxtPX_TextChanged);
+            // 
+            // _cmdOK
+            // 
+            this._cmdOK.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdOK.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdOK.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdOK.Location = new System.Drawing.Point(566, 473);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdOK.Size = new System.Drawing.Size(61, 25);
+            this._cmdOK.TabIndex = 21;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = false;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
+            // 
+            // _cmdCancel
+            // 
+            this._cmdCancel.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdCancel.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdCancel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdCancel.Location = new System.Drawing.Point(566, 428);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdCancel.Size = new System.Drawing.Size(61, 25);
+            this._cmdCancel.TabIndex = 20;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
+            // 
+            // _cmdReset
+            // 
+            this._cmdReset.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdReset.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdReset.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdReset.Location = new System.Drawing.Point(566, 383);
+            this._cmdReset.Name = "_cmdReset";
+            this._cmdReset.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdReset.Size = new System.Drawing.Size(61, 25);
+            this._cmdReset.TabIndex = 19;
+            this._cmdReset.Text = "Reset";
+            this._cmdReset.UseVisualStyleBackColor = false;
+            this._cmdReset.Click += new System.EventHandler(this.CmdReset_Click);
+            // 
+            // Label1
+            // 
+            this.Label1.BackColor = System.Drawing.SystemColors.Control;
+            this.Label1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label1.Location = new System.Drawing.Point(551, 51);
+            this.Label1.Name = "Label1";
+            this.Label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label1.Size = new System.Drawing.Size(89, 126);
+            this.Label1.TabIndex = 22;
+            this.Label1.Text = "Adjust the tie points by selecting and moving with the mouse or by using the arro" +
+    "ws comands below.";
+            // 
+            // _imgText
+            // 
+            this._imgText.Location = new System.Drawing.Point(12, 12);
+            this._imgText.Name = "_imgText";
+            this._imgText.Size = new System.Drawing.Size(512, 512);
+            this._imgText.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this._imgText.TabIndex = 24;
+            this._imgText.TabStop = false;
+            this._imgText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ImgText_MouseDown);
+            this._imgText.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ImgText_MouseMove);
+            this._imgText.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ImgText_MouseUp);
+            // 
+            // _Timer1
+            // 
+            this._Timer1.Enabled = true;
+            this._Timer1.SynchronizingObject = this;
+            this._Timer1.Elapsed += new System.Timers.ElapsedEventHandler(this.Timer1_Elapsed);
             // 
             // frmTexPoly
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(668, 535);
-            Controls.Add(_imgText);
-            Controls.Add(Frame1);
-            Controls.Add(_cmdOK);
-            Controls.Add(_cmdCancel);
-            Controls.Add(_cmdReset);
-            Controls.Add(Label1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            Name = "frmTexPoly";
-            Frame1.ResumeLayout(false);
-            Frame1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)_imgText).EndInit();
-            ((System.ComponentModel.ISupportInitialize)_Timer1).EndInit();
-            Load += new EventHandler(FrmTexPoly_Load);
-            Paint += new PaintEventHandler(FrmTexPoly_Paint);
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(668, 535);
+            this.Controls.Add(this._imgText);
+            this.Controls.Add(this.Frame1);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this._cmdReset);
+            this.Controls.Add(this.Label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.Name = "frmTexPoly";
+            this.Load += new System.EventHandler(this.FrmTexPoly_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FrmTexPoly_Paint);
+            this.Frame1.ResumeLayout(false);
+            this.Frame1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._imgText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._Timer1)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         public GroupBox Frame1;

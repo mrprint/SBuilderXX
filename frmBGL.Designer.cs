@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmBGL : Form
@@ -32,252 +32,254 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBGL));
-            ckStartFSX = new CheckBox();
-            ckCopyBGLs = new CheckBox();
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            _cmdCompile = new Button();
-            _cmdCompile.Click += new EventHandler(CmdCompile_Click);
-            GroupBox1 = new GroupBox();
-            _ckLinesOfObjects = new CheckBox();
-            _ckLinesOfObjects.CheckedChanged += new EventHandler(CkLinesOfObjects_CheckedChanged);
-            _ckTexPolys = new CheckBox();
-            _ckTexPolys.CheckedChanged += new EventHandler(CkTexPolys_CheckedChanged);
-            _ckExcludes = new CheckBox();
-            _ckExcludes.CheckedChanged += new EventHandler(CkExcludes_CheckedChanged);
-            _ckObjects = new CheckBox();
-            _ckObjects.CheckedChanged += new EventHandler(CkObjects_CheckedChanged);
-            _ckExtrusions = new CheckBox();
-            _ckExtrusions.CheckedChanged += new EventHandler(CkPhoto_CheckedChanged);
-            _ckTexLines = new CheckBox();
-            _ckTexLines.CheckedChanged += new EventHandler(CkPhoto_CheckedChanged);
-            _ckPhoto = new CheckBox();
-            _ckPhoto.CheckedChanged += new EventHandler(CkPhoto_CheckedChanged);
-            lbNoSelection = new Label();
-            _ckWater = new CheckBox();
-            _ckWater.CheckedChanged += new EventHandler(CkWater_CheckedChanged);
-            _ckLand = new CheckBox();
-            _ckLand.CheckedChanged += new EventHandler(CkLand_CheckedChanged);
-            _ckVector = new CheckBox();
-            _ckVector.CheckedChanged += new EventHandler(CkVector_CheckedChanged);
-            GroupBox1.SuspendLayout();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBGL));
+            this.ckStartFSX = new System.Windows.Forms.CheckBox();
+            this.ckCopyBGLs = new System.Windows.Forms.CheckBox();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this._cmdCompile = new System.Windows.Forms.Button();
+            this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this._ckLinesOfObjects = new System.Windows.Forms.CheckBox();
+            this._ckTexPolys = new System.Windows.Forms.CheckBox();
+            this._ckExcludes = new System.Windows.Forms.CheckBox();
+            this._ckObjects = new System.Windows.Forms.CheckBox();
+            this._ckExtrusions = new System.Windows.Forms.CheckBox();
+            this._ckTexLines = new System.Windows.Forms.CheckBox();
+            this._ckPhoto = new System.Windows.Forms.CheckBox();
+            this.lbNoSelection = new System.Windows.Forms.Label();
+            this._ckWater = new System.Windows.Forms.CheckBox();
+            this._ckLand = new System.Windows.Forms.CheckBox();
+            this._ckVector = new System.Windows.Forms.CheckBox();
+            this.GroupBox1.SuspendLayout();
+            this.SuspendLayout();
             // 
             // ckStartFSX
             // 
-            ckStartFSX.AutoSize = true;
-            ckStartFSX.BackColor = SystemColors.Control;
-            ckStartFSX.CheckAlign = ContentAlignment.MiddleRight;
-            ckStartFSX.Cursor = Cursors.Default;
-            ckStartFSX.ForeColor = SystemColors.ControlText;
-            ckStartFSX.Location = new Point(280, 35);
-            ckStartFSX.Name = "ckStartFSX";
-            ckStartFSX.RightToLeft = RightToLeft.Yes;
-            ckStartFSX.Size = new Size(71, 17);
-            ckStartFSX.TabIndex = 23;
-            ckStartFSX.Text = "Start FSX";
-            ckStartFSX.UseVisualStyleBackColor = false;
+            this.ckStartFSX.AutoSize = true;
+            this.ckStartFSX.BackColor = System.Drawing.SystemColors.Control;
+            this.ckStartFSX.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ckStartFSX.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckStartFSX.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckStartFSX.Location = new System.Drawing.Point(280, 35);
+            this.ckStartFSX.Name = "ckStartFSX";
+            this.ckStartFSX.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ckStartFSX.Size = new System.Drawing.Size(71, 17);
+            this.ckStartFSX.TabIndex = 23;
+            this.ckStartFSX.Text = "Start FSX";
+            this.ckStartFSX.UseVisualStyleBackColor = false;
             // 
             // ckCopyBGLs
             // 
-            ckCopyBGLs.BackColor = SystemColors.Control;
-            ckCopyBGLs.Cursor = Cursors.Default;
-            ckCopyBGLs.Enabled = false;
-            ckCopyBGLs.ForeColor = SystemColors.ControlText;
-            ckCopyBGLs.Location = new Point(280, 58);
-            ckCopyBGLs.Name = "ckCopyBGLs";
-            ckCopyBGLs.RightToLeft = RightToLeft.No;
-            ckCopyBGLs.Size = new Size(97, 34);
-            ckCopyBGLs.TabIndex = 22;
-            ckCopyBGLs.Text = "Copy BGL files to BGL folder";
-            ckCopyBGLs.UseVisualStyleBackColor = false;
+            this.ckCopyBGLs.BackColor = System.Drawing.SystemColors.Control;
+            this.ckCopyBGLs.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckCopyBGLs.Enabled = false;
+            this.ckCopyBGLs.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckCopyBGLs.Location = new System.Drawing.Point(280, 58);
+            this.ckCopyBGLs.Name = "ckCopyBGLs";
+            this.ckCopyBGLs.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ckCopyBGLs.Size = new System.Drawing.Size(97, 34);
+            this.ckCopyBGLs.TabIndex = 22;
+            this.ckCopyBGLs.Text = "Copy BGL files to BGL folder";
+            this.ckCopyBGLs.UseVisualStyleBackColor = false;
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.BackColor = SystemColors.Control;
-            _cmdCancel.Cursor = Cursors.Default;
-            _cmdCancel.ForeColor = SystemColors.ControlText;
-            _cmdCancel.Location = new Point(300, 135);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.RightToLeft = RightToLeft.No;
-            _cmdCancel.Size = new Size(64, 25);
-            _cmdCancel.TabIndex = 21;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdCancel.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdCancel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdCancel.Location = new System.Drawing.Point(300, 135);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdCancel.Size = new System.Drawing.Size(64, 25);
+            this._cmdCancel.TabIndex = 21;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
-            // cmdCompile
+            // _cmdCompile
             // 
-            _cmdCompile.BackColor = SystemColors.Control;
-            _cmdCompile.Cursor = Cursors.Default;
-            _cmdCompile.ForeColor = SystemColors.ControlText;
-            _cmdCompile.Location = new Point(300, 181);
-            _cmdCompile.Name = "_cmdCompile";
-            _cmdCompile.RightToLeft = RightToLeft.No;
-            _cmdCompile.Size = new Size(64, 25);
-            _cmdCompile.TabIndex = 20;
-            _cmdCompile.Text = "Compile";
-            _cmdCompile.UseVisualStyleBackColor = false;
+            this._cmdCompile.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdCompile.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdCompile.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdCompile.Location = new System.Drawing.Point(300, 181);
+            this._cmdCompile.Name = "_cmdCompile";
+            this._cmdCompile.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdCompile.Size = new System.Drawing.Size(64, 25);
+            this._cmdCompile.TabIndex = 20;
+            this._cmdCompile.Text = "Compile";
+            this._cmdCompile.UseVisualStyleBackColor = false;
+            this._cmdCompile.Click += new System.EventHandler(this.CmdCompile_Click);
             // 
             // GroupBox1
             // 
-            GroupBox1.Controls.Add(_ckLinesOfObjects);
-            GroupBox1.Controls.Add(_ckTexPolys);
-            GroupBox1.Controls.Add(_ckExcludes);
-            GroupBox1.Controls.Add(_ckObjects);
-            GroupBox1.Controls.Add(_ckExtrusions);
-            GroupBox1.Controls.Add(_ckTexLines);
-            GroupBox1.Controls.Add(_ckPhoto);
-            GroupBox1.Controls.Add(lbNoSelection);
-            GroupBox1.Controls.Add(_ckWater);
-            GroupBox1.Controls.Add(_ckLand);
-            GroupBox1.Controls.Add(_ckVector);
-            GroupBox1.Location = new Point(16, 12);
-            GroupBox1.Name = "GroupBox1";
-            GroupBox1.Size = new Size(247, 216);
-            GroupBox1.TabIndex = 24;
-            GroupBox1.TabStop = false;
-            GroupBox1.Text = "Select Type of Scenery";
+            this.GroupBox1.Controls.Add(this._ckLinesOfObjects);
+            this.GroupBox1.Controls.Add(this._ckTexPolys);
+            this.GroupBox1.Controls.Add(this._ckExcludes);
+            this.GroupBox1.Controls.Add(this._ckObjects);
+            this.GroupBox1.Controls.Add(this._ckExtrusions);
+            this.GroupBox1.Controls.Add(this._ckTexLines);
+            this.GroupBox1.Controls.Add(this._ckPhoto);
+            this.GroupBox1.Controls.Add(this.lbNoSelection);
+            this.GroupBox1.Controls.Add(this._ckWater);
+            this.GroupBox1.Controls.Add(this._ckLand);
+            this.GroupBox1.Controls.Add(this._ckVector);
+            this.GroupBox1.Location = new System.Drawing.Point(16, 12);
+            this.GroupBox1.Name = "GroupBox1";
+            this.GroupBox1.Size = new System.Drawing.Size(247, 216);
+            this.GroupBox1.TabIndex = 24;
+            this.GroupBox1.TabStop = false;
+            this.GroupBox1.Text = "Select Type of Scenery";
             // 
-            // ckLinesOfObjects
+            // _ckLinesOfObjects
             // 
-            _ckLinesOfObjects.AutoSize = true;
-            _ckLinesOfObjects.Location = new Point(132, 103);
-            _ckLinesOfObjects.Name = "_ckLinesOfObjects";
-            _ckLinesOfObjects.Size = new Size(102, 17);
-            _ckLinesOfObjects.TabIndex = 8;
-            _ckLinesOfObjects.Text = "Lines of Objects";
-            _ckLinesOfObjects.UseVisualStyleBackColor = true;
+            this._ckLinesOfObjects.AutoSize = true;
+            this._ckLinesOfObjects.Location = new System.Drawing.Point(132, 103);
+            this._ckLinesOfObjects.Name = "_ckLinesOfObjects";
+            this._ckLinesOfObjects.Size = new System.Drawing.Size(102, 17);
+            this._ckLinesOfObjects.TabIndex = 8;
+            this._ckLinesOfObjects.Text = "Lines of Objects";
+            this._ckLinesOfObjects.UseVisualStyleBackColor = true;
+            this._ckLinesOfObjects.CheckedChanged += new System.EventHandler(this.CkLinesOfObjects_CheckedChanged);
             // 
-            // ckTexPolys
+            // _ckTexPolys
             // 
-            _ckTexPolys.AutoSize = true;
-            _ckTexPolys.Enabled = false;
-            _ckTexPolys.Location = new Point(132, 28);
-            _ckTexPolys.Name = "_ckTexPolys";
-            _ckTexPolys.Size = new Size(96, 17);
-            _ckTexPolys.TabIndex = 7;
-            _ckTexPolys.Text = "Textured Polys";
-            _ckTexPolys.UseVisualStyleBackColor = true;
+            this._ckTexPolys.AutoSize = true;
+            this._ckTexPolys.Enabled = false;
+            this._ckTexPolys.Location = new System.Drawing.Point(132, 28);
+            this._ckTexPolys.Name = "_ckTexPolys";
+            this._ckTexPolys.Size = new System.Drawing.Size(96, 17);
+            this._ckTexPolys.TabIndex = 7;
+            this._ckTexPolys.Text = "Textured Polys";
+            this._ckTexPolys.UseVisualStyleBackColor = true;
+            this._ckTexPolys.CheckedChanged += new System.EventHandler(this.CkTexPolys_CheckedChanged);
             // 
-            // ckExcludes
+            // _ckExcludes
             // 
-            _ckExcludes.Enabled = false;
-            _ckExcludes.Location = new Point(16, 122);
-            _ckExcludes.Name = "_ckExcludes";
-            _ckExcludes.Size = new Size(108, 34);
-            _ckExcludes.TabIndex = 6;
-            _ckExcludes.Text = "Exclusion Rectangles";
-            _ckExcludes.UseVisualStyleBackColor = true;
+            this._ckExcludes.Enabled = false;
+            this._ckExcludes.Location = new System.Drawing.Point(16, 122);
+            this._ckExcludes.Name = "_ckExcludes";
+            this._ckExcludes.Size = new System.Drawing.Size(108, 34);
+            this._ckExcludes.TabIndex = 6;
+            this._ckExcludes.Text = "Exclusion Rectangles";
+            this._ckExcludes.UseVisualStyleBackColor = true;
+            this._ckExcludes.CheckedChanged += new System.EventHandler(this.CkExcludes_CheckedChanged);
             // 
-            // ckObjects
+            // _ckObjects
             // 
-            _ckObjects.AutoSize = true;
-            _ckObjects.Enabled = false;
-            _ckObjects.Location = new Point(132, 131);
-            _ckObjects.Name = "_ckObjects";
-            _ckObjects.Size = new Size(62, 17);
-            _ckObjects.TabIndex = 5;
-            _ckObjects.Text = "Objects";
-            _ckObjects.UseVisualStyleBackColor = true;
+            this._ckObjects.AutoSize = true;
+            this._ckObjects.Enabled = false;
+            this._ckObjects.Location = new System.Drawing.Point(132, 131);
+            this._ckObjects.Name = "_ckObjects";
+            this._ckObjects.Size = new System.Drawing.Size(62, 17);
+            this._ckObjects.TabIndex = 5;
+            this._ckObjects.Text = "Objects";
+            this._ckObjects.UseVisualStyleBackColor = true;
+            this._ckObjects.CheckedChanged += new System.EventHandler(this.CkObjects_CheckedChanged);
             // 
-            // ckExtrusions
+            // _ckExtrusions
             // 
-            _ckExtrusions.AutoSize = true;
-            _ckExtrusions.Enabled = false;
-            _ckExtrusions.Location = new Point(132, 78);
-            _ckExtrusions.Name = "_ckExtrusions";
-            _ckExtrusions.Size = new Size(107, 17);
-            _ckExtrusions.TabIndex = 4;
-            _ckExtrusions.Text = "Extrusion Bridges";
-            _ckExtrusions.UseVisualStyleBackColor = true;
+            this._ckExtrusions.AutoSize = true;
+            this._ckExtrusions.Enabled = false;
+            this._ckExtrusions.Location = new System.Drawing.Point(132, 78);
+            this._ckExtrusions.Name = "_ckExtrusions";
+            this._ckExtrusions.Size = new System.Drawing.Size(107, 17);
+            this._ckExtrusions.TabIndex = 4;
+            this._ckExtrusions.Text = "Extrusion Bridges";
+            this._ckExtrusions.UseVisualStyleBackColor = true;
+            this._ckExtrusions.CheckedChanged += new System.EventHandler(this.CkPhoto_CheckedChanged);
             // 
-            // ckTexLines
+            // _ckTexLines
             // 
-            _ckTexLines.AutoSize = true;
-            _ckTexLines.Enabled = false;
-            _ckTexLines.Location = new Point(132, 53);
-            _ckTexLines.Name = "_ckTexLines";
-            _ckTexLines.Size = new Size(96, 17);
-            _ckTexLines.TabIndex = 4;
-            _ckTexLines.Text = "Textured Lines";
-            _ckTexLines.UseVisualStyleBackColor = true;
+            this._ckTexLines.AutoSize = true;
+            this._ckTexLines.Enabled = false;
+            this._ckTexLines.Location = new System.Drawing.Point(132, 53);
+            this._ckTexLines.Name = "_ckTexLines";
+            this._ckTexLines.Size = new System.Drawing.Size(96, 17);
+            this._ckTexLines.TabIndex = 4;
+            this._ckTexLines.Text = "Textured Lines";
+            this._ckTexLines.UseVisualStyleBackColor = true;
+            this._ckTexLines.CheckedChanged += new System.EventHandler(this.CkPhoto_CheckedChanged);
             // 
-            // ckPhoto
+            // _ckPhoto
             // 
-            _ckPhoto.AutoSize = true;
-            _ckPhoto.Enabled = false;
-            _ckPhoto.Location = new Point(16, 103);
-            _ckPhoto.Name = "_ckPhoto";
-            _ckPhoto.Size = new Size(96, 17);
-            _ckPhoto.TabIndex = 4;
-            _ckPhoto.Text = "Photo Scenery";
-            _ckPhoto.UseVisualStyleBackColor = true;
+            this._ckPhoto.AutoSize = true;
+            this._ckPhoto.Enabled = false;
+            this._ckPhoto.Location = new System.Drawing.Point(16, 103);
+            this._ckPhoto.Name = "_ckPhoto";
+            this._ckPhoto.Size = new System.Drawing.Size(96, 17);
+            this._ckPhoto.TabIndex = 4;
+            this._ckPhoto.Text = "Photo Scenery";
+            this._ckPhoto.UseVisualStyleBackColor = true;
+            this._ckPhoto.CheckedChanged += new System.EventHandler(this.CkPhoto_CheckedChanged);
             // 
             // lbNoSelection
             // 
-            lbNoSelection.Location = new Point(13, 163);
-            lbNoSelection.Name = "lbNoSelection";
-            lbNoSelection.Size = new Size(227, 42);
-            lbNoSelection.TabIndex = 3;
-            lbNoSelection.Text = "There is nothing to compile because no items have been selected! Go back and sele" + "ct the items to compile!";
+            this.lbNoSelection.Location = new System.Drawing.Point(13, 163);
+            this.lbNoSelection.Name = "lbNoSelection";
+            this.lbNoSelection.Size = new System.Drawing.Size(227, 42);
+            this.lbNoSelection.TabIndex = 3;
+            this.lbNoSelection.Text = "There is nothing to compile because no items have been selected! Go back and sele" +
+    "ct the items to compile!";
             // 
-            // ckWater
+            // _ckWater
             // 
-            _ckWater.AutoSize = true;
-            _ckWater.Enabled = false;
-            _ckWater.Location = new Point(16, 78);
-            _ckWater.Name = "_ckWater";
-            _ckWater.Size = new Size(83, 17);
-            _ckWater.TabIndex = 2;
-            _ckWater.Text = "Water Class";
-            _ckWater.UseVisualStyleBackColor = true;
+            this._ckWater.AutoSize = true;
+            this._ckWater.Enabled = false;
+            this._ckWater.Location = new System.Drawing.Point(16, 78);
+            this._ckWater.Name = "_ckWater";
+            this._ckWater.Size = new System.Drawing.Size(83, 17);
+            this._ckWater.TabIndex = 2;
+            this._ckWater.Text = "Water Class";
+            this._ckWater.UseVisualStyleBackColor = true;
+            this._ckWater.CheckedChanged += new System.EventHandler(this.CkWater_CheckedChanged);
             // 
-            // ckLand
+            // _ckLand
             // 
-            _ckLand.AutoSize = true;
-            _ckLand.Enabled = false;
-            _ckLand.Location = new Point(16, 53);
-            _ckLand.Name = "_ckLand";
-            _ckLand.Size = new Size(78, 17);
-            _ckLand.TabIndex = 1;
-            _ckLand.Text = "Land Class";
-            _ckLand.UseVisualStyleBackColor = true;
+            this._ckLand.AutoSize = true;
+            this._ckLand.Enabled = false;
+            this._ckLand.Location = new System.Drawing.Point(16, 53);
+            this._ckLand.Name = "_ckLand";
+            this._ckLand.Size = new System.Drawing.Size(78, 17);
+            this._ckLand.TabIndex = 1;
+            this._ckLand.Text = "Land Class";
+            this._ckLand.UseVisualStyleBackColor = true;
+            this._ckLand.CheckedChanged += new System.EventHandler(this.CkLand_CheckedChanged);
             // 
-            // ckVector
+            // _ckVector
             // 
-            _ckVector.AutoSize = true;
-            _ckVector.Enabled = false;
-            _ckVector.Location = new Point(16, 28);
-            _ckVector.Name = "_ckVector";
-            _ckVector.Size = new Size(93, 17);
-            _ckVector.TabIndex = 0;
-            _ckVector.Text = "Terrain Vector";
-            _ckVector.UseVisualStyleBackColor = true;
+            this._ckVector.AutoSize = true;
+            this._ckVector.Enabled = false;
+            this._ckVector.Location = new System.Drawing.Point(16, 28);
+            this._ckVector.Name = "_ckVector";
+            this._ckVector.Size = new System.Drawing.Size(93, 17);
+            this._ckVector.TabIndex = 0;
+            this._ckVector.Text = "Terrain Vector";
+            this._ckVector.UseVisualStyleBackColor = true;
+            this._ckVector.CheckedChanged += new System.EventHandler(this.CkVector_CheckedChanged);
             // 
-            // frmBGL
+            // FrmBGL
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(388, 247);
-            Controls.Add(GroupBox1);
-            Controls.Add(ckStartFSX);
-            Controls.Add(ckCopyBGLs);
-            Controls.Add(_cmdCancel);
-            Controls.Add(_cmdCompile);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmBGL";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - BGL Compilation";
-            GroupBox1.ResumeLayout(false);
-            GroupBox1.PerformLayout();
-            Load += new EventHandler(FrmBGL_Load);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(388, 247);
+            this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this.ckStartFSX);
+            this.Controls.Add(this.ckCopyBGLs);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this._cmdCompile);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmBGL";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - BGL Compilation";
+            this.Load += new System.EventHandler(this.FrmBGL_Load);
+            this.GroupBox1.ResumeLayout(false);
+            this.GroupBox1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         public CheckBox ckStartFSX;

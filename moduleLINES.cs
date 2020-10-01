@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     // Imports VB = Microsoft.VisualBasic
     static class moduleLINES
@@ -1399,7 +1399,7 @@ namespace SBuilderX
                 };
                 XmlWriter writer = XmlWriter.Create(A, settings);
                 writer.WriteStartDocument();
-                writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
+                writer.WriteComment("Created by SBuilderXX on " + DateTime.Now);
                 writer.WriteStartElement("FSData");
                 writer.WriteAttributeString("version", "9.0");
                 writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
@@ -1594,7 +1594,7 @@ namespace SBuilderX
             };
             XmlWriter writer = XmlWriter.Create(a, settings);
             writer.WriteStartDocument();
-            writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
+            writer.WriteComment("Created by SBuilderXX on " + DateTime.Now);
             writer.WriteStartElement("FSData");
             writer.WriteAttributeString("version", "9.0");
             writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");

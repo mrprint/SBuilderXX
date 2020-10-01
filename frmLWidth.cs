@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     internal partial class FrmLWidth
     {

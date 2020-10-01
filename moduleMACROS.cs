@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     static class moduleMACROS
     {

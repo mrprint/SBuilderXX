@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     public partial class FrmFSXSettings : Form
@@ -32,227 +32,229 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFSXSettings));
-            _cmdFSX = new Button();
-            _cmdFSX.Click += new EventHandler(CmdFSX_Click);
-            txtFSPath = new TextBox();
-            Label1 = new Label();
-            _cmdTerrain = new Button();
-            _cmdTerrain.Click += new EventHandler(CmdTerrain_Click);
-            txtTerrain = new TextBox();
-            Label2 = new Label();
-            _cmdBGLComp = new Button();
-            _cmdBGLComp.Click += new EventHandler(CmdBGLComp_Click);
-            txtBGLComp = new TextBox();
-            Label4 = new Label();
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            Label3 = new Label();
-            FolderBrowserDialog1 = new FolderBrowserDialog();
-            _cmdPlugins = new Button();
-            _cmdPlugins.Click += new EventHandler(CmdPlugins_Click);
-            txtPlugins = new TextBox();
-            Label5 = new Label();
-            Label6 = new Label();
-            Label7 = new Label();
-            Label8 = new Label();
-            txtNameOfSim = new TextBox();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFSXSettings));
+            this._cmdFSX = new System.Windows.Forms.Button();
+            this.txtFSPath = new System.Windows.Forms.TextBox();
+            this.Label1 = new System.Windows.Forms.Label();
+            this._cmdTerrain = new System.Windows.Forms.Button();
+            this.txtTerrain = new System.Windows.Forms.TextBox();
+            this.Label2 = new System.Windows.Forms.Label();
+            this._cmdBGLComp = new System.Windows.Forms.Button();
+            this.txtBGLComp = new System.Windows.Forms.TextBox();
+            this.Label4 = new System.Windows.Forms.Label();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.FolderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this._cmdPlugins = new System.Windows.Forms.Button();
+            this.txtPlugins = new System.Windows.Forms.TextBox();
+            this.Label5 = new System.Windows.Forms.Label();
+            this.Label6 = new System.Windows.Forms.Label();
+            this.Label7 = new System.Windows.Forms.Label();
+            this.Label8 = new System.Windows.Forms.Label();
+            this.txtNameOfSim = new System.Windows.Forms.TextBox();
+            this.SuspendLayout();
             // 
-            // cmdFSX
+            // _cmdFSX
             // 
-            _cmdFSX.Location = new Point(514, 33);
-            _cmdFSX.Name = "_cmdFSX";
-            _cmdFSX.Size = new Size(31, 23);
-            _cmdFSX.TabIndex = 0;
-            _cmdFSX.Text = "...";
-            _cmdFSX.UseVisualStyleBackColor = true;
+            this._cmdFSX.Location = new System.Drawing.Point(514, 33);
+            this._cmdFSX.Name = "_cmdFSX";
+            this._cmdFSX.Size = new System.Drawing.Size(31, 23);
+            this._cmdFSX.TabIndex = 0;
+            this._cmdFSX.Text = "...";
+            this._cmdFSX.UseVisualStyleBackColor = true;
+            this._cmdFSX.Click += new System.EventHandler(this.CmdFSX_Click);
             // 
             // txtFSPath
             // 
-            txtFSPath.BackColor = Color.White;
-            txtFSPath.Location = new Point(22, 35);
-            txtFSPath.Name = "txtFSPath";
-            txtFSPath.ReadOnly = true;
-            txtFSPath.Size = new Size(476, 20);
-            txtFSPath.TabIndex = 1;
+            this.txtFSPath.BackColor = System.Drawing.Color.White;
+            this.txtFSPath.Location = new System.Drawing.Point(22, 35);
+            this.txtFSPath.Name = "txtFSPath";
+            this.txtFSPath.ReadOnly = true;
+            this.txtFSPath.Size = new System.Drawing.Size(476, 20);
+            this.txtFSPath.TabIndex = 1;
             // 
             // Label1
             // 
-            Label1.AutoSize = true;
-            Label1.Location = new Point(19, 19);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(134, 13);
-            Label1.TabIndex = 2;
-            Label1.Text = "Full Path to Flight Simulator";
+            this.Label1.AutoSize = true;
+            this.Label1.Location = new System.Drawing.Point(19, 19);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(134, 13);
+            this.Label1.TabIndex = 2;
+            this.Label1.Text = "Full Path to Flight Simulator";
             // 
-            // cmdTerrain
+            // _cmdTerrain
             // 
-            _cmdTerrain.Location = new Point(460, 165);
-            _cmdTerrain.Name = "_cmdTerrain";
-            _cmdTerrain.Size = new Size(85, 23);
-            _cmdTerrain.TabIndex = 0;
-            _cmdTerrain.Text = "Copy From ...";
-            _cmdTerrain.UseVisualStyleBackColor = true;
+            this._cmdTerrain.Location = new System.Drawing.Point(460, 165);
+            this._cmdTerrain.Name = "_cmdTerrain";
+            this._cmdTerrain.Size = new System.Drawing.Size(85, 23);
+            this._cmdTerrain.TabIndex = 0;
+            this._cmdTerrain.Text = "Copy From ...";
+            this._cmdTerrain.UseVisualStyleBackColor = true;
+            this._cmdTerrain.Click += new System.EventHandler(this.CmdTerrain_Click);
             // 
             // txtTerrain
             // 
-            txtTerrain.BackColor = SystemColors.Control;
-            txtTerrain.BorderStyle = BorderStyle.FixedSingle;
-            txtTerrain.Location = new Point(22, 168);
-            txtTerrain.Name = "txtTerrain";
-            txtTerrain.ReadOnly = true;
-            txtTerrain.Size = new Size(418, 20);
-            txtTerrain.TabIndex = 1;
+            this.txtTerrain.BackColor = System.Drawing.SystemColors.Control;
+            this.txtTerrain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTerrain.Location = new System.Drawing.Point(22, 168);
+            this.txtTerrain.Name = "txtTerrain";
+            this.txtTerrain.ReadOnly = true;
+            this.txtTerrain.Size = new System.Drawing.Size(418, 20);
+            this.txtTerrain.TabIndex = 1;
             // 
             // Label2
             // 
-            Label2.AutoSize = true;
-            Label2.Location = new Point(19, 151);
-            Label2.Name = "Label2";
-            Label2.Size = new Size(238, 13);
-            Label2.TabIndex = 2;
-            Label2.Text = "Shp2Vec.exe, Resample.exe and ImageTool.exe";
+            this.Label2.AutoSize = true;
+            this.Label2.Location = new System.Drawing.Point(19, 151);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(238, 13);
+            this.Label2.TabIndex = 2;
+            this.Label2.Text = "Shp2Vec.exe, Resample.exe and ImageTool.exe";
             // 
-            // cmdBGLComp
+            // _cmdBGLComp
             // 
-            _cmdBGLComp.Location = new Point(460, 206);
-            _cmdBGLComp.Name = "_cmdBGLComp";
-            _cmdBGLComp.Size = new Size(85, 23);
-            _cmdBGLComp.TabIndex = 0;
-            _cmdBGLComp.Text = "Copy From ...";
-            _cmdBGLComp.UseVisualStyleBackColor = true;
+            this._cmdBGLComp.Location = new System.Drawing.Point(460, 206);
+            this._cmdBGLComp.Name = "_cmdBGLComp";
+            this._cmdBGLComp.Size = new System.Drawing.Size(85, 23);
+            this._cmdBGLComp.TabIndex = 0;
+            this._cmdBGLComp.Text = "Copy From ...";
+            this._cmdBGLComp.UseVisualStyleBackColor = true;
+            this._cmdBGLComp.Click += new System.EventHandler(this.CmdBGLComp_Click);
             // 
             // txtBGLComp
             // 
-            txtBGLComp.BackColor = SystemColors.Control;
-            txtBGLComp.BorderStyle = BorderStyle.FixedSingle;
-            txtBGLComp.Location = new Point(22, 208);
-            txtBGLComp.Name = "txtBGLComp";
-            txtBGLComp.ReadOnly = true;
-            txtBGLComp.Size = new Size(418, 20);
-            txtBGLComp.TabIndex = 1;
+            this.txtBGLComp.BackColor = System.Drawing.SystemColors.Control;
+            this.txtBGLComp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBGLComp.Location = new System.Drawing.Point(22, 208);
+            this.txtBGLComp.Name = "txtBGLComp";
+            this.txtBGLComp.ReadOnly = true;
+            this.txtBGLComp.Size = new System.Drawing.Size(418, 20);
+            this.txtBGLComp.TabIndex = 1;
             // 
             // Label4
             // 
-            Label4.AutoSize = true;
-            Label4.Location = new Point(19, 192);
-            Label4.Name = "Label4";
-            Label4.Size = new Size(154, 13);
-            Label4.TabIndex = 2;
-            Label4.Text = "BglComp.exe and BglComp.xsd";
+            this.Label4.AutoSize = true;
+            this.Label4.Location = new System.Drawing.Point(19, 192);
+            this.Label4.Name = "Label4";
+            this.Label4.Size = new System.Drawing.Size(154, 13);
+            this.Label4.TabIndex = 2;
+            this.Label4.Text = "BglComp.exe and BglComp.xsd";
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.Location = new Point(460, 295);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.Size = new Size(85, 24);
-            _cmdOK.TabIndex = 3;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Location = new System.Drawing.Point(460, 295);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.Size = new System.Drawing.Size(85, 24);
+            this._cmdOK.TabIndex = 3;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
             // Label3
             // 
-            Label3.Location = new Point(19, 295);
-            Label3.Name = "Label3";
-            Label3.Size = new Size(430, 36);
-            Label3.TabIndex = 4;
-            Label3.Text = "Paths shown in RED do not seem correct. If you press OK, without correcting this " + "situation, SBuilderX can not generate some BGL files.";
+            this.Label3.Location = new System.Drawing.Point(19, 295);
+            this.Label3.Name = "Label3";
+            this.Label3.Size = new System.Drawing.Size(430, 36);
+            this.Label3.TabIndex = 4;
+            this.Label3.Text = "Paths shown in RED do not seem correct. If you press OK, without correcting this " +
+    "situation, SBuilderXX can not generate some BGL files.";
             // 
-            // cmdPlugins
+            // _cmdPlugins
             // 
-            _cmdPlugins.Location = new Point(460, 252);
-            _cmdPlugins.Name = "_cmdPlugins";
-            _cmdPlugins.Size = new Size(85, 23);
-            _cmdPlugins.TabIndex = 0;
-            _cmdPlugins.Text = "Copy From ...";
-            _cmdPlugins.UseVisualStyleBackColor = true;
+            this._cmdPlugins.Location = new System.Drawing.Point(460, 252);
+            this._cmdPlugins.Name = "_cmdPlugins";
+            this._cmdPlugins.Size = new System.Drawing.Size(85, 23);
+            this._cmdPlugins.TabIndex = 0;
+            this._cmdPlugins.Text = "Copy From ...";
+            this._cmdPlugins.UseVisualStyleBackColor = true;
+            this._cmdPlugins.Click += new System.EventHandler(this.CmdPlugins_Click);
             // 
             // txtPlugins
             // 
-            txtPlugins.BackColor = SystemColors.Control;
-            txtPlugins.BorderStyle = BorderStyle.FixedSingle;
-            txtPlugins.Location = new Point(22, 254);
-            txtPlugins.Name = "txtPlugins";
-            txtPlugins.ReadOnly = true;
-            txtPlugins.Size = new Size(418, 20);
-            txtPlugins.TabIndex = 1;
+            this.txtPlugins.BackColor = System.Drawing.SystemColors.Control;
+            this.txtPlugins.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPlugins.Location = new System.Drawing.Point(22, 254);
+            this.txtPlugins.Name = "txtPlugins";
+            this.txtPlugins.ReadOnly = true;
+            this.txtPlugins.Size = new System.Drawing.Size(418, 20);
+            this.txtPlugins.TabIndex = 1;
             // 
             // Label5
             // 
-            Label5.AutoSize = true;
-            Label5.Location = new Point(19, 238);
-            Label5.Name = "Label5";
-            Label5.Size = new Size(354, 13);
-            Label5.TabIndex = 2;
-            Label5.Text = "XToMdl.exe, Managed_CrashTree.dll and Managed_Lookup_Keyword.dll";
+            this.Label5.AutoSize = true;
+            this.Label5.Location = new System.Drawing.Point(19, 238);
+            this.Label5.Name = "Label5";
+            this.Label5.Size = new System.Drawing.Size(354, 13);
+            this.Label5.TabIndex = 2;
+            this.Label5.Text = "XToMdl.exe, Managed_CrashTree.dll and Managed_Lookup_Keyword.dll";
             // 
             // Label6
             // 
-            Label6.BorderStyle = BorderStyle.FixedSingle;
-            Label6.Location = new Point(19, 92);
-            Label6.Name = "Label6";
-            Label6.Size = new Size(526, 2);
-            Label6.TabIndex = 6;
-            Label6.UseWaitCursor = true;
+            this.Label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Label6.Location = new System.Drawing.Point(19, 92);
+            this.Label6.Name = "Label6";
+            this.Label6.Size = new System.Drawing.Size(526, 2);
+            this.Label6.TabIndex = 6;
+            this.Label6.UseWaitCursor = true;
             // 
             // Label7
             // 
-            Label7.Location = new Point(19, 111);
-            Label7.Name = "Label7";
-            Label7.Size = new Size(526, 40);
-            Label7.TabIndex = 7;
-            Label7.Text = resources.GetString("Label7.Text");
+            this.Label7.Location = new System.Drawing.Point(19, 111);
+            this.Label7.Name = "Label7";
+            this.Label7.Size = new System.Drawing.Size(526, 40);
+            this.Label7.TabIndex = 7;
+            this.Label7.Text = resources.GetString("Label7.Text");
             // 
             // Label8
             // 
-            Label8.AutoSize = true;
-            Label8.Location = new Point(137, 64);
-            Label8.Name = "Label8";
-            Label8.Size = new Size(305, 13);
-            Label8.TabIndex = 9;
-            Label8.Text = "Name of the Simulator. For Microsoft FSX you should enter FSX";
+            this.Label8.AutoSize = true;
+            this.Label8.Location = new System.Drawing.Point(137, 64);
+            this.Label8.Name = "Label8";
+            this.Label8.Size = new System.Drawing.Size(305, 13);
+            this.Label8.TabIndex = 9;
+            this.Label8.Text = "Name of the Simulator. For Microsoft FSX you should enter FSX";
             // 
             // txtNameOfSim
             // 
-            txtNameOfSim.Location = new Point(22, 61);
-            txtNameOfSim.Name = "txtNameOfSim";
-            txtNameOfSim.Size = new Size(109, 20);
-            txtNameOfSim.TabIndex = 10;
+            this.txtNameOfSim.Location = new System.Drawing.Point(22, 61);
+            this.txtNameOfSim.Name = "txtNameOfSim";
+            this.txtNameOfSim.Size = new System.Drawing.Size(109, 20);
+            this.txtNameOfSim.TabIndex = 10;
             // 
             // FrmFSXSettings
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(563, 332);
-            Controls.Add(txtNameOfSim);
-            Controls.Add(Label8);
-            Controls.Add(Label7);
-            Controls.Add(Label6);
-            Controls.Add(Label3);
-            Controls.Add(_cmdOK);
-            Controls.Add(Label5);
-            Controls.Add(Label4);
-            Controls.Add(Label2);
-            Controls.Add(Label1);
-            Controls.Add(txtPlugins);
-            Controls.Add(txtBGLComp);
-            Controls.Add(_cmdPlugins);
-            Controls.Add(txtTerrain);
-            Controls.Add(_cmdBGLComp);
-            Controls.Add(_cmdTerrain);
-            Controls.Add(txtFSPath);
-            Controls.Add(_cmdFSX);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "FrmFSXSettings";
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - FSX Settings";
-            Load += new EventHandler(FrmFSXSettings_Load);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(563, 332);
+            this.Controls.Add(this.txtNameOfSim);
+            this.Controls.Add(this.Label8);
+            this.Controls.Add(this.Label7);
+            this.Controls.Add(this.Label6);
+            this.Controls.Add(this.Label3);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this.Label5);
+            this.Controls.Add(this.Label4);
+            this.Controls.Add(this.Label2);
+            this.Controls.Add(this.Label1);
+            this.Controls.Add(this.txtPlugins);
+            this.Controls.Add(this.txtBGLComp);
+            this.Controls.Add(this._cmdPlugins);
+            this.Controls.Add(this.txtTerrain);
+            this.Controls.Add(this._cmdBGLComp);
+            this.Controls.Add(this._cmdTerrain);
+            this.Controls.Add(this.txtFSPath);
+            this.Controls.Add(this._cmdFSX);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmFSXSettings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - FSX Settings";
+            this.Load += new System.EventHandler(this.FrmFSXSettings_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         private Button _cmdFSX;

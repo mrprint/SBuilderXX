@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmLPPointsP : Form
@@ -32,210 +32,211 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLPPointsP));
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            Frame2 = new GroupBox();
-            lbAltitude = new Label();
-            txtAltitude = new TextBox();
-            txtLat = new TextBox();
-            txtLon = new TextBox();
-            Label2 = new Label();
-            Label1 = new Label();
-            lbWidth = new Label();
-            lbPt = new Label();
-            txtWidth = new TextBox();
-            Frame2.SuspendLayout();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLPPointsP));
+            this._cmdOK = new System.Windows.Forms.Button();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this.Frame2 = new System.Windows.Forms.GroupBox();
+            this.lbAltitude = new System.Windows.Forms.Label();
+            this.txtAltitude = new System.Windows.Forms.TextBox();
+            this.txtLat = new System.Windows.Forms.TextBox();
+            this.txtLon = new System.Windows.Forms.TextBox();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.lbWidth = new System.Windows.Forms.Label();
+            this.lbPt = new System.Windows.Forms.Label();
+            this.txtWidth = new System.Windows.Forms.TextBox();
+            this.Frame2.SuspendLayout();
+            this.SuspendLayout();
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.BackColor = SystemColors.Control;
-            _cmdOK.Cursor = Cursors.Default;
-            _cmdOK.ForeColor = SystemColors.ControlText;
-            _cmdOK.Location = new Point(179, 133);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.RightToLeft = RightToLeft.No;
-            _cmdOK.Size = new Size(70, 25);
-            _cmdOK.TabIndex = 13;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = false;
+            this._cmdOK.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdOK.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdOK.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdOK.Location = new System.Drawing.Point(179, 133);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdOK.Size = new System.Drawing.Size(70, 25);
+            this._cmdOK.TabIndex = 13;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = false;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.BackColor = SystemColors.Control;
-            _cmdCancel.Cursor = Cursors.Default;
-            _cmdCancel.ForeColor = SystemColors.ControlText;
-            _cmdCancel.Location = new Point(179, 87);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.RightToLeft = RightToLeft.No;
-            _cmdCancel.Size = new Size(70, 25);
-            _cmdCancel.TabIndex = 12;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdCancel.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdCancel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdCancel.Location = new System.Drawing.Point(179, 87);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdCancel.Size = new System.Drawing.Size(70, 25);
+            this._cmdCancel.TabIndex = 12;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
             // Frame2
             // 
-            Frame2.BackColor = SystemColors.Control;
-            Frame2.Controls.Add(lbAltitude);
-            Frame2.Controls.Add(txtAltitude);
-            Frame2.Controls.Add(txtLat);
-            Frame2.Controls.Add(txtLon);
-            Frame2.Controls.Add(Label2);
-            Frame2.Controls.Add(Label1);
-            Frame2.ForeColor = SystemColors.ControlText;
-            Frame2.Location = new Point(12, 12);
-            Frame2.Name = "Frame2";
-            Frame2.RightToLeft = RightToLeft.No;
-            Frame2.Size = new Size(146, 146);
-            Frame2.TabIndex = 11;
-            Frame2.TabStop = false;
-            Frame2.Text = "Geographic Coordinates";
+            this.Frame2.BackColor = System.Drawing.SystemColors.Control;
+            this.Frame2.Controls.Add(this.lbAltitude);
+            this.Frame2.Controls.Add(this.txtAltitude);
+            this.Frame2.Controls.Add(this.txtLat);
+            this.Frame2.Controls.Add(this.txtLon);
+            this.Frame2.Controls.Add(this.Label2);
+            this.Frame2.Controls.Add(this.Label1);
+            this.Frame2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Frame2.Location = new System.Drawing.Point(12, 12);
+            this.Frame2.Name = "Frame2";
+            this.Frame2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Frame2.Size = new System.Drawing.Size(146, 146);
+            this.Frame2.TabIndex = 11;
+            this.Frame2.TabStop = false;
+            this.Frame2.Text = "Geographic Coordinates";
             // 
             // lbAltitude
             // 
-            lbAltitude.AutoSize = true;
-            lbAltitude.Location = new Point(15, 98);
-            lbAltitude.Name = "lbAltitude";
-            lbAltitude.Size = new Size(42, 13);
-            lbAltitude.TabIndex = 16;
-            lbAltitude.Text = "Altitude";
+            this.lbAltitude.AutoSize = true;
+            this.lbAltitude.Location = new System.Drawing.Point(15, 98);
+            this.lbAltitude.Name = "lbAltitude";
+            this.lbAltitude.Size = new System.Drawing.Size(42, 13);
+            this.lbAltitude.TabIndex = 16;
+            this.lbAltitude.Text = "Altitude";
             // 
             // txtAltitude
             // 
-            txtAltitude.AcceptsReturn = true;
-            txtAltitude.BackColor = SystemColors.Window;
-            txtAltitude.Cursor = Cursors.IBeam;
-            txtAltitude.ForeColor = SystemColors.WindowText;
-            txtAltitude.Location = new Point(15, 113);
-            txtAltitude.MaxLength = 0;
-            txtAltitude.Name = "txtAltitude";
-            txtAltitude.RightToLeft = RightToLeft.No;
-            txtAltitude.Size = new Size(108, 20);
-            txtAltitude.TabIndex = 7;
-            txtAltitude.TextAlign = HorizontalAlignment.Center;
+            this.txtAltitude.AcceptsReturn = true;
+            this.txtAltitude.BackColor = System.Drawing.SystemColors.Window;
+            this.txtAltitude.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtAltitude.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtAltitude.Location = new System.Drawing.Point(15, 113);
+            this.txtAltitude.MaxLength = 0;
+            this.txtAltitude.Name = "txtAltitude";
+            this.txtAltitude.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtAltitude.Size = new System.Drawing.Size(108, 20);
+            this.txtAltitude.TabIndex = 7;
+            this.txtAltitude.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtLat
             // 
-            txtLat.AcceptsReturn = true;
-            txtLat.BackColor = SystemColors.Window;
-            txtLat.Cursor = Cursors.IBeam;
-            txtLat.ForeColor = SystemColors.WindowText;
-            txtLat.Location = new Point(15, 36);
-            txtLat.MaxLength = 0;
-            txtLat.Name = "txtLat";
-            txtLat.RightToLeft = RightToLeft.No;
-            txtLat.Size = new Size(108, 20);
-            txtLat.TabIndex = 2;
-            txtLat.TextAlign = HorizontalAlignment.Center;
+            this.txtLat.AcceptsReturn = true;
+            this.txtLat.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLat.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtLat.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLat.Location = new System.Drawing.Point(15, 36);
+            this.txtLat.MaxLength = 0;
+            this.txtLat.Name = "txtLat";
+            this.txtLat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtLat.Size = new System.Drawing.Size(108, 20);
+            this.txtLat.TabIndex = 2;
+            this.txtLat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtLon
             // 
-            txtLon.AcceptsReturn = true;
-            txtLon.BackColor = SystemColors.Window;
-            txtLon.Cursor = Cursors.IBeam;
-            txtLon.ForeColor = SystemColors.WindowText;
-            txtLon.Location = new Point(15, 75);
-            txtLon.MaxLength = 0;
-            txtLon.Name = "txtLon";
-            txtLon.RightToLeft = RightToLeft.No;
-            txtLon.Size = new Size(108, 20);
-            txtLon.TabIndex = 1;
-            txtLon.TextAlign = HorizontalAlignment.Center;
+            this.txtLon.AcceptsReturn = true;
+            this.txtLon.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLon.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtLon.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLon.Location = new System.Drawing.Point(15, 75);
+            this.txtLon.MaxLength = 0;
+            this.txtLon.Name = "txtLon";
+            this.txtLon.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtLon.Size = new System.Drawing.Size(108, 20);
+            this.txtLon.TabIndex = 1;
+            this.txtLon.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Label2
             // 
-            Label2.AutoSize = true;
-            Label2.BackColor = SystemColors.Control;
-            Label2.Cursor = Cursors.Default;
-            Label2.ForeColor = SystemColors.ControlText;
-            Label2.Location = new Point(15, 59);
-            Label2.Name = "Label2";
-            Label2.RightToLeft = RightToLeft.No;
-            Label2.Size = new Size(54, 13);
-            Label2.TabIndex = 3;
-            Label2.Text = "Longitude";
-            Label2.TextAlign = ContentAlignment.TopRight;
+            this.Label2.AutoSize = true;
+            this.Label2.BackColor = System.Drawing.SystemColors.Control;
+            this.Label2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label2.Location = new System.Drawing.Point(15, 59);
+            this.Label2.Name = "Label2";
+            this.Label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label2.Size = new System.Drawing.Size(54, 13);
+            this.Label2.TabIndex = 3;
+            this.Label2.Text = "Longitude";
+            this.Label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // Label1
             // 
-            Label1.AutoSize = true;
-            Label1.BackColor = SystemColors.Control;
-            Label1.Cursor = Cursors.Default;
-            Label1.ForeColor = SystemColors.ControlText;
-            Label1.Location = new Point(12, 20);
-            Label1.Name = "Label1";
-            Label1.RightToLeft = RightToLeft.No;
-            Label1.Size = new Size(45, 13);
-            Label1.TabIndex = 4;
-            Label1.Text = "Latitude";
-            Label1.TextAlign = ContentAlignment.TopRight;
+            this.Label1.AutoSize = true;
+            this.Label1.BackColor = System.Drawing.SystemColors.Control;
+            this.Label1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label1.Location = new System.Drawing.Point(12, 20);
+            this.Label1.Name = "Label1";
+            this.Label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label1.Size = new System.Drawing.Size(45, 13);
+            this.Label1.TabIndex = 4;
+            this.Label1.Text = "Latitude";
+            this.Label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lbWidth
             // 
-            lbWidth.AutoSize = true;
-            lbWidth.BackColor = SystemColors.Control;
-            lbWidth.Cursor = Cursors.Default;
-            lbWidth.ForeColor = SystemColors.ControlText;
-            lbWidth.Location = new Point(178, 32);
-            lbWidth.Name = "lbWidth";
-            lbWidth.RightToLeft = RightToLeft.No;
-            lbWidth.Size = new Size(35, 13);
-            lbWidth.TabIndex = 8;
-            lbWidth.Text = "Width";
-            lbWidth.TextAlign = ContentAlignment.TopRight;
+            this.lbWidth.AutoSize = true;
+            this.lbWidth.BackColor = System.Drawing.SystemColors.Control;
+            this.lbWidth.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbWidth.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbWidth.Location = new System.Drawing.Point(178, 32);
+            this.lbWidth.Name = "lbWidth";
+            this.lbWidth.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbWidth.Size = new System.Drawing.Size(35, 13);
+            this.lbWidth.TabIndex = 8;
+            this.lbWidth.Text = "Width";
+            this.lbWidth.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lbPt
             // 
-            lbPt.BackColor = SystemColors.Control;
-            lbPt.Cursor = Cursors.Default;
-            lbPt.ForeColor = SystemColors.ControlText;
-            lbPt.Location = new Point(178, 12);
-            lbPt.Name = "lbPt";
-            lbPt.RightToLeft = RightToLeft.No;
-            lbPt.Size = new Size(46, 19);
-            lbPt.TabIndex = 15;
-            lbPt.Text = "PT #";
+            this.lbPt.BackColor = System.Drawing.SystemColors.Control;
+            this.lbPt.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbPt.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbPt.Location = new System.Drawing.Point(178, 12);
+            this.lbPt.Name = "lbPt";
+            this.lbPt.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbPt.Size = new System.Drawing.Size(46, 19);
+            this.lbPt.TabIndex = 15;
+            this.lbPt.Text = "PT #";
             // 
             // txtWidth
             // 
-            txtWidth.AcceptsReturn = true;
-            txtWidth.BackColor = SystemColors.Window;
-            txtWidth.Cursor = Cursors.IBeam;
-            txtWidth.ForeColor = SystemColors.WindowText;
-            txtWidth.Location = new Point(179, 48);
-            txtWidth.MaxLength = 0;
-            txtWidth.Name = "txtWidth";
-            txtWidth.RightToLeft = RightToLeft.No;
-            txtWidth.Size = new Size(70, 20);
-            txtWidth.TabIndex = 16;
-            txtWidth.TextAlign = HorizontalAlignment.Center;
+            this.txtWidth.AcceptsReturn = true;
+            this.txtWidth.BackColor = System.Drawing.SystemColors.Window;
+            this.txtWidth.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtWidth.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtWidth.Location = new System.Drawing.Point(179, 48);
+            this.txtWidth.MaxLength = 0;
+            this.txtWidth.Name = "txtWidth";
+            this.txtWidth.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtWidth.Size = new System.Drawing.Size(70, 20);
+            this.txtWidth.TabIndex = 16;
+            this.txtWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // frmLPPointsP
+            // FrmLPPointsP
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(269, 175);
-            Controls.Add(txtWidth);
-            Controls.Add(_cmdOK);
-            Controls.Add(_cmdCancel);
-            Controls.Add(Frame2);
-            Controls.Add(lbWidth);
-            Controls.Add(lbPt);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmLPPointsP";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Frame2.ResumeLayout(false);
-            Frame2.PerformLayout();
-            Load += new EventHandler(FrmPointsP_Load);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(269, 175);
+            this.Controls.Add(this.txtWidth);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this.Frame2);
+            this.Controls.Add(this.lbWidth);
+            this.Controls.Add(this.lbPt);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmLPPointsP";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Load += new System.EventHandler(this.FrmPointsP_Load);
+            this.Frame2.ResumeLayout(false);
+            this.Frame2.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         private Button _cmdOK;

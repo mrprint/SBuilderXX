@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     public partial class FrmGBuilding : Form
@@ -36,1253 +36,1630 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGBuilding));
-            nUPsizeBottomY = new NumericUpDown();
-            nUPsizeWindowY = new NumericUpDown();
-            nUPsizeTopY = new NumericUpDown();
-            nUPsizeRoofY = new NumericUpDown();
-            nUPsizeTopX = new NumericUpDown();
-            nUPsizeTopZ = new NumericUpDown();
-            nUPtextureIndexBottomX = new NumericUpDown();
-            nUPtextureIndexBottomZ = new NumericUpDown();
-            nUPtextureIndexWindowX = new NumericUpDown();
-            nUPtextureIndexWindowY = new NumericUpDown();
-            nUPtextureIndexWindowZ = new NumericUpDown();
-            nUPtextureIndexTopX = new NumericUpDown();
-            nUPtextureIndexTopZ = new NumericUpDown();
-            nUPtextureIndexRoofX = new NumericUpDown();
-            nUPtextureIndexRoofY = new NumericUpDown();
-            nUPtextureIndexRoofZ = new NumericUpDown();
-            nUPbuildingSides = new NumericUpDown();
-            ckSmoothing = new CheckBox();
-            lbSides = new Label();
-            lbG = new Label();
-            lbF = new Label();
-            nUPgableTexture = new NumericUpDown();
-            nUPfaceTexture = new NumericUpDown();
-            nUPtextureIndexGableY = new NumericUpDown();
-            nUPtextureIndexFaceX = new NumericUpDown();
-            nUPtextureIndexGableZ = new NumericUpDown();
-            nUPtextureIndexFaceY = new NumericUpDown();
-            _cmdCancel = new Button();
-            _cmdCancel.MouseHover += new EventHandler(CmdCancel_MouseHover);
-            cmdOK = new Button();
-            lbgb3 = new Label();
-            lbBW = new Label();
-            lbBD = new Label();
-            nUPsizeX = new NumericUpDown();
-            nUPsizeZ = new NumericUpDown();
-            nUPscale = new NumericUpDown();
-            nUPtopTexture = new NumericUpDown();
-            nUPbottomTexture = new NumericUpDown();
-            nUProofTexture = new NumericUpDown();
-            nUPwindowTexture = new NumericUpDown();
-            _imgGenB = new PictureBox();
-            _imgGenB.MouseDown += new MouseEventHandler(ImgGenB_MouseDown);
-            _imgGenB.MouseHover += new EventHandler(ImgGenB_MouseHover);
-            _imgGenB.MouseMove += new MouseEventHandler(ImgGenB_MouseMove);
-            _imgGenB.MouseUp += new MouseEventHandler(ImgGenB_MouseUp);
-            _imgGenB.MouseWheel += new MouseEventHandler(ImgGenB_MouseWheel);
-            frGenB = new GroupBox();
-            _optGbMultiSided = new RadioButton();
-            _optGbMultiSided.CheckedChanged += new EventHandler(OptGbMultiSided_CheckedChanged);
-            _optGbPyramidal = new RadioButton();
-            _optGbPyramidal.CheckedChanged += new EventHandler(OptGbPyramidal_CheckedChanged);
-            _optGbSlant = new RadioButton();
-            _optGbSlant.CheckedChanged += new EventHandler(OptGbSlant_CheckedChanged);
-            _optGbRidge = new RadioButton();
-            _optGbRidge.CheckedChanged += new EventHandler(OptGbRidge_CheckedChanged);
-            _optGbPeaked = new RadioButton();
-            _optGbPeaked.CheckedChanged += new EventHandler(OptGbPeaked_CheckedChanged);
-            _optGbFlat = new RadioButton();
-            _optGbFlat.CheckedChanged += new EventHandler(OptGbFlat_CheckedChanged);
-            frBottom = new GroupBox();
-            lbBH = new Label();
-            lbBT = new Label();
-            Label40 = new Label();
-            lbBZT = new Label();
-            lbRH = new Label();
-            Label31 = new Label();
-            Label32 = new Label();
-            Label34 = new Label();
-            lbWZT = new Label();
-            Label37 = new Label();
-            Label38 = new Label();
-            Label39 = new Label();
-            frWindow = new GroupBox();
-            nUPWZ = new NumericUpDown();
-            nUPWX = new NumericUpDown();
-            Label5 = new Label();
-            Label1 = new Label();
-            lbGYT = new Label();
-            Label43 = new Label();
-            Label44 = new Label();
-            frTop = new GroupBox();
-            Label45 = new Label();
-            lbTZT = new Label();
-            Label8 = new Label();
-            lbTD = new Label();
-            lbTW = new Label();
-            lbGZT = new Label();
-            frRoof = new GroupBox();
-            nUPRZ = new NumericUpDown();
-            nUPRX = new NumericUpDown();
-            lbFYT = new Label();
-            Label2 = new Label();
-            Label3 = new Label();
-            lbFXT = new Label();
-            lbRYT = new Label();
-            frMulti = new GroupBox();
-            nUPGrid = new NumericUpDown();
-            Label4 = new Label();
-            Label6 = new Label();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeBottomY).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeWindowY).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeTopY).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeRoofY).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeTopX).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeTopZ).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexBottomX).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexBottomZ).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexWindowX).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexWindowY).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexWindowZ).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexTopX).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexTopZ).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexRoofX).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexRoofY).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexRoofZ).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPbuildingSides).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPgableTexture).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPfaceTexture).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexGableY).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexFaceX).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexGableZ).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexFaceY).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeX).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeZ).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPscale).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtopTexture).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPbottomTexture).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUProofTexture).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPwindowTexture).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)_imgGenB).BeginInit();
-            frGenB.SuspendLayout();
-            frBottom.SuspendLayout();
-            frWindow.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nUPWZ).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPWX).BeginInit();
-            frTop.SuspendLayout();
-            frRoof.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nUPRZ).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nUPRX).BeginInit();
-            frMulti.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nUPGrid).BeginInit();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGBuilding));
+            this.nUPsizeBottomY = new System.Windows.Forms.NumericUpDown();
+            this.nUPsizeWindowY = new System.Windows.Forms.NumericUpDown();
+            this.nUPsizeTopY = new System.Windows.Forms.NumericUpDown();
+            this.nUPsizeRoofY = new System.Windows.Forms.NumericUpDown();
+            this.nUPsizeTopX = new System.Windows.Forms.NumericUpDown();
+            this.nUPsizeTopZ = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexBottomX = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexBottomZ = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexWindowX = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexWindowY = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexWindowZ = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexTopX = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexTopZ = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexRoofX = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexRoofY = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexRoofZ = new System.Windows.Forms.NumericUpDown();
+            this.nUPbuildingSides = new System.Windows.Forms.NumericUpDown();
+            this.ckSmoothing = new System.Windows.Forms.CheckBox();
+            this.lbSides = new System.Windows.Forms.Label();
+            this.lbG = new System.Windows.Forms.Label();
+            this.lbF = new System.Windows.Forms.Label();
+            this.nUPgableTexture = new System.Windows.Forms.NumericUpDown();
+            this.nUPfaceTexture = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexGableY = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexFaceX = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexGableZ = new System.Windows.Forms.NumericUpDown();
+            this.nUPtextureIndexFaceY = new System.Windows.Forms.NumericUpDown();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this.cmdOK = new System.Windows.Forms.Button();
+            this.lbgb3 = new System.Windows.Forms.Label();
+            this.lbBW = new System.Windows.Forms.Label();
+            this.lbBD = new System.Windows.Forms.Label();
+            this.nUPsizeX = new System.Windows.Forms.NumericUpDown();
+            this.nUPsizeZ = new System.Windows.Forms.NumericUpDown();
+            this.nUPscale = new System.Windows.Forms.NumericUpDown();
+            this.nUPtopTexture = new System.Windows.Forms.NumericUpDown();
+            this.nUPbottomTexture = new System.Windows.Forms.NumericUpDown();
+            this.nUProofTexture = new System.Windows.Forms.NumericUpDown();
+            this.nUPwindowTexture = new System.Windows.Forms.NumericUpDown();
+            this._imgGenB = new System.Windows.Forms.PictureBox();
+            this.frGenB = new System.Windows.Forms.GroupBox();
+            this._optGbMultiSided = new System.Windows.Forms.RadioButton();
+            this._optGbPyramidal = new System.Windows.Forms.RadioButton();
+            this._optGbSlant = new System.Windows.Forms.RadioButton();
+            this._optGbRidge = new System.Windows.Forms.RadioButton();
+            this._optGbPeaked = new System.Windows.Forms.RadioButton();
+            this._optGbFlat = new System.Windows.Forms.RadioButton();
+            this.frBottom = new System.Windows.Forms.GroupBox();
+            this.lbBH = new System.Windows.Forms.Label();
+            this.lbBT = new System.Windows.Forms.Label();
+            this.Label40 = new System.Windows.Forms.Label();
+            this.lbBZT = new System.Windows.Forms.Label();
+            this.lbRH = new System.Windows.Forms.Label();
+            this.Label31 = new System.Windows.Forms.Label();
+            this.Label32 = new System.Windows.Forms.Label();
+            this.Label34 = new System.Windows.Forms.Label();
+            this.lbWZT = new System.Windows.Forms.Label();
+            this.Label37 = new System.Windows.Forms.Label();
+            this.Label38 = new System.Windows.Forms.Label();
+            this.Label39 = new System.Windows.Forms.Label();
+            this.frWindow = new System.Windows.Forms.GroupBox();
+            this.nUPWZ = new System.Windows.Forms.NumericUpDown();
+            this.nUPWX = new System.Windows.Forms.NumericUpDown();
+            this.Label5 = new System.Windows.Forms.Label();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.lbGYT = new System.Windows.Forms.Label();
+            this.Label43 = new System.Windows.Forms.Label();
+            this.Label44 = new System.Windows.Forms.Label();
+            this.frTop = new System.Windows.Forms.GroupBox();
+            this.Label45 = new System.Windows.Forms.Label();
+            this.lbTZT = new System.Windows.Forms.Label();
+            this.Label8 = new System.Windows.Forms.Label();
+            this.lbTD = new System.Windows.Forms.Label();
+            this.lbTW = new System.Windows.Forms.Label();
+            this.lbGZT = new System.Windows.Forms.Label();
+            this.frRoof = new System.Windows.Forms.GroupBox();
+            this.nUPRZ = new System.Windows.Forms.NumericUpDown();
+            this.nUPRX = new System.Windows.Forms.NumericUpDown();
+            this.lbFYT = new System.Windows.Forms.Label();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.lbFXT = new System.Windows.Forms.Label();
+            this.lbRYT = new System.Windows.Forms.Label();
+            this.frMulti = new System.Windows.Forms.GroupBox();
+            this.nUPGrid = new System.Windows.Forms.NumericUpDown();
+            this.Label4 = new System.Windows.Forms.Label();
+            this.Label6 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeBottomY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeWindowY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeTopY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeRoofY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeTopX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeTopZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexBottomX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexBottomZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexWindowX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexWindowY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexWindowZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexTopX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexTopZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexRoofX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexRoofY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexRoofZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPbuildingSides)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPgableTexture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPfaceTexture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexGableY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexFaceX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexGableZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexFaceY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPscale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtopTexture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPbottomTexture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUProofTexture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPwindowTexture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._imgGenB)).BeginInit();
+            this.frGenB.SuspendLayout();
+            this.frBottom.SuspendLayout();
+            this.frWindow.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPWZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPWX)).BeginInit();
+            this.frTop.SuspendLayout();
+            this.frRoof.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPRZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPRX)).BeginInit();
+            this.frMulti.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPGrid)).BeginInit();
+            this.SuspendLayout();
             // 
             // nUPsizeBottomY
             // 
-            nUPsizeBottomY.BackColor = SystemColors.Window;
-            nUPsizeBottomY.Enabled = false;
-            nUPsizeBottomY.Location = new Point(143, 37);
-            nUPsizeBottomY.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            nUPsizeBottomY.Name = "nUPsizeBottomY";
-            nUPsizeBottomY.Size = new Size(53, 20);
-            nUPsizeBottomY.TabIndex = 57;
-            nUPsizeBottomY.TextAlign = HorizontalAlignment.Right;
-            nUPsizeBottomY.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nUPsizeBottomY.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPsizeBottomY.Enabled = false;
+            this.nUPsizeBottomY.Location = new System.Drawing.Point(143, 37);
+            this.nUPsizeBottomY.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nUPsizeBottomY.Name = "nUPsizeBottomY";
+            this.nUPsizeBottomY.Size = new System.Drawing.Size(53, 20);
+            this.nUPsizeBottomY.TabIndex = 57;
+            this.nUPsizeBottomY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPsizeBottomY.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // nUPsizeWindowY
             // 
-            nUPsizeWindowY.BackColor = SystemColors.Window;
-            nUPsizeWindowY.Enabled = false;
-            nUPsizeWindowY.Location = new Point(143, 36);
-            nUPsizeWindowY.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            nUPsizeWindowY.Name = "nUPsizeWindowY";
-            nUPsizeWindowY.Size = new Size(55, 20);
-            nUPsizeWindowY.TabIndex = 57;
-            nUPsizeWindowY.TextAlign = HorizontalAlignment.Right;
-            nUPsizeWindowY.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nUPsizeWindowY.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPsizeWindowY.Enabled = false;
+            this.nUPsizeWindowY.Location = new System.Drawing.Point(143, 36);
+            this.nUPsizeWindowY.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nUPsizeWindowY.Name = "nUPsizeWindowY";
+            this.nUPsizeWindowY.Size = new System.Drawing.Size(55, 20);
+            this.nUPsizeWindowY.TabIndex = 57;
+            this.nUPsizeWindowY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPsizeWindowY.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // nUPsizeTopY
             // 
-            nUPsizeTopY.BackColor = SystemColors.Window;
-            nUPsizeTopY.Enabled = false;
-            nUPsizeTopY.Location = new Point(142, 37);
-            nUPsizeTopY.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            nUPsizeTopY.Name = "nUPsizeTopY";
-            nUPsizeTopY.Size = new Size(55, 20);
-            nUPsizeTopY.TabIndex = 57;
-            nUPsizeTopY.TextAlign = HorizontalAlignment.Right;
-            nUPsizeTopY.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nUPsizeTopY.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPsizeTopY.Enabled = false;
+            this.nUPsizeTopY.Location = new System.Drawing.Point(142, 37);
+            this.nUPsizeTopY.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nUPsizeTopY.Name = "nUPsizeTopY";
+            this.nUPsizeTopY.Size = new System.Drawing.Size(55, 20);
+            this.nUPsizeTopY.TabIndex = 57;
+            this.nUPsizeTopY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPsizeTopY.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // nUPsizeRoofY
             // 
-            nUPsizeRoofY.BackColor = SystemColors.Window;
-            nUPsizeRoofY.Enabled = false;
-            nUPsizeRoofY.Location = new Point(143, 37);
-            nUPsizeRoofY.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            nUPsizeRoofY.Name = "nUPsizeRoofY";
-            nUPsizeRoofY.Size = new Size(55, 20);
-            nUPsizeRoofY.TabIndex = 57;
-            nUPsizeRoofY.TextAlign = HorizontalAlignment.Right;
-            nUPsizeRoofY.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nUPsizeRoofY.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPsizeRoofY.Enabled = false;
+            this.nUPsizeRoofY.Location = new System.Drawing.Point(143, 37);
+            this.nUPsizeRoofY.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nUPsizeRoofY.Name = "nUPsizeRoofY";
+            this.nUPsizeRoofY.Size = new System.Drawing.Size(55, 20);
+            this.nUPsizeRoofY.TabIndex = 57;
+            this.nUPsizeRoofY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPsizeRoofY.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // nUPsizeTopX
             // 
-            nUPsizeTopX.BackColor = SystemColors.Window;
-            nUPsizeTopX.DecimalPlaces = 2;
-            nUPsizeTopX.Enabled = false;
-            nUPsizeTopX.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nUPsizeTopX.Location = new Point(74, 37);
-            nUPsizeTopX.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            nUPsizeTopX.Name = "nUPsizeTopX";
-            nUPsizeTopX.Size = new Size(55, 20);
-            nUPsizeTopX.TabIndex = 57;
-            nUPsizeTopX.TextAlign = HorizontalAlignment.Right;
-            nUPsizeTopX.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nUPsizeTopX.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPsizeTopX.DecimalPlaces = 2;
+            this.nUPsizeTopX.Enabled = false;
+            this.nUPsizeTopX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUPsizeTopX.Location = new System.Drawing.Point(74, 37);
+            this.nUPsizeTopX.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nUPsizeTopX.Name = "nUPsizeTopX";
+            this.nUPsizeTopX.Size = new System.Drawing.Size(55, 20);
+            this.nUPsizeTopX.TabIndex = 57;
+            this.nUPsizeTopX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPsizeTopX.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // nUPsizeTopZ
             // 
-            nUPsizeTopZ.BackColor = SystemColors.Window;
-            nUPsizeTopZ.DecimalPlaces = 2;
-            nUPsizeTopZ.Enabled = false;
-            nUPsizeTopZ.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nUPsizeTopZ.Location = new Point(210, 37);
-            nUPsizeTopZ.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            nUPsizeTopZ.Name = "nUPsizeTopZ";
-            nUPsizeTopZ.Size = new Size(55, 20);
-            nUPsizeTopZ.TabIndex = 57;
-            nUPsizeTopZ.TextAlign = HorizontalAlignment.Right;
-            nUPsizeTopZ.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nUPsizeTopZ.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPsizeTopZ.DecimalPlaces = 2;
+            this.nUPsizeTopZ.Enabled = false;
+            this.nUPsizeTopZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUPsizeTopZ.Location = new System.Drawing.Point(210, 37);
+            this.nUPsizeTopZ.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nUPsizeTopZ.Name = "nUPsizeTopZ";
+            this.nUPsizeTopZ.Size = new System.Drawing.Size(55, 20);
+            this.nUPsizeTopZ.TabIndex = 57;
+            this.nUPsizeTopZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPsizeTopZ.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexBottomX
             // 
-            nUPtextureIndexBottomX.BackColor = SystemColors.Window;
-            nUPtextureIndexBottomX.DecimalPlaces = 3;
-            nUPtextureIndexBottomX.Enabled = false;
-            nUPtextureIndexBottomX.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexBottomX.Location = new Point(73, 78);
-            nUPtextureIndexBottomX.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexBottomX.Name = "nUPtextureIndexBottomX";
-            nUPtextureIndexBottomX.Size = new Size(55, 20);
-            nUPtextureIndexBottomX.TabIndex = 59;
-            nUPtextureIndexBottomX.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexBottomX.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexBottomX.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexBottomX.DecimalPlaces = 3;
+            this.nUPtextureIndexBottomX.Enabled = false;
+            this.nUPtextureIndexBottomX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexBottomX.Location = new System.Drawing.Point(73, 78);
+            this.nUPtextureIndexBottomX.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexBottomX.Name = "nUPtextureIndexBottomX";
+            this.nUPtextureIndexBottomX.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexBottomX.TabIndex = 59;
+            this.nUPtextureIndexBottomX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexBottomX.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexBottomZ
             // 
-            nUPtextureIndexBottomZ.BackColor = SystemColors.Window;
-            nUPtextureIndexBottomZ.DecimalPlaces = 3;
-            nUPtextureIndexBottomZ.Enabled = false;
-            nUPtextureIndexBottomZ.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexBottomZ.Location = new Point(210, 78);
-            nUPtextureIndexBottomZ.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexBottomZ.Name = "nUPtextureIndexBottomZ";
-            nUPtextureIndexBottomZ.Size = new Size(55, 20);
-            nUPtextureIndexBottomZ.TabIndex = 59;
-            nUPtextureIndexBottomZ.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexBottomZ.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexBottomZ.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexBottomZ.DecimalPlaces = 3;
+            this.nUPtextureIndexBottomZ.Enabled = false;
+            this.nUPtextureIndexBottomZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexBottomZ.Location = new System.Drawing.Point(210, 78);
+            this.nUPtextureIndexBottomZ.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexBottomZ.Name = "nUPtextureIndexBottomZ";
+            this.nUPtextureIndexBottomZ.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexBottomZ.TabIndex = 59;
+            this.nUPtextureIndexBottomZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexBottomZ.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexWindowX
             // 
-            nUPtextureIndexWindowX.BackColor = SystemColors.Window;
-            nUPtextureIndexWindowX.DecimalPlaces = 3;
-            nUPtextureIndexWindowX.Enabled = false;
-            nUPtextureIndexWindowX.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexWindowX.Location = new Point(73, 78);
-            nUPtextureIndexWindowX.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexWindowX.Name = "nUPtextureIndexWindowX";
-            nUPtextureIndexWindowX.Size = new Size(55, 20);
-            nUPtextureIndexWindowX.TabIndex = 59;
-            nUPtextureIndexWindowX.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexWindowX.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexWindowX.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexWindowX.DecimalPlaces = 3;
+            this.nUPtextureIndexWindowX.Enabled = false;
+            this.nUPtextureIndexWindowX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexWindowX.Location = new System.Drawing.Point(73, 78);
+            this.nUPtextureIndexWindowX.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexWindowX.Name = "nUPtextureIndexWindowX";
+            this.nUPtextureIndexWindowX.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexWindowX.TabIndex = 59;
+            this.nUPtextureIndexWindowX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexWindowX.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexWindowY
             // 
-            nUPtextureIndexWindowY.BackColor = SystemColors.Window;
-            nUPtextureIndexWindowY.DecimalPlaces = 3;
-            nUPtextureIndexWindowY.Enabled = false;
-            nUPtextureIndexWindowY.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexWindowY.Location = new Point(143, 78);
-            nUPtextureIndexWindowY.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexWindowY.Name = "nUPtextureIndexWindowY";
-            nUPtextureIndexWindowY.Size = new Size(55, 20);
-            nUPtextureIndexWindowY.TabIndex = 59;
-            nUPtextureIndexWindowY.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexWindowY.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexWindowY.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexWindowY.DecimalPlaces = 3;
+            this.nUPtextureIndexWindowY.Enabled = false;
+            this.nUPtextureIndexWindowY.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexWindowY.Location = new System.Drawing.Point(143, 78);
+            this.nUPtextureIndexWindowY.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexWindowY.Name = "nUPtextureIndexWindowY";
+            this.nUPtextureIndexWindowY.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexWindowY.TabIndex = 59;
+            this.nUPtextureIndexWindowY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexWindowY.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexWindowZ
             // 
-            nUPtextureIndexWindowZ.BackColor = SystemColors.Window;
-            nUPtextureIndexWindowZ.DecimalPlaces = 3;
-            nUPtextureIndexWindowZ.Enabled = false;
-            nUPtextureIndexWindowZ.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexWindowZ.Location = new Point(214, 78);
-            nUPtextureIndexWindowZ.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexWindowZ.Name = "nUPtextureIndexWindowZ";
-            nUPtextureIndexWindowZ.Size = new Size(55, 20);
-            nUPtextureIndexWindowZ.TabIndex = 59;
-            nUPtextureIndexWindowZ.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexWindowZ.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexWindowZ.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexWindowZ.DecimalPlaces = 3;
+            this.nUPtextureIndexWindowZ.Enabled = false;
+            this.nUPtextureIndexWindowZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexWindowZ.Location = new System.Drawing.Point(214, 78);
+            this.nUPtextureIndexWindowZ.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexWindowZ.Name = "nUPtextureIndexWindowZ";
+            this.nUPtextureIndexWindowZ.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexWindowZ.TabIndex = 59;
+            this.nUPtextureIndexWindowZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexWindowZ.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexTopX
             // 
-            nUPtextureIndexTopX.BackColor = SystemColors.Window;
-            nUPtextureIndexTopX.DecimalPlaces = 3;
-            nUPtextureIndexTopX.Enabled = false;
-            nUPtextureIndexTopX.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexTopX.Location = new Point(74, 78);
-            nUPtextureIndexTopX.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexTopX.Name = "nUPtextureIndexTopX";
-            nUPtextureIndexTopX.Size = new Size(55, 20);
-            nUPtextureIndexTopX.TabIndex = 59;
-            nUPtextureIndexTopX.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexTopX.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexTopX.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexTopX.DecimalPlaces = 3;
+            this.nUPtextureIndexTopX.Enabled = false;
+            this.nUPtextureIndexTopX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexTopX.Location = new System.Drawing.Point(74, 78);
+            this.nUPtextureIndexTopX.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexTopX.Name = "nUPtextureIndexTopX";
+            this.nUPtextureIndexTopX.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexTopX.TabIndex = 59;
+            this.nUPtextureIndexTopX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexTopX.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexTopZ
             // 
-            nUPtextureIndexTopZ.BackColor = SystemColors.Window;
-            nUPtextureIndexTopZ.DecimalPlaces = 3;
-            nUPtextureIndexTopZ.Enabled = false;
-            nUPtextureIndexTopZ.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexTopZ.Location = new Point(212, 78);
-            nUPtextureIndexTopZ.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexTopZ.Name = "nUPtextureIndexTopZ";
-            nUPtextureIndexTopZ.Size = new Size(55, 20);
-            nUPtextureIndexTopZ.TabIndex = 59;
-            nUPtextureIndexTopZ.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexTopZ.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexTopZ.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexTopZ.DecimalPlaces = 3;
+            this.nUPtextureIndexTopZ.Enabled = false;
+            this.nUPtextureIndexTopZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexTopZ.Location = new System.Drawing.Point(212, 78);
+            this.nUPtextureIndexTopZ.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexTopZ.Name = "nUPtextureIndexTopZ";
+            this.nUPtextureIndexTopZ.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexTopZ.TabIndex = 59;
+            this.nUPtextureIndexTopZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexTopZ.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexRoofX
             // 
-            nUPtextureIndexRoofX.BackColor = SystemColors.Window;
-            nUPtextureIndexRoofX.DecimalPlaces = 3;
-            nUPtextureIndexRoofX.Enabled = false;
-            nUPtextureIndexRoofX.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexRoofX.Location = new Point(75, 78);
-            nUPtextureIndexRoofX.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexRoofX.Name = "nUPtextureIndexRoofX";
-            nUPtextureIndexRoofX.Size = new Size(55, 20);
-            nUPtextureIndexRoofX.TabIndex = 59;
-            nUPtextureIndexRoofX.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexRoofX.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexRoofX.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexRoofX.DecimalPlaces = 3;
+            this.nUPtextureIndexRoofX.Enabled = false;
+            this.nUPtextureIndexRoofX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexRoofX.Location = new System.Drawing.Point(75, 78);
+            this.nUPtextureIndexRoofX.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexRoofX.Name = "nUPtextureIndexRoofX";
+            this.nUPtextureIndexRoofX.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexRoofX.TabIndex = 59;
+            this.nUPtextureIndexRoofX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexRoofX.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexRoofY
             // 
-            nUPtextureIndexRoofY.BackColor = SystemColors.Window;
-            nUPtextureIndexRoofY.DecimalPlaces = 3;
-            nUPtextureIndexRoofY.Enabled = false;
-            nUPtextureIndexRoofY.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexRoofY.Location = new Point(143, 78);
-            nUPtextureIndexRoofY.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexRoofY.Name = "nUPtextureIndexRoofY";
-            nUPtextureIndexRoofY.Size = new Size(55, 20);
-            nUPtextureIndexRoofY.TabIndex = 59;
-            nUPtextureIndexRoofY.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexRoofY.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexRoofY.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexRoofY.DecimalPlaces = 3;
+            this.nUPtextureIndexRoofY.Enabled = false;
+            this.nUPtextureIndexRoofY.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexRoofY.Location = new System.Drawing.Point(143, 78);
+            this.nUPtextureIndexRoofY.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexRoofY.Name = "nUPtextureIndexRoofY";
+            this.nUPtextureIndexRoofY.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexRoofY.TabIndex = 59;
+            this.nUPtextureIndexRoofY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexRoofY.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexRoofZ
             // 
-            nUPtextureIndexRoofZ.BackColor = SystemColors.Window;
-            nUPtextureIndexRoofZ.DecimalPlaces = 3;
-            nUPtextureIndexRoofZ.Enabled = false;
-            nUPtextureIndexRoofZ.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexRoofZ.Location = new Point(212, 78);
-            nUPtextureIndexRoofZ.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexRoofZ.Name = "nUPtextureIndexRoofZ";
-            nUPtextureIndexRoofZ.Size = new Size(55, 20);
-            nUPtextureIndexRoofZ.TabIndex = 59;
-            nUPtextureIndexRoofZ.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexRoofZ.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexRoofZ.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexRoofZ.DecimalPlaces = 3;
+            this.nUPtextureIndexRoofZ.Enabled = false;
+            this.nUPtextureIndexRoofZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexRoofZ.Location = new System.Drawing.Point(212, 78);
+            this.nUPtextureIndexRoofZ.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexRoofZ.Name = "nUPtextureIndexRoofZ";
+            this.nUPtextureIndexRoofZ.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexRoofZ.TabIndex = 59;
+            this.nUPtextureIndexRoofZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexRoofZ.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPbuildingSides
             // 
-            nUPbuildingSides.BackColor = SystemColors.Window;
-            nUPbuildingSides.Enabled = false;
-            nUPbuildingSides.Location = new Point(138, 22);
-            nUPbuildingSides.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
-            nUPbuildingSides.Minimum = new decimal(new int[] { 4, 0, 0, 0 });
-            nUPbuildingSides.Name = "nUPbuildingSides";
-            nUPbuildingSides.Size = new Size(40, 20);
-            nUPbuildingSides.TabIndex = 59;
-            nUPbuildingSides.TextAlign = HorizontalAlignment.Right;
-            nUPbuildingSides.Value = new decimal(new int[] { 4, 0, 0, 0 });
+            this.nUPbuildingSides.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPbuildingSides.Enabled = false;
+            this.nUPbuildingSides.Location = new System.Drawing.Point(138, 22);
+            this.nUPbuildingSides.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.nUPbuildingSides.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.nUPbuildingSides.Name = "nUPbuildingSides";
+            this.nUPbuildingSides.Size = new System.Drawing.Size(40, 20);
+            this.nUPbuildingSides.TabIndex = 59;
+            this.nUPbuildingSides.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPbuildingSides.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
             // 
             // ckSmoothing
             // 
-            ckSmoothing.AutoSize = true;
-            ckSmoothing.Enabled = false;
-            ckSmoothing.Location = new Point(12, 25);
-            ckSmoothing.Name = "ckSmoothing";
-            ckSmoothing.Size = new Size(76, 17);
-            ckSmoothing.TabIndex = 60;
-            ckSmoothing.Text = "Smoothing";
-            ckSmoothing.UseVisualStyleBackColor = true;
+            this.ckSmoothing.AutoSize = true;
+            this.ckSmoothing.Enabled = false;
+            this.ckSmoothing.Location = new System.Drawing.Point(12, 25);
+            this.ckSmoothing.Name = "ckSmoothing";
+            this.ckSmoothing.Size = new System.Drawing.Size(76, 17);
+            this.ckSmoothing.TabIndex = 60;
+            this.ckSmoothing.Text = "Smoothing";
+            this.ckSmoothing.UseVisualStyleBackColor = true;
             // 
             // lbSides
             // 
-            lbSides.AutoSize = true;
-            lbSides.Location = new Point(99, 27);
-            lbSides.Name = "lbSides";
-            lbSides.Size = new Size(33, 13);
-            lbSides.TabIndex = 58;
-            lbSides.Text = "Sides";
+            this.lbSides.AutoSize = true;
+            this.lbSides.Location = new System.Drawing.Point(99, 27);
+            this.lbSides.Name = "lbSides";
+            this.lbSides.Size = new System.Drawing.Size(33, 13);
+            this.lbSides.TabIndex = 58;
+            this.lbSides.Text = "Sides";
             // 
             // lbG
             // 
-            lbG.AutoSize = true;
-            lbG.Location = new Point(14, 104);
-            lbG.Name = "lbG";
-            lbG.Size = new Size(35, 13);
-            lbG.TabIndex = 58;
-            lbG.Text = "Gable";
+            this.lbG.AutoSize = true;
+            this.lbG.Location = new System.Drawing.Point(14, 104);
+            this.lbG.Name = "lbG";
+            this.lbG.Size = new System.Drawing.Size(35, 13);
+            this.lbG.TabIndex = 58;
+            this.lbG.Text = "Gable";
             // 
             // lbF
             // 
-            lbF.AutoSize = true;
-            lbF.Location = new Point(13, 146);
-            lbF.Name = "lbF";
-            lbF.Size = new Size(31, 13);
-            lbF.TabIndex = 58;
-            lbF.Text = "Face";
+            this.lbF.AutoSize = true;
+            this.lbF.Location = new System.Drawing.Point(13, 146);
+            this.lbF.Name = "lbF";
+            this.lbF.Size = new System.Drawing.Size(31, 13);
+            this.lbF.TabIndex = 58;
+            this.lbF.Text = "Face";
             // 
             // nUPgableTexture
             // 
-            nUPgableTexture.BackColor = SystemColors.Window;
-            nUPgableTexture.Enabled = false;
-            nUPgableTexture.Location = new Point(17, 120);
-            nUPgableTexture.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            nUPgableTexture.Name = "nUPgableTexture";
-            nUPgableTexture.Size = new Size(46, 20);
-            nUPgableTexture.TabIndex = 59;
-            nUPgableTexture.TextAlign = HorizontalAlignment.Right;
-            nUPgableTexture.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPgableTexture.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPgableTexture.Enabled = false;
+            this.nUPgableTexture.Location = new System.Drawing.Point(17, 120);
+            this.nUPgableTexture.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nUPgableTexture.Name = "nUPgableTexture";
+            this.nUPgableTexture.Size = new System.Drawing.Size(46, 20);
+            this.nUPgableTexture.TabIndex = 59;
+            this.nUPgableTexture.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPgableTexture.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPfaceTexture
             // 
-            nUPfaceTexture.BackColor = SystemColors.Window;
-            nUPfaceTexture.Enabled = false;
-            nUPfaceTexture.Location = new Point(17, 161);
-            nUPfaceTexture.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            nUPfaceTexture.Name = "nUPfaceTexture";
-            nUPfaceTexture.Size = new Size(46, 20);
-            nUPfaceTexture.TabIndex = 59;
-            nUPfaceTexture.TextAlign = HorizontalAlignment.Right;
-            nUPfaceTexture.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPfaceTexture.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPfaceTexture.Enabled = false;
+            this.nUPfaceTexture.Location = new System.Drawing.Point(17, 161);
+            this.nUPfaceTexture.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nUPfaceTexture.Name = "nUPfaceTexture";
+            this.nUPfaceTexture.Size = new System.Drawing.Size(46, 20);
+            this.nUPfaceTexture.TabIndex = 59;
+            this.nUPfaceTexture.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPfaceTexture.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexGableY
             // 
-            nUPtextureIndexGableY.BackColor = SystemColors.Window;
-            nUPtextureIndexGableY.DecimalPlaces = 3;
-            nUPtextureIndexGableY.Enabled = false;
-            nUPtextureIndexGableY.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexGableY.Location = new Point(143, 120);
-            nUPtextureIndexGableY.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexGableY.Name = "nUPtextureIndexGableY";
-            nUPtextureIndexGableY.Size = new Size(55, 20);
-            nUPtextureIndexGableY.TabIndex = 59;
-            nUPtextureIndexGableY.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexGableY.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexGableY.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexGableY.DecimalPlaces = 3;
+            this.nUPtextureIndexGableY.Enabled = false;
+            this.nUPtextureIndexGableY.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexGableY.Location = new System.Drawing.Point(143, 120);
+            this.nUPtextureIndexGableY.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexGableY.Name = "nUPtextureIndexGableY";
+            this.nUPtextureIndexGableY.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexGableY.TabIndex = 59;
+            this.nUPtextureIndexGableY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexGableY.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexFaceX
             // 
-            nUPtextureIndexFaceX.BackColor = SystemColors.Window;
-            nUPtextureIndexFaceX.DecimalPlaces = 3;
-            nUPtextureIndexFaceX.Enabled = false;
-            nUPtextureIndexFaceX.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexFaceX.Location = new Point(75, 162);
-            nUPtextureIndexFaceX.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexFaceX.Name = "nUPtextureIndexFaceX";
-            nUPtextureIndexFaceX.Size = new Size(55, 20);
-            nUPtextureIndexFaceX.TabIndex = 59;
-            nUPtextureIndexFaceX.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexFaceX.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexFaceX.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexFaceX.DecimalPlaces = 3;
+            this.nUPtextureIndexFaceX.Enabled = false;
+            this.nUPtextureIndexFaceX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexFaceX.Location = new System.Drawing.Point(75, 162);
+            this.nUPtextureIndexFaceX.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexFaceX.Name = "nUPtextureIndexFaceX";
+            this.nUPtextureIndexFaceX.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexFaceX.TabIndex = 59;
+            this.nUPtextureIndexFaceX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexFaceX.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexGableZ
             // 
-            nUPtextureIndexGableZ.BackColor = SystemColors.Window;
-            nUPtextureIndexGableZ.DecimalPlaces = 3;
-            nUPtextureIndexGableZ.Enabled = false;
-            nUPtextureIndexGableZ.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexGableZ.Location = new Point(212, 122);
-            nUPtextureIndexGableZ.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexGableZ.Name = "nUPtextureIndexGableZ";
-            nUPtextureIndexGableZ.Size = new Size(55, 20);
-            nUPtextureIndexGableZ.TabIndex = 59;
-            nUPtextureIndexGableZ.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexGableZ.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexGableZ.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexGableZ.DecimalPlaces = 3;
+            this.nUPtextureIndexGableZ.Enabled = false;
+            this.nUPtextureIndexGableZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexGableZ.Location = new System.Drawing.Point(212, 122);
+            this.nUPtextureIndexGableZ.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexGableZ.Name = "nUPtextureIndexGableZ";
+            this.nUPtextureIndexGableZ.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexGableZ.TabIndex = 59;
+            this.nUPtextureIndexGableZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexGableZ.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtextureIndexFaceY
             // 
-            nUPtextureIndexFaceY.BackColor = SystemColors.Window;
-            nUPtextureIndexFaceY.DecimalPlaces = 3;
-            nUPtextureIndexFaceY.Enabled = false;
-            nUPtextureIndexFaceY.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPtextureIndexFaceY.Location = new Point(143, 162);
-            nUPtextureIndexFaceY.Maximum = new decimal(new int[] { 9999, 0, 0, 131072 });
-            nUPtextureIndexFaceY.Name = "nUPtextureIndexFaceY";
-            nUPtextureIndexFaceY.Size = new Size(55, 20);
-            nUPtextureIndexFaceY.TabIndex = 59;
-            nUPtextureIndexFaceY.TextAlign = HorizontalAlignment.Right;
-            nUPtextureIndexFaceY.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPtextureIndexFaceY.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtextureIndexFaceY.DecimalPlaces = 3;
+            this.nUPtextureIndexFaceY.Enabled = false;
+            this.nUPtextureIndexFaceY.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexFaceY.Location = new System.Drawing.Point(143, 162);
+            this.nUPtextureIndexFaceY.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.nUPtextureIndexFaceY.Name = "nUPtextureIndexFaceY";
+            this.nUPtextureIndexFaceY.Size = new System.Drawing.Size(55, 20);
+            this.nUPtextureIndexFaceY.TabIndex = 59;
+            this.nUPtextureIndexFaceY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtextureIndexFaceY.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.Location = new Point(465, 505);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(59, 23);
-            _cmdCancel.TabIndex = 61;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Location = new System.Drawing.Point(465, 505);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(59, 23);
+            this._cmdCancel.TabIndex = 61;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.MouseHover += new System.EventHandler(this.CmdCancel_MouseHover);
             // 
             // cmdOK
             // 
-            cmdOK.Location = new Point(549, 505);
-            cmdOK.Name = "cmdOK";
-            cmdOK.Size = new Size(59, 23);
-            cmdOK.TabIndex = 61;
-            cmdOK.Text = "OK";
-            cmdOK.UseVisualStyleBackColor = true;
+            this.cmdOK.Location = new System.Drawing.Point(549, 505);
+            this.cmdOK.Name = "cmdOK";
+            this.cmdOK.Size = new System.Drawing.Size(59, 23);
+            this.cmdOK.TabIndex = 61;
+            this.cmdOK.Text = "OK";
+            this.cmdOK.UseVisualStyleBackColor = true;
             // 
             // lbgb3
             // 
-            lbgb3.BackColor = Color.Transparent;
-            lbgb3.Cursor = Cursors.Default;
-            lbgb3.ForeColor = SystemColors.ControlText;
-            lbgb3.Location = new Point(23, 99);
-            lbgb3.Name = "lbgb3";
-            lbgb3.RightToLeft = RightToLeft.No;
-            lbgb3.Size = new Size(37, 18);
-            lbgb3.TabIndex = 64;
-            lbgb3.Text = "Scale";
-            lbgb3.TextAlign = ContentAlignment.MiddleLeft;
+            this.lbgb3.BackColor = System.Drawing.Color.Transparent;
+            this.lbgb3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbgb3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbgb3.Location = new System.Drawing.Point(23, 99);
+            this.lbgb3.Name = "lbgb3";
+            this.lbgb3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbgb3.Size = new System.Drawing.Size(37, 18);
+            this.lbgb3.TabIndex = 64;
+            this.lbgb3.Text = "Scale";
+            this.lbgb3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbBW
             // 
-            lbBW.AutoSize = true;
-            lbBW.Location = new Point(64, 22);
-            lbBW.Name = "lbBW";
-            lbBW.Size = new Size(45, 13);
-            lbBW.TabIndex = 66;
-            lbBW.Text = "Width X";
+            this.lbBW.AutoSize = true;
+            this.lbBW.Location = new System.Drawing.Point(64, 22);
+            this.lbBW.Name = "lbBW";
+            this.lbBW.Size = new System.Drawing.Size(45, 13);
+            this.lbBW.TabIndex = 66;
+            this.lbBW.Text = "Width X";
             // 
             // lbBD
             // 
-            lbBD.AutoSize = true;
-            lbBD.Location = new Point(207, 22);
-            lbBD.Name = "lbBD";
-            lbBD.Size = new Size(43, 13);
-            lbBD.TabIndex = 67;
-            lbBD.Text = "Deep Z";
+            this.lbBD.AutoSize = true;
+            this.lbBD.Location = new System.Drawing.Point(207, 22);
+            this.lbBD.Name = "lbBD";
+            this.lbBD.Size = new System.Drawing.Size(43, 13);
+            this.lbBD.TabIndex = 67;
+            this.lbBD.Text = "Deep Z";
             // 
             // nUPsizeX
             // 
-            nUPsizeX.BackColor = SystemColors.Window;
-            nUPsizeX.DecimalPlaces = 2;
-            nUPsizeX.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nUPsizeX.Location = new Point(73, 36);
-            nUPsizeX.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            nUPsizeX.Name = "nUPsizeX";
-            nUPsizeX.Size = new Size(55, 20);
-            nUPsizeX.TabIndex = 68;
-            nUPsizeX.TextAlign = HorizontalAlignment.Right;
-            nUPsizeX.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nUPsizeX.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPsizeX.DecimalPlaces = 2;
+            this.nUPsizeX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUPsizeX.Location = new System.Drawing.Point(73, 36);
+            this.nUPsizeX.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nUPsizeX.Name = "nUPsizeX";
+            this.nUPsizeX.Size = new System.Drawing.Size(55, 20);
+            this.nUPsizeX.TabIndex = 68;
+            this.nUPsizeX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPsizeX.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // nUPsizeZ
             // 
-            nUPsizeZ.BackColor = SystemColors.Window;
-            nUPsizeZ.DecimalPlaces = 2;
-            nUPsizeZ.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nUPsizeZ.Location = new Point(209, 38);
-            nUPsizeZ.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            nUPsizeZ.Name = "nUPsizeZ";
-            nUPsizeZ.Size = new Size(55, 20);
-            nUPsizeZ.TabIndex = 69;
-            nUPsizeZ.TextAlign = HorizontalAlignment.Right;
-            nUPsizeZ.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nUPsizeZ.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPsizeZ.DecimalPlaces = 2;
+            this.nUPsizeZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUPsizeZ.Location = new System.Drawing.Point(209, 38);
+            this.nUPsizeZ.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nUPsizeZ.Name = "nUPsizeZ";
+            this.nUPsizeZ.Size = new System.Drawing.Size(55, 20);
+            this.nUPsizeZ.TabIndex = 69;
+            this.nUPsizeZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPsizeZ.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // nUPscale
             // 
-            nUPscale.BackColor = SystemColors.Window;
-            nUPscale.DecimalPlaces = 2;
-            nUPscale.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nUPscale.Location = new Point(26, 120);
-            nUPscale.Name = "nUPscale";
-            nUPscale.Size = new Size(50, 20);
-            nUPscale.TabIndex = 70;
-            nUPscale.TextAlign = HorizontalAlignment.Right;
-            nUPscale.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            this.nUPscale.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPscale.DecimalPlaces = 2;
+            this.nUPscale.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUPscale.Location = new System.Drawing.Point(26, 120);
+            this.nUPscale.Name = "nUPscale";
+            this.nUPscale.Size = new System.Drawing.Size(50, 20);
+            this.nUPscale.TabIndex = 70;
+            this.nUPscale.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPscale.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // nUPtopTexture
             // 
-            nUPtopTexture.BackColor = SystemColors.Window;
-            nUPtopTexture.Location = new Point(15, 37);
-            nUPtopTexture.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            nUPtopTexture.Name = "nUPtopTexture";
-            nUPtopTexture.Size = new Size(46, 20);
-            nUPtopTexture.TabIndex = 53;
-            nUPtopTexture.TextAlign = HorizontalAlignment.Right;
-            nUPtopTexture.Value = new decimal(new int[] { 8, 0, 0, 0 });
+            this.nUPtopTexture.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPtopTexture.Location = new System.Drawing.Point(15, 37);
+            this.nUPtopTexture.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nUPtopTexture.Name = "nUPtopTexture";
+            this.nUPtopTexture.Size = new System.Drawing.Size(46, 20);
+            this.nUPtopTexture.TabIndex = 53;
+            this.nUPtopTexture.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPtopTexture.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
             // 
             // nUPbottomTexture
             // 
-            nUPbottomTexture.BackColor = SystemColors.Window;
-            nUPbottomTexture.Location = new Point(14, 36);
-            nUPbottomTexture.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            nUPbottomTexture.Name = "nUPbottomTexture";
-            nUPbottomTexture.Size = new Size(46, 20);
-            nUPbottomTexture.TabIndex = 53;
-            nUPbottomTexture.TextAlign = HorizontalAlignment.Right;
-            nUPbottomTexture.Value = new decimal(new int[] { 8, 0, 0, 0 });
+            this.nUPbottomTexture.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPbottomTexture.Location = new System.Drawing.Point(14, 36);
+            this.nUPbottomTexture.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nUPbottomTexture.Name = "nUPbottomTexture";
+            this.nUPbottomTexture.Size = new System.Drawing.Size(46, 20);
+            this.nUPbottomTexture.TabIndex = 53;
+            this.nUPbottomTexture.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPbottomTexture.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
             // 
             // nUProofTexture
             // 
-            nUProofTexture.BackColor = SystemColors.Window;
-            nUProofTexture.Location = new Point(16, 37);
-            nUProofTexture.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            nUProofTexture.Name = "nUProofTexture";
-            nUProofTexture.Size = new Size(46, 20);
-            nUProofTexture.TabIndex = 53;
-            nUProofTexture.TextAlign = HorizontalAlignment.Right;
-            nUProofTexture.Value = new decimal(new int[] { 4, 0, 0, 0 });
+            this.nUProofTexture.BackColor = System.Drawing.SystemColors.Window;
+            this.nUProofTexture.Location = new System.Drawing.Point(16, 37);
+            this.nUProofTexture.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nUProofTexture.Name = "nUProofTexture";
+            this.nUProofTexture.Size = new System.Drawing.Size(46, 20);
+            this.nUProofTexture.TabIndex = 53;
+            this.nUProofTexture.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUProofTexture.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
             // 
             // nUPwindowTexture
             // 
-            nUPwindowTexture.BackColor = SystemColors.Window;
-            nUPwindowTexture.Location = new Point(12, 36);
-            nUPwindowTexture.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
-            nUPwindowTexture.Name = "nUPwindowTexture";
-            nUPwindowTexture.Size = new Size(46, 20);
-            nUPwindowTexture.TabIndex = 53;
-            nUPwindowTexture.TextAlign = HorizontalAlignment.Right;
-            nUPwindowTexture.Value = new decimal(new int[] { 4, 0, 0, 0 });
+            this.nUPwindowTexture.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPwindowTexture.Location = new System.Drawing.Point(12, 36);
+            this.nUPwindowTexture.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nUPwindowTexture.Name = "nUPwindowTexture";
+            this.nUPwindowTexture.Size = new System.Drawing.Size(46, 20);
+            this.nUPwindowTexture.TabIndex = 53;
+            this.nUPwindowTexture.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPwindowTexture.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
             // 
-            // imgGenB
+            // _imgGenB
             // 
-            _imgGenB.BorderStyle = BorderStyle.FixedSingle;
-            _imgGenB.Location = new Point(323, 238);
-            _imgGenB.Name = "_imgGenB";
-            _imgGenB.Size = new Size(286, 252);
-            _imgGenB.TabIndex = 72;
-            _imgGenB.TabStop = false;
+            this._imgGenB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._imgGenB.Location = new System.Drawing.Point(323, 238);
+            this._imgGenB.Name = "_imgGenB";
+            this._imgGenB.Size = new System.Drawing.Size(286, 252);
+            this._imgGenB.TabIndex = 72;
+            this._imgGenB.TabStop = false;
+            this._imgGenB.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ImgGenB_MouseDown);
+            this._imgGenB.MouseHover += new System.EventHandler(this.ImgGenB_MouseHover);
+            this._imgGenB.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ImgGenB_MouseMove);
+            this._imgGenB.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ImgGenB_MouseUp);
+            this._imgGenB.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.ImgGenB_MouseWheel);
             // 
             // frGenB
             // 
-            frGenB.BackColor = Color.Transparent;
-            frGenB.Controls.Add(_optGbMultiSided);
-            frGenB.Controls.Add(_optGbPyramidal);
-            frGenB.Controls.Add(_optGbSlant);
-            frGenB.Controls.Add(_optGbRidge);
-            frGenB.Controls.Add(_optGbPeaked);
-            frGenB.Controls.Add(_optGbFlat);
-            frGenB.ForeColor = SystemColors.MenuHighlight;
-            frGenB.Location = new Point(22, 14);
-            frGenB.Name = "frGenB";
-            frGenB.RightToLeft = RightToLeft.No;
-            frGenB.Size = new Size(282, 73);
-            frGenB.TabIndex = 74;
-            frGenB.TabStop = false;
-            frGenB.Text = "Building Type";
+            this.frGenB.BackColor = System.Drawing.Color.Transparent;
+            this.frGenB.Controls.Add(this._optGbMultiSided);
+            this.frGenB.Controls.Add(this._optGbPyramidal);
+            this.frGenB.Controls.Add(this._optGbSlant);
+            this.frGenB.Controls.Add(this._optGbRidge);
+            this.frGenB.Controls.Add(this._optGbPeaked);
+            this.frGenB.Controls.Add(this._optGbFlat);
+            this.frGenB.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.frGenB.Location = new System.Drawing.Point(22, 14);
+            this.frGenB.Name = "frGenB";
+            this.frGenB.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.frGenB.Size = new System.Drawing.Size(282, 73);
+            this.frGenB.TabIndex = 74;
+            this.frGenB.TabStop = false;
+            this.frGenB.Text = "Building Type";
             // 
-            // optGbMultiSided
+            // _optGbMultiSided
             // 
-            _optGbMultiSided.AutoSize = true;
-            _optGbMultiSided.ForeColor = Color.Black;
-            _optGbMultiSided.Location = new Point(183, 42);
-            _optGbMultiSided.Name = "_optGbMultiSided";
-            _optGbMultiSided.Size = new Size(74, 17);
-            _optGbMultiSided.TabIndex = 0;
-            _optGbMultiSided.Text = "MultiSided";
-            _optGbMultiSided.UseVisualStyleBackColor = true;
+            this._optGbMultiSided.AutoSize = true;
+            this._optGbMultiSided.ForeColor = System.Drawing.Color.Black;
+            this._optGbMultiSided.Location = new System.Drawing.Point(183, 42);
+            this._optGbMultiSided.Name = "_optGbMultiSided";
+            this._optGbMultiSided.Size = new System.Drawing.Size(74, 17);
+            this._optGbMultiSided.TabIndex = 0;
+            this._optGbMultiSided.Text = "MultiSided";
+            this._optGbMultiSided.UseVisualStyleBackColor = true;
+            this._optGbMultiSided.CheckedChanged += new System.EventHandler(this.OptGbMultiSided_CheckedChanged);
             // 
-            // optGbPyramidal
+            // _optGbPyramidal
             // 
-            _optGbPyramidal.AutoSize = true;
-            _optGbPyramidal.ForeColor = Color.Black;
-            _optGbPyramidal.Location = new Point(183, 19);
-            _optGbPyramidal.Name = "_optGbPyramidal";
-            _optGbPyramidal.Size = new Size(70, 17);
-            _optGbPyramidal.TabIndex = 0;
-            _optGbPyramidal.Text = "Pyramidal";
-            _optGbPyramidal.UseVisualStyleBackColor = true;
+            this._optGbPyramidal.AutoSize = true;
+            this._optGbPyramidal.ForeColor = System.Drawing.Color.Black;
+            this._optGbPyramidal.Location = new System.Drawing.Point(183, 19);
+            this._optGbPyramidal.Name = "_optGbPyramidal";
+            this._optGbPyramidal.Size = new System.Drawing.Size(70, 17);
+            this._optGbPyramidal.TabIndex = 0;
+            this._optGbPyramidal.Text = "Pyramidal";
+            this._optGbPyramidal.UseVisualStyleBackColor = true;
+            this._optGbPyramidal.CheckedChanged += new System.EventHandler(this.OptGbPyramidal_CheckedChanged);
             // 
-            // optGbSlant
+            // _optGbSlant
             // 
-            _optGbSlant.AutoSize = true;
-            _optGbSlant.ForeColor = Color.Black;
-            _optGbSlant.Location = new Point(109, 44);
-            _optGbSlant.Name = "_optGbSlant";
-            _optGbSlant.Size = new Size(49, 17);
-            _optGbSlant.TabIndex = 0;
-            _optGbSlant.Text = "Slant";
-            _optGbSlant.UseVisualStyleBackColor = true;
+            this._optGbSlant.AutoSize = true;
+            this._optGbSlant.ForeColor = System.Drawing.Color.Black;
+            this._optGbSlant.Location = new System.Drawing.Point(109, 44);
+            this._optGbSlant.Name = "_optGbSlant";
+            this._optGbSlant.Size = new System.Drawing.Size(49, 17);
+            this._optGbSlant.TabIndex = 0;
+            this._optGbSlant.Text = "Slant";
+            this._optGbSlant.UseVisualStyleBackColor = true;
+            this._optGbSlant.CheckedChanged += new System.EventHandler(this.OptGbSlant_CheckedChanged);
             // 
-            // optGbRidge
+            // _optGbRidge
             // 
-            _optGbRidge.AutoSize = true;
-            _optGbRidge.ForeColor = Color.Black;
-            _optGbRidge.Location = new Point(109, 21);
-            _optGbRidge.Name = "_optGbRidge";
-            _optGbRidge.Size = new Size(53, 17);
-            _optGbRidge.TabIndex = 0;
-            _optGbRidge.Text = "Ridge";
-            _optGbRidge.UseVisualStyleBackColor = true;
+            this._optGbRidge.AutoSize = true;
+            this._optGbRidge.ForeColor = System.Drawing.Color.Black;
+            this._optGbRidge.Location = new System.Drawing.Point(109, 21);
+            this._optGbRidge.Name = "_optGbRidge";
+            this._optGbRidge.Size = new System.Drawing.Size(53, 17);
+            this._optGbRidge.TabIndex = 0;
+            this._optGbRidge.Text = "Ridge";
+            this._optGbRidge.UseVisualStyleBackColor = true;
+            this._optGbRidge.CheckedChanged += new System.EventHandler(this.OptGbRidge_CheckedChanged);
             // 
-            // optGbPeaked
+            // _optGbPeaked
             // 
-            _optGbPeaked.AutoSize = true;
-            _optGbPeaked.ForeColor = Color.Black;
-            _optGbPeaked.Location = new Point(25, 44);
-            _optGbPeaked.Name = "_optGbPeaked";
-            _optGbPeaked.Size = new Size(62, 17);
-            _optGbPeaked.TabIndex = 0;
-            _optGbPeaked.Text = "Peaked";
-            _optGbPeaked.UseVisualStyleBackColor = true;
+            this._optGbPeaked.AutoSize = true;
+            this._optGbPeaked.ForeColor = System.Drawing.Color.Black;
+            this._optGbPeaked.Location = new System.Drawing.Point(25, 44);
+            this._optGbPeaked.Name = "_optGbPeaked";
+            this._optGbPeaked.Size = new System.Drawing.Size(62, 17);
+            this._optGbPeaked.TabIndex = 0;
+            this._optGbPeaked.Text = "Peaked";
+            this._optGbPeaked.UseVisualStyleBackColor = true;
+            this._optGbPeaked.CheckedChanged += new System.EventHandler(this.OptGbPeaked_CheckedChanged);
             // 
-            // optGbFlat
+            // _optGbFlat
             // 
-            _optGbFlat.AutoSize = true;
-            _optGbFlat.ForeColor = Color.Black;
-            _optGbFlat.Location = new Point(25, 21);
-            _optGbFlat.Name = "_optGbFlat";
-            _optGbFlat.Size = new Size(42, 17);
-            _optGbFlat.TabIndex = 0;
-            _optGbFlat.Text = "Flat";
-            _optGbFlat.UseVisualStyleBackColor = true;
+            this._optGbFlat.AutoSize = true;
+            this._optGbFlat.ForeColor = System.Drawing.Color.Black;
+            this._optGbFlat.Location = new System.Drawing.Point(25, 21);
+            this._optGbFlat.Name = "_optGbFlat";
+            this._optGbFlat.Size = new System.Drawing.Size(42, 17);
+            this._optGbFlat.TabIndex = 0;
+            this._optGbFlat.Text = "Flat";
+            this._optGbFlat.UseVisualStyleBackColor = true;
+            this._optGbFlat.CheckedChanged += new System.EventHandler(this.OptGbFlat_CheckedChanged);
             // 
             // frBottom
             // 
-            frBottom.Controls.Add(nUPsizeBottomY);
-            frBottom.Controls.Add(lbBH);
-            frBottom.Controls.Add(nUPbottomTexture);
-            frBottom.Controls.Add(lbBT);
-            frBottom.Controls.Add(nUPtextureIndexBottomX);
-            frBottom.Controls.Add(Label40);
-            frBottom.Controls.Add(lbBZT);
-            frBottom.Controls.Add(nUPtextureIndexBottomZ);
-            frBottom.Controls.Add(nUPsizeX);
-            frBottom.Controls.Add(nUPsizeZ);
-            frBottom.Controls.Add(lbBD);
-            frBottom.Controls.Add(lbBW);
-            frBottom.Location = new Point(22, 160);
-            frBottom.Name = "frBottom";
-            frBottom.Size = new Size(283, 113);
-            frBottom.TabIndex = 75;
-            frBottom.TabStop = false;
-            frBottom.Text = "Bottom Section";
+            this.frBottom.Controls.Add(this.nUPsizeBottomY);
+            this.frBottom.Controls.Add(this.lbBH);
+            this.frBottom.Controls.Add(this.nUPbottomTexture);
+            this.frBottom.Controls.Add(this.lbBT);
+            this.frBottom.Controls.Add(this.nUPtextureIndexBottomX);
+            this.frBottom.Controls.Add(this.Label40);
+            this.frBottom.Controls.Add(this.lbBZT);
+            this.frBottom.Controls.Add(this.nUPtextureIndexBottomZ);
+            this.frBottom.Controls.Add(this.nUPsizeX);
+            this.frBottom.Controls.Add(this.nUPsizeZ);
+            this.frBottom.Controls.Add(this.lbBD);
+            this.frBottom.Controls.Add(this.lbBW);
+            this.frBottom.Location = new System.Drawing.Point(22, 160);
+            this.frBottom.Name = "frBottom";
+            this.frBottom.Size = new System.Drawing.Size(283, 113);
+            this.frBottom.TabIndex = 75;
+            this.frBottom.TabStop = false;
+            this.frBottom.Text = "Bottom Section";
             // 
             // lbBH
             // 
-            lbBH.AutoSize = true;
-            lbBH.Location = new Point(137, 21);
-            lbBH.Name = "lbBH";
-            lbBH.Size = new Size(48, 13);
-            lbBH.TabIndex = 76;
-            lbBH.Text = "Height Y";
+            this.lbBH.AutoSize = true;
+            this.lbBH.Location = new System.Drawing.Point(137, 21);
+            this.lbBH.Name = "lbBH";
+            this.lbBH.Size = new System.Drawing.Size(48, 13);
+            this.lbBH.TabIndex = 76;
+            this.lbBH.Text = "Height Y";
             // 
             // lbBT
             // 
-            lbBT.AutoSize = true;
-            lbBT.Location = new Point(11, 20);
-            lbBT.Name = "lbBT";
-            lbBT.Size = new Size(43, 13);
-            lbBT.TabIndex = 76;
-            lbBT.Text = "Texture";
+            this.lbBT.AutoSize = true;
+            this.lbBT.Location = new System.Drawing.Point(11, 20);
+            this.lbBT.Name = "lbBT";
+            this.lbBT.Size = new System.Drawing.Size(43, 13);
+            this.lbBT.TabIndex = 76;
+            this.lbBT.Text = "Texture";
             // 
             // Label40
             // 
-            Label40.AutoSize = true;
-            Label40.Location = new Point(67, 62);
-            Label40.Name = "Label40";
-            Label40.Size = new Size(42, 13);
-            Label40.TabIndex = 76;
-            Label40.Text = "X Tiling";
+            this.Label40.AutoSize = true;
+            this.Label40.Location = new System.Drawing.Point(67, 62);
+            this.Label40.Name = "Label40";
+            this.Label40.Size = new System.Drawing.Size(42, 13);
+            this.Label40.TabIndex = 76;
+            this.Label40.Text = "X Tiling";
             // 
             // lbBZT
             // 
-            lbBZT.AutoSize = true;
-            lbBZT.Location = new Point(207, 62);
-            lbBZT.Name = "lbBZT";
-            lbBZT.Size = new Size(42, 13);
-            lbBZT.TabIndex = 76;
-            lbBZT.Text = "Z Tiling";
+            this.lbBZT.AutoSize = true;
+            this.lbBZT.Location = new System.Drawing.Point(207, 62);
+            this.lbBZT.Name = "lbBZT";
+            this.lbBZT.Size = new System.Drawing.Size(42, 13);
+            this.lbBZT.TabIndex = 76;
+            this.lbBZT.Text = "Z Tiling";
             // 
             // lbRH
             // 
-            lbRH.AutoSize = true;
-            lbRH.Location = new Point(140, 21);
-            lbRH.Name = "lbRH";
-            lbRH.Size = new Size(48, 13);
-            lbRH.TabIndex = 76;
-            lbRH.Text = "Height Y";
+            this.lbRH.AutoSize = true;
+            this.lbRH.Location = new System.Drawing.Point(140, 21);
+            this.lbRH.Name = "lbRH";
+            this.lbRH.Size = new System.Drawing.Size(48, 13);
+            this.lbRH.TabIndex = 76;
+            this.lbRH.Text = "Height Y";
             // 
             // Label31
             // 
-            Label31.AutoSize = true;
-            Label31.Location = new Point(137, 20);
-            Label31.Name = "Label31";
-            Label31.Size = new Size(48, 13);
-            Label31.TabIndex = 76;
-            Label31.Text = "Height Y";
+            this.Label31.AutoSize = true;
+            this.Label31.Location = new System.Drawing.Point(137, 20);
+            this.Label31.Name = "Label31";
+            this.Label31.Size = new System.Drawing.Size(48, 13);
+            this.Label31.TabIndex = 76;
+            this.Label31.Text = "Height Y";
             // 
             // Label32
             // 
-            Label32.AutoSize = true;
-            Label32.Location = new Point(140, 21);
-            Label32.Name = "Label32";
-            Label32.Size = new Size(48, 13);
-            Label32.TabIndex = 76;
-            Label32.Text = "Height Y";
+            this.Label32.AutoSize = true;
+            this.Label32.Location = new System.Drawing.Point(140, 21);
+            this.Label32.Name = "Label32";
+            this.Label32.Size = new System.Drawing.Size(48, 13);
+            this.Label32.TabIndex = 76;
+            this.Label32.Text = "Height Y";
             // 
             // Label34
             // 
-            Label34.AutoSize = true;
-            Label34.Location = new Point(139, 61);
-            Label34.Name = "Label34";
-            Label34.Size = new Size(42, 13);
-            Label34.TabIndex = 76;
-            Label34.Text = "Y Tiling";
+            this.Label34.AutoSize = true;
+            this.Label34.Location = new System.Drawing.Point(139, 61);
+            this.Label34.Name = "Label34";
+            this.Label34.Size = new System.Drawing.Size(42, 13);
+            this.Label34.TabIndex = 76;
+            this.Label34.Text = "Y Tiling";
             // 
             // lbWZT
             // 
-            lbWZT.AutoSize = true;
-            lbWZT.Location = new Point(211, 62);
-            lbWZT.Name = "lbWZT";
-            lbWZT.Size = new Size(42, 13);
-            lbWZT.TabIndex = 76;
-            lbWZT.Text = "Z Tiling";
+            this.lbWZT.AutoSize = true;
+            this.lbWZT.Location = new System.Drawing.Point(211, 62);
+            this.lbWZT.Name = "lbWZT";
+            this.lbWZT.Size = new System.Drawing.Size(42, 13);
+            this.lbWZT.TabIndex = 76;
+            this.lbWZT.Text = "Z Tiling";
             // 
             // Label37
             // 
-            Label37.AutoSize = true;
-            Label37.Location = new Point(67, 62);
-            Label37.Name = "Label37";
-            Label37.Size = new Size(42, 13);
-            Label37.TabIndex = 76;
-            Label37.Text = "X Tiling";
+            this.Label37.AutoSize = true;
+            this.Label37.Location = new System.Drawing.Point(67, 62);
+            this.Label37.Name = "Label37";
+            this.Label37.Size = new System.Drawing.Size(42, 13);
+            this.Label37.TabIndex = 76;
+            this.Label37.Text = "X Tiling";
             // 
             // Label38
             // 
-            Label38.AutoSize = true;
-            Label38.Location = new Point(11, 20);
-            Label38.Name = "Label38";
-            Label38.Size = new Size(43, 13);
-            Label38.TabIndex = 76;
-            Label38.Text = "Texture";
+            this.Label38.AutoSize = true;
+            this.Label38.Location = new System.Drawing.Point(11, 20);
+            this.Label38.Name = "Label38";
+            this.Label38.Size = new System.Drawing.Size(43, 13);
+            this.Label38.TabIndex = 76;
+            this.Label38.Text = "Texture";
             // 
             // Label39
             // 
-            Label39.AutoSize = true;
-            Label39.Location = new Point(14, 21);
-            Label39.Name = "Label39";
-            Label39.Size = new Size(43, 13);
-            Label39.TabIndex = 76;
-            Label39.Text = "Texture";
+            this.Label39.AutoSize = true;
+            this.Label39.Location = new System.Drawing.Point(14, 21);
+            this.Label39.Name = "Label39";
+            this.Label39.Size = new System.Drawing.Size(43, 13);
+            this.Label39.TabIndex = 76;
+            this.Label39.Text = "Texture";
             // 
             // frWindow
             // 
-            frWindow.Controls.Add(nUPwindowTexture);
-            frWindow.Controls.Add(Label38);
-            frWindow.Controls.Add(Label31);
-            frWindow.Controls.Add(nUPsizeWindowY);
-            frWindow.Controls.Add(lbWZT);
-            frWindow.Controls.Add(nUPtextureIndexWindowX);
-            frWindow.Controls.Add(Label34);
-            frWindow.Controls.Add(Label37);
-            frWindow.Controls.Add(nUPWZ);
-            frWindow.Controls.Add(nUPWX);
-            frWindow.Controls.Add(Label5);
-            frWindow.Controls.Add(nUPtextureIndexWindowZ);
-            frWindow.Controls.Add(nUPtextureIndexWindowY);
-            frWindow.Controls.Add(Label1);
-            frWindow.Location = new Point(22, 289);
-            frWindow.Name = "frWindow";
-            frWindow.Size = new Size(283, 113);
-            frWindow.TabIndex = 77;
-            frWindow.TabStop = false;
-            frWindow.Text = "Window Section";
+            this.frWindow.Controls.Add(this.nUPwindowTexture);
+            this.frWindow.Controls.Add(this.Label38);
+            this.frWindow.Controls.Add(this.Label31);
+            this.frWindow.Controls.Add(this.nUPsizeWindowY);
+            this.frWindow.Controls.Add(this.lbWZT);
+            this.frWindow.Controls.Add(this.nUPtextureIndexWindowX);
+            this.frWindow.Controls.Add(this.Label34);
+            this.frWindow.Controls.Add(this.Label37);
+            this.frWindow.Controls.Add(this.nUPWZ);
+            this.frWindow.Controls.Add(this.nUPWX);
+            this.frWindow.Controls.Add(this.Label5);
+            this.frWindow.Controls.Add(this.nUPtextureIndexWindowZ);
+            this.frWindow.Controls.Add(this.nUPtextureIndexWindowY);
+            this.frWindow.Controls.Add(this.Label1);
+            this.frWindow.Location = new System.Drawing.Point(22, 289);
+            this.frWindow.Name = "frWindow";
+            this.frWindow.Size = new System.Drawing.Size(283, 113);
+            this.frWindow.TabIndex = 77;
+            this.frWindow.TabStop = false;
+            this.frWindow.Text = "Window Section";
             // 
             // nUPWZ
             // 
-            nUPWZ.BackColor = SystemColors.Window;
-            nUPWZ.DecimalPlaces = 2;
-            nUPWZ.Enabled = false;
-            nUPWZ.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nUPWZ.Location = new Point(213, 36);
-            nUPWZ.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            nUPWZ.Name = "nUPWZ";
-            nUPWZ.Size = new Size(55, 20);
-            nUPWZ.TabIndex = 68;
-            nUPWZ.TextAlign = HorizontalAlignment.Right;
-            nUPWZ.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nUPWZ.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPWZ.DecimalPlaces = 2;
+            this.nUPWZ.Enabled = false;
+            this.nUPWZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUPWZ.Location = new System.Drawing.Point(213, 36);
+            this.nUPWZ.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nUPWZ.Name = "nUPWZ";
+            this.nUPWZ.Size = new System.Drawing.Size(55, 20);
+            this.nUPWZ.TabIndex = 68;
+            this.nUPWZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPWZ.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // nUPWX
             // 
-            nUPWX.BackColor = SystemColors.Window;
-            nUPWX.DecimalPlaces = 2;
-            nUPWX.Enabled = false;
-            nUPWX.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nUPWX.Location = new Point(73, 36);
-            nUPWX.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            nUPWX.Name = "nUPWX";
-            nUPWX.Size = new Size(55, 20);
-            nUPWX.TabIndex = 68;
-            nUPWX.TextAlign = HorizontalAlignment.Right;
-            nUPWX.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nUPWX.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPWX.DecimalPlaces = 2;
+            this.nUPWX.Enabled = false;
+            this.nUPWX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUPWX.Location = new System.Drawing.Point(73, 36);
+            this.nUPWX.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nUPWX.Name = "nUPWX";
+            this.nUPWX.Size = new System.Drawing.Size(55, 20);
+            this.nUPWX.TabIndex = 68;
+            this.nUPWX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPWX.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // Label5
             // 
-            Label5.AutoSize = true;
-            Label5.Enabled = false;
-            Label5.Location = new Point(213, 20);
-            Label5.Name = "Label5";
-            Label5.Size = new Size(43, 13);
-            Label5.TabIndex = 67;
-            Label5.Text = "Deep Z";
+            this.Label5.AutoSize = true;
+            this.Label5.Enabled = false;
+            this.Label5.Location = new System.Drawing.Point(213, 20);
+            this.Label5.Name = "Label5";
+            this.Label5.Size = new System.Drawing.Size(43, 13);
+            this.Label5.TabIndex = 67;
+            this.Label5.Text = "Deep Z";
             // 
             // Label1
             // 
-            Label1.AutoSize = true;
-            Label1.Enabled = false;
-            Label1.Location = new Point(67, 20);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(45, 13);
-            Label1.TabIndex = 66;
-            Label1.Text = "Width X";
+            this.Label1.AutoSize = true;
+            this.Label1.Enabled = false;
+            this.Label1.Location = new System.Drawing.Point(67, 20);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(45, 13);
+            this.Label1.TabIndex = 66;
+            this.Label1.Text = "Width X";
             // 
             // lbGYT
             // 
-            lbGYT.AutoSize = true;
-            lbGYT.Location = new Point(146, 104);
-            lbGYT.Name = "lbGYT";
-            lbGYT.Size = new Size(42, 13);
-            lbGYT.TabIndex = 76;
-            lbGYT.Text = "Y Tiling";
+            this.lbGYT.AutoSize = true;
+            this.lbGYT.Location = new System.Drawing.Point(146, 104);
+            this.lbGYT.Name = "lbGYT";
+            this.lbGYT.Size = new System.Drawing.Size(42, 13);
+            this.lbGYT.TabIndex = 76;
+            this.lbGYT.Text = "Y Tiling";
             // 
             // Label43
             // 
-            Label43.AutoSize = true;
-            Label43.Location = new Point(72, 62);
-            Label43.Name = "Label43";
-            Label43.Size = new Size(42, 13);
-            Label43.TabIndex = 76;
-            Label43.Text = "X Tiling";
+            this.Label43.AutoSize = true;
+            this.Label43.Location = new System.Drawing.Point(72, 62);
+            this.Label43.Name = "Label43";
+            this.Label43.Size = new System.Drawing.Size(42, 13);
+            this.Label43.TabIndex = 76;
+            this.Label43.Text = "X Tiling";
             // 
             // Label44
             // 
-            Label44.AutoSize = true;
-            Label44.Location = new Point(213, 62);
-            Label44.Name = "Label44";
-            Label44.Size = new Size(42, 13);
-            Label44.TabIndex = 76;
-            Label44.Text = "Z Tiling";
+            this.Label44.AutoSize = true;
+            this.Label44.Location = new System.Drawing.Point(213, 62);
+            this.Label44.Name = "Label44";
+            this.Label44.Size = new System.Drawing.Size(42, 13);
+            this.Label44.TabIndex = 76;
+            this.Label44.Text = "Z Tiling";
             // 
             // frTop
             // 
-            frTop.Controls.Add(nUPtopTexture);
-            frTop.Controls.Add(nUPsizeTopY);
-            frTop.Controls.Add(Label45);
-            frTop.Controls.Add(Label32);
-            frTop.Controls.Add(nUPtextureIndexTopX);
-            frTop.Controls.Add(nUPtextureIndexTopZ);
-            frTop.Controls.Add(lbTZT);
-            frTop.Controls.Add(Label8);
-            frTop.Controls.Add(lbTD);
-            frTop.Controls.Add(nUPsizeTopZ);
-            frTop.Controls.Add(nUPsizeTopX);
-            frTop.Controls.Add(lbTW);
-            frTop.Location = new Point(19, 415);
-            frTop.Name = "frTop";
-            frTop.Size = new Size(285, 113);
-            frTop.TabIndex = 79;
-            frTop.TabStop = false;
-            frTop.Text = "Top Section";
+            this.frTop.Controls.Add(this.nUPtopTexture);
+            this.frTop.Controls.Add(this.nUPsizeTopY);
+            this.frTop.Controls.Add(this.Label45);
+            this.frTop.Controls.Add(this.Label32);
+            this.frTop.Controls.Add(this.nUPtextureIndexTopX);
+            this.frTop.Controls.Add(this.nUPtextureIndexTopZ);
+            this.frTop.Controls.Add(this.lbTZT);
+            this.frTop.Controls.Add(this.Label8);
+            this.frTop.Controls.Add(this.lbTD);
+            this.frTop.Controls.Add(this.nUPsizeTopZ);
+            this.frTop.Controls.Add(this.nUPsizeTopX);
+            this.frTop.Controls.Add(this.lbTW);
+            this.frTop.Location = new System.Drawing.Point(19, 415);
+            this.frTop.Name = "frTop";
+            this.frTop.Size = new System.Drawing.Size(285, 113);
+            this.frTop.TabIndex = 79;
+            this.frTop.TabStop = false;
+            this.frTop.Text = "Top Section";
             // 
             // Label45
             // 
-            Label45.AutoSize = true;
-            Label45.Location = new Point(12, 21);
-            Label45.Name = "Label45";
-            Label45.Size = new Size(43, 13);
-            Label45.TabIndex = 76;
-            Label45.Text = "Texture";
+            this.Label45.AutoSize = true;
+            this.Label45.Location = new System.Drawing.Point(12, 21);
+            this.Label45.Name = "Label45";
+            this.Label45.Size = new System.Drawing.Size(43, 13);
+            this.Label45.TabIndex = 76;
+            this.Label45.Text = "Texture";
             // 
             // lbTZT
             // 
-            lbTZT.AutoSize = true;
-            lbTZT.Location = new Point(211, 62);
-            lbTZT.Name = "lbTZT";
-            lbTZT.Size = new Size(42, 13);
-            lbTZT.TabIndex = 76;
-            lbTZT.Text = "Z Tiling";
+            this.lbTZT.AutoSize = true;
+            this.lbTZT.Location = new System.Drawing.Point(211, 62);
+            this.lbTZT.Name = "lbTZT";
+            this.lbTZT.Size = new System.Drawing.Size(42, 13);
+            this.lbTZT.TabIndex = 76;
+            this.lbTZT.Text = "Z Tiling";
             // 
             // Label8
             // 
-            Label8.AutoSize = true;
-            Label8.Location = new Point(70, 62);
-            Label8.Name = "Label8";
-            Label8.Size = new Size(42, 13);
-            Label8.TabIndex = 76;
-            Label8.Text = "X Tiling";
+            this.Label8.AutoSize = true;
+            this.Label8.Location = new System.Drawing.Point(70, 62);
+            this.Label8.Name = "Label8";
+            this.Label8.Size = new System.Drawing.Size(42, 13);
+            this.Label8.TabIndex = 76;
+            this.Label8.Text = "X Tiling";
             // 
             // lbTD
             // 
-            lbTD.AutoSize = true;
-            lbTD.Location = new Point(210, 22);
-            lbTD.Name = "lbTD";
-            lbTD.Size = new Size(43, 13);
-            lbTD.TabIndex = 67;
-            lbTD.Text = "Deep Z";
+            this.lbTD.AutoSize = true;
+            this.lbTD.Location = new System.Drawing.Point(210, 22);
+            this.lbTD.Name = "lbTD";
+            this.lbTD.Size = new System.Drawing.Size(43, 13);
+            this.lbTD.TabIndex = 67;
+            this.lbTD.Text = "Deep Z";
             // 
             // lbTW
             // 
-            lbTW.AutoSize = true;
-            lbTW.Location = new Point(70, 22);
-            lbTW.Name = "lbTW";
-            lbTW.Size = new Size(45, 13);
-            lbTW.TabIndex = 66;
-            lbTW.Text = "Width X";
+            this.lbTW.AutoSize = true;
+            this.lbTW.Location = new System.Drawing.Point(70, 22);
+            this.lbTW.Name = "lbTW";
+            this.lbTW.Size = new System.Drawing.Size(45, 13);
+            this.lbTW.TabIndex = 66;
+            this.lbTW.Text = "Width X";
             // 
             // lbGZT
             // 
-            lbGZT.AutoSize = true;
-            lbGZT.Location = new Point(212, 106);
-            lbGZT.Name = "lbGZT";
-            lbGZT.Size = new Size(42, 13);
-            lbGZT.TabIndex = 76;
-            lbGZT.Text = "Z Tiling";
+            this.lbGZT.AutoSize = true;
+            this.lbGZT.Location = new System.Drawing.Point(212, 106);
+            this.lbGZT.Name = "lbGZT";
+            this.lbGZT.Size = new System.Drawing.Size(42, 13);
+            this.lbGZT.TabIndex = 76;
+            this.lbGZT.Text = "Z Tiling";
             // 
             // frRoof
             // 
-            frRoof.Controls.Add(nUProofTexture);
-            frRoof.Controls.Add(Label39);
-            frRoof.Controls.Add(nUPtextureIndexRoofX);
-            frRoof.Controls.Add(nUPtextureIndexRoofZ);
-            frRoof.Controls.Add(Label44);
-            frRoof.Controls.Add(Label43);
-            frRoof.Controls.Add(lbGZT);
-            frRoof.Controls.Add(nUPsizeRoofY);
-            frRoof.Controls.Add(nUPRZ);
-            frRoof.Controls.Add(nUPRX);
-            frRoof.Controls.Add(lbFYT);
-            frRoof.Controls.Add(Label2);
-            frRoof.Controls.Add(lbGYT);
-            frRoof.Controls.Add(Label3);
-            frRoof.Controls.Add(lbFXT);
-            frRoof.Controls.Add(lbRH);
-            frRoof.Controls.Add(lbRYT);
-            frRoof.Controls.Add(nUPtextureIndexRoofY);
-            frRoof.Controls.Add(nUPgableTexture);
-            frRoof.Controls.Add(lbG);
-            frRoof.Controls.Add(nUPfaceTexture);
-            frRoof.Controls.Add(lbF);
-            frRoof.Controls.Add(nUPtextureIndexFaceY);
-            frRoof.Controls.Add(nUPtextureIndexFaceX);
-            frRoof.Controls.Add(nUPtextureIndexGableY);
-            frRoof.Controls.Add(nUPtextureIndexGableZ);
-            frRoof.Location = new Point(323, 14);
-            frRoof.Name = "frRoof";
-            frRoof.Size = new Size(285, 196);
-            frRoof.TabIndex = 80;
-            frRoof.TabStop = false;
-            frRoof.Text = "Roof Section";
+            this.frRoof.Controls.Add(this.nUProofTexture);
+            this.frRoof.Controls.Add(this.Label39);
+            this.frRoof.Controls.Add(this.nUPtextureIndexRoofX);
+            this.frRoof.Controls.Add(this.nUPtextureIndexRoofZ);
+            this.frRoof.Controls.Add(this.Label44);
+            this.frRoof.Controls.Add(this.Label43);
+            this.frRoof.Controls.Add(this.lbGZT);
+            this.frRoof.Controls.Add(this.nUPsizeRoofY);
+            this.frRoof.Controls.Add(this.nUPRZ);
+            this.frRoof.Controls.Add(this.nUPRX);
+            this.frRoof.Controls.Add(this.lbFYT);
+            this.frRoof.Controls.Add(this.Label2);
+            this.frRoof.Controls.Add(this.lbGYT);
+            this.frRoof.Controls.Add(this.Label3);
+            this.frRoof.Controls.Add(this.lbFXT);
+            this.frRoof.Controls.Add(this.lbRH);
+            this.frRoof.Controls.Add(this.lbRYT);
+            this.frRoof.Controls.Add(this.nUPtextureIndexRoofY);
+            this.frRoof.Controls.Add(this.nUPgableTexture);
+            this.frRoof.Controls.Add(this.lbG);
+            this.frRoof.Controls.Add(this.nUPfaceTexture);
+            this.frRoof.Controls.Add(this.lbF);
+            this.frRoof.Controls.Add(this.nUPtextureIndexFaceY);
+            this.frRoof.Controls.Add(this.nUPtextureIndexFaceX);
+            this.frRoof.Controls.Add(this.nUPtextureIndexGableY);
+            this.frRoof.Controls.Add(this.nUPtextureIndexGableZ);
+            this.frRoof.Location = new System.Drawing.Point(323, 14);
+            this.frRoof.Name = "frRoof";
+            this.frRoof.Size = new System.Drawing.Size(285, 196);
+            this.frRoof.TabIndex = 80;
+            this.frRoof.TabStop = false;
+            this.frRoof.Text = "Roof Section";
             // 
             // nUPRZ
             // 
-            nUPRZ.BackColor = SystemColors.Window;
-            nUPRZ.DecimalPlaces = 2;
-            nUPRZ.Enabled = false;
-            nUPRZ.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nUPRZ.Location = new Point(211, 37);
-            nUPRZ.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            nUPRZ.Name = "nUPRZ";
-            nUPRZ.Size = new Size(55, 20);
-            nUPRZ.TabIndex = 68;
-            nUPRZ.TextAlign = HorizontalAlignment.Right;
-            nUPRZ.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nUPRZ.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPRZ.DecimalPlaces = 2;
+            this.nUPRZ.Enabled = false;
+            this.nUPRZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUPRZ.Location = new System.Drawing.Point(211, 37);
+            this.nUPRZ.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nUPRZ.Name = "nUPRZ";
+            this.nUPRZ.Size = new System.Drawing.Size(55, 20);
+            this.nUPRZ.TabIndex = 68;
+            this.nUPRZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPRZ.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // nUPRX
             // 
-            nUPRX.BackColor = SystemColors.Window;
-            nUPRX.DecimalPlaces = 2;
-            nUPRX.Enabled = false;
-            nUPRX.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nUPRX.Location = new Point(75, 37);
-            nUPRX.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            nUPRX.Name = "nUPRX";
-            nUPRX.Size = new Size(55, 20);
-            nUPRX.TabIndex = 68;
-            nUPRX.TextAlign = HorizontalAlignment.Right;
-            nUPRX.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nUPRX.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPRX.DecimalPlaces = 2;
+            this.nUPRX.Enabled = false;
+            this.nUPRX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUPRX.Location = new System.Drawing.Point(75, 37);
+            this.nUPRX.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nUPRX.Name = "nUPRX";
+            this.nUPRX.Size = new System.Drawing.Size(55, 20);
+            this.nUPRX.TabIndex = 68;
+            this.nUPRX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPRX.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // lbFYT
             // 
-            lbFYT.AutoSize = true;
-            lbFYT.Location = new Point(144, 146);
-            lbFYT.Name = "lbFYT";
-            lbFYT.Size = new Size(42, 13);
-            lbFYT.TabIndex = 76;
-            lbFYT.Text = "Y Tiling";
+            this.lbFYT.AutoSize = true;
+            this.lbFYT.Location = new System.Drawing.Point(144, 146);
+            this.lbFYT.Name = "lbFYT";
+            this.lbFYT.Size = new System.Drawing.Size(42, 13);
+            this.lbFYT.TabIndex = 76;
+            this.lbFYT.Text = "Y Tiling";
             // 
             // Label2
             // 
-            Label2.AutoSize = true;
-            Label2.Enabled = false;
-            Label2.Location = new Point(211, 21);
-            Label2.Name = "Label2";
-            Label2.Size = new Size(43, 13);
-            Label2.TabIndex = 67;
-            Label2.Text = "Deep Z";
+            this.Label2.AutoSize = true;
+            this.Label2.Enabled = false;
+            this.Label2.Location = new System.Drawing.Point(211, 21);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(43, 13);
+            this.Label2.TabIndex = 67;
+            this.Label2.Text = "Deep Z";
             // 
             // Label3
             // 
-            Label3.AutoSize = true;
-            Label3.Enabled = false;
-            Label3.Location = new Point(70, 21);
-            Label3.Name = "Label3";
-            Label3.Size = new Size(45, 13);
-            Label3.TabIndex = 66;
-            Label3.Text = "Width X";
+            this.Label3.AutoSize = true;
+            this.Label3.Enabled = false;
+            this.Label3.Location = new System.Drawing.Point(70, 21);
+            this.Label3.Name = "Label3";
+            this.Label3.Size = new System.Drawing.Size(45, 13);
+            this.Label3.TabIndex = 66;
+            this.Label3.Text = "Width X";
             // 
             // lbFXT
             // 
-            lbFXT.AutoSize = true;
-            lbFXT.Location = new Point(72, 146);
-            lbFXT.Name = "lbFXT";
-            lbFXT.Size = new Size(42, 13);
-            lbFXT.TabIndex = 76;
-            lbFXT.Text = "X Tiling";
+            this.lbFXT.AutoSize = true;
+            this.lbFXT.Location = new System.Drawing.Point(72, 146);
+            this.lbFXT.Name = "lbFXT";
+            this.lbFXT.Size = new System.Drawing.Size(42, 13);
+            this.lbFXT.TabIndex = 76;
+            this.lbFXT.Text = "X Tiling";
             // 
             // lbRYT
             // 
-            lbRYT.AutoSize = true;
-            lbRYT.Location = new Point(140, 62);
-            lbRYT.Name = "lbRYT";
-            lbRYT.Size = new Size(42, 13);
-            lbRYT.TabIndex = 76;
-            lbRYT.Text = "Y Tiling";
+            this.lbRYT.AutoSize = true;
+            this.lbRYT.Location = new System.Drawing.Point(140, 62);
+            this.lbRYT.Name = "lbRYT";
+            this.lbRYT.Size = new System.Drawing.Size(42, 13);
+            this.lbRYT.TabIndex = 76;
+            this.lbRYT.Text = "Y Tiling";
             // 
             // frMulti
             // 
-            frMulti.Controls.Add(ckSmoothing);
-            frMulti.Controls.Add(nUPbuildingSides);
-            frMulti.Controls.Add(lbSides);
-            frMulti.Location = new Point(107, 99);
-            frMulti.Name = "frMulti";
-            frMulti.Size = new Size(197, 55);
-            frMulti.TabIndex = 81;
-            frMulti.TabStop = false;
-            frMulti.Text = "MultiSided Building";
+            this.frMulti.Controls.Add(this.ckSmoothing);
+            this.frMulti.Controls.Add(this.nUPbuildingSides);
+            this.frMulti.Controls.Add(this.lbSides);
+            this.frMulti.Location = new System.Drawing.Point(107, 99);
+            this.frMulti.Name = "frMulti";
+            this.frMulti.Size = new System.Drawing.Size(197, 55);
+            this.frMulti.TabIndex = 81;
+            this.frMulti.TabStop = false;
+            this.frMulti.Text = "MultiSided Building";
             // 
             // nUPGrid
             // 
-            nUPGrid.BackColor = SystemColors.Window;
-            nUPGrid.DecimalPlaces = 1;
-            nUPGrid.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nUPGrid.Location = new Point(381, 505);
-            nUPGrid.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            nUPGrid.Name = "nUPGrid";
-            nUPGrid.Size = new Size(53, 20);
-            nUPGrid.TabIndex = 82;
-            nUPGrid.TextAlign = HorizontalAlignment.Right;
-            nUPGrid.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nUPGrid.BackColor = System.Drawing.SystemColors.Window;
+            this.nUPGrid.DecimalPlaces = 1;
+            this.nUPGrid.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUPGrid.Location = new System.Drawing.Point(381, 505);
+            this.nUPGrid.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nUPGrid.Name = "nUPGrid";
+            this.nUPGrid.Size = new System.Drawing.Size(53, 20);
+            this.nUPGrid.TabIndex = 82;
+            this.nUPGrid.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nUPGrid.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // Label4
             // 
-            Label4.Location = new Point(317, 507);
-            Label4.Name = "Label4";
-            Label4.Size = new Size(63, 16);
-            Label4.TabIndex = 83;
-            Label4.Text = "Grid meters";
+            this.Label4.Location = new System.Drawing.Point(317, 507);
+            this.Label4.Name = "Label4";
+            this.Label4.Size = new System.Drawing.Size(63, 16);
+            this.Label4.TabIndex = 83;
+            this.Label4.Text = "Grid meters";
             // 
             // Label6
             // 
-            Label6.AutoSize = true;
-            Label6.Location = new Point(322, 222);
-            Label6.Name = "Label6";
-            Label6.Size = new Size(269, 13);
-            Label6.TabIndex = 84;
-            Label6.Text = "Right mouse to enlarge. Wheel and left mouse to move.";
+            this.Label6.AutoSize = true;
+            this.Label6.Location = new System.Drawing.Point(322, 222);
+            this.Label6.Name = "Label6";
+            this.Label6.Size = new System.Drawing.Size(269, 13);
+            this.Label6.TabIndex = 84;
+            this.Label6.Text = "Right mouse to enlarge. Wheel and left mouse to move.";
             // 
-            // frmGBuilding
+            // FrmGBuilding
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(628, 547);
-            ControlBox = false;
-            Controls.Add(_imgGenB);
-            Controls.Add(frMulti);
-            Controls.Add(lbgb3);
-            Controls.Add(frRoof);
-            Controls.Add(frTop);
-            Controls.Add(frWindow);
-            Controls.Add(frBottom);
-            Controls.Add(frGenB);
-            Controls.Add(nUPscale);
-            Controls.Add(cmdOK);
-            Controls.Add(_cmdCancel);
-            Controls.Add(nUPGrid);
-            Controls.Add(Label4);
-            Controls.Add(Label6);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmGBuilding";
-            Text = "SBuilderX - Generic Buildings";
-            ((System.ComponentModel.ISupportInitialize)nUPsizeBottomY).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeWindowY).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeTopY).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeRoofY).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeTopX).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeTopZ).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexBottomX).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexBottomZ).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexWindowX).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexWindowY).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexWindowZ).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexTopX).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexTopZ).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexRoofX).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexRoofY).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexRoofZ).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPbuildingSides).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPgableTexture).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPfaceTexture).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexGableY).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexFaceX).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexGableZ).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtextureIndexFaceY).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeX).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPsizeZ).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPscale).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPtopTexture).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPbottomTexture).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUProofTexture).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPwindowTexture).EndInit();
-            ((System.ComponentModel.ISupportInitialize)_imgGenB).EndInit();
-            frGenB.ResumeLayout(false);
-            frGenB.PerformLayout();
-            frBottom.ResumeLayout(false);
-            frBottom.PerformLayout();
-            frWindow.ResumeLayout(false);
-            frWindow.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nUPWZ).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPWX).EndInit();
-            frTop.ResumeLayout(false);
-            frTop.PerformLayout();
-            frRoof.ResumeLayout(false);
-            frRoof.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nUPRZ).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nUPRX).EndInit();
-            frMulti.ResumeLayout(false);
-            frMulti.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nUPGrid).EndInit();
-            Load += new EventHandler(FrmGBuilding_Load);
-            FormClosing += new FormClosingEventHandler(FrmGBuilding_FormClosing);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(628, 547);
+            this.ControlBox = false;
+            this.Controls.Add(this._imgGenB);
+            this.Controls.Add(this.frMulti);
+            this.Controls.Add(this.lbgb3);
+            this.Controls.Add(this.frRoof);
+            this.Controls.Add(this.frTop);
+            this.Controls.Add(this.frWindow);
+            this.Controls.Add(this.frBottom);
+            this.Controls.Add(this.frGenB);
+            this.Controls.Add(this.nUPscale);
+            this.Controls.Add(this.cmdOK);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this.nUPGrid);
+            this.Controls.Add(this.Label4);
+            this.Controls.Add(this.Label6);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmGBuilding";
+            this.Text = "SBuilderXX - Generic Buildings";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmGBuilding_FormClosing);
+            this.Load += new System.EventHandler(this.FrmGBuilding_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeBottomY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeWindowY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeTopY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeRoofY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeTopX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeTopZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexBottomX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexBottomZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexWindowX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexWindowY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexWindowZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexTopX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexTopZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexRoofX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexRoofY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexRoofZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPbuildingSides)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPgableTexture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPfaceTexture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexGableY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexFaceX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexGableZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtextureIndexFaceY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPsizeZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPscale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPtopTexture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPbottomTexture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUProofTexture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPwindowTexture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._imgGenB)).EndInit();
+            this.frGenB.ResumeLayout(false);
+            this.frGenB.PerformLayout();
+            this.frBottom.ResumeLayout(false);
+            this.frBottom.PerformLayout();
+            this.frWindow.ResumeLayout(false);
+            this.frWindow.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPWZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPWX)).EndInit();
+            this.frTop.ResumeLayout(false);
+            this.frTop.PerformLayout();
+            this.frRoof.ResumeLayout(false);
+            this.frRoof.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPRZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPRX)).EndInit();
+            this.frMulti.ResumeLayout(false);
+            this.frMulti.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUPGrid)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         internal NumericUpDown nUPsizeBottomY;

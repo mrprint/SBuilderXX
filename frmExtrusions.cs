@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     public partial class FrmExtrusions
     {

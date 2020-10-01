@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmLPSample : Form
@@ -32,93 +32,95 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLPSample));
-            _cmdSample = new Button();
-            _cmdSample.Click += new EventHandler(CmdSample_Click);
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            Label2 = new Label();
-            Label1 = new Label();
-            _txtDistance = new TextBox();
-            _txtDistance.Click += new EventHandler(TxtDistance_Click);
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLPSample));
+            this._cmdSample = new System.Windows.Forms.Button();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.Label1 = new System.Windows.Forms.Label();
+            this._txtDistance = new System.Windows.Forms.TextBox();
+            this.SuspendLayout();
             // 
-            // cmdSample
+            // _cmdSample
             // 
-            _cmdSample.Location = new Point(99, 126);
-            _cmdSample.Name = "_cmdSample";
-            _cmdSample.Size = new Size(60, 25);
-            _cmdSample.TabIndex = 19;
-            _cmdSample.Text = "Sample";
-            _cmdSample.UseVisualStyleBackColor = true;
+            this._cmdSample.Location = new System.Drawing.Point(99, 126);
+            this._cmdSample.Name = "_cmdSample";
+            this._cmdSample.Size = new System.Drawing.Size(60, 25);
+            this._cmdSample.TabIndex = 19;
+            this._cmdSample.Text = "Sample";
+            this._cmdSample.UseVisualStyleBackColor = true;
+            this._cmdSample.Click += new System.EventHandler(this.CmdSample_Click);
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.Location = new Point(18, 126);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(60, 25);
-            _cmdCancel.TabIndex = 18;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Location = new System.Drawing.Point(18, 126);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(60, 25);
+            this._cmdCancel.TabIndex = 18;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.Location = new Point(182, 127);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.Size = new Size(61, 23);
-            _cmdOK.TabIndex = 17;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Location = new System.Drawing.Point(182, 127);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.Size = new System.Drawing.Size(61, 23);
+            this._cmdOK.TabIndex = 17;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
             // Label2
             // 
-            Label2.Location = new Point(15, 9);
-            Label2.Name = "Label2";
-            Label2.Size = new Size(239, 77);
-            Label2.TabIndex = 16;
-            Label2.Text = "By sampling (or decimating) a Line or Poly, points are deleted if there are adjac" + "ent points closer than the Minimum Distance shown below. Each time you press \"Sa" + "mple\" more points are deleted.";
-
+            this.Label2.Location = new System.Drawing.Point(15, 9);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(239, 77);
+            this.Label2.TabIndex = 16;
+            this.Label2.Text = "By sampling (or decimating) a Line or Poly, points are deleted if there are adjac" +
+    "ent points closer than the Minimum Distance shown below. Each time you press \"Sa" +
+    "mple\" more points are deleted.";
             // 
             // Label1
             // 
-            Label1.Location = new Point(96, 86);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(147, 30);
-            Label1.TabIndex = 15;
-            Label1.Text = "Minimum Distance in meters between adjacent points";
+            this.Label1.Location = new System.Drawing.Point(96, 86);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(147, 30);
+            this.Label1.TabIndex = 15;
+            this.Label1.Text = "Minimum Distance in meters between adjacent points";
             // 
-            // txtDistance
+            // _txtDistance
             // 
-            _txtDistance.Location = new Point(18, 89);
-            _txtDistance.Name = "_txtDistance";
-            _txtDistance.Size = new Size(70, 20);
-            _txtDistance.TabIndex = 14;
-            _txtDistance.TextAlign = HorizontalAlignment.Center;
+            this._txtDistance.Location = new System.Drawing.Point(18, 89);
+            this._txtDistance.Name = "_txtDistance";
+            this._txtDistance.Size = new System.Drawing.Size(70, 20);
+            this._txtDistance.TabIndex = 14;
+            this._txtDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtDistance.Click += new System.EventHandler(this.TxtDistance_Click);
             // 
-            // frmLPSample
+            // FrmLPSample
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(266, 166);
-            Controls.Add(_cmdSample);
-            Controls.Add(_cmdCancel);
-            Controls.Add(_cmdOK);
-            Controls.Add(Label2);
-            Controls.Add(Label1);
-            Controls.Add(_txtDistance);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmLPSample";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SbuilderX - Line or Poly Sampling";
-            Load += new EventHandler(FrmLPSample_Load);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(266, 166);
+            this.Controls.Add(this._cmdSample);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this.Label2);
+            this.Controls.Add(this.Label1);
+            this.Controls.Add(this._txtDistance);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmLPSample";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SbuilderX - Line or Poly Sampling";
+            this.Load += new System.EventHandler(this.FrmLPSample_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         private Button _cmdSample;

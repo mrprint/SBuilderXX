@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmObjectsP : Form
@@ -2897,7 +2897,7 @@ namespace SBuilderX
             this.MinimizeBox = false;
             this.Name = "FrmObjectsP";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "SBuilderX - Object Properties";
+            this.Text = "SBuilderXX - Object Properties";
             this._SSTab1.ResumeLayout(false);
             this._SSTab1_TabPage0.ResumeLayout(false);
             this.Frame4.ResumeLayout(false);

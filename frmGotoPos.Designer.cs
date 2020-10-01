@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmGotoPos : Form
@@ -32,269 +32,270 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGotoPos));
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            Frame2 = new GroupBox();
-            Label2 = new Label();
-            _txtLat = new TextBox();
-            _txtLat.LostFocus += new EventHandler(TxtLat_LostFocus);
-            _txtLon = new TextBox();
-            _txtLon.LostFocus += new EventHandler(TxtLon_LostFocus);
-            Label1 = new Label();
-            _txtU = new TextBox();
-            _txtU.LostFocus += new EventHandler(TxtU_LostFocus);
-            _txtV = new TextBox();
-            _txtV.LostFocus += new EventHandler(TxtV_LostFocus);
-            Label3 = new Label();
-            Label4 = new Label();
-            GroupBox1 = new GroupBox();
-            _txtL = new TextBox();
-            _txtL.LostFocus += new EventHandler(TxtL_LostFocus);
-            Label5 = new Label();
-            _cmdCheck = new Button();
-            _cmdCheck.Click += new EventHandler(CmdCheck_Click);
-            Frame2.SuspendLayout();
-            GroupBox1.SuspendLayout();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGotoPos));
+            this._cmdOK = new System.Windows.Forms.Button();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this.Frame2 = new System.Windows.Forms.GroupBox();
+            this.Label2 = new System.Windows.Forms.Label();
+            this._txtLat = new System.Windows.Forms.TextBox();
+            this._txtLon = new System.Windows.Forms.TextBox();
+            this.Label1 = new System.Windows.Forms.Label();
+            this._txtU = new System.Windows.Forms.TextBox();
+            this._txtV = new System.Windows.Forms.TextBox();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.Label4 = new System.Windows.Forms.Label();
+            this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this._txtL = new System.Windows.Forms.TextBox();
+            this.Label5 = new System.Windows.Forms.Label();
+            this._cmdCheck = new System.Windows.Forms.Button();
+            this.Frame2.SuspendLayout();
+            this.GroupBox1.SuspendLayout();
+            this.SuspendLayout();
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.BackColor = SystemColors.Control;
-            _cmdOK.Cursor = Cursors.Default;
-            _cmdOK.ForeColor = SystemColors.ControlText;
-            _cmdOK.Location = new Point(316, 108);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.RightToLeft = RightToLeft.No;
-            _cmdOK.Size = new Size(56, 25);
-            _cmdOK.TabIndex = 13;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = false;
+            this._cmdOK.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdOK.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdOK.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdOK.Location = new System.Drawing.Point(316, 108);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdOK.Size = new System.Drawing.Size(56, 25);
+            this._cmdOK.TabIndex = 13;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = false;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.BackColor = SystemColors.Control;
-            _cmdCancel.Cursor = Cursors.Default;
-            _cmdCancel.ForeColor = SystemColors.ControlText;
-            _cmdCancel.Location = new Point(316, 67);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.RightToLeft = RightToLeft.No;
-            _cmdCancel.Size = new Size(56, 25);
-            _cmdCancel.TabIndex = 12;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdCancel.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdCancel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdCancel.Location = new System.Drawing.Point(316, 67);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdCancel.Size = new System.Drawing.Size(56, 25);
+            this._cmdCancel.TabIndex = 12;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
             // Frame2
             // 
-            Frame2.BackColor = SystemColors.Control;
-            Frame2.BackgroundImageLayout = ImageLayout.None;
-            Frame2.Controls.Add(Label2);
-            Frame2.Controls.Add(_txtLat);
-            Frame2.Controls.Add(_txtLon);
-            Frame2.Controls.Add(Label1);
-            Frame2.ForeColor = SystemColors.ControlText;
-            Frame2.Location = new Point(21, 12);
-            Frame2.Name = "Frame2";
-            Frame2.RightToLeft = RightToLeft.No;
-            Frame2.Size = new Size(146, 132);
-            Frame2.TabIndex = 11;
-            Frame2.TabStop = false;
-            Frame2.Text = "Geographic";
+            this.Frame2.BackColor = System.Drawing.SystemColors.Control;
+            this.Frame2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.Frame2.Controls.Add(this.Label2);
+            this.Frame2.Controls.Add(this._txtLat);
+            this.Frame2.Controls.Add(this._txtLon);
+            this.Frame2.Controls.Add(this.Label1);
+            this.Frame2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Frame2.Location = new System.Drawing.Point(21, 12);
+            this.Frame2.Name = "Frame2";
+            this.Frame2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Frame2.Size = new System.Drawing.Size(146, 132);
+            this.Frame2.TabIndex = 11;
+            this.Frame2.TabStop = false;
+            this.Frame2.Text = "Geographic";
             // 
             // Label2
             // 
-            Label2.AutoSize = true;
-            Label2.BackColor = SystemColors.Control;
-            Label2.Cursor = Cursors.Default;
-            Label2.ForeColor = SystemColors.ControlText;
-            Label2.Location = new Point(15, 77);
-            Label2.Name = "Label2";
-            Label2.RightToLeft = RightToLeft.No;
-            Label2.Size = new Size(54, 13);
-            Label2.TabIndex = 3;
-            Label2.Text = "Longitude";
-            Label2.TextAlign = ContentAlignment.TopRight;
+            this.Label2.AutoSize = true;
+            this.Label2.BackColor = System.Drawing.SystemColors.Control;
+            this.Label2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label2.Location = new System.Drawing.Point(15, 77);
+            this.Label2.Name = "Label2";
+            this.Label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label2.Size = new System.Drawing.Size(54, 13);
+            this.Label2.TabIndex = 3;
+            this.Label2.Text = "Longitude";
+            this.Label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // txtLat
+            // _txtLat
             // 
-            _txtLat.AcceptsReturn = true;
-            _txtLat.BackColor = SystemColors.Window;
-            _txtLat.Cursor = Cursors.IBeam;
-            _txtLat.ForeColor = SystemColors.WindowText;
-            _txtLat.Location = new Point(18, 41);
-            _txtLat.MaxLength = 0;
-            _txtLat.Name = "_txtLat";
-            _txtLat.RightToLeft = RightToLeft.No;
-            _txtLat.Size = new Size(108, 20);
-            _txtLat.TabIndex = 2;
-            _txtLat.TextAlign = HorizontalAlignment.Center;
+            this._txtLat.AcceptsReturn = true;
+            this._txtLat.BackColor = System.Drawing.SystemColors.Window;
+            this._txtLat.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._txtLat.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._txtLat.Location = new System.Drawing.Point(18, 41);
+            this._txtLat.MaxLength = 0;
+            this._txtLat.Name = "_txtLat";
+            this._txtLat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._txtLat.Size = new System.Drawing.Size(108, 20);
+            this._txtLat.TabIndex = 2;
+            this._txtLat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtLat.LostFocus += new System.EventHandler(this.TxtLat_LostFocus);
             // 
-            // txtLon
+            // _txtLon
             // 
-            _txtLon.AcceptsReturn = true;
-            _txtLon.BackColor = SystemColors.Window;
-            _txtLon.Cursor = Cursors.IBeam;
-            _txtLon.ForeColor = SystemColors.WindowText;
-            _txtLon.Location = new Point(18, 93);
-            _txtLon.MaxLength = 0;
-            _txtLon.Name = "_txtLon";
-            _txtLon.RightToLeft = RightToLeft.No;
-            _txtLon.Size = new Size(108, 20);
-            _txtLon.TabIndex = 1;
-            _txtLon.TextAlign = HorizontalAlignment.Center;
+            this._txtLon.AcceptsReturn = true;
+            this._txtLon.BackColor = System.Drawing.SystemColors.Window;
+            this._txtLon.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._txtLon.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._txtLon.Location = new System.Drawing.Point(18, 93);
+            this._txtLon.MaxLength = 0;
+            this._txtLon.Name = "_txtLon";
+            this._txtLon.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._txtLon.Size = new System.Drawing.Size(108, 20);
+            this._txtLon.TabIndex = 1;
+            this._txtLon.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtLon.LostFocus += new System.EventHandler(this.TxtLon_LostFocus);
             // 
             // Label1
             // 
-            Label1.AutoSize = true;
-            Label1.BackColor = SystemColors.Control;
-            Label1.Cursor = Cursors.Default;
-            Label1.ForeColor = SystemColors.ControlText;
-            Label1.Location = new Point(15, 25);
-            Label1.Name = "Label1";
-            Label1.RightToLeft = RightToLeft.No;
-            Label1.Size = new Size(45, 13);
-            Label1.TabIndex = 4;
-            Label1.Text = "Latitude";
-            Label1.TextAlign = ContentAlignment.TopRight;
+            this.Label1.AutoSize = true;
+            this.Label1.BackColor = System.Drawing.SystemColors.Control;
+            this.Label1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label1.Location = new System.Drawing.Point(15, 25);
+            this.Label1.Name = "Label1";
+            this.Label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label1.Size = new System.Drawing.Size(45, 13);
+            this.Label1.TabIndex = 4;
+            this.Label1.Text = "Latitude";
+            this.Label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // txtU
+            // _txtU
             // 
-            _txtU.AcceptsReturn = true;
-            _txtU.BackColor = SystemColors.Window;
-            _txtU.Cursor = Cursors.IBeam;
-            _txtU.ForeColor = SystemColors.WindowText;
-            _txtU.Location = new Point(37, 28);
-            _txtU.MaxLength = 0;
-            _txtU.Name = "_txtU";
-            _txtU.RightToLeft = RightToLeft.No;
-            _txtU.Size = new Size(53, 20);
-            _txtU.TabIndex = 2;
-            _txtU.TextAlign = HorizontalAlignment.Center;
+            this._txtU.AcceptsReturn = true;
+            this._txtU.BackColor = System.Drawing.SystemColors.Window;
+            this._txtU.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._txtU.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._txtU.Location = new System.Drawing.Point(37, 28);
+            this._txtU.MaxLength = 0;
+            this._txtU.Name = "_txtU";
+            this._txtU.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._txtU.Size = new System.Drawing.Size(53, 20);
+            this._txtU.TabIndex = 2;
+            this._txtU.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtU.LostFocus += new System.EventHandler(this.TxtU_LostFocus);
             // 
-            // txtV
+            // _txtV
             // 
-            _txtV.AcceptsReturn = true;
-            _txtV.BackColor = SystemColors.Window;
-            _txtV.Cursor = Cursors.IBeam;
-            _txtV.ForeColor = SystemColors.WindowText;
-            _txtV.Location = new Point(37, 63);
-            _txtV.MaxLength = 0;
-            _txtV.Name = "_txtV";
-            _txtV.RightToLeft = RightToLeft.No;
-            _txtV.Size = new Size(53, 20);
-            _txtV.TabIndex = 1;
-            _txtV.TextAlign = HorizontalAlignment.Center;
+            this._txtV.AcceptsReturn = true;
+            this._txtV.BackColor = System.Drawing.SystemColors.Window;
+            this._txtV.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._txtV.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._txtV.Location = new System.Drawing.Point(37, 63);
+            this._txtV.MaxLength = 0;
+            this._txtV.Name = "_txtV";
+            this._txtV.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._txtV.Size = new System.Drawing.Size(53, 20);
+            this._txtV.TabIndex = 1;
+            this._txtV.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtV.LostFocus += new System.EventHandler(this.TxtV_LostFocus);
             // 
             // Label3
             // 
-            Label3.AutoSize = true;
-            Label3.BackColor = SystemColors.Control;
-            Label3.Cursor = Cursors.Default;
-            Label3.ForeColor = SystemColors.ControlText;
-            Label3.Location = new Point(17, 66);
-            Label3.Name = "Label3";
-            Label3.RightToLeft = RightToLeft.No;
-            Label3.Size = new Size(14, 13);
-            Label3.TabIndex = 3;
-            Label3.Text = "V";
-            Label3.TextAlign = ContentAlignment.TopRight;
+            this.Label3.AutoSize = true;
+            this.Label3.BackColor = System.Drawing.SystemColors.Control;
+            this.Label3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label3.Location = new System.Drawing.Point(17, 66);
+            this.Label3.Name = "Label3";
+            this.Label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label3.Size = new System.Drawing.Size(14, 13);
+            this.Label3.TabIndex = 3;
+            this.Label3.Text = "V";
+            this.Label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // Label4
             // 
-            Label4.AutoSize = true;
-            Label4.BackColor = SystemColors.Control;
-            Label4.Cursor = Cursors.Default;
-            Label4.ForeColor = SystemColors.ControlText;
-            Label4.Location = new Point(16, 28);
-            Label4.Name = "Label4";
-            Label4.RightToLeft = RightToLeft.No;
-            Label4.Size = new Size(15, 13);
-            Label4.TabIndex = 4;
-            Label4.Text = "U";
-            Label4.TextAlign = ContentAlignment.TopRight;
+            this.Label4.AutoSize = true;
+            this.Label4.BackColor = System.Drawing.SystemColors.Control;
+            this.Label4.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label4.Location = new System.Drawing.Point(16, 28);
+            this.Label4.Name = "Label4";
+            this.Label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label4.Size = new System.Drawing.Size(15, 13);
+            this.Label4.TabIndex = 4;
+            this.Label4.Text = "U";
+            this.Label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // GroupBox1
             // 
-            GroupBox1.Controls.Add(_txtU);
-            GroupBox1.Controls.Add(Label4);
-            GroupBox1.Controls.Add(Label3);
-            GroupBox1.Controls.Add(_txtV);
-            GroupBox1.Location = new Point(185, 45);
-            GroupBox1.Name = "GroupBox1";
-            GroupBox1.Size = new Size(108, 99);
-            GroupBox1.TabIndex = 14;
-            GroupBox1.TabStop = false;
-            GroupBox1.Text = "(U, V)";
+            this.GroupBox1.Controls.Add(this._txtU);
+            this.GroupBox1.Controls.Add(this.Label4);
+            this.GroupBox1.Controls.Add(this.Label3);
+            this.GroupBox1.Controls.Add(this._txtV);
+            this.GroupBox1.Location = new System.Drawing.Point(185, 45);
+            this.GroupBox1.Name = "GroupBox1";
+            this.GroupBox1.Size = new System.Drawing.Size(108, 99);
+            this.GroupBox1.TabIndex = 14;
+            this.GroupBox1.TabStop = false;
+            this.GroupBox1.Text = "(U, V)";
             // 
-            // txtL
+            // _txtL
             // 
-            _txtL.AcceptsReturn = true;
-            _txtL.BackColor = SystemColors.Window;
-            _txtL.Cursor = Cursors.IBeam;
-            _txtL.ForeColor = SystemColors.WindowText;
-            _txtL.Location = new Point(237, 12);
-            _txtL.MaxLength = 0;
-            _txtL.Name = "_txtL";
-            _txtL.RightToLeft = RightToLeft.No;
-            _txtL.Size = new Size(38, 20);
-            _txtL.TabIndex = 15;
-            _txtL.TextAlign = HorizontalAlignment.Center;
+            this._txtL.AcceptsReturn = true;
+            this._txtL.BackColor = System.Drawing.SystemColors.Window;
+            this._txtL.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._txtL.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._txtL.Location = new System.Drawing.Point(237, 12);
+            this._txtL.MaxLength = 0;
+            this._txtL.Name = "_txtL";
+            this._txtL.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._txtL.Size = new System.Drawing.Size(38, 20);
+            this._txtL.TabIndex = 15;
+            this._txtL.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtL.LostFocus += new System.EventHandler(this.TxtL_LostFocus);
             // 
             // Label5
             // 
-            Label5.AutoSize = true;
-            Label5.BackColor = SystemColors.Control;
-            Label5.Cursor = Cursors.Default;
-            Label5.ForeColor = SystemColors.ControlText;
-            Label5.Location = new Point(202, 15);
-            Label5.Name = "Label5";
-            Label5.RightToLeft = RightToLeft.No;
-            Label5.Size = new Size(29, 13);
-            Label5.TabIndex = 16;
-            Label5.Text = "LOD";
-            Label5.TextAlign = ContentAlignment.TopRight;
+            this.Label5.AutoSize = true;
+            this.Label5.BackColor = System.Drawing.SystemColors.Control;
+            this.Label5.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label5.Location = new System.Drawing.Point(202, 15);
+            this.Label5.Name = "Label5";
+            this.Label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label5.Size = new System.Drawing.Size(29, 13);
+            this.Label5.TabIndex = 16;
+            this.Label5.Text = "LOD";
+            this.Label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // cmdCheck
+            // _cmdCheck
             // 
-            _cmdCheck.BackColor = SystemColors.Control;
-            _cmdCheck.Cursor = Cursors.Default;
-            _cmdCheck.ForeColor = SystemColors.ControlText;
-            _cmdCheck.Location = new Point(316, 25);
-            _cmdCheck.Name = "_cmdCheck";
-            _cmdCheck.RightToLeft = RightToLeft.No;
-            _cmdCheck.Size = new Size(56, 25);
-            _cmdCheck.TabIndex = 15;
-            _cmdCheck.Text = "Check";
-            _cmdCheck.UseVisualStyleBackColor = false;
+            this._cmdCheck.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdCheck.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdCheck.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdCheck.Location = new System.Drawing.Point(316, 25);
+            this._cmdCheck.Name = "_cmdCheck";
+            this._cmdCheck.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdCheck.Size = new System.Drawing.Size(56, 25);
+            this._cmdCheck.TabIndex = 15;
+            this._cmdCheck.Text = "Check";
+            this._cmdCheck.UseVisualStyleBackColor = false;
+            this._cmdCheck.Click += new System.EventHandler(this.CmdCheck_Click);
             // 
-            // frmGotoPos
+            // FrmGotoPos
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(392, 165);
-            Controls.Add(_txtL);
-            Controls.Add(Label5);
-            Controls.Add(_cmdCheck);
-            Controls.Add(GroupBox1);
-            Controls.Add(_cmdOK);
-            Controls.Add(_cmdCancel);
-            Controls.Add(Frame2);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmGotoPos";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Frame2.ResumeLayout(false);
-            Frame2.PerformLayout();
-            GroupBox1.ResumeLayout(false);
-            GroupBox1.PerformLayout();
-            Load += new EventHandler(FrmGotoPos_Load);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(392, 165);
+            this.Controls.Add(this._txtL);
+            this.Controls.Add(this.Label5);
+            this.Controls.Add(this._cmdCheck);
+            this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this.Frame2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmGotoPos";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Load += new System.EventHandler(this.FrmGotoPos_Load);
+            this.Frame2.ResumeLayout(false);
+            this.Frame2.PerformLayout();
+            this.GroupBox1.ResumeLayout(false);
+            this.GroupBox1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         private Button _cmdOK;

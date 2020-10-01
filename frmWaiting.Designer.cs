@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     public partial class frmWaiting : Form
@@ -51,7 +51,7 @@ namespace SBuilderX
             Label1.Name = "Label1";
             Label1.Size = new Size(256, 44);
             Label1.TabIndex = 1;
-            Label1.Text = "You must wait several minutes until SBuilderX copies some bitmaps! The next time " + "SBuilderX runs in this computer, it will start faster!";
+            Label1.Text = "You must wait several minutes until SBuilderXX copies some bitmaps! The next time " + "SBuilderXX runs in this computer, it will start faster!";
             // 
             // labelFile
             // 
@@ -84,7 +84,7 @@ namespace SBuilderX
             Controls.Add(Label1);
             Controls.Add(bar);
             Name = "frmWaiting";
-            Text = "SBuilderX - Running for the 1st time!";
+            Text = "SBuilderXX - Running for the 1st time!";
             ((System.ComponentModel.ISupportInitialize)PictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

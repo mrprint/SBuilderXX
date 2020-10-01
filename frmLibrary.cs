@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     public partial class FrmLibrary
     {
@@ -772,7 +772,7 @@ namespace SBuilderX
             Cursor = Cursors.WaitCursor;
             string A, B;
             A = "Object Library file (*.BGL)|*.bgl";
-            B = "SBuilderX: Open a Library BGL file";
+            B = "SBuilderXX: Open a Library BGL file";
             A = moduleFILE_IO.FileNameToOpen(A, B, "LIB");
             if (string.IsNullOrEmpty(A))
             {

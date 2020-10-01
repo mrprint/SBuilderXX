@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     public partial class FrmExtrusions : Form
@@ -32,233 +32,240 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExtrusions));
-            txtProfileGuid = new TextBox();
-            Label1 = new Label();
-            txtMaterialGuid = new TextBox();
-            Label2 = new Label();
-            txtPylonGuid = new TextBox();
-            Label3 = new Label();
-            ckSuppress = new CheckBox();
-            txtWidth = new TextBox();
-            txtProbability = new TextBox();
-            Label4 = new Label();
-            Label5 = new Label();
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            boxHeight = new GroupBox();
-            _cmdSetHeight = new Button();
-            _cmdSetHeight.Click += new EventHandler(CmdSetHeight_Click);
-            txtHeight = new TextBox();
-            cmbComplexity = new ComboBox();
-            Label6 = new Label();
-            boxHeight.SuspendLayout();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExtrusions));
+            this.txtProfileGuid = new System.Windows.Forms.TextBox();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.txtMaterialGuid = new System.Windows.Forms.TextBox();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.txtPylonGuid = new System.Windows.Forms.TextBox();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.ckSuppress = new System.Windows.Forms.CheckBox();
+            this.txtWidth = new System.Windows.Forms.TextBox();
+            this.txtProbability = new System.Windows.Forms.TextBox();
+            this.Label4 = new System.Windows.Forms.Label();
+            this.Label5 = new System.Windows.Forms.Label();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this.boxHeight = new System.Windows.Forms.GroupBox();
+            this._cmdSetHeight = new System.Windows.Forms.Button();
+            this.txtHeight = new System.Windows.Forms.TextBox();
+            this.cmbComplexity = new System.Windows.Forms.ComboBox();
+            this.Label6 = new System.Windows.Forms.Label();
+            this.boxHeight.SuspendLayout();
+            this.SuspendLayout();
             // 
             // txtProfileGuid
             // 
-            txtProfileGuid.Location = new Point(21, 32);
-            txtProfileGuid.Name = "txtProfileGuid";
-            txtProfileGuid.Size = new Size(234, 20);
-            txtProfileGuid.TabIndex = 97;
-            txtProfileGuid.TextAlign = HorizontalAlignment.Center;
+            this.txtProfileGuid.Location = new System.Drawing.Point(21, 32);
+            this.txtProfileGuid.Name = "txtProfileGuid";
+            this.txtProfileGuid.Size = new System.Drawing.Size(234, 20);
+            this.txtProfileGuid.TabIndex = 97;
+            this.txtProfileGuid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Label1
             // 
-            Label1.AutoSize = true;
-            Label1.Location = new Point(18, 16);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(107, 13);
-            Label1.TabIndex = 98;
-            Label1.Text = "Extrusion Profile Guid";
+            this.Label1.AutoSize = true;
+            this.Label1.Location = new System.Drawing.Point(18, 16);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(107, 13);
+            this.Label1.TabIndex = 98;
+            this.Label1.Text = "Extrusion Profile Guid";
             // 
             // txtMaterialGuid
             // 
-            txtMaterialGuid.Location = new Point(21, 70);
-            txtMaterialGuid.Name = "txtMaterialGuid";
-            txtMaterialGuid.Size = new Size(234, 20);
-            txtMaterialGuid.TabIndex = 97;
-            txtMaterialGuid.TextAlign = HorizontalAlignment.Center;
+            this.txtMaterialGuid.Location = new System.Drawing.Point(21, 70);
+            this.txtMaterialGuid.Name = "txtMaterialGuid";
+            this.txtMaterialGuid.Size = new System.Drawing.Size(234, 20);
+            this.txtMaterialGuid.TabIndex = 97;
+            this.txtMaterialGuid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Label2
             // 
-            Label2.AutoSize = true;
-            Label2.Location = new Point(18, 54);
-            Label2.Name = "Label2";
-            Label2.Size = new Size(69, 13);
-            Label2.TabIndex = 98;
-            Label2.Text = "Material Guid";
+            this.Label2.AutoSize = true;
+            this.Label2.Location = new System.Drawing.Point(18, 54);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(69, 13);
+            this.Label2.TabIndex = 98;
+            this.Label2.Text = "Material Guid";
             // 
             // txtPylonGuid
             // 
-            txtPylonGuid.Location = new Point(21, 109);
-            txtPylonGuid.Name = "txtPylonGuid";
-            txtPylonGuid.Size = new Size(234, 20);
-            txtPylonGuid.TabIndex = 97;
-            txtPylonGuid.TextAlign = HorizontalAlignment.Center;
+            this.txtPylonGuid.Location = new System.Drawing.Point(21, 109);
+            this.txtPylonGuid.Name = "txtPylonGuid";
+            this.txtPylonGuid.Size = new System.Drawing.Size(234, 20);
+            this.txtPylonGuid.TabIndex = 97;
+            this.txtPylonGuid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Label3
             // 
-            Label3.AutoSize = true;
-            Label3.Location = new Point(18, 93);
-            Label3.Name = "Label3";
-            Label3.Size = new Size(58, 13);
-            Label3.TabIndex = 98;
-            Label3.Text = "Pylon Guid";
+            this.Label3.AutoSize = true;
+            this.Label3.Location = new System.Drawing.Point(18, 93);
+            this.Label3.Name = "Label3";
+            this.Label3.Size = new System.Drawing.Size(58, 13);
+            this.Label3.TabIndex = 98;
+            this.Label3.Text = "Pylon Guid";
             // 
             // ckSuppress
             // 
-            ckSuppress.AutoSize = true;
-            ckSuppress.Location = new Point(279, 112);
-            ckSuppress.Name = "ckSuppress";
-            ckSuppress.Size = new Size(111, 17);
-            ckSuppress.TabIndex = 99;
-            ckSuppress.Text = "Suppress Platform";
-            ckSuppress.UseVisualStyleBackColor = true;
+            this.ckSuppress.AutoSize = true;
+            this.ckSuppress.Location = new System.Drawing.Point(279, 112);
+            this.ckSuppress.Name = "ckSuppress";
+            this.ckSuppress.Size = new System.Drawing.Size(111, 17);
+            this.ckSuppress.TabIndex = 99;
+            this.ckSuppress.Text = "Suppress Platform";
+            this.ckSuppress.UseVisualStyleBackColor = true;
             // 
             // txtWidth
             // 
-            txtWidth.Location = new Point(279, 32);
-            txtWidth.Name = "txtWidth";
-            txtWidth.Size = new Size(29, 20);
-            txtWidth.TabIndex = 100;
-            txtWidth.TextAlign = HorizontalAlignment.Center;
+            this.txtWidth.Location = new System.Drawing.Point(279, 32);
+            this.txtWidth.Name = "txtWidth";
+            this.txtWidth.Size = new System.Drawing.Size(29, 20);
+            this.txtWidth.TabIndex = 100;
+            this.txtWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtProbability
             // 
-            txtProbability.Location = new Point(279, 70);
-            txtProbability.Name = "txtProbability";
-            txtProbability.Size = new Size(29, 20);
-            txtProbability.TabIndex = 100;
-            txtProbability.TextAlign = HorizontalAlignment.Center;
+            this.txtProbability.Location = new System.Drawing.Point(279, 70);
+            this.txtProbability.Name = "txtProbability";
+            this.txtProbability.Size = new System.Drawing.Size(29, 20);
+            this.txtProbability.TabIndex = 100;
+            this.txtProbability.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Label4
             // 
-            Label4.AutoSize = true;
-            Label4.Location = new Point(314, 73);
-            Label4.Name = "Label4";
-            Label4.Size = new Size(55, 13);
-            Label4.TabIndex = 98;
-            Label4.Text = "Probability";
+            this.Label4.AutoSize = true;
+            this.Label4.Location = new System.Drawing.Point(314, 73);
+            this.Label4.Name = "Label4";
+            this.Label4.Size = new System.Drawing.Size(55, 13);
+            this.Label4.TabIndex = 98;
+            this.Label4.Text = "Probability";
             // 
             // Label5
             // 
-            Label5.AutoSize = true;
-            Label5.Location = new Point(314, 35);
-            Label5.Name = "Label5";
-            Label5.Size = new Size(35, 13);
-            Label5.TabIndex = 98;
-            Label5.Text = "Width";
-            Label5.TextAlign = ContentAlignment.MiddleRight;
+            this.Label5.AutoSize = true;
+            this.Label5.Location = new System.Drawing.Point(314, 35);
+            this.Label5.Name = "Label5";
+            this.Label5.Size = new System.Drawing.Size(35, 13);
+            this.Label5.TabIndex = 98;
+            this.Label5.Text = "Width";
+            this.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.Location = new Point(333, 146);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(57, 26);
-            _cmdCancel.TabIndex = 101;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Location = new System.Drawing.Point(333, 146);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(57, 26);
+            this._cmdCancel.TabIndex = 101;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.Location = new Point(413, 146);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.Size = new Size(57, 26);
-            _cmdOK.TabIndex = 101;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Location = new System.Drawing.Point(413, 146);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.Size = new System.Drawing.Size(57, 26);
+            this._cmdOK.TabIndex = 101;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
             // boxHeight
             // 
-            boxHeight.Controls.Add(_cmdSetHeight);
-            boxHeight.Controls.Add(txtHeight);
-            boxHeight.Location = new Point(406, 32);
-            boxHeight.Name = "boxHeight";
-            boxHeight.Size = new Size(64, 97);
-            boxHeight.TabIndex = 102;
-            boxHeight.TabStop = false;
-            boxHeight.Text = "Height";
+            this.boxHeight.Controls.Add(this._cmdSetHeight);
+            this.boxHeight.Controls.Add(this.txtHeight);
+            this.boxHeight.Location = new System.Drawing.Point(406, 32);
+            this.boxHeight.Name = "boxHeight";
+            this.boxHeight.Size = new System.Drawing.Size(64, 97);
+            this.boxHeight.TabIndex = 102;
+            this.boxHeight.TabStop = false;
+            this.boxHeight.Text = "Height";
             // 
-            // cmdSetHeight
+            // _cmdSetHeight
             // 
-            _cmdSetHeight.Location = new Point(17, 55);
-            _cmdSetHeight.Name = "_cmdSetHeight";
-            _cmdSetHeight.Size = new Size(33, 24);
-            _cmdSetHeight.TabIndex = 94;
-            _cmdSetHeight.Text = "Set";
-            _cmdSetHeight.UseVisualStyleBackColor = true;
+            this._cmdSetHeight.Location = new System.Drawing.Point(17, 55);
+            this._cmdSetHeight.Name = "_cmdSetHeight";
+            this._cmdSetHeight.Size = new System.Drawing.Size(33, 24);
+            this._cmdSetHeight.TabIndex = 94;
+            this._cmdSetHeight.Text = "Set";
+            this._cmdSetHeight.UseVisualStyleBackColor = true;
+            this._cmdSetHeight.Click += new System.EventHandler(this.CmdSetHeight_Click);
             // 
             // txtHeight
             // 
-            txtHeight.AcceptsReturn = true;
-            txtHeight.BackColor = SystemColors.Window;
-            txtHeight.Cursor = Cursors.IBeam;
-            txtHeight.ForeColor = SystemColors.WindowText;
-            txtHeight.Location = new Point(17, 22);
-            txtHeight.MaxLength = 0;
-            txtHeight.Name = "txtHeight";
-            txtHeight.RightToLeft = RightToLeft.No;
-            txtHeight.Size = new Size(33, 20);
-            txtHeight.TabIndex = 92;
-            txtHeight.Text = "10";
-            txtHeight.TextAlign = HorizontalAlignment.Center;
+            this.txtHeight.AcceptsReturn = true;
+            this.txtHeight.BackColor = System.Drawing.SystemColors.Window;
+            this.txtHeight.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtHeight.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtHeight.Location = new System.Drawing.Point(17, 22);
+            this.txtHeight.MaxLength = 0;
+            this.txtHeight.Name = "txtHeight";
+            this.txtHeight.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtHeight.Size = new System.Drawing.Size(33, 20);
+            this.txtHeight.TabIndex = 92;
+            this.txtHeight.Text = "10";
+            this.txtHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cmbComplexity
             // 
-            cmbComplexity.FormattingEnabled = true;
-            cmbComplexity.Items.AddRange(new object[] { "Very Sparse", "Sparse", "Normal", "Dense", "Very Dense", "Extra Dense" });
-            cmbComplexity.Location = new Point(134, 151);
-            cmbComplexity.Name = "cmbComplexity";
-            cmbComplexity.Size = new Size(121, 21);
-            cmbComplexity.TabIndex = 104;
-            cmbComplexity.Text = "Normal";
+            this.cmbComplexity.FormattingEnabled = true;
+            this.cmbComplexity.Items.AddRange(new object[] {
+            "Very Sparse",
+            "Sparse",
+            "Normal",
+            "Dense",
+            "Very Dense",
+            "Extra Dense"});
+            this.cmbComplexity.Location = new System.Drawing.Point(134, 151);
+            this.cmbComplexity.Name = "cmbComplexity";
+            this.cmbComplexity.Size = new System.Drawing.Size(121, 21);
+            this.cmbComplexity.TabIndex = 104;
+            this.cmbComplexity.Text = "Normal";
             // 
             // Label6
             // 
-            Label6.AutoSize = true;
-            Label6.Location = new Point(39, 154);
-            Label6.Name = "Label6";
-            Label6.Size = new Size(89, 13);
-            Label6.TabIndex = 105;
-            Label6.Text = "Image Complexity";
+            this.Label6.AutoSize = true;
+            this.Label6.Location = new System.Drawing.Point(39, 154);
+            this.Label6.Name = "Label6";
+            this.Label6.Size = new System.Drawing.Size(89, 13);
+            this.Label6.TabIndex = 105;
+            this.Label6.Text = "Image Complexity";
             // 
-            // frmExtrusions
+            // FrmExtrusions
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(489, 191);
-            Controls.Add(Label6);
-            Controls.Add(cmbComplexity);
-            Controls.Add(boxHeight);
-            Controls.Add(_cmdOK);
-            Controls.Add(_cmdCancel);
-            Controls.Add(txtProbability);
-            Controls.Add(txtWidth);
-            Controls.Add(ckSuppress);
-            Controls.Add(Label2);
-            Controls.Add(Label3);
-            Controls.Add(Label5);
-            Controls.Add(Label4);
-            Controls.Add(Label1);
-            Controls.Add(txtMaterialGuid);
-            Controls.Add(txtPylonGuid);
-            Controls.Add(txtProfileGuid);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmExtrusions";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - Extrusion Bridges Properties";
-            boxHeight.ResumeLayout(false);
-            boxHeight.PerformLayout();
-            Load += new EventHandler(FrmExtrusions_Load);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(489, 191);
+            this.Controls.Add(this.Label6);
+            this.Controls.Add(this.cmbComplexity);
+            this.Controls.Add(this.boxHeight);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this.txtProbability);
+            this.Controls.Add(this.txtWidth);
+            this.Controls.Add(this.ckSuppress);
+            this.Controls.Add(this.Label2);
+            this.Controls.Add(this.Label3);
+            this.Controls.Add(this.Label5);
+            this.Controls.Add(this.Label4);
+            this.Controls.Add(this.Label1);
+            this.Controls.Add(this.txtMaterialGuid);
+            this.Controls.Add(this.txtPylonGuid);
+            this.Controls.Add(this.txtProfileGuid);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmExtrusions";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - Extrusion Bridges Properties";
+            this.Load += new System.EventHandler(this.FrmExtrusions_Load);
+            this.boxHeight.ResumeLayout(false);
+            this.boxHeight.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         internal TextBox txtProfileGuid;

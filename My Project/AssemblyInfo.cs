@@ -8,11 +8,11 @@ using System.Runtime.InteropServices;
 
 // Review the values of the assembly attributes
 
-[assembly: AssemblyTitle("SBuilderX")]
+[assembly: AssemblyTitle("SBuilderXX")]
 [assembly: AssemblyDescription("FSUIPC Key=J7V85SNGZJGX")]
-[assembly: AssemblyCompany("PTSIM")]
-[assembly: AssemblyProduct("SBuilderX for FSX")]
-[assembly: AssemblyCopyright("Copyright © PTSim 2017")]
+[assembly: AssemblyCompany("SBuilderXX project")]
+[assembly: AssemblyProduct("SBuilderXX")]
+[assembly: AssemblyCopyright("Copyright © mrprint@github.com 2020, Copyright © PTSim 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: ComVisible(true)]
 
@@ -30,5 +30,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // <Assembly: AssemblyVersion("1.0.*")> 
 
-[assembly: AssemblyVersion("3.1.5.2")]
+[assembly: AssemblyVersion("3.1.6.0")]
 [assembly: AssemblyFileVersion("3.3.3.0")]

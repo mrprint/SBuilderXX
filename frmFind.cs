@@ -3,7 +3,7 @@ using System.Media;
 using System.Windows.Forms;
 //using Microsoft.VisualBasic;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     internal partial class FrmFind
     {

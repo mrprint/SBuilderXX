@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmLinesP : Form
@@ -32,1094 +32,1118 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLinesP));
-            imgVector = new PictureBox();
-            TabControl1 = new TabControl();
-            TabPage1 = new TabPage();
-            ckThisColor = new CheckBox();
-            _cmdColor = new Button();
-            _cmdColor.Click += new EventHandler(CmdColor_Click);
-            _cmdWinding = new Button();
-            _cmdWinding.Click += new EventHandler(CmdWinding_Click);
-            labelReverse = new Label();
-            boxType = new GroupBox();
-            _optObjects = new RadioButton();
-            _optObjects.CheckedChanged += new EventHandler(OptObjects_CheckedChanged);
-            _cmdType = new Button();
-            _cmdType.Click += new EventHandler(CmdType_Click);
-            _optExtrusion = new RadioButton();
-            _optExtrusion.CheckedChanged += new EventHandler(OptExtrusion_CheckedChanged);
-            _optTexture = new RadioButton();
-            _optTexture.CheckedChanged += new EventHandler(OptTexture_CheckedChanged);
-            _optVector = new RadioButton();
-            _optVector.CheckedChanged += new EventHandler(OptVector_CheckedChanged);
-            boxAltitude = new GroupBox();
-            txtAlt = new TextBox();
-            _cmdAlt = new Button();
-            _cmdAlt.Click += new EventHandler(CmdAlt_Click);
-            boxProgressive = new GroupBox();
-            _cmdReverse = new Button();
-            _cmdReverse.Click += new EventHandler(CmdReverse_Click);
-            _cmdWidth12 = new Button();
-            _cmdWidth12.Click += new EventHandler(CmdWidth12_Click);
-            txtWidth1 = new TextBox();
-            txtWidth2 = new TextBox();
-            Label1 = new Label();
-            Label2 = new Label();
-            boxWidth = new GroupBox();
-            txtWidth = new TextBox();
-            _cmdWidth = new Button();
-            _cmdWidth.Click += new EventHandler(CmdWidth_Click);
-            txtName = new TextBox();
-            labelName = new Label();
-            _TabPage2 = new TabPage();
-            _TabPage2.Click += new EventHandler(TabPage2_Click);
-            labelDir = new Label();
-            cbLanes = new ComboBox();
-            labelLanes = new Label();
-            cbDir = new ComboBox();
-            _cmdDetail = new Button();
-            _cmdDetail.Click += new EventHandler(CmdDetail_Click);
-            labelVectorTexture = new Label();
-            Label5 = new Label();
-            _listVector = new ListBox();
-            _listVector.MouseDown += new MouseEventHandler(List1_MouseDown);
-            _listVector.SelectedIndexChanged += new EventHandler(List1_SelectedIndexChanged);
-            _TabPage3 = new TabPage();
-            _TabPage3.Click += new EventHandler(TabPage3_Click);
-            boxTexType = new GroupBox();
-            txtV1 = new TextBox();
-            txtTexPri = new TextBox();
-            cmbComplex = new ComboBox();
-            Label3 = new Label();
-            optStanding = new RadioButton();
-            _optLying = new RadioButton();
-            _optLying.CheckedChanged += new EventHandler(OptLying_CheckedChanged);
-            lbTexPri = new Label();
-            LbV1 = new Label();
-            imgTex = new PictureBox();
-            boxTexTexture = new GroupBox();
-            _optTile = new RadioButton();
-            _optTile.CheckedChanged += new EventHandler(OptTile_CheckedChanged);
-            _optStretch = new RadioButton();
-            _optStretch.CheckedChanged += new EventHandler(OptStretch_CheckedChanged);
-            _cmdTex = new Button();
-            _cmdTex.Click += new EventHandler(CmdTex_Click);
-            txtTexName = new TextBox();
-            ckNight = new CheckBox();
-            optFull = new RadioButton();
-            _TabPage4 = new TabPage();
-            _TabPage4.Click += new EventHandler(TabPage4_Click);
-            _cmdExtrusionProperties = new Button();
-            _cmdExtrusionProperties.Click += new EventHandler(CmdExtrusionProperties_Click);
-            labelProfile = new Label();
-            lbguid = new Label();
-            lbExt1 = new Label();
-            _listExtrusion = new ListBox();
-            _listExtrusion.SelectedIndexChanged += new EventHandler(ListExtrusion_SelectedIndexChanged);
-            _imgExtrusion = new PictureBox();
-            _imgExtrusion.Click += new EventHandler(ImgExtrusion_Click);
-            _TabPage5 = new TabPage();
-            _TabPage5.Click += new EventHandler(TabPage5_Click);
-            boxHeading = new GroupBox();
-            _ckRandom = new CheckBox();
-            _ckRandom.CheckedChanged += new EventHandler(CkRandom_CheckedChanged);
-            txtHeading = new TextBox();
-            _cmdHeading = new Button();
-            _cmdHeading.Click += new EventHandler(CmdHeading_Click);
-            cmbComplexity = new ComboBox();
-            labelComplexity = new Label();
-            labelCat = new Label();
-            imgLib = new PictureBox();
-            _lstLib = new ListBox();
-            _lstLib.SelectedIndexChanged += new EventHandler(LstLib_SelectedIndexChanged);
-            labelLibID = new Label();
-            _cmbLibCat = new ComboBox();
-            _cmbLibCat.SelectedIndexChanged += new EventHandler(CmbLibCat_SelectedIndexChanged);
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            _cmdSample = new Button();
-            _cmdSample.Click += new EventHandler(CmdSample_Click);
-            _cmdSmooth = new Button();
-            _cmdSmooth.Click += new EventHandler(CmdSmooth_Click);
-            ((System.ComponentModel.ISupportInitialize)imgVector).BeginInit();
-            TabControl1.SuspendLayout();
-            TabPage1.SuspendLayout();
-            boxType.SuspendLayout();
-            boxAltitude.SuspendLayout();
-            boxProgressive.SuspendLayout();
-            boxWidth.SuspendLayout();
-            _TabPage2.SuspendLayout();
-            _TabPage3.SuspendLayout();
-            boxTexType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgTex).BeginInit();
-            boxTexTexture.SuspendLayout();
-            _TabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)_imgExtrusion).BeginInit();
-            _TabPage5.SuspendLayout();
-            boxHeading.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgLib).BeginInit();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLinesP));
+            this.imgVector = new System.Windows.Forms.PictureBox();
+            this.TabControl1 = new System.Windows.Forms.TabControl();
+            this.TabPage1 = new System.Windows.Forms.TabPage();
+            this.ckThisColor = new System.Windows.Forms.CheckBox();
+            this._cmdColor = new System.Windows.Forms.Button();
+            this._cmdWinding = new System.Windows.Forms.Button();
+            this.labelReverse = new System.Windows.Forms.Label();
+            this.boxType = new System.Windows.Forms.GroupBox();
+            this._optObjects = new System.Windows.Forms.RadioButton();
+            this._cmdType = new System.Windows.Forms.Button();
+            this._optExtrusion = new System.Windows.Forms.RadioButton();
+            this._optTexture = new System.Windows.Forms.RadioButton();
+            this._optVector = new System.Windows.Forms.RadioButton();
+            this.boxAltitude = new System.Windows.Forms.GroupBox();
+            this.txtAlt = new System.Windows.Forms.TextBox();
+            this._cmdAlt = new System.Windows.Forms.Button();
+            this.boxProgressive = new System.Windows.Forms.GroupBox();
+            this._cmdReverse = new System.Windows.Forms.Button();
+            this._cmdWidth12 = new System.Windows.Forms.Button();
+            this.txtWidth1 = new System.Windows.Forms.TextBox();
+            this.txtWidth2 = new System.Windows.Forms.TextBox();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.boxWidth = new System.Windows.Forms.GroupBox();
+            this.txtWidth = new System.Windows.Forms.TextBox();
+            this._cmdWidth = new System.Windows.Forms.Button();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.labelName = new System.Windows.Forms.Label();
+            this._TabPage2 = new System.Windows.Forms.TabPage();
+            this.labelDir = new System.Windows.Forms.Label();
+            this.cbLanes = new System.Windows.Forms.ComboBox();
+            this.labelLanes = new System.Windows.Forms.Label();
+            this.cbDir = new System.Windows.Forms.ComboBox();
+            this._cmdDetail = new System.Windows.Forms.Button();
+            this.labelVectorTexture = new System.Windows.Forms.Label();
+            this.Label5 = new System.Windows.Forms.Label();
+            this._listVector = new System.Windows.Forms.ListBox();
+            this._TabPage3 = new System.Windows.Forms.TabPage();
+            this.boxTexType = new System.Windows.Forms.GroupBox();
+            this.txtV1 = new System.Windows.Forms.TextBox();
+            this.txtTexPri = new System.Windows.Forms.TextBox();
+            this.cmbComplex = new System.Windows.Forms.ComboBox();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.optStanding = new System.Windows.Forms.RadioButton();
+            this._optLying = new System.Windows.Forms.RadioButton();
+            this.lbTexPri = new System.Windows.Forms.Label();
+            this.LbV1 = new System.Windows.Forms.Label();
+            this.imgTex = new System.Windows.Forms.PictureBox();
+            this.boxTexTexture = new System.Windows.Forms.GroupBox();
+            this._optTile = new System.Windows.Forms.RadioButton();
+            this._optStretch = new System.Windows.Forms.RadioButton();
+            this._cmdTex = new System.Windows.Forms.Button();
+            this.txtTexName = new System.Windows.Forms.TextBox();
+            this.ckNight = new System.Windows.Forms.CheckBox();
+            this.optFull = new System.Windows.Forms.RadioButton();
+            this._TabPage4 = new System.Windows.Forms.TabPage();
+            this._cmdExtrusionProperties = new System.Windows.Forms.Button();
+            this.labelProfile = new System.Windows.Forms.Label();
+            this.lbguid = new System.Windows.Forms.Label();
+            this.lbExt1 = new System.Windows.Forms.Label();
+            this._listExtrusion = new System.Windows.Forms.ListBox();
+            this._imgExtrusion = new System.Windows.Forms.PictureBox();
+            this._TabPage5 = new System.Windows.Forms.TabPage();
+            this.boxHeading = new System.Windows.Forms.GroupBox();
+            this._ckRandom = new System.Windows.Forms.CheckBox();
+            this.txtHeading = new System.Windows.Forms.TextBox();
+            this._cmdHeading = new System.Windows.Forms.Button();
+            this.cmbComplexity = new System.Windows.Forms.ComboBox();
+            this.labelComplexity = new System.Windows.Forms.Label();
+            this.labelCat = new System.Windows.Forms.Label();
+            this.imgLib = new System.Windows.Forms.PictureBox();
+            this._lstLib = new System.Windows.Forms.ListBox();
+            this.labelLibID = new System.Windows.Forms.Label();
+            this._cmbLibCat = new System.Windows.Forms.ComboBox();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this._cmdSample = new System.Windows.Forms.Button();
+            this._cmdSmooth = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.imgVector)).BeginInit();
+            this.TabControl1.SuspendLayout();
+            this.TabPage1.SuspendLayout();
+            this.boxType.SuspendLayout();
+            this.boxAltitude.SuspendLayout();
+            this.boxProgressive.SuspendLayout();
+            this.boxWidth.SuspendLayout();
+            this._TabPage2.SuspendLayout();
+            this._TabPage3.SuspendLayout();
+            this.boxTexType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgTex)).BeginInit();
+            this.boxTexTexture.SuspendLayout();
+            this._TabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._imgExtrusion)).BeginInit();
+            this._TabPage5.SuspendLayout();
+            this.boxHeading.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLib)).BeginInit();
+            this.SuspendLayout();
             // 
             // imgVector
             // 
-            imgVector.BorderStyle = BorderStyle.FixedSingle;
-            imgVector.Cursor = Cursors.Default;
-            imgVector.Location = new Point(15, 29);
-            imgVector.Name = "imgVector";
-            imgVector.Size = new Size(200, 200);
-            imgVector.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgVector.TabIndex = 7;
-            imgVector.TabStop = false;
+            this.imgVector.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imgVector.Cursor = System.Windows.Forms.Cursors.Default;
+            this.imgVector.Location = new System.Drawing.Point(15, 29);
+            this.imgVector.Name = "imgVector";
+            this.imgVector.Size = new System.Drawing.Size(200, 200);
+            this.imgVector.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgVector.TabIndex = 7;
+            this.imgVector.TabStop = false;
             // 
             // TabControl1
             // 
-            TabControl1.Controls.Add(TabPage1);
-            TabControl1.Controls.Add(_TabPage2);
-            TabControl1.Controls.Add(_TabPage3);
-            TabControl1.Controls.Add(_TabPage4);
-            TabControl1.Controls.Add(_TabPage5);
-            TabControl1.Location = new Point(12, 12);
-            TabControl1.Name = "TabControl1";
-            TabControl1.SelectedIndex = 0;
-            TabControl1.Size = new Size(488, 267);
-            TabControl1.TabIndex = 25;
+            this.TabControl1.Controls.Add(this.TabPage1);
+            this.TabControl1.Controls.Add(this._TabPage2);
+            this.TabControl1.Controls.Add(this._TabPage3);
+            this.TabControl1.Controls.Add(this._TabPage4);
+            this.TabControl1.Controls.Add(this._TabPage5);
+            this.TabControl1.Location = new System.Drawing.Point(12, 12);
+            this.TabControl1.Name = "TabControl1";
+            this.TabControl1.SelectedIndex = 0;
+            this.TabControl1.Size = new System.Drawing.Size(488, 267);
+            this.TabControl1.TabIndex = 25;
             // 
             // TabPage1
             // 
-            TabPage1.Controls.Add(ckThisColor);
-            TabPage1.Controls.Add(_cmdColor);
-            TabPage1.Controls.Add(_cmdWinding);
-            TabPage1.Controls.Add(labelReverse);
-            TabPage1.Controls.Add(boxType);
-            TabPage1.Controls.Add(boxAltitude);
-            TabPage1.Controls.Add(boxProgressive);
-            TabPage1.Controls.Add(boxWidth);
-            TabPage1.Controls.Add(txtName);
-            TabPage1.Controls.Add(labelName);
-            TabPage1.Location = new Point(4, 22);
-            TabPage1.Name = "TabPage1";
-            TabPage1.Padding = new Padding(3);
-            TabPage1.Size = new Size(480, 241);
-            TabPage1.TabIndex = 0;
-            TabPage1.Text = "General";
-            TabPage1.UseVisualStyleBackColor = true;
+            this.TabPage1.Controls.Add(this.ckThisColor);
+            this.TabPage1.Controls.Add(this._cmdColor);
+            this.TabPage1.Controls.Add(this._cmdWinding);
+            this.TabPage1.Controls.Add(this.labelReverse);
+            this.TabPage1.Controls.Add(this.boxType);
+            this.TabPage1.Controls.Add(this.boxAltitude);
+            this.TabPage1.Controls.Add(this.boxProgressive);
+            this.TabPage1.Controls.Add(this.boxWidth);
+            this.TabPage1.Controls.Add(this.txtName);
+            this.TabPage1.Controls.Add(this.labelName);
+            this.TabPage1.Location = new System.Drawing.Point(4, 22);
+            this.TabPage1.Name = "TabPage1";
+            this.TabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPage1.Size = new System.Drawing.Size(480, 241);
+            this.TabPage1.TabIndex = 0;
+            this.TabPage1.Text = "General";
+            this.TabPage1.UseVisualStyleBackColor = true;
             // 
             // ckThisColor
             // 
-            ckThisColor.AllowDrop = true;
-            ckThisColor.BackColor = Color.DarkOliveGreen;
-            ckThisColor.CheckAlign = ContentAlignment.MiddleRight;
-            ckThisColor.Location = new Point(344, 16);
-            ckThisColor.Name = "ckThisColor";
-            ckThisColor.Size = new Size(118, 32);
-            ckThisColor.TabIndex = 40;
-            ckThisColor.Text = "Also use this Color if Vector Line?";
-            ckThisColor.UseVisualStyleBackColor = false;
+            this.ckThisColor.AllowDrop = true;
+            this.ckThisColor.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.ckThisColor.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ckThisColor.Location = new System.Drawing.Point(344, 16);
+            this.ckThisColor.Name = "ckThisColor";
+            this.ckThisColor.Size = new System.Drawing.Size(118, 32);
+            this.ckThisColor.TabIndex = 40;
+            this.ckThisColor.Text = "Also use this Color if Vector Line?";
+            this.ckThisColor.UseVisualStyleBackColor = false;
             // 
-            // cmdColor
+            // _cmdColor
             // 
-            _cmdColor.Location = new Point(298, 19);
-            _cmdColor.Name = "_cmdColor";
-            _cmdColor.Size = new Size(40, 25);
-            _cmdColor.TabIndex = 39;
-            _cmdColor.Text = "Color";
-            _cmdColor.UseVisualStyleBackColor = true;
+            this._cmdColor.Location = new System.Drawing.Point(298, 19);
+            this._cmdColor.Name = "_cmdColor";
+            this._cmdColor.Size = new System.Drawing.Size(40, 25);
+            this._cmdColor.TabIndex = 39;
+            this._cmdColor.Text = "Color";
+            this._cmdColor.UseVisualStyleBackColor = true;
+            this._cmdColor.Click += new System.EventHandler(this.CmdColor_Click);
             // 
-            // cmdWinding
+            // _cmdWinding
             // 
-            _cmdWinding.Location = new Point(134, 83);
-            _cmdWinding.Name = "_cmdWinding";
-            _cmdWinding.Size = new Size(63, 25);
-            _cmdWinding.TabIndex = 40;
-            _cmdWinding.Text = "Reverse";
-            _cmdWinding.UseVisualStyleBackColor = true;
+            this._cmdWinding.Location = new System.Drawing.Point(134, 83);
+            this._cmdWinding.Name = "_cmdWinding";
+            this._cmdWinding.Size = new System.Drawing.Size(63, 25);
+            this._cmdWinding.TabIndex = 40;
+            this._cmdWinding.Text = "Reverse";
+            this._cmdWinding.UseVisualStyleBackColor = true;
+            this._cmdWinding.Click += new System.EventHandler(this.CmdWinding_Click);
             // 
             // labelReverse
             // 
-            labelReverse.Location = new Point(14, 63);
-            labelReverse.Name = "labelReverse";
-            labelReverse.Size = new Size(114, 57);
-            labelReverse.TabIndex = 66;
-            labelReverse.Text = "On a shoreline with waves, Reverse will place the waves on the other side.";
+            this.labelReverse.Location = new System.Drawing.Point(14, 63);
+            this.labelReverse.Name = "labelReverse";
+            this.labelReverse.Size = new System.Drawing.Size(114, 57);
+            this.labelReverse.TabIndex = 66;
+            this.labelReverse.Text = "On a shoreline with waves, Reverse will place the waves on the other side.";
             // 
             // boxType
             // 
-            boxType.Controls.Add(_optObjects);
-            boxType.Controls.Add(_cmdType);
-            boxType.Controls.Add(_optExtrusion);
-            boxType.Controls.Add(_optTexture);
-            boxType.Controls.Add(_optVector);
-            boxType.Location = new Point(15, 123);
-            boxType.Name = "boxType";
-            boxType.Size = new Size(182, 97);
-            boxType.TabIndex = 65;
-            boxType.TabStop = false;
-            boxType.Text = "Line type";
+            this.boxType.Controls.Add(this._optObjects);
+            this.boxType.Controls.Add(this._cmdType);
+            this.boxType.Controls.Add(this._optExtrusion);
+            this.boxType.Controls.Add(this._optTexture);
+            this.boxType.Controls.Add(this._optVector);
+            this.boxType.Location = new System.Drawing.Point(15, 123);
+            this.boxType.Name = "boxType";
+            this.boxType.Size = new System.Drawing.Size(182, 97);
+            this.boxType.TabIndex = 65;
+            this.boxType.TabStop = false;
+            this.boxType.Text = "Line type";
             // 
-            // optObjects
+            // _optObjects
             // 
-            _optObjects.Location = new Point(109, 9);
-            _optObjects.Name = "_optObjects";
-            _optObjects.Size = new Size(67, 37);
-            _optObjects.TabIndex = 1;
-            _optObjects.Text = "Line of Objects";
-            _optObjects.UseVisualStyleBackColor = true;
+            this._optObjects.Location = new System.Drawing.Point(109, 9);
+            this._optObjects.Name = "_optObjects";
+            this._optObjects.Size = new System.Drawing.Size(67, 37);
+            this._optObjects.TabIndex = 1;
+            this._optObjects.Text = "Line of Objects";
+            this._optObjects.UseVisualStyleBackColor = true;
+            this._optObjects.CheckedChanged += new System.EventHandler(this.OptObjects_CheckedChanged);
             // 
-            // cmdType
+            // _cmdType
             // 
-            _cmdType.Location = new Point(135, 59);
-            _cmdType.Name = "_cmdType";
-            _cmdType.Size = new Size(34, 24);
-            _cmdType.TabIndex = 2;
-            _cmdType.Text = ">>>";
-            _cmdType.UseVisualStyleBackColor = true;
+            this._cmdType.Location = new System.Drawing.Point(135, 59);
+            this._cmdType.Name = "_cmdType";
+            this._cmdType.Size = new System.Drawing.Size(34, 24);
+            this._cmdType.TabIndex = 2;
+            this._cmdType.Text = ">>>";
+            this._cmdType.UseVisualStyleBackColor = true;
+            this._cmdType.Click += new System.EventHandler(this.CmdType_Click);
             // 
-            // optExtrusion
+            // _optExtrusion
             // 
-            _optExtrusion.AutoSize = true;
-            _optExtrusion.Location = new Point(13, 42);
-            _optExtrusion.Name = "_optExtrusion";
-            _optExtrusion.Size = new Size(101, 17);
-            _optExtrusion.TabIndex = 1;
-            _optExtrusion.Text = "Extrusion Bridge";
-            _optExtrusion.UseVisualStyleBackColor = true;
+            this._optExtrusion.AutoSize = true;
+            this._optExtrusion.Location = new System.Drawing.Point(13, 42);
+            this._optExtrusion.Name = "_optExtrusion";
+            this._optExtrusion.Size = new System.Drawing.Size(101, 17);
+            this._optExtrusion.TabIndex = 1;
+            this._optExtrusion.Text = "Extrusion Bridge";
+            this._optExtrusion.UseVisualStyleBackColor = true;
+            this._optExtrusion.CheckedChanged += new System.EventHandler(this.OptExtrusion_CheckedChanged);
             // 
-            // optTexture
+            // _optTexture
             // 
-            _optTexture.AutoSize = true;
-            _optTexture.Location = new Point(13, 63);
-            _optTexture.Name = "_optTexture";
-            _optTexture.Size = new Size(90, 17);
-            _optTexture.TabIndex = 1;
-            _optTexture.Text = "Textured Line";
-            _optTexture.UseVisualStyleBackColor = true;
+            this._optTexture.AutoSize = true;
+            this._optTexture.Location = new System.Drawing.Point(13, 63);
+            this._optTexture.Name = "_optTexture";
+            this._optTexture.Size = new System.Drawing.Size(90, 17);
+            this._optTexture.TabIndex = 1;
+            this._optTexture.Text = "Textured Line";
+            this._optTexture.UseVisualStyleBackColor = true;
+            this._optTexture.CheckedChanged += new System.EventHandler(this.OptTexture_CheckedChanged);
             // 
-            // optVector
+            // _optVector
             // 
-            _optVector.AutoSize = true;
-            _optVector.Checked = true;
-            _optVector.Location = new Point(13, 19);
-            _optVector.Name = "_optVector";
-            _optVector.Size = new Size(79, 17);
-            _optVector.TabIndex = 0;
-            _optVector.TabStop = true;
-            _optVector.Text = "Vector Line";
-            _optVector.UseVisualStyleBackColor = true;
+            this._optVector.AutoSize = true;
+            this._optVector.Checked = true;
+            this._optVector.Location = new System.Drawing.Point(13, 19);
+            this._optVector.Name = "_optVector";
+            this._optVector.Size = new System.Drawing.Size(79, 17);
+            this._optVector.TabIndex = 0;
+            this._optVector.TabStop = true;
+            this._optVector.Text = "Vector Line";
+            this._optVector.UseVisualStyleBackColor = true;
+            this._optVector.CheckedChanged += new System.EventHandler(this.OptVector_CheckedChanged);
             // 
             // boxAltitude
             // 
-            boxAltitude.Controls.Add(txtAlt);
-            boxAltitude.Controls.Add(_cmdAlt);
-            boxAltitude.Location = new Point(344, 152);
-            boxAltitude.Name = "boxAltitude";
-            boxAltitude.Size = new Size(118, 68);
-            boxAltitude.TabIndex = 58;
-            boxAltitude.TabStop = false;
-            boxAltitude.Text = "Altitude";
+            this.boxAltitude.Controls.Add(this.txtAlt);
+            this.boxAltitude.Controls.Add(this._cmdAlt);
+            this.boxAltitude.Location = new System.Drawing.Point(344, 152);
+            this.boxAltitude.Name = "boxAltitude";
+            this.boxAltitude.Size = new System.Drawing.Size(118, 68);
+            this.boxAltitude.TabIndex = 58;
+            this.boxAltitude.TabStop = false;
+            this.boxAltitude.Text = "Altitude";
             // 
             // txtAlt
             // 
-            txtAlt.BackColor = SystemColors.Window;
-            txtAlt.Cursor = Cursors.IBeam;
-            txtAlt.ForeColor = SystemColors.WindowText;
-            txtAlt.Location = new Point(12, 26);
-            txtAlt.MaxLength = 0;
-            txtAlt.Name = "txtAlt";
-            txtAlt.RightToLeft = RightToLeft.No;
-            txtAlt.Size = new Size(50, 20);
-            txtAlt.TabIndex = 29;
-            txtAlt.TextAlign = HorizontalAlignment.Center;
+            this.txtAlt.BackColor = System.Drawing.SystemColors.Window;
+            this.txtAlt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtAlt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtAlt.Location = new System.Drawing.Point(12, 26);
+            this.txtAlt.MaxLength = 0;
+            this.txtAlt.Name = "txtAlt";
+            this.txtAlt.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtAlt.Size = new System.Drawing.Size(50, 20);
+            this.txtAlt.TabIndex = 29;
+            this.txtAlt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cmdAlt
+            // _cmdAlt
             // 
-            _cmdAlt.BackColor = SystemColors.Control;
-            _cmdAlt.Cursor = Cursors.Default;
-            _cmdAlt.ForeColor = SystemColors.ControlText;
-            _cmdAlt.Location = new Point(68, 23);
-            _cmdAlt.Name = "_cmdAlt";
-            _cmdAlt.RightToLeft = RightToLeft.No;
-            _cmdAlt.Size = new Size(35, 25);
-            _cmdAlt.TabIndex = 28;
-            _cmdAlt.Text = "Set";
-            _cmdAlt.UseVisualStyleBackColor = false;
+            this._cmdAlt.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdAlt.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdAlt.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdAlt.Location = new System.Drawing.Point(68, 23);
+            this._cmdAlt.Name = "_cmdAlt";
+            this._cmdAlt.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdAlt.Size = new System.Drawing.Size(35, 25);
+            this._cmdAlt.TabIndex = 28;
+            this._cmdAlt.Text = "Set";
+            this._cmdAlt.UseVisualStyleBackColor = false;
+            this._cmdAlt.Click += new System.EventHandler(this.CmdAlt_Click);
             // 
             // boxProgressive
             // 
-            boxProgressive.Controls.Add(_cmdReverse);
-            boxProgressive.Controls.Add(_cmdWidth12);
-            boxProgressive.Controls.Add(txtWidth1);
-            boxProgressive.Controls.Add(txtWidth2);
-            boxProgressive.Controls.Add(Label1);
-            boxProgressive.Controls.Add(Label2);
-            boxProgressive.Location = new Point(212, 63);
-            boxProgressive.Name = "boxProgressive";
-            boxProgressive.Size = new Size(250, 77);
-            boxProgressive.TabIndex = 38;
-            boxProgressive.TabStop = false;
-            boxProgressive.Text = "Progressive width";
+            this.boxProgressive.Controls.Add(this._cmdReverse);
+            this.boxProgressive.Controls.Add(this._cmdWidth12);
+            this.boxProgressive.Controls.Add(this.txtWidth1);
+            this.boxProgressive.Controls.Add(this.txtWidth2);
+            this.boxProgressive.Controls.Add(this.Label1);
+            this.boxProgressive.Controls.Add(this.Label2);
+            this.boxProgressive.Location = new System.Drawing.Point(212, 63);
+            this.boxProgressive.Name = "boxProgressive";
+            this.boxProgressive.Size = new System.Drawing.Size(250, 77);
+            this.boxProgressive.TabIndex = 38;
+            this.boxProgressive.TabStop = false;
+            this.boxProgressive.Text = "Progressive width";
             // 
-            // cmdReverse
+            // _cmdReverse
             // 
-            _cmdReverse.BackColor = SystemColors.Control;
-            _cmdReverse.Cursor = Cursors.Default;
-            _cmdReverse.ForeColor = SystemColors.ControlText;
-            _cmdReverse.Location = new Point(138, 40);
-            _cmdReverse.Name = "_cmdReverse";
-            _cmdReverse.RightToLeft = RightToLeft.No;
-            _cmdReverse.Size = new Size(50, 25);
-            _cmdReverse.TabIndex = 42;
-            _cmdReverse.Text = "Switch";
-            _cmdReverse.UseVisualStyleBackColor = false;
+            this._cmdReverse.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdReverse.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdReverse.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdReverse.Location = new System.Drawing.Point(138, 40);
+            this._cmdReverse.Name = "_cmdReverse";
+            this._cmdReverse.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdReverse.Size = new System.Drawing.Size(50, 25);
+            this._cmdReverse.TabIndex = 42;
+            this._cmdReverse.Text = "Switch";
+            this._cmdReverse.UseVisualStyleBackColor = false;
+            this._cmdReverse.Click += new System.EventHandler(this.CmdReverse_Click);
             // 
-            // cmdWidth12
+            // _cmdWidth12
             // 
-            _cmdWidth12.BackColor = SystemColors.Control;
-            _cmdWidth12.Cursor = Cursors.Default;
-            _cmdWidth12.ForeColor = SystemColors.ControlText;
-            _cmdWidth12.Location = new Point(200, 40);
-            _cmdWidth12.Name = "_cmdWidth12";
-            _cmdWidth12.RightToLeft = RightToLeft.No;
-            _cmdWidth12.Size = new Size(35, 25);
-            _cmdWidth12.TabIndex = 39;
-            _cmdWidth12.Text = "Set";
-            _cmdWidth12.UseVisualStyleBackColor = false;
+            this._cmdWidth12.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdWidth12.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdWidth12.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdWidth12.Location = new System.Drawing.Point(200, 40);
+            this._cmdWidth12.Name = "_cmdWidth12";
+            this._cmdWidth12.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdWidth12.Size = new System.Drawing.Size(35, 25);
+            this._cmdWidth12.TabIndex = 39;
+            this._cmdWidth12.Text = "Set";
+            this._cmdWidth12.UseVisualStyleBackColor = false;
+            this._cmdWidth12.Click += new System.EventHandler(this.CmdWidth12_Click);
             // 
             // txtWidth1
             // 
-            txtWidth1.AcceptsReturn = true;
-            txtWidth1.BackColor = SystemColors.Window;
-            txtWidth1.Cursor = Cursors.IBeam;
-            txtWidth1.ForeColor = SystemColors.WindowText;
-            txtWidth1.Location = new Point(10, 43);
-            txtWidth1.MaxLength = 0;
-            txtWidth1.Name = "txtWidth1";
-            txtWidth1.RightToLeft = RightToLeft.No;
-            txtWidth1.Size = new Size(53, 20);
-            txtWidth1.TabIndex = 38;
-            txtWidth1.TextAlign = HorizontalAlignment.Center;
+            this.txtWidth1.AcceptsReturn = true;
+            this.txtWidth1.BackColor = System.Drawing.SystemColors.Window;
+            this.txtWidth1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtWidth1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtWidth1.Location = new System.Drawing.Point(10, 43);
+            this.txtWidth1.MaxLength = 0;
+            this.txtWidth1.Name = "txtWidth1";
+            this.txtWidth1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtWidth1.Size = new System.Drawing.Size(53, 20);
+            this.txtWidth1.TabIndex = 38;
+            this.txtWidth1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtWidth2
             // 
-            txtWidth2.AcceptsReturn = true;
-            txtWidth2.BackColor = SystemColors.Window;
-            txtWidth2.Cursor = Cursors.IBeam;
-            txtWidth2.ForeColor = SystemColors.WindowText;
-            txtWidth2.Location = new Point(73, 43);
-            txtWidth2.MaxLength = 0;
-            txtWidth2.Name = "txtWidth2";
-            txtWidth2.RightToLeft = RightToLeft.No;
-            txtWidth2.Size = new Size(53, 20);
-            txtWidth2.TabIndex = 37;
-            txtWidth2.TextAlign = HorizontalAlignment.Center;
+            this.txtWidth2.AcceptsReturn = true;
+            this.txtWidth2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtWidth2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtWidth2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtWidth2.Location = new System.Drawing.Point(73, 43);
+            this.txtWidth2.MaxLength = 0;
+            this.txtWidth2.Name = "txtWidth2";
+            this.txtWidth2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtWidth2.Size = new System.Drawing.Size(53, 20);
+            this.txtWidth2.TabIndex = 37;
+            this.txtWidth2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Label1
             // 
-            Label1.AutoSize = true;
-            Label1.BackColor = Color.Transparent;
-            Label1.Cursor = Cursors.Default;
-            Label1.ForeColor = SystemColors.ControlText;
-            Label1.Location = new Point(10, 27);
-            Label1.Name = "Label1";
-            Label1.RightToLeft = RightToLeft.No;
-            Label1.Size = new Size(29, 13);
-            Label1.TabIndex = 41;
-            Label1.Text = "Start";
+            this.Label1.AutoSize = true;
+            this.Label1.BackColor = System.Drawing.Color.Transparent;
+            this.Label1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label1.Location = new System.Drawing.Point(10, 27);
+            this.Label1.Name = "Label1";
+            this.Label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label1.Size = new System.Drawing.Size(29, 13);
+            this.Label1.TabIndex = 41;
+            this.Label1.Text = "Start";
             // 
             // Label2
             // 
-            Label2.AutoSize = true;
-            Label2.BackColor = Color.Transparent;
-            Label2.Cursor = Cursors.Default;
-            Label2.ForeColor = SystemColors.ControlText;
-            Label2.Location = new Point(70, 27);
-            Label2.Name = "Label2";
-            Label2.RightToLeft = RightToLeft.No;
-            Label2.Size = new Size(26, 13);
-            Label2.TabIndex = 40;
-            Label2.Text = "End";
+            this.Label2.AutoSize = true;
+            this.Label2.BackColor = System.Drawing.Color.Transparent;
+            this.Label2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label2.Location = new System.Drawing.Point(70, 27);
+            this.Label2.Name = "Label2";
+            this.Label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label2.Size = new System.Drawing.Size(26, 13);
+            this.Label2.TabIndex = 40;
+            this.Label2.Text = "End";
             // 
             // boxWidth
             // 
-            boxWidth.Controls.Add(txtWidth);
-            boxWidth.Controls.Add(_cmdWidth);
-            boxWidth.Location = new Point(212, 152);
-            boxWidth.Name = "boxWidth";
-            boxWidth.Size = new Size(118, 68);
-            boxWidth.TabIndex = 37;
-            boxWidth.TabStop = false;
-            boxWidth.Text = "Width";
+            this.boxWidth.Controls.Add(this.txtWidth);
+            this.boxWidth.Controls.Add(this._cmdWidth);
+            this.boxWidth.Location = new System.Drawing.Point(212, 152);
+            this.boxWidth.Name = "boxWidth";
+            this.boxWidth.Size = new System.Drawing.Size(118, 68);
+            this.boxWidth.TabIndex = 37;
+            this.boxWidth.TabStop = false;
+            this.boxWidth.Text = "Width";
             // 
             // txtWidth
             // 
-            txtWidth.AcceptsReturn = true;
-            txtWidth.BackColor = SystemColors.Window;
-            txtWidth.Cursor = Cursors.IBeam;
-            txtWidth.ForeColor = SystemColors.WindowText;
-            txtWidth.Location = new Point(9, 29);
-            txtWidth.MaxLength = 0;
-            txtWidth.Name = "txtWidth";
-            txtWidth.RightToLeft = RightToLeft.No;
-            txtWidth.Size = new Size(53, 20);
-            txtWidth.TabIndex = 29;
-            txtWidth.TextAlign = HorizontalAlignment.Center;
+            this.txtWidth.AcceptsReturn = true;
+            this.txtWidth.BackColor = System.Drawing.SystemColors.Window;
+            this.txtWidth.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtWidth.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtWidth.Location = new System.Drawing.Point(9, 29);
+            this.txtWidth.MaxLength = 0;
+            this.txtWidth.Name = "txtWidth";
+            this.txtWidth.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtWidth.Size = new System.Drawing.Size(53, 20);
+            this.txtWidth.TabIndex = 29;
+            this.txtWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cmdWidth
+            // _cmdWidth
             // 
-            _cmdWidth.BackColor = SystemColors.Control;
-            _cmdWidth.Cursor = Cursors.Default;
-            _cmdWidth.ForeColor = SystemColors.ControlText;
-            _cmdWidth.Location = new Point(68, 26);
-            _cmdWidth.Name = "_cmdWidth";
-            _cmdWidth.RightToLeft = RightToLeft.No;
-            _cmdWidth.Size = new Size(35, 25);
-            _cmdWidth.TabIndex = 28;
-            _cmdWidth.Text = "Set";
-            _cmdWidth.UseVisualStyleBackColor = false;
+            this._cmdWidth.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdWidth.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdWidth.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdWidth.Location = new System.Drawing.Point(68, 26);
+            this._cmdWidth.Name = "_cmdWidth";
+            this._cmdWidth.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdWidth.Size = new System.Drawing.Size(35, 25);
+            this._cmdWidth.TabIndex = 28;
+            this._cmdWidth.Text = "Set";
+            this._cmdWidth.UseVisualStyleBackColor = false;
+            this._cmdWidth.Click += new System.EventHandler(this.CmdWidth_Click);
             // 
             // txtName
             // 
-            txtName.Location = new Point(62, 22);
-            txtName.Name = "txtName";
-            txtName.Size = new Size(201, 20);
-            txtName.TabIndex = 32;
+            this.txtName.Location = new System.Drawing.Point(62, 22);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(201, 20);
+            this.txtName.TabIndex = 32;
             // 
             // labelName
             // 
-            labelName.AutoSize = true;
-            labelName.Location = new Point(21, 25);
-            labelName.Name = "labelName";
-            labelName.Size = new Size(35, 13);
-            labelName.TabIndex = 33;
-            labelName.Text = "Name";
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(21, 25);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(35, 13);
+            this.labelName.TabIndex = 33;
+            this.labelName.Text = "Name";
             // 
-            // TabPage2
+            // _TabPage2
             // 
-            _TabPage2.Controls.Add(labelDir);
-            _TabPage2.Controls.Add(cbLanes);
-            _TabPage2.Controls.Add(labelLanes);
-            _TabPage2.Controls.Add(cbDir);
-            _TabPage2.Controls.Add(_cmdDetail);
-            _TabPage2.Controls.Add(labelVectorTexture);
-            _TabPage2.Controls.Add(Label5);
-            _TabPage2.Controls.Add(_listVector);
-            _TabPage2.Controls.Add(imgVector);
-            _TabPage2.Location = new Point(4, 22);
-            _TabPage2.Name = "_TabPage2";
-            _TabPage2.Padding = new Padding(3);
-            _TabPage2.Size = new Size(480, 241);
-            _TabPage2.TabIndex = 1;
-            _TabPage2.Text = "Vector Lines";
-            _TabPage2.UseVisualStyleBackColor = true;
+            this._TabPage2.Controls.Add(this.labelDir);
+            this._TabPage2.Controls.Add(this.cbLanes);
+            this._TabPage2.Controls.Add(this.labelLanes);
+            this._TabPage2.Controls.Add(this.cbDir);
+            this._TabPage2.Controls.Add(this._cmdDetail);
+            this._TabPage2.Controls.Add(this.labelVectorTexture);
+            this._TabPage2.Controls.Add(this.Label5);
+            this._TabPage2.Controls.Add(this._listVector);
+            this._TabPage2.Controls.Add(this.imgVector);
+            this._TabPage2.Location = new System.Drawing.Point(4, 22);
+            this._TabPage2.Name = "_TabPage2";
+            this._TabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this._TabPage2.Size = new System.Drawing.Size(480, 241);
+            this._TabPage2.TabIndex = 1;
+            this._TabPage2.Text = "Vector Lines";
+            this._TabPage2.UseVisualStyleBackColor = true;
+            this._TabPage2.Click += new System.EventHandler(this.TabPage2_Click);
             // 
             // labelDir
             // 
-            labelDir.AutoSize = true;
-            labelDir.Location = new Point(320, 18);
-            labelDir.Name = "labelDir";
-            labelDir.Size = new Size(49, 13);
-            labelDir.TabIndex = 19;
-            labelDir.Text = "Direction";
+            this.labelDir.AutoSize = true;
+            this.labelDir.Location = new System.Drawing.Point(320, 18);
+            this.labelDir.Name = "labelDir";
+            this.labelDir.Size = new System.Drawing.Size(49, 13);
+            this.labelDir.TabIndex = 19;
+            this.labelDir.Text = "Direction";
             // 
             // cbLanes
             // 
-            cbLanes.FormattingEnabled = true;
-            cbLanes.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" });
-            cbLanes.Location = new Point(273, 34);
-            cbLanes.Name = "cbLanes";
-            cbLanes.Size = new Size(44, 21);
-            cbLanes.TabIndex = 20;
-            cbLanes.Text = "2";
+            this.cbLanes.FormattingEnabled = true;
+            this.cbLanes.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"});
+            this.cbLanes.Location = new System.Drawing.Point(273, 34);
+            this.cbLanes.Name = "cbLanes";
+            this.cbLanes.Size = new System.Drawing.Size(44, 21);
+            this.cbLanes.TabIndex = 20;
+            this.cbLanes.Text = "2";
             // 
             // labelLanes
             // 
-            labelLanes.Location = new Point(235, 30);
-            labelLanes.Name = "labelLanes";
-            labelLanes.Size = new Size(41, 27);
-            labelLanes.TabIndex = 18;
-            labelLanes.Text = "Traffic Lanes";
+            this.labelLanes.Location = new System.Drawing.Point(235, 30);
+            this.labelLanes.Name = "labelLanes";
+            this.labelLanes.Size = new System.Drawing.Size(41, 27);
+            this.labelLanes.TabIndex = 18;
+            this.labelLanes.Text = "Traffic Lanes";
             // 
             // cbDir
             // 
-            cbDir.FormattingEnabled = true;
-            cbDir.Items.AddRange(new object[] { "F", "T" });
-            cbDir.Location = new Point(323, 34);
-            cbDir.Name = "cbDir";
-            cbDir.Size = new Size(46, 21);
-            cbDir.TabIndex = 17;
-            cbDir.Text = "F";
+            this.cbDir.FormattingEnabled = true;
+            this.cbDir.Items.AddRange(new object[] {
+            "F",
+            "T"});
+            this.cbDir.Location = new System.Drawing.Point(323, 34);
+            this.cbDir.Name = "cbDir";
+            this.cbDir.Size = new System.Drawing.Size(46, 21);
+            this.cbDir.TabIndex = 17;
+            this.cbDir.Text = "F";
             // 
-            // cmdDetail
+            // _cmdDetail
             // 
-            _cmdDetail.Location = new Point(414, 30);
-            _cmdDetail.Name = "_cmdDetail";
-            _cmdDetail.Size = new Size(43, 25);
-            _cmdDetail.TabIndex = 34;
-            _cmdDetail.Text = "Info";
-            _cmdDetail.UseVisualStyleBackColor = true;
+            this._cmdDetail.Location = new System.Drawing.Point(414, 30);
+            this._cmdDetail.Name = "_cmdDetail";
+            this._cmdDetail.Size = new System.Drawing.Size(43, 25);
+            this._cmdDetail.TabIndex = 34;
+            this._cmdDetail.Text = "Info";
+            this._cmdDetail.UseVisualStyleBackColor = true;
+            this._cmdDetail.Click += new System.EventHandler(this.CmdDetail_Click);
             // 
             // labelVectorTexture
             // 
-            labelVectorTexture.BorderStyle = BorderStyle.Fixed3D;
-            labelVectorTexture.Location = new Point(377, 33);
-            labelVectorTexture.Name = "labelVectorTexture";
-            labelVectorTexture.Size = new Size(31, 21);
-            labelVectorTexture.TabIndex = 33;
-            labelVectorTexture.TextAlign = ContentAlignment.MiddleLeft;
+            this.labelVectorTexture.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelVectorTexture.Location = new System.Drawing.Point(377, 33);
+            this.labelVectorTexture.Name = "labelVectorTexture";
+            this.labelVectorTexture.Size = new System.Drawing.Size(31, 21);
+            this.labelVectorTexture.TabIndex = 33;
+            this.labelVectorTexture.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Label5
             // 
-            Label5.AutoSize = true;
-            Label5.Location = new Point(235, 64);
-            Label5.Name = "Label5";
-            Label5.Size = new Size(192, 13);
-            Label5.TabIndex = 32;
-            Label5.Text = "Right click to copy GUID into Clipboard";
+            this.Label5.AutoSize = true;
+            this.Label5.Location = new System.Drawing.Point(235, 64);
+            this.Label5.Name = "Label5";
+            this.Label5.Size = new System.Drawing.Size(192, 13);
+            this.Label5.TabIndex = 32;
+            this.Label5.Text = "Right click to copy GUID into Clipboard";
             // 
-            // listVector
+            // _listVector
             // 
-            _listVector.BackColor = SystemColors.Window;
-            _listVector.Cursor = Cursors.Default;
-            _listVector.ForeColor = SystemColors.WindowText;
-            _listVector.Location = new Point(234, 80);
-            _listVector.Name = "_listVector";
-            _listVector.RightToLeft = RightToLeft.No;
-            _listVector.Size = new Size(223, 147);
-            _listVector.TabIndex = 27;
+            this._listVector.BackColor = System.Drawing.SystemColors.Window;
+            this._listVector.Cursor = System.Windows.Forms.Cursors.Default;
+            this._listVector.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._listVector.Location = new System.Drawing.Point(234, 80);
+            this._listVector.Name = "_listVector";
+            this._listVector.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._listVector.Size = new System.Drawing.Size(223, 147);
+            this._listVector.TabIndex = 27;
+            this._listVector.SelectedIndexChanged += new System.EventHandler(this.List1_SelectedIndexChanged);
+            this._listVector.MouseDown += new System.Windows.Forms.MouseEventHandler(this.List1_MouseDown);
             // 
-            // TabPage3
+            // _TabPage3
             // 
-            _TabPage3.Controls.Add(boxTexType);
-            _TabPage3.Controls.Add(imgTex);
-            _TabPage3.Controls.Add(boxTexTexture);
-            _TabPage3.Location = new Point(4, 22);
-            _TabPage3.Name = "_TabPage3";
-            _TabPage3.Padding = new Padding(3);
-            _TabPage3.Size = new Size(480, 241);
-            _TabPage3.TabIndex = 2;
-            _TabPage3.Text = "Textured Lines";
-            _TabPage3.UseVisualStyleBackColor = true;
+            this._TabPage3.Controls.Add(this.boxTexType);
+            this._TabPage3.Controls.Add(this.imgTex);
+            this._TabPage3.Controls.Add(this.boxTexTexture);
+            this._TabPage3.Location = new System.Drawing.Point(4, 22);
+            this._TabPage3.Name = "_TabPage3";
+            this._TabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this._TabPage3.Size = new System.Drawing.Size(480, 241);
+            this._TabPage3.TabIndex = 2;
+            this._TabPage3.Text = "Textured Lines";
+            this._TabPage3.UseVisualStyleBackColor = true;
+            this._TabPage3.Click += new System.EventHandler(this.TabPage3_Click);
             // 
             // boxTexType
             // 
-            boxTexType.Controls.Add(txtV1);
-            boxTexType.Controls.Add(txtTexPri);
-            boxTexType.Controls.Add(cmbComplex);
-            boxTexType.Controls.Add(Label3);
-            boxTexType.Controls.Add(optStanding);
-            boxTexType.Controls.Add(_optLying);
-            boxTexType.Controls.Add(lbTexPri);
-            boxTexType.Controls.Add(LbV1);
-            boxTexType.Location = new Point(228, 140);
-            boxTexType.Name = "boxTexType";
-            boxTexType.Size = new Size(234, 86);
-            boxTexType.TabIndex = 99;
-            boxTexType.TabStop = false;
-            boxTexType.Text = "Type";
+            this.boxTexType.Controls.Add(this.txtV1);
+            this.boxTexType.Controls.Add(this.txtTexPri);
+            this.boxTexType.Controls.Add(this.cmbComplex);
+            this.boxTexType.Controls.Add(this.Label3);
+            this.boxTexType.Controls.Add(this.optStanding);
+            this.boxTexType.Controls.Add(this._optLying);
+            this.boxTexType.Controls.Add(this.lbTexPri);
+            this.boxTexType.Controls.Add(this.LbV1);
+            this.boxTexType.Location = new System.Drawing.Point(228, 140);
+            this.boxTexType.Name = "boxTexType";
+            this.boxTexType.Size = new System.Drawing.Size(234, 86);
+            this.boxTexType.TabIndex = 99;
+            this.boxTexType.TabStop = false;
+            this.boxTexType.Text = "Type";
             // 
             // txtV1
             // 
-            txtV1.AcceptsReturn = true;
-            txtV1.BackColor = SystemColors.Window;
-            txtV1.Cursor = Cursors.IBeam;
-            txtV1.ForeColor = SystemColors.WindowText;
-            txtV1.Location = new Point(124, 22);
-            txtV1.MaxLength = 0;
-            txtV1.Name = "txtV1";
-            txtV1.RightToLeft = RightToLeft.No;
-            txtV1.Size = new Size(39, 20);
-            txtV1.TabIndex = 94;
-            txtV1.Text = "25000";
-            txtV1.TextAlign = HorizontalAlignment.Center;
+            this.txtV1.AcceptsReturn = true;
+            this.txtV1.BackColor = System.Drawing.SystemColors.Window;
+            this.txtV1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtV1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtV1.Location = new System.Drawing.Point(124, 22);
+            this.txtV1.MaxLength = 0;
+            this.txtV1.Name = "txtV1";
+            this.txtV1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtV1.Size = new System.Drawing.Size(39, 20);
+            this.txtV1.TabIndex = 94;
+            this.txtV1.Text = "25000";
+            this.txtV1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtTexPri
             // 
-            txtTexPri.AcceptsReturn = true;
-            txtTexPri.BackColor = SystemColors.Window;
-            txtTexPri.Cursor = Cursors.IBeam;
-            txtTexPri.ForeColor = SystemColors.WindowText;
-            txtTexPri.Location = new Point(190, 21);
-            txtTexPri.MaxLength = 0;
-            txtTexPri.Name = "txtTexPri";
-            txtTexPri.RightToLeft = RightToLeft.No;
-            txtTexPri.Size = new Size(25, 20);
-            txtTexPri.TabIndex = 91;
-            txtTexPri.Text = "4";
-            txtTexPri.TextAlign = HorizontalAlignment.Center;
+            this.txtTexPri.AcceptsReturn = true;
+            this.txtTexPri.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTexPri.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTexPri.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTexPri.Location = new System.Drawing.Point(190, 21);
+            this.txtTexPri.MaxLength = 0;
+            this.txtTexPri.Name = "txtTexPri";
+            this.txtTexPri.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtTexPri.Size = new System.Drawing.Size(25, 20);
+            this.txtTexPri.TabIndex = 91;
+            this.txtTexPri.Text = "4";
+            this.txtTexPri.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cmbComplex
             // 
-            cmbComplex.FormattingEnabled = true;
-            cmbComplex.Items.AddRange(new object[] { "Very Sparse", "Sparse", "Normal", "Dense", "Very Dense", "Extra Dense" });
-            cmbComplex.Location = new Point(124, 52);
-            cmbComplex.Name = "cmbComplex";
-            cmbComplex.Size = new Size(91, 21);
-            cmbComplex.TabIndex = 107;
-            cmbComplex.Text = "Normal";
+            this.cmbComplex.FormattingEnabled = true;
+            this.cmbComplex.Items.AddRange(new object[] {
+            "Very Sparse",
+            "Sparse",
+            "Normal",
+            "Dense",
+            "Very Dense",
+            "Extra Dense"});
+            this.cmbComplex.Location = new System.Drawing.Point(124, 52);
+            this.cmbComplex.Name = "cmbComplex";
+            this.cmbComplex.Size = new System.Drawing.Size(91, 21);
+            this.cmbComplex.TabIndex = 107;
+            this.cmbComplex.Text = "Normal";
             // 
             // Label3
             // 
-            Label3.AutoSize = true;
-            Label3.BackColor = Color.Transparent;
-            Label3.Cursor = Cursors.Default;
-            Label3.ForeColor = SystemColors.ControlText;
-            Label3.Location = new Point(88, 56);
-            Label3.Name = "Label3";
-            Label3.RightToLeft = RightToLeft.No;
-            Label3.Size = new Size(39, 13);
-            Label3.TabIndex = 106;
-            Label3.Text = "Compl.";
+            this.Label3.AutoSize = true;
+            this.Label3.BackColor = System.Drawing.Color.Transparent;
+            this.Label3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label3.Location = new System.Drawing.Point(88, 56);
+            this.Label3.Name = "Label3";
+            this.Label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label3.Size = new System.Drawing.Size(39, 13);
+            this.Label3.TabIndex = 106;
+            this.Label3.Text = "Compl.";
             // 
             // optStanding
             // 
-            optStanding.AutoSize = true;
-            optStanding.Location = new Point(15, 54);
-            optStanding.Name = "optStanding";
-            optStanding.Size = new Size(67, 17);
-            optStanding.TabIndex = 97;
-            optStanding.Text = "Standing";
-            optStanding.UseVisualStyleBackColor = true;
+            this.optStanding.AutoSize = true;
+            this.optStanding.Location = new System.Drawing.Point(15, 54);
+            this.optStanding.Name = "optStanding";
+            this.optStanding.Size = new System.Drawing.Size(67, 17);
+            this.optStanding.TabIndex = 97;
+            this.optStanding.Text = "Standing";
+            this.optStanding.UseVisualStyleBackColor = true;
             // 
-            // optLying
+            // _optLying
             // 
-            _optLying.AutoSize = true;
-            _optLying.Checked = true;
-            _optLying.Location = new Point(15, 24);
-            _optLying.Name = "_optLying";
-            _optLying.Size = new Size(50, 17);
-            _optLying.TabIndex = 96;
-            _optLying.TabStop = true;
-            _optLying.Text = "Lying";
-            _optLying.UseVisualStyleBackColor = true;
+            this._optLying.AutoSize = true;
+            this._optLying.Checked = true;
+            this._optLying.Location = new System.Drawing.Point(15, 24);
+            this._optLying.Name = "_optLying";
+            this._optLying.Size = new System.Drawing.Size(50, 17);
+            this._optLying.TabIndex = 96;
+            this._optLying.TabStop = true;
+            this._optLying.Text = "Lying";
+            this._optLying.UseVisualStyleBackColor = true;
+            this._optLying.CheckedChanged += new System.EventHandler(this.OptLying_CheckedChanged);
             // 
             // lbTexPri
             // 
-            lbTexPri.AutoSize = true;
-            lbTexPri.BackColor = Color.Transparent;
-            lbTexPri.Cursor = Cursors.Default;
-            lbTexPri.ForeColor = SystemColors.ControlText;
-            lbTexPri.Location = new Point(171, 27);
-            lbTexPri.Name = "lbTexPri";
-            lbTexPri.RightToLeft = RightToLeft.No;
-            lbTexPri.Size = new Size(22, 13);
-            lbTexPri.TabIndex = 93;
-            lbTexPri.Text = "Pri.";
+            this.lbTexPri.AutoSize = true;
+            this.lbTexPri.BackColor = System.Drawing.Color.Transparent;
+            this.lbTexPri.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbTexPri.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbTexPri.Location = new System.Drawing.Point(171, 27);
+            this.lbTexPri.Name = "lbTexPri";
+            this.lbTexPri.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbTexPri.Size = new System.Drawing.Size(22, 13);
+            this.lbTexPri.TabIndex = 93;
+            this.lbTexPri.Text = "Pri.";
             // 
             // LbV1
             // 
-            LbV1.AutoSize = true;
-            LbV1.BackColor = Color.Transparent;
-            LbV1.Cursor = Cursors.Default;
-            LbV1.ForeColor = SystemColors.ControlText;
-            LbV1.Location = new Point(101, 27);
-            LbV1.Name = "LbV1";
-            LbV1.RightToLeft = RightToLeft.No;
-            LbV1.Size = new Size(24, 13);
-            LbV1.TabIndex = 95;
-            LbV1.Text = "Vis.";
-            LbV1.TextAlign = ContentAlignment.MiddleRight;
+            this.LbV1.AutoSize = true;
+            this.LbV1.BackColor = System.Drawing.Color.Transparent;
+            this.LbV1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.LbV1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.LbV1.Location = new System.Drawing.Point(101, 27);
+            this.LbV1.Name = "LbV1";
+            this.LbV1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.LbV1.Size = new System.Drawing.Size(24, 13);
+            this.LbV1.TabIndex = 95;
+            this.LbV1.Text = "Vis.";
+            this.LbV1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // imgTex
             // 
-            imgTex.BorderStyle = BorderStyle.FixedSingle;
-            imgTex.Cursor = Cursors.Default;
-            imgTex.ErrorImage = null;
-            imgTex.InitialImage = null;
-            imgTex.Location = new Point(18, 22);
-            imgTex.Name = "imgTex";
-            imgTex.Size = new Size(444, 111);
-            imgTex.TabIndex = 8;
-            imgTex.TabStop = false;
+            this.imgTex.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imgTex.Cursor = System.Windows.Forms.Cursors.Default;
+            this.imgTex.ErrorImage = null;
+            this.imgTex.InitialImage = null;
+            this.imgTex.Location = new System.Drawing.Point(18, 22);
+            this.imgTex.Name = "imgTex";
+            this.imgTex.Size = new System.Drawing.Size(444, 111);
+            this.imgTex.TabIndex = 8;
+            this.imgTex.TabStop = false;
             // 
             // boxTexTexture
             // 
-            boxTexTexture.Controls.Add(_optTile);
-            boxTexTexture.Controls.Add(_optStretch);
-            boxTexTexture.Controls.Add(_cmdTex);
-            boxTexTexture.Controls.Add(txtTexName);
-            boxTexTexture.Controls.Add(ckNight);
-            boxTexTexture.Controls.Add(optFull);
-            boxTexTexture.Location = new Point(18, 139);
-            boxTexTexture.Name = "boxTexTexture";
-            boxTexTexture.Size = new Size(194, 87);
-            boxTexTexture.TabIndex = 98;
-            boxTexTexture.TabStop = false;
-            boxTexTexture.Text = "Texture";
+            this.boxTexTexture.Controls.Add(this._optTile);
+            this.boxTexTexture.Controls.Add(this._optStretch);
+            this.boxTexTexture.Controls.Add(this._cmdTex);
+            this.boxTexTexture.Controls.Add(this.txtTexName);
+            this.boxTexTexture.Controls.Add(this.ckNight);
+            this.boxTexTexture.Controls.Add(this.optFull);
+            this.boxTexTexture.Location = new System.Drawing.Point(18, 139);
+            this.boxTexTexture.Name = "boxTexTexture";
+            this.boxTexTexture.Size = new System.Drawing.Size(194, 87);
+            this.boxTexTexture.TabIndex = 98;
+            this.boxTexTexture.TabStop = false;
+            this.boxTexTexture.Text = "Texture";
             // 
-            // optTile
+            // _optTile
             // 
-            _optTile.AutoSize = true;
-            _optTile.Checked = true;
-            _optTile.Location = new Point(12, 18);
-            _optTile.Name = "_optTile";
-            _optTile.Size = new Size(42, 17);
-            _optTile.TabIndex = 98;
-            _optTile.TabStop = true;
-            _optTile.Text = "Tile";
-            _optTile.UseVisualStyleBackColor = true;
+            this._optTile.AutoSize = true;
+            this._optTile.Checked = true;
+            this._optTile.Location = new System.Drawing.Point(12, 18);
+            this._optTile.Name = "_optTile";
+            this._optTile.Size = new System.Drawing.Size(42, 17);
+            this._optTile.TabIndex = 98;
+            this._optTile.TabStop = true;
+            this._optTile.Text = "Tile";
+            this._optTile.UseVisualStyleBackColor = true;
+            this._optTile.CheckedChanged += new System.EventHandler(this.OptTile_CheckedChanged);
             // 
-            // optStretch
+            // _optStretch
             // 
-            _optStretch.AutoSize = true;
-            _optStretch.Location = new Point(12, 64);
-            _optStretch.Name = "_optStretch";
-            _optStretch.Size = new Size(59, 17);
-            _optStretch.TabIndex = 97;
-            _optStretch.Text = "Stretch";
-            _optStretch.UseVisualStyleBackColor = true;
+            this._optStretch.AutoSize = true;
+            this._optStretch.Location = new System.Drawing.Point(12, 64);
+            this._optStretch.Name = "_optStretch";
+            this._optStretch.Size = new System.Drawing.Size(59, 17);
+            this._optStretch.TabIndex = 97;
+            this._optStretch.Text = "Stretch";
+            this._optStretch.UseVisualStyleBackColor = true;
+            this._optStretch.CheckedChanged += new System.EventHandler(this.OptStretch_CheckedChanged);
             // 
-            // cmdTex
+            // _cmdTex
             // 
-            _cmdTex.BackColor = SystemColors.Control;
-            _cmdTex.BackgroundImageLayout = ImageLayout.None;
-            _cmdTex.Cursor = Cursors.Default;
-            _cmdTex.ForeColor = SystemColors.ControlText;
-            _cmdTex.Location = new Point(151, 16);
-            _cmdTex.Name = "_cmdTex";
-            _cmdTex.RightToLeft = RightToLeft.No;
-            _cmdTex.Size = new Size(32, 25);
-            _cmdTex.TabIndex = 92;
-            _cmdTex.Text = "...";
-            _cmdTex.UseVisualStyleBackColor = false;
+            this._cmdTex.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdTex.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this._cmdTex.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdTex.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdTex.Location = new System.Drawing.Point(151, 16);
+            this._cmdTex.Name = "_cmdTex";
+            this._cmdTex.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdTex.Size = new System.Drawing.Size(32, 25);
+            this._cmdTex.TabIndex = 92;
+            this._cmdTex.Text = "...";
+            this._cmdTex.UseVisualStyleBackColor = false;
+            this._cmdTex.Click += new System.EventHandler(this.CmdTex_Click);
             // 
             // txtTexName
             // 
-            txtTexName.AcceptsReturn = true;
-            txtTexName.BackColor = SystemColors.Window;
-            txtTexName.Cursor = Cursors.IBeam;
-            txtTexName.ForeColor = SystemColors.WindowText;
-            txtTexName.Location = new Point(60, 18);
-            txtTexName.MaxLength = 0;
-            txtTexName.Name = "txtTexName";
-            txtTexName.RightToLeft = RightToLeft.No;
-            txtTexName.Size = new Size(85, 20);
-            txtTexName.TabIndex = 90;
-            txtTexName.TextAlign = HorizontalAlignment.Center;
+            this.txtTexName.AcceptsReturn = true;
+            this.txtTexName.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTexName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTexName.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTexName.Location = new System.Drawing.Point(60, 18);
+            this.txtTexName.MaxLength = 0;
+            this.txtTexName.Name = "txtTexName";
+            this.txtTexName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtTexName.Size = new System.Drawing.Size(85, 20);
+            this.txtTexName.TabIndex = 90;
+            this.txtTexName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ckNight
             // 
-            ckNight.BackColor = Color.Transparent;
-            ckNight.CheckAlign = ContentAlignment.MiddleRight;
-            ckNight.Cursor = Cursors.Default;
-            ckNight.ForeColor = SystemColors.ControlText;
-            ckNight.Location = new Point(125, 54);
-            ckNight.Name = "ckNight";
-            ckNight.RightToLeft = RightToLeft.No;
-            ckNight.Size = new Size(58, 21);
-            ckNight.TabIndex = 96;
-            ckNight.Text = "Night";
-            ckNight.TextAlign = ContentAlignment.MiddleRight;
-            ckNight.UseVisualStyleBackColor = false;
+            this.ckNight.BackColor = System.Drawing.Color.Transparent;
+            this.ckNight.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ckNight.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckNight.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckNight.Location = new System.Drawing.Point(125, 54);
+            this.ckNight.Name = "ckNight";
+            this.ckNight.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ckNight.Size = new System.Drawing.Size(58, 21);
+            this.ckNight.TabIndex = 96;
+            this.ckNight.Text = "Night";
+            this.ckNight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ckNight.UseVisualStyleBackColor = false;
             // 
             // optFull
             // 
-            optFull.AutoSize = true;
-            optFull.Location = new Point(12, 41);
-            optFull.Name = "optFull";
-            optFull.Size = new Size(89, 17);
-            optFull.TabIndex = 97;
-            optFull.Text = "Complete Tile";
-            optFull.UseVisualStyleBackColor = true;
+            this.optFull.AutoSize = true;
+            this.optFull.Location = new System.Drawing.Point(12, 41);
+            this.optFull.Name = "optFull";
+            this.optFull.Size = new System.Drawing.Size(89, 17);
+            this.optFull.TabIndex = 97;
+            this.optFull.Text = "Complete Tile";
+            this.optFull.UseVisualStyleBackColor = true;
             // 
-            // TabPage4
+            // _TabPage4
             // 
-            _TabPage4.Controls.Add(_cmdExtrusionProperties);
-            _TabPage4.Controls.Add(labelProfile);
-            _TabPage4.Controls.Add(lbguid);
-            _TabPage4.Controls.Add(lbExt1);
-            _TabPage4.Controls.Add(_listExtrusion);
-            _TabPage4.Controls.Add(_imgExtrusion);
-            _TabPage4.Location = new Point(4, 22);
-            _TabPage4.Name = "_TabPage4";
-            _TabPage4.Size = new Size(480, 241);
-            _TabPage4.TabIndex = 3;
-            _TabPage4.Text = "Extrusion Bridges";
-            _TabPage4.UseVisualStyleBackColor = true;
+            this._TabPage4.Controls.Add(this._cmdExtrusionProperties);
+            this._TabPage4.Controls.Add(this.labelProfile);
+            this._TabPage4.Controls.Add(this.lbguid);
+            this._TabPage4.Controls.Add(this.lbExt1);
+            this._TabPage4.Controls.Add(this._listExtrusion);
+            this._TabPage4.Controls.Add(this._imgExtrusion);
+            this._TabPage4.Location = new System.Drawing.Point(4, 22);
+            this._TabPage4.Name = "_TabPage4";
+            this._TabPage4.Size = new System.Drawing.Size(480, 241);
+            this._TabPage4.TabIndex = 3;
+            this._TabPage4.Text = "Extrusion Bridges";
+            this._TabPage4.UseVisualStyleBackColor = true;
+            this._TabPage4.Click += new System.EventHandler(this.TabPage4_Click);
             // 
-            // cmdExtrusionProperties
+            // _cmdExtrusionProperties
             // 
-            _cmdExtrusionProperties.Location = new Point(235, 29);
-            _cmdExtrusionProperties.Name = "_cmdExtrusionProperties";
-            _cmdExtrusionProperties.Size = new Size(68, 25);
-            _cmdExtrusionProperties.TabIndex = 96;
-            _cmdExtrusionProperties.Text = "Properties";
-            _cmdExtrusionProperties.UseVisualStyleBackColor = true;
+            this._cmdExtrusionProperties.Location = new System.Drawing.Point(235, 29);
+            this._cmdExtrusionProperties.Name = "_cmdExtrusionProperties";
+            this._cmdExtrusionProperties.Size = new System.Drawing.Size(68, 25);
+            this._cmdExtrusionProperties.TabIndex = 96;
+            this._cmdExtrusionProperties.Text = "Properties";
+            this._cmdExtrusionProperties.UseVisualStyleBackColor = true;
+            this._cmdExtrusionProperties.Click += new System.EventHandler(this.CmdExtrusionProperties_Click);
             // 
             // labelProfile
             // 
-            labelProfile.BorderStyle = BorderStyle.FixedSingle;
-            labelProfile.Location = new Point(235, 73);
-            labelProfile.Name = "labelProfile";
-            labelProfile.Size = new Size(223, 19);
-            labelProfile.TabIndex = 95;
-            labelProfile.TextAlign = ContentAlignment.MiddleCenter;
+            this.labelProfile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelProfile.Location = new System.Drawing.Point(235, 73);
+            this.labelProfile.Name = "labelProfile";
+            this.labelProfile.Size = new System.Drawing.Size(223, 19);
+            this.labelProfile.TabIndex = 95;
+            this.labelProfile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbguid
             // 
-            lbguid.AutoSize = true;
-            lbguid.Location = new Point(355, 60);
-            lbguid.Name = "lbguid";
-            lbguid.Size = new Size(107, 13);
-            lbguid.TabIndex = 35;
-            lbguid.Text = "Extrusion Profile Guid";
+            this.lbguid.AutoSize = true;
+            this.lbguid.Location = new System.Drawing.Point(355, 60);
+            this.lbguid.Name = "lbguid";
+            this.lbguid.Size = new System.Drawing.Size(107, 13);
+            this.lbguid.TabIndex = 35;
+            this.lbguid.Text = "Extrusion Profile Guid";
             // 
             // lbExt1
             // 
-            lbExt1.AutoSize = true;
-            lbExt1.Location = new Point(12, 16);
-            lbExt1.Name = "lbExt1";
-            lbExt1.Size = new Size(99, 13);
-            lbExt1.TabIndex = 35;
-            lbExt1.Text = "Click to see a detail";
+            this.lbExt1.AutoSize = true;
+            this.lbExt1.Location = new System.Drawing.Point(12, 16);
+            this.lbExt1.Name = "lbExt1";
+            this.lbExt1.Size = new System.Drawing.Size(99, 13);
+            this.lbExt1.TabIndex = 35;
+            this.lbExt1.Text = "Click to see a detail";
             // 
-            // listExtrusion
+            // _listExtrusion
             // 
-            _listExtrusion.BackColor = SystemColors.Window;
-            _listExtrusion.Cursor = Cursors.Default;
-            _listExtrusion.ForeColor = SystemColors.WindowText;
-            _listExtrusion.Location = new Point(235, 95);
-            _listExtrusion.Name = "_listExtrusion";
-            _listExtrusion.RightToLeft = RightToLeft.No;
-            _listExtrusion.Size = new Size(223, 134);
-            _listExtrusion.TabIndex = 34;
+            this._listExtrusion.BackColor = System.Drawing.SystemColors.Window;
+            this._listExtrusion.Cursor = System.Windows.Forms.Cursors.Default;
+            this._listExtrusion.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._listExtrusion.Location = new System.Drawing.Point(235, 95);
+            this._listExtrusion.Name = "_listExtrusion";
+            this._listExtrusion.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._listExtrusion.Size = new System.Drawing.Size(223, 134);
+            this._listExtrusion.TabIndex = 34;
+            this._listExtrusion.SelectedIndexChanged += new System.EventHandler(this.ListExtrusion_SelectedIndexChanged);
             // 
-            // imgExtrusion
+            // _imgExtrusion
             // 
-            _imgExtrusion.BorderStyle = BorderStyle.FixedSingle;
-            _imgExtrusion.Cursor = Cursors.Default;
-            _imgExtrusion.Location = new Point(15, 29);
-            _imgExtrusion.Name = "_imgExtrusion";
-            _imgExtrusion.Size = new Size(200, 200);
-            _imgExtrusion.SizeMode = PictureBoxSizeMode.StretchImage;
-            _imgExtrusion.TabIndex = 8;
-            _imgExtrusion.TabStop = false;
+            this._imgExtrusion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._imgExtrusion.Cursor = System.Windows.Forms.Cursors.Default;
+            this._imgExtrusion.Location = new System.Drawing.Point(15, 29);
+            this._imgExtrusion.Name = "_imgExtrusion";
+            this._imgExtrusion.Size = new System.Drawing.Size(200, 200);
+            this._imgExtrusion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this._imgExtrusion.TabIndex = 8;
+            this._imgExtrusion.TabStop = false;
+            this._imgExtrusion.Click += new System.EventHandler(this.ImgExtrusion_Click);
             // 
-            // TabPage5
+            // _TabPage5
             // 
-            _TabPage5.Controls.Add(boxHeading);
-            _TabPage5.Controls.Add(cmbComplexity);
-            _TabPage5.Controls.Add(labelComplexity);
-            _TabPage5.Controls.Add(labelCat);
-            _TabPage5.Controls.Add(imgLib);
-            _TabPage5.Controls.Add(_lstLib);
-            _TabPage5.Controls.Add(labelLibID);
-            _TabPage5.Controls.Add(_cmbLibCat);
-            _TabPage5.Location = new Point(4, 22);
-            _TabPage5.Name = "_TabPage5";
-            _TabPage5.Padding = new Padding(3);
-            _TabPage5.Size = new Size(480, 241);
-            _TabPage5.TabIndex = 4;
-            _TabPage5.Text = "Line of Objects";
-            _TabPage5.UseVisualStyleBackColor = true;
+            this._TabPage5.Controls.Add(this.boxHeading);
+            this._TabPage5.Controls.Add(this.cmbComplexity);
+            this._TabPage5.Controls.Add(this.labelComplexity);
+            this._TabPage5.Controls.Add(this.labelCat);
+            this._TabPage5.Controls.Add(this.imgLib);
+            this._TabPage5.Controls.Add(this._lstLib);
+            this._TabPage5.Controls.Add(this.labelLibID);
+            this._TabPage5.Controls.Add(this._cmbLibCat);
+            this._TabPage5.Location = new System.Drawing.Point(4, 22);
+            this._TabPage5.Name = "_TabPage5";
+            this._TabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this._TabPage5.Size = new System.Drawing.Size(480, 241);
+            this._TabPage5.TabIndex = 4;
+            this._TabPage5.Text = "Line of Objects";
+            this._TabPage5.UseVisualStyleBackColor = true;
+            this._TabPage5.Click += new System.EventHandler(this.TabPage5_Click);
             // 
             // boxHeading
             // 
-            boxHeading.Controls.Add(_ckRandom);
-            boxHeading.Controls.Add(txtHeading);
-            boxHeading.Controls.Add(_cmdHeading);
-            boxHeading.Location = new Point(235, 17);
-            boxHeading.Name = "boxHeading";
-            boxHeading.Size = new Size(224, 51);
-            boxHeading.TabIndex = 106;
-            boxHeading.TabStop = false;
-            boxHeading.Text = "Heading";
+            this.boxHeading.Controls.Add(this._ckRandom);
+            this.boxHeading.Controls.Add(this.txtHeading);
+            this.boxHeading.Controls.Add(this._cmdHeading);
+            this.boxHeading.Location = new System.Drawing.Point(235, 17);
+            this.boxHeading.Name = "boxHeading";
+            this.boxHeading.Size = new System.Drawing.Size(224, 51);
+            this.boxHeading.TabIndex = 106;
+            this.boxHeading.TabStop = false;
+            this.boxHeading.Text = "Heading";
             // 
-            // ckRandom
+            // _ckRandom
             // 
-            _ckRandom.AutoSize = true;
-            _ckRandom.Location = new Point(16, 21);
-            _ckRandom.Name = "_ckRandom";
-            _ckRandom.Size = new Size(66, 17);
-            _ckRandom.TabIndex = 2;
-            _ckRandom.Text = "Random";
-            _ckRandom.UseVisualStyleBackColor = true;
+            this._ckRandom.AutoSize = true;
+            this._ckRandom.Location = new System.Drawing.Point(16, 21);
+            this._ckRandom.Name = "_ckRandom";
+            this._ckRandom.Size = new System.Drawing.Size(66, 17);
+            this._ckRandom.TabIndex = 2;
+            this._ckRandom.Text = "Random";
+            this._ckRandom.UseVisualStyleBackColor = true;
+            this._ckRandom.CheckedChanged += new System.EventHandler(this.CkRandom_CheckedChanged);
             // 
             // txtHeading
             // 
-            txtHeading.Location = new Point(102, 18);
-            txtHeading.Name = "txtHeading";
-            txtHeading.Size = new Size(51, 20);
-            txtHeading.TabIndex = 1;
-            txtHeading.TextAlign = HorizontalAlignment.Center;
+            this.txtHeading.Location = new System.Drawing.Point(102, 18);
+            this.txtHeading.Name = "txtHeading";
+            this.txtHeading.Size = new System.Drawing.Size(51, 20);
+            this.txtHeading.TabIndex = 1;
+            this.txtHeading.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cmdHeading
+            // _cmdHeading
             // 
-            _cmdHeading.Location = new Point(166, 16);
-            _cmdHeading.Name = "_cmdHeading";
-            _cmdHeading.Size = new Size(40, 23);
-            _cmdHeading.TabIndex = 0;
-            _cmdHeading.Text = "Set";
-            _cmdHeading.UseVisualStyleBackColor = true;
+            this._cmdHeading.Location = new System.Drawing.Point(166, 16);
+            this._cmdHeading.Name = "_cmdHeading";
+            this._cmdHeading.Size = new System.Drawing.Size(40, 23);
+            this._cmdHeading.TabIndex = 0;
+            this._cmdHeading.Text = "Set";
+            this._cmdHeading.UseVisualStyleBackColor = true;
+            this._cmdHeading.Click += new System.EventHandler(this.CmdHeading_Click);
             // 
             // cmbComplexity
             // 
-            cmbComplexity.FormattingEnabled = true;
-            cmbComplexity.Items.AddRange(new object[] { "Very Sparse", "Sparse", "Normal", "Dense", "Very Dense", "Extra Dense" });
-            cmbComplexity.Location = new Point(235, 91);
-            cmbComplexity.Name = "cmbComplexity";
-            cmbComplexity.Size = new Size(75, 21);
-            cmbComplexity.TabIndex = 105;
-            cmbComplexity.Text = "Normal";
+            this.cmbComplexity.FormattingEnabled = true;
+            this.cmbComplexity.Items.AddRange(new object[] {
+            "Very Sparse",
+            "Sparse",
+            "Normal",
+            "Dense",
+            "Very Dense",
+            "Extra Dense"});
+            this.cmbComplexity.Location = new System.Drawing.Point(235, 91);
+            this.cmbComplexity.Name = "cmbComplexity";
+            this.cmbComplexity.Size = new System.Drawing.Size(75, 21);
+            this.cmbComplexity.TabIndex = 105;
+            this.cmbComplexity.Text = "Normal";
             // 
             // labelComplexity
             // 
-            labelComplexity.AutoSize = true;
-            labelComplexity.BackColor = Color.Transparent;
-            labelComplexity.Cursor = Cursors.Default;
-            labelComplexity.ForeColor = SystemColors.ControlText;
-            labelComplexity.Location = new Point(232, 75);
-            labelComplexity.Name = "labelComplexity";
-            labelComplexity.RightToLeft = RightToLeft.No;
-            labelComplexity.Size = new Size(57, 13);
-            labelComplexity.TabIndex = 103;
-            labelComplexity.Text = "Complexity";
+            this.labelComplexity.AutoSize = true;
+            this.labelComplexity.BackColor = System.Drawing.Color.Transparent;
+            this.labelComplexity.Cursor = System.Windows.Forms.Cursors.Default;
+            this.labelComplexity.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.labelComplexity.Location = new System.Drawing.Point(232, 75);
+            this.labelComplexity.Name = "labelComplexity";
+            this.labelComplexity.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.labelComplexity.Size = new System.Drawing.Size(57, 13);
+            this.labelComplexity.TabIndex = 103;
+            this.labelComplexity.Text = "Complexity";
             // 
             // labelCat
             // 
-            labelCat.AutoSize = true;
-            labelCat.BackColor = Color.Transparent;
-            labelCat.Cursor = Cursors.Default;
-            labelCat.ForeColor = SystemColors.ControlText;
-            labelCat.Location = new Point(320, 75);
-            labelCat.Name = "labelCat";
-            labelCat.RightToLeft = RightToLeft.No;
-            labelCat.Size = new Size(83, 13);
-            labelCat.TabIndex = 103;
-            labelCat.Text = "Object Category";
+            this.labelCat.AutoSize = true;
+            this.labelCat.BackColor = System.Drawing.Color.Transparent;
+            this.labelCat.Cursor = System.Windows.Forms.Cursors.Default;
+            this.labelCat.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.labelCat.Location = new System.Drawing.Point(320, 75);
+            this.labelCat.Name = "labelCat";
+            this.labelCat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.labelCat.Size = new System.Drawing.Size(83, 13);
+            this.labelCat.TabIndex = 103;
+            this.labelCat.Text = "Object Category";
             // 
             // imgLib
             // 
-            imgLib.BorderStyle = BorderStyle.FixedSingle;
-            imgLib.Cursor = Cursors.Default;
-            imgLib.Location = new Point(15, 29);
-            imgLib.Name = "imgLib";
-            imgLib.Size = new Size(200, 200);
-            imgLib.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgLib.TabIndex = 9;
-            imgLib.TabStop = false;
+            this.imgLib.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imgLib.Cursor = System.Windows.Forms.Cursors.Default;
+            this.imgLib.Location = new System.Drawing.Point(15, 29);
+            this.imgLib.Name = "imgLib";
+            this.imgLib.Size = new System.Drawing.Size(200, 200);
+            this.imgLib.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLib.TabIndex = 9;
+            this.imgLib.TabStop = false;
             // 
-            // lstLib
+            // _lstLib
             // 
-            _lstLib.BackColor = SystemColors.Window;
-            _lstLib.Cursor = Cursors.Default;
-            _lstLib.ForeColor = SystemColors.WindowText;
-            _lstLib.Location = new Point(235, 134);
-            _lstLib.Name = "_lstLib";
-            _lstLib.RightToLeft = RightToLeft.No;
-            _lstLib.Size = new Size(224, 95);
-            _lstLib.TabIndex = 100;
+            this._lstLib.BackColor = System.Drawing.SystemColors.Window;
+            this._lstLib.Cursor = System.Windows.Forms.Cursors.Default;
+            this._lstLib.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._lstLib.Location = new System.Drawing.Point(235, 134);
+            this._lstLib.Name = "_lstLib";
+            this._lstLib.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._lstLib.Size = new System.Drawing.Size(224, 95);
+            this._lstLib.TabIndex = 100;
+            this._lstLib.SelectedIndexChanged += new System.EventHandler(this.LstLib_SelectedIndexChanged);
             // 
             // labelLibID
             // 
-            labelLibID.BackColor = Color.Transparent;
-            labelLibID.Cursor = Cursors.Default;
-            labelLibID.ForeColor = SystemColors.ControlText;
-            labelLibID.Location = new Point(235, 115);
-            labelLibID.Name = "labelLibID";
-            labelLibID.RightToLeft = RightToLeft.No;
-            labelLibID.Size = new Size(227, 16);
-            labelLibID.TabIndex = 104;
-            labelLibID.Text = "GUID";
-            labelLibID.TextAlign = ContentAlignment.MiddleCenter;
+            this.labelLibID.BackColor = System.Drawing.Color.Transparent;
+            this.labelLibID.Cursor = System.Windows.Forms.Cursors.Default;
+            this.labelLibID.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.labelLibID.Location = new System.Drawing.Point(235, 115);
+            this.labelLibID.Name = "labelLibID";
+            this.labelLibID.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.labelLibID.Size = new System.Drawing.Size(227, 16);
+            this.labelLibID.TabIndex = 104;
+            this.labelLibID.Text = "GUID";
+            this.labelLibID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cmbLibCat
+            // _cmbLibCat
             // 
-            _cmbLibCat.BackColor = SystemColors.Window;
-            _cmbLibCat.Cursor = Cursors.Default;
-            _cmbLibCat.DropDownStyle = ComboBoxStyle.DropDownList;
-            _cmbLibCat.ForeColor = SystemColors.WindowText;
-            _cmbLibCat.Location = new Point(323, 91);
-            _cmbLibCat.Name = "_cmbLibCat";
-            _cmbLibCat.RightToLeft = RightToLeft.No;
-            _cmbLibCat.Size = new Size(136, 21);
-            _cmbLibCat.TabIndex = 102;
+            this._cmbLibCat.BackColor = System.Drawing.SystemColors.Window;
+            this._cmbLibCat.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmbLibCat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._cmbLibCat.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._cmbLibCat.Location = new System.Drawing.Point(323, 91);
+            this._cmbLibCat.Name = "_cmbLibCat";
+            this._cmbLibCat.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmbLibCat.Size = new System.Drawing.Size(136, 21);
+            this._cmbLibCat.TabIndex = 102;
+            this._cmbLibCat.SelectedIndexChanged += new System.EventHandler(this.CmbLibCat_SelectedIndexChanged);
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.Location = new Point(348, 295);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(66, 25);
-            _cmdCancel.TabIndex = 26;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Location = new System.Drawing.Point(348, 295);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(66, 25);
+            this._cmdCancel.TabIndex = 26;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.Location = new Point(430, 295);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.Size = new Size(66, 25);
-            _cmdOK.TabIndex = 25;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Location = new System.Drawing.Point(430, 295);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.Size = new System.Drawing.Size(66, 25);
+            this._cmdOK.TabIndex = 25;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
-            // cmdSample
+            // _cmdSample
             // 
-            _cmdSample.Location = new Point(125, 295);
-            _cmdSample.Name = "_cmdSample";
-            _cmdSample.Size = new Size(62, 25);
-            _cmdSample.TabIndex = 38;
-            _cmdSample.Text = "Sample";
-            _cmdSample.UseVisualStyleBackColor = true;
+            this._cmdSample.Location = new System.Drawing.Point(125, 295);
+            this._cmdSample.Name = "_cmdSample";
+            this._cmdSample.Size = new System.Drawing.Size(62, 25);
+            this._cmdSample.TabIndex = 38;
+            this._cmdSample.Text = "Sample";
+            this._cmdSample.UseVisualStyleBackColor = true;
+            this._cmdSample.Click += new System.EventHandler(this.CmdSample_Click);
             // 
-            // cmdSmooth
+            // _cmdSmooth
             // 
-            _cmdSmooth.Location = new Point(46, 295);
-            _cmdSmooth.Name = "_cmdSmooth";
-            _cmdSmooth.Size = new Size(62, 25);
-            _cmdSmooth.TabIndex = 37;
-            _cmdSmooth.Text = "Smooth";
-            _cmdSmooth.UseVisualStyleBackColor = true;
+            this._cmdSmooth.Location = new System.Drawing.Point(46, 295);
+            this._cmdSmooth.Name = "_cmdSmooth";
+            this._cmdSmooth.Size = new System.Drawing.Size(62, 25);
+            this._cmdSmooth.TabIndex = 37;
+            this._cmdSmooth.Text = "Smooth";
+            this._cmdSmooth.UseVisualStyleBackColor = true;
+            this._cmdSmooth.Click += new System.EventHandler(this.CmdSmooth_Click);
             // 
             // FrmLinesP
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(515, 334);
-            Controls.Add(_cmdSample);
-            Controls.Add(_cmdSmooth);
-            Controls.Add(TabControl1);
-            Controls.Add(_cmdOK);
-            Controls.Add(_cmdCancel);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "FrmLinesP";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - Line Properties";
-            ((System.ComponentModel.ISupportInitialize)imgVector).EndInit();
-            TabControl1.ResumeLayout(false);
-            TabPage1.ResumeLayout(false);
-            TabPage1.PerformLayout();
-            boxType.ResumeLayout(false);
-            boxType.PerformLayout();
-            boxAltitude.ResumeLayout(false);
-            boxAltitude.PerformLayout();
-            boxProgressive.ResumeLayout(false);
-            boxProgressive.PerformLayout();
-            boxWidth.ResumeLayout(false);
-            boxWidth.PerformLayout();
-            _TabPage2.ResumeLayout(false);
-            _TabPage2.PerformLayout();
-            _TabPage3.ResumeLayout(false);
-            boxTexType.ResumeLayout(false);
-            boxTexType.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgTex).EndInit();
-            boxTexTexture.ResumeLayout(false);
-            boxTexTexture.PerformLayout();
-            _TabPage4.ResumeLayout(false);
-            _TabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)_imgExtrusion).EndInit();
-            _TabPage5.ResumeLayout(false);
-            _TabPage5.PerformLayout();
-            boxHeading.ResumeLayout(false);
-            boxHeading.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgLib).EndInit();
-            Load += new EventHandler(FrmLinesP_Load);
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(515, 334);
+            this.Controls.Add(this._cmdSample);
+            this.Controls.Add(this._cmdSmooth);
+            this.Controls.Add(this.TabControl1);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this._cmdCancel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmLinesP";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - Line Properties";
+            this.Load += new System.EventHandler(this.FrmLinesP_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.imgVector)).EndInit();
+            this.TabControl1.ResumeLayout(false);
+            this.TabPage1.ResumeLayout(false);
+            this.TabPage1.PerformLayout();
+            this.boxType.ResumeLayout(false);
+            this.boxType.PerformLayout();
+            this.boxAltitude.ResumeLayout(false);
+            this.boxAltitude.PerformLayout();
+            this.boxProgressive.ResumeLayout(false);
+            this.boxProgressive.PerformLayout();
+            this.boxWidth.ResumeLayout(false);
+            this.boxWidth.PerformLayout();
+            this._TabPage2.ResumeLayout(false);
+            this._TabPage2.PerformLayout();
+            this._TabPage3.ResumeLayout(false);
+            this.boxTexType.ResumeLayout(false);
+            this.boxTexType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgTex)).EndInit();
+            this.boxTexTexture.ResumeLayout(false);
+            this.boxTexTexture.PerformLayout();
+            this._TabPage4.ResumeLayout(false);
+            this._TabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._imgExtrusion)).EndInit();
+            this._TabPage5.ResumeLayout(false);
+            this._TabPage5.PerformLayout();
+            this.boxHeading.ResumeLayout(false);
+            this.boxHeading.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLib)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         public PictureBox imgVector;

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmAbout : Form
@@ -32,84 +32,74 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAbout));
-            LabelCopyright = new Label();
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            Label1 = new Label();
-            _Button1 = new Button();
-            _Button1.Click += new EventHandler(Button1_Click);
-            LogoPictureBox = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)LogoPictureBox).BeginInit();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAbout));
+            this.LabelCopyright = new System.Windows.Forms.Label();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.LogoPictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
+            this.SuspendLayout();
             // 
             // LabelCopyright
             // 
-            LabelCopyright.Location = new Point(12, 150);
-            LabelCopyright.Name = "LabelCopyright";
-            LabelCopyright.Size = new Size(284, 32);
-            LabelCopyright.TabIndex = 4;
-            LabelCopyright.Text = "Copyright © Luis Sб 2007-2017.  The collaboration of Luis Fйliz-Tirado and Richar" + "d Ludowise is acknowledge.";
-            LabelCopyright.TextAlign = ContentAlignment.TopCenter;
+            this.LabelCopyright.Location = new System.Drawing.Point(12, 150);
+            this.LabelCopyright.Name = "LabelCopyright";
+            this.LabelCopyright.Size = new System.Drawing.Size(284, 41);
+            this.LabelCopyright.TabIndex = 4;
+            this.LabelCopyright.Text = "Copyright © mrprint@github.com 2020.\nCopyright © Luis Sб 2007-2017.  The collabor" +
+    "ation of Luis Fйliz-Tirado and Richard Ludowise is acknowledge.";
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.Location = new Point(448, 143);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.Size = new Size(67, 27);
-            _cmdOK.TabIndex = 6;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Location = new System.Drawing.Point(428, 164);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.Size = new System.Drawing.Size(67, 27);
+            this._cmdOK.TabIndex = 6;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
             // Label1
             // 
-            Label1.Location = new Point(322, 0);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(193, 140);
-            Label1.TabIndex = 7;
-            Label1.Text = resources.GetString("Label1.Text");
-            Label1.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // Button1
-            // 
-            _Button1.Location = new Point(339, 143);
-            _Button1.Name = "_Button1";
-            _Button1.Size = new Size(67, 27);
-            _Button1.TabIndex = 8;
-            _Button1.Text = "Donate";
-            _Button1.UseVisualStyleBackColor = true;
+            this.Label1.Location = new System.Drawing.Point(322, 12);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(173, 128);
+            this.Label1.TabIndex = 7;
+            this.Label1.Text = "SBuilderXX is a scenery design tool that you can use free of charge to produce an" +
+    "y scenery project.";
+            this.Label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // LogoPictureBox
             // 
-            LogoPictureBox.Image = My.Resources.Resources.newsbuilderx315;
-            LogoPictureBox.Location = new Point(12, 12);
-            LogoPictureBox.Name = "LogoPictureBox";
-            LogoPictureBox.Size = new Size(284, 135);
-            LogoPictureBox.TabIndex = 1;
-            LogoPictureBox.TabStop = false;
+            this.LogoPictureBox.Image = global::SBuilderXX.My.Resources.Resources.mylogo;
+            this.LogoPictureBox.Location = new System.Drawing.Point(12, 12);
+            this.LogoPictureBox.Name = "LogoPictureBox";
+            this.LogoPictureBox.Size = new System.Drawing.Size(284, 135);
+            this.LogoPictureBox.TabIndex = 1;
+            this.LogoPictureBox.TabStop = false;
             // 
             // FrmAbout
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(535, 187);
-            Controls.Add(_Button1);
-            Controls.Add(Label1);
-            Controls.Add(_cmdOK);
-            Controls.Add(LabelCopyright);
-            Controls.Add(LogoPictureBox);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "FrmAbout";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "About SBuilderX";
-            TransparencyKey = Color.Crimson;
-            ((System.ComponentModel.ISupportInitialize)LogoPictureBox).EndInit();
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(507, 202);
+            this.Controls.Add(this.Label1);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this.LabelCopyright);
+            this.Controls.Add(this.LogoPictureBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmAbout";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "About SBuilderXX";
+            this.TransparencyKey = System.Drawing.Color.Crimson;
+            ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         internal Label LabelCopyright;
@@ -141,30 +131,6 @@ namespace SBuilderX
 
         internal PictureBox LogoPictureBox;
         internal Label Label1;
-        private Button _Button1;
 
-        internal Button Button1
-        {
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            get
-            {
-                return _Button1;
-            }
-
-            [MethodImpl(MethodImplOptions.Synchronized)]
-            set
-            {
-                if (_Button1 != null)
-                {
-                    _Button1.Click -= Button1_Click;
-                }
-
-                _Button1 = value;
-                if (_Button1 != null)
-                {
-                    _Button1.Click += Button1_Click;
-                }
-            }
-        }
     }
 }

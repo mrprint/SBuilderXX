@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Xml;
 using VB = Microsoft.VisualBasic;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     static class moduleOBJECTS
     {
@@ -828,7 +828,7 @@ namespace SBuilderX
             catch (Exception)
             {
                 Array.Resize(ref Objects, NoOfObjectsIni + 1);
-                MessageBox.Show("SBuilderX could not import objects", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("SBuilderXX could not import objects", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
         }
@@ -2045,7 +2045,7 @@ namespace SBuilderX
                 };
                 XmlWriter writer = XmlWriter.Create(a, settings);
                 writer.WriteStartDocument();
-                writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
+                writer.WriteComment("Created by SBuilderXX on " + DateTime.Now);
                 writer.WriteStartElement("FSData");
                 writer.WriteAttributeString("version", "9.0");
                 writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");
@@ -2477,7 +2477,7 @@ namespace SBuilderX
                 };
                 XmlWriter writer = XmlWriter.Create(a, settings);
                 writer.WriteStartDocument();
-                writer.WriteComment("Created by SBuilderX on " + DateTime.Now);
+                writer.WriteComment("Created by SBuilderXX on " + DateTime.Now);
                 writer.WriteStartElement("FSData");
                 writer.WriteAttributeString("version", "9.0");
                 writer.WriteAttributeString("xmlns", "xsi", null, "http://www.w3.org/2001/XMLSchema-instance");

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmTaxSign
@@ -536,381 +536,382 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTaxSign));
-            ToolTip1 = new ToolTip(components);
-            _txtMessage = new TextBox();
-            _txtMessage.KeyDown += new KeyEventHandler(TxtMessage_KeyDown);
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            Frame2 = new GroupBox();
-            _cmdINFO = new Button();
-            _cmdINFO.Click += new EventHandler(CmdINFO_Click);
-            _cmdRUN = new Button();
-            _cmdRUN.Click += new EventHandler(CmdRUN_Click);
-            _cmdDIR = new Button();
-            _cmdDIR.Click += new EventHandler(CmdDIR_Click);
-            _cmdLOC = new Button();
-            _cmdLOC.Click += new EventHandler(CmdLOC_Click);
-            Frame1 = new GroupBox();
-            _cmdDIV = new Button();
-            _cmdDIV.Click += new EventHandler(CmdDIV_Click);
-            _cmdXX = new Button();
-            _cmdXX.Click += new EventHandler(CmdXX_Click);
-            _cmdHOLD = new Button();
-            _cmdHOLD.Click += new EventHandler(CmdHOLD_Click);
-            _cmdILS = new Button();
-            _cmdILS.Click += new EventHandler(CmdILS_Click);
-            _cmdDD = new Button();
-            _cmdDD.Click += new EventHandler(CmdDD_Click);
-            _cmdDL = new Button();
-            _cmdDL.Click += new EventHandler(CmdDL_Click);
-            _cmdLL = new Button();
-            _cmdLL.Click += new EventHandler(CmdLL_Click);
-            _cmdUL = new Button();
-            _cmdUL.Click += new EventHandler(CmdUL_Click);
-            _cmdDR = new Button();
-            _cmdDR.Click += new EventHandler(CmdDR_Click);
-            _cmdRR = new Button();
-            _cmdRR.Click += new EventHandler(CmdRR_Click);
-            _cmdUR = new Button();
-            _cmdUR.Click += new EventHandler(CmdUR_Click);
-            _cmdUP = new Button();
-            _cmdUP.Click += new EventHandler(CmdUp_Click);
-            Frame2.SuspendLayout();
-            Frame1.SuspendLayout();
-            SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTaxSign));
+            this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this._txtMessage = new System.Windows.Forms.TextBox();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this.Frame2 = new System.Windows.Forms.GroupBox();
+            this._cmdINFO = new System.Windows.Forms.Button();
+            this._cmdRUN = new System.Windows.Forms.Button();
+            this._cmdDIR = new System.Windows.Forms.Button();
+            this._cmdLOC = new System.Windows.Forms.Button();
+            this.Frame1 = new System.Windows.Forms.GroupBox();
+            this._cmdDIV = new System.Windows.Forms.Button();
+            this._cmdXX = new System.Windows.Forms.Button();
+            this._cmdHOLD = new System.Windows.Forms.Button();
+            this._cmdILS = new System.Windows.Forms.Button();
+            this._cmdDD = new System.Windows.Forms.Button();
+            this._cmdDL = new System.Windows.Forms.Button();
+            this._cmdLL = new System.Windows.Forms.Button();
+            this._cmdUL = new System.Windows.Forms.Button();
+            this._cmdDR = new System.Windows.Forms.Button();
+            this._cmdRR = new System.Windows.Forms.Button();
+            this._cmdUR = new System.Windows.Forms.Button();
+            this._cmdUP = new System.Windows.Forms.Button();
+            this.Frame2.SuspendLayout();
+            this.Frame1.SuspendLayout();
+            this.SuspendLayout();
             // 
-            // txtMessage
+            // _txtMessage
             // 
-            _txtMessage.AcceptsReturn = true;
-            _txtMessage.BackColor = SystemColors.Window;
-            _txtMessage.Cursor = Cursors.IBeam;
-            _txtMessage.ForeColor = SystemColors.WindowText;
-            _txtMessage.Location = new Point(204, 96);
-            _txtMessage.MaxLength = 0;
-            _txtMessage.Name = "_txtMessage";
-            _txtMessage.RightToLeft = RightToLeft.No;
-            _txtMessage.Size = new Size(133, 20);
-            _txtMessage.TabIndex = 11;
-            _txtMessage.TextAlign = HorizontalAlignment.Center;
+            this._txtMessage.AcceptsReturn = true;
+            this._txtMessage.BackColor = System.Drawing.SystemColors.Window;
+            this._txtMessage.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._txtMessage.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._txtMessage.Location = new System.Drawing.Point(204, 96);
+            this._txtMessage.MaxLength = 0;
+            this._txtMessage.Name = "_txtMessage";
+            this._txtMessage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._txtMessage.Size = new System.Drawing.Size(133, 20);
+            this._txtMessage.TabIndex = 11;
+            this._txtMessage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtMessage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtMessage_KeyDown);
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.BackColor = SystemColors.Control;
-            _cmdOK.Cursor = Cursors.Default;
-            _cmdOK.ForeColor = SystemColors.ControlText;
-            _cmdOK.Location = new Point(282, 132);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.RightToLeft = RightToLeft.No;
-            _cmdOK.Size = new Size(55, 25);
-            _cmdOK.TabIndex = 10;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = false;
+            this._cmdOK.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdOK.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdOK.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdOK.Location = new System.Drawing.Point(282, 132);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdOK.Size = new System.Drawing.Size(55, 25);
+            this._cmdOK.TabIndex = 10;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = false;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.BackColor = SystemColors.Control;
-            _cmdCancel.Cursor = Cursors.Default;
-            _cmdCancel.ForeColor = SystemColors.ControlText;
-            _cmdCancel.Location = new Point(204, 132);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.RightToLeft = RightToLeft.No;
-            _cmdCancel.Size = new Size(55, 25);
-            _cmdCancel.TabIndex = 9;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdCancel.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdCancel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdCancel.Location = new System.Drawing.Point(204, 132);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdCancel.Size = new System.Drawing.Size(55, 25);
+            this._cmdCancel.TabIndex = 9;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
             // Frame2
             // 
-            Frame2.BackColor = SystemColors.Control;
-            Frame2.Controls.Add(_cmdINFO);
-            Frame2.Controls.Add(_cmdRUN);
-            Frame2.Controls.Add(_cmdDIR);
-            Frame2.Controls.Add(_cmdLOC);
-            Frame2.ForeColor = SystemColors.ActiveCaption;
-            Frame2.Location = new Point(192, 18);
-            Frame2.Name = "Frame2";
-            Frame2.RightToLeft = RightToLeft.No;
-            Frame2.Size = new Size(157, 61);
-            Frame2.TabIndex = 8;
-            Frame2.TabStop = false;
-            Frame2.Text = "Change Type";
+            this.Frame2.BackColor = System.Drawing.SystemColors.Control;
+            this.Frame2.Controls.Add(this._cmdINFO);
+            this.Frame2.Controls.Add(this._cmdRUN);
+            this.Frame2.Controls.Add(this._cmdDIR);
+            this.Frame2.Controls.Add(this._cmdLOC);
+            this.Frame2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Frame2.Location = new System.Drawing.Point(192, 18);
+            this.Frame2.Name = "Frame2";
+            this.Frame2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Frame2.Size = new System.Drawing.Size(157, 61);
+            this.Frame2.TabIndex = 8;
+            this.Frame2.TabStop = false;
+            this.Frame2.Text = "Change Type";
             // 
-            // cmdINFO
+            // _cmdINFO
             // 
-            _cmdINFO.BackColor = SystemColors.Control;
-            _cmdINFO.Cursor = Cursors.Default;
-            _cmdINFO.ForeColor = SystemColors.ControlText;
-            _cmdINFO.Image = (Image)resources.GetObject("cmdINFO.Image");
-            _cmdINFO.Location = new Point(120, 24);
-            _cmdINFO.Name = "_cmdINFO";
-            _cmdINFO.RightToLeft = RightToLeft.No;
-            _cmdINFO.Size = new Size(25, 25);
-            _cmdINFO.TabIndex = 20;
-            _cmdINFO.TextAlign = ContentAlignment.BottomCenter;
-            _cmdINFO.UseVisualStyleBackColor = false;
+            this._cmdINFO.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdINFO.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdINFO.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdINFO.Image = ((System.Drawing.Image)(resources.GetObject("_cmdINFO.Image")));
+            this._cmdINFO.Location = new System.Drawing.Point(120, 24);
+            this._cmdINFO.Name = "_cmdINFO";
+            this._cmdINFO.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdINFO.Size = new System.Drawing.Size(25, 25);
+            this._cmdINFO.TabIndex = 20;
+            this._cmdINFO.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdINFO.UseVisualStyleBackColor = false;
+            this._cmdINFO.Click += new System.EventHandler(this.CmdINFO_Click);
             // 
-            // cmdRUN
+            // _cmdRUN
             // 
-            _cmdRUN.BackColor = SystemColors.Control;
-            _cmdRUN.Cursor = Cursors.Default;
-            _cmdRUN.ForeColor = SystemColors.ControlText;
-            _cmdRUN.Image = (Image)resources.GetObject("cmdRUN.Image");
-            _cmdRUN.Location = new Point(84, 24);
-            _cmdRUN.Name = "_cmdRUN";
-            _cmdRUN.RightToLeft = RightToLeft.No;
-            _cmdRUN.Size = new Size(25, 25);
-            _cmdRUN.TabIndex = 14;
-            _cmdRUN.TextAlign = ContentAlignment.BottomCenter;
-            _cmdRUN.UseVisualStyleBackColor = false;
+            this._cmdRUN.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdRUN.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdRUN.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdRUN.Image = ((System.Drawing.Image)(resources.GetObject("_cmdRUN.Image")));
+            this._cmdRUN.Location = new System.Drawing.Point(84, 24);
+            this._cmdRUN.Name = "_cmdRUN";
+            this._cmdRUN.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdRUN.Size = new System.Drawing.Size(25, 25);
+            this._cmdRUN.TabIndex = 14;
+            this._cmdRUN.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdRUN.UseVisualStyleBackColor = false;
+            this._cmdRUN.Click += new System.EventHandler(this.CmdRUN_Click);
             // 
-            // cmdDIR
+            // _cmdDIR
             // 
-            _cmdDIR.BackColor = Color.White;
-            _cmdDIR.Cursor = Cursors.Default;
-            _cmdDIR.ForeColor = SystemColors.ControlText;
-            _cmdDIR.Image = (Image)resources.GetObject("cmdDIR.Image");
-            _cmdDIR.Location = new Point(48, 24);
-            _cmdDIR.Name = "_cmdDIR";
-            _cmdDIR.RightToLeft = RightToLeft.No;
-            _cmdDIR.Size = new Size(25, 25);
-            _cmdDIR.TabIndex = 13;
-            _cmdDIR.TextAlign = ContentAlignment.BottomCenter;
-            _cmdDIR.UseVisualStyleBackColor = false;
+            this._cmdDIR.BackColor = System.Drawing.Color.White;
+            this._cmdDIR.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdDIR.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdDIR.Image = ((System.Drawing.Image)(resources.GetObject("_cmdDIR.Image")));
+            this._cmdDIR.Location = new System.Drawing.Point(48, 24);
+            this._cmdDIR.Name = "_cmdDIR";
+            this._cmdDIR.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdDIR.Size = new System.Drawing.Size(25, 25);
+            this._cmdDIR.TabIndex = 13;
+            this._cmdDIR.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdDIR.UseVisualStyleBackColor = false;
+            this._cmdDIR.Click += new System.EventHandler(this.CmdDIR_Click);
             // 
-            // cmdLOC
+            // _cmdLOC
             // 
-            _cmdLOC.BackColor = Color.White;
-            _cmdLOC.Cursor = Cursors.Default;
-            _cmdLOC.ForeColor = SystemColors.ControlText;
-            _cmdLOC.Image = (Image)resources.GetObject("cmdLOC.Image");
-            _cmdLOC.Location = new Point(12, 24);
-            _cmdLOC.Name = "_cmdLOC";
-            _cmdLOC.RightToLeft = RightToLeft.No;
-            _cmdLOC.Size = new Size(25, 25);
-            _cmdLOC.TabIndex = 12;
-            _cmdLOC.TextAlign = ContentAlignment.BottomCenter;
-            _cmdLOC.UseVisualStyleBackColor = false;
+            this._cmdLOC.BackColor = System.Drawing.Color.White;
+            this._cmdLOC.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdLOC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdLOC.Image = ((System.Drawing.Image)(resources.GetObject("_cmdLOC.Image")));
+            this._cmdLOC.Location = new System.Drawing.Point(12, 24);
+            this._cmdLOC.Name = "_cmdLOC";
+            this._cmdLOC.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdLOC.Size = new System.Drawing.Size(25, 25);
+            this._cmdLOC.TabIndex = 12;
+            this._cmdLOC.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdLOC.UseVisualStyleBackColor = false;
+            this._cmdLOC.Click += new System.EventHandler(this.CmdLOC_Click);
             // 
             // Frame1
             // 
-            Frame1.BackColor = SystemColors.Control;
-            Frame1.Controls.Add(_cmdDIV);
-            Frame1.Controls.Add(_cmdXX);
-            Frame1.Controls.Add(_cmdHOLD);
-            Frame1.Controls.Add(_cmdILS);
-            Frame1.Controls.Add(_cmdDD);
-            Frame1.Controls.Add(_cmdDL);
-            Frame1.Controls.Add(_cmdLL);
-            Frame1.Controls.Add(_cmdUL);
-            Frame1.Controls.Add(_cmdDR);
-            Frame1.Controls.Add(_cmdRR);
-            Frame1.Controls.Add(_cmdUR);
-            Frame1.Controls.Add(_cmdUP);
-            Frame1.ForeColor = SystemColors.ActiveCaption;
-            Frame1.Location = new Point(12, 18);
-            Frame1.Name = "Frame1";
-            Frame1.RightToLeft = RightToLeft.No;
-            Frame1.Size = new Size(157, 139);
-            Frame1.TabIndex = 0;
-            Frame1.TabStop = false;
-            Frame1.Text = "Special symbols";
+            this.Frame1.BackColor = System.Drawing.SystemColors.Control;
+            this.Frame1.Controls.Add(this._cmdDIV);
+            this.Frame1.Controls.Add(this._cmdXX);
+            this.Frame1.Controls.Add(this._cmdHOLD);
+            this.Frame1.Controls.Add(this._cmdILS);
+            this.Frame1.Controls.Add(this._cmdDD);
+            this.Frame1.Controls.Add(this._cmdDL);
+            this.Frame1.Controls.Add(this._cmdLL);
+            this.Frame1.Controls.Add(this._cmdUL);
+            this.Frame1.Controls.Add(this._cmdDR);
+            this.Frame1.Controls.Add(this._cmdRR);
+            this.Frame1.Controls.Add(this._cmdUR);
+            this.Frame1.Controls.Add(this._cmdUP);
+            this.Frame1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Frame1.Location = new System.Drawing.Point(12, 18);
+            this.Frame1.Name = "Frame1";
+            this.Frame1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Frame1.Size = new System.Drawing.Size(157, 139);
+            this.Frame1.TabIndex = 0;
+            this.Frame1.TabStop = false;
+            this.Frame1.Text = "Special symbols";
             // 
-            // cmdDIV
+            // _cmdDIV
             // 
-            _cmdDIV.BackColor = SystemColors.Control;
-            _cmdDIV.Cursor = Cursors.Default;
-            _cmdDIV.ForeColor = SystemColors.ControlText;
-            _cmdDIV.Image = (Image)resources.GetObject("cmdDIV.Image");
-            _cmdDIV.Location = new Point(120, 99);
-            _cmdDIV.Name = "_cmdDIV";
-            _cmdDIV.RightToLeft = RightToLeft.No;
-            _cmdDIV.Size = new Size(25, 25);
-            _cmdDIV.TabIndex = 19;
-            _cmdDIV.TextAlign = ContentAlignment.BottomCenter;
-            _cmdDIV.UseVisualStyleBackColor = false;
+            this._cmdDIV.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdDIV.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdDIV.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdDIV.Image = ((System.Drawing.Image)(resources.GetObject("_cmdDIV.Image")));
+            this._cmdDIV.Location = new System.Drawing.Point(120, 99);
+            this._cmdDIV.Name = "_cmdDIV";
+            this._cmdDIV.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdDIV.Size = new System.Drawing.Size(25, 25);
+            this._cmdDIV.TabIndex = 19;
+            this._cmdDIV.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdDIV.UseVisualStyleBackColor = false;
+            this._cmdDIV.Click += new System.EventHandler(this.CmdDIV_Click);
             // 
-            // cmdXX
+            // _cmdXX
             // 
-            _cmdXX.BackColor = SystemColors.Control;
-            _cmdXX.Cursor = Cursors.Default;
-            _cmdXX.ForeColor = SystemColors.ControlText;
-            _cmdXX.Image = (Image)resources.GetObject("cmdXX.Image");
-            _cmdXX.Location = new Point(12, 99);
-            _cmdXX.Name = "_cmdXX";
-            _cmdXX.RightToLeft = RightToLeft.No;
-            _cmdXX.Size = new Size(25, 25);
-            _cmdXX.TabIndex = 18;
-            _cmdXX.TextAlign = ContentAlignment.BottomCenter;
-            _cmdXX.UseVisualStyleBackColor = false;
+            this._cmdXX.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdXX.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdXX.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdXX.Image = ((System.Drawing.Image)(resources.GetObject("_cmdXX.Image")));
+            this._cmdXX.Location = new System.Drawing.Point(12, 99);
+            this._cmdXX.Name = "_cmdXX";
+            this._cmdXX.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdXX.Size = new System.Drawing.Size(25, 25);
+            this._cmdXX.TabIndex = 18;
+            this._cmdXX.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdXX.UseVisualStyleBackColor = false;
+            this._cmdXX.Click += new System.EventHandler(this.CmdXX_Click);
             // 
-            // cmdHOLD
+            // _cmdHOLD
             // 
-            _cmdHOLD.BackColor = SystemColors.Control;
-            _cmdHOLD.Cursor = Cursors.Default;
-            _cmdHOLD.ForeColor = SystemColors.ControlText;
-            _cmdHOLD.Image = (Image)resources.GetObject("cmdHOLD.Image");
-            _cmdHOLD.Location = new Point(48, 99);
-            _cmdHOLD.Name = "_cmdHOLD";
-            _cmdHOLD.RightToLeft = RightToLeft.No;
-            _cmdHOLD.Size = new Size(25, 25);
-            _cmdHOLD.TabIndex = 17;
-            _cmdHOLD.TextAlign = ContentAlignment.BottomCenter;
-            _cmdHOLD.UseVisualStyleBackColor = false;
+            this._cmdHOLD.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdHOLD.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdHOLD.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdHOLD.Image = ((System.Drawing.Image)(resources.GetObject("_cmdHOLD.Image")));
+            this._cmdHOLD.Location = new System.Drawing.Point(48, 99);
+            this._cmdHOLD.Name = "_cmdHOLD";
+            this._cmdHOLD.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdHOLD.Size = new System.Drawing.Size(25, 25);
+            this._cmdHOLD.TabIndex = 17;
+            this._cmdHOLD.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdHOLD.UseVisualStyleBackColor = false;
+            this._cmdHOLD.Click += new System.EventHandler(this.CmdHOLD_Click);
             // 
-            // cmdILS
+            // _cmdILS
             // 
-            _cmdILS.BackColor = SystemColors.Control;
-            _cmdILS.Cursor = Cursors.Default;
-            _cmdILS.ForeColor = SystemColors.ControlText;
-            _cmdILS.Image = (Image)resources.GetObject("cmdILS.Image");
-            _cmdILS.Location = new Point(84, 99);
-            _cmdILS.Name = "_cmdILS";
-            _cmdILS.RightToLeft = RightToLeft.No;
-            _cmdILS.Size = new Size(25, 25);
-            _cmdILS.TabIndex = 16;
-            _cmdILS.TextAlign = ContentAlignment.BottomCenter;
-            _cmdILS.UseVisualStyleBackColor = false;
+            this._cmdILS.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdILS.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdILS.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdILS.Image = ((System.Drawing.Image)(resources.GetObject("_cmdILS.Image")));
+            this._cmdILS.Location = new System.Drawing.Point(84, 99);
+            this._cmdILS.Name = "_cmdILS";
+            this._cmdILS.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdILS.Size = new System.Drawing.Size(25, 25);
+            this._cmdILS.TabIndex = 16;
+            this._cmdILS.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdILS.UseVisualStyleBackColor = false;
+            this._cmdILS.Click += new System.EventHandler(this.CmdILS_Click);
             // 
-            // cmdDD
+            // _cmdDD
             // 
-            _cmdDD.BackColor = SystemColors.Control;
-            _cmdDD.Cursor = Cursors.Default;
-            _cmdDD.ForeColor = SystemColors.ControlText;
-            _cmdDD.Image = (Image)resources.GetObject("cmdDD.Image");
-            _cmdDD.Location = new Point(120, 60);
-            _cmdDD.Name = "_cmdDD";
-            _cmdDD.RightToLeft = RightToLeft.No;
-            _cmdDD.Size = new Size(25, 25);
-            _cmdDD.TabIndex = 15;
-            _cmdDD.TextAlign = ContentAlignment.BottomCenter;
-            _cmdDD.UseVisualStyleBackColor = false;
+            this._cmdDD.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdDD.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdDD.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdDD.Image = ((System.Drawing.Image)(resources.GetObject("_cmdDD.Image")));
+            this._cmdDD.Location = new System.Drawing.Point(120, 60);
+            this._cmdDD.Name = "_cmdDD";
+            this._cmdDD.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdDD.Size = new System.Drawing.Size(25, 25);
+            this._cmdDD.TabIndex = 15;
+            this._cmdDD.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdDD.UseVisualStyleBackColor = false;
+            this._cmdDD.Click += new System.EventHandler(this.CmdDD_Click);
             // 
-            // cmdDL
+            // _cmdDL
             // 
-            _cmdDL.BackColor = SystemColors.Control;
-            _cmdDL.Cursor = Cursors.Default;
-            _cmdDL.ForeColor = SystemColors.ControlText;
-            _cmdDL.Image = (Image)resources.GetObject("cmdDL.Image");
-            _cmdDL.Location = new Point(12, 24);
-            _cmdDL.Name = "_cmdDL";
-            _cmdDL.RightToLeft = RightToLeft.No;
-            _cmdDL.Size = new Size(25, 25);
-            _cmdDL.TabIndex = 7;
-            _cmdDL.TextAlign = ContentAlignment.BottomCenter;
-            _cmdDL.UseVisualStyleBackColor = false;
+            this._cmdDL.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdDL.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdDL.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdDL.Image = ((System.Drawing.Image)(resources.GetObject("_cmdDL.Image")));
+            this._cmdDL.Location = new System.Drawing.Point(12, 24);
+            this._cmdDL.Name = "_cmdDL";
+            this._cmdDL.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdDL.Size = new System.Drawing.Size(25, 25);
+            this._cmdDL.TabIndex = 7;
+            this._cmdDL.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdDL.UseVisualStyleBackColor = false;
+            this._cmdDL.Click += new System.EventHandler(this.CmdDL_Click);
             // 
-            // cmdLL
+            // _cmdLL
             // 
-            _cmdLL.BackColor = SystemColors.Control;
-            _cmdLL.Cursor = Cursors.Default;
-            _cmdLL.ForeColor = SystemColors.ControlText;
-            _cmdLL.Image = (Image)resources.GetObject("cmdLL.Image");
-            _cmdLL.Location = new Point(43, 24);
-            _cmdLL.Name = "_cmdLL";
-            _cmdLL.RightToLeft = RightToLeft.No;
-            _cmdLL.Size = new Size(25, 25);
-            _cmdLL.TabIndex = 6;
-            _cmdLL.TextAlign = ContentAlignment.BottomCenter;
-            _cmdLL.UseVisualStyleBackColor = false;
+            this._cmdLL.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdLL.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdLL.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdLL.Image = ((System.Drawing.Image)(resources.GetObject("_cmdLL.Image")));
+            this._cmdLL.Location = new System.Drawing.Point(43, 24);
+            this._cmdLL.Name = "_cmdLL";
+            this._cmdLL.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdLL.Size = new System.Drawing.Size(25, 25);
+            this._cmdLL.TabIndex = 6;
+            this._cmdLL.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdLL.UseVisualStyleBackColor = false;
+            this._cmdLL.Click += new System.EventHandler(this.CmdLL_Click);
             // 
-            // cmdUL
+            // _cmdUL
             // 
-            _cmdUL.BackColor = SystemColors.Control;
-            _cmdUL.Cursor = Cursors.Default;
-            _cmdUL.ForeColor = SystemColors.ControlText;
-            _cmdUL.Image = (Image)resources.GetObject("cmdUL.Image");
-            _cmdUL.Location = new Point(84, 24);
-            _cmdUL.Name = "_cmdUL";
-            _cmdUL.RightToLeft = RightToLeft.No;
-            _cmdUL.Size = new Size(25, 25);
-            _cmdUL.TabIndex = 5;
-            _cmdUL.TextAlign = ContentAlignment.BottomCenter;
-            _cmdUL.UseVisualStyleBackColor = false;
+            this._cmdUL.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdUL.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdUL.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdUL.Image = ((System.Drawing.Image)(resources.GetObject("_cmdUL.Image")));
+            this._cmdUL.Location = new System.Drawing.Point(84, 24);
+            this._cmdUL.Name = "_cmdUL";
+            this._cmdUL.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdUL.Size = new System.Drawing.Size(25, 25);
+            this._cmdUL.TabIndex = 5;
+            this._cmdUL.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdUL.UseVisualStyleBackColor = false;
+            this._cmdUL.Click += new System.EventHandler(this.CmdUL_Click);
             // 
-            // cmdDR
+            // _cmdDR
             // 
-            _cmdDR.BackColor = SystemColors.Control;
-            _cmdDR.Cursor = Cursors.Default;
-            _cmdDR.ForeColor = SystemColors.ControlText;
-            _cmdDR.Image = (Image)resources.GetObject("cmdDR.Image");
-            _cmdDR.Location = new Point(84, 60);
-            _cmdDR.Name = "_cmdDR";
-            _cmdDR.RightToLeft = RightToLeft.No;
-            _cmdDR.Size = new Size(25, 25);
-            _cmdDR.TabIndex = 4;
-            _cmdDR.TextAlign = ContentAlignment.BottomCenter;
-            _cmdDR.UseVisualStyleBackColor = false;
+            this._cmdDR.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdDR.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdDR.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdDR.Image = ((System.Drawing.Image)(resources.GetObject("_cmdDR.Image")));
+            this._cmdDR.Location = new System.Drawing.Point(84, 60);
+            this._cmdDR.Name = "_cmdDR";
+            this._cmdDR.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdDR.Size = new System.Drawing.Size(25, 25);
+            this._cmdDR.TabIndex = 4;
+            this._cmdDR.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdDR.UseVisualStyleBackColor = false;
+            this._cmdDR.Click += new System.EventHandler(this.CmdDR_Click);
             // 
-            // cmdRR
+            // _cmdRR
             // 
-            _cmdRR.BackColor = SystemColors.Control;
-            _cmdRR.Cursor = Cursors.Default;
-            _cmdRR.ForeColor = SystemColors.ControlText;
-            _cmdRR.Image = (Image)resources.GetObject("cmdRR.Image");
-            _cmdRR.Location = new Point(48, 60);
-            _cmdRR.Name = "_cmdRR";
-            _cmdRR.RightToLeft = RightToLeft.No;
-            _cmdRR.Size = new Size(25, 25);
-            _cmdRR.TabIndex = 3;
-            _cmdRR.TextAlign = ContentAlignment.BottomCenter;
-            _cmdRR.UseVisualStyleBackColor = false;
+            this._cmdRR.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdRR.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdRR.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdRR.Image = ((System.Drawing.Image)(resources.GetObject("_cmdRR.Image")));
+            this._cmdRR.Location = new System.Drawing.Point(48, 60);
+            this._cmdRR.Name = "_cmdRR";
+            this._cmdRR.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdRR.Size = new System.Drawing.Size(25, 25);
+            this._cmdRR.TabIndex = 3;
+            this._cmdRR.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdRR.UseVisualStyleBackColor = false;
+            this._cmdRR.Click += new System.EventHandler(this.CmdRR_Click);
             // 
-            // cmdUR
+            // _cmdUR
             // 
-            _cmdUR.BackColor = SystemColors.Control;
-            _cmdUR.Cursor = Cursors.Default;
-            _cmdUR.ForeColor = SystemColors.ControlText;
-            _cmdUR.Image = (Image)resources.GetObject("cmdUR.Image");
-            _cmdUR.Location = new Point(12, 60);
-            _cmdUR.Name = "_cmdUR";
-            _cmdUR.RightToLeft = RightToLeft.No;
-            _cmdUR.Size = new Size(25, 25);
-            _cmdUR.TabIndex = 2;
-            _cmdUR.TextAlign = ContentAlignment.BottomCenter;
-            _cmdUR.UseVisualStyleBackColor = false;
+            this._cmdUR.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdUR.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdUR.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdUR.Image = ((System.Drawing.Image)(resources.GetObject("_cmdUR.Image")));
+            this._cmdUR.Location = new System.Drawing.Point(12, 60);
+            this._cmdUR.Name = "_cmdUR";
+            this._cmdUR.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdUR.Size = new System.Drawing.Size(25, 25);
+            this._cmdUR.TabIndex = 2;
+            this._cmdUR.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdUR.UseVisualStyleBackColor = false;
+            this._cmdUR.Click += new System.EventHandler(this.CmdUR_Click);
             // 
-            // cmdUP
+            // _cmdUP
             // 
-            _cmdUP.BackColor = SystemColors.Control;
-            _cmdUP.Cursor = Cursors.Default;
-            _cmdUP.ForeColor = SystemColors.ControlText;
-            _cmdUP.Image = (Image)resources.GetObject("cmdUP.Image");
-            _cmdUP.Location = new Point(120, 24);
-            _cmdUP.Name = "_cmdUP";
-            _cmdUP.RightToLeft = RightToLeft.No;
-            _cmdUP.Size = new Size(25, 25);
-            _cmdUP.TabIndex = 1;
-            _cmdUP.TextAlign = ContentAlignment.BottomCenter;
-            _cmdUP.UseVisualStyleBackColor = false;
+            this._cmdUP.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdUP.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdUP.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdUP.Image = ((System.Drawing.Image)(resources.GetObject("_cmdUP.Image")));
+            this._cmdUP.Location = new System.Drawing.Point(120, 24);
+            this._cmdUP.Name = "_cmdUP";
+            this._cmdUP.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdUP.Size = new System.Drawing.Size(25, 25);
+            this._cmdUP.TabIndex = 1;
+            this._cmdUP.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdUP.UseVisualStyleBackColor = false;
+            this._cmdUP.Click += new System.EventHandler(this.CmdUp_Click);
             // 
-            // frmTaxSign
+            // FrmTaxSign
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
-            ClientSize = new Size(364, 169);
-            Controls.Add(_txtMessage);
-            Controls.Add(_cmdOK);
-            Controls.Add(_cmdCancel);
-            Controls.Add(Frame2);
-            Controls.Add(Frame1);
-            Cursor = Cursors.Default;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Location = new Point(3, 29);
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmTaxSign";
-            RightToLeft = RightToLeft.No;
-            Text = "SBuilderX - Build Sign Message";
-            Frame2.ResumeLayout(false);
-            Frame1.ResumeLayout(false);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(364, 169);
+            this.Controls.Add(this._txtMessage);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this.Frame2);
+            this.Controls.Add(this.Frame1);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(3, 29);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmTaxSign";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Text = "SBuilderXX - Build Sign Message";
+            this.Frame2.ResumeLayout(false);
+            this.Frame1.ResumeLayout(false);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
         /* TODO ERROR: Skipped EndRegionDirectiveTrivia */
     }

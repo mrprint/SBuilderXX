@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     internal partial class FrmMapsP
     {
@@ -315,6 +315,6 @@ namespace SBuilderX
         // End Function
 
         private const string ImageFilter = "Windows Bitmap Format (*.BMP)|*.bmp _" + "|Jpeg File Interchange Format (*.JPG)|*.jpg" + "|Tag Image File Format (*.TIF)|*.tif" + "|Graphics Interchange Format (*.GIF)|*.gif" + "|Portable Network Graphics (*.PNG)|*.png";
-        private const string ImageTitle = "SBuilderX: Open Image File";
+        private const string ImageTitle = "SBuilderXX: Open Image File";
     }
 }

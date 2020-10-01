@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     public partial class FrmBackground : Form
@@ -32,123 +32,125 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBackground));
-            ckStartFSX = new CheckBox();
-            ckCopyBGLs = new CheckBox();
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            _cmdCompile = new Button();
-            _cmdCompile.Click += new EventHandler(CmdCompile_Click);
-            GroupBox1 = new GroupBox();
-            _cmdSave = new Button();
-            _cmdSave.Click += new EventHandler(CmdSave_Click);
-            Label1 = new Label();
-            GroupBox1.SuspendLayout();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBackground));
+            this.ckStartFSX = new System.Windows.Forms.CheckBox();
+            this.ckCopyBGLs = new System.Windows.Forms.CheckBox();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this._cmdCompile = new System.Windows.Forms.Button();
+            this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this._cmdSave = new System.Windows.Forms.Button();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.GroupBox1.SuspendLayout();
+            this.SuspendLayout();
             // 
             // ckStartFSX
             // 
-            ckStartFSX.AutoSize = true;
-            ckStartFSX.BackColor = SystemColors.Control;
-            ckStartFSX.CheckAlign = ContentAlignment.MiddleRight;
-            ckStartFSX.Cursor = Cursors.Default;
-            ckStartFSX.ForeColor = SystemColors.ControlText;
-            ckStartFSX.Location = new Point(109, 29);
-            ckStartFSX.Name = "ckStartFSX";
-            ckStartFSX.RightToLeft = RightToLeft.Yes;
-            ckStartFSX.Size = new Size(71, 17);
-            ckStartFSX.TabIndex = 27;
-            ckStartFSX.Text = "Start FSX";
-            ckStartFSX.UseVisualStyleBackColor = false;
+            this.ckStartFSX.AutoSize = true;
+            this.ckStartFSX.BackColor = System.Drawing.SystemColors.Control;
+            this.ckStartFSX.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ckStartFSX.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckStartFSX.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckStartFSX.Location = new System.Drawing.Point(109, 29);
+            this.ckStartFSX.Name = "ckStartFSX";
+            this.ckStartFSX.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ckStartFSX.Size = new System.Drawing.Size(71, 17);
+            this.ckStartFSX.TabIndex = 27;
+            this.ckStartFSX.Text = "Start FSX";
+            this.ckStartFSX.UseVisualStyleBackColor = false;
             // 
             // ckCopyBGLs
             // 
-            ckCopyBGLs.BackColor = SystemColors.Control;
-            ckCopyBGLs.Checked = true;
-            ckCopyBGLs.CheckState = CheckState.Checked;
-            ckCopyBGLs.Cursor = Cursors.Default;
-            ckCopyBGLs.ForeColor = SystemColors.ControlText;
-            ckCopyBGLs.Location = new Point(17, 20);
-            ckCopyBGLs.Name = "ckCopyBGLs";
-            ckCopyBGLs.RightToLeft = RightToLeft.No;
-            ckCopyBGLs.Size = new Size(97, 34);
-            ckCopyBGLs.TabIndex = 26;
-            ckCopyBGLs.Text = "Copy BGL file to BGL folder";
-            ckCopyBGLs.UseVisualStyleBackColor = false;
+            this.ckCopyBGLs.BackColor = System.Drawing.SystemColors.Control;
+            this.ckCopyBGLs.Checked = true;
+            this.ckCopyBGLs.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckCopyBGLs.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ckCopyBGLs.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ckCopyBGLs.Location = new System.Drawing.Point(17, 20);
+            this.ckCopyBGLs.Name = "ckCopyBGLs";
+            this.ckCopyBGLs.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ckCopyBGLs.Size = new System.Drawing.Size(97, 34);
+            this.ckCopyBGLs.TabIndex = 26;
+            this.ckCopyBGLs.Text = "Copy BGL file to BGL folder";
+            this.ckCopyBGLs.UseVisualStyleBackColor = false;
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.BackColor = SystemColors.Control;
-            _cmdCancel.Cursor = Cursors.Default;
-            _cmdCancel.ForeColor = SystemColors.ControlText;
-            _cmdCancel.Location = new Point(226, 32);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.RightToLeft = RightToLeft.No;
-            _cmdCancel.Size = new Size(57, 25);
-            _cmdCancel.TabIndex = 25;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdCancel.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdCancel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdCancel.Location = new System.Drawing.Point(226, 32);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdCancel.Size = new System.Drawing.Size(57, 25);
+            this._cmdCancel.TabIndex = 25;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = false;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
-            // cmdCompile
+            // _cmdCompile
             // 
-            _cmdCompile.BackColor = SystemColors.Control;
-            _cmdCompile.Cursor = Cursors.Default;
-            _cmdCompile.ForeColor = SystemColors.ControlText;
-            _cmdCompile.Location = new Point(226, 112);
-            _cmdCompile.Name = "_cmdCompile";
-            _cmdCompile.RightToLeft = RightToLeft.No;
-            _cmdCompile.Size = new Size(57, 25);
-            _cmdCompile.TabIndex = 24;
-            _cmdCompile.Text = "Compile";
-            _cmdCompile.UseVisualStyleBackColor = false;
+            this._cmdCompile.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdCompile.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdCompile.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdCompile.Location = new System.Drawing.Point(226, 112);
+            this._cmdCompile.Name = "_cmdCompile";
+            this._cmdCompile.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdCompile.Size = new System.Drawing.Size(57, 25);
+            this._cmdCompile.TabIndex = 24;
+            this._cmdCompile.Text = "Compile";
+            this._cmdCompile.UseVisualStyleBackColor = false;
+            this._cmdCompile.Click += new System.EventHandler(this.CmdCompile_Click);
             // 
             // GroupBox1
             // 
-            GroupBox1.Controls.Add(ckStartFSX);
-            GroupBox1.Controls.Add(ckCopyBGLs);
-            GroupBox1.Location = new Point(14, 70);
-            GroupBox1.Name = "GroupBox1";
-            GroupBox1.Size = new Size(186, 67);
-            GroupBox1.TabIndex = 28;
-            GroupBox1.TabStop = false;
-            GroupBox1.Text = "Compile Options";
+            this.GroupBox1.Controls.Add(this.ckStartFSX);
+            this.GroupBox1.Controls.Add(this.ckCopyBGLs);
+            this.GroupBox1.Location = new System.Drawing.Point(14, 70);
+            this.GroupBox1.Name = "GroupBox1";
+            this.GroupBox1.Size = new System.Drawing.Size(186, 67);
+            this.GroupBox1.TabIndex = 28;
+            this.GroupBox1.TabStop = false;
+            this.GroupBox1.Text = "Compile Options";
             // 
-            // cmdSave
+            // _cmdSave
             // 
-            _cmdSave.Location = new Point(226, 70);
-            _cmdSave.Name = "_cmdSave";
-            _cmdSave.Size = new Size(57, 25);
-            _cmdSave.TabIndex = 29;
-            _cmdSave.Text = "Save ...";
-            _cmdSave.UseVisualStyleBackColor = true;
+            this._cmdSave.Location = new System.Drawing.Point(226, 70);
+            this._cmdSave.Name = "_cmdSave";
+            this._cmdSave.Size = new System.Drawing.Size(57, 25);
+            this._cmdSave.TabIndex = 29;
+            this._cmdSave.Text = "Save ...";
+            this._cmdSave.UseVisualStyleBackColor = true;
+            this._cmdSave.Click += new System.EventHandler(this.CmdSave_Click);
             // 
             // Label1
             // 
-            Label1.Location = new Point(14, 9);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(195, 48);
-            Label1.TabIndex = 30;
-            Label1.Text = "You can save the background image as a Geotiff file or you can compile the backgr" + "ound as a photo scenery BGL.";
+            this.Label1.Location = new System.Drawing.Point(14, 9);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(195, 48);
+            this.Label1.TabIndex = 30;
+            this.Label1.Text = "You can save the background image as a Geotiff file or you can compile the backgr" +
+    "ound as a photo scenery BGL.";
             // 
-            // frmBackground
+            // FrmBackground
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(298, 152);
-            Controls.Add(Label1);
-            Controls.Add(_cmdCancel);
-            Controls.Add(_cmdSave);
-            Controls.Add(GroupBox1);
-            Controls.Add(_cmdCompile);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmBackground";
-            Text = "SBuilderX - Background";
-            GroupBox1.ResumeLayout(false);
-            GroupBox1.PerformLayout();
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(298, 152);
+            this.Controls.Add(this.Label1);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this._cmdSave);
+            this.Controls.Add(this.GroupBox1);
+            this.Controls.Add(this._cmdCompile);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmBackground";
+            this.Text = "SBuilderXX - Background";
+            this.GroupBox1.ResumeLayout(false);
+            this.GroupBox1.PerformLayout();
+            this.ResumeLayout(false);
+
         }
 
         public CheckBox ckStartFSX;

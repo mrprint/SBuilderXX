@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [Microsoft.VisualBasic.CompilerServices.DesignerGenerated()]
     public partial class frmSCREEN : Form

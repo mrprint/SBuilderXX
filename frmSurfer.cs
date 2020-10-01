@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     internal partial class FrmSurfer
     {
@@ -63,7 +63,7 @@ namespace SBuilderX
             // WriteBLNSettings()
             moduleFILE_IO.WriteSettings();
             A = "Surfer File (*.BLN)|*.BLN";
-            B = "SBuilderX: Append Surfer File";
+            B = "SBuilderXX: Append Surfer File";
             A = moduleFILE_IO.FileNameToOpen(A, B, "SUR");
             if (string.IsNullOrEmpty(A))
             {

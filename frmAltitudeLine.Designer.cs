@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmAltitudeLine : Form
@@ -32,80 +32,81 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAltitudeLine));
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            txtAlt = new TextBox();
-            _cmdAlt = new Button();
-            _cmdAlt.Click += new EventHandler(CmdAlt_Click);
-            Label1 = new Label();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAltitudeLine));
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this.txtAlt = new System.Windows.Forms.TextBox();
+            this._cmdAlt = new System.Windows.Forms.Button();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.Location = new Point(78, 54);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(57, 25);
-            _cmdCancel.TabIndex = 56;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Location = new System.Drawing.Point(78, 54);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(57, 25);
+            this._cmdCancel.TabIndex = 56;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
             // txtAlt
             // 
-            txtAlt.AcceptsReturn = true;
-            txtAlt.BackColor = SystemColors.Window;
-            txtAlt.Cursor = Cursors.IBeam;
-            txtAlt.ForeColor = SystemColors.WindowText;
-            txtAlt.Location = new Point(141, 12);
-            txtAlt.MaxLength = 0;
-            txtAlt.Name = "txtAlt";
-            txtAlt.RightToLeft = RightToLeft.No;
-            txtAlt.Size = new Size(69, 20);
-            txtAlt.TabIndex = 29;
-            txtAlt.TextAlign = HorizontalAlignment.Center;
+            this.txtAlt.AcceptsReturn = true;
+            this.txtAlt.BackColor = System.Drawing.SystemColors.Window;
+            this.txtAlt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtAlt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtAlt.Location = new System.Drawing.Point(141, 12);
+            this.txtAlt.MaxLength = 0;
+            this.txtAlt.Name = "txtAlt";
+            this.txtAlt.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtAlt.Size = new System.Drawing.Size(69, 20);
+            this.txtAlt.TabIndex = 29;
+            this.txtAlt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cmdAlt
+            // _cmdAlt
             // 
-            _cmdAlt.BackColor = SystemColors.Control;
-            _cmdAlt.Cursor = Cursors.Default;
-            _cmdAlt.ForeColor = SystemColors.ControlText;
-            _cmdAlt.Location = new Point(153, 54);
-            _cmdAlt.Name = "_cmdAlt";
-            _cmdAlt.RightToLeft = RightToLeft.No;
-            _cmdAlt.Size = new Size(57, 25);
-            _cmdAlt.TabIndex = 28;
-            _cmdAlt.Text = "OK";
-            _cmdAlt.UseVisualStyleBackColor = false;
+            this._cmdAlt.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdAlt.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdAlt.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdAlt.Location = new System.Drawing.Point(153, 54);
+            this._cmdAlt.Name = "_cmdAlt";
+            this._cmdAlt.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdAlt.Size = new System.Drawing.Size(57, 25);
+            this._cmdAlt.TabIndex = 28;
+            this._cmdAlt.Text = "OK";
+            this._cmdAlt.UseVisualStyleBackColor = false;
+            this._cmdAlt.Click += new System.EventHandler(this.CmdAlt_Click);
             // 
             // Label1
             // 
-            Label1.AutoSize = true;
-            Label1.Location = new Point(12, 15);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(126, 13);
-            Label1.TabIndex = 57;
-            Label1.Text = "Apply altitude to all points";
+            this.Label1.AutoSize = true;
+            this.Label1.Location = new System.Drawing.Point(12, 15);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(126, 13);
+            this.Label1.TabIndex = 57;
+            this.Label1.Text = "Apply altitude to all points";
             // 
-            // frmAltitudeLine
+            // FrmAltitudeLine
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(227, 95);
-            Controls.Add(Label1);
-            Controls.Add(_cmdAlt);
-            Controls.Add(txtAlt);
-            Controls.Add(_cmdCancel);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmAltitudeLine";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - Set Line Altitude";
-            Load += new EventHandler(FrmAltitudeLine_Load);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(227, 95);
+            this.Controls.Add(this.Label1);
+            this.Controls.Add(this._cmdAlt);
+            this.Controls.Add(this.txtAlt);
+            this.Controls.Add(this._cmdCancel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmAltitudeLine";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - Set Line Altitude";
+            this.Load += new System.EventHandler(this.FrmAltitudeLine_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         private Button _cmdCancel;

@@ -3,7 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     // This module was written on October 2017 to replace the old one.
     // Now it uses 64-bit ArcShapeFileNetDLLx64.dll
@@ -137,7 +137,7 @@ namespace SBuilderX
             }
             catch (Exception)
             {
-                MessageBox.Show("SBuilderX can not append this Shapefile!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("SBuilderXX can not append this Shapefile!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -155,7 +155,7 @@ namespace SBuilderX
             DBFReader DBF = new DBFReader();
             if (!DBF.FileReader(filename))
             {
-                MessageBox.Show("SBuilderX can not read the database Shapefile!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("SBuilderXX can not read the database Shapefile!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -484,7 +484,7 @@ namespace SBuilderX
             }
             catch (Exception)
             {
-                MessageBox.Show("SBuilderX can not Append " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("SBuilderXX can not Append " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
         }
@@ -528,7 +528,7 @@ namespace SBuilderX
             DBFReader DBF = new DBFReader();
             if (!DBF.FileReader(filename))
             {
-                MessageBox.Show("SBuilderX can not read the database Shapefile!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("SBuilderXX can not read the database Shapefile!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -840,7 +840,7 @@ namespace SBuilderX
             }
             catch (Exception)
             {
-                MessageBox.Show("SBuilderX can not Append " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("SBuilderXX can not Append " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
         }
@@ -908,7 +908,7 @@ namespace SBuilderX
             }
             catch (Exception)
             {
-                MessageBox.Show("SBuilderX can not Export " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("SBuilderXX can not Export " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
         }
@@ -965,7 +965,7 @@ namespace SBuilderX
             }
             catch (Exception)
             {
-                MessageBox.Show("SBuilderX can not Export " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("SBuilderXX can not Export " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
         }
@@ -1233,7 +1233,7 @@ namespace SBuilderX
             }
             catch (Exception)
             {
-                MessageBox.Show("SBuilderX can not Export " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("SBuilderXX can not Export " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
             return CreateShpAndShxFilesFromPolysRet;
@@ -1433,7 +1433,7 @@ namespace SBuilderX
             }
             catch (Exception)
             {
-                MessageBox.Show("SBuilderX can not Export " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("SBuilderXX can not Export " + filename + " !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 My.MyProject.Forms.FrmStart.Cursor = Cursors.Default;
             }
             return CreateShpAndShxFilesFromLinesRet;

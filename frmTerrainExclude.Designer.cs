@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmTerrainExclude : Form
@@ -32,86 +32,87 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTerrainExclude));
-            _List = new ListBox();
-            _List.SelectedIndexChanged += new EventHandler(List_SelectedIndexChanged);
-            _cmdDetail = new Button();
-            _cmdDetail.Click += new EventHandler(CmdDetail_Click);
-            _Cancel_Button = new Button();
-            _Cancel_Button.Click += new EventHandler(Cancel_Button_Click);
-            _OK_Button = new Button();
-            _OK_Button.Click += new EventHandler(OK_Button_Click);
-            lbTex = new Label();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTerrainExclude));
+            this._List = new System.Windows.Forms.ListBox();
+            this._cmdDetail = new System.Windows.Forms.Button();
+            this._Cancel_Button = new System.Windows.Forms.Button();
+            this._OK_Button = new System.Windows.Forms.Button();
+            this.lbTex = new System.Windows.Forms.Label();
+            this.SuspendLayout();
             // 
-            // List
+            // _List
             // 
-            _List.FormattingEnabled = true;
-            _List.Location = new Point(10, 42);
-            _List.Name = "_List";
-            _List.Size = new Size(265, 82);
-            _List.TabIndex = 0;
+            this._List.FormattingEnabled = true;
+            this._List.Location = new System.Drawing.Point(10, 42);
+            this._List.Name = "_List";
+            this._List.Size = new System.Drawing.Size(265, 82);
+            this._List.TabIndex = 0;
+            this._List.SelectedIndexChanged += new System.EventHandler(this.List_SelectedIndexChanged);
             // 
-            // cmdDetail
+            // _cmdDetail
             // 
-            _cmdDetail.Location = new Point(294, 12);
-            _cmdDetail.Name = "_cmdDetail";
-            _cmdDetail.Size = new Size(75, 25);
-            _cmdDetail.TabIndex = 25;
-            _cmdDetail.Text = "Info";
-            _cmdDetail.UseVisualStyleBackColor = true;
+            this._cmdDetail.Location = new System.Drawing.Point(294, 12);
+            this._cmdDetail.Name = "_cmdDetail";
+            this._cmdDetail.Size = new System.Drawing.Size(75, 25);
+            this._cmdDetail.TabIndex = 25;
+            this._cmdDetail.Text = "Info";
+            this._cmdDetail.UseVisualStyleBackColor = true;
+            this._cmdDetail.Click += new System.EventHandler(this.CmdDetail_Click);
             // 
-            // Cancel_Button
+            // _Cancel_Button
             // 
-            _Cancel_Button.Location = new Point(294, 54);
-            _Cancel_Button.Name = "_Cancel_Button";
-            _Cancel_Button.Size = new Size(75, 25);
-            _Cancel_Button.TabIndex = 24;
-            _Cancel_Button.Text = "Cancel";
-            _Cancel_Button.UseVisualStyleBackColor = true;
+            this._Cancel_Button.Location = new System.Drawing.Point(294, 54);
+            this._Cancel_Button.Name = "_Cancel_Button";
+            this._Cancel_Button.Size = new System.Drawing.Size(75, 25);
+            this._Cancel_Button.TabIndex = 24;
+            this._Cancel_Button.Text = "Cancel";
+            this._Cancel_Button.UseVisualStyleBackColor = true;
+            this._Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
-            // OK_Button
+            // _OK_Button
             // 
-            _OK_Button.Location = new Point(294, 99);
-            _OK_Button.Name = "_OK_Button";
-            _OK_Button.Size = new Size(75, 25);
-            _OK_Button.TabIndex = 23;
-            _OK_Button.Text = "OK";
-            _OK_Button.UseVisualStyleBackColor = true;
+            this._OK_Button.Location = new System.Drawing.Point(294, 99);
+            this._OK_Button.Name = "_OK_Button";
+            this._OK_Button.Size = new System.Drawing.Size(75, 25);
+            this._OK_Button.TabIndex = 23;
+            this._OK_Button.Text = "OK";
+            this._OK_Button.UseVisualStyleBackColor = true;
+            this._OK_Button.Click += new System.EventHandler(this.OK_Button_Click);
             // 
             // lbTex
             // 
-            lbTex.BackColor = SystemColors.Control;
-            lbTex.BorderStyle = BorderStyle.Fixed3D;
-            lbTex.Cursor = Cursors.Default;
-            lbTex.ForeColor = SystemColors.ControlText;
-            lbTex.Location = new Point(12, 9);
-            lbTex.Name = "lbTex";
-            lbTex.RightToLeft = RightToLeft.No;
-            lbTex.Size = new Size(263, 19);
-            lbTex.TabIndex = 26;
-            lbTex.TextAlign = ContentAlignment.MiddleLeft;
+            this.lbTex.BackColor = System.Drawing.SystemColors.Control;
+            this.lbTex.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lbTex.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbTex.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbTex.Location = new System.Drawing.Point(12, 9);
+            this.lbTex.Name = "lbTex";
+            this.lbTex.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbTex.Size = new System.Drawing.Size(263, 19);
+            this.lbTex.TabIndex = 26;
+            this.lbTex.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // frmTerrainExclude
+            // FrmTerrainExclude
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(381, 141);
-            Controls.Add(lbTex);
-            Controls.Add(_cmdDetail);
-            Controls.Add(_Cancel_Button);
-            Controls.Add(_OK_Button);
-            Controls.Add(_List);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmTerrainExclude";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - Terrain Type to Exclude";
-            Load += new EventHandler(FrmTerrainExclude_Load);
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(381, 141);
+            this.Controls.Add(this.lbTex);
+            this.Controls.Add(this._cmdDetail);
+            this.Controls.Add(this._Cancel_Button);
+            this.Controls.Add(this._OK_Button);
+            this.Controls.Add(this._List);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmTerrainExclude";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - Terrain Type to Exclude";
+            this.Load += new System.EventHandler(this.FrmTerrainExclude_Load);
+            this.ResumeLayout(false);
+
         }
 
         private ListBox _List;

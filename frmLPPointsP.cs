@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     internal partial class FrmLPPointsP
     {
@@ -44,7 +44,7 @@ namespace SBuilderX
             lbWidth.Text = "Width";
             if (modulePOPUP.POPType == "PtInLineX")
             {
-                Text = "SBuilderX - Point from Aircraft";
+                Text = "SBuilderXX - Point from Aircraft";
                 txtWidth.Visible = true;
                 lbWidth.Visible = true;
                 lbPt.Visible = true;
@@ -59,7 +59,7 @@ namespace SBuilderX
 
             if (modulePOPUP.POPType == "PtInPolyX")
             {
-                Text = "SBuilderX - Point from Aircraft";
+                Text = "SBuilderXX - Point from Aircraft";
                 txtWidth.Visible = false;
                 lbWidth.Visible = false;
                 lbPt.Visible = true;
@@ -73,7 +73,7 @@ namespace SBuilderX
 
             if (modulePOPUP.POPType == "PtInLine")
             {
-                Text = "SBuilderX - Point Properties";
+                Text = "SBuilderXX - Point Properties";
                 txtWidth.Visible = true;
                 if (moduleLINES.Lines[modulePOPUP.POPIndex].Type.Length >= 3 && moduleLINES.Lines[modulePOPUP.POPIndex].Type.Substring(0, 3) == "OBJ")
                 {
@@ -93,7 +93,7 @@ namespace SBuilderX
 
             if (modulePOPUP.POPType == "PtInPoly")
             {
-                Text = "SBuilderX - Point Properties";
+                Text = "SBuilderXX - Point Properties";
                 txtWidth.Visible = false;
                 lbWidth.Visible = false;
                 lbPt.Visible = true;
@@ -107,7 +107,7 @@ namespace SBuilderX
 
             if (modulePOPUP.POPType == "Goto")
             {
-                Text = "SBuilderX - Goto this position";
+                Text = "SBuilderXX - Goto this position";
                 txtWidth.Visible = false;
                 lbWidth.Visible = false;
                 lbPt.Visible = false;

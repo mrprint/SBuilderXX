@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     public partial class FrmBackground
     {

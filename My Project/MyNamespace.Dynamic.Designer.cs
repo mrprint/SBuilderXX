@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 
-namespace SBuilderX.My
+namespace SBuilderXX.My
 {
     internal static partial class MyProject
     {

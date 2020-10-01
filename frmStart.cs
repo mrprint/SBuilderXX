@@ -11,7 +11,7 @@ using System.Media;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     internal partial class FrmStart
     {
@@ -1722,7 +1722,7 @@ namespace SBuilderX
                 {
                     C = "The Windows Registry indicates that FSX is in the folder:" + Environment.NewLine + Environment.NewLine;
                     C = C + moduleMAIN.FSPath + Environment.NewLine + Environment.NewLine;
-                    C = C + "but SBuilderX could not find it there!";
+                    C = C + "but SBuilderXX could not find it there!";
                     MessageBox.Show(C, moduleMAIN.AppTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else
@@ -1909,7 +1909,7 @@ namespace SBuilderX
             }
             catch (System.Security.SecurityException)
             {
-                MessageBox.Show("You do not have sufficient privileges to run SBuilderX.  Please log on as administrator.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("You do not have sufficient privileges to run SBuilderXX.  Please log on as administrator.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return "";
             }
         }
@@ -1933,7 +1933,7 @@ namespace SBuilderX
                 return;
             A = "The modified FSX terrain.cfg file authored by Richard Ludowise" + Environment.NewLine;
             A = A + "and Luis Fйliz-Tirado was not detected in your system! For better" + Environment.NewLine;
-            A = A + "results you should install this file. SBuilderX can make a backup" + Environment.NewLine;
+            A = A + "results you should install this file. SBuilderXX can make a backup" + Environment.NewLine;
             A = A + "of the original terrain.cfg and install the modified file for you." + Environment.NewLine + Environment.NewLine;
             A = A + "Do you want to install the modified terrain.cfg?" + Environment.NewLine;
             if (MessageBox.Show(A, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -1950,7 +1950,7 @@ namespace SBuilderX
             else
             {
                 A = "If you want to keep your present terrain.cfg and" + Environment.NewLine;
-                A = A + "force SBuilderX to ignore this test, answer YES!";
+                A = A + "force SBuilderXX to ignore this test, answer YES!";
                 if (MessageBox.Show(A, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     moduleMAIN.OriginalTerrainCFG = true;
@@ -1984,8 +1984,8 @@ namespace SBuilderX
                 }
             }
 
-            a = "SBuilderX (*.SBP)|*.SBP";
-            b = "SBuilderX - Open Project";
+            a = "SBuilderXX (*.SBP)|*.SBP";
+            b = "SBuilderXX - Open Project";
             FileName = moduleFILE_IO.FileNameToOpen(a, b, "SBP");
             if (string.IsNullOrEmpty(FileName))
                 return;
@@ -2094,8 +2094,8 @@ namespace SBuilderX
         {
             int N;
             string a, b;
-            a = "SBuilderX (*.SBP)|*.SBP";
-            b = "SBuilderX - Save Project As";
+            a = "SBuilderXX (*.SBP)|*.SBP";
+            b = "SBuilderXX - Save Project As";
             a = moduleFILE_IO.FileNameToSave(a, b, "SBP");
             if (string.IsNullOrEmpty(a))
                 return;
@@ -4693,7 +4693,7 @@ namespace SBuilderX
             A = A + "required. Scroll through Lines" + Environment.NewLine;
             A = A + "or Polys with Right and Left Arrows." + Environment.NewLine;
             A = A + "Press <Esc> to exit.";
-            MessageBox.Show(A, "SBuilderX - Checking Lines or Polys", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(A, "SBuilderXX - Checking Lines or Polys", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (modulePOPUP.POPType == "Line")
             {
                 UnSelectAll();
@@ -4818,8 +4818,8 @@ namespace SBuilderX
                 }
             }
 
-            a = "SBuilderX Imp/Exp (*.SBX)|*.SBX";
-            b = "SBuilderX - Export Project As";
+            a = "SBuilderXX Imp/Exp (*.SBX)|*.SBX";
+            b = "SBuilderXX - Export Project As";
             a = moduleFILE_IO.FileNameToSave(a, b, "SBX");
             if (string.IsNullOrEmpty(a))
             {
@@ -4848,8 +4848,8 @@ namespace SBuilderX
                 }
             }
 
-            a = "SBuilderX Imp/Exp (*.SBX)|*.SBX";
-            b = "SBuilderX - Import Project";
+            a = "SBuilderXX Imp/Exp (*.SBX)|*.SBX";
+            b = "SBuilderXX - Import Project";
             FileName = moduleFILE_IO.FileNameToOpen(a, b, "SBX");
             if (string.IsNullOrEmpty(FileName))
                 return;
@@ -4864,8 +4864,8 @@ namespace SBuilderX
         private void AppendSBXMenuItem_Click(object sender, EventArgs e)
         {
             string a, b;
-            a = "SBuilderX Imp/Exp (*.SBX)|*.SBX";
-            b = "SBuilderX - Append Project";
+            a = "SBuilderXX Imp/Exp (*.SBX)|*.SBX";
+            b = "SBuilderXX - Append Project";
             a = moduleFILE_IO.FileNameToOpen(a, b, "SBX");
             if (string.IsNullOrEmpty(a))
             {
@@ -4894,7 +4894,7 @@ namespace SBuilderX
             if (moduleLINES.NoOfLines > 0)
             {
                 a = "Esri Shape file (*.SHP)|*.SHP";
-                b = "SBuilderX: Export LINES As";
+                b = "SBuilderXX: Export LINES As";
                 a = moduleFILE_IO.FileNameToSave(a, b, "SHP");
                 if (!string.IsNullOrEmpty(a))
                 {
@@ -4905,7 +4905,7 @@ namespace SBuilderX
             if (modulePOLYS.NoOfPolys > 0)
             {
                 a = "Esri Shape file (*.SHP)|*.SHP";
-                b = "SBuilderX: Export POLYGONS As";
+                b = "SBuilderXX: Export POLYGONS As";
                 a = moduleFILE_IO.FileNameToSave(a, b, "SHP");
                 if (!string.IsNullOrEmpty(a))
                 {
@@ -4918,7 +4918,7 @@ namespace SBuilderX
         {
             string A, B;
             A = "Esri Shape file (*.SHP)|*.SHP";
-            B = "SBuilderX: Append ShapeFile";
+            B = "SBuilderXX: Append ShapeFile";
             A = moduleFILE_IO.FileNameToOpen(A, B, "SHP");
             if (string.IsNullOrEmpty(A))
             {
@@ -4935,7 +4935,7 @@ namespace SBuilderX
             string A, B, C;
             A = "Object BGL file (*.BGL)|*.bgl";
             A = A + "|Object XML file (*.XML)|*.xml";
-            B = "SBuilderX: Append Object file";
+            B = "SBuilderXX: Append Object file";
             A = moduleFILE_IO.FileNameToOpen(A, B, "OBJ");
             if (string.IsNullOrEmpty(A))
             {
@@ -4967,7 +4967,7 @@ namespace SBuilderX
             }
             catch (Exception)
             {
-                MessageBox.Show("SBuilderX can not decompile file " + A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("SBuilderXX can not decompile file " + A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -5715,7 +5715,7 @@ namespace SBuilderX
             }
 
             a = "Surfer File (*.BLN)|*.BLN";
-            b = "SBuilderX: Export As Surfer File";
+            b = "SBuilderXX: Export As Surfer File";
             a = moduleFILE_IO.FileNameToSave(a, b, "SUR");
             if (string.IsNullOrEmpty(a))
                 return;
@@ -5778,7 +5778,7 @@ namespace SBuilderX
             {
                 string a, b;
                 a = "Geotiff image (*.TIF)|*.TIF";
-                b = "SBuilderX: Save Background as a Geotiff image";
+                b = "SBuilderXX: Save Background as a Geotiff image";
                 a = moduleFILE_IO.FileNameToSave(a, b, "BMP");
                 if (string.IsNullOrEmpty(a))
                 {
@@ -6039,8 +6039,8 @@ namespace SBuilderX
         private void CmdLink_Click(object sender, EventArgs e)
         {
             string HTMLFile;
-            HTMLFile = "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=ptsim%40ptsim%2ecom&item_name=Donation%20for%20SBuilderX&page_style=SBuilderX&no_shipping=1&return=http%3a%2f%2fwww%2eptsim%2ecom%2fsbuilderx%2fthankyou%2easp&cancel_return=http%3a%2f%2fwww%2eptsim%2ecom%2fsbuilderx%2fthankyou%2easp&cn=Optional%20Note&tax=0&currency_code=EUR&lc=GB&bn=PP%2dDonationsBF&charset=UTF%2d8";
-            Process.Start(HTMLFile);
+            HTMLFile = "";
+            //Process.Start(HTMLFile);
             lbDonation.Visible = false;
         }
 
@@ -6055,36 +6055,27 @@ namespace SBuilderX
                 return;
             }
 
-            // HelpFile = My.Application.Info.DirectoryPath & "\Help\Sbuilder.htm"
-            // If File.Exists(HelpFile) Then
-            // Process.Start(HelpFile)
-            // Exit Sub
-            // End If
-
-            // HelpFile = "http://www.ptsim.com/forum/viewtopic.php?f=22&t=1056"
-            // Process.Start(HelpFile)
-
         }
 
         private void ForumMenuItem_Click(object sender, EventArgs e)
         {
             lbDonation.Visible = false;
             string HTMLFile;
-            HTMLFile = "http://www.ptsim.com/forum/viewforum.php?f=22";
-            Process.Start(HTMLFile);
+            HTMLFile = "";
+            //Process.Start(HTMLFile);
         }
 
         private void GetMapMenuItem_Click(object sender, EventArgs e)
         {
             lbDonation.Visible = false;
             string HTMLFile;
-            HTMLFile = "http://www.ptsim.com/sbuilder/gmaps.asp?Lat=" + moduleMAIN.LatIniCenter + "&Lon=" + moduleMAIN.LonIniCenter + "&Zoom=" + moduleMAIN.Zoom;
-            Process.Start(HTMLFile);
+            //HTMLFile = "http://www.ptsim.com/sbuilder/gmaps.asp?Lat=" + moduleMAIN.LatIniCenter + "&Lon=" + moduleMAIN.LonIniCenter + "&Zoom=" + moduleMAIN.Zoom;
+            //Process.Start(HTMLFile);
         }
 
         private void FrmStart_Shown(object sender, EventArgs e)
         {
-            if (moduleMAIN.ShowDonation)
+            if (moduleMAIN.ShowAbout)
             {
                 BackColorGray = true;
                 StatusStrip.Visible = false;
@@ -6106,7 +6097,7 @@ namespace SBuilderX
             bool Good = false;
             int J = default, K = default;
             A = "Land or Water class Raw file (*.RAW)|*.RAW";
-            B = "SBuilderX: Append Raw File";
+            B = "SBuilderXX: Append Raw File";
             C = moduleFILE_IO.FileNameToOpen(A, B, "RAW");
             if (string.IsNullOrEmpty(C))
             {
@@ -6983,7 +6974,7 @@ namespace SBuilderX
             if (moduleLINES.NoOfLines > 0)
             {
                 a = "Google KML file (*.KML)|*.KML";
-                b = "SBuilderX: Export As a KML file";
+                b = "SBuilderXX: Export As a KML file";
                 a = moduleFILE_IO.FileNameToSave(a, b, "KML");
                 if (!string.IsNullOrEmpty(a))
                 {
@@ -7055,15 +7046,12 @@ namespace SBuilderX
         {
             try
             {
-                Process.Start(moduleMAIN.AppPath + @"\Help\whatisnewin315.pdf");
+                Process.Start(moduleMAIN.AppPath + @"\Help\whatisnewin316.pdf");
                 return;
             }
             catch (Exception)
             {
-                string A = "SBuilderX could not find the file: whatisnewin315.pdf which should" + Environment.NewLine;
-                A = A + @"exist in the SBuilderX\Help folder! You can download the most recent" + Environment.NewLine;
-                A = A + "version of this file from here:" + Environment.NewLine;
-                A = A + "http://www.ptsim.com/sbuilderx/whatisnewin315.pdf";
+                string A = "SBuilderXX could not find the file: whatisnewin316.pdf";
                 MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }

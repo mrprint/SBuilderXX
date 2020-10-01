@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     public partial class FrmGBuilding
     {
@@ -168,7 +168,7 @@ namespace SBuilderX
                 A = "Pyramidal Building";
             if (moduleOBJECTS.BuildingType == 261)
                 A = "Multi-Sided Building";
-            Text = "SBuilderX - Generic Buildings - " + A;
+            Text = "SBuilderXX - Generic Buildings - " + A;
             nUPsizeBottomY.Enabled = false;
             nUPtextureIndexBottomX.Enabled = false;
             nUPtextureIndexBottomZ.Enabled = false;
@@ -384,6 +384,7 @@ namespace SBuilderX
         {
             Direct3D d3D = new Direct3D();
             PresentParameters presentParams = new PresentParameters();
+            presentParams.Multisample = MultisampleType.FifteenSamples;
             try
             {
                 renderDevice = new Device(d3D, 0, DeviceType.Hardware, imgGenB.Handle, CreateFlags.HardwareVertexProcessing, presentParams);

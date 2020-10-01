@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     static class modulePOPUP
     {

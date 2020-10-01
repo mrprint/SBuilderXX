@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmImage : Form
@@ -31,24 +31,25 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmImage));
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmImage));
+            this.SuspendLayout();
             // 
-            // frmImage
+            // FrmImage
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(230, 149);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmImage";
-            Text = "SBuilderX - Click to close";
-            Click += new EventHandler(FrmImage_Click);
-            Load += new EventHandler(FrmImage_Load);
-            Paint += new PaintEventHandler(FrmImage_Paint);
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(230, 149);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmImage";
+            this.Text = "SBuilderXX - Click to close";
+            this.Load += new System.EventHandler(this.FrmImage_Load);
+            this.Click += new System.EventHandler(this.FrmImage_Click);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FrmImage_Paint);
+            this.ResumeLayout(false);
+
         }
     }
 }

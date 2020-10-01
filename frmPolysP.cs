@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     internal partial class FrmPolysP
     {
@@ -1190,7 +1190,7 @@ namespace SBuilderX
             string A, B;
             string Tex = "";
             A = "FSX Texture File (*.BMP)|*.BMP";
-            B = "SBuilderX: Open Texture File";
+            B = "SBuilderXX: Open Texture File";
             A = moduleFILE_IO.FileNameToOpen(A, B, "TEX");
             if (string.IsNullOrEmpty(A))
             {

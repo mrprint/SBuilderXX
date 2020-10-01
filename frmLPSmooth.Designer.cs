@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmLPSmooth : Form
@@ -32,118 +32,120 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLPSmooth));
-            _chNoEnds = new CheckBox();
-            _chNoEnds.CheckedChanged += new EventHandler(ChNoEnds_CheckedChanged);
-            _chCorner = new CheckBox();
-            _chCorner.CheckedChanged += new EventHandler(ChCorner_CheckedChanged);
-            _txtDistance = new TextBox();
-            _txtDistance.TextChanged += new EventHandler(TxtDistance_TextChanged);
-            Label1 = new Label();
-            Label2 = new Label();
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            _cmdSmooth = new Button();
-            _cmdSmooth.Click += new EventHandler(CmdSmooth_Click);
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLPSmooth));
+            this._chNoEnds = new System.Windows.Forms.CheckBox();
+            this._chCorner = new System.Windows.Forms.CheckBox();
+            this._txtDistance = new System.Windows.Forms.TextBox();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.Label2 = new System.Windows.Forms.Label();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this._cmdSmooth = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
-            // chNoEnds
+            // _chNoEnds
             // 
-            _chNoEnds.Location = new Point(25, 85);
-            _chNoEnds.Name = "_chNoEnds";
-            _chNoEnds.Size = new Size(168, 44);
-            _chNoEnds.TabIndex = 3;
-            _chNoEnds.Text = "Do not smooth start/end segments (Lines only)";
-            _chNoEnds.UseVisualStyleBackColor = true;
+            this._chNoEnds.Location = new System.Drawing.Point(25, 85);
+            this._chNoEnds.Name = "_chNoEnds";
+            this._chNoEnds.Size = new System.Drawing.Size(168, 44);
+            this._chNoEnds.TabIndex = 3;
+            this._chNoEnds.Text = "Do not smooth start/end segments (Lines only)";
+            this._chNoEnds.UseVisualStyleBackColor = true;
+            this._chNoEnds.CheckedChanged += new System.EventHandler(this.ChNoEnds_CheckedChanged);
             // 
-            // chCorner
+            // _chCorner
             // 
-            _chCorner.AutoSize = true;
-            _chCorner.Location = new Point(25, 129);
-            _chCorner.Name = "_chCorner";
-            _chCorner.Size = new Size(158, 17);
-            _chCorner.TabIndex = 4;
-            _chCorner.Text = "Do not smooth sharp angles";
-            _chCorner.UseVisualStyleBackColor = true;
+            this._chCorner.AutoSize = true;
+            this._chCorner.Location = new System.Drawing.Point(25, 129);
+            this._chCorner.Name = "_chCorner";
+            this._chCorner.Size = new System.Drawing.Size(158, 17);
+            this._chCorner.TabIndex = 4;
+            this._chCorner.Text = "Do not smooth sharp angles";
+            this._chCorner.UseVisualStyleBackColor = true;
+            this._chCorner.CheckedChanged += new System.EventHandler(this.ChCorner_CheckedChanged);
             // 
-            // txtDistance
+            // _txtDistance
             // 
-            _txtDistance.Location = new Point(25, 152);
-            _txtDistance.Name = "_txtDistance";
-            _txtDistance.Size = new Size(70, 20);
-            _txtDistance.TabIndex = 5;
-            _txtDistance.TextAlign = HorizontalAlignment.Center;
+            this._txtDistance.Location = new System.Drawing.Point(25, 152);
+            this._txtDistance.Name = "_txtDistance";
+            this._txtDistance.Size = new System.Drawing.Size(70, 20);
+            this._txtDistance.TabIndex = 5;
+            this._txtDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtDistance.TextChanged += new System.EventHandler(this.TxtDistance_TextChanged);
             // 
             // Label1
             // 
-            Label1.Location = new Point(22, 175);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(147, 30);
-            Label1.TabIndex = 6;
-            Label1.Text = "Minimum Distance in meters between adjacent points";
+            this.Label1.Location = new System.Drawing.Point(22, 175);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(147, 30);
+            this.Label1.TabIndex = 6;
+            this.Label1.Text = "Minimum Distance in meters between adjacent points";
             // 
             // Label2
             // 
-            Label2.Location = new Point(25, 9);
-            Label2.Name = "Label2";
-            Label2.Size = new Size(225, 77);
-            Label2.TabIndex = 7;
-            Label2.Text = "By smoothing (or interpolating) a Line or Poly, you introduce more points except " + "when they become closer than the Minimum Distance shown below. Each time you pre" + "ss \"Smooth\" more points are inserted.";
+            this.Label2.Location = new System.Drawing.Point(25, 9);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(225, 77);
+            this.Label2.TabIndex = 7;
+            this.Label2.Text = "By smoothing (or interpolating) a Line or Poly, you introduce more points except " +
+    "when they become closer than the Minimum Distance shown below. Each time you pre" +
+    "ss \"Smooth\" more points are inserted.";
+            // 
+            // _cmdOK
+            // 
+            this._cmdOK.Location = new System.Drawing.Point(190, 174);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.Size = new System.Drawing.Size(61, 23);
+            this._cmdOK.TabIndex = 9;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
+            // 
+            // _cmdCancel
+            // 
+            this._cmdCancel.Location = new System.Drawing.Point(190, 98);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(60, 25);
+            this._cmdCancel.TabIndex = 10;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
+            // 
+            // _cmdSmooth
+            // 
+            this._cmdSmooth.Location = new System.Drawing.Point(191, 135);
+            this._cmdSmooth.Name = "_cmdSmooth";
+            this._cmdSmooth.Size = new System.Drawing.Size(60, 25);
+            this._cmdSmooth.TabIndex = 11;
+            this._cmdSmooth.Text = "Smooth";
+            this._cmdSmooth.UseVisualStyleBackColor = true;
+            this._cmdSmooth.Click += new System.EventHandler(this.CmdSmooth_Click);
+            // 
+            // FrmLPSmooth
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(272, 210);
+            this.Controls.Add(this._cmdSmooth);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this.Label2);
+            this.Controls.Add(this.Label1);
+            this.Controls.Add(this._txtDistance);
+            this.Controls.Add(this._chCorner);
+            this.Controls.Add(this._chNoEnds);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmLPSmooth";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - Line or Poly Smoothing";
+            this.Load += new System.EventHandler(this.FrmLPSmooth_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
-            // 
-            // cmdOK
-            // 
-            _cmdOK.Location = new Point(190, 174);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.Size = new Size(61, 23);
-            _cmdOK.TabIndex = 9;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = true;
-            // 
-            // cmdCancel
-            // 
-            _cmdCancel.Location = new Point(190, 98);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(60, 25);
-            _cmdCancel.TabIndex = 10;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = true;
-            // 
-            // cmdSmooth
-            // 
-            _cmdSmooth.Location = new Point(191, 135);
-            _cmdSmooth.Name = "_cmdSmooth";
-            _cmdSmooth.Size = new Size(60, 25);
-            _cmdSmooth.TabIndex = 11;
-            _cmdSmooth.Text = "Smooth";
-            _cmdSmooth.UseVisualStyleBackColor = true;
-            // 
-            // frmLPSmooth
-            // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(272, 210);
-            Controls.Add(_cmdSmooth);
-            Controls.Add(_cmdCancel);
-            Controls.Add(_cmdOK);
-            Controls.Add(Label2);
-            Controls.Add(Label1);
-            Controls.Add(_txtDistance);
-            Controls.Add(_chCorner);
-            Controls.Add(_chNoEnds);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmLPSmooth";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - Line or Poly Smoothing";
-            Load += new EventHandler(FrmLPSmooth_Load);
-            ResumeLayout(false);
-            PerformLayout();
         }
 
         private CheckBox _chNoEnds;

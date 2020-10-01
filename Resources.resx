@@ -220,7 +220,10 @@
   <data name="polys2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\polys.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="newsbuilderx315" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\newsbuilderx315.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="mylogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\mylogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="myicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\myicon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

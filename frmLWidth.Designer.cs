@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class FrmLWidth : Form
@@ -32,213 +32,214 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLWidth));
-            GroupBox1 = new GroupBox();
-            Label3 = new Label();
-            txtWidth = new TextBox();
-            _cmdWidth = new Button();
-            _cmdWidth.Click += new EventHandler(CmdWidth_Click);
-            GroupBox2 = new GroupBox();
-            _cmdReverse = new Button();
-            _cmdReverse.Click += new EventHandler(CmdReverse_Click);
-            _cmdWidth12 = new Button();
-            _cmdWidth12.Click += new EventHandler(CmdWidth12_Click);
-            txtWidth1 = new TextBox();
-            txtWidth2 = new TextBox();
-            Label1 = new Label();
-            Label2 = new Label();
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            _cmdWinding = new Button();
-            _cmdWinding.Click += new EventHandler(CmdWinding_Click);
-            GroupBox1.SuspendLayout();
-            GroupBox2.SuspendLayout();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLWidth));
+            this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.Label3 = new System.Windows.Forms.Label();
+            this.txtWidth = new System.Windows.Forms.TextBox();
+            this._cmdWidth = new System.Windows.Forms.Button();
+            this.GroupBox2 = new System.Windows.Forms.GroupBox();
+            this._cmdReverse = new System.Windows.Forms.Button();
+            this._cmdWidth12 = new System.Windows.Forms.Button();
+            this.txtWidth1 = new System.Windows.Forms.TextBox();
+            this.txtWidth2 = new System.Windows.Forms.TextBox();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.Label2 = new System.Windows.Forms.Label();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this._cmdWinding = new System.Windows.Forms.Button();
+            this.GroupBox1.SuspendLayout();
+            this.GroupBox2.SuspendLayout();
+            this.SuspendLayout();
             // 
             // GroupBox1
             // 
-            GroupBox1.Controls.Add(Label3);
-            GroupBox1.Controls.Add(txtWidth);
-            GroupBox1.Controls.Add(_cmdWidth);
-            GroupBox1.Location = new Point(216, 12);
-            GroupBox1.Name = "GroupBox1";
-            GroupBox1.Size = new Size(103, 115);
-            GroupBox1.TabIndex = 32;
-            GroupBox1.TabStop = false;
-            GroupBox1.Text = "Constant width";
+            this.GroupBox1.Controls.Add(this.Label3);
+            this.GroupBox1.Controls.Add(this.txtWidth);
+            this.GroupBox1.Controls.Add(this._cmdWidth);
+            this.GroupBox1.Location = new System.Drawing.Point(216, 12);
+            this.GroupBox1.Name = "GroupBox1";
+            this.GroupBox1.Size = new System.Drawing.Size(103, 115);
+            this.GroupBox1.TabIndex = 32;
+            this.GroupBox1.TabStop = false;
+            this.GroupBox1.Text = "Constant width";
             // 
             // Label3
             // 
-            Label3.AutoSize = true;
-            Label3.Location = new Point(20, 22);
-            Label3.Name = "Label3";
-            Label3.Size = new Size(35, 13);
-            Label3.TabIndex = 30;
-            Label3.Text = "Width";
+            this.Label3.AutoSize = true;
+            this.Label3.Location = new System.Drawing.Point(20, 22);
+            this.Label3.Name = "Label3";
+            this.Label3.Size = new System.Drawing.Size(35, 13);
+            this.Label3.TabIndex = 30;
+            this.Label3.Text = "Width";
             // 
             // txtWidth
             // 
-            txtWidth.AcceptsReturn = true;
-            txtWidth.BackColor = SystemColors.Window;
-            txtWidth.Cursor = Cursors.IBeam;
-            txtWidth.ForeColor = SystemColors.WindowText;
-            txtWidth.Location = new Point(23, 38);
-            txtWidth.MaxLength = 0;
-            txtWidth.Name = "txtWidth";
-            txtWidth.RightToLeft = RightToLeft.No;
-            txtWidth.Size = new Size(57, 20);
-            txtWidth.TabIndex = 29;
-            txtWidth.TextAlign = HorizontalAlignment.Center;
+            this.txtWidth.AcceptsReturn = true;
+            this.txtWidth.BackColor = System.Drawing.SystemColors.Window;
+            this.txtWidth.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtWidth.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtWidth.Location = new System.Drawing.Point(23, 38);
+            this.txtWidth.MaxLength = 0;
+            this.txtWidth.Name = "txtWidth";
+            this.txtWidth.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtWidth.Size = new System.Drawing.Size(57, 20);
+            this.txtWidth.TabIndex = 29;
+            this.txtWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cmdWidth
+            // _cmdWidth
             // 
-            _cmdWidth.BackColor = SystemColors.Control;
-            _cmdWidth.Cursor = Cursors.Default;
-            _cmdWidth.ForeColor = SystemColors.ControlText;
-            _cmdWidth.Location = new Point(23, 75);
-            _cmdWidth.Name = "_cmdWidth";
-            _cmdWidth.RightToLeft = RightToLeft.No;
-            _cmdWidth.Size = new Size(57, 25);
-            _cmdWidth.TabIndex = 28;
-            _cmdWidth.Text = "Set";
-            _cmdWidth.UseVisualStyleBackColor = false;
+            this._cmdWidth.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdWidth.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdWidth.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdWidth.Location = new System.Drawing.Point(23, 75);
+            this._cmdWidth.Name = "_cmdWidth";
+            this._cmdWidth.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdWidth.Size = new System.Drawing.Size(57, 25);
+            this._cmdWidth.TabIndex = 28;
+            this._cmdWidth.Text = "Set";
+            this._cmdWidth.UseVisualStyleBackColor = false;
+            this._cmdWidth.Click += new System.EventHandler(this.CmdWidth_Click);
             // 
             // GroupBox2
             // 
-            GroupBox2.Controls.Add(_cmdReverse);
-            GroupBox2.Controls.Add(_cmdWidth12);
-            GroupBox2.Controls.Add(txtWidth1);
-            GroupBox2.Controls.Add(txtWidth2);
-            GroupBox2.Controls.Add(Label1);
-            GroupBox2.Controls.Add(Label2);
-            GroupBox2.Location = new Point(12, 12);
-            GroupBox2.Name = "GroupBox2";
-            GroupBox2.Size = new Size(189, 115);
-            GroupBox2.TabIndex = 33;
-            GroupBox2.TabStop = false;
-            GroupBox2.Text = "Progressive width";
+            this.GroupBox2.Controls.Add(this._cmdReverse);
+            this.GroupBox2.Controls.Add(this._cmdWidth12);
+            this.GroupBox2.Controls.Add(this.txtWidth1);
+            this.GroupBox2.Controls.Add(this.txtWidth2);
+            this.GroupBox2.Controls.Add(this.Label1);
+            this.GroupBox2.Controls.Add(this.Label2);
+            this.GroupBox2.Location = new System.Drawing.Point(12, 12);
+            this.GroupBox2.Name = "GroupBox2";
+            this.GroupBox2.Size = new System.Drawing.Size(189, 115);
+            this.GroupBox2.TabIndex = 33;
+            this.GroupBox2.TabStop = false;
+            this.GroupBox2.Text = "Progressive width";
             // 
-            // cmdReverse
+            // _cmdReverse
             // 
-            _cmdReverse.BackColor = SystemColors.Control;
-            _cmdReverse.Cursor = Cursors.Default;
-            _cmdReverse.ForeColor = SystemColors.ControlText;
-            _cmdReverse.Location = new Point(24, 75);
-            _cmdReverse.Name = "_cmdReverse";
-            _cmdReverse.RightToLeft = RightToLeft.No;
-            _cmdReverse.Size = new Size(57, 25);
-            _cmdReverse.TabIndex = 42;
-            _cmdReverse.Text = "Change";
-            _cmdReverse.UseVisualStyleBackColor = false;
+            this._cmdReverse.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdReverse.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdReverse.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdReverse.Location = new System.Drawing.Point(24, 75);
+            this._cmdReverse.Name = "_cmdReverse";
+            this._cmdReverse.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdReverse.Size = new System.Drawing.Size(57, 25);
+            this._cmdReverse.TabIndex = 42;
+            this._cmdReverse.Text = "Change";
+            this._cmdReverse.UseVisualStyleBackColor = false;
+            this._cmdReverse.Click += new System.EventHandler(this.CmdReverse_Click);
             // 
-            // cmdWidth12
+            // _cmdWidth12
             // 
-            _cmdWidth12.BackColor = SystemColors.Control;
-            _cmdWidth12.Cursor = Cursors.Default;
-            _cmdWidth12.ForeColor = SystemColors.ControlText;
-            _cmdWidth12.Location = new Point(103, 75);
-            _cmdWidth12.Name = "_cmdWidth12";
-            _cmdWidth12.RightToLeft = RightToLeft.No;
-            _cmdWidth12.Size = new Size(57, 25);
-            _cmdWidth12.TabIndex = 39;
-            _cmdWidth12.Text = "Set";
-            _cmdWidth12.UseVisualStyleBackColor = false;
+            this._cmdWidth12.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdWidth12.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdWidth12.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdWidth12.Location = new System.Drawing.Point(103, 75);
+            this._cmdWidth12.Name = "_cmdWidth12";
+            this._cmdWidth12.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdWidth12.Size = new System.Drawing.Size(57, 25);
+            this._cmdWidth12.TabIndex = 39;
+            this._cmdWidth12.Text = "Set";
+            this._cmdWidth12.UseVisualStyleBackColor = false;
+            this._cmdWidth12.Click += new System.EventHandler(this.CmdWidth12_Click);
             // 
             // txtWidth1
             // 
-            txtWidth1.AcceptsReturn = true;
-            txtWidth1.BackColor = SystemColors.Window;
-            txtWidth1.Cursor = Cursors.IBeam;
-            txtWidth1.ForeColor = SystemColors.WindowText;
-            txtWidth1.Location = new Point(24, 40);
-            txtWidth1.MaxLength = 0;
-            txtWidth1.Name = "txtWidth1";
-            txtWidth1.RightToLeft = RightToLeft.No;
-            txtWidth1.Size = new Size(57, 20);
-            txtWidth1.TabIndex = 38;
-            txtWidth1.TextAlign = HorizontalAlignment.Center;
+            this.txtWidth1.AcceptsReturn = true;
+            this.txtWidth1.BackColor = System.Drawing.SystemColors.Window;
+            this.txtWidth1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtWidth1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtWidth1.Location = new System.Drawing.Point(24, 40);
+            this.txtWidth1.MaxLength = 0;
+            this.txtWidth1.Name = "txtWidth1";
+            this.txtWidth1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtWidth1.Size = new System.Drawing.Size(57, 20);
+            this.txtWidth1.TabIndex = 38;
+            this.txtWidth1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtWidth2
             // 
-            txtWidth2.AcceptsReturn = true;
-            txtWidth2.BackColor = SystemColors.Window;
-            txtWidth2.Cursor = Cursors.IBeam;
-            txtWidth2.ForeColor = SystemColors.WindowText;
-            txtWidth2.Location = new Point(103, 40);
-            txtWidth2.MaxLength = 0;
-            txtWidth2.Name = "txtWidth2";
-            txtWidth2.RightToLeft = RightToLeft.No;
-            txtWidth2.Size = new Size(57, 20);
-            txtWidth2.TabIndex = 37;
-            txtWidth2.TextAlign = HorizontalAlignment.Center;
+            this.txtWidth2.AcceptsReturn = true;
+            this.txtWidth2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtWidth2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtWidth2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtWidth2.Location = new System.Drawing.Point(103, 40);
+            this.txtWidth2.MaxLength = 0;
+            this.txtWidth2.Name = "txtWidth2";
+            this.txtWidth2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtWidth2.Size = new System.Drawing.Size(57, 20);
+            this.txtWidth2.TabIndex = 37;
+            this.txtWidth2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Label1
             // 
-            Label1.AutoSize = true;
-            Label1.BackColor = SystemColors.Control;
-            Label1.Cursor = Cursors.Default;
-            Label1.ForeColor = SystemColors.ControlText;
-            Label1.Location = new Point(21, 22);
-            Label1.Name = "Label1";
-            Label1.RightToLeft = RightToLeft.No;
-            Label1.Size = new Size(53, 13);
-            Label1.TabIndex = 41;
-            Label1.Text = "First Point";
+            this.Label1.AutoSize = true;
+            this.Label1.BackColor = System.Drawing.SystemColors.Control;
+            this.Label1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label1.Location = new System.Drawing.Point(21, 22);
+            this.Label1.Name = "Label1";
+            this.Label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label1.Size = new System.Drawing.Size(53, 13);
+            this.Label1.TabIndex = 41;
+            this.Label1.Text = "First Point";
             // 
             // Label2
             // 
-            Label2.AutoSize = true;
-            Label2.BackColor = SystemColors.Control;
-            Label2.Cursor = Cursors.Default;
-            Label2.ForeColor = SystemColors.ControlText;
-            Label2.Location = new Point(100, 22);
-            Label2.Name = "Label2";
-            Label2.RightToLeft = RightToLeft.No;
-            Label2.Size = new Size(54, 13);
-            Label2.TabIndex = 40;
-            Label2.Text = "Last Point";
+            this.Label2.AutoSize = true;
+            this.Label2.BackColor = System.Drawing.SystemColors.Control;
+            this.Label2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label2.Location = new System.Drawing.Point(100, 22);
+            this.Label2.Name = "Label2";
+            this.Label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label2.Size = new System.Drawing.Size(54, 13);
+            this.Label2.TabIndex = 40;
+            this.Label2.Text = "Last Point";
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.Location = new Point(335, 87);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(63, 25);
-            _cmdCancel.TabIndex = 35;
-            _cmdCancel.Text = "Close";
-            _cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Location = new System.Drawing.Point(335, 87);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(63, 25);
+            this._cmdCancel.TabIndex = 35;
+            this._cmdCancel.Text = "Close";
+            this._cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
-            // cmdWinding
+            // _cmdWinding
             // 
-            _cmdWinding.Location = new Point(335, 47);
-            _cmdWinding.Name = "_cmdWinding";
-            _cmdWinding.Size = new Size(63, 25);
-            _cmdWinding.TabIndex = 36;
-            _cmdWinding.Text = "Reverse";
-            _cmdWinding.UseVisualStyleBackColor = true;
+            this._cmdWinding.Location = new System.Drawing.Point(335, 47);
+            this._cmdWinding.Name = "_cmdWinding";
+            this._cmdWinding.Size = new System.Drawing.Size(63, 25);
+            this._cmdWinding.TabIndex = 36;
+            this._cmdWinding.Text = "Reverse";
+            this._cmdWinding.UseVisualStyleBackColor = true;
+            this._cmdWinding.Click += new System.EventHandler(this.CmdWinding_Click);
             // 
-            // frmLWidth
+            // FrmLWidth
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(410, 143);
-            Controls.Add(_cmdWinding);
-            Controls.Add(_cmdCancel);
-            Controls.Add(GroupBox2);
-            Controls.Add(GroupBox1);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmLWidth";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - Set Line Width";
-            GroupBox1.ResumeLayout(false);
-            GroupBox1.PerformLayout();
-            GroupBox2.ResumeLayout(false);
-            GroupBox2.PerformLayout();
-            Load += new EventHandler(FrmLWidth_Load);
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(410, 143);
+            this.Controls.Add(this._cmdWinding);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this.GroupBox2);
+            this.Controls.Add(this.GroupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmLWidth";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - Set Line Width";
+            this.Load += new System.EventHandler(this.FrmLWidth_Load);
+            this.GroupBox1.ResumeLayout(false);
+            this.GroupBox1.PerformLayout();
+            this.GroupBox2.ResumeLayout(false);
+            this.GroupBox2.PerformLayout();
+            this.ResumeLayout(false);
+
         }
 
         internal GroupBox GroupBox1;

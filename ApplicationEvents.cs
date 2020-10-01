@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
-namespace SBuilderX.My
+namespace SBuilderXX.My
 {
 
     // The following events are availble for MyApplication:
@@ -21,10 +21,10 @@ namespace SBuilderX.My
             string errorMessage = e.Exception.Message + nl + nl;
             // errorMessage += e.Exception.ToString & vbCrLf & vbCrLf
             errorMessage += "This was an unexpected error that can lead to unpredictable results. If " + nl;
-            errorMessage += "you press NO SBuilderX will shut down. If you press YES you can continue " + nl;
+            errorMessage += "you press NO SBuilderXX will shut down. If you press YES you can continue " + nl;
             errorMessage += "to work at your own risk. Do you want to continue?";
             string errorFile;
-            if (MessageBox.Show(errorMessage, "SBuilderX - Globally Exception:", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (MessageBox.Show(errorMessage, "SBuilderXX - Globally Exception:", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 e.ExitApplication = false;
             }
@@ -44,7 +44,7 @@ namespace SBuilderX.My
                 moduleFILE_IO.SaveFile(errorFile);
             }
 
-            errorMessage = "Error Report created by SBuilderX on " + DateTime.Now.ToString() + nl + nl;
+            errorMessage = "Error Report created by SBuilderXX on " + DateTime.Now.ToString() + nl + nl;
             errorMessage += e.Exception.Message + nl + nl;
             errorMessage += e.Exception.ToString() + nl + nl;
             errorMessage += "Name=" + moduleMAIN.ProjectName.ToString() + nl;

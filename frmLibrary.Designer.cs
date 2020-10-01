@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     public partial class FrmLibrary : Form
@@ -32,512 +32,513 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLibrary));
-            _lstBGL = new ListBox();
-            _lstBGL.SelectedIndexChanged += new EventHandler(LstBGL_SelectedIndexChanged);
-            _cmbLibCat = new ComboBox();
-            _cmbLibCat.SelectedIndexChanged += new EventHandler(CmbLibCat_SelectedIndexChanged);
-            _cmdAdd = new Button();
-            _cmdAdd.Click += new EventHandler(CmdAdd_Click);
-            _lstLib = new ListBox();
-            _lstLib.SelectedIndexChanged += new EventHandler(LstLib_SelectedIndexChanged);
-            labelFS = new Label();
-            frLib = new GroupBox();
-            _txtLibName = new TextBox();
-            _txtLibName.TextChanged += new EventHandler(TxtLibName_TextChanged);
-            _txtLibWidth = new TextBox();
-            _txtLibWidth.TextChanged += new EventHandler(TxtLibWidth_TextChanged);
-            _txtLibLength = new TextBox();
-            _txtLibLength.TextChanged += new EventHandler(TxtLibLength_TextChanged);
-            _cmdUpdate = new Button();
-            _cmdUpdate.Click += new EventHandler(CmdUpdate_Click);
-            _txtLibScale = new TextBox();
-            _txtLibScale.TextChanged += new EventHandler(TxtLibScale_TextChanged);
-            Label2 = new Label();
-            LabelLib2 = new Label();
-            LabelLib1 = new Label();
-            LabelLib3 = new Label();
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            txtBGLFile = new TextBox();
-            Label1 = new Label();
-            labelFSTemp = new Label();
-            Label3 = new Label();
-            _cmdNewCat = new Button();
-            _cmdNewCat.Click += new EventHandler(CmdNewCat_Click);
-            txtLibID = new TextBox();
-            txtBGLID = new TextBox();
-            _cmdBGL = new Button();
-            _cmdBGL.Click += new EventHandler(CmdBGL_Click);
-            _cmdDown = new Button();
-            _cmdDown.Click += new EventHandler(CmdDown_Click);
-            _cmdUP = new Button();
-            _cmdUP.Click += new EventHandler(CmdUP_Click);
-            imgLib = new PictureBox();
-            _cmdRemove = new Button();
-            _cmdRemove.Click += new EventHandler(CmdRemove_Click);
-            LabelNoBGLs = new Label();
-            LabelNoLIBs = new Label();
-            _cmdAZ = new Button();
-            _cmdAZ.Click += new EventHandler(CmdAZ_Click);
-            _cmdEditCat = new Button();
-            _cmdEditCat.Click += new EventHandler(CmdEditCat_Click);
-            Label4 = new Label();
-            frLib.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgLib).BeginInit();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLibrary));
+            this._lstBGL = new System.Windows.Forms.ListBox();
+            this._cmbLibCat = new System.Windows.Forms.ComboBox();
+            this._cmdAdd = new System.Windows.Forms.Button();
+            this._lstLib = new System.Windows.Forms.ListBox();
+            this.labelFS = new System.Windows.Forms.Label();
+            this.frLib = new System.Windows.Forms.GroupBox();
+            this._txtLibName = new System.Windows.Forms.TextBox();
+            this._txtLibWidth = new System.Windows.Forms.TextBox();
+            this._txtLibLength = new System.Windows.Forms.TextBox();
+            this._cmdUpdate = new System.Windows.Forms.Button();
+            this._txtLibScale = new System.Windows.Forms.TextBox();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.LabelLib2 = new System.Windows.Forms.Label();
+            this.LabelLib1 = new System.Windows.Forms.Label();
+            this.LabelLib3 = new System.Windows.Forms.Label();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this.txtBGLFile = new System.Windows.Forms.TextBox();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.labelFSTemp = new System.Windows.Forms.Label();
+            this.Label3 = new System.Windows.Forms.Label();
+            this._cmdNewCat = new System.Windows.Forms.Button();
+            this.txtLibID = new System.Windows.Forms.TextBox();
+            this.txtBGLID = new System.Windows.Forms.TextBox();
+            this._cmdBGL = new System.Windows.Forms.Button();
+            this._cmdDown = new System.Windows.Forms.Button();
+            this._cmdUP = new System.Windows.Forms.Button();
+            this.imgLib = new System.Windows.Forms.PictureBox();
+            this._cmdRemove = new System.Windows.Forms.Button();
+            this.LabelNoBGLs = new System.Windows.Forms.Label();
+            this.LabelNoLIBs = new System.Windows.Forms.Label();
+            this._cmdAZ = new System.Windows.Forms.Button();
+            this._cmdEditCat = new System.Windows.Forms.Button();
+            this.Label4 = new System.Windows.Forms.Label();
+            this.frLib.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLib)).BeginInit();
+            this.SuspendLayout();
             // 
-            // lstBGL
+            // _lstBGL
             // 
-            _lstBGL.FormattingEnabled = true;
-            _lstBGL.Location = new Point(504, 54);
-            _lstBGL.Name = "_lstBGL";
-            _lstBGL.SelectionMode = SelectionMode.MultiExtended;
-            _lstBGL.Size = new Size(224, 147);
-            _lstBGL.TabIndex = 3;
+            this._lstBGL.FormattingEnabled = true;
+            this._lstBGL.Location = new System.Drawing.Point(504, 54);
+            this._lstBGL.Name = "_lstBGL";
+            this._lstBGL.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this._lstBGL.Size = new System.Drawing.Size(224, 147);
+            this._lstBGL.TabIndex = 3;
+            this._lstBGL.SelectedIndexChanged += new System.EventHandler(this.LstBGL_SelectedIndexChanged);
             // 
-            // cmbLibCat
+            // _cmbLibCat
             // 
-            _cmbLibCat.FormattingEnabled = true;
-            _cmbLibCat.Location = new Point(235, 27);
-            _cmbLibCat.Name = "_cmbLibCat";
-            _cmbLibCat.Size = new Size(224, 21);
-            _cmbLibCat.TabIndex = 4;
+            this._cmbLibCat.FormattingEnabled = true;
+            this._cmbLibCat.Location = new System.Drawing.Point(235, 27);
+            this._cmbLibCat.Name = "_cmbLibCat";
+            this._cmbLibCat.Size = new System.Drawing.Size(224, 21);
+            this._cmbLibCat.TabIndex = 4;
+            this._cmbLibCat.SelectedIndexChanged += new System.EventHandler(this.CmbLibCat_SelectedIndexChanged);
             // 
-            // cmdAdd
+            // _cmdAdd
             // 
-            _cmdAdd.Image = (Image)resources.GetObject("cmdAdd.Image");
-            _cmdAdd.Location = new Point(465, 178);
-            _cmdAdd.Name = "_cmdAdd";
-            _cmdAdd.Size = new Size(33, 23);
-            _cmdAdd.TabIndex = 5;
-            _cmdAdd.UseVisualStyleBackColor = true;
+            this._cmdAdd.Image = ((System.Drawing.Image)(resources.GetObject("_cmdAdd.Image")));
+            this._cmdAdd.Location = new System.Drawing.Point(465, 178);
+            this._cmdAdd.Name = "_cmdAdd";
+            this._cmdAdd.Size = new System.Drawing.Size(33, 23);
+            this._cmdAdd.TabIndex = 5;
+            this._cmdAdd.UseVisualStyleBackColor = true;
+            this._cmdAdd.Click += new System.EventHandler(this.CmdAdd_Click);
             // 
-            // lstLib
+            // _lstLib
             // 
-            _lstLib.FormattingEnabled = true;
-            _lstLib.Location = new Point(235, 54);
-            _lstLib.Name = "_lstLib";
-            _lstLib.SelectionMode = SelectionMode.MultiExtended;
-            _lstLib.Size = new Size(224, 147);
-            _lstLib.TabIndex = 6;
+            this._lstLib.FormattingEnabled = true;
+            this._lstLib.Location = new System.Drawing.Point(235, 54);
+            this._lstLib.Name = "_lstLib";
+            this._lstLib.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this._lstLib.Size = new System.Drawing.Size(224, 147);
+            this._lstLib.TabIndex = 6;
+            this._lstLib.SelectedIndexChanged += new System.EventHandler(this.LstLib_SelectedIndexChanged);
             // 
             // labelFS
             // 
-            labelFS.Anchor = AnchorStyles.Right;
-            labelFS.AutoSize = true;
-            labelFS.BackColor = Color.Transparent;
-            labelFS.Cursor = Cursors.Default;
-            labelFS.ForeColor = SystemColors.ControlText;
-            labelFS.Location = new Point(306, 211);
-            labelFS.Name = "labelFS";
-            labelFS.RightToLeft = RightToLeft.No;
-            labelFS.Size = new Size(153, 13);
-            labelFS.TabIndex = 103;
-            labelFS.Text = "Categorized FS9 Library Object";
-            labelFS.TextAlign = ContentAlignment.TopRight;
+            this.labelFS.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.labelFS.AutoSize = true;
+            this.labelFS.BackColor = System.Drawing.Color.Transparent;
+            this.labelFS.Cursor = System.Windows.Forms.Cursors.Default;
+            this.labelFS.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.labelFS.Location = new System.Drawing.Point(306, 211);
+            this.labelFS.Name = "labelFS";
+            this.labelFS.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.labelFS.Size = new System.Drawing.Size(153, 13);
+            this.labelFS.TabIndex = 103;
+            this.labelFS.Text = "Categorized FS9 Library Object";
+            this.labelFS.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // frLib
             // 
-            frLib.BackColor = Color.Transparent;
-            frLib.Controls.Add(_txtLibName);
-            frLib.Controls.Add(_txtLibWidth);
-            frLib.Controls.Add(_txtLibLength);
-            frLib.Controls.Add(_cmdUpdate);
-            frLib.Controls.Add(_txtLibScale);
-            frLib.Controls.Add(Label2);
-            frLib.Controls.Add(LabelLib2);
-            frLib.Controls.Add(LabelLib1);
-            frLib.Controls.Add(LabelLib3);
-            frLib.ForeColor = SystemColors.MenuHighlight;
-            frLib.Location = new Point(12, 11);
-            frLib.Name = "frLib";
-            frLib.RightToLeft = RightToLeft.No;
-            frLib.Size = new Size(208, 91);
-            frLib.TabIndex = 102;
-            frLib.TabStop = false;
-            frLib.Text = "Change Name Scale and Footprint";
+            this.frLib.BackColor = System.Drawing.Color.Transparent;
+            this.frLib.Controls.Add(this._txtLibName);
+            this.frLib.Controls.Add(this._txtLibWidth);
+            this.frLib.Controls.Add(this._txtLibLength);
+            this.frLib.Controls.Add(this._cmdUpdate);
+            this.frLib.Controls.Add(this._txtLibScale);
+            this.frLib.Controls.Add(this.Label2);
+            this.frLib.Controls.Add(this.LabelLib2);
+            this.frLib.Controls.Add(this.LabelLib1);
+            this.frLib.Controls.Add(this.LabelLib3);
+            this.frLib.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.frLib.Location = new System.Drawing.Point(12, 11);
+            this.frLib.Name = "frLib";
+            this.frLib.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.frLib.Size = new System.Drawing.Size(208, 91);
+            this.frLib.TabIndex = 102;
+            this.frLib.TabStop = false;
+            this.frLib.Text = "Change Name Scale and Footprint";
             // 
-            // txtLibName
+            // _txtLibName
             // 
-            _txtLibName.AcceptsReturn = true;
-            _txtLibName.BackColor = SystemColors.Window;
-            _txtLibName.Cursor = Cursors.IBeam;
-            _txtLibName.ForeColor = SystemColors.WindowText;
-            _txtLibName.Location = new Point(54, 63);
-            _txtLibName.MaxLength = 0;
-            _txtLibName.Name = "_txtLibName";
-            _txtLibName.RightToLeft = RightToLeft.No;
-            _txtLibName.Size = new Size(140, 20);
-            _txtLibName.TabIndex = 106;
-            _txtLibName.TextAlign = HorizontalAlignment.Center;
+            this._txtLibName.AcceptsReturn = true;
+            this._txtLibName.BackColor = System.Drawing.SystemColors.Window;
+            this._txtLibName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._txtLibName.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._txtLibName.Location = new System.Drawing.Point(54, 63);
+            this._txtLibName.MaxLength = 0;
+            this._txtLibName.Name = "_txtLibName";
+            this._txtLibName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._txtLibName.Size = new System.Drawing.Size(140, 20);
+            this._txtLibName.TabIndex = 106;
+            this._txtLibName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtLibName.TextChanged += new System.EventHandler(this.TxtLibName_TextChanged);
             // 
-            // txtLibWidth
+            // _txtLibWidth
             // 
-            _txtLibWidth.AcceptsReturn = true;
-            _txtLibWidth.BackColor = SystemColors.Window;
-            _txtLibWidth.Cursor = Cursors.IBeam;
-            _txtLibWidth.ForeColor = SystemColors.WindowText;
-            _txtLibWidth.Location = new Point(70, 32);
-            _txtLibWidth.MaxLength = 0;
-            _txtLibWidth.Name = "_txtLibWidth";
-            _txtLibWidth.RightToLeft = RightToLeft.No;
-            _txtLibWidth.Size = new Size(44, 20);
-            _txtLibWidth.TabIndex = 37;
-            _txtLibWidth.TextAlign = HorizontalAlignment.Center;
+            this._txtLibWidth.AcceptsReturn = true;
+            this._txtLibWidth.BackColor = System.Drawing.SystemColors.Window;
+            this._txtLibWidth.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._txtLibWidth.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._txtLibWidth.Location = new System.Drawing.Point(70, 32);
+            this._txtLibWidth.MaxLength = 0;
+            this._txtLibWidth.Name = "_txtLibWidth";
+            this._txtLibWidth.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._txtLibWidth.Size = new System.Drawing.Size(44, 20);
+            this._txtLibWidth.TabIndex = 37;
+            this._txtLibWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtLibWidth.TextChanged += new System.EventHandler(this.TxtLibWidth_TextChanged);
             // 
-            // txtLibLength
+            // _txtLibLength
             // 
-            _txtLibLength.AcceptsReturn = true;
-            _txtLibLength.BackColor = SystemColors.Window;
-            _txtLibLength.Cursor = Cursors.IBeam;
-            _txtLibLength.ForeColor = SystemColors.WindowText;
-            _txtLibLength.Location = new Point(16, 32);
-            _txtLibLength.MaxLength = 0;
-            _txtLibLength.Name = "_txtLibLength";
-            _txtLibLength.RightToLeft = RightToLeft.No;
-            _txtLibLength.Size = new Size(45, 20);
-            _txtLibLength.TabIndex = 36;
-            _txtLibLength.TextAlign = HorizontalAlignment.Center;
+            this._txtLibLength.AcceptsReturn = true;
+            this._txtLibLength.BackColor = System.Drawing.SystemColors.Window;
+            this._txtLibLength.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._txtLibLength.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._txtLibLength.Location = new System.Drawing.Point(16, 32);
+            this._txtLibLength.MaxLength = 0;
+            this._txtLibLength.Name = "_txtLibLength";
+            this._txtLibLength.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._txtLibLength.Size = new System.Drawing.Size(45, 20);
+            this._txtLibLength.TabIndex = 36;
+            this._txtLibLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtLibLength.TextChanged += new System.EventHandler(this.TxtLibLength_TextChanged);
             // 
-            // cmdUpdate
+            // _cmdUpdate
             // 
-            _cmdUpdate.Enabled = false;
-            _cmdUpdate.ForeColor = SystemColors.ControlText;
-            _cmdUpdate.Location = new Point(163, 29);
-            _cmdUpdate.Name = "_cmdUpdate";
-            _cmdUpdate.Size = new Size(31, 23);
-            _cmdUpdate.TabIndex = 105;
-            _cmdUpdate.Text = "OK";
-            _cmdUpdate.UseVisualStyleBackColor = true;
+            this._cmdUpdate.Enabled = false;
+            this._cmdUpdate.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdUpdate.Location = new System.Drawing.Point(163, 29);
+            this._cmdUpdate.Name = "_cmdUpdate";
+            this._cmdUpdate.Size = new System.Drawing.Size(31, 23);
+            this._cmdUpdate.TabIndex = 105;
+            this._cmdUpdate.Text = "OK";
+            this._cmdUpdate.UseVisualStyleBackColor = true;
+            this._cmdUpdate.Click += new System.EventHandler(this.CmdUpdate_Click);
             // 
-            // txtLibScale
+            // _txtLibScale
             // 
-            _txtLibScale.AcceptsReturn = true;
-            _txtLibScale.BackColor = SystemColors.Window;
-            _txtLibScale.Cursor = Cursors.IBeam;
-            _txtLibScale.ForeColor = SystemColors.WindowText;
-            _txtLibScale.Location = new Point(123, 32);
-            _txtLibScale.MaxLength = 0;
-            _txtLibScale.Name = "_txtLibScale";
-            _txtLibScale.RightToLeft = RightToLeft.No;
-            _txtLibScale.Size = new Size(29, 20);
-            _txtLibScale.TabIndex = 34;
-            _txtLibScale.Text = "1";
-            _txtLibScale.TextAlign = HorizontalAlignment.Center;
+            this._txtLibScale.AcceptsReturn = true;
+            this._txtLibScale.BackColor = System.Drawing.SystemColors.Window;
+            this._txtLibScale.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._txtLibScale.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._txtLibScale.Location = new System.Drawing.Point(123, 32);
+            this._txtLibScale.MaxLength = 0;
+            this._txtLibScale.Name = "_txtLibScale";
+            this._txtLibScale.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._txtLibScale.Size = new System.Drawing.Size(29, 20);
+            this._txtLibScale.TabIndex = 34;
+            this._txtLibScale.Text = "1";
+            this._txtLibScale.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._txtLibScale.TextChanged += new System.EventHandler(this.TxtLibScale_TextChanged);
             // 
             // Label2
             // 
-            Label2.BackColor = Color.Transparent;
-            Label2.Cursor = Cursors.Default;
-            Label2.ForeColor = SystemColors.ControlText;
-            Label2.Location = new Point(13, 66);
-            Label2.Name = "Label2";
-            Label2.RightToLeft = RightToLeft.No;
-            Label2.Size = new Size(51, 19);
-            Label2.TabIndex = 39;
-            Label2.Text = "Name:";
+            this.Label2.BackColor = System.Drawing.Color.Transparent;
+            this.Label2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label2.Location = new System.Drawing.Point(13, 66);
+            this.Label2.Name = "Label2";
+            this.Label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label2.Size = new System.Drawing.Size(51, 19);
+            this.Label2.TabIndex = 39;
+            this.Label2.Text = "Name:";
             // 
             // LabelLib2
             // 
-            LabelLib2.BackColor = Color.Transparent;
-            LabelLib2.Cursor = Cursors.Default;
-            LabelLib2.ForeColor = SystemColors.ControlText;
-            LabelLib2.Location = new Point(13, 17);
-            LabelLib2.Name = "LabelLib2";
-            LabelLib2.RightToLeft = RightToLeft.No;
-            LabelLib2.Size = new Size(51, 19);
-            LabelLib2.TabIndex = 39;
-            LabelLib2.Text = "Length:";
+            this.LabelLib2.BackColor = System.Drawing.Color.Transparent;
+            this.LabelLib2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.LabelLib2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.LabelLib2.Location = new System.Drawing.Point(13, 17);
+            this.LabelLib2.Name = "LabelLib2";
+            this.LabelLib2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.LabelLib2.Size = new System.Drawing.Size(51, 19);
+            this.LabelLib2.TabIndex = 39;
+            this.LabelLib2.Text = "Length:";
             // 
             // LabelLib1
             // 
-            LabelLib1.BackColor = Color.Transparent;
-            LabelLib1.Cursor = Cursors.Default;
-            LabelLib1.ForeColor = SystemColors.ControlText;
-            LabelLib1.Location = new Point(67, 17);
-            LabelLib1.Name = "LabelLib1";
-            LabelLib1.RightToLeft = RightToLeft.No;
-            LabelLib1.Size = new Size(38, 18);
-            LabelLib1.TabIndex = 38;
-            LabelLib1.Text = "Width:";
+            this.LabelLib1.BackColor = System.Drawing.Color.Transparent;
+            this.LabelLib1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.LabelLib1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.LabelLib1.Location = new System.Drawing.Point(67, 17);
+            this.LabelLib1.Name = "LabelLib1";
+            this.LabelLib1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.LabelLib1.Size = new System.Drawing.Size(38, 18);
+            this.LabelLib1.TabIndex = 38;
+            this.LabelLib1.Text = "Width:";
             // 
             // LabelLib3
             // 
-            LabelLib3.BackColor = Color.Transparent;
-            LabelLib3.Cursor = Cursors.Default;
-            LabelLib3.ForeColor = SystemColors.ControlText;
-            LabelLib3.Location = new Point(120, 17);
-            LabelLib3.Name = "LabelLib3";
-            LabelLib3.RightToLeft = RightToLeft.No;
-            LabelLib3.Size = new Size(37, 16);
-            LabelLib3.TabIndex = 35;
-            LabelLib3.Text = "Scale:";
+            this.LabelLib3.BackColor = System.Drawing.Color.Transparent;
+            this.LabelLib3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.LabelLib3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.LabelLib3.Location = new System.Drawing.Point(120, 17);
+            this.LabelLib3.Name = "LabelLib3";
+            this.LabelLib3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.LabelLib3.Size = new System.Drawing.Size(37, 16);
+            this.LabelLib3.TabIndex = 35;
+            this.LabelLib3.Text = "Scale:";
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.Location = new Point(600, 262);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(55, 23);
-            _cmdCancel.TabIndex = 104;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Location = new System.Drawing.Point(600, 262);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(55, 23);
+            this._cmdCancel.TabIndex = 104;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.Location = new Point(673, 262);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.Size = new Size(55, 23);
-            _cmdOK.TabIndex = 105;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Location = new System.Drawing.Point(673, 262);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.Size = new System.Drawing.Size(55, 23);
+            this._cmdOK.TabIndex = 105;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
             // txtBGLFile
             // 
-            txtBGLFile.AcceptsReturn = true;
-            txtBGLFile.BackColor = SystemColors.Window;
-            txtBGLFile.Cursor = Cursors.IBeam;
-            txtBGLFile.ForeColor = SystemColors.WindowText;
-            txtBGLFile.Location = new Point(504, 27);
-            txtBGLFile.MaxLength = 0;
-            txtBGLFile.Name = "txtBGLFile";
-            txtBGLFile.ReadOnly = true;
-            txtBGLFile.RightToLeft = RightToLeft.No;
-            txtBGLFile.Size = new Size(181, 20);
-            txtBGLFile.TabIndex = 109;
-            txtBGLFile.TextAlign = HorizontalAlignment.Center;
+            this.txtBGLFile.AcceptsReturn = true;
+            this.txtBGLFile.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBGLFile.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtBGLFile.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtBGLFile.Location = new System.Drawing.Point(504, 27);
+            this.txtBGLFile.MaxLength = 0;
+            this.txtBGLFile.Name = "txtBGLFile";
+            this.txtBGLFile.ReadOnly = true;
+            this.txtBGLFile.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtBGLFile.Size = new System.Drawing.Size(181, 20);
+            this.txtBGLFile.TabIndex = 109;
+            this.txtBGLFile.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Label1
             // 
-            Label1.AutoSize = true;
-            Label1.BackColor = Color.Transparent;
-            Label1.Cursor = Cursors.Default;
-            Label1.ForeColor = SystemColors.ControlText;
-            Label1.Location = new Point(501, 12);
-            Label1.Name = "Label1";
-            Label1.RightToLeft = RightToLeft.No;
-            Label1.Size = new Size(179, 13);
-            Label1.TabIndex = 103;
-            Label1.Text = "Get Temporary Objects from BGL file";
-            Label1.TextAlign = ContentAlignment.TopRight;
+            this.Label1.AutoSize = true;
+            this.Label1.BackColor = System.Drawing.Color.Transparent;
+            this.Label1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label1.Location = new System.Drawing.Point(501, 12);
+            this.Label1.Name = "Label1";
+            this.Label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label1.Size = new System.Drawing.Size(179, 13);
+            this.Label1.TabIndex = 103;
+            this.Label1.Text = "Get Temporary Objects from BGL file";
+            this.Label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // labelFSTemp
             // 
-            labelFSTemp.AutoSize = true;
-            labelFSTemp.BackColor = Color.Transparent;
-            labelFSTemp.Cursor = Cursors.Default;
-            labelFSTemp.ForeColor = SystemColors.ControlText;
-            labelFSTemp.Location = new Point(581, 211);
-            labelFSTemp.Name = "labelFSTemp";
-            labelFSTemp.RightToLeft = RightToLeft.No;
-            labelFSTemp.Size = new Size(147, 13);
-            labelFSTemp.TabIndex = 103;
-            labelFSTemp.Text = "Temporary FS9 Library Object";
-            labelFSTemp.TextAlign = ContentAlignment.TopRight;
+            this.labelFSTemp.AutoSize = true;
+            this.labelFSTemp.BackColor = System.Drawing.Color.Transparent;
+            this.labelFSTemp.Cursor = System.Windows.Forms.Cursors.Default;
+            this.labelFSTemp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.labelFSTemp.Location = new System.Drawing.Point(581, 211);
+            this.labelFSTemp.Name = "labelFSTemp";
+            this.labelFSTemp.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.labelFSTemp.Size = new System.Drawing.Size(147, 13);
+            this.labelFSTemp.TabIndex = 103;
+            this.labelFSTemp.Text = "Temporary FS9 Library Object";
+            this.labelFSTemp.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // Label3
             // 
-            Label3.AutoSize = true;
-            Label3.BackColor = Color.Transparent;
-            Label3.Cursor = Cursors.Default;
-            Label3.ForeColor = SystemColors.ControlText;
-            Label3.Location = new Point(363, 11);
-            Label3.Name = "Label3";
-            Label3.RightToLeft = RightToLeft.No;
-            Label3.Size = new Size(96, 13);
-            Label3.TabIndex = 103;
-            Label3.Text = "Existing Categories";
-            Label3.TextAlign = ContentAlignment.TopRight;
+            this.Label3.AutoSize = true;
+            this.Label3.BackColor = System.Drawing.Color.Transparent;
+            this.Label3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label3.Location = new System.Drawing.Point(363, 11);
+            this.Label3.Name = "Label3";
+            this.Label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label3.Size = new System.Drawing.Size(96, 13);
+            this.Label3.TabIndex = 103;
+            this.Label3.Text = "Existing Categories";
+            this.Label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // cmdNewCat
+            // _cmdNewCat
             // 
-            _cmdNewCat.Location = new Point(405, 262);
-            _cmdNewCat.Name = "_cmdNewCat";
-            _cmdNewCat.Size = new Size(54, 23);
-            _cmdNewCat.TabIndex = 5;
-            _cmdNewCat.Text = "New";
-            _cmdNewCat.UseVisualStyleBackColor = true;
+            this._cmdNewCat.Location = new System.Drawing.Point(405, 262);
+            this._cmdNewCat.Name = "_cmdNewCat";
+            this._cmdNewCat.Size = new System.Drawing.Size(54, 23);
+            this._cmdNewCat.TabIndex = 5;
+            this._cmdNewCat.Text = "New";
+            this._cmdNewCat.UseVisualStyleBackColor = true;
+            this._cmdNewCat.Click += new System.EventHandler(this.CmdNewCat_Click);
             // 
             // txtLibID
             // 
-            txtLibID.AcceptsReturn = true;
-            txtLibID.BackColor = SystemColors.Window;
-            txtLibID.Cursor = Cursors.IBeam;
-            txtLibID.ForeColor = SystemColors.WindowText;
-            txtLibID.Location = new Point(235, 227);
-            txtLibID.MaxLength = 0;
-            txtLibID.Name = "txtLibID";
-            txtLibID.ReadOnly = true;
-            txtLibID.RightToLeft = RightToLeft.No;
-            txtLibID.Size = new Size(224, 20);
-            txtLibID.TabIndex = 110;
-            txtLibID.TextAlign = HorizontalAlignment.Center;
+            this.txtLibID.AcceptsReturn = true;
+            this.txtLibID.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLibID.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtLibID.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLibID.Location = new System.Drawing.Point(235, 227);
+            this.txtLibID.MaxLength = 0;
+            this.txtLibID.Name = "txtLibID";
+            this.txtLibID.ReadOnly = true;
+            this.txtLibID.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtLibID.Size = new System.Drawing.Size(224, 20);
+            this.txtLibID.TabIndex = 110;
+            this.txtLibID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtBGLID
             // 
-            txtBGLID.AcceptsReturn = true;
-            txtBGLID.BackColor = SystemColors.Window;
-            txtBGLID.Cursor = Cursors.IBeam;
-            txtBGLID.ForeColor = SystemColors.WindowText;
-            txtBGLID.Location = new Point(504, 227);
-            txtBGLID.MaxLength = 0;
-            txtBGLID.Name = "txtBGLID";
-            txtBGLID.ReadOnly = true;
-            txtBGLID.RightToLeft = RightToLeft.No;
-            txtBGLID.Size = new Size(224, 20);
-            txtBGLID.TabIndex = 110;
-            txtBGLID.TextAlign = HorizontalAlignment.Center;
+            this.txtBGLID.AcceptsReturn = true;
+            this.txtBGLID.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBGLID.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtBGLID.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtBGLID.Location = new System.Drawing.Point(504, 227);
+            this.txtBGLID.MaxLength = 0;
+            this.txtBGLID.Name = "txtBGLID";
+            this.txtBGLID.ReadOnly = true;
+            this.txtBGLID.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtBGLID.Size = new System.Drawing.Size(224, 20);
+            this.txtBGLID.TabIndex = 110;
+            this.txtBGLID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cmdBGL
+            // _cmdBGL
             // 
-            _cmdBGL.Location = new Point(691, 25);
-            _cmdBGL.Name = "_cmdBGL";
-            _cmdBGL.Size = new Size(37, 23);
-            _cmdBGL.TabIndex = 5;
-            _cmdBGL.Text = "...";
-            _cmdBGL.UseVisualStyleBackColor = true;
+            this._cmdBGL.Location = new System.Drawing.Point(691, 25);
+            this._cmdBGL.Name = "_cmdBGL";
+            this._cmdBGL.Size = new System.Drawing.Size(37, 23);
+            this._cmdBGL.TabIndex = 5;
+            this._cmdBGL.Text = "...";
+            this._cmdBGL.UseVisualStyleBackColor = true;
+            this._cmdBGL.Click += new System.EventHandler(this.CmdBGL_Click);
             // 
-            // cmdDown
+            // _cmdDown
             // 
-            _cmdDown.BackColor = SystemColors.Control;
-            _cmdDown.Cursor = Cursors.Default;
-            _cmdDown.ForeColor = SystemColors.ControlText;
-            _cmdDown.Image = (Image)resources.GetObject("cmdDown.Image");
-            _cmdDown.Location = new Point(465, 116);
-            _cmdDown.Name = "_cmdDown";
-            _cmdDown.RightToLeft = RightToLeft.No;
-            _cmdDown.Size = new Size(25, 25);
-            _cmdDown.TabIndex = 111;
-            _cmdDown.TextAlign = ContentAlignment.BottomCenter;
-            _cmdDown.UseVisualStyleBackColor = false;
+            this._cmdDown.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdDown.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdDown.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdDown.Image = ((System.Drawing.Image)(resources.GetObject("_cmdDown.Image")));
+            this._cmdDown.Location = new System.Drawing.Point(465, 116);
+            this._cmdDown.Name = "_cmdDown";
+            this._cmdDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdDown.Size = new System.Drawing.Size(25, 25);
+            this._cmdDown.TabIndex = 111;
+            this._cmdDown.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdDown.UseVisualStyleBackColor = false;
+            this._cmdDown.Click += new System.EventHandler(this.CmdDown_Click);
             // 
-            // cmdUP
+            // _cmdUP
             // 
-            _cmdUP.BackColor = SystemColors.Control;
-            _cmdUP.Cursor = Cursors.Default;
-            _cmdUP.ForeColor = SystemColors.ControlText;
-            _cmdUP.Image = (Image)resources.GetObject("cmdUP.Image");
-            _cmdUP.Location = new Point(465, 85);
-            _cmdUP.Name = "_cmdUP";
-            _cmdUP.RightToLeft = RightToLeft.No;
-            _cmdUP.Size = new Size(25, 25);
-            _cmdUP.TabIndex = 111;
-            _cmdUP.TextAlign = ContentAlignment.BottomCenter;
-            _cmdUP.UseVisualStyleBackColor = false;
+            this._cmdUP.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdUP.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdUP.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdUP.Image = ((System.Drawing.Image)(resources.GetObject("_cmdUP.Image")));
+            this._cmdUP.Location = new System.Drawing.Point(465, 85);
+            this._cmdUP.Name = "_cmdUP";
+            this._cmdUP.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdUP.Size = new System.Drawing.Size(25, 25);
+            this._cmdUP.TabIndex = 111;
+            this._cmdUP.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdUP.UseVisualStyleBackColor = false;
+            this._cmdUP.Click += new System.EventHandler(this.CmdUP_Click);
             // 
             // imgLib
             // 
-            imgLib.Cursor = Cursors.Default;
-            imgLib.Location = new Point(12, 116);
-            imgLib.Name = "imgLib";
-            imgLib.Size = new Size(208, 169);
-            imgLib.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgLib.TabIndex = 100;
-            imgLib.TabStop = false;
+            this.imgLib.Cursor = System.Windows.Forms.Cursors.Default;
+            this.imgLib.Location = new System.Drawing.Point(12, 116);
+            this.imgLib.Name = "imgLib";
+            this.imgLib.Size = new System.Drawing.Size(208, 169);
+            this.imgLib.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLib.TabIndex = 100;
+            this.imgLib.TabStop = false;
             // 
-            // cmdRemove
+            // _cmdRemove
             // 
-            _cmdRemove.Image = (Image)resources.GetObject("cmdRemove.Image");
-            _cmdRemove.Location = new Point(465, 147);
-            _cmdRemove.Name = "_cmdRemove";
-            _cmdRemove.Size = new Size(33, 23);
-            _cmdRemove.TabIndex = 5;
-            _cmdRemove.UseVisualStyleBackColor = true;
+            this._cmdRemove.Image = ((System.Drawing.Image)(resources.GetObject("_cmdRemove.Image")));
+            this._cmdRemove.Location = new System.Drawing.Point(465, 147);
+            this._cmdRemove.Name = "_cmdRemove";
+            this._cmdRemove.Size = new System.Drawing.Size(33, 23);
+            this._cmdRemove.TabIndex = 5;
+            this._cmdRemove.UseVisualStyleBackColor = true;
+            this._cmdRemove.Click += new System.EventHandler(this.CmdRemove_Click);
             // 
             // LabelNoBGLs
             // 
-            LabelNoBGLs.AutoSize = true;
-            LabelNoBGLs.Location = new Point(501, 206);
-            LabelNoBGLs.Name = "LabelNoBGLs";
-            LabelNoBGLs.Size = new Size(33, 13);
-            LabelNoBGLs.TabIndex = 112;
-            LabelNoBGLs.Text = "BGLs";
+            this.LabelNoBGLs.AutoSize = true;
+            this.LabelNoBGLs.Location = new System.Drawing.Point(501, 206);
+            this.LabelNoBGLs.Name = "LabelNoBGLs";
+            this.LabelNoBGLs.Size = new System.Drawing.Size(33, 13);
+            this.LabelNoBGLs.TabIndex = 112;
+            this.LabelNoBGLs.Text = "BGLs";
             // 
             // LabelNoLIBs
             // 
-            LabelNoLIBs.AutoSize = true;
-            LabelNoLIBs.Location = new Point(232, 206);
-            LabelNoLIBs.Name = "LabelNoLIBs";
-            LabelNoLIBs.Size = new Size(28, 13);
-            LabelNoLIBs.TabIndex = 112;
-            LabelNoLIBs.Text = "LIBs";
+            this.LabelNoLIBs.AutoSize = true;
+            this.LabelNoLIBs.Location = new System.Drawing.Point(232, 206);
+            this.LabelNoLIBs.Name = "LabelNoLIBs";
+            this.LabelNoLIBs.Size = new System.Drawing.Size(28, 13);
+            this.LabelNoLIBs.TabIndex = 112;
+            this.LabelNoLIBs.Text = "LIBs";
             // 
-            // cmdAZ
+            // _cmdAZ
             // 
-            _cmdAZ.BackColor = SystemColors.Control;
-            _cmdAZ.Cursor = Cursors.Default;
-            _cmdAZ.ForeColor = SystemColors.ControlText;
-            _cmdAZ.Image = (Image)resources.GetObject("cmdAZ.Image");
-            _cmdAZ.Location = new Point(465, 54);
-            _cmdAZ.Name = "_cmdAZ";
-            _cmdAZ.RightToLeft = RightToLeft.No;
-            _cmdAZ.Size = new Size(25, 25);
-            _cmdAZ.TabIndex = 111;
-            _cmdAZ.TextAlign = ContentAlignment.BottomCenter;
-            _cmdAZ.UseVisualStyleBackColor = false;
+            this._cmdAZ.BackColor = System.Drawing.SystemColors.Control;
+            this._cmdAZ.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdAZ.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdAZ.Image = ((System.Drawing.Image)(resources.GetObject("_cmdAZ.Image")));
+            this._cmdAZ.Location = new System.Drawing.Point(465, 54);
+            this._cmdAZ.Name = "_cmdAZ";
+            this._cmdAZ.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdAZ.Size = new System.Drawing.Size(25, 25);
+            this._cmdAZ.TabIndex = 111;
+            this._cmdAZ.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._cmdAZ.UseVisualStyleBackColor = false;
+            this._cmdAZ.Click += new System.EventHandler(this.CmdAZ_Click);
             // 
-            // cmdEditCat
+            // _cmdEditCat
             // 
-            _cmdEditCat.Location = new Point(345, 262);
-            _cmdEditCat.Name = "_cmdEditCat";
-            _cmdEditCat.Size = new Size(54, 23);
-            _cmdEditCat.TabIndex = 5;
-            _cmdEditCat.Text = "Name";
-            _cmdEditCat.UseVisualStyleBackColor = true;
+            this._cmdEditCat.Location = new System.Drawing.Point(345, 262);
+            this._cmdEditCat.Name = "_cmdEditCat";
+            this._cmdEditCat.Size = new System.Drawing.Size(54, 23);
+            this._cmdEditCat.TabIndex = 5;
+            this._cmdEditCat.Text = "Name";
+            this._cmdEditCat.UseVisualStyleBackColor = true;
+            this._cmdEditCat.Click += new System.EventHandler(this.CmdEditCat_Click);
             // 
             // Label4
             // 
-            Label4.Location = new Point(214, 255);
-            Label4.Name = "Label4";
-            Label4.Size = new Size(128, 30);
-            Label4.TabIndex = 113;
-            Label4.Text = "Change the Name or create a New category";
-            Label4.TextAlign = ContentAlignment.MiddleRight;
+            this.Label4.Location = new System.Drawing.Point(214, 255);
+            this.Label4.Name = "Label4";
+            this.Label4.Size = new System.Drawing.Size(128, 30);
+            this.Label4.TabIndex = 113;
+            this.Label4.Text = "Change the Name or create a New category";
+            this.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // frmLibrary
+            // FrmLibrary
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(744, 299);
-            Controls.Add(LabelNoLIBs);
-            Controls.Add(LabelNoBGLs);
-            Controls.Add(_cmdDown);
-            Controls.Add(_cmdAZ);
-            Controls.Add(_cmdUP);
-            Controls.Add(txtBGLID);
-            Controls.Add(txtLibID);
-            Controls.Add(txtBGLFile);
-            Controls.Add(_cmdOK);
-            Controls.Add(_cmdCancel);
-            Controls.Add(imgLib);
-            Controls.Add(Label1);
-            Controls.Add(labelFSTemp);
-            Controls.Add(Label3);
-            Controls.Add(labelFS);
-            Controls.Add(frLib);
-            Controls.Add(_lstLib);
-            Controls.Add(_cmdAdd);
-            Controls.Add(_cmdBGL);
-            Controls.Add(_cmdEditCat);
-            Controls.Add(_cmdNewCat);
-            Controls.Add(_cmdRemove);
-            Controls.Add(_cmbLibCat);
-            Controls.Add(_lstBGL);
-            Controls.Add(Label4);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmLibrary";
-            Text = "SBuilderX - Object Library Manager";
-            frLib.ResumeLayout(false);
-            frLib.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgLib).EndInit();
-            Load += new EventHandler(FrmLibrary_Load);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(744, 299);
+            this.Controls.Add(this.LabelNoLIBs);
+            this.Controls.Add(this.LabelNoBGLs);
+            this.Controls.Add(this._cmdDown);
+            this.Controls.Add(this._cmdAZ);
+            this.Controls.Add(this._cmdUP);
+            this.Controls.Add(this.txtBGLID);
+            this.Controls.Add(this.txtLibID);
+            this.Controls.Add(this.txtBGLFile);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this.imgLib);
+            this.Controls.Add(this.Label1);
+            this.Controls.Add(this.labelFSTemp);
+            this.Controls.Add(this.Label3);
+            this.Controls.Add(this.labelFS);
+            this.Controls.Add(this.frLib);
+            this.Controls.Add(this._lstLib);
+            this.Controls.Add(this._cmdAdd);
+            this.Controls.Add(this._cmdBGL);
+            this.Controls.Add(this._cmdEditCat);
+            this.Controls.Add(this._cmdNewCat);
+            this.Controls.Add(this._cmdRemove);
+            this.Controls.Add(this._cmbLibCat);
+            this.Controls.Add(this._lstBGL);
+            this.Controls.Add(this.Label4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmLibrary";
+            this.Text = "SBuilderXX - Object Library Manager";
+            this.Load += new System.EventHandler(this.FrmLibrary_Load);
+            this.frLib.ResumeLayout(false);
+            this.frLib.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLib)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         private ListBox _lstBGL;

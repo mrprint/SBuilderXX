@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using TileServer;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     static class moduleTILES
     {

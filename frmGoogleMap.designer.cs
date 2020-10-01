@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     internal partial class frmGoogleMap : Form
@@ -32,84 +32,86 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGoogleMap));
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            buttonSat = new RadioButton();
-            buttonMap = new RadioButton();
-            Label2 = new Label();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGoogleMap));
+            this._cmdOK = new System.Windows.Forms.Button();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this.buttonSat = new System.Windows.Forms.RadioButton();
+            this.buttonMap = new System.Windows.Forms.RadioButton();
+            this.Label2 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.Location = new Point(205, 65);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.Size = new Size(58, 25);
-            _cmdOK.TabIndex = 4;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Location = new System.Drawing.Point(205, 65);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.Size = new System.Drawing.Size(58, 25);
+            this._cmdOK.TabIndex = 4;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.Location = new Point(130, 65);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(58, 25);
-            _cmdCancel.TabIndex = 5;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Location = new System.Drawing.Point(130, 65);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(58, 25);
+            this._cmdCancel.TabIndex = 5;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
             // buttonSat
             // 
-            buttonSat.AutoSize = true;
-            buttonSat.Checked = true;
-            buttonSat.Location = new Point(17, 13);
-            buttonSat.Name = "buttonSat";
-            buttonSat.Size = new Size(62, 17);
-            buttonSat.TabIndex = 6;
-            buttonSat.TabStop = true;
-            buttonSat.Text = "Satellite";
-            buttonSat.UseVisualStyleBackColor = true;
+            this.buttonSat.AutoSize = true;
+            this.buttonSat.Checked = true;
+            this.buttonSat.Location = new System.Drawing.Point(17, 13);
+            this.buttonSat.Name = "buttonSat";
+            this.buttonSat.Size = new System.Drawing.Size(62, 17);
+            this.buttonSat.TabIndex = 6;
+            this.buttonSat.TabStop = true;
+            this.buttonSat.Text = "Satellite";
+            this.buttonSat.UseVisualStyleBackColor = true;
             // 
             // buttonMap
             // 
-            buttonMap.AutoSize = true;
-            buttonMap.Location = new Point(17, 39);
-            buttonMap.Name = "buttonMap";
-            buttonMap.Size = new Size(72, 17);
-            buttonMap.TabIndex = 7;
-            buttonMap.Text = "RoadMap";
-            buttonMap.UseVisualStyleBackColor = true;
+            this.buttonMap.AutoSize = true;
+            this.buttonMap.Location = new System.Drawing.Point(17, 39);
+            this.buttonMap.Name = "buttonMap";
+            this.buttonMap.Size = new System.Drawing.Size(72, 17);
+            this.buttonMap.TabIndex = 7;
+            this.buttonMap.Text = "RoadMap";
+            this.buttonMap.UseVisualStyleBackColor = true;
             // 
             // Label2
             // 
-            Label2.Location = new Point(110, 12);
-            Label2.Name = "Label2";
-            Label2.Size = new Size(175, 44);
-            Label2.TabIndex = 8;
-            Label2.Text = "An image of 1280 x 1280 pixels at the present SBuilderX Zoom level will be added " + "to your workspace";
+            this.Label2.Location = new System.Drawing.Point(110, 12);
+            this.Label2.Name = "Label2";
+            this.Label2.Size = new System.Drawing.Size(175, 44);
+            this.Label2.TabIndex = 8;
+            this.Label2.Text = "An image of 1280 x 1280 pixels at the present SBuilderXX Zoom level will be added" +
+    " to your workspace";
             // 
             // frmGoogleMap
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(284, 107);
-            Controls.Add(Label2);
-            Controls.Add(buttonMap);
-            Controls.Add(buttonSat);
-            Controls.Add(_cmdCancel);
-            Controls.Add(_cmdOK);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmGoogleMap";
-            ShowInTaskbar = false;
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - Add Google Map";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 107);
+            this.Controls.Add(this.Label2);
+            this.Controls.Add(this.buttonMap);
+            this.Controls.Add(this.buttonSat);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this._cmdOK);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "frmGoogleMap";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - Add Google Map";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         private Button _cmdOK;

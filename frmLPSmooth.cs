@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     internal partial class FrmLPSmooth
     {

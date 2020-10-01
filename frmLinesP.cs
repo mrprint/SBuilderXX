@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     internal partial class FrmLinesP
     {
@@ -1240,7 +1240,7 @@ namespace SBuilderX
             string A, B;
             string Tex = "";
             A = "FSX Texture File (*.BMP)|*.BMP";
-            B = "SBuilderX: Open Texture File";
+            B = "SBuilderXX: Open Texture File";
             A = moduleFILE_IO.FileNameToOpen(A, B, "TEX");
             if (string.IsNullOrEmpty(A))
             {
@@ -1253,7 +1253,7 @@ namespace SBuilderX
             {
                 if ((TexPath ?? "") != (A ?? ""))
                 {
-                    B = "This file already exists in the ../SBuilderX/Texture" + Environment.NewLine;
+                    B = "This file already exists in the ../SBuilderXX/Texture" + Environment.NewLine;
                     B = B + "folder and it will be overwriten! Do you want to continue?";
                     if (Interaction.MsgBox(B, MsgBoxStyle.YesNo) == MsgBoxResult.No)
                         return;

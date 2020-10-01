@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SBuilderX
+namespace SBuilderXX
 {
     [DesignerGenerated()]
     public partial class FrmObjectFolders : Form
@@ -37,232 +37,233 @@ namespace SBuilderX
         [DebuggerStepThrough()]
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmObjectFolders));
-            Label8 = new Label();
-            Label9 = new Label();
-            Label10 = new Label();
-            Label11 = new Label();
-            _cmdAPI = new Button();
-            _cmdAPI.Click += new EventHandler(CmdAPI_Click);
-            _cmdRyw12 = new Button();
-            _cmdRyw12.Click += new EventHandler(CmdRyw12_Click);
-            txtAPIFolder = new TextBox();
-            txtRwy12Folder = new TextBox();
-            _cmdASD = new Button();
-            _cmdASD.Click += new EventHandler(CmdASD_Click);
-            txtASDFolder = new TextBox();
-            _cmdLibObjects = new Button();
-            _cmdLibObjects.Click += new EventHandler(CmdLibObjects_Click);
-            txtLibObjectsFolder = new TextBox();
-            _cmdOK = new Button();
-            _cmdOK.Click += new EventHandler(CmdOK_Click);
-            _cmdCancel = new Button();
-            _cmdCancel.Click += new EventHandler(CmdCancel_Click);
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmObjectFolders));
+            this.Label8 = new System.Windows.Forms.Label();
+            this.Label9 = new System.Windows.Forms.Label();
+            this.Label10 = new System.Windows.Forms.Label();
+            this.Label11 = new System.Windows.Forms.Label();
+            this._cmdAPI = new System.Windows.Forms.Button();
+            this._cmdRyw12 = new System.Windows.Forms.Button();
+            this.txtAPIFolder = new System.Windows.Forms.TextBox();
+            this.txtRwy12Folder = new System.Windows.Forms.TextBox();
+            this._cmdASD = new System.Windows.Forms.Button();
+            this.txtASDFolder = new System.Windows.Forms.TextBox();
+            this._cmdLibObjects = new System.Windows.Forms.Button();
+            this.txtLibObjectsFolder = new System.Windows.Forms.TextBox();
+            this._cmdOK = new System.Windows.Forms.Button();
+            this._cmdCancel = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
             // Label8
             // 
-            Label8.AutoSize = true;
-            Label8.BackColor = Color.Transparent;
-            Label8.Cursor = Cursors.Default;
-            Label8.ForeColor = SystemColors.ControlText;
-            Label8.Location = new Point(12, 48);
-            Label8.Name = "Label8";
-            Label8.RightToLeft = RightToLeft.No;
-            Label8.Size = new Size(138, 13);
-            Label8.TabIndex = 85;
-            Label8.Text = "Path to Rwy12 programme :";
+            this.Label8.AutoSize = true;
+            this.Label8.BackColor = System.Drawing.Color.Transparent;
+            this.Label8.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label8.Location = new System.Drawing.Point(12, 48);
+            this.Label8.Name = "Label8";
+            this.Label8.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label8.Size = new System.Drawing.Size(138, 13);
+            this.Label8.TabIndex = 85;
+            this.Label8.Text = "Path to Rwy12 programme :";
             // 
             // Label9
             // 
-            Label9.AutoSize = true;
-            Label9.BackColor = Color.Transparent;
-            Label9.Cursor = Cursors.Default;
-            Label9.ForeColor = SystemColors.ControlText;
-            Label9.Location = new Point(12, 87);
-            Label9.Name = "Label9";
-            Label9.RightToLeft = RightToLeft.No;
-            Label9.Size = new Size(137, 13);
-            Label9.TabIndex = 86;
-            Label9.Text = "Path to API macros (*.API) :";
+            this.Label9.AutoSize = true;
+            this.Label9.BackColor = System.Drawing.Color.Transparent;
+            this.Label9.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label9.Location = new System.Drawing.Point(12, 87);
+            this.Label9.Name = "Label9";
+            this.Label9.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label9.Size = new System.Drawing.Size(137, 13);
+            this.Label9.TabIndex = 86;
+            this.Label9.Text = "Path to API macros (*.API) :";
             // 
             // Label10
             // 
-            Label10.AutoSize = true;
-            Label10.BackColor = Color.Transparent;
-            Label10.Cursor = Cursors.Default;
-            Label10.ForeColor = SystemColors.ControlText;
-            Label10.Location = new Point(12, 126);
-            Label10.Name = "Label10";
-            Label10.RightToLeft = RightToLeft.No;
-            Label10.Size = new Size(145, 13);
-            Label10.TabIndex = 89;
-            Label10.Text = "Path to ASD macros (*.SCM):";
+            this.Label10.AutoSize = true;
+            this.Label10.BackColor = System.Drawing.Color.Transparent;
+            this.Label10.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label10.Location = new System.Drawing.Point(12, 126);
+            this.Label10.Name = "Label10";
+            this.Label10.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label10.Size = new System.Drawing.Size(145, 13);
+            this.Label10.TabIndex = 89;
+            this.Label10.Text = "Path to ASD macros (*.SCM):";
             // 
             // Label11
             // 
-            Label11.AutoSize = true;
-            Label11.BackColor = Color.Transparent;
-            Label11.Cursor = Cursors.Default;
-            Label11.ForeColor = SystemColors.ControlText;
-            Label11.Location = new Point(12, 9);
-            Label11.Name = "Label11";
-            Label11.RightToLeft = RightToLeft.No;
-            Label11.Size = new Size(117, 13);
-            Label11.TabIndex = 92;
-            Label11.Text = "Path to Library Objects:";
+            this.Label11.AutoSize = true;
+            this.Label11.BackColor = System.Drawing.Color.Transparent;
+            this.Label11.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Label11.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Label11.Location = new System.Drawing.Point(12, 9);
+            this.Label11.Name = "Label11";
+            this.Label11.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Label11.Size = new System.Drawing.Size(117, 13);
+            this.Label11.TabIndex = 92;
+            this.Label11.Text = "Path to Library Objects:";
             // 
-            // cmdAPI
+            // _cmdAPI
             // 
-            _cmdAPI.BackColor = Color.Transparent;
-            _cmdAPI.Cursor = Cursors.Default;
-            _cmdAPI.ForeColor = SystemColors.ControlText;
-            _cmdAPI.Location = new Point(357, 101);
-            _cmdAPI.Name = "_cmdAPI";
-            _cmdAPI.RightToLeft = RightToLeft.No;
-            _cmdAPI.Size = new Size(31, 22);
-            _cmdAPI.TabIndex = 81;
-            _cmdAPI.Text = "...";
-            _cmdAPI.UseVisualStyleBackColor = false;
+            this._cmdAPI.BackColor = System.Drawing.Color.Transparent;
+            this._cmdAPI.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdAPI.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdAPI.Location = new System.Drawing.Point(357, 101);
+            this._cmdAPI.Name = "_cmdAPI";
+            this._cmdAPI.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdAPI.Size = new System.Drawing.Size(31, 22);
+            this._cmdAPI.TabIndex = 81;
+            this._cmdAPI.Text = "...";
+            this._cmdAPI.UseVisualStyleBackColor = false;
+            this._cmdAPI.Click += new System.EventHandler(this.CmdAPI_Click);
             // 
-            // cmdRyw12
+            // _cmdRyw12
             // 
-            _cmdRyw12.BackColor = Color.Transparent;
-            _cmdRyw12.Cursor = Cursors.Default;
-            _cmdRyw12.ForeColor = SystemColors.ControlText;
-            _cmdRyw12.Location = new Point(357, 62);
-            _cmdRyw12.Name = "_cmdRyw12";
-            _cmdRyw12.RightToLeft = RightToLeft.No;
-            _cmdRyw12.Size = new Size(31, 22);
-            _cmdRyw12.TabIndex = 82;
-            _cmdRyw12.Text = "...";
-            _cmdRyw12.UseVisualStyleBackColor = false;
+            this._cmdRyw12.BackColor = System.Drawing.Color.Transparent;
+            this._cmdRyw12.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdRyw12.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdRyw12.Location = new System.Drawing.Point(357, 62);
+            this._cmdRyw12.Name = "_cmdRyw12";
+            this._cmdRyw12.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdRyw12.Size = new System.Drawing.Size(31, 22);
+            this._cmdRyw12.TabIndex = 82;
+            this._cmdRyw12.Text = "...";
+            this._cmdRyw12.UseVisualStyleBackColor = false;
+            this._cmdRyw12.Click += new System.EventHandler(this.CmdRyw12_Click);
             // 
             // txtAPIFolder
             // 
-            txtAPIFolder.AcceptsReturn = true;
-            txtAPIFolder.BackColor = SystemColors.Window;
-            txtAPIFolder.Cursor = Cursors.IBeam;
-            txtAPIFolder.ForeColor = SystemColors.WindowText;
-            txtAPIFolder.Location = new Point(15, 103);
-            txtAPIFolder.MaxLength = 0;
-            txtAPIFolder.Name = "txtAPIFolder";
-            txtAPIFolder.RightToLeft = RightToLeft.No;
-            txtAPIFolder.Size = new Size(326, 20);
-            txtAPIFolder.TabIndex = 83;
+            this.txtAPIFolder.AcceptsReturn = true;
+            this.txtAPIFolder.BackColor = System.Drawing.SystemColors.Window;
+            this.txtAPIFolder.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtAPIFolder.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtAPIFolder.Location = new System.Drawing.Point(15, 103);
+            this.txtAPIFolder.MaxLength = 0;
+            this.txtAPIFolder.Name = "txtAPIFolder";
+            this.txtAPIFolder.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtAPIFolder.Size = new System.Drawing.Size(326, 20);
+            this.txtAPIFolder.TabIndex = 83;
             // 
             // txtRwy12Folder
             // 
-            txtRwy12Folder.AcceptsReturn = true;
-            txtRwy12Folder.BackColor = SystemColors.Window;
-            txtRwy12Folder.Cursor = Cursors.IBeam;
-            txtRwy12Folder.ForeColor = SystemColors.WindowText;
-            txtRwy12Folder.Location = new Point(15, 64);
-            txtRwy12Folder.MaxLength = 0;
-            txtRwy12Folder.Name = "txtRwy12Folder";
-            txtRwy12Folder.RightToLeft = RightToLeft.No;
-            txtRwy12Folder.Size = new Size(326, 20);
-            txtRwy12Folder.TabIndex = 84;
+            this.txtRwy12Folder.AcceptsReturn = true;
+            this.txtRwy12Folder.BackColor = System.Drawing.SystemColors.Window;
+            this.txtRwy12Folder.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtRwy12Folder.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtRwy12Folder.Location = new System.Drawing.Point(15, 64);
+            this.txtRwy12Folder.MaxLength = 0;
+            this.txtRwy12Folder.Name = "txtRwy12Folder";
+            this.txtRwy12Folder.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtRwy12Folder.Size = new System.Drawing.Size(326, 20);
+            this.txtRwy12Folder.TabIndex = 84;
             // 
-            // cmdASD
+            // _cmdASD
             // 
-            _cmdASD.BackColor = Color.Transparent;
-            _cmdASD.Cursor = Cursors.Default;
-            _cmdASD.ForeColor = SystemColors.ControlText;
-            _cmdASD.Location = new Point(357, 140);
-            _cmdASD.Name = "_cmdASD";
-            _cmdASD.RightToLeft = RightToLeft.No;
-            _cmdASD.Size = new Size(31, 22);
-            _cmdASD.TabIndex = 87;
-            _cmdASD.Text = "...";
-            _cmdASD.UseVisualStyleBackColor = false;
+            this._cmdASD.BackColor = System.Drawing.Color.Transparent;
+            this._cmdASD.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdASD.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdASD.Location = new System.Drawing.Point(357, 140);
+            this._cmdASD.Name = "_cmdASD";
+            this._cmdASD.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdASD.Size = new System.Drawing.Size(31, 22);
+            this._cmdASD.TabIndex = 87;
+            this._cmdASD.Text = "...";
+            this._cmdASD.UseVisualStyleBackColor = false;
+            this._cmdASD.Click += new System.EventHandler(this.CmdASD_Click);
             // 
             // txtASDFolder
             // 
-            txtASDFolder.AcceptsReturn = true;
-            txtASDFolder.BackColor = SystemColors.Window;
-            txtASDFolder.Cursor = Cursors.IBeam;
-            txtASDFolder.ForeColor = SystemColors.WindowText;
-            txtASDFolder.Location = new Point(15, 142);
-            txtASDFolder.MaxLength = 0;
-            txtASDFolder.Name = "txtASDFolder";
-            txtASDFolder.RightToLeft = RightToLeft.No;
-            txtASDFolder.Size = new Size(326, 20);
-            txtASDFolder.TabIndex = 88;
+            this.txtASDFolder.AcceptsReturn = true;
+            this.txtASDFolder.BackColor = System.Drawing.SystemColors.Window;
+            this.txtASDFolder.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtASDFolder.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtASDFolder.Location = new System.Drawing.Point(15, 142);
+            this.txtASDFolder.MaxLength = 0;
+            this.txtASDFolder.Name = "txtASDFolder";
+            this.txtASDFolder.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtASDFolder.Size = new System.Drawing.Size(326, 20);
+            this.txtASDFolder.TabIndex = 88;
             // 
-            // cmdLibObjects
+            // _cmdLibObjects
             // 
-            _cmdLibObjects.BackColor = Color.Transparent;
-            _cmdLibObjects.Cursor = Cursors.Default;
-            _cmdLibObjects.ForeColor = SystemColors.ControlText;
-            _cmdLibObjects.Location = new Point(357, 23);
-            _cmdLibObjects.Name = "_cmdLibObjects";
-            _cmdLibObjects.RightToLeft = RightToLeft.No;
-            _cmdLibObjects.Size = new Size(31, 22);
-            _cmdLibObjects.TabIndex = 90;
-            _cmdLibObjects.Text = "...";
-            _cmdLibObjects.UseVisualStyleBackColor = false;
+            this._cmdLibObjects.BackColor = System.Drawing.Color.Transparent;
+            this._cmdLibObjects.Cursor = System.Windows.Forms.Cursors.Default;
+            this._cmdLibObjects.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._cmdLibObjects.Location = new System.Drawing.Point(357, 23);
+            this._cmdLibObjects.Name = "_cmdLibObjects";
+            this._cmdLibObjects.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._cmdLibObjects.Size = new System.Drawing.Size(31, 22);
+            this._cmdLibObjects.TabIndex = 90;
+            this._cmdLibObjects.Text = "...";
+            this._cmdLibObjects.UseVisualStyleBackColor = false;
+            this._cmdLibObjects.Click += new System.EventHandler(this.CmdLibObjects_Click);
             // 
             // txtLibObjectsFolder
             // 
-            txtLibObjectsFolder.AcceptsReturn = true;
-            txtLibObjectsFolder.BackColor = SystemColors.Window;
-            txtLibObjectsFolder.Cursor = Cursors.IBeam;
-            txtLibObjectsFolder.ForeColor = SystemColors.WindowText;
-            txtLibObjectsFolder.Location = new Point(15, 25);
-            txtLibObjectsFolder.MaxLength = 0;
-            txtLibObjectsFolder.Name = "txtLibObjectsFolder";
-            txtLibObjectsFolder.RightToLeft = RightToLeft.No;
-            txtLibObjectsFolder.Size = new Size(326, 20);
-            txtLibObjectsFolder.TabIndex = 91;
+            this.txtLibObjectsFolder.AcceptsReturn = true;
+            this.txtLibObjectsFolder.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLibObjectsFolder.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtLibObjectsFolder.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLibObjectsFolder.Location = new System.Drawing.Point(15, 25);
+            this.txtLibObjectsFolder.MaxLength = 0;
+            this.txtLibObjectsFolder.Name = "txtLibObjectsFolder";
+            this.txtLibObjectsFolder.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtLibObjectsFolder.Size = new System.Drawing.Size(326, 20);
+            this.txtLibObjectsFolder.TabIndex = 91;
             // 
-            // cmdOK
+            // _cmdOK
             // 
-            _cmdOK.Location = new Point(334, 178);
-            _cmdOK.Name = "_cmdOK";
-            _cmdOK.Size = new Size(54, 25);
-            _cmdOK.TabIndex = 94;
-            _cmdOK.Text = "OK";
-            _cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Location = new System.Drawing.Point(334, 178);
+            this._cmdOK.Name = "_cmdOK";
+            this._cmdOK.Size = new System.Drawing.Size(54, 25);
+            this._cmdOK.TabIndex = 94;
+            this._cmdOK.Text = "OK";
+            this._cmdOK.UseVisualStyleBackColor = true;
+            this._cmdOK.Click += new System.EventHandler(this.CmdOK_Click);
             // 
-            // cmdCancel
+            // _cmdCancel
             // 
-            _cmdCancel.Location = new Point(262, 178);
-            _cmdCancel.Name = "_cmdCancel";
-            _cmdCancel.Size = new Size(54, 25);
-            _cmdCancel.TabIndex = 93;
-            _cmdCancel.Text = "Cancel";
-            _cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Location = new System.Drawing.Point(262, 178);
+            this._cmdCancel.Name = "_cmdCancel";
+            this._cmdCancel.Size = new System.Drawing.Size(54, 25);
+            this._cmdCancel.TabIndex = 93;
+            this._cmdCancel.Text = "Cancel";
+            this._cmdCancel.UseVisualStyleBackColor = true;
+            this._cmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
             // 
             // FrmObjectFolders
             // 
-            AutoScaleDimensions = new SizeF(6.0f, 13.0f);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(407, 218);
-            Controls.Add(_cmdOK);
-            Controls.Add(_cmdCancel);
-            Controls.Add(Label8);
-            Controls.Add(Label9);
-            Controls.Add(Label10);
-            Controls.Add(Label11);
-            Controls.Add(_cmdAPI);
-            Controls.Add(_cmdRyw12);
-            Controls.Add(txtAPIFolder);
-            Controls.Add(txtRwy12Folder);
-            Controls.Add(_cmdASD);
-            Controls.Add(txtASDFolder);
-            Controls.Add(_cmdLibObjects);
-            Controls.Add(txtLibObjectsFolder);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "FrmObjectFolders";
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "SBuilderX - Object Folders";
-            Load += new EventHandler(FrmObjectFolders_Load);
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(407, 218);
+            this.Controls.Add(this._cmdOK);
+            this.Controls.Add(this._cmdCancel);
+            this.Controls.Add(this.Label8);
+            this.Controls.Add(this.Label9);
+            this.Controls.Add(this.Label10);
+            this.Controls.Add(this.Label11);
+            this.Controls.Add(this._cmdAPI);
+            this.Controls.Add(this._cmdRyw12);
+            this.Controls.Add(this.txtAPIFolder);
+            this.Controls.Add(this.txtRwy12Folder);
+            this.Controls.Add(this._cmdASD);
+            this.Controls.Add(this.txtASDFolder);
+            this.Controls.Add(this._cmdLibObjects);
+            this.Controls.Add(this.txtLibObjectsFolder);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmObjectFolders";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "SBuilderXX - Object Folders";
+            this.Load += new System.EventHandler(this.FrmObjectFolders_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         public Label Label8;
