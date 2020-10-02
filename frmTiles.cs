@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace SBuilderXX
@@ -380,7 +381,12 @@ namespace SBuilderXX
             bool MakeImageFromTilesRet = default;
             MakeImageFromTilesRet = false;
             string A;
-            if (string.IsNullOrEmpty(moduleTILES.ActiveTileFolder) | moduleTILES.TilesToCome > 0)
+            int ttc;
+            lock (moduleTILES.ttcLock)
+            {
+                ttc = moduleTILES.TilesToCome;
+            }
+            if (string.IsNullOrEmpty(moduleTILES.ActiveTileFolder) || ttc > 0)
             {
                 A = "Could not start the acquisition of the image." + Environment.NewLine;
                 A = A + "Hide and Show the Background, and try again!";
@@ -448,16 +454,18 @@ namespace SBuilderXX
                         if (no_tile)
                         {
                             ImgTile = blankjpg;
-                            lock (moduleTILES.downloadLock)
+                            if (!moduleTILES.TilesFailed.ContainsKey(TileName))
                             {
-                                if (!moduleTILES.TilesFailed.Contains(TileName))
+                                if (!moduleTILES.TilesDownloading.ContainsKey(TileName))
                                 {
-                                    if (!moduleTILES.TilesDownloading.Contains(TileName))
+                                    TileTemp = moduleMAIN.AppPath + @"\Tiles" + TileName;
+                                    if (moduleTILES.TilesDownloading.TryAdd(TileName, true))
                                     {
-                                        TileTemp = moduleMAIN.AppPath + @"\Tiles" + TileName;
-                                        moduleTILES.TilesDownloading.Add(TileName);
-                                        moduleTILES.TilesToCome = moduleTILES.TilesToCome + 1;
-                                        moduleTILES.TileHasArrived(moduleTILES.TilesToCome);
+                                        lock (moduleTILES.ttcLock)
+                                        {
+                                            ttc = moduleTILES.TilesToCome += 1;
+                                        }
+                                        moduleTILES.TileHasArrived(ttc);
                                         myTileHandlerState.handler = myDownloadTileHandler;
                                         myTileHandlerState.tile = TileName;
                                         myTileHandlerState.dir = TileDir;
@@ -486,9 +494,13 @@ namespace SBuilderXX
                 return default;
             }
 
-            if (moduleTILES.TilesToCome > 0)
+            lock (moduleTILES.ttcLock)
             {
-                A = moduleTILES.TilesToCome.ToString() + " tiles are being downloaded" + Environment.NewLine;
+                ttc = moduleTILES.TilesToCome;
+            }
+            if (ttc > 0)
+            {
+                A = ttc.ToString() + " tiles are being downloaded" + Environment.NewLine;
                 A = A + "at this moment. Please repeat this" + Environment.NewLine;
                 A = A + "operation when downloading is complete!";
                 MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Information);

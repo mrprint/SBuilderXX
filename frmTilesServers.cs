@@ -65,7 +65,10 @@ namespace SBuilderXX
             moduleTILES.TileServer = null;
             moduleTILES.TilesDownloading.Clear();
             moduleTILES.TilesFailed.Clear();
-            moduleTILES.TilesToCome = 0;
+            lock (moduleTILES.ttcLock)
+            {
+                moduleTILES.TilesToCome = 0;
+            }
             foreach (string foundFile in My.MyProject.Computer.FileSystem.GetFiles(moduleMAIN.AppPath + @"\Tiles", Microsoft.VisualBasic.FileIO.SearchOption.SearchTopLevelOnly, "L*"))
                 My.MyProject.Computer.FileSystem.DeleteFile(foundFile);
             if (ListMapServers.Enabled)

@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -42,9 +41,9 @@ namespace SBuilderXX
 
         internal static MapTile MapBackground;  // final
         internal static MapTile MapBackground0; // temp
-        internal static HashSet<string> TilesDownloading = new HashSet<string>();
-        internal static HashSet<string> TilesFailed = new HashSet<string>();
-        internal static readonly object downloadLock = new object();
+        internal static ConcurrentDictionary<string, bool> TilesDownloading = new ConcurrentDictionary<string, bool>();
+        internal static ConcurrentDictionary<string, bool> TilesFailed = new ConcurrentDictionary<string, bool>();
+        internal static readonly object ttcLock = new object();
 
         internal struct TileHandlerState
         {

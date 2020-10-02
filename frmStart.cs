@@ -5753,7 +5753,10 @@ namespace SBuilderXX
         {
             moduleTILES.TilesDownloading.Clear();
             moduleTILES.TilesFailed.Clear();
-            moduleTILES.TilesToCome = 0;
+            lock (moduleTILES.ttcLock)
+            {
+                moduleTILES.TilesToCome = 0;
+            }
             if (moduleTILES.TileVIEW == false)
             {
                 ShowBackgroundMenuItem.Checked = true;
@@ -5810,8 +5813,11 @@ namespace SBuilderXX
             {
                 if (string.IsNullOrEmpty(moduleTILES.ActiveTileFolder))
                     return;
-                if (moduleTILES.TilesToCome > 0)
-                    return;
+                lock (moduleTILES.ttcLock)
+                {
+                    if (moduleTILES.TilesToCome > 0)
+                        return;
+                }
                 moduleTILES.TimeToUpdate = false;
                 int X, Y, X0, X1, Y0, Y1;
                 int HH;
@@ -5877,17 +5883,20 @@ namespace SBuilderXX
                             if (no_tile)
                             {
                                 img_tile = moduleTILES.blankjpg;
-                                lock (moduleTILES.downloadLock)
+                                if (!moduleTILES.TilesFailed.ContainsKey(TileName))
                                 {
-                                    if (!moduleTILES.TilesFailed.Contains(TileName))
+                                    if (!moduleTILES.TilesDownloading.ContainsKey(TileName))
                                     {
-                                        if (!moduleTILES.TilesDownloading.Contains(TileName))
+                                        TileTemp = moduleMAIN.AppPath + @"\Tiles" + TileName;
+                                        if (moduleTILES.TilesDownloading.TryAdd(TileName, true))
                                         {
                                             Download = true;
-                                            TileTemp = moduleMAIN.AppPath + @"\Tiles" + TileName;
-                                            moduleTILES.TilesDownloading.Add(TileName);
-                                            moduleTILES.TilesToCome += 1;
-                                            moduleTILES.TileHasArrived(moduleTILES.TilesToCome);
+                                            int ttc;
+                                            lock (moduleTILES.ttcLock)
+                                            {
+                                                ttc = moduleTILES.TilesToCome += 1;
+                                            }
+                                            moduleTILES.TileHasArrived(ttc);
                                             myTileHandlerState.handler = myDownloadTileHandler;
                                             myTileHandlerState.tile = TileName;
                                             myTileHandlerState.dir = TileDir;
@@ -5940,8 +5949,10 @@ namespace SBuilderXX
             moduleTILES.DownloadTileHandler caller = (moduleTILES.DownloadTileHandler)myTileHandlerState.handler;
             string Tilename = myTileHandlerState.tile;
             string TileDir = myTileHandlerState.dir;
+            string DirFull = moduleTILES.TileFolder + TileDir;
             string TileFull = moduleTILES.TileFolder + TileDir + Tilename;
             string TileTemp = moduleMAIN.AppPath + @"\Tiles" + Tilename;
+            bool value;
             bool retval = false;
             try
             {
@@ -5951,39 +5962,45 @@ namespace SBuilderXX
             {
             }
 
-            lock (moduleTILES.downloadLock)
+            if (!moduleTILES.TilesDownloading.TryRemove(Tilename, out value))
+                return;
+            lock (moduleTILES.ttcLock)
             {
-                moduleTILES.TilesDownloading.Remove(Tilename);
-                moduleTILES.TilesToCome = moduleTILES.TilesToCome - 1;
-                if (retval) // not failed
+                moduleTILES.TilesToCome -= 1;
+            }
+            if (retval) // not failed
+            {
+                if (File.Exists(TileTemp))
                 {
-                    if (My.MyProject.Computer.FileSystem.FileExists(TileTemp))
-                    {
-                        My.MyProject.Computer.FileSystem.CopyFile(TileTemp, TileFull);
-                        My.MyProject.Computer.FileSystem.DeleteFile(TileTemp);
-                    }
-                    // Debug.Print("Success = " & Tilename)
-                    else // as if failed
-                    {
-                        moduleTILES.TilesFailed.Add(Tilename);
-                        // Debug.Print("Failed = " & Tilename)
-                    }
+                    Directory.CreateDirectory(DirFull);
+                    File.Move(TileTemp, TileFull);
                 }
-                else //
+                // Debug.Print("Success = " & Tilename)
+                else // as if failed
                 {
-                    if (My.MyProject.Computer.FileSystem.FileExists(TileTemp))
-                    {
-                        My.MyProject.Computer.FileSystem.DeleteFile(TileTemp);
-                    }
-
-                    moduleTILES.TilesFailed.Add(Tilename);
+                    moduleTILES.TilesFailed.TryAdd(Tilename, true);
                     // Debug.Print("Failed = " & Tilename)
                 }
+            }
+            else //
+            {
+                if (File.Exists(TileTemp))
+                {
+                    File.Delete(TileTemp);
+                }
 
+                moduleTILES.TilesFailed.TryAdd(Tilename, true);
+                // Debug.Print("Failed = " & Tilename)
+            }
+
+            int ttc;
+            lock (moduleTILES.ttcLock)
+            {
                 if (moduleTILES.TilesToCome < 0)
                     moduleTILES.TilesToCome = 0;
+                ttc = moduleTILES.TilesToCome;
             }
-            UpdateUI(moduleTILES.TilesToCome);
+            UpdateUI(ttc);
         }
 
         private delegate void UpdateUIHandler(int remain);
