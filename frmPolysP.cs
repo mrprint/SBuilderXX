@@ -783,7 +783,7 @@ namespace SBuilderXX
 
         private void OptVector_CheckedChanged(object sender, EventArgs e)
         {
-            if (Convert.ToBoolean(sender.GetType().GetField("Checked")))
+            if ((sender as CheckBox).Checked)
             {
                 if (IsInit)
                     return;
@@ -796,7 +796,7 @@ namespace SBuilderXX
 
         private void OptTexture_CheckedChanged(object sender, EventArgs e)
         {
-            if (Convert.ToBoolean(sender.GetType().GetField("Checked")))
+            if ((sender as CheckBox).Checked)
             {
                 if (IsInit)
                     return;
