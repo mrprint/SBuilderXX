@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -863,7 +862,6 @@ namespace SBuilderXX
             }
 
             string TerrainFile, A, B, C, Key;
-            int N, Marker;
             bool F1;
             if (moduleMAIN.IsFSX)
             {
@@ -877,32 +875,29 @@ namespace SBuilderXX
             }
 
             Key = "[Texture." + moduleLINES.LineTypes[ThisLineType].TerrainIndex.ToString().Trim() + "]";
-            FileSystem.FileOpen(2, TerrainFile, OpenMode.Input);
-            N = (int)FileSystem.LOF(2);
-            Marker = 0;
-            F1 = false;
-            B = "";
-            while (Marker < N)
+            using (var file = File.OpenText(TerrainFile))
             {
-                A = FileSystem.LineInput(2);
-                Marker = Marker + A.Length + 2;
-                A = A.Trim();
-                if (F1)
+                F1 = false;
+                B = "";
+                while ((A = file.ReadLine()) != null)
                 {
-                    if (string.IsNullOrEmpty(A))
-                        break;
-                    B = B + A + Environment.NewLine;
+                    A = A.Trim();
+                    if (F1)
+                    {
+                        if (string.IsNullOrEmpty(A))
+                            break;
+                        B = B + A + Environment.NewLine;
+                    }
+
+                    if (!F1)
+                    {
+                        if ((A ?? "") == (Key ?? ""))
+                            F1 = true;
+                    }
                 }
 
-                if (!F1)
-                {
-                    if ((A ?? "") == (Key ?? ""))
-                        F1 = true;
-                }
             }
-
             MessageBox.Show(B, C, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            FileSystem.FileClose();
         }
 
         private void List1_MouseDown(object sender, MouseEventArgs e)
@@ -1255,7 +1250,7 @@ namespace SBuilderXX
                 {
                     B = "This file already exists in the ../SBuilderXX/Texture" + Environment.NewLine;
                     B = B + "folder and it will be overwriten! Do you want to continue?";
-                    if (Interaction.MsgBox(B, MsgBoxStyle.YesNo) == MsgBoxResult.No)
+                    if (MessageBox.Show(B, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                         return;
                 }
             }
@@ -1283,8 +1278,7 @@ namespace SBuilderXX
                 return;
             try
             {
-                FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-                FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\Tools\");
+                Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\Tools\");
                 string ImageTool;
                 // Dim BmpPath As String = AppPath & "\Tools\Work\temp.bmp"
                 string BmpPath = moduleMAIN.AppPath + @"\Tools\Work\" + Tex;
@@ -1299,7 +1293,7 @@ namespace SBuilderXX
                 }
                 else
                 {
-                    FileSystem.FileCopy(moduleMAIN.AppPath + @"\Tools\BMPs\none.jpg", BmpPath);
+                    File.Copy(moduleMAIN.AppPath + @"\Tools\BMPs\none.jpg", BmpPath, true);
                 }
 
                 Image bmp = Image.FromFile(BmpPath);
@@ -1473,8 +1467,7 @@ namespace SBuilderXX
         {
             double W = Convert.ToDouble(txtHeading.Text);
             int K;
-            if (ckRandom.Checked)
-                VBMath.Randomize();
+            Random rand = new Random(0);
             int loopTo = moduleLINES.Lines[modulePOPUP.POPIndex].NoOfPoints;
             for (K = 1; K <= loopTo; K++)
             {
@@ -1484,7 +1477,7 @@ namespace SBuilderXX
                 }
                 else
                 {
-                    moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[K].wid = 360f * VBMath.Rnd();
+                    moduleLINES.Lines[modulePOPUP.POPIndex].GLPoints[K].wid = 360d * rand.NextDouble();
                 }
             }
 

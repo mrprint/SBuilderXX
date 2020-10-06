@@ -168,31 +168,28 @@ namespace SBuilderXX
                 IniSettings.Add("RecentFile2", "");
                 IniSettings.Add("RecentFile3", "");
                 IniSettings.Add("RecentFile4", "");
-                int NF = FileSystem.FreeFile();
                 string myLine, A, B;
                 int N;
                 if (File.Exists(moduleMAIN.AppIni))
                 {
-
                     File.Copy(moduleMAIN.AppIni, moduleMAIN.AppPath + @"\SBuilderXX_backup.ini", true);
-                    FileSystem.FileOpen(NF, moduleMAIN.AppIni, OpenMode.Input);
-                    while (!FileSystem.EOF(NF))
+                    using (var file = File.OpenText(moduleMAIN.AppIni))
                     {
-                        myLine = FileSystem.LineInput(NF);
-                        N = myLine.IndexOf("=");
-                        if (N != -1)
+                        while ((myLine = file.ReadLine()) != null)
                         {
-                            A = myLine.Substring(0, N);
-                            if (IniSettings.ContainsKey(A))
+                            N = myLine.IndexOf("=");
+                            if (N != -1)
                             {
-                                B = myLine.Substring(N + 1);
-                                IniSettings.Remove(A);
-                                IniSettings.Add(A, B);
+                                A = myLine.Substring(0, N);
+                                if (IniSettings.ContainsKey(A))
+                                {
+                                    B = myLine.Substring(N + 1);
+                                    IniSettings.Remove(A);
+                                    IniSettings.Add(A, B);
+                                }
                             }
                         }
                     }
-
-                    FileSystem.FileClose(NF);
                 }
 
                 // [Main]

@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -37,25 +36,20 @@ namespace SBuilderXX
             {
                 A = "The file:" + Environment.NewLine + Environment.NewLine + DataFile + Environment.NewLine + Environment.NewLine;
                 A = A + "already exists! Overwrite?";
-                if ((int)Interaction.MsgBox(A, (MsgBoxStyle)(32 + 4)) == 7)
+                if (MessageBox.Show(A, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
                     return;
             }
 
-            FileSystem.FileOpen(3, FullFile, OpenMode.Output);
-            A = "[GEOGRAPHIC]";
-            FileSystem.PrintLine(3, A);
-            A = "Name=" + txtName.Text;
-            FileSystem.PrintLine(3, A);
-            A = "North=" + moduleMAIN.Str2Lat(txtNLat.Text).ToString();
-            FileSystem.PrintLine(3, A);
-            A = "South=" + moduleMAIN.Str2Lat(txtSLat.Text).ToString();
-            FileSystem.PrintLine(3, A);
-            A = "West=" + moduleMAIN.Str2Lon(txtWLon.Text).ToString();
-            FileSystem.PrintLine(3, A);
-            A = "East=" + moduleMAIN.Str2Lon(txtELon.Text).ToString();
-            FileSystem.PrintLine(3, A);
-            FileSystem.PrintLine(3);
-            FileSystem.FileClose(3);
+            using (StreamWriter file = new StreamWriter(FullFile))
+            {
+                file.WriteLine("[GEOGRAPHIC]");
+                file.WriteLine("Name=" + txtName.Text);
+                file.WriteLine("North=" + moduleMAIN.Str2Lat(txtNLat.Text).ToString());
+                file.WriteLine("South=" + moduleMAIN.Str2Lat(txtSLat.Text).ToString());
+                file.WriteLine("West=" + moduleMAIN.Str2Lon(txtWLon.Text).ToString());
+                file.WriteLine("East=" + moduleMAIN.Str2Lon(txtELon.Text).ToString());
+                file.WriteLine();
+            }
         }
 
         private void CmdFall_Click(object eventSender, EventArgs eventArgs)

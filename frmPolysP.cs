@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -224,7 +223,7 @@ namespace SBuilderXX
                 }
                 else
                 {
-                    FileSystem.FileCopy(moduleMAIN.AppPath + @"\Tools\BMPs\none.jpg", BmpPath);
+                    File.Copy(moduleMAIN.AppPath + @"\Tools\BMPs\none.jpg", BmpPath, true);
                 }
 
                 Image bmp = Image.FromFile(BmpPath);
@@ -450,7 +449,6 @@ namespace SBuilderXX
             }
 
             string TerrainFile, A, B, C, Key;
-            int N, Marker;
             bool F1;
             if (moduleMAIN.IsFSX)
             {
@@ -464,32 +462,29 @@ namespace SBuilderXX
             }
 
             Key = "[Texture." + modulePOLYS.PolyTypes[ThisPolyType].TerrainIndex.ToString().Trim() + "]";
-            FileSystem.FileOpen(2, TerrainFile, OpenMode.Input);
-            N = (int)FileSystem.LOF(2);
-            Marker = 0;
-            F1 = false;
-            B = "";
-            while (Marker < N)
+            using (var file = File.OpenText(TerrainFile))
             {
-                A = FileSystem.LineInput(2);
-                Marker = Marker + A.Length + 2;
-                A = A.Trim();
-                if (F1)
+                F1 = false;
+                B = "";
+                while ((A = file.ReadLine()) != null)
                 {
-                    if (string.IsNullOrEmpty(A))
-                        break;
-                    B = B + A + Environment.NewLine;
-                }
+                    A = A.Trim();
+                    if (F1)
+                    {
+                        if (string.IsNullOrEmpty(A))
+                            break;
+                        B = B + A + Environment.NewLine;
+                    }
 
-                if (!F1)
-                {
-                    if ((A ?? "") == (Key ?? ""))
-                        F1 = true;
+                    if (!F1)
+                    {
+                        if ((A ?? "") == (Key ?? ""))
+                            F1 = true;
+                    }
                 }
             }
 
             MessageBox.Show(B, C, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            FileSystem.FileClose();
         }
 
         private void LbExclude_Click(object sender, EventArgs e)
