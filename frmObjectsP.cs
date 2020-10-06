@@ -1218,7 +1218,7 @@ namespace SBuilderXX
 
         private void OptMacro_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if ((eventSender as CheckBox).Checked)
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1234,7 +1234,7 @@ namespace SBuilderXX
 
         private void OptEffect_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if ((eventSender as CheckBox).Checked)
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1248,7 +1248,7 @@ namespace SBuilderXX
 
         private void OptLib_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if ((eventSender as CheckBox).Checked)
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1262,7 +1262,7 @@ namespace SBuilderXX
 
         private void OptRwy12_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if ((eventSender as CheckBox).Checked)
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1278,7 +1278,7 @@ namespace SBuilderXX
 
         private void OptBeacon_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if ((eventSender as CheckBox).Checked)
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1291,7 +1291,7 @@ namespace SBuilderXX
 
         private void OptTaxiwaySign_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if ((eventSender as CheckBox).Checked)
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1305,7 +1305,7 @@ namespace SBuilderXX
 
         private void OptWindSock_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if ((eventSender as CheckBox).Checked)
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1319,7 +1319,7 @@ namespace SBuilderXX
 
         private void OptMDL_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if ((eventSender as CheckBox).Checked)
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
@@ -1333,7 +1333,7 @@ namespace SBuilderXX
 
         private void OptGenB_CheckedChanged(object eventSender, EventArgs eventArgs)
         {
-            if ((eventSender as CheckBox).Checked)
+            if (Convert.ToBoolean(eventSender.GetType().GetField("Checked")))
             {
                 if (IsInit)
                     return;
