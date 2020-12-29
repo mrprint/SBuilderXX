@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -418,13 +417,12 @@ namespace SBuilderXX
             My.MyProject.Forms.FrmStart.Cursor = Cursors.WaitCursor;
             AppendRawLandRet = false;
             string A = Path.GetFileNameWithoutExtension(fname);
-            byte[,] LL = new byte[257, 257];
+            byte[] LL;
             try
             {
-                FileSystem.FileOpen(3, fname, OpenMode.Binary);
-                Array argValue = LL;
-                FileSystem.FileGet(3, ref argValue);
-                FileSystem.FileClose(3);
+                LL = File.ReadAllBytes(fname);
+                if (LL.Length < 257 * 257)
+                    return default;
             }
             catch (Exception)
             {
@@ -432,14 +430,16 @@ namespace SBuilderXX
             }
 
             int C, R;
+            int p = 0;
             for (C = 0; C <= 256; C++)
             {
                 for (R = 0; R <= 256; R++)
                 {
-                    if (LL[C, R] != 254)
+                    if (LL[p] != 254)
                     {
-                        FormOneLand(J, K, C, R, ILC[LL[C, R]]);
+                        FormOneLand(J, K, C, R, ILC[LL[p]]);
                     }
+                    p++;
                 }
             }
 
@@ -456,13 +456,12 @@ namespace SBuilderXX
             My.MyProject.Forms.FrmStart.Cursor = Cursors.WaitCursor;
             AppendRawWaterRet = false;
             string A = Path.GetFileNameWithoutExtension(fname);
-            byte[,] WW = new byte[257, 257];
+            byte[] WW;
             try
             {
-                FileSystem.FileOpen(3, fname, OpenMode.Binary);
-                Array argValue = WW;
-                FileSystem.FileGet(3, ref argValue);
-                FileSystem.FileClose(3);
+                WW = File.ReadAllBytes(fname);
+                if (WW.Length < 257 * 257)
+                    return default;
             }
             catch (Exception)
             {
@@ -470,14 +469,16 @@ namespace SBuilderXX
             }
 
             int C, R;
+            int p = 0;
             for (C = 0; C <= 256; C++)
             {
                 for (R = 0; R <= 256; R++)
                 {
-                    if (WW[C, R] != 254)
+                    if (WW[p] != 254)
                     {
-                        FormOneWater(J, K, C, R, IWC[WW[C, R]]);
+                        FormOneWater(J, K, C, R, IWC[WW[p]]);
                     }
+                    p++;
                 }
             }
 
@@ -1287,7 +1288,7 @@ namespace SBuilderXX
             string InfFile, RawFile, BGLFile, BGLFileTarget;
             string[] BGL = new string[NoOfQuads + 1];
             string[] Command = new string[NoOfQuads + 1];
-            byte[,] Quad = new byte[257, 257];
+            byte[] Quad = new byte[257 * 257];
 
             // create RAW files
             for (J = 0; J <= 95; J++)
@@ -1304,11 +1305,11 @@ namespace SBuilderXX
                             {
                                 if (LLands[C, R, P] == 0)
                                 {
-                                    Quad[C, R] = 254;
+                                    Quad[C * 257 + R] = 254;
                                 }
                                 else
                                 {
-                                    Quad[C, R] = LC[LLands[C, R, P]].Index;
+                                    Quad[C * 257 + R] = LC[LLands[C, R, P]].Index;
                                 }
                             }
                         }
@@ -1317,9 +1318,7 @@ namespace SBuilderXX
                         RawFile = RawFile + K.ToString("00");
                         BGL[Counter] = RawFile + ".bgl";
                         RawFile = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + RawFile + ".raw";
-                        FileSystem.FileOpen(3, RawFile, OpenMode.Binary);
-                        FileSystem.FilePut(3, Quad);
-                        FileSystem.FileClose(3);
+                        File.WriteAllBytes(RawFile, Quad);
                     }
                 }
             }
@@ -1344,34 +1343,34 @@ namespace SBuilderXX
                         InfFile = "LC_" + J.ToString("00");
                         InfFile = InfFile + K.ToString("00");
                         Command[Counter] = "resample " + @" work\" + InfFile + ".inf";
-                        FileSystem.FileOpen(3, My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + InfFile + ".inf", OpenMode.Output);
-                        FileSystem.PrintLine(3, "[Source]");
-                        FileSystem.PrintLine(3, "   Type = Raw");
-                        FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-                        FileSystem.PrintLine(3, "   SourceFile = " + '"' + InfFile + ".raw" + '"');
-                        FileSystem.PrintLine(3, "   Layer = LandClass");
-                        FileSystem.PrintLine(3, "   SamplingMethod = Point");
-                        FileSystem.PrintLine(3, "   SampleType = UINT8");
-                        FileSystem.PrintLine(3, "   NullValue = 254");
-                        FileSystem.PrintLine(3, "   ulyMap = " + (90.0d - K * moduleMAIN.D5Lat));
-                        FileSystem.PrintLine(3, "   ulxMap = " + (J * moduleMAIN.D5Lon - 180.0d));
-                        FileSystem.PrintLine(3, "   nCols = " + 257);
-                        FileSystem.PrintLine(3, "   nRows = " + 257);
-                        FileSystem.PrintLine(3, "   xDim = " + moduleMAIN.D13Lon);
-                        FileSystem.PrintLine(3, "   yDim = " + moduleMAIN.D13Lat);
-                        FileSystem.PrintLine(3);
-                        FileSystem.PrintLine(3, "[Destination]");
-                        FileSystem.PrintLine(3, "   DestDir = " + '"' + "." + '"');
-                        FileSystem.PrintLine(3, "   DestBaseFileName = " + '"' + InfFile + '"');
-                        FileSystem.PrintLine(3, "   DestFileType = BGL");
-                        FileSystem.PrintLine(3, "   UseSourceDimensions = 1");
-                        FileSystem.FileClose(3);
+                        using (StreamWriter file = new StreamWriter(My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + InfFile + ".inf"))
+                        {
+                            file.WriteLine("[Source]");
+                            file.WriteLine("   Type = Raw");
+                            file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                            file.WriteLine("   SourceFile = " + '"' + InfFile + ".raw" + '"');
+                            file.WriteLine("   Layer = LandClass");
+                            file.WriteLine("   SamplingMethod = Point");
+                            file.WriteLine("   SampleType = UINT8");
+                            file.WriteLine("   NullValue = 254");
+                            file.WriteLine("   ulyMap = " + (90.0d - K * moduleMAIN.D5Lat));
+                            file.WriteLine("   ulxMap = " + (J * moduleMAIN.D5Lon - 180.0d));
+                            file.WriteLine("   nCols = " + 257);
+                            file.WriteLine("   nRows = " + 257);
+                            file.WriteLine("   xDim = " + moduleMAIN.D13Lon);
+                            file.WriteLine("   yDim = " + moduleMAIN.D13Lat);
+                            file.WriteLine();
+                            file.WriteLine("[Destination]");
+                            file.WriteLine("   DestDir = " + '"' + "." + '"');
+                            file.WriteLine("   DestBaseFileName = " + '"' + InfFile + '"');
+                            file.WriteLine("   DestFileType = BGL");
+                            file.WriteLine("   UseSourceDimensions = 1");
+                        }
                     }
                 }
             }
 
-            FileSystem.ChDrive(My.MyProject.Application.Info.DirectoryPath);
-            FileSystem.ChDir(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
+            Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             int loopTo1 = NoOfQuads;
             for (J = 1; J <= loopTo1; J++)
                 moduleMAIN.ExecCmd(Command[J]);
@@ -1436,7 +1435,7 @@ namespace SBuilderXX
             string InfFile, RawFile, BGLFile, BGLFileTarget;
             string[] BGL = new string[NoOfQuads + 1];
             string[] Command = new string[NoOfQuads + 1];
-            byte[,] Quad = new byte[257, 257];
+            byte[] Quad = new byte[257 * 257];
 
             // create RAW files
             for (J = 0; J <= 95; J++)
@@ -1453,11 +1452,11 @@ namespace SBuilderXX
                             {
                                 if (WWaters[C, R, P] == 0)
                                 {
-                                    Quad[C, R] = 254;
+                                    Quad[C * 257 + R] = 254;
                                 }
                                 else
                                 {
-                                    Quad[C, R] = WC[WWaters[C, R, P]].Index;
+                                    Quad[C * 257 + R] = WC[WWaters[C, R, P]].Index;
                                 }
                             }
                         }
@@ -1466,9 +1465,7 @@ namespace SBuilderXX
                         RawFile = RawFile + K.ToString("00");
                         BGL[Counter] = RawFile + ".bgl";
                         RawFile = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + RawFile + ".raw";
-                        FileSystem.FileOpen(3, RawFile, OpenMode.Binary);
-                        FileSystem.FilePut(3, Quad);
-                        FileSystem.FileClose(3);
+                        File.WriteAllBytes(RawFile, Quad);
                     }
                 }
             }
@@ -1493,28 +1490,29 @@ namespace SBuilderXX
                         InfFile = "WC_" + J.ToString("00");
                         InfFile = InfFile + K.ToString("00");
                         Command[Counter] = "resample " + @" work\" + InfFile + ".inf";
-                        FileSystem.FileOpen(3, My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + InfFile + ".inf", OpenMode.Output);
-                        FileSystem.PrintLine(3, "[Source]");
-                        FileSystem.PrintLine(3, "   Type = Raw");
-                        FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-                        FileSystem.PrintLine(3, "   SourceFile = " + '"' + InfFile + ".raw" + '"');
-                        FileSystem.PrintLine(3, "   Layer = WaterClass");
-                        FileSystem.PrintLine(3, "   SamplingMethod = Point");
-                        FileSystem.PrintLine(3, "   SampleType = UINT8");
-                        FileSystem.PrintLine(3, "   NullValue = 254");
-                        FileSystem.PrintLine(3, "   ulyMap = " + (90.0d - K * moduleMAIN.D5Lat));
-                        FileSystem.PrintLine(3, "   ulxMap = " + (J * moduleMAIN.D5Lon - 180.0d));
-                        FileSystem.PrintLine(3, "   nCols = " + 257);
-                        FileSystem.PrintLine(3, "   nRows = " + 257);
-                        FileSystem.PrintLine(3, "   xDim = " + moduleMAIN.D13Lon);
-                        FileSystem.PrintLine(3, "   yDim = " + moduleMAIN.D13Lat);
-                        FileSystem.PrintLine(3);
-                        FileSystem.PrintLine(3, "[Destination]");
-                        FileSystem.PrintLine(3, "   DestDir = " + '"' + "." + '"');
-                        FileSystem.PrintLine(3, "   DestBaseFileName = " + '"' + InfFile + '"');
-                        FileSystem.PrintLine(3, "   DestFileType = BGL");
-                        FileSystem.PrintLine(3, "   UseSourceDimensions = 1");
-                        FileSystem.FileClose(3);
+                        using (StreamWriter file = new StreamWriter(My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + InfFile + ".inf"))
+                        {
+                            file.WriteLine("[Source]");
+                            file.WriteLine("   Type = Raw");
+                            file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                            file.WriteLine("   SourceFile = " + '"' + InfFile + ".raw" + '"');
+                            file.WriteLine("   Layer = WaterClass");
+                            file.WriteLine("   SamplingMethod = Point");
+                            file.WriteLine("   SampleType = UINT8");
+                            file.WriteLine("   NullValue = 254");
+                            file.WriteLine("   ulyMap = " + (90.0d - K * moduleMAIN.D5Lat));
+                            file.WriteLine("   ulxMap = " + (J * moduleMAIN.D5Lon - 180.0d));
+                            file.WriteLine("   nCols = " + 257);
+                            file.WriteLine("   nRows = " + 257);
+                            file.WriteLine("   xDim = " + moduleMAIN.D13Lon);
+                            file.WriteLine("   yDim = " + moduleMAIN.D13Lat);
+                            file.WriteLine();
+                            file.WriteLine("[Destination]");
+                            file.WriteLine("   DestDir = " + '"' + "." + '"');
+                            file.WriteLine("   DestBaseFileName = " + '"' + InfFile + '"');
+                            file.WriteLine("   DestFileType = BGL");
+                            file.WriteLine("   UseSourceDimensions = 1");
+                        }
                     }
                 }
             }
@@ -1563,6 +1561,7 @@ namespace SBuilderXX
                 double Y1 = moduleMAPS.Maps[Map].SLAT;
                 int Cols = moduleMAPS.Maps[Map].COLS;
                 int Rows = moduleMAPS.Maps[Map].ROWS;
+                Random rand = new Random(0);
 
                 // Dim image As Bitmap = Bitmap.FromFile(Maps(Map).BMPSu)     ' was like this in October 2017
                 Bitmap image = (Bitmap)Image.FromFile(moduleMAPS.Maps[Map].BMPSu);
@@ -1631,7 +1630,7 @@ namespace SBuilderXX
                                     {
                                         if (LWCIs[N].Color == myColor)
                                         {
-                                            msg = VBMath.Rnd() * 100f;
+                                            msg = (float)rand.NextDouble() * 100f;
                                             if (msg < 58f)
                                             {
                                                 FormOneLand(J, K, C, R, LWCIs[N].Class1);
@@ -1677,6 +1676,7 @@ namespace SBuilderXX
                 double Y1 = moduleMAPS.Maps[Map].SLAT;
                 int Cols = moduleMAPS.Maps[Map].COLS;
                 int Rows = moduleMAPS.Maps[Map].ROWS;
+                Random rand = new Random(0);
 
                 // Dim image As Bitmap = Bitmap.FromFile(Maps(Map).BMPSu)    ' was like this in October 2017
                 Bitmap image = (Bitmap)Image.FromFile(moduleMAPS.Maps[Map].BMPSu);
@@ -1742,7 +1742,7 @@ namespace SBuilderXX
                                     {
                                         if (LWCIs[N].Color == myColor)
                                         {
-                                            msg = VBMath.Rnd() * 100f;
+                                            msg = (float)rand.NextDouble() * 100f;
                                             if (msg < 58f)
                                             {
                                                 FormOneWater(J, K, C, R, LWCIs[N].Class1);

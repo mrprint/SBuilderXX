@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -337,138 +336,138 @@ namespace SBuilderXX
 
         internal static void WriteSettings()
         {
-            int NF = FileSystem.FreeFile();
-            FileSystem.FileOpen(NF, moduleMAIN.AppIni, OpenMode.Output);
-            FileSystem.PrintLine(NF, "[Recent Files]");
-            FileSystem.PrintLine(NF, "RecentFile1=" + RecentFiles[1]);
-            FileSystem.PrintLine(NF, "RecentFile2=" + RecentFiles[2]);
-            FileSystem.PrintLine(NF, "RecentFile3=" + RecentFiles[3]);
-            FileSystem.PrintLine(NF, "RecentFile4=" + RecentFiles[4]);
-            FileSystem.PrintLine(NF);
-            FileSystem.PrintLine(NF, "[RecentDirs]");
-            FileSystem.PrintLine(NF, "SBPDir=" + SBPDir);
-            FileSystem.PrintLine(NF, "SBXDir=" + SBXDir);
-            FileSystem.PrintLine(NF, "SHPDir=" + SHPDir);
-            FileSystem.PrintLine(NF, "SURDir=" + SURDir);
-            FileSystem.PrintLine(NF, "TEXDir=" + TEXDir);
-            FileSystem.PrintLine(NF, "BMPDir=" + BMPDir);
-            FileSystem.PrintLine(NF, "OBJDir=" + OBJDir);
-            FileSystem.PrintLine(NF, "RAWDir=" + RAWDir);
-            FileSystem.PrintLine(NF, "LIBDir=" + LIBDir);
-            FileSystem.PrintLine(NF, "KMLDir=" + KMLDir);
-            FileSystem.PrintLine(NF);
-            FileSystem.PrintLine(NF, "[Main]");
-            FileSystem.PrintLine(NF, "LonIniCenter=" + moduleMAIN.LonIniCenter.ToString());
-            FileSystem.PrintLine(NF, "LatIniCenter=" + moduleMAIN.LatIniCenter.ToString());
-            FileSystem.PrintLine(NF, "DecimalDegrees=" + moduleMAIN.DecimalDegrees.ToString());
-            FileSystem.PrintLine(NF, "MeasuringMeters=" + moduleMAIN.MeasuringMeters.ToString());
-            FileSystem.PrintLine(NF, "BGLFolder=" + moduleMAIN.BGLFolder);
-            FileSystem.PrintLine(NF, "OriginalTerrainCFG=" + moduleMAIN.OriginalTerrainCFG.ToString());
-            // after October 2017
-            FileSystem.PrintLine(NF, "NameOfSim=" + moduleMAIN.NameOfSim);
-            FileSystem.PrintLine(NF, "SimPath=" + moduleMAIN.SimPath);
-            FileSystem.PrintLine(NF);
-            FileSystem.PrintLine(NF, "[Edit]");
-            FileSystem.PrintLine(NF, "BackUpON=" + moduleEDIT.BackUpON.ToString());
-            FileSystem.PrintLine(NF, "BackUpSeconds=" + BackUpSeconds.ToString());
-            FileSystem.PrintLine(NF, "AskDelete=" + moduleMAIN.AskDelete.ToString());
-            FileSystem.PrintLine(NF, "BorderON=" + moduleMAPS.BorderON.ToString());
-            FileSystem.PrintLine(NF, "ShowAbout=" + moduleMAIN.ShowAbout.ToString());
-            FileSystem.PrintLine(NF, "ShowLabels=" + moduleMAIN.ShowLabels.ToString());
-            FileSystem.PrintLine(NF, "SelectedPointColor=" + ArgbFromColor(modulePOINTS.SelectedPointColor));
-            FileSystem.PrintLine(NF, "UnselectedPointColor=" + ArgbFromColor(modulePOINTS.UnselectedPointColor));
-            FileSystem.PrintLine(NF);
-            FileSystem.PrintLine(NF, "[Miscelaneous]");
-            FileSystem.PrintLine(NF, "AutoLinePolyJoin=" + moduleLINES.AutoLinePolyJoin.ToString());
-            FileSystem.PrintLine(NF, "DisplayJoin=" + moduleLINES.DisplayJoin.ToString());
-            FileSystem.PrintLine(NF, "DirJoin=" + moduleLINES.DirJoin.ToString());
-            FileSystem.PrintLine(NF, "NameJoin=" + moduleLINES.NameJoin.ToString());
-            FileSystem.PrintLine(NF, "NoEndsSmooth=" + moduleMAIN.NoEndsSmooth.ToString());
-            FileSystem.PrintLine(NF, "CornerSmooth=" + moduleMAIN.CornerSmooth.ToString());
-            FileSystem.PrintLine(NF, "SampleDistance=" + moduleMAIN.SampleDistance.ToString());
-            FileSystem.PrintLine(NF, "SmoothDistance=" + moduleMAIN.SmoothDistance.ToString());
-            FileSystem.PrintLine(NF, "DefaultLC=" + moduleCLASSES.DefaultLC.ToString());
-            FileSystem.PrintLine(NF, "DefaultWC=" + moduleCLASSES.DefaultWC.ToString());
-            // PrintLine(NF, "Here_app_id=" & Here_app_id)
-            // PrintLine(NF, "Here_app_code=" & Here_app_code)
-            FileSystem.PrintLine(NF, "GoogleMapsAPI=" + moduleMAPS.GoogleMapsAPI);
-            FileSystem.PrintLine(NF, "MakeSlopeXY=" + moduleMAIN.MakeSlopeXY.ToString());
-            FileSystem.PrintLine(NF);
-            FileSystem.PrintLine(NF, "[Grids]");
-            FileSystem.PrintLine(NF, "GridColor=" + ArgbFromColor(moduleMAIN.GridColor));
-            FileSystem.PrintLine(NF, "GridLODColor=" + ArgbFromColor(moduleMAIN.GridLODColor));
-            FileSystem.PrintLine(NF, "GridWidth=" + moduleMAIN.GridWidth.ToString());
-            FileSystem.PrintLine(NF, "ZoomOnQMID=" + moduleMAIN.ZoomOnQMID.ToString());
-            FileSystem.PrintLine(NF, "CenterOnMouseWheel=" + moduleMAIN.CenterOnMouseWheel.ToString());
-            FileSystem.PrintLine(NF);
-            FileSystem.PrintLine(NF, "[Aircraft]");
-            FileSystem.PrintLine(NF, "ShowAircraftPeriod=" + moduleMAIN.ShowAircraftPeriod.ToString());
-            FileSystem.PrintLine(NF, "AircraftAltitudeOffset=" + moduleMAIN.AircraftAltitudeOffset.ToString());
-            FileSystem.PrintLine(NF, "ExtraExtrusionAltitude=" + moduleLINES.ExtraExtrusionAltitude);
-            FileSystem.PrintLine(NF);
-            FileSystem.PrintLine(NF, "[Objects]");
-            FileSystem.PrintLine(NF, "Rwy12Path=" + moduleOBJECTS.Rwy12Path);
-            FileSystem.PrintLine(NF, "MacroAPIPath=" + moduleMACROS.MacroAPIPath);
-            FileSystem.PrintLine(NF, "MacroASDPath=" + moduleMACROS.MacroASDPath);
-            FileSystem.PrintLine(NF, "LibObjectsPath=" + moduleOBJECTS.LibObjectsPath);
-            FileSystem.PrintLine(NF);
-            FileSystem.PrintLine(NF, "[Lines]");
-            FileSystem.PrintLine(NF, "DefaultLineAltitude=" + moduleLINES.DefaultLineAltitude.ToString());
-            FileSystem.PrintLine(NF, "DefaultLineWidth=" + moduleLINES.DefaultLineWidth.ToString());
-            FileSystem.PrintLine(NF, "LinePenWidth=" + moduleLINES.LinePenWidth.ToString());
-            FileSystem.PrintLine(NF, "SelectedLineColor=" + ArgbFromColor(moduleLINES.SelectedLineColor));
-            FileSystem.PrintLine(NF, "DefaultLineColor=" + ArgbFromColor(moduleLINES.DefaultLineColor));
-            FileSystem.PrintLine(NF, "MakeClosedLineFromPoly=" + modulePOLYS.MakeClosedLineFromPoly.ToString());
-            FileSystem.PrintLine(NF);
-            FileSystem.PrintLine(NF, "[Polys]");
-            FileSystem.PrintLine(NF, "DefaultPolyAltitude=" + modulePOLYS.DefaultPolyAltitude.ToString());
-            FileSystem.PrintLine(NF, "PolyPenWidth=" + modulePOLYS.PolyPenWidth.ToString());
-            FileSystem.PrintLine(NF, "PolyFILL=" + modulePOLYS.PolyFILL.ToString());
-            FileSystem.PrintLine(NF, "DefaultPolyColor=" + ArgbFromColor(modulePOLYS.DefaultPolyColor));
-            FileSystem.PrintLine(NF, "PolyColorBorder=" + ArgbFromColor(modulePOLYS.PolyColorBorder));
-            FileSystem.PrintLine(NF);
-            FileSystem.PrintLine(NF, "[Shapes]");
-            FileSystem.PrintLine(NF, "ShapeLineGuid=" + moduleSHAPE.ShapeLineGuid);
-            FileSystem.PrintLine(NF, "ShapeLineAltitude=" + moduleSHAPE.ShapeLineAltitude.ToString());
-            FileSystem.PrintLine(NF, "ShapeLineWidth=" + moduleSHAPE.ShapeLineWidth.ToString());
-            FileSystem.PrintLine(NF, "ShapeLineColor=" + ArgbFromColor(moduleSHAPE.ShapeLineColor));
-            FileSystem.PrintLine(NF, "ShapePolyGuid=" + moduleSHAPE.ShapePolyGuid);
-            FileSystem.PrintLine(NF, "ShapePolyAltitude=" + moduleSHAPE.ShapePolyAltitude.ToString());
-            FileSystem.PrintLine(NF, "ShapePolyColor=" + ArgbFromColor(moduleSHAPE.ShapePolyColor));
-            FileSystem.PrintLine(NF, "AddToCells=" + moduleSHAPE.AddToCells.ToString());
-            FileSystem.PrintLine(NF);
-            FileSystem.PrintLine(NF, "[Tiles]");
-            FileSystem.PrintLine(NF, "ActiveTileFolder=" + moduleTILES.ActiveTileFolder);
-            FileSystem.PrintLine(NF, "ReprojectMercatorTiles=" + moduleTILES.ReprojectMercatorTiles.ToString());
-            FileSystem.PrintLine(NF, "SummerVariations=" + moduleTILES.SummerVariations);
-            FileSystem.PrintLine(NF, "SpringVariations=" + moduleTILES.SpringVariations);
-            FileSystem.PrintLine(NF, "FallVariations=" + moduleTILES.FallVariations);
-            FileSystem.PrintLine(NF, "WinterVariations=" + moduleTILES.WinterVariations);
-            FileSystem.PrintLine(NF, "HardWinterVariations=" + moduleTILES.HardWinterVariations);
-            FileSystem.PrintLine(NF, "CompressionQuality=" + moduleTILES.CompressionQuality.ToString());
-            FileSystem.PrintLine(NF);
-            FileSystem.PrintLine(NF, "[BLN]");
-            if (moduleSURFER.BLNSeparator == "\t")
+            using (StreamWriter file = new StreamWriter(moduleMAIN.AppIni))
             {
-                FileSystem.PrintLine(NF, "BLNSeparator=tab");
-            }
-            else
-            {
-                FileSystem.PrintLine(NF, "BLNSeparator=" + moduleSURFER.BLNSeparator);
-            }
+                file.WriteLine("[Recent Files]");
+                file.WriteLine("RecentFile1=" + RecentFiles[1]);
+                file.WriteLine("RecentFile2=" + RecentFiles[2]);
+                file.WriteLine("RecentFile3=" + RecentFiles[3]);
+                file.WriteLine("RecentFile4=" + RecentFiles[4]);
+                file.WriteLine();
+                file.WriteLine("[RecentDirs]");
+                file.WriteLine("SBPDir=" + SBPDir);
+                file.WriteLine("SBXDir=" + SBXDir);
+                file.WriteLine("SHPDir=" + SHPDir);
+                file.WriteLine("SURDir=" + SURDir);
+                file.WriteLine("TEXDir=" + TEXDir);
+                file.WriteLine("BMPDir=" + BMPDir);
+                file.WriteLine("OBJDir=" + OBJDir);
+                file.WriteLine("RAWDir=" + RAWDir);
+                file.WriteLine("LIBDir=" + LIBDir);
+                file.WriteLine("KMLDir=" + KMLDir);
+                file.WriteLine();
+                file.WriteLine("[Main]");
+                file.WriteLine("LonIniCenter=" + moduleMAIN.LonIniCenter.ToString());
+                file.WriteLine("LatIniCenter=" + moduleMAIN.LatIniCenter.ToString());
+                file.WriteLine("DecimalDegrees=" + moduleMAIN.DecimalDegrees.ToString());
+                file.WriteLine("MeasuringMeters=" + moduleMAIN.MeasuringMeters.ToString());
+                file.WriteLine("BGLFolder=" + moduleMAIN.BGLFolder);
+                file.WriteLine("OriginalTerrainCFG=" + moduleMAIN.OriginalTerrainCFG.ToString());
+                // after October 2017
+                file.WriteLine("NameOfSim=" + moduleMAIN.NameOfSim);
+                file.WriteLine("SimPath=" + moduleMAIN.SimPath);
+                file.WriteLine();
+                file.WriteLine("[Edit]");
+                file.WriteLine("BackUpON=" + moduleEDIT.BackUpON.ToString());
+                file.WriteLine("BackUpSeconds=" + BackUpSeconds.ToString());
+                file.WriteLine("AskDelete=" + moduleMAIN.AskDelete.ToString());
+                file.WriteLine("BorderON=" + moduleMAPS.BorderON.ToString());
+                file.WriteLine("ShowAbout=" + moduleMAIN.ShowAbout.ToString());
+                file.WriteLine("ShowLabels=" + moduleMAIN.ShowLabels.ToString());
+                file.WriteLine("SelectedPointColor=" + ArgbFromColor(modulePOINTS.SelectedPointColor));
+                file.WriteLine("UnselectedPointColor=" + ArgbFromColor(modulePOINTS.UnselectedPointColor));
+                file.WriteLine();
+                file.WriteLine("[Miscelaneous]");
+                file.WriteLine("AutoLinePolyJoin=" + moduleLINES.AutoLinePolyJoin.ToString());
+                file.WriteLine("DisplayJoin=" + moduleLINES.DisplayJoin.ToString());
+                file.WriteLine("DirJoin=" + moduleLINES.DirJoin.ToString());
+                file.WriteLine("NameJoin=" + moduleLINES.NameJoin.ToString());
+                file.WriteLine("NoEndsSmooth=" + moduleMAIN.NoEndsSmooth.ToString());
+                file.WriteLine("CornerSmooth=" + moduleMAIN.CornerSmooth.ToString());
+                file.WriteLine("SampleDistance=" + moduleMAIN.SampleDistance.ToString());
+                file.WriteLine("SmoothDistance=" + moduleMAIN.SmoothDistance.ToString());
+                file.WriteLine("DefaultLC=" + moduleCLASSES.DefaultLC.ToString());
+                file.WriteLine("DefaultWC=" + moduleCLASSES.DefaultWC.ToString());
+                // PrintLine(NF, "Here_app_id=" & Here_app_id)
+                // PrintLine(NF, "Here_app_code=" & Here_app_code)
+                file.WriteLine("GoogleMapsAPI=" + moduleMAPS.GoogleMapsAPI);
+                file.WriteLine("MakeSlopeXY=" + moduleMAIN.MakeSlopeXY.ToString());
+                file.WriteLine();
+                file.WriteLine("[Grids]");
+                file.WriteLine("GridColor=" + ArgbFromColor(moduleMAIN.GridColor));
+                file.WriteLine("GridLODColor=" + ArgbFromColor(moduleMAIN.GridLODColor));
+                file.WriteLine("GridWidth=" + moduleMAIN.GridWidth.ToString());
+                file.WriteLine("ZoomOnQMID=" + moduleMAIN.ZoomOnQMID.ToString());
+                file.WriteLine("CenterOnMouseWheel=" + moduleMAIN.CenterOnMouseWheel.ToString());
+                file.WriteLine();
+                file.WriteLine("[Aircraft]");
+                file.WriteLine("ShowAircraftPeriod=" + moduleMAIN.ShowAircraftPeriod.ToString());
+                file.WriteLine("AircraftAltitudeOffset=" + moduleMAIN.AircraftAltitudeOffset.ToString());
+                file.WriteLine("ExtraExtrusionAltitude=" + moduleLINES.ExtraExtrusionAltitude);
+                file.WriteLine();
+                file.WriteLine("[Objects]");
+                file.WriteLine("Rwy12Path=" + moduleOBJECTS.Rwy12Path);
+                file.WriteLine("MacroAPIPath=" + moduleMACROS.MacroAPIPath);
+                file.WriteLine("MacroASDPath=" + moduleMACROS.MacroASDPath);
+                file.WriteLine("LibObjectsPath=" + moduleOBJECTS.LibObjectsPath);
+                file.WriteLine();
+                file.WriteLine("[Lines]");
+                file.WriteLine("DefaultLineAltitude=" + moduleLINES.DefaultLineAltitude.ToString());
+                file.WriteLine("DefaultLineWidth=" + moduleLINES.DefaultLineWidth.ToString());
+                file.WriteLine("LinePenWidth=" + moduleLINES.LinePenWidth.ToString());
+                file.WriteLine("SelectedLineColor=" + ArgbFromColor(moduleLINES.SelectedLineColor));
+                file.WriteLine("DefaultLineColor=" + ArgbFromColor(moduleLINES.DefaultLineColor));
+                file.WriteLine("MakeClosedLineFromPoly=" + modulePOLYS.MakeClosedLineFromPoly.ToString());
+                file.WriteLine();
+                file.WriteLine("[Polys]");
+                file.WriteLine("DefaultPolyAltitude=" + modulePOLYS.DefaultPolyAltitude.ToString());
+                file.WriteLine("PolyPenWidth=" + modulePOLYS.PolyPenWidth.ToString());
+                file.WriteLine("PolyFILL=" + modulePOLYS.PolyFILL.ToString());
+                file.WriteLine("DefaultPolyColor=" + ArgbFromColor(modulePOLYS.DefaultPolyColor));
+                file.WriteLine("PolyColorBorder=" + ArgbFromColor(modulePOLYS.PolyColorBorder));
+                file.WriteLine();
+                file.WriteLine("[Shapes]");
+                file.WriteLine("ShapeLineGuid=" + moduleSHAPE.ShapeLineGuid);
+                file.WriteLine("ShapeLineAltitude=" + moduleSHAPE.ShapeLineAltitude.ToString());
+                file.WriteLine("ShapeLineWidth=" + moduleSHAPE.ShapeLineWidth.ToString());
+                file.WriteLine("ShapeLineColor=" + ArgbFromColor(moduleSHAPE.ShapeLineColor));
+                file.WriteLine("ShapePolyGuid=" + moduleSHAPE.ShapePolyGuid);
+                file.WriteLine("ShapePolyAltitude=" + moduleSHAPE.ShapePolyAltitude.ToString());
+                file.WriteLine("ShapePolyColor=" + ArgbFromColor(moduleSHAPE.ShapePolyColor));
+                file.WriteLine("AddToCells=" + moduleSHAPE.AddToCells.ToString());
+                file.WriteLine();
+                file.WriteLine("[Tiles]");
+                file.WriteLine("ActiveTileFolder=" + moduleTILES.ActiveTileFolder);
+                file.WriteLine("ReprojectMercatorTiles=" + moduleTILES.ReprojectMercatorTiles.ToString());
+                file.WriteLine("SummerVariations=" + moduleTILES.SummerVariations);
+                file.WriteLine("SpringVariations=" + moduleTILES.SpringVariations);
+                file.WriteLine("FallVariations=" + moduleTILES.FallVariations);
+                file.WriteLine("WinterVariations=" + moduleTILES.WinterVariations);
+                file.WriteLine("HardWinterVariations=" + moduleTILES.HardWinterVariations);
+                file.WriteLine("CompressionQuality=" + moduleTILES.CompressionQuality.ToString());
+                file.WriteLine();
+                file.WriteLine("[BLN]");
+                if (moduleSURFER.BLNSeparator == "\t")
+                {
+                    file.WriteLine("BLNSeparator=tab");
+                }
+                else
+                {
+                    file.WriteLine("BLNSeparator=" + moduleSURFER.BLNSeparator);
+                }
 
-            FileSystem.PrintLine(NF, "BLNPolyGuid=" + moduleSURFER.BLNPolyGuid);
-            FileSystem.PrintLine(NF, "BLNPolyColor=" + ArgbFromColor(moduleSURFER.BLNPolyColor));
-            FileSystem.PrintLine(NF, "BLNLineGuid=" + moduleSURFER.BLNLineGuid);
-            FileSystem.PrintLine(NF, "BLNLineColor=" + ArgbFromColor(moduleSURFER.BLNLineColor));
-            FileSystem.PrintLine(NF, "BLNIsPolyAlt=" + moduleSURFER.BLNIsPolyAlt.ToString());
-            FileSystem.PrintLine(NF, "BLNIsLineAlt=" + moduleSURFER.BLNIsLineAlt.ToString());
-            FileSystem.PrintLine(NF, "BLNStartWidth=" + moduleSURFER.BLNStartWidth.ToString());
-            FileSystem.PrintLine(NF, "BLNEndWidth=" + moduleSURFER.BLNEndWidth.ToString());
-            FileSystem.PrintLine(NF, "BLNLineFromPoly=" + moduleSURFER.BLNLineFromPoly.ToString());
-            FileSystem.PrintLine(NF, "BLNExportAltitudes=" + moduleSURFER.BLNExportAltitudes.ToString());
-            FileSystem.PrintLine(NF);
-            FileSystem.FileClose(NF);
+                file.WriteLine("BLNPolyGuid=" + moduleSURFER.BLNPolyGuid);
+                file.WriteLine("BLNPolyColor=" + ArgbFromColor(moduleSURFER.BLNPolyColor));
+                file.WriteLine("BLNLineGuid=" + moduleSURFER.BLNLineGuid);
+                file.WriteLine("BLNLineColor=" + ArgbFromColor(moduleSURFER.BLNLineColor));
+                file.WriteLine("BLNIsPolyAlt=" + moduleSURFER.BLNIsPolyAlt.ToString());
+                file.WriteLine("BLNIsLineAlt=" + moduleSURFER.BLNIsLineAlt.ToString());
+                file.WriteLine("BLNStartWidth=" + moduleSURFER.BLNStartWidth.ToString());
+                file.WriteLine("BLNEndWidth=" + moduleSURFER.BLNEndWidth.ToString());
+                file.WriteLine("BLNLineFromPoly=" + moduleSURFER.BLNLineFromPoly.ToString());
+                file.WriteLine("BLNExportAltitudes=" + moduleSURFER.BLNExportAltitudes.ToString());
+                file.WriteLine();
+            }
         }
 
         public static void SetRecentFiles()
@@ -541,38 +540,33 @@ namespace SBuilderXX
         internal static string ReadIniValue(string INIpath, string KEY, ref string Variable)
         {
             string ReadIniValueRet = default;
-            int NF;
             string Temp;
             string LcaseTemp;
             bool ReadyToRead = default(bool);
-            NF = FileSystem.FreeFile();
             ReadIniValueRet = "";
             KEY = "[" + KEY.ToLower() + "]";
             Variable = Variable.ToLower();
-            FileSystem.FileOpen(NF, INIpath, OpenMode.Binary);
-            FileSystem.FileClose(NF);
-            FileSystem.SetAttr(INIpath, FileAttribute.Archive);
-            FileSystem.FileOpen(NF, INIpath, OpenMode.Input);
-            while (!FileSystem.EOF(NF))
+            File.SetAttributes(INIpath, FileAttributes.Archive);
+            using (var file = File.OpenText(INIpath))
             {
-                Temp = FileSystem.LineInput(NF);
-                LcaseTemp = Temp.ToLower();
-                if (LcaseTemp.IndexOf("[") != -1)
-                    ReadyToRead = false;
-                if ((LcaseTemp ?? "") == (KEY ?? ""))
-                    ReadyToRead = true;
-                if (LcaseTemp.IndexOf("[") == -1 & ReadyToRead)
+                while ((Temp = file.ReadLine()) != null)
                 {
-                    if (LcaseTemp.IndexOf(Variable + "=") == 0)
+                    LcaseTemp = Temp.ToLower();
+                    if (LcaseTemp.IndexOf("[") != -1)
+                        ReadyToRead = false;
+                    if ((LcaseTemp ?? "") == (KEY ?? ""))
+                        ReadyToRead = true;
+                    if (LcaseTemp.IndexOf("[") == -1 & ReadyToRead)
                     {
-                        ReadIniValueRet = Temp.Substring((Variable + "=").Length);
-                        FileSystem.FileClose(NF);
-                        return ReadIniValueRet;
+                        if (LcaseTemp.IndexOf(Variable + "=") == 0)
+                        {
+                            ReadIniValueRet = Temp.Substring((Variable + "=").Length);
+                            return ReadIniValueRet;
+                        }
                     }
                 }
             }
 
-            FileSystem.FileClose(NF);
             return ReadIniValueRet;
         }
 
@@ -587,18 +581,12 @@ namespace SBuilderXX
             int KEYLEN;
             int VAR;
             int VARENDOFLINE;
-            int NF;
-            NF = FileSystem.FreeFile();
             ReadKey = Environment.NewLine + "[" + PutKey.ToLower() + "]\r";
             KEYLEN = ReadKey.Length;
             ReadVariable = "\n" + PutVariable.ToLower() + "=";
-            FileSystem.FileOpen(NF, INIpath, OpenMode.Binary);
-            FileSystem.FileClose(NF);
-            FileSystem.SetAttr(INIpath, FileAttribute.Archive);
-            FileSystem.FileOpen(NF, INIpath, OpenMode.Input);
-            Temp = FileSystem.InputString(NF, (int)FileSystem.LOF(NF));
+            File.SetAttributes(INIpath, FileAttributes.Archive);
+            Temp = File.ReadAllText(INIpath);
             Temp = Environment.NewLine + Temp + "[]";
-            FileSystem.FileClose(NF);
             LcaseTemp = Temp.ToLower();
             LOKEY = LcaseTemp.IndexOf(ReadKey);
             if (LOKEY == -1)
@@ -633,9 +621,10 @@ namespace SBuilderXX
                 Temp = Temp.Substring(0, Temp.Length - 1);
             while (string.Compare(Temp.Substring(0, 1), "\r") <= 0)
                 Temp = Temp.Substring(1);
-            FileSystem.FileOpen(NF, INIpath, OpenMode.Output);
-            FileSystem.PrintLine(NF, Temp);
-            FileSystem.FileClose(NF);
+            using (StreamWriter file = new StreamWriter(INIpath))
+            {
+                file.WriteLine(Temp);
+            }
         }
 
         private static string TrimFile(string str_file, int N)
@@ -995,217 +984,217 @@ namespace SBuilderXX
             int M, N, FN;
             string KEY;
             My.MyProject.Forms.FrmStart.Cursor = Cursors.WaitCursor;
-            FN = FileSystem.FreeFile();
-            FileSystem.FileOpen(FN, FileName, OpenMode.Output);
-            FileSystem.PrintLine(FN, "[Main]");
-            FileSystem.PrintLine(FN, "CopyRight=" + "MRPRINT SBXX316");
-            FileSystem.PrintLine(FN, "Name=" + moduleMAIN.ProjectName);
-            FileSystem.PrintLine(FN, "NoOfMaps=" + moduleMAPS.NoOfMaps);
-            FileSystem.PrintLine(FN, "NoOfLines=" + moduleLINES.NoOfLines);
-            FileSystem.PrintLine(FN, "NoOfPolys=" + modulePOLYS.NoOfPolys);
-            FileSystem.PrintLine(FN, "NoOfLC_LOD5s=" + moduleCLASSES.NoOfLLXYs);
-            FileSystem.PrintLine(FN, "NoOfWC_LOD5s=" + moduleCLASSES.NoOfWWXYs);
-            FileSystem.PrintLine(FN, "NoOfObjects=" + moduleOBJECTS.NoOfObjects);
-            FileSystem.PrintLine(FN, "NoOfExcludes=" + moduleEXCLUDES.NoOfExcludes);
-            FileSystem.PrintLine(FN, "NoOfLWCIs=" + moduleCLASSES.NoOfLWCIs);
-            FileSystem.PrintLine(FN, "BGLProjectFolder=" + moduleMAIN.BGLProjectFolder);
-            FileSystem.PrintLine(FN, "LatDispCenter=" + moduleMAIN.LatDispCenter.ToString());
-            FileSystem.PrintLine(FN, "LonDispCenter=" + moduleMAIN.LonDispCenter.ToString());
-            FileSystem.PrintLine(FN, "Zoom=" + moduleMAIN.Zoom);
-            int loopTo = moduleMAPS.NoOfMaps;
-            for (N = 1; N <= loopTo; N++)
+            using (StreamWriter file = new StreamWriter(FileName))
             {
-                FileSystem.PrintLine(FN);
-                KEY = "[Map." + N.ToString().Trim() + "]";
-                FileSystem.PrintLine(FN, KEY);
-                FileSystem.PrintLine(FN, "Name=" + moduleMAPS.Maps[N].Name);
-                FileSystem.PrintLine(FN, "BMPSu=" + moduleMAPS.Maps[N].BMPSu);
-                FileSystem.PrintLine(FN, "BMPSp=" + moduleMAPS.Maps[N].BMPSp);
-                FileSystem.PrintLine(FN, "BMPFa=" + moduleMAPS.Maps[N].BMPFa);
-                FileSystem.PrintLine(FN, "BMPWi=" + moduleMAPS.Maps[N].BMPWi);
-                FileSystem.PrintLine(FN, "BMPHw=" + moduleMAPS.Maps[N].BMPHw);
-                FileSystem.PrintLine(FN, "BMPLm=" + moduleMAPS.Maps[N].BMPLm);
-                FileSystem.PrintLine(FN, "Cols=" + moduleMAPS.Maps[N].COLS.ToString());
-                FileSystem.PrintLine(FN, "Rows=" + moduleMAPS.Maps[N].ROWS.ToString());
-                FileSystem.PrintLine(FN, "NLat=" + moduleMAPS.Maps[N].NLAT.ToString());
-                FileSystem.PrintLine(FN, "SLat=" + moduleMAPS.Maps[N].SLAT.ToString());
-                FileSystem.PrintLine(FN, "ELon=" + moduleMAPS.Maps[N].ELON.ToString());
-                FileSystem.PrintLine(FN, "WLon=" + moduleMAPS.Maps[N].WLON.ToString());
-            }
-
-            int loopTo1 = moduleLINES.NoOfLines;
-            for (N = 1; N <= loopTo1; N++)
-            {
-                FileSystem.PrintLine(FN);
-                KEY = "[Line." + N.ToString().Trim() + "]";
-                FileSystem.PrintLine(FN, KEY);
-                FileSystem.PrintLine(FN, "Name=" + moduleLINES.Lines[N].Name);
-                FileSystem.PrintLine(FN, "Type=" + moduleLINES.Lines[N].Type);
-                FileSystem.PrintLine(FN, "Guid=" + moduleLINES.Lines[N].Guid);
-                FileSystem.PrintLine(FN, "Color=" + ArgbFromColor(moduleLINES.Lines[N].Color));
-                FileSystem.PrintLine(FN, "NoOfPoints=" + moduleLINES.Lines[N].NoOfPoints.ToString());
-                int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
-                for (M = 1; M <= loopTo2; M++)
+                file.WriteLine("[Main]");
+                file.WriteLine("CopyRight=" + "MRPRINT SBXX316");
+                file.WriteLine("Name=" + moduleMAIN.ProjectName);
+                file.WriteLine("NoOfMaps=" + moduleMAPS.NoOfMaps);
+                file.WriteLine("NoOfLines=" + moduleLINES.NoOfLines);
+                file.WriteLine("NoOfPolys=" + modulePOLYS.NoOfPolys);
+                file.WriteLine("NoOfLC_LOD5s=" + moduleCLASSES.NoOfLLXYs);
+                file.WriteLine("NoOfWC_LOD5s=" + moduleCLASSES.NoOfWWXYs);
+                file.WriteLine("NoOfObjects=" + moduleOBJECTS.NoOfObjects);
+                file.WriteLine("NoOfExcludes=" + moduleEXCLUDES.NoOfExcludes);
+                file.WriteLine("NoOfLWCIs=" + moduleCLASSES.NoOfLWCIs);
+                file.WriteLine("BGLProjectFolder=" + moduleMAIN.BGLProjectFolder);
+                file.WriteLine("LatDispCenter=" + moduleMAIN.LatDispCenter.ToString());
+                file.WriteLine("LonDispCenter=" + moduleMAIN.LonDispCenter.ToString());
+                file.WriteLine("Zoom=" + moduleMAIN.Zoom);
+                int loopTo = moduleMAPS.NoOfMaps;
+                for (N = 1; N <= loopTo; N++)
                 {
-                    FileSystem.PrintLine(FN, "Lat" + M.ToString().Trim() + "=" + moduleLINES.Lines[N].GLPoints[M].lat.ToString());
-                    FileSystem.PrintLine(FN, "Lon" + M.ToString().Trim() + "=" + moduleLINES.Lines[N].GLPoints[M].lon.ToString());
-                    FileSystem.PrintLine(FN, "Alt" + M + "=" + moduleLINES.Lines[N].GLPoints[M].alt.ToString());
-                    FileSystem.PrintLine(FN, "Wid" + M + "=" + moduleLINES.Lines[N].GLPoints[M].wid.ToString());
+                    file.WriteLine();
+                    KEY = "[Map." + N.ToString().Trim() + "]";
+                    file.WriteLine(KEY);
+                    file.WriteLine("Name=" + moduleMAPS.Maps[N].Name);
+                    file.WriteLine("BMPSu=" + moduleMAPS.Maps[N].BMPSu);
+                    file.WriteLine("BMPSp=" + moduleMAPS.Maps[N].BMPSp);
+                    file.WriteLine("BMPFa=" + moduleMAPS.Maps[N].BMPFa);
+                    file.WriteLine("BMPWi=" + moduleMAPS.Maps[N].BMPWi);
+                    file.WriteLine("BMPHw=" + moduleMAPS.Maps[N].BMPHw);
+                    file.WriteLine("BMPLm=" + moduleMAPS.Maps[N].BMPLm);
+                    file.WriteLine("Cols=" + moduleMAPS.Maps[N].COLS.ToString());
+                    file.WriteLine("Rows=" + moduleMAPS.Maps[N].ROWS.ToString());
+                    file.WriteLine("NLat=" + moduleMAPS.Maps[N].NLAT.ToString());
+                    file.WriteLine("SLat=" + moduleMAPS.Maps[N].SLAT.ToString());
+                    file.WriteLine("ELon=" + moduleMAPS.Maps[N].ELON.ToString());
+                    file.WriteLine("WLon=" + moduleMAPS.Maps[N].WLON.ToString());
                 }
-            }
 
-            int loopTo3 = modulePOLYS.NoOfPolys;
-            for (N = 1; N <= loopTo3; N++)
-            {
-                FileSystem.PrintLine(FN);
-                KEY = "[Poly." + N.ToString().Trim() + "]";
-                FileSystem.PrintLine(FN, KEY);
-                FileSystem.PrintLine(FN, "Name=" + modulePOLYS.Polys[N].Name);
-                FileSystem.PrintLine(FN, "Type=" + modulePOLYS.Polys[N].Type);
-                FileSystem.PrintLine(FN, "Guid=" + modulePOLYS.Polys[N].Guid);
-                FileSystem.PrintLine(FN, "Color=" + ArgbFromColor(modulePOLYS.Polys[N].Color));
-                FileSystem.PrintLine(FN, "NoOfChilds=" + modulePOLYS.Polys[N].NoOfChilds.ToString());
-                int loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
-                for (M = 1; M <= loopTo4; M++)
-                    FileSystem.PrintLine(FN, "Child" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].Childs[M].ToString());
-                FileSystem.PrintLine(FN, "NoOfPoints=" + modulePOLYS.Polys[N].NoOfPoints.ToString());
-                int loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
-                for (M = 1; M <= loopTo5; M++)
+                int loopTo1 = moduleLINES.NoOfLines;
+                for (N = 1; N <= loopTo1; N++)
                 {
-                    FileSystem.PrintLine(FN, "Lat" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].GPoints[M].lat.ToString());
-                    FileSystem.PrintLine(FN, "Lon" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].GPoints[M].lon.ToString());
-                    FileSystem.PrintLine(FN, "Alt" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].GPoints[M].alt.ToString());
-                }
-            }
-
-            int J, K, C, R, P;
-            string A;
-            N = 1;
-            if (moduleCLASSES.NoOfLLXYs > 0)
-            {
-                for (K = 0; K <= 63; K++)
-                {
-                    for (J = 0; J <= 95; J++)
+                    file.WriteLine();
+                    KEY = "[Line." + N.ToString().Trim() + "]";
+                    file.WriteLine(KEY);
+                    file.WriteLine("Name=" + moduleLINES.Lines[N].Name);
+                    file.WriteLine("Type=" + moduleLINES.Lines[N].Type);
+                    file.WriteLine("Guid=" + moduleLINES.Lines[N].Guid);
+                    file.WriteLine("Color=" + ArgbFromColor(moduleLINES.Lines[N].Color));
+                    file.WriteLine("NoOfPoints=" + moduleLINES.Lines[N].NoOfPoints.ToString());
+                    int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
+                    for (M = 1; M <= loopTo2; M++)
                     {
-                        if (moduleCLASSES.LL_XY[J, K].NoOfLWs > 0)
+                        file.WriteLine("Lat" + M.ToString().Trim() + "=" + moduleLINES.Lines[N].GLPoints[M].lat.ToString());
+                        file.WriteLine("Lon" + M.ToString().Trim() + "=" + moduleLINES.Lines[N].GLPoints[M].lon.ToString());
+                        file.WriteLine("Alt" + M + "=" + moduleLINES.Lines[N].GLPoints[M].alt.ToString());
+                        file.WriteLine("Wid" + M + "=" + moduleLINES.Lines[N].GLPoints[M].wid.ToString());
+                    }
+                }
+
+                int loopTo3 = modulePOLYS.NoOfPolys;
+                for (N = 1; N <= loopTo3; N++)
+                {
+                    file.WriteLine();
+                    KEY = "[Poly." + N.ToString().Trim() + "]";
+                    file.WriteLine(KEY);
+                    file.WriteLine("Name=" + modulePOLYS.Polys[N].Name);
+                    file.WriteLine("Type=" + modulePOLYS.Polys[N].Type);
+                    file.WriteLine("Guid=" + modulePOLYS.Polys[N].Guid);
+                    file.WriteLine("Color=" + ArgbFromColor(modulePOLYS.Polys[N].Color));
+                    file.WriteLine("NoOfChilds=" + modulePOLYS.Polys[N].NoOfChilds.ToString());
+                    int loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
+                    for (M = 1; M <= loopTo4; M++)
+                        file.WriteLine("Child" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].Childs[M].ToString());
+                    file.WriteLine("NoOfPoints=" + modulePOLYS.Polys[N].NoOfPoints.ToString());
+                    int loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
+                    for (M = 1; M <= loopTo5; M++)
+                    {
+                        file.WriteLine("Lat" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].GPoints[M].lat.ToString());
+                        file.WriteLine("Lon" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].GPoints[M].lon.ToString());
+                        file.WriteLine("Alt" + M.ToString().Trim() + "=" + modulePOLYS.Polys[N].GPoints[M].alt.ToString());
+                    }
+                }
+
+                int J, K, C, R, P;
+                string A;
+                N = 1;
+                if (moduleCLASSES.NoOfLLXYs > 0)
+                {
+                    for (K = 0; K <= 63; K++)
+                    {
+                        for (J = 0; J <= 95; J++)
                         {
-                            FileSystem.PrintLine(FN);
-                            A = "[LC_LOD5." + N + "]";
-                            FileSystem.PrintLine(FN, A);
-                            A = "U=" + J.ToString("00");
-                            FileSystem.PrintLine(FN, A);
-                            A = "V=" + K.ToString("00");
-                            FileSystem.PrintLine(FN, A);
-                            FileSystem.PrintLine(FN, "NoOfLands=" + moduleCLASSES.LL_XY[J, K].NoOfLWs);
-                            P = moduleCLASSES.LL_XY[J, K].Pointer;
-                            M = moduleCLASSES.LL_XY[J, K].NoOfLWs;
-                            for (R = 0; R <= 256; R++)
+                            if (moduleCLASSES.LL_XY[J, K].NoOfLWs > 0)
                             {
-                                for (C = 0; C <= 256; C++)
+                                file.WriteLine();
+                                A = "[LC_LOD5." + N + "]";
+                                file.WriteLine(A);
+                                A = "U=" + J.ToString("00");
+                                file.WriteLine(A);
+                                A = "V=" + K.ToString("00");
+                                file.WriteLine(A);
+                                file.WriteLine("NoOfLands=" + moduleCLASSES.LL_XY[J, K].NoOfLWs);
+                                P = moduleCLASSES.LL_XY[J, K].Pointer;
+                                M = moduleCLASSES.LL_XY[J, K].NoOfLWs;
+                                for (R = 0; R <= 256; R++)
                                 {
-                                    if (moduleCLASSES.LLands[C, R, P] > 0)
+                                    for (C = 0; C <= 256; C++)
                                     {
-                                        if (!(moduleCLASSES.LLands[C, R, P] == 254))
+                                        if (moduleCLASSES.LLands[C, R, P] > 0)
                                         {
-                                            FileSystem.PrintLine(FN, "C" + C.ToString("000") + "R" + R.ToString("000=") + moduleCLASSES.LC[moduleCLASSES.LLands[C, R, P]].Index);
+                                            if (!(moduleCLASSES.LLands[C, R, P] == 254))
+                                            {
+                                                file.WriteLine("C" + C.ToString("000") + "R" + R.ToString("000=") + moduleCLASSES.LC[moduleCLASSES.LLands[C, R, P]].Index);
+                                            }
                                         }
                                     }
                                 }
-                            }
 
-                            N = N + 1;
+                                N = N + 1;
+                            }
                         }
                     }
                 }
-            }
 
-            N = 1;
-            if (moduleCLASSES.NoOfWWXYs > 0)
-            {
-                for (K = 0; K <= 63; K++)
+                N = 1;
+                if (moduleCLASSES.NoOfWWXYs > 0)
                 {
-                    for (J = 0; J <= 95; J++)
+                    for (K = 0; K <= 63; K++)
                     {
-                        if (moduleCLASSES.WW_XY[J, K].NoOfLWs > 0)
+                        for (J = 0; J <= 95; J++)
                         {
-                            FileSystem.PrintLine(FN);
-                            A = "[WC_LOD5." + N + "]";
-                            FileSystem.PrintLine(FN, A);
-                            A = "U=" + J.ToString("00");
-                            FileSystem.PrintLine(FN, A);
-                            A = "V=" + K.ToString("00");
-                            FileSystem.PrintLine(FN, A);
-                            FileSystem.PrintLine(FN, "NoOfWaters=" + moduleCLASSES.WW_XY[J, K].NoOfLWs);
-                            P = moduleCLASSES.WW_XY[J, K].Pointer;
-                            M = moduleCLASSES.WW_XY[J, K].NoOfLWs;
-                            for (R = 0; R <= 256; R++)
+                            if (moduleCLASSES.WW_XY[J, K].NoOfLWs > 0)
                             {
-                                for (C = 0; C <= 256; C++)
+                                file.WriteLine();
+                                A = "[WC_LOD5." + N + "]";
+                                file.WriteLine(A);
+                                A = "U=" + J.ToString("00");
+                                file.WriteLine(A);
+                                A = "V=" + K.ToString("00");
+                                file.WriteLine(A);
+                                file.WriteLine("NoOfWaters=" + moduleCLASSES.WW_XY[J, K].NoOfLWs);
+                                P = moduleCLASSES.WW_XY[J, K].Pointer;
+                                M = moduleCLASSES.WW_XY[J, K].NoOfLWs;
+                                for (R = 0; R <= 256; R++)
                                 {
-                                    if (moduleCLASSES.WWaters[C, R, P] > 0)
+                                    for (C = 0; C <= 256; C++)
                                     {
-                                        if (!(moduleCLASSES.WWaters[C, R, P] == 254))
+                                        if (moduleCLASSES.WWaters[C, R, P] > 0)
                                         {
-                                            FileSystem.PrintLine(FN, "C" + C.ToString("000") + "R" + R.ToString("000=") + moduleCLASSES.WC[moduleCLASSES.WWaters[C, R, P]].Index);
+                                            if (!(moduleCLASSES.WWaters[C, R, P] == 254))
+                                            {
+                                                file.WriteLine("C" + C.ToString("000") + "R" + R.ToString("000=") + moduleCLASSES.WC[moduleCLASSES.WWaters[C, R, P]].Index);
+                                            }
                                         }
                                     }
                                 }
-                            }
 
-                            N = N + 1;
+                                N = N + 1;
+                            }
                         }
                     }
                 }
-            }
 
-            int loopTo6 = moduleEXCLUDES.NoOfExcludes;
-            for (N = 1; N <= loopTo6; N++)
-            {
-                FileSystem.PrintLine(FN);
-                KEY = "[Exclude." + N.ToString().Trim() + "]";
-                FileSystem.PrintLine(FN, KEY);
-                // before November 2017 these were CStr()
-                FileSystem.PrintLine(FN, "Flag=" + moduleEXCLUDES.Excludes[N].Flag.ToString());
-                FileSystem.PrintLine(FN, "NLat=" + moduleEXCLUDES.Excludes[N].NLAT.ToString());
-                FileSystem.PrintLine(FN, "SLat=" + moduleEXCLUDES.Excludes[N].SLAT.ToString());
-                FileSystem.PrintLine(FN, "ELon=" + moduleEXCLUDES.Excludes[N].ELON.ToString());
-                FileSystem.PrintLine(FN, "WLon=" + moduleEXCLUDES.Excludes[N].WLON.ToString());
-            }
+                int loopTo6 = moduleEXCLUDES.NoOfExcludes;
+                for (N = 1; N <= loopTo6; N++)
+                {
+                    file.WriteLine();
+                    KEY = "[Exclude." + N.ToString().Trim() + "]";
+                    file.WriteLine(KEY);
+                    // before November 2017 these were CStr()
+                    file.WriteLine("Flag=" + moduleEXCLUDES.Excludes[N].Flag.ToString());
+                    file.WriteLine("NLat=" + moduleEXCLUDES.Excludes[N].NLAT.ToString());
+                    file.WriteLine("SLat=" + moduleEXCLUDES.Excludes[N].SLAT.ToString());
+                    file.WriteLine("ELon=" + moduleEXCLUDES.Excludes[N].ELON.ToString());
+                    file.WriteLine("WLon=" + moduleEXCLUDES.Excludes[N].WLON.ToString());
+                }
 
-            int loopTo7 = moduleOBJECTS.NoOfObjects;
-            for (N = 1; N <= loopTo7; N++)
-            {
-                FileSystem.PrintLine(FN);
-                KEY = "[Object." + N.ToString().Trim() + "]";
-                FileSystem.PrintLine(FN, KEY);
-                FileSystem.PrintLine(FN, "Type=" + moduleOBJECTS.Objects[N].Type.ToString());
-                FileSystem.PrintLine(FN, "Description=" + moduleOBJECTS.Objects[N].Description);
-                FileSystem.PrintLine(FN, "Width=" + moduleOBJECTS.Objects[N].Width.ToString());
-                FileSystem.PrintLine(FN, "Length=" + moduleOBJECTS.Objects[N].Length.ToString());
-                FileSystem.PrintLine(FN, "Heading=" + moduleOBJECTS.Objects[N].Heading.ToString());
-                FileSystem.PrintLine(FN, "Pitch=" + moduleOBJECTS.Objects[N].Pitch.ToString());
-                FileSystem.PrintLine(FN, "Bank=" + moduleOBJECTS.Objects[N].Bank.ToString());
-                FileSystem.PrintLine(FN, "BiasX=" + moduleOBJECTS.Objects[N].BiasX.ToString());
-                FileSystem.PrintLine(FN, "BiasY=" + moduleOBJECTS.Objects[N].BiasY.ToString());
-                FileSystem.PrintLine(FN, "BiasZ=" + moduleOBJECTS.Objects[N].BiasZ.ToString());
-                FileSystem.PrintLine(FN, "Lat=" + moduleOBJECTS.Objects[N].lat.ToString());
-                FileSystem.PrintLine(FN, "Lon=" + moduleOBJECTS.Objects[N].lon.ToString());
-                FileSystem.PrintLine(FN, "Altitude=" + moduleOBJECTS.Objects[N].Altitude.ToString());
-                FileSystem.PrintLine(FN, "AGL=" + moduleOBJECTS.Objects[N].AGL.ToString());
-                FileSystem.PrintLine(FN, "Complexity=" + moduleOBJECTS.Objects[N].Complexity.ToString());
-            }
+                int loopTo7 = moduleOBJECTS.NoOfObjects;
+                for (N = 1; N <= loopTo7; N++)
+                {
+                    file.WriteLine();
+                    KEY = "[Object." + N.ToString().Trim() + "]";
+                    file.WriteLine(KEY);
+                    file.WriteLine("Type=" + moduleOBJECTS.Objects[N].Type.ToString());
+                    file.WriteLine("Description=" + moduleOBJECTS.Objects[N].Description);
+                    file.WriteLine("Width=" + moduleOBJECTS.Objects[N].Width.ToString());
+                    file.WriteLine("Length=" + moduleOBJECTS.Objects[N].Length.ToString());
+                    file.WriteLine("Heading=" + moduleOBJECTS.Objects[N].Heading.ToString());
+                    file.WriteLine("Pitch=" + moduleOBJECTS.Objects[N].Pitch.ToString());
+                    file.WriteLine("Bank=" + moduleOBJECTS.Objects[N].Bank.ToString());
+                    file.WriteLine("BiasX=" + moduleOBJECTS.Objects[N].BiasX.ToString());
+                    file.WriteLine("BiasY=" + moduleOBJECTS.Objects[N].BiasY.ToString());
+                    file.WriteLine("BiasZ=" + moduleOBJECTS.Objects[N].BiasZ.ToString());
+                    file.WriteLine("Lat=" + moduleOBJECTS.Objects[N].lat.ToString());
+                    file.WriteLine("Lon=" + moduleOBJECTS.Objects[N].lon.ToString());
+                    file.WriteLine("Altitude=" + moduleOBJECTS.Objects[N].Altitude.ToString());
+                    file.WriteLine("AGL=" + moduleOBJECTS.Objects[N].AGL.ToString());
+                    file.WriteLine("Complexity=" + moduleOBJECTS.Objects[N].Complexity.ToString());
+                }
 
-            int loopTo8 = moduleCLASSES.NoOfLWCIs;
-            for (N = 1; N <= loopTo8; N++)
-            {
-                FileSystem.PrintLine(FN);
-                KEY = "[LWCI." + N.ToString().Trim() + "]";
-                FileSystem.PrintLine(FN, KEY);
-                FileSystem.PrintLine(FN, "Text=" + moduleCLASSES.LWCIs[N].Text);
-                FileSystem.PrintLine(FN, "Color=" + ArgbFromColor(moduleCLASSES.LWCIs[N].Color));
-            }
+                int loopTo8 = moduleCLASSES.NoOfLWCIs;
+                for (N = 1; N <= loopTo8; N++)
+                {
+                    file.WriteLine();
+                    KEY = "[LWCI." + N.ToString().Trim() + "]";
+                    file.WriteLine(KEY);
+                    file.WriteLine("Text=" + moduleCLASSES.LWCIs[N].Text);
+                    file.WriteLine("Color=" + ArgbFromColor(moduleCLASSES.LWCIs[N].Color));
+                }
 
-            FileSystem.FileClose(FN);
+            }
             My.MyProject.Forms.FrmStart.SetMouseIcon();
         }
 
@@ -1334,266 +1323,266 @@ namespace SBuilderXX
                 moduleMAPS.Maps[N].WLON = ReadIniDouble(Filename, KEY, "WLon");
             }
 
-            FileSystem.FileOpen(5, Filename, OpenMode.Input);
-            int loopTo1 = moduleLINES.NoOfLines;
-            for (N = 1; N <= loopTo1; N++)
+            using (var file = File.OpenText(Filename))
             {
-                KEY = "[Line." + N.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                moduleLINES.Lines[N].Name = FileSystem.LineInput(5).Substring(5);
-                moduleLINES.Lines[N].Type = FileSystem.LineInput(5).Substring(5);
-                moduleLINES.Lines[N].Guid = FileSystem.LineInput(5).Substring(5);
-                if (Version == "SB301")
+                for (N = 1; !file.EndOfStream; N++)
                 {
-                    moduleLINES.Lines[N].Color = Color.FromArgb(Convert.ToInt32(FileSystem.LineInput(5).Substring(6)));
-                }
-                else
-                {
-                    moduleLINES.Lines[N].Color = ColorFromArgb(FileSystem.LineInput(5).Substring(6));
-                }
-
-                moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
-                if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
-                    moduleLINES.Lines[N].Name = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_Imported_Line";
-                moduleLINES.Lines[N].GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[N].NoOfPoints + 1];
-                J = 6;
-                NL = -90;
-                SL = 90d;
-                EL = -180;
-                WL = 180d;
-                int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
-                for (M = 1; M <= loopTo2; M++)
-                {
-                    if (M > 9)
-                        J = 7;
-                    if (M > 99)
-                        J = 8;
-                    if (M > 999)
-                        J = 9;
-                    if (M > 9999)
-                        J = 10;
-                    if (M > 99999)
-                        J = 11;
-                    if (M > 999999)
-                        J = 12;
-                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                    moduleLINES.Lines[N].GLPoints[M].lat = X;
-                    if (X < SL)
-                        SL = X;
-                    if (X > NL)
-                        NL = X;
-                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                    moduleLINES.Lines[N].GLPoints[M].lon = X;
-                    if (X > EL)
-                        EL = X;
-                    if (X < WL)
-                        WL = X;
-                    moduleLINES.Lines[N].GLPoints[M].alt = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                    moduleLINES.Lines[N].GLPoints[M].wid = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                }
-
-                moduleLINES.Lines[N].ELON = EL;
-                moduleLINES.Lines[N].WLON = WL;
-                moduleLINES.Lines[N].NLAT = NL;
-                moduleLINES.Lines[N].SLAT = SL;
-            }
-
-            int loopTo3 = modulePOLYS.NoOfPolys;
-            for (N = 1; N <= loopTo3; N++)
-            {
-                KEY = "[Poly." + N.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                modulePOLYS.Polys[N].Name = FileSystem.LineInput(5).Substring(5);
-                modulePOLYS.Polys[N].Type = FileSystem.LineInput(5).Substring(5);
-                modulePOLYS.Polys[N].Guid = FileSystem.LineInput(5).Substring(5);
-                if (Version == "SB301")
-                {
-                    modulePOLYS.Polys[N].Color = Color.FromArgb(Convert.ToInt32(FileSystem.LineInput(5).Substring(6)));
-                }
-                else
-                {
-                    modulePOLYS.Polys[N].Color = ColorFromArgb(FileSystem.LineInput(5).Substring(6));
-                }
-
-                J = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
-                modulePOLYS.Polys[N].NoOfChilds = J;
-                if (J > 0)
-                {
-                    modulePOLYS.Polys[N].Childs = new int[J + 1];
-                }
-                else
-                {
-                    modulePOLYS.Polys[N].Childs = new int[1];
-                }
-
-                J = 8;
-                int loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
-                for (M = 1; M <= loopTo4; M++)
-                {
-                    if (M > 9)
-                        J = 9;
-                    if (M > 99)
-                        J = 10;
-                    if (M > 999)
-                        J = 11;
-                    if (M > 9999)
-                        J = 12;
-                    if (M > 99999)
-                        J = 13;
-                    if (M > 999999)
-                        J = 14;
-                    modulePOLYS.Polys[N].Childs[M] = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                }
-
-                modulePOLYS.Polys[N].NoOfPoints = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
-                if (string.IsNullOrEmpty(modulePOLYS.Polys[N].Name))
-                    modulePOLYS.Polys[N].Name = modulePOLYS.Polys[N].NoOfPoints.ToString() + "_Pts_Imported_Polygon";
-                modulePOLYS.Polys[N].GPoints = new modulePOINTS.GPoint[modulePOLYS.Polys[N].NoOfPoints + 1];
-                J = 6;
-                NL = -90;
-                SL = 90d;
-                EL = -180;
-                WL = 180d;
-                int loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
-                for (M = 1; M <= loopTo5; M++)
-                {
-                    if (M > 9)
-                        J = 7;
-                    if (M > 99)
-                        J = 8;
-                    if (M > 999)
-                        J = 9;
-                    if (M > 9999)
-                        J = 10;
-                    if (M > 99999)
-                        J = 11;
-                    if (M > 999999)
-                        J = 12;
-                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                    modulePOLYS.Polys[N].GPoints[M].lat = X;
-                    if (X < SL)
-                        SL = X;
-                    if (X > NL)
-                        NL = X;
-                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                    modulePOLYS.Polys[N].GPoints[M].lon = X;
-                    if (X > EL)
-                        EL = X;
-                    if (X < WL)
-                        WL = X;
-                    modulePOLYS.Polys[N].GPoints[M].alt = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                }
-
-                modulePOLYS.Polys[N].ELON = EL;
-                modulePOLYS.Polys[N].WLON = WL;
-                modulePOLYS.Polys[N].NLAT = NL;
-                modulePOLYS.Polys[N].SLAT = SL;
-            }
-
-            if (moduleCLASSES.NoOfLLXYs > 0)
-            {
-                N = 0;
-                moduleCLASSES.LLands = new byte[257, 257, moduleCLASSES.NoOfLLXYs];
-                int loopTo6 = moduleCLASSES.NoOfLLXYs;
-                for (P = 1; P <= loopTo6; P++)
-                {
-                    KEY = "[LC_LOD5." + P + "]";
-                    GoToThisKey(KEY);
-                    J = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(2));
-                    K = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(2));
-                    L = Convert.ToInt32(FileSystem.LineInput(5).Substring(10));
-                    moduleCLASSES.LL_XY[J, K].Pointer = P - 1;
-                    moduleCLASSES.LL_XY[J, K].NoOfLWs = L;
-                    int loopTo7 = L;
-                    for (M = 1; M <= loopTo7; M++)
+                    KEY = "[Line." + N.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    moduleLINES.Lines[N].Name = file.ReadLine().Substring(5);
+                    moduleLINES.Lines[N].Type = file.ReadLine().Substring(5);
+                    moduleLINES.Lines[N].Guid = file.ReadLine().Substring(5);
+                    if (Version == "SB301")
                     {
-                        A = FileSystem.LineInput(5);
-                        C = (int)Convert.ToDouble(A.Substring(1, 3));
-                        R = (int)Convert.ToDouble(A.Substring(5, 3));
-                        I = (int)Convert.ToDouble(A.Substring(9));
-                        moduleCLASSES.LLands[C, R, P - 1] = moduleCLASSES.ILC[I];
-                        N = N + 1;
+                        moduleLINES.Lines[N].Color = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
                     }
-                }
-
-                moduleCLASSES.NoOfLands = N;
-            }
-
-            if (moduleCLASSES.NoOfWWXYs > 0)
-            {
-                N = 0;
-                moduleCLASSES.WWaters = new byte[257, 257, moduleCLASSES.NoOfWWXYs];
-                int loopTo8 = moduleCLASSES.NoOfWWXYs;
-                for (P = 1; P <= loopTo8; P++)
-                {
-                    KEY = "[WC_LOD5." + P + "]";
-                    GoToThisKey(KEY);
-                    J = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(2));
-                    K = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(2));
-                    L = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
-                    moduleCLASSES.WW_XY[J, K].Pointer = P - 1;
-                    moduleCLASSES.WW_XY[J, K].NoOfLWs = L;
-                    int loopTo9 = L;
-                    for (M = 1; M <= loopTo9; M++)
+                    else
                     {
-                        A = FileSystem.LineInput(5);
-                        C = (int)Convert.ToDouble(A.Substring(1, 3));
-                        R = (int)Convert.ToDouble(A.Substring(5, 3));
-                        I = (int)Convert.ToDouble(A.Substring(9));
-                        moduleCLASSES.WWaters[C, R, P - 1] = moduleCLASSES.IWC[I];
-                        N = N + 1;
+                        moduleLINES.Lines[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
                     }
+
+                    moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
+                    if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
+                        moduleLINES.Lines[N].Name = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_Imported_Line";
+                    moduleLINES.Lines[N].GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[N].NoOfPoints + 1];
+                    J = 6;
+                    NL = -90;
+                    SL = 90d;
+                    EL = -180;
+                    WL = 180d;
+                    int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
+                    for (M = 1; M <= loopTo2; M++)
+                    {
+                        if (M > 9)
+                            J = 7;
+                        if (M > 99)
+                            J = 8;
+                        if (M > 999)
+                            J = 9;
+                        if (M > 9999)
+                            J = 10;
+                        if (M > 99999)
+                            J = 11;
+                        if (M > 999999)
+                            J = 12;
+                        X = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        moduleLINES.Lines[N].GLPoints[M].lat = X;
+                        if (X < SL)
+                            SL = X;
+                        if (X > NL)
+                            NL = X;
+                        X = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        moduleLINES.Lines[N].GLPoints[M].lon = X;
+                        if (X > EL)
+                            EL = X;
+                        if (X < WL)
+                            WL = X;
+                        moduleLINES.Lines[N].GLPoints[M].alt = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        moduleLINES.Lines[N].GLPoints[M].wid = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                    }
+
+                    moduleLINES.Lines[N].ELON = EL;
+                    moduleLINES.Lines[N].WLON = WL;
+                    moduleLINES.Lines[N].NLAT = NL;
+                    moduleLINES.Lines[N].SLAT = SL;
                 }
 
-                moduleCLASSES.NoOfWaters = N;
-            }
+                int loopTo3 = modulePOLYS.NoOfPolys;
+                for (N = 1; N <= loopTo3; N++)
+                {
+                    KEY = "[Poly." + N.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    modulePOLYS.Polys[N].Name = file.ReadLine().Substring(5);
+                    modulePOLYS.Polys[N].Type = file.ReadLine().Substring(5);
+                    modulePOLYS.Polys[N].Guid = file.ReadLine().Substring(5);
+                    if (Version == "SB301")
+                    {
+                        modulePOLYS.Polys[N].Color = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
+                    }
+                    else
+                    {
+                        modulePOLYS.Polys[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
+                    }
 
-            int loopTo10 = moduleEXCLUDES.NoOfExcludes;
-            for (N = 1; N <= loopTo10; N++)
-            {
-                KEY = "[Exclude." + N.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                moduleEXCLUDES.Excludes[N].Flag = Convert.ToInt32(FileSystem.LineInput(5).Substring(5));
-                moduleEXCLUDES.Excludes[N].NLAT = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
-                moduleEXCLUDES.Excludes[N].SLAT = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
-                moduleEXCLUDES.Excludes[N].ELON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
-                moduleEXCLUDES.Excludes[N].WLON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
-            }
+                    J = Convert.ToInt32(file.ReadLine().Substring(11));
+                    modulePOLYS.Polys[N].NoOfChilds = J;
+                    if (J > 0)
+                    {
+                        modulePOLYS.Polys[N].Childs = new int[J + 1];
+                    }
+                    else
+                    {
+                        modulePOLYS.Polys[N].Childs = new int[1];
+                    }
 
-            int loopTo11 = moduleOBJECTS.NoOfObjects;
-            for (N = 1; N <= loopTo11; N++)
-            {
-                KEY = "[Object." + N.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                moduleOBJECTS.Objects[N].Type = Convert.ToInt32(FileSystem.LineInput(5).Substring(5));
-                moduleOBJECTS.Objects[N].Description = FileSystem.LineInput(5).Substring(12);
-                moduleOBJECTS.Objects[N].Width = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].Length = Convert.ToSingle(FileSystem.LineInput(5).Substring(7));
-                moduleOBJECTS.Objects[N].Heading = Convert.ToSingle(FileSystem.LineInput(5).Substring(8));
-                moduleOBJECTS.Objects[N].Pitch = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].Bank = Convert.ToSingle(FileSystem.LineInput(5).Substring(5));
-                moduleOBJECTS.Objects[N].BiasX = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].BiasY = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].BiasZ = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].lat = Convert.ToDouble(FileSystem.LineInput(5).Substring(4));
-                moduleOBJECTS.Objects[N].lon = Convert.ToDouble(FileSystem.LineInput(5).Substring(4));
-                moduleOBJECTS.Objects[N].Altitude = Convert.ToSingle(FileSystem.LineInput(5).Substring(9));
-                moduleOBJECTS.Objects[N].AGL = Convert.ToInt32(FileSystem.LineInput(5).Substring(4));
-                moduleOBJECTS.Objects[N].Complexity = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
-                moduleOBJECTS.AddLatLonToObjects(N);
-            }
+                    J = 8;
+                    int loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
+                    for (M = 1; M <= loopTo4; M++)
+                    {
+                        if (M > 9)
+                            J = 9;
+                        if (M > 99)
+                            J = 10;
+                        if (M > 999)
+                            J = 11;
+                        if (M > 9999)
+                            J = 12;
+                        if (M > 99999)
+                            J = 13;
+                        if (M > 999999)
+                            J = 14;
+                        modulePOLYS.Polys[N].Childs[M] = (int)Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                    }
 
-            int loopTo12 = moduleCLASSES.NoOfLWCIs;
-            for (N = 1; N <= loopTo12; N++)
-            {
-                KEY = "[LWCI." + N.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                moduleCLASSES.LWCIs[N].Text = FileSystem.LineInput(5).Substring(5);
-                moduleCLASSES.LWCIs[N].Color = ColorFromArgb(FileSystem.LineInput(5).Substring(6));
-            }
+                    modulePOLYS.Polys[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
+                    if (string.IsNullOrEmpty(modulePOLYS.Polys[N].Name))
+                        modulePOLYS.Polys[N].Name = modulePOLYS.Polys[N].NoOfPoints.ToString() + "_Pts_Imported_Polygon";
+                    modulePOLYS.Polys[N].GPoints = new modulePOINTS.GPoint[modulePOLYS.Polys[N].NoOfPoints + 1];
+                    J = 6;
+                    NL = -90;
+                    SL = 90d;
+                    EL = -180;
+                    WL = 180d;
+                    int loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
+                    for (M = 1; M <= loopTo5; M++)
+                    {
+                        if (M > 9)
+                            J = 7;
+                        if (M > 99)
+                            J = 8;
+                        if (M > 999)
+                            J = 9;
+                        if (M > 9999)
+                            J = 10;
+                        if (M > 99999)
+                            J = 11;
+                        if (M > 999999)
+                            J = 12;
+                        X = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        modulePOLYS.Polys[N].GPoints[M].lat = X;
+                        if (X < SL)
+                            SL = X;
+                        if (X > NL)
+                            NL = X;
+                        X = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        modulePOLYS.Polys[N].GPoints[M].lon = X;
+                        if (X > EL)
+                            EL = X;
+                        if (X < WL)
+                            WL = X;
+                        modulePOLYS.Polys[N].GPoints[M].alt = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                    }
 
-            SetLWCIs();
-            FileSystem.FileClose(5);
+                    modulePOLYS.Polys[N].ELON = EL;
+                    modulePOLYS.Polys[N].WLON = WL;
+                    modulePOLYS.Polys[N].NLAT = NL;
+                    modulePOLYS.Polys[N].SLAT = SL;
+                }
+
+                if (moduleCLASSES.NoOfLLXYs > 0)
+                {
+                    N = 0;
+                    moduleCLASSES.LLands = new byte[257, 257, moduleCLASSES.NoOfLLXYs];
+                    int loopTo6 = moduleCLASSES.NoOfLLXYs;
+                    for (P = 1; P <= loopTo6; P++)
+                    {
+                        KEY = "[LC_LOD5." + P + "]";
+                        GoToThisKey(in file, KEY);
+                        J = (int)Convert.ToDouble(file.ReadLine().Substring(2));
+                        K = (int)Convert.ToDouble(file.ReadLine().Substring(2));
+                        L = Convert.ToInt32(file.ReadLine().Substring(10));
+                        moduleCLASSES.LL_XY[J, K].Pointer = P - 1;
+                        moduleCLASSES.LL_XY[J, K].NoOfLWs = L;
+                        int loopTo7 = L;
+                        for (M = 1; M <= loopTo7; M++)
+                        {
+                            A = file.ReadLine();
+                            C = (int)Convert.ToDouble(A.Substring(1, 3));
+                            R = (int)Convert.ToDouble(A.Substring(5, 3));
+                            I = (int)Convert.ToDouble(A.Substring(9));
+                            moduleCLASSES.LLands[C, R, P - 1] = moduleCLASSES.ILC[I];
+                            N = N + 1;
+                        }
+                    }
+
+                    moduleCLASSES.NoOfLands = N;
+                }
+
+                if (moduleCLASSES.NoOfWWXYs > 0)
+                {
+                    N = 0;
+                    moduleCLASSES.WWaters = new byte[257, 257, moduleCLASSES.NoOfWWXYs];
+                    int loopTo8 = moduleCLASSES.NoOfWWXYs;
+                    for (P = 1; P <= loopTo8; P++)
+                    {
+                        KEY = "[WC_LOD5." + P + "]";
+                        GoToThisKey(in file, KEY);
+                        J = (int)Convert.ToDouble(file.ReadLine().Substring(2));
+                        K = (int)Convert.ToDouble(file.ReadLine().Substring(2));
+                        L = Convert.ToInt32(file.ReadLine().Substring(11));
+                        moduleCLASSES.WW_XY[J, K].Pointer = P - 1;
+                        moduleCLASSES.WW_XY[J, K].NoOfLWs = L;
+                        int loopTo9 = L;
+                        for (M = 1; M <= loopTo9; M++)
+                        {
+                            A = file.ReadLine();
+                            C = (int)Convert.ToDouble(A.Substring(1, 3));
+                            R = (int)Convert.ToDouble(A.Substring(5, 3));
+                            I = (int)Convert.ToDouble(A.Substring(9));
+                            moduleCLASSES.WWaters[C, R, P - 1] = moduleCLASSES.IWC[I];
+                            N = N + 1;
+                        }
+                    }
+
+                    moduleCLASSES.NoOfWaters = N;
+                }
+
+                int loopTo10 = moduleEXCLUDES.NoOfExcludes;
+                for (N = 1; N <= loopTo10; N++)
+                {
+                    KEY = "[Exclude." + N.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    moduleEXCLUDES.Excludes[N].Flag = Convert.ToInt32(file.ReadLine().Substring(5));
+                    moduleEXCLUDES.Excludes[N].NLAT = Convert.ToDouble(file.ReadLine().Substring(5));
+                    moduleEXCLUDES.Excludes[N].SLAT = Convert.ToDouble(file.ReadLine().Substring(5));
+                    moduleEXCLUDES.Excludes[N].ELON = Convert.ToDouble(file.ReadLine().Substring(5));
+                    moduleEXCLUDES.Excludes[N].WLON = Convert.ToDouble(file.ReadLine().Substring(5));
+                }
+
+                int loopTo11 = moduleOBJECTS.NoOfObjects;
+                for (N = 1; N <= loopTo11; N++)
+                {
+                    KEY = "[Object." + N.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    moduleOBJECTS.Objects[N].Type = Convert.ToInt32(file.ReadLine().Substring(5));
+                    moduleOBJECTS.Objects[N].Description = file.ReadLine().Substring(12);
+                    moduleOBJECTS.Objects[N].Width = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].Length = Convert.ToSingle(file.ReadLine().Substring(7));
+                    moduleOBJECTS.Objects[N].Heading = Convert.ToSingle(file.ReadLine().Substring(8));
+                    moduleOBJECTS.Objects[N].Pitch = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].Bank = Convert.ToSingle(file.ReadLine().Substring(5));
+                    moduleOBJECTS.Objects[N].BiasX = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].BiasY = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].BiasZ = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].lat = Convert.ToDouble(file.ReadLine().Substring(4));
+                    moduleOBJECTS.Objects[N].lon = Convert.ToDouble(file.ReadLine().Substring(4));
+                    moduleOBJECTS.Objects[N].Altitude = Convert.ToSingle(file.ReadLine().Substring(9));
+                    moduleOBJECTS.Objects[N].AGL = Convert.ToInt32(file.ReadLine().Substring(4));
+                    moduleOBJECTS.Objects[N].Complexity = Convert.ToInt32(file.ReadLine().Substring(11));
+                    moduleOBJECTS.AddLatLonToObjects(N);
+                }
+
+                int loopTo12 = moduleCLASSES.NoOfLWCIs;
+                for (N = 1; N <= loopTo12; N++)
+                {
+                    KEY = "[LWCI." + N.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    moduleCLASSES.LWCIs[N].Text = file.ReadLine().Substring(5);
+                    moduleCLASSES.LWCIs[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
+                }
+
+                SetLWCIs();
+            }
         }
 
         private static void ImportSBX205(string Filename, string Version)
@@ -1665,176 +1654,176 @@ namespace SBuilderXX
                 moduleMAPS.Maps[N].WLON = ReadIniDouble(Filename, KEY, "WLon0");
             }
 
-            FileSystem.FileOpen(5, Filename, OpenMode.Input);
-            int loopTo1 = moduleLINES.NoOfLines;
-            for (N = 1; N <= loopTo1; N++)
+            using (var file = File.OpenText(Filename))
             {
-                KEY = "[Line." + N.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                moduleLINES.Lines[N].Name = FileSystem.LineInput(5).Substring(5);
-                KEY = FileSystem.LineInput(5).Substring(5);
-                // Lines(N).Type = Mid(LineInput(5), 6)
-                // Lines(N).Guid = Mid(LineInput(5), 6)
-                ConvertOldLineType(N, KEY);
-                C = Color.FromArgb(Convert.ToInt32(FileSystem.LineInput(5).Substring(6)));
-                R = C.R;
-                G = C.G;
-                B = C.B;
-                moduleLINES.Lines[N].Color = Color.FromArgb(B, G, R);
-                moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
-                if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
-                    moduleLINES.Lines[N].Name = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_Imported_Line";
-                moduleLINES.Lines[N].GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[N].NoOfPoints + 1];
-                J = 6;
-                NL = -90;
-                SL = 90d;
-                EL = -180;
-                WL = 180d;
-                int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
-                for (M = 1; M <= loopTo2; M++)
+                for (N = 1; !file.EndOfStream; N++)
                 {
-                    if (M > 9)
-                        J = 7;
-                    if (M > 99)
-                        J = 8;
-                    if (M > 999)
-                        J = 9;
-                    if (M > 9999)
-                        J = 10;
-                    if (M > 99999)
-                        J = 11;
-                    if (M > 999999)
-                        J = 12;
-                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));   // latitude
-                    moduleLINES.Lines[N].GLPoints[M].lat = X;
-                    if (X < SL)
-                        SL = X;
-                    if (X > NL)
-                        NL = X;
-                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));  // longitude
-                    moduleLINES.Lines[N].GLPoints[M].lon = X;
-                    if (X > EL)
-                        EL = X;
-                    if (X < WL)
-                        WL = X;
-                    moduleLINES.Lines[N].GLPoints[M].alt = 0d;
-                    moduleLINES.Lines[N].GLPoints[M].wid = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
+                    KEY = "[Line." + N.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    moduleLINES.Lines[N].Name = file.ReadLine().Substring(5);
+                    KEY = file.ReadLine().Substring(5);
+                    // Lines(N).Type = Mid(LineInput(5), 6)
+                    // Lines(N).Guid = Mid(LineInput(5), 6)
+                    ConvertOldLineType(N, KEY);
+                    C = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
+                    R = C.R;
+                    G = C.G;
+                    B = C.B;
+                    moduleLINES.Lines[N].Color = Color.FromArgb(B, G, R);
+                    moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
+                    if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
+                        moduleLINES.Lines[N].Name = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_Imported_Line";
+                    moduleLINES.Lines[N].GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[N].NoOfPoints + 1];
+                    J = 6;
+                    NL = -90;
+                    SL = 90d;
+                    EL = -180;
+                    WL = 180d;
+                    int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
+                    for (M = 1; M <= loopTo2; M++)
+                    {
+                        if (M > 9)
+                            J = 7;
+                        if (M > 99)
+                            J = 8;
+                        if (M > 999)
+                            J = 9;
+                        if (M > 9999)
+                            J = 10;
+                        if (M > 99999)
+                            J = 11;
+                        if (M > 999999)
+                            J = 12;
+                        X = Convert.ToDouble(file.ReadLine().Substring(J - 1));   // latitude
+                        moduleLINES.Lines[N].GLPoints[M].lat = X;
+                        if (X < SL)
+                            SL = X;
+                        if (X > NL)
+                            NL = X;
+                        X = Convert.ToDouble(file.ReadLine().Substring(J - 1));  // longitude
+                        moduleLINES.Lines[N].GLPoints[M].lon = X;
+                        if (X > EL)
+                            EL = X;
+                        if (X < WL)
+                            WL = X;
+                        moduleLINES.Lines[N].GLPoints[M].alt = 0d;
+                        moduleLINES.Lines[N].GLPoints[M].wid = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                    }
+
+                    moduleLINES.Lines[N].ELON = EL;
+                    moduleLINES.Lines[N].WLON = WL;
+                    moduleLINES.Lines[N].NLAT = NL;
+                    moduleLINES.Lines[N].SLAT = SL;
                 }
 
-                moduleLINES.Lines[N].ELON = EL;
-                moduleLINES.Lines[N].WLON = WL;
-                moduleLINES.Lines[N].NLAT = NL;
-                moduleLINES.Lines[N].SLAT = SL;
-            }
-
-            int loopTo3 = modulePOLYS.NoOfPolys;
-            for (N = 1; N <= loopTo3; N++)
-            {
-                KEY = "[Poly." + N.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                modulePOLYS.Polys[N].Name = FileSystem.LineInput(5).Substring(5);
-                KEY = FileSystem.LineInput(5).Substring(5);
-                // Polys(N).Type = Mid(LineInput(5), 6)
-                // Polys(N).Guid = Mid(LineInput(5), 6)
-                ConvertOldPolyType(N, KEY);
-                C = Color.FromArgb(Convert.ToInt32(FileSystem.LineInput(5).Substring(6)));
-                R = C.R;
-                G = C.G;
-                B = C.B;
-                modulePOLYS.Polys[N].Color = Color.FromArgb(B, G, R);
-                modulePOLYS.Polys[N].NoOfChilds = 0;
-                // ReDim Polys(N).Childs(Polys(N).NoOfChilds)
-                modulePOLYS.Polys[N].NoOfPoints = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
-                if (string.IsNullOrEmpty(modulePOLYS.Polys[N].Name))
-                    modulePOLYS.Polys[N].Name = modulePOLYS.Polys[N].NoOfPoints.ToString() + "_Pts_Imported_Polygon";
-                modulePOLYS.Polys[N].GPoints = new modulePOINTS.GPoint[modulePOLYS.Polys[N].NoOfPoints + 1];
-                J = 6;
-                NL = -90;
-                SL = 90d;
-                EL = -180;
-                WL = 180d;
-                int loopTo4 = modulePOLYS.Polys[N].NoOfPoints;
-                for (M = 1; M <= loopTo4; M++)
+                int loopTo3 = modulePOLYS.NoOfPolys;
+                for (N = 1; N <= loopTo3; N++)
                 {
-                    if (M > 9)
-                        J = 7;
-                    if (M > 99)
-                        J = 8;
-                    if (M > 999)
-                        J = 9;
-                    if (M > 9999)
-                        J = 10;
-                    if (M > 99999)
-                        J = 11;
-                    if (M > 999999)
-                        J = 12;
-                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                    modulePOLYS.Polys[N].GPoints[M].lat = X;
-                    if (X < SL)
-                        SL = X;
-                    if (X > NL)
-                        NL = X;
-                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                    modulePOLYS.Polys[N].GPoints[M].lon = X;
-                    if (X > EL)
-                        EL = X;
-                    if (X < WL)
-                        WL = X;
-                    // *******!!!!
-                    if (SB205)
+                    KEY = "[Poly." + N.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    modulePOLYS.Polys[N].Name = file.ReadLine().Substring(5);
+                    KEY = file.ReadLine().Substring(5);
+                    // Polys(N).Type = Mid(LineInput(5), 6)
+                    // Polys(N).Guid = Mid(LineInput(5), 6)
+                    ConvertOldPolyType(N, KEY);
+                    C = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
+                    R = C.R;
+                    G = C.G;
+                    B = C.B;
+                    modulePOLYS.Polys[N].Color = Color.FromArgb(B, G, R);
+                    modulePOLYS.Polys[N].NoOfChilds = 0;
+                    // ReDim Polys(N).Childs(Polys(N).NoOfChilds)
+                    modulePOLYS.Polys[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
+                    if (string.IsNullOrEmpty(modulePOLYS.Polys[N].Name))
+                        modulePOLYS.Polys[N].Name = modulePOLYS.Polys[N].NoOfPoints.ToString() + "_Pts_Imported_Polygon";
+                    modulePOLYS.Polys[N].GPoints = new modulePOINTS.GPoint[modulePOLYS.Polys[N].NoOfPoints + 1];
+                    J = 6;
+                    NL = -90;
+                    SL = 90d;
+                    EL = -180;
+                    WL = 180d;
+                    int loopTo4 = modulePOLYS.Polys[N].NoOfPoints;
+                    for (M = 1; M <= loopTo4; M++)
                     {
-                        modulePOLYS.Polys[N].GPoints[M].alt = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
+                        if (M > 9)
+                            J = 7;
+                        if (M > 99)
+                            J = 8;
+                        if (M > 999)
+                            J = 9;
+                        if (M > 9999)
+                            J = 10;
+                        if (M > 99999)
+                            J = 11;
+                        if (M > 999999)
+                            J = 12;
+                        X = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        modulePOLYS.Polys[N].GPoints[M].lat = X;
+                        if (X < SL)
+                            SL = X;
+                        if (X > NL)
+                            NL = X;
+                        X = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        modulePOLYS.Polys[N].GPoints[M].lon = X;
+                        if (X > EL)
+                            EL = X;
+                        if (X < WL)
+                            WL = X;
+                        // *******!!!!
+                        if (SB205)
+                        {
+                            modulePOLYS.Polys[N].GPoints[M].alt = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        }
+                        else
+                        {
+                            modulePOLYS.Polys[N].GPoints[M].alt = 0d;
+                        }
                     }
-                    else
-                    {
-                        modulePOLYS.Polys[N].GPoints[M].alt = 0d;
-                    }
+
+                    modulePOLYS.Polys[N].ELON = EL;
+                    modulePOLYS.Polys[N].WLON = WL;
+                    modulePOLYS.Polys[N].NLAT = NL;
+                    modulePOLYS.Polys[N].SLAT = SL;
                 }
 
-                modulePOLYS.Polys[N].ELON = EL;
-                modulePOLYS.Polys[N].WLON = WL;
-                modulePOLYS.Polys[N].NLAT = NL;
-                modulePOLYS.Polys[N].SLAT = SL;
-            }
+                int loopTo5 = moduleEXCLUDES.NoOfExcludes;
+                for (N = 1; N <= loopTo5; N++)
+                {
+                    KEY = "[Exclude." + N.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    moduleEXCLUDES.Excludes[N].Flag = Convert.ToInt32(file.ReadLine().Substring(5));
+                    moduleEXCLUDES.Excludes[N].NLAT = Convert.ToDouble(file.ReadLine().Substring(5));
+                    moduleEXCLUDES.Excludes[N].SLAT = Convert.ToDouble(file.ReadLine().Substring(5));
+                    moduleEXCLUDES.Excludes[N].ELON = Convert.ToDouble(file.ReadLine().Substring(5));
+                    moduleEXCLUDES.Excludes[N].WLON = Convert.ToDouble(file.ReadLine().Substring(5));
+                }
 
-            int loopTo5 = moduleEXCLUDES.NoOfExcludes;
-            for (N = 1; N <= loopTo5; N++)
-            {
-                KEY = "[Exclude." + N.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                moduleEXCLUDES.Excludes[N].Flag = Convert.ToInt32(FileSystem.LineInput(5).Substring(5));
-                moduleEXCLUDES.Excludes[N].NLAT = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
-                moduleEXCLUDES.Excludes[N].SLAT = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
-                moduleEXCLUDES.Excludes[N].ELON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
-                moduleEXCLUDES.Excludes[N].WLON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
-            }
+                int loopTo6 = moduleOBJECTS.NoOfObjects;
+                for (N = 1; N <= loopTo6; N++)
+                {
+                    KEY = "[Object." + N.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    moduleOBJECTS.Objects[N].Type = Convert.ToInt32(file.ReadLine().Substring(5));
+                    moduleOBJECTS.Objects[N].Description = file.ReadLine().Substring(12);
+                    moduleOBJECTS.Objects[N].Width = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].Length = Convert.ToSingle(file.ReadLine().Substring(7));
+                    moduleOBJECTS.Objects[N].Heading = Convert.ToSingle(file.ReadLine().Substring(8));
+                    moduleOBJECTS.Objects[N].Pitch = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].Bank = Convert.ToSingle(file.ReadLine().Substring(5));
+                    moduleOBJECTS.Objects[N].BiasX = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].BiasY = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].BiasZ = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].lat = Convert.ToDouble(file.ReadLine().Substring(4));
+                    moduleOBJECTS.Objects[N].lon = Convert.ToDouble(file.ReadLine().Substring(4));
+                    moduleOBJECTS.Objects[N].Altitude = Convert.ToSingle(file.ReadLine().Substring(9));
+                    moduleOBJECTS.Objects[N].AGL = Convert.ToInt32(file.ReadLine().Substring(4));
+                    moduleOBJECTS.Objects[N].Complexity = Convert.ToInt32(file.ReadLine().Substring(11));
+                    moduleOBJECTS.AddLatLonToObjects(N);
+                }
 
-            int loopTo6 = moduleOBJECTS.NoOfObjects;
-            for (N = 1; N <= loopTo6; N++)
-            {
-                KEY = "[Object." + N.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                moduleOBJECTS.Objects[N].Type = Convert.ToInt32(FileSystem.LineInput(5).Substring(5));
-                moduleOBJECTS.Objects[N].Description = FileSystem.LineInput(5).Substring(12);
-                moduleOBJECTS.Objects[N].Width = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].Length = Convert.ToSingle(FileSystem.LineInput(5).Substring(7));
-                moduleOBJECTS.Objects[N].Heading = Convert.ToSingle(FileSystem.LineInput(5).Substring(8));
-                moduleOBJECTS.Objects[N].Pitch = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].Bank = Convert.ToSingle(FileSystem.LineInput(5).Substring(5));
-                moduleOBJECTS.Objects[N].BiasX = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].BiasY = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].BiasZ = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].lat = Convert.ToDouble(FileSystem.LineInput(5).Substring(4));
-                moduleOBJECTS.Objects[N].lon = Convert.ToDouble(FileSystem.LineInput(5).Substring(4));
-                moduleOBJECTS.Objects[N].Altitude = Convert.ToSingle(FileSystem.LineInput(5).Substring(9));
-                moduleOBJECTS.Objects[N].AGL = Convert.ToInt32(FileSystem.LineInput(5).Substring(4));
-                moduleOBJECTS.Objects[N].Complexity = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
-                moduleOBJECTS.AddLatLonToObjects(N);
+                LegacyPolys = new LegacyPoly[2];
+                LegacyLines = new LegacyLine[2];
             }
-
-            LegacyPolys = new LegacyPoly[2];
-            LegacyLines = new LegacyLine[2];
-            FileSystem.FileClose(5);
         }
 
         internal static void AppendSBX(string Filename)
@@ -1950,358 +1939,358 @@ namespace SBuilderXX
                 moduleMAPS.Maps[N].WLON = ReadIniDouble(Filename, KEY, "WLon");
             }
 
-            FileSystem.FileOpen(5, Filename, OpenMode.Input);
-            int loopTo1 = NoOfLinesX;
-            for (K = 1; K <= loopTo1; K++)
+            using (var file = File.OpenText(Filename))
             {
-                N = K + moduleLINES.NoOfLines;
-                KEY = "[Line." + K.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                moduleLINES.Lines[N].Name = FileSystem.LineInput(5).Substring(5);
-                moduleLINES.Lines[N].Type = FileSystem.LineInput(5).Substring(5);
-                moduleLINES.Lines[N].Guid = FileSystem.LineInput(5).Substring(5);
-                if (Version == "SB301")
+                for (N = 1; !file.EndOfStream; N++)
                 {
-                    moduleLINES.Lines[N].Color = Color.FromArgb(Convert.ToInt32(FileSystem.LineInput(5).Substring(6)));
-                }
-                else
-                {
-                    moduleLINES.Lines[N].Color = ColorFromArgb(FileSystem.LineInput(5).Substring(6));
-                }
-
-                moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
-                if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
-                    moduleLINES.Lines[N].Name = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_Imported_Line";
-                moduleLINES.Lines[N].GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[N].NoOfPoints + 1];
-                J = 6;
-                NL = -90;
-                SL = 90d;
-                EL = -180;
-                WL = 180d;
-                int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
-                for (M = 1; M <= loopTo2; M++)
-                {
-                    if (M > 9)
-                        J = 7;
-                    if (M > 99)
-                        J = 8;
-                    if (M > 999)
-                        J = 9;
-                    if (M > 9999)
-                        J = 10;
-                    if (M > 99999)
-                        J = 11;
-                    if (M > 999999)
-                        J = 12;
-                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                    moduleLINES.Lines[N].GLPoints[M].lat = X;
-                    if (X < SL)
-                        SL = X;
-                    if (X > NL)
-                        NL = X;
-                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                    moduleLINES.Lines[N].GLPoints[M].lon = X;
-                    if (X > EL)
-                        EL = X;
-                    if (X < WL)
-                        WL = X;
-                    moduleLINES.Lines[N].GLPoints[M].alt = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                    moduleLINES.Lines[N].GLPoints[M].wid = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                }
-
-                moduleLINES.Lines[N].ELON = EL;
-                moduleLINES.Lines[N].WLON = WL;
-                moduleLINES.Lines[N].NLAT = NL;
-                moduleLINES.Lines[N].SLAT = SL;
-            }
-
-            int loopTo3 = NoOfPolysX;
-            for (K = 1; K <= loopTo3; K++)
-            {
-                N = K + modulePOLYS.NoOfPolys;
-                KEY = "[Poly." + K.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                modulePOLYS.Polys[N].Name = FileSystem.LineInput(5).Substring(5);
-                modulePOLYS.Polys[N].Type = FileSystem.LineInput(5).Substring(5);
-                modulePOLYS.Polys[N].Guid = FileSystem.LineInput(5).Substring(5);
-                if (Version == "SB301")
-                {
-                    modulePOLYS.Polys[N].Color = Color.FromArgb(Convert.ToInt32(FileSystem.LineInput(5).Substring(6)));
-                }
-                else
-                {
-                    modulePOLYS.Polys[N].Color = ColorFromArgb(FileSystem.LineInput(5).Substring(6));
-                }
-
-                L = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
-                if (L > 0)
-                {
-                    modulePOLYS.Polys[N].NoOfChilds = L;
-                    modulePOLYS.Polys[N].Childs = new int[L + 1];
-                }
-                else if (L == 0)
-                {
-                    modulePOLYS.Polys[N].NoOfChilds = 0;
-                    modulePOLYS.Polys[N].Childs = new int[1];
-                }
-                else
-                {
-                    modulePOLYS.Polys[N].NoOfChilds = L - modulePOLYS.NoOfPolys;
-                    modulePOLYS.Polys[N].Childs = new int[1];
-                }
-
-                J = 8;
-                int loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
-                for (M = 1; M <= loopTo4; M++)
-                {
-                    if (M > 9)
-                        J = 9;
-                    if (M > 99)
-                        J = 10;
-                    if (M > 999)
-                        J = 11;
-                    if (M > 9999)
-                        J = 12;
-                    if (M > 99999)
-                        J = 13;
-                    if (M > 999999)
-                        J = 14;
-                    L = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                    modulePOLYS.Polys[N].Childs[M] = L + modulePOLYS.NoOfPolys;
-                }
-
-                modulePOLYS.Polys[N].NoOfPoints = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
-                if (string.IsNullOrEmpty(modulePOLYS.Polys[N].Name))
-                    modulePOLYS.Polys[N].Name = modulePOLYS.Polys[N].NoOfPoints.ToString() + "_Pts_Imported_Polygon";
-                modulePOLYS.Polys[N].GPoints = new modulePOINTS.GPoint[modulePOLYS.Polys[N].NoOfPoints + 1];
-                J = 6;
-                NL = -90;
-                SL = 90d;
-                EL = -180;
-                WL = 180d;
-                int loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
-                for (M = 1; M <= loopTo5; M++)
-                {
-                    if (M > 9)
-                        J = 7;
-                    if (M > 99)
-                        J = 8;
-                    if (M > 999)
-                        J = 9;
-                    if (M > 9999)
-                        J = 10;
-                    if (M > 99999)
-                        J = 11;
-                    if (M > 999999)
-                        J = 12;
-                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                    modulePOLYS.Polys[N].GPoints[M].lat = X;
-                    if (X < SL)
-                        SL = X;
-                    if (X > NL)
-                        NL = X;
-                    X = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                    modulePOLYS.Polys[N].GPoints[M].lon = X;
-                    if (X > EL)
-                        EL = X;
-                    if (X < WL)
-                        WL = X;
-                    modulePOLYS.Polys[N].GPoints[M].alt = Convert.ToDouble(FileSystem.LineInput(5).Substring(J - 1));
-                }
-
-                modulePOLYS.Polys[N].ELON = EL;
-                modulePOLYS.Polys[N].WLON = WL;
-                modulePOLYS.Polys[N].NLAT = NL;
-                modulePOLYS.Polys[N].SLAT = SL;
-            }
-
-            int P, PP, C, R, I;
-            string A;
-            int D; // to count duplicates
-            bool Flag;
-            int NN, LL;
-            NN = moduleCLASSES.NoOfLands;
-            if (Convert.ToBoolean(NoOfLLXYsX))
-            {
-                D = 0;
-                byte[,,] oldLLands = moduleCLASSES.LLands;
-                moduleCLASSES.LLands = new byte[257, 257, (moduleCLASSES.NoOfLLXYs + NoOfLLXYsX)];
-                if (oldLLands is object)
-                    for (int i1 = 0; i1 <= oldLLands.Length / oldLLands.GetLength(2) - 1; ++i1)
-                        Array.Copy(oldLLands, i1 * oldLLands.GetLength(2), moduleCLASSES.LLands, i1 * moduleCLASSES.LLands.GetLength(2), Math.Min(oldLLands.GetLength(2), moduleCLASSES.LLands.GetLength(2)));
-                int loopTo6 = NoOfLLXYsX;
-                for (P = 1; P <= loopTo6; P++)
-                {
-                    KEY = "[LC_LOD5." + P + "]";
-                    GoToThisKey(KEY);
-                    J = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(2));
-                    K = (int)Convert.ToDouble(FileSystem.LineInput(5).Substring(2));
-                    L = Convert.ToInt32(FileSystem.LineInput(5).Substring(10));
-                    N = moduleCLASSES.LL_XY[J, K].NoOfLWs;
-                    PP = moduleCLASSES.NoOfLLXYs + P - 1;
-                    Flag = false;
-                    if (N > 0)
+                    N = K + moduleLINES.NoOfLines;
+                    KEY = "[Line." + K.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    moduleLINES.Lines[N].Name = file.ReadLine().Substring(5);
+                    moduleLINES.Lines[N].Type = file.ReadLine().Substring(5);
+                    moduleLINES.Lines[N].Guid = file.ReadLine().Substring(5);
+                    if (Version == "SB301")
                     {
-                        D = D + 1;
-                        Flag = true;
-                        PP = moduleCLASSES.LL_XY[J, K].Pointer;
+                        moduleLINES.Lines[N].Color = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
                     }
                     else
                     {
-                        moduleCLASSES.LL_XY[J, K].Pointer = PP;
+                        moduleLINES.Lines[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
                     }
 
-                    LL = 0;
-                    int loopTo7 = L;
-                    for (M = 1; M <= loopTo7; M++)
+                    moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
+                    if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
+                        moduleLINES.Lines[N].Name = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_Imported_Line";
+                    moduleLINES.Lines[N].GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[N].NoOfPoints + 1];
+                    J = 6;
+                    NL = -90;
+                    SL = 90d;
+                    EL = -180;
+                    WL = 180d;
+                    int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
+                    for (M = 1; M <= loopTo2; M++)
                     {
-                        A = FileSystem.LineInput(5);
-                        C = (int)Convert.ToSingle(A.Substring(1, 3));
-                        R = (int)Convert.ToSingle(A.Substring(5, 3));
-                        I = (int)Convert.ToSingle(A.Substring(9));
-                        if (Flag)
-                        {
-                            if (moduleCLASSES.LLands[C, R, PP] > 0)
-                            {
-                                NN = NN - 1;
-                                LL = LL + 1;
-                            }
-                        }
-
-                        moduleCLASSES.LLands[C, R, PP] = moduleCLASSES.ILC[I];
-                        NN = NN + 1;
+                        if (M > 9)
+                            J = 7;
+                        if (M > 99)
+                            J = 8;
+                        if (M > 999)
+                            J = 9;
+                        if (M > 9999)
+                            J = 10;
+                        if (M > 99999)
+                            J = 11;
+                        if (M > 999999)
+                            J = 12;
+                        X = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        moduleLINES.Lines[N].GLPoints[M].lat = X;
+                        if (X < SL)
+                            SL = X;
+                        if (X > NL)
+                            NL = X;
+                        X = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        moduleLINES.Lines[N].GLPoints[M].lon = X;
+                        if (X > EL)
+                            EL = X;
+                        if (X < WL)
+                            WL = X;
+                        moduleLINES.Lines[N].GLPoints[M].alt = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        moduleLINES.Lines[N].GLPoints[M].wid = Convert.ToDouble(file.ReadLine().Substring(J - 1));
                     }
 
-                    moduleCLASSES.LL_XY[J, K].NoOfLWs = N + L - LL;
+                    moduleLINES.Lines[N].ELON = EL;
+                    moduleLINES.Lines[N].WLON = WL;
+                    moduleLINES.Lines[N].NLAT = NL;
+                    moduleLINES.Lines[N].SLAT = SL;
                 }
 
-                moduleCLASSES.NoOfLands = NN;
-                moduleCLASSES.NoOfLLXYs = moduleCLASSES.NoOfLLXYs + NoOfLLXYsX - D;
-                if (D > 0)
+                int loopTo3 = NoOfPolysX;
+                for (K = 1; K <= loopTo3; K++)
                 {
-                    byte[,,] oldLLands1 = moduleCLASSES.LLands;
-                    moduleCLASSES.LLands = new byte[257, 257, moduleCLASSES.NoOfLLXYs + NoOfLLXYsX - 1 - D + 1];
-                    if (oldLLands1 is object)
-                        for (int i2 = 0; i2 <= oldLLands1.Length / oldLLands1.GetLength(2) - 1; ++i2)
-                            Array.Copy(oldLLands1, i2 * oldLLands1.GetLength(2), moduleCLASSES.LLands, i2 * moduleCLASSES.LLands.GetLength(2), Math.Min(oldLLands1.GetLength(2), moduleCLASSES.LLands.GetLength(2)));
-                }
-            }
-
-            NN = moduleCLASSES.NoOfWaters;
-            if (Convert.ToBoolean(NoOfWWXYsX))
-            {
-                D = 0;
-                byte[,,] oldWWaters = moduleCLASSES.WWaters;
-                moduleCLASSES.WWaters = new byte[257, 257, (moduleCLASSES.NoOfWWXYs + NoOfWWXYsX)];
-                if (oldWWaters is object)
-                    for (int i3 = 0; i3 <= oldWWaters.Length / oldWWaters.GetLength(2) - 1; ++i3)
-                        Array.Copy(oldWWaters, i3 * oldWWaters.GetLength(2), moduleCLASSES.WWaters, i3 * moduleCLASSES.WWaters.GetLength(2), Math.Min(oldWWaters.GetLength(2), moduleCLASSES.WWaters.GetLength(2)));
-                int loopTo8 = NoOfWWXYsX;
-                for (P = 1; P <= loopTo8; P++)
-                {
-                    KEY = "[WC_LOD5." + P + "]";
-                    GoToThisKey(KEY);
-                    J = (int)Convert.ToSingle(FileSystem.LineInput(5).Substring(2));
-                    K = (int)Convert.ToSingle(FileSystem.LineInput(5).Substring(2));
-                    L = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
-                    N = moduleCLASSES.WW_XY[J, K].NoOfLWs;
-                    PP = moduleCLASSES.NoOfWWXYs + P - 1;
-                    Flag = false;
-                    if (N > 0)
+                    N = K + modulePOLYS.NoOfPolys;
+                    KEY = "[Poly." + K.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    modulePOLYS.Polys[N].Name = file.ReadLine().Substring(5);
+                    modulePOLYS.Polys[N].Type = file.ReadLine().Substring(5);
+                    modulePOLYS.Polys[N].Guid = file.ReadLine().Substring(5);
+                    if (Version == "SB301")
                     {
-                        D = D + 1;
-                        Flag = true;
-                        PP = moduleCLASSES.WW_XY[J, K].Pointer;
+                        modulePOLYS.Polys[N].Color = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
                     }
                     else
                     {
-                        moduleCLASSES.WW_XY[J, K].Pointer = PP;
+                        modulePOLYS.Polys[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
                     }
 
-                    LL = 0;
-                    int loopTo9 = L;
-                    for (M = 1; M <= loopTo9; M++)
+                    L = Convert.ToInt32(file.ReadLine().Substring(11));
+                    if (L > 0)
                     {
-                        A = FileSystem.LineInput(5);
-                        C = (int)Convert.ToSingle(A.Substring(1, 3));
-                        R = (int)Convert.ToSingle(A.Substring(5, 3));
-                        I = (int)Convert.ToSingle(A.Substring(9));
-                        if (Flag)
+                        modulePOLYS.Polys[N].NoOfChilds = L;
+                        modulePOLYS.Polys[N].Childs = new int[L + 1];
+                    }
+                    else if (L == 0)
+                    {
+                        modulePOLYS.Polys[N].NoOfChilds = 0;
+                        modulePOLYS.Polys[N].Childs = new int[1];
+                    }
+                    else
+                    {
+                        modulePOLYS.Polys[N].NoOfChilds = L - modulePOLYS.NoOfPolys;
+                        modulePOLYS.Polys[N].Childs = new int[1];
+                    }
+
+                    J = 8;
+                    int loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
+                    for (M = 1; M <= loopTo4; M++)
+                    {
+                        if (M > 9)
+                            J = 9;
+                        if (M > 99)
+                            J = 10;
+                        if (M > 999)
+                            J = 11;
+                        if (M > 9999)
+                            J = 12;
+                        if (M > 99999)
+                            J = 13;
+                        if (M > 999999)
+                            J = 14;
+                        L = (int)Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        modulePOLYS.Polys[N].Childs[M] = L + modulePOLYS.NoOfPolys;
+                    }
+
+                    modulePOLYS.Polys[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
+                    if (string.IsNullOrEmpty(modulePOLYS.Polys[N].Name))
+                        modulePOLYS.Polys[N].Name = modulePOLYS.Polys[N].NoOfPoints.ToString() + "_Pts_Imported_Polygon";
+                    modulePOLYS.Polys[N].GPoints = new modulePOINTS.GPoint[modulePOLYS.Polys[N].NoOfPoints + 1];
+                    J = 6;
+                    NL = -90;
+                    SL = 90d;
+                    EL = -180;
+                    WL = 180d;
+                    int loopTo5 = modulePOLYS.Polys[N].NoOfPoints;
+                    for (M = 1; M <= loopTo5; M++)
+                    {
+                        if (M > 9)
+                            J = 7;
+                        if (M > 99)
+                            J = 8;
+                        if (M > 999)
+                            J = 9;
+                        if (M > 9999)
+                            J = 10;
+                        if (M > 99999)
+                            J = 11;
+                        if (M > 999999)
+                            J = 12;
+                        X = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        modulePOLYS.Polys[N].GPoints[M].lat = X;
+                        if (X < SL)
+                            SL = X;
+                        if (X > NL)
+                            NL = X;
+                        X = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                        modulePOLYS.Polys[N].GPoints[M].lon = X;
+                        if (X > EL)
+                            EL = X;
+                        if (X < WL)
+                            WL = X;
+                        modulePOLYS.Polys[N].GPoints[M].alt = Convert.ToDouble(file.ReadLine().Substring(J - 1));
+                    }
+
+                    modulePOLYS.Polys[N].ELON = EL;
+                    modulePOLYS.Polys[N].WLON = WL;
+                    modulePOLYS.Polys[N].NLAT = NL;
+                    modulePOLYS.Polys[N].SLAT = SL;
+                }
+
+                int P, PP, C, R, I;
+                string A;
+                int D; // to count duplicates
+                bool Flag;
+                int NN, LL;
+                NN = moduleCLASSES.NoOfLands;
+                if (Convert.ToBoolean(NoOfLLXYsX))
+                {
+                    D = 0;
+                    byte[,,] oldLLands = moduleCLASSES.LLands;
+                    moduleCLASSES.LLands = new byte[257, 257, (moduleCLASSES.NoOfLLXYs + NoOfLLXYsX)];
+                    if (oldLLands is object)
+                        for (int i1 = 0; i1 <= oldLLands.Length / oldLLands.GetLength(2) - 1; ++i1)
+                            Array.Copy(oldLLands, i1 * oldLLands.GetLength(2), moduleCLASSES.LLands, i1 * moduleCLASSES.LLands.GetLength(2), Math.Min(oldLLands.GetLength(2), moduleCLASSES.LLands.GetLength(2)));
+                    int loopTo6 = NoOfLLXYsX;
+                    for (P = 1; P <= loopTo6; P++)
+                    {
+                        KEY = "[LC_LOD5." + P + "]";
+                        GoToThisKey(in file, KEY);
+                        J = (int)Convert.ToDouble(file.ReadLine().Substring(2));
+                        K = (int)Convert.ToDouble(file.ReadLine().Substring(2));
+                        L = Convert.ToInt32(file.ReadLine().Substring(10));
+                        N = moduleCLASSES.LL_XY[J, K].NoOfLWs;
+                        PP = moduleCLASSES.NoOfLLXYs + P - 1;
+                        Flag = false;
+                        if (N > 0)
                         {
-                            if (moduleCLASSES.WWaters[C, R, PP] > 0)
-                            {
-                                NN = NN - 1;
-                                LL = LL + 1;
-                            }
+                            D = D + 1;
+                            Flag = true;
+                            PP = moduleCLASSES.LL_XY[J, K].Pointer;
+                        }
+                        else
+                        {
+                            moduleCLASSES.LL_XY[J, K].Pointer = PP;
                         }
 
-                        moduleCLASSES.WWaters[C, R, PP] = moduleCLASSES.IWC[I];
-                        NN = NN + 1;
+                        LL = 0;
+                        int loopTo7 = L;
+                        for (M = 1; M <= loopTo7; M++)
+                        {
+                            A = file.ReadLine();
+                            C = (int)Convert.ToSingle(A.Substring(1, 3));
+                            R = (int)Convert.ToSingle(A.Substring(5, 3));
+                            I = (int)Convert.ToSingle(A.Substring(9));
+                            if (Flag)
+                            {
+                                if (moduleCLASSES.LLands[C, R, PP] > 0)
+                                {
+                                    NN = NN - 1;
+                                    LL = LL + 1;
+                                }
+                            }
+
+                            moduleCLASSES.LLands[C, R, PP] = moduleCLASSES.ILC[I];
+                            NN = NN + 1;
+                        }
+
+                        moduleCLASSES.LL_XY[J, K].NoOfLWs = N + L - LL;
                     }
 
-                    moduleCLASSES.WW_XY[J, K].NoOfLWs = N + L - LL;
+                    moduleCLASSES.NoOfLands = NN;
+                    moduleCLASSES.NoOfLLXYs = moduleCLASSES.NoOfLLXYs + NoOfLLXYsX - D;
+                    if (D > 0)
+                    {
+                        byte[,,] oldLLands1 = moduleCLASSES.LLands;
+                        moduleCLASSES.LLands = new byte[257, 257, moduleCLASSES.NoOfLLXYs + NoOfLLXYsX - 1 - D + 1];
+                        if (oldLLands1 is object)
+                            for (int i2 = 0; i2 <= oldLLands1.Length / oldLLands1.GetLength(2) - 1; ++i2)
+                                Array.Copy(oldLLands1, i2 * oldLLands1.GetLength(2), moduleCLASSES.LLands, i2 * moduleCLASSES.LLands.GetLength(2), Math.Min(oldLLands1.GetLength(2), moduleCLASSES.LLands.GetLength(2)));
+                    }
                 }
 
-                moduleCLASSES.NoOfWaters = NN;
-                moduleCLASSES.NoOfWWXYs = moduleCLASSES.NoOfWWXYs + NoOfWWXYsX - D;
-                if (D > 0)
+                NN = moduleCLASSES.NoOfWaters;
+                if (Convert.ToBoolean(NoOfWWXYsX))
                 {
-                    byte[,,] oldWWaters1 = moduleCLASSES.WWaters;
-                    moduleCLASSES.WWaters = new byte[257, 257, moduleCLASSES.NoOfWWXYs + NoOfWWXYsX - 1 - D + 1];
-                    if (oldWWaters1 is object)
-                        for (int i4 = 0; i4 <= oldWWaters1.Length / oldWWaters1.GetLength(2) - 1; ++i4)
-                            Array.Copy(oldWWaters1, i4 * oldWWaters1.GetLength(2), moduleCLASSES.WWaters, i4 * moduleCLASSES.WWaters.GetLength(2), Math.Min(oldWWaters1.GetLength(2), moduleCLASSES.WWaters.GetLength(2)));
+                    D = 0;
+                    byte[,,] oldWWaters = moduleCLASSES.WWaters;
+                    moduleCLASSES.WWaters = new byte[257, 257, (moduleCLASSES.NoOfWWXYs + NoOfWWXYsX)];
+                    if (oldWWaters is object)
+                        for (int i3 = 0; i3 <= oldWWaters.Length / oldWWaters.GetLength(2) - 1; ++i3)
+                            Array.Copy(oldWWaters, i3 * oldWWaters.GetLength(2), moduleCLASSES.WWaters, i3 * moduleCLASSES.WWaters.GetLength(2), Math.Min(oldWWaters.GetLength(2), moduleCLASSES.WWaters.GetLength(2)));
+                    int loopTo8 = NoOfWWXYsX;
+                    for (P = 1; P <= loopTo8; P++)
+                    {
+                        KEY = "[WC_LOD5." + P + "]";
+                        GoToThisKey(in file, KEY);
+                        J = (int)Convert.ToSingle(file.ReadLine().Substring(2));
+                        K = (int)Convert.ToSingle(file.ReadLine().Substring(2));
+                        L = Convert.ToInt32(file.ReadLine().Substring(11));
+                        N = moduleCLASSES.WW_XY[J, K].NoOfLWs;
+                        PP = moduleCLASSES.NoOfWWXYs + P - 1;
+                        Flag = false;
+                        if (N > 0)
+                        {
+                            D = D + 1;
+                            Flag = true;
+                            PP = moduleCLASSES.WW_XY[J, K].Pointer;
+                        }
+                        else
+                        {
+                            moduleCLASSES.WW_XY[J, K].Pointer = PP;
+                        }
+
+                        LL = 0;
+                        int loopTo9 = L;
+                        for (M = 1; M <= loopTo9; M++)
+                        {
+                            A = file.ReadLine();
+                            C = (int)Convert.ToSingle(A.Substring(1, 3));
+                            R = (int)Convert.ToSingle(A.Substring(5, 3));
+                            I = (int)Convert.ToSingle(A.Substring(9));
+                            if (Flag)
+                            {
+                                if (moduleCLASSES.WWaters[C, R, PP] > 0)
+                                {
+                                    NN = NN - 1;
+                                    LL = LL + 1;
+                                }
+                            }
+
+                            moduleCLASSES.WWaters[C, R, PP] = moduleCLASSES.IWC[I];
+                            NN = NN + 1;
+                        }
+
+                        moduleCLASSES.WW_XY[J, K].NoOfLWs = N + L - LL;
+                    }
+
+                    moduleCLASSES.NoOfWaters = NN;
+                    moduleCLASSES.NoOfWWXYs = moduleCLASSES.NoOfWWXYs + NoOfWWXYsX - D;
+                    if (D > 0)
+                    {
+                        byte[,,] oldWWaters1 = moduleCLASSES.WWaters;
+                        moduleCLASSES.WWaters = new byte[257, 257, moduleCLASSES.NoOfWWXYs + NoOfWWXYsX - 1 - D + 1];
+                        if (oldWWaters1 is object)
+                            for (int i4 = 0; i4 <= oldWWaters1.Length / oldWWaters1.GetLength(2) - 1; ++i4)
+                                Array.Copy(oldWWaters1, i4 * oldWWaters1.GetLength(2), moduleCLASSES.WWaters, i4 * moduleCLASSES.WWaters.GetLength(2), Math.Min(oldWWaters1.GetLength(2), moduleCLASSES.WWaters.GetLength(2)));
+                    }
                 }
-            }
 
-            int loopTo10 = NoOfExcludesX;
-            for (K = 1; K <= loopTo10; K++)
-            {
-                N = K + moduleEXCLUDES.NoOfExcludes;
-                KEY = "[Exclude." + K.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                moduleEXCLUDES.Excludes[N].Flag = Convert.ToInt32(FileSystem.LineInput(5).Substring(5));
-                moduleEXCLUDES.Excludes[N].NLAT = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
-                moduleEXCLUDES.Excludes[N].SLAT = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
-                moduleEXCLUDES.Excludes[N].ELON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
-                moduleEXCLUDES.Excludes[N].WLON = Convert.ToDouble(FileSystem.LineInput(5).Substring(5));
-            }
+                int loopTo10 = NoOfExcludesX;
+                for (K = 1; K <= loopTo10; K++)
+                {
+                    N = K + moduleEXCLUDES.NoOfExcludes;
+                    KEY = "[Exclude." + K.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    moduleEXCLUDES.Excludes[N].Flag = Convert.ToInt32(file.ReadLine().Substring(5));
+                    moduleEXCLUDES.Excludes[N].NLAT = Convert.ToDouble(file.ReadLine().Substring(5));
+                    moduleEXCLUDES.Excludes[N].SLAT = Convert.ToDouble(file.ReadLine().Substring(5));
+                    moduleEXCLUDES.Excludes[N].ELON = Convert.ToDouble(file.ReadLine().Substring(5));
+                    moduleEXCLUDES.Excludes[N].WLON = Convert.ToDouble(file.ReadLine().Substring(5));
+                }
 
-            int loopTo11 = NoOfObjectsX;
-            for (K = 1; K <= loopTo11; K++)
-            {
-                N = K + moduleOBJECTS.NoOfObjects;
-                KEY = "[Object." + K.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                moduleOBJECTS.Objects[N].Type = Convert.ToInt32(FileSystem.LineInput(5).Substring(5));
-                moduleOBJECTS.Objects[N].Description = FileSystem.LineInput(5).Substring(12);
-                moduleOBJECTS.Objects[N].Width = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].Length = Convert.ToSingle(FileSystem.LineInput(5).Substring(7));
-                moduleOBJECTS.Objects[N].Heading = Convert.ToSingle(FileSystem.LineInput(5).Substring(8));
-                moduleOBJECTS.Objects[N].Pitch = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].Bank = Convert.ToSingle(FileSystem.LineInput(5).Substring(5));
-                moduleOBJECTS.Objects[N].BiasX = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].BiasY = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].BiasZ = Convert.ToSingle(FileSystem.LineInput(5).Substring(6));
-                moduleOBJECTS.Objects[N].lat = Convert.ToDouble(FileSystem.LineInput(5).Substring(4));
-                moduleOBJECTS.Objects[N].lon = Convert.ToDouble(FileSystem.LineInput(5).Substring(4));
-                moduleOBJECTS.Objects[N].Altitude = Convert.ToSingle(FileSystem.LineInput(5).Substring(9));
-                moduleOBJECTS.Objects[N].AGL = Convert.ToInt32(FileSystem.LineInput(5).Substring(4));
-                moduleOBJECTS.Objects[N].Complexity = Convert.ToInt32(FileSystem.LineInput(5).Substring(11));
-                moduleOBJECTS.AddLatLonToObjects(N);
-            }
+                int loopTo11 = NoOfObjectsX;
+                for (K = 1; K <= loopTo11; K++)
+                {
+                    N = K + moduleOBJECTS.NoOfObjects;
+                    KEY = "[Object." + K.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    moduleOBJECTS.Objects[N].Type = Convert.ToInt32(file.ReadLine().Substring(5));
+                    moduleOBJECTS.Objects[N].Description = file.ReadLine().Substring(12);
+                    moduleOBJECTS.Objects[N].Width = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].Length = Convert.ToSingle(file.ReadLine().Substring(7));
+                    moduleOBJECTS.Objects[N].Heading = Convert.ToSingle(file.ReadLine().Substring(8));
+                    moduleOBJECTS.Objects[N].Pitch = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].Bank = Convert.ToSingle(file.ReadLine().Substring(5));
+                    moduleOBJECTS.Objects[N].BiasX = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].BiasY = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].BiasZ = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].lat = Convert.ToDouble(file.ReadLine().Substring(4));
+                    moduleOBJECTS.Objects[N].lon = Convert.ToDouble(file.ReadLine().Substring(4));
+                    moduleOBJECTS.Objects[N].Altitude = Convert.ToSingle(file.ReadLine().Substring(9));
+                    moduleOBJECTS.Objects[N].AGL = Convert.ToInt32(file.ReadLine().Substring(4));
+                    moduleOBJECTS.Objects[N].Complexity = Convert.ToInt32(file.ReadLine().Substring(11));
+                    moduleOBJECTS.AddLatLonToObjects(N);
+                }
 
-            int loopTo12 = NoOfLWCIsX;
-            for (K = 1; K <= loopTo12; K++)
-            {
-                N = K + moduleCLASSES.NoOfLWCIs;
-                KEY = "[LWCI." + K.ToString().Trim() + "]";
-                GoToThisKey(KEY);
-                moduleCLASSES.LWCIs[N].Text = FileSystem.LineInput(5).Substring(5);
-                moduleCLASSES.LWCIs[N].Color = ColorFromArgb(FileSystem.LineInput(5).Substring(6));
-            }
+                int loopTo12 = NoOfLWCIsX;
+                for (K = 1; K <= loopTo12; K++)
+                {
+                    N = K + moduleCLASSES.NoOfLWCIs;
+                    KEY = "[LWCI." + K.ToString().Trim() + "]";
+                    GoToThisKey(in file, KEY);
+                    moduleCLASSES.LWCIs[N].Text = file.ReadLine().Substring(5);
+                    moduleCLASSES.LWCIs[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
+                }
 
-            FileSystem.FileClose(5);
+            }
             moduleMAPS.NoOfMaps = moduleMAPS.NoOfMaps + NoOfMapsX;
             moduleLINES.NoOfLines = moduleLINES.NoOfLines + NoOfLinesX;
             modulePOLYS.NoOfPolys = modulePOLYS.NoOfPolys + NoOfPolysX;
@@ -2315,14 +2304,14 @@ namespace SBuilderXX
             My.MyProject.Forms.FrmStart.SetMouseIcon();
         }
 
-        private static void GoToThisKey(string KEY)
+        private static void GoToThisKey(in StreamReader file, string KEY)
         {
             string A;
             int NK, NA;
             NK = KEY.Length;
             do
             {
-                A = FileSystem.LineInput(5);
+                A = file.ReadLine();
                 NA = A.Length;
                 if (NA == NK)
                 {
@@ -2494,29 +2483,71 @@ namespace SBuilderXX
 
         private static void SetLegacyPolys()
         {
-            string A, B, C, File;
-            int Marker, N, K, J;
+            string A, B, C, Filename;
+            int K, J;
             LegacyPolys = new LegacyPoly[201];
-            File = My.MyProject.Application.Info.DirectoryPath + @"\tools\Polys.txt";
-            FileSystem.FileOpen(2, File, OpenMode.Input);
-            N = (int)FileSystem.LOF(2);
-            Marker = 0;
-            K = 1;
-            while (Marker < N)
+            Filename = My.MyProject.Application.Info.DirectoryPath + @"\tools\Polys.txt";
+            using (var file = File.OpenText(Filename))
             {
-                A = FileSystem.LineInput(2);
-                Marker = Marker + A.Length + 2;
-                B = (A.Length < 4) ? "" : A.Substring(0, 4).Trim().ToUpper();
-                if (B == "GUID")
+                K = 1;
+                while ((A = file.ReadLine()) != null)
                 {
-                    C = A.Substring(5).Trim();
-                    LegacyPolys[K].Guid = C;
-                }
+                    B = (A.Length < 4) ? "" : A.Substring(0, 4).Trim().ToUpper();
+                    if (B == "GUID")
+                    {
+                        C = A.Substring(5).Trim();
+                        LegacyPolys[K].Guid = C;
+                    }
 
-                if (B == "TYPE")
+                    if (B == "TYPE")
+                    {
+                        C = (A.Length < 8) ? A : A.Substring(5, 3).Trim();
+                        if (C == "LCP")
+                        {
+                            if (A.Length > 8)
+                            {
+                                try
+                                {
+                                    J = Convert.ToInt32(A.Substring(8).Trim());
+                                }
+                                catch (Exception)
+                                {
+                                    J = 0;
+                                }
+
+                                if (J > 0)
+                                {
+                                    LegacyPolys[K].LClass = J;
+                                    K = K + 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            NoOfLegacyPolys = K - 1;
+            Array.Resize(ref LegacyPolys, NoOfLegacyPolys + 1);
+        }
+
+        private static void SetLegacyLines()
+        {
+            string A, B, C, Filename;
+            int K, J;
+            LegacyLines = new LegacyLine[251];
+            Filename = My.MyProject.Application.Info.DirectoryPath + @"\tools\Lines.txt";
+            using (var file = File.OpenText(Filename))
+            {
+                K = 1;
+                while ((A = file.ReadLine()) != null)
                 {
-                    C = (A.Length < 8) ? A : A.Substring(5, 3).Trim();
-                    if (C == "LCP")
+                    B = (A.Length < 4) ? "" : A.Substring(0, 4).Trim().ToUpper();
+                    if (B == "GUID")
+                    {
+                        C = A.Substring(5).Trim();
+                        LegacyLines[K].Guid = C;
+                    }
+
+                    if (B == "TYPE")
                     {
                         if (A.Length > 8)
                         {
@@ -2531,64 +2562,14 @@ namespace SBuilderXX
 
                             if (J > 0)
                             {
-                                LegacyPolys[K].LClass = J;
+                                LegacyLines[K].Legacy = J;
+                                LegacyLines[K].Type = A.Substring(5, 3).Trim();
                                 K = K + 1;
                             }
                         }
                     }
                 }
             }
-
-            FileSystem.FileClose();
-            NoOfLegacyPolys = K - 1;
-            Array.Resize(ref LegacyPolys, NoOfLegacyPolys + 1);
-        }
-
-        private static void SetLegacyLines()
-        {
-            string A, B, C, File;
-            int Marker, N, K, J;
-            LegacyLines = new LegacyLine[251];
-            File = My.MyProject.Application.Info.DirectoryPath + @"\tools\Lines.txt";
-            FileSystem.FileOpen(2, File, OpenMode.Input);
-            N = (int)FileSystem.LOF(2);
-            Marker = 0;
-            K = 1;
-            while (Marker < N)
-            {
-                A = FileSystem.LineInput(2);
-                Marker = Marker + A.Length + 2;
-                B = (A.Length < 4) ? "" : A.Substring(0, 4).Trim().ToUpper();
-                if (B == "GUID")
-                {
-                    C = A.Substring(5).Trim();
-                    LegacyLines[K].Guid = C;
-                }
-
-                if (B == "TYPE")
-                {
-                    if (A.Length > 8)
-                    {
-                        try
-                        {
-                            J = Convert.ToInt32(A.Substring(8).Trim());
-                        }
-                        catch (Exception)
-                        {
-                            J = 0;
-                        }
-
-                        if (J > 0)
-                        {
-                            LegacyLines[K].Legacy = J;
-                            LegacyLines[K].Type = A.Substring(5, 3).Trim();
-                            K = K + 1;
-                        }
-                    }
-                }
-            }
-
-            FileSystem.FileClose();
             NoOfLegacyLines = K - 1;
             Array.Resize(ref LegacyLines, NoOfLegacyLines + 1);
         }

@@ -1,7 +1,7 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace SBuilderXX
 {
@@ -69,52 +69,52 @@ namespace SBuilderXX
 
             try
             {
-                FileSystem.FileOpen(2, FileName, OpenMode.Input);
-                for (N = 1; N <= 6; N++)
+                using (var file = File.OpenText(FileName))
                 {
-                    A = FileSystem.LineInput(2);
-                    A = A.Trim();
-                    B = (A.Length < 10) ? "" : A.Substring(0, 10);
-                    if (B == ";DEFAULTSC")
+                    for (N = 1; N <= 6; N++)
                     {
-                        A = A.Substring(14);
-                        A = A.Replace(",", ".");
-                        MacroScale = Convert.ToSingle(A);
-                    }
-
-                    if (B == ";DEFAULTRA")
-                    {
-                        J = A.IndexOf(" ", 14);
-                        if (J == -1)
+                        A = file.ReadLine();
+                        A = A.Trim();
+                        B = (A.Length < 10) ? "" : A.Substring(0, 10);
+                        if (B == ";DEFAULTSC")
                         {
-                            MacroRange = (int)(Convert.ToSingle(A.Substring(14)) / 1000f);
+                            A = A.Substring(14);
+                            A = A.Replace(",", ".");
+                            MacroScale = Convert.ToSingle(A);
                         }
-                        else
-                        {
-                            MacroRange = (int)(Convert.ToSingle(A.Substring(14, J - 14)) / 1000f);
-                        }
-                    }
 
-                    if (B == ";MACRODESC")
-                    {
-                        A = A.Substring(11);
-                        J = A.IndexOf(" by ");
-                        if (J == -1)
-                            continue;
-                        B = A.Substring(J + 4);
-                        A = A.Substring(0, J);
-                        J = A.LastIndexOf(" ");
-                        if (J == -1)
-                            continue;
-                        MacroWidth = Convert.ToSingle(A.Substring(J + 1));
-                        J = B.IndexOf(" ");
-                        if (J == -1)
-                            continue;
-                        MacroLength = Convert.ToSingle(B.Substring(0, J));
+                        if (B == ";DEFAULTRA")
+                        {
+                            J = A.IndexOf(" ", 14);
+                            if (J == -1)
+                            {
+                                MacroRange = (int)(Convert.ToSingle(A.Substring(14)) / 1000f);
+                            }
+                            else
+                            {
+                                MacroRange = (int)(Convert.ToSingle(A.Substring(14, J - 14)) / 1000f);
+                            }
+                        }
+
+                        if (B == ";MACRODESC")
+                        {
+                            A = A.Substring(11);
+                            J = A.IndexOf(" by ");
+                            if (J == -1)
+                                continue;
+                            B = A.Substring(J + 4);
+                            A = A.Substring(0, J);
+                            J = A.LastIndexOf(" ");
+                            if (J == -1)
+                                continue;
+                            MacroWidth = Convert.ToSingle(A.Substring(J + 1));
+                            J = B.IndexOf(" ");
+                            if (J == -1)
+                                continue;
+                            MacroLength = Convert.ToSingle(B.Substring(0, J));
+                        }
                     }
                 }
-
-                FileSystem.FileClose();
                 N = FileName.Length;
                 FileName = FileName.Substring(0, N - 3);
                 A = FileName + "bmp";
@@ -139,7 +139,6 @@ namespace SBuilderXX
             }
             catch (Exception)
             {
-                FileSystem.FileClose();
                 MessageBox.Show("Error on Show API routine!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
@@ -170,23 +169,24 @@ namespace SBuilderXX
 
             try
             {
-                FileSystem.FileOpen(2, FileName, OpenMode.Input);
-                A = FileSystem.LineInput(2);
-                B = "";
-                do
+                using (var file = File.OpenText(FileName))
                 {
-                    A = FileSystem.LineInput(2);
-                    N = A.IndexOf(@"\");
-                    if (N > -1)
-                        B = B + A.Substring(1, N - 1) + ",";
-                    if (N == -1)
+                    A = file.ReadLine();
+                    B = "";
+                    do
                     {
-                        B = B + A.Substring(1) + ",";
-                        break;
+                        A = file.ReadLine();
+                        N = A.IndexOf(@"\");
+                        if (N > -1)
+                            B = B + A.Substring(1, N - 1) + ",";
+                        if (N == -1)
+                        {
+                            B = B + A.Substring(1) + ",";
+                            break;
+                        }
                     }
+                    while (true);
                 }
-                while (true);
-                FileSystem.FileClose();
                 B = B.Replace(", ", ",");
                 B = B.Replace(" ,", ",");
                 B = B.Replace(",,", ",");
@@ -350,7 +350,6 @@ namespace SBuilderXX
             }
             catch (Exception)
             {
-                FileSystem.FileClose();
                 MessageBox.Show("Error on Show ASD routine!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
@@ -494,7 +493,6 @@ namespace SBuilderXX
 
         internal static void SetMacroObjects()
         {
-            string A, File;
             CheckAPIMacro();
             CheckASDMacro();
             if (MacroAPIIsOn == false & MacroASDIsOn == false)
@@ -505,81 +503,68 @@ namespace SBuilderXX
             // dot net - does Dir work?
             if (MacroAPIIsOn)
             {
-                File = MacroAPIPath + @"\*.api";
-                A = FileSystem.Dir(File);
-                do
+                foreach (string fname in Directory.EnumerateFiles(MacroAPIPath, "*.api"))
                 {
-                    if (string.IsNullOrEmpty(A))
-                        break;
-                    AddMacroAPIFile(A);
-                    A = FileSystem.Dir();
+                    AddMacroAPIFile(fname.Substring(MacroAPIPath.Length + 1));
                 }
-                while (true);
             }
 
             if (MacroASDIsOn)
             {
-                File = MacroASDPath + @"\*.scm";
-                A = FileSystem.Dir(File);
-                do
+                foreach (string fname in Directory.EnumerateFiles(MacroASDPath, "*.scm"))
                 {
-                    if (string.IsNullOrEmpty(A))
-                        break;
-                    AddMacroASDFile(A);
-                    A = FileSystem.Dir();
+                    AddMacroASDFile(fname.Substring(MacroASDPath.Length + 1));
                 }
-                while (true);
             }
         }
 
-        private static void AddMacroAPIFile(string File)
+        private static void AddMacroAPIFile(string argFile)
         {
             string B, A, FileName;
             int M = default, C = default, J, N;
-            FileName = MacroAPIPath + @"\" + File;
-            FileSystem.FileOpen(2, FileName, OpenMode.Input);
-
-            // line number 1
-            A = FileSystem.LineInput(2);
-            A = A.Replace("\t", "").Trim();
-            B = (A.Length < 9) ? "" : A.Substring(0, 9);
-            if (B == ";CATEGORY")
+            FileName = MacroAPIPath + @"\" + argFile;
+            using (var file = File.OpenText(FileName))
             {
-                B = A.Substring(10).Trim();
-            }
-            else
-            {
-                B = "API - General";
-            }
-
-            AddCatMacro(ref C, ref M, B); // by ref
-            MacroCategories[C].MacroObjects[M].File = File.ToUpper();
-            MacroCategories[C].MacroObjects[M].Name = File.ToUpper();
-            for (N = 1; N <= 5; N++)
-            {
-                A = A.Trim();
-                B = (A.Length < 10) ? "" : A.Substring(0, 10);
-                if (B == ";MACRODESC")
+                // line number 1
+                A = file.ReadLine();
+                A = A.Replace("\t", "").Trim();
+                B = (A.Length < 9) ? "" : A.Substring(0, 9);
+                if (B == ";CATEGORY")
                 {
-                    A = A.Substring(11).Trim();
-                    J = A.IndexOf(" by ");
-                    if (J != -1)
-                    {
-                        A = A.Substring(0, J);
-                        J = A.LastIndexOf(" ");
-                        if (J == -1)
-                            break;
-                        A = A.Substring(0, J);
-                    }
-
-                    if (!string.IsNullOrEmpty(A))
-                        MacroCategories[C].MacroObjects[M].Name = A;
+                    B = A.Substring(10).Trim();
+                }
+                else
+                {
+                    B = "API - General";
                 }
 
-                A = FileSystem.LineInput(2);
-            }
+                AddCatMacro(ref C, ref M, B); // by ref
+                MacroCategories[C].MacroObjects[M].File = argFile.ToUpper();
+                MacroCategories[C].MacroObjects[M].Name = argFile.ToUpper();
+                for (N = 1; N <= 5; N++)
+                {
+                    A = A.Trim();
+                    B = (A.Length < 10) ? "" : A.Substring(0, 10);
+                    if (B == ";MACRODESC")
+                    {
+                        A = A.Substring(11).Trim();
+                        J = A.IndexOf(" by ");
+                        if (J != -1)
+                        {
+                            A = A.Substring(0, J);
+                            J = A.LastIndexOf(" ");
+                            if (J == -1)
+                                break;
+                            A = A.Substring(0, J);
+                        }
 
-            FileSystem.FileClose();
+                        if (!string.IsNullOrEmpty(A))
+                            MacroCategories[C].MacroObjects[M].Name = A;
+                    }
+
+                    A = file.ReadLine();
+                }
+            }
         }
 
         private static void AddCatMacro(ref int Cat, ref int Macro, string Name)
@@ -627,7 +612,7 @@ namespace SBuilderXX
             }
         }
 
-        private static void AddMacroASDFile(string File)
+        private static void AddMacroASDFile(string argFile)
         {
             string B, A, FileName;
             int N1, N2;
@@ -635,59 +620,54 @@ namespace SBuilderXX
 
             try
             {
-                FileName = MacroASDPath + @"\" + File;
-                FileSystem.FileOpen(2, FileName, OpenMode.Input);
-
-                // line number 1
-                A = FileSystem.LineInput(2);
-                A = A.Trim();
-                if (A != ";ASDesign Compatible Macro")
-                    throw new Exception();
-                A = FileSystem.LineInput(2);
-                A = A + ",";
-                A = A.Replace(@"\", ",");
-                A = A.Replace(",,", ",");
-                A = A.Replace(" ,", ",");
-                N1 = A.IndexOf("Type=");
-                if (N1 == -1)
-                    throw new Exception();
-                N2 = A.IndexOf(",", N1);
-                B = A.Substring(N1 + 5, N2 - N1 - 4);
-                if (B == "Misc.")
+                FileName = MacroASDPath + @"\" + argFile;
+                using (var file = File.OpenText(FileName))
                 {
-                    B = "ASD - General";
-                }
+                    // line number 1
+                    A = file.ReadLine();
+                    A = A.Trim();
+                    if (A != ";ASDesign Compatible Macro")
+                        throw new Exception();
+                    A = file.ReadLine();
+                    A = A + ",";
+                    A = A.Replace(@"\", ",");
+                    A = A.Replace(",,", ",");
+                    A = A.Replace(" ,", ",");
+                    N1 = A.IndexOf("Type=");
+                    if (N1 == -1)
+                        throw new Exception();
+                    N2 = A.IndexOf(",", N1);
+                    B = A.Substring(N1 + 5, N2 - N1 - 4);
+                    if (B == "Misc.")
+                    {
+                        B = "ASD - General";
+                    }
 
-                B = B.Trim();
-                AddCatMacro(ref C, ref M, B); // by ref
-                MacroCategories[C].MacroObjects[M].File = File.ToUpper();
-                MacroCategories[C].MacroObjects[M].Name = File.ToUpper();
-                N1 = A.IndexOf("Name=");
-                if (N1 == -1)
-                    throw new Exception();
-                N2 = A.IndexOf(",", N1);
-                MacroCategories[C].MacroObjects[M].Name = A.Substring(N1 + 5, N2 - N1 - 4);
-                FileSystem.FileClose();
+                    B = B.Trim();
+                    AddCatMacro(ref C, ref M, B); // by ref
+                    MacroCategories[C].MacroObjects[M].File = argFile.ToUpper();
+                    MacroCategories[C].MacroObjects[M].Name = argFile.ToUpper();
+                    N1 = A.IndexOf("Name=");
+                    if (N1 == -1)
+                        throw new Exception();
+                    N2 = A.IndexOf(",", N1);
+                    MacroCategories[C].MacroObjects[M].Name = A.Substring(N1 + 5, N2 - N1 - 4);
+                }
                 return;
             }
             catch (Exception)
             {
-                FileSystem.FileClose();
             }
         }
 
         private static void CheckAPIMacro()
         {
-            MacroAPIIsOn = false;
-            if (!string.IsNullOrEmpty(FileSystem.Dir(MacroAPIPath + @"\*.api")))
-                MacroAPIIsOn = true;
+            MacroAPIIsOn = Directory.EnumerateFiles(MacroAPIPath, "*.api").Any();
         }
 
         private static void CheckASDMacro()
         {
-            MacroASDIsOn = false;
-            if (!string.IsNullOrEmpty(FileSystem.Dir(MacroASDPath + @"\*.scm")))
-                MacroASDIsOn = true;
+            MacroASDIsOn = Directory.EnumerateFiles(MacroASDPath, "*.scm").Any();
         }
 
         internal static void AnalyseAPIMacro(int N)

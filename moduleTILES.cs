@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -603,21 +602,22 @@ namespace SBuilderXX
                     return;
             }
 
-            FileSystem.FileOpen(3, FullFile, OpenMode.Output);
-            A = "[GEOGRAPHIC]";
-            FileSystem.PrintLine(3, A);
-            A = "Name=" + str;
-            FileSystem.PrintLine(3, A);
-            A = "North=" + NLat.ToString();
-            FileSystem.PrintLine(3, A);
-            A = "South=" + SLat.ToString();
-            FileSystem.PrintLine(3, A);
-            A = "West=" + WLon.ToString();
-            FileSystem.PrintLine(3, A);
-            A = "East=" + ELon.ToString();
-            FileSystem.PrintLine(3, A);
-            FileSystem.PrintLine(3);
-            FileSystem.FileClose(3);
+            using (StreamWriter file = new StreamWriter(FullFile))
+            {
+                A = "[GEOGRAPHIC]";
+                file.WriteLine(A);
+                A = "Name=" + str;
+                file.WriteLine(A);
+                A = "North=" + NLat.ToString();
+                file.WriteLine(A);
+                A = "South=" + SLat.ToString();
+                file.WriteLine(A);
+                A = "West=" + WLon.ToString();
+                file.WriteLine(A);
+                A = "East=" + ELon.ToString();
+                file.WriteLine(A);
+                file.WriteLine();
+            }
         }
 
         internal static void MakeBglPhoto(bool CopyBGLs)
@@ -783,77 +783,78 @@ namespace SBuilderXX
             if (File.Exists(BGLFile))
                 File.Delete(BGLFile);
             string Command = "resample" + @" work\" + BaseName + ".INF";
-            FileSystem.FileOpen(3, InfFile, OpenMode.Output);
-            FileSystem.PrintLine(3, "[Source]");
-            FileSystem.PrintLine(3, "   Type = MultiSource");
-            FileSystem.PrintLine(3, "   NumberOfSources = " + (NoOfSources + ExtraNoOfSources).ToString());
-            int loopTo = NoOfSources;
-            for (K = 1; K <= loopTo; K++)
+            using (StreamWriter file = new StreamWriter(InfFile))
             {
-                SourceFile = Path.GetFileName(SourceFiles[K]);
-                FileSystem.PrintLine(3);
-                FileSystem.PrintLine(3, "[Source" + K.ToString() + "]");
-                FileSystem.PrintLine(3, "   Type = BMP");
-                FileSystem.PrintLine(3, "   Layer = Imagery");
-                FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-                FileSystem.PrintLine(3, "   SourceFile = " + '"' + SourceFile + '"');
-                FileSystem.PrintLine(3, "   Variation = " + Variations[K]);
+                file.WriteLine("[Source]");
+                file.WriteLine("   Type = MultiSource");
+                file.WriteLine("   NumberOfSources = " + (NoOfSources + ExtraNoOfSources).ToString());
+                int loopTo = NoOfSources;
+                for (K = 1; K <= loopTo; K++)
+                {
+                    SourceFile = Path.GetFileName(SourceFiles[K]);
+                    file.WriteLine();
+                    file.WriteLine("[Source" + K.ToString() + "]");
+                    file.WriteLine("   Type = BMP");
+                    file.WriteLine("   Layer = Imagery");
+                    file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                    file.WriteLine("   SourceFile = " + '"' + SourceFile + '"');
+                    file.WriteLine("   Variation = " + Variations[K]);
+                    if (IsBlend)
+                        file.WriteLine("   Channel_BlendMask = " + (NoOfSources + 1).ToString() + ".0");
+                    if (IsWater & ExtraNoOfSources == 1)
+                        file.WriteLine("   Channel_LandWaterMask = " + (NoOfSources + 1).ToString() + ".0");
+                    if (IsWater & ExtraNoOfSources == 2)
+                        file.WriteLine("   Channel_LandWaterMask = " + (NoOfSources + 2).ToString() + ".0");
+                    file.WriteLine("   NullValue = 255,255,255");
+                    file.WriteLine("   SamplingMethod = Gaussian");
+                    file.WriteLine("   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                    file.WriteLine("   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                    file.WriteLine("   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                    file.WriteLine("   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
+                }
+
                 if (IsBlend)
-                    FileSystem.PrintLine(3, "   Channel_BlendMask = " + (NoOfSources + 1).ToString() + ".0");
-                if (IsWater & ExtraNoOfSources == 1)
-                    FileSystem.PrintLine(3, "   Channel_LandWaterMask = " + (NoOfSources + 1).ToString() + ".0");
-                if (IsWater & ExtraNoOfSources == 2)
-                    FileSystem.PrintLine(3, "   Channel_LandWaterMask = " + (NoOfSources + 2).ToString() + ".0");
-                FileSystem.PrintLine(3, "   NullValue = 255,255,255");
-                FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
-                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
-                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
-                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
-            }
+                {
+                    file.WriteLine();
+                    file.WriteLine("[Source" + (NoOfSources + 1).ToString() + "]");
+                    file.WriteLine("   Type = TIFF");
+                    file.WriteLine("   Layer = None");
+                    file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                    file.WriteLine("   SourceFile = " + '"' + BlendName + '"');
+                    file.WriteLine("   SamplingMethod = Gaussian");
+                    file.WriteLine("   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                    file.WriteLine("   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                    file.WriteLine("   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                    file.WriteLine("   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
+                }
 
-            if (IsBlend)
-            {
-                FileSystem.PrintLine(3);
-                FileSystem.PrintLine(3, "[Source" + (NoOfSources + 1).ToString() + "]");
-                FileSystem.PrintLine(3, "   Type = TIFF");
-                FileSystem.PrintLine(3, "   Layer = None");
-                FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-                FileSystem.PrintLine(3, "   SourceFile = " + '"' + BlendName + '"');
-                FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
-                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
-                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
-                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
-            }
+                if (IsWater)
+                {
+                    file.WriteLine();
+                    if (ExtraNoOfSources == 1)
+                        file.WriteLine("[Source" + (NoOfSources + 1).ToString() + "]");
+                    if (ExtraNoOfSources == 2)
+                        file.WriteLine("[Source" + (NoOfSources + 2).ToString() + "]");
+                    file.WriteLine("   Type = TIFF");
+                    file.WriteLine("   Layer = None");
+                    file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                    file.WriteLine("   SourceFile = " + '"' + WaterName + '"');
+                    file.WriteLine("   SamplingMethod = Gaussian");
+                    file.WriteLine("   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                    file.WriteLine("   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                    file.WriteLine("   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                    file.WriteLine("   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
+                }
 
-            if (IsWater)
-            {
-                FileSystem.PrintLine(3);
-                if (ExtraNoOfSources == 1)
-                    FileSystem.PrintLine(3, "[Source" + (NoOfSources + 1).ToString() + "]");
-                if (ExtraNoOfSources == 2)
-                    FileSystem.PrintLine(3, "[Source" + (NoOfSources + 2).ToString() + "]");
-                FileSystem.PrintLine(3, "   Type = TIFF");
-                FileSystem.PrintLine(3, "   Layer = None");
-                FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-                FileSystem.PrintLine(3, "   SourceFile = " + '"' + WaterName + '"');
-                FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
-                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
-                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
-                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
+                file.WriteLine();
+                file.WriteLine("[Destination]");
+                file.WriteLine("   DestDir = " + '"' + "." + '"');
+                file.WriteLine("   DestBaseFileName = " + '"' + BaseName + '"');
+                file.WriteLine("   DestFileType = BGL");
+                file.WriteLine("   LOD = Auto");
+                file.WriteLine("   UseSourceDimensions = 1");
+                file.WriteLine("   CompressionQuality = " + CompressionQuality.ToString());
             }
-
-            FileSystem.PrintLine(3);
-            FileSystem.PrintLine(3, "[Destination]");
-            FileSystem.PrintLine(3, "   DestDir = " + '"' + "." + '"');
-            FileSystem.PrintLine(3, "   DestBaseFileName = " + '"' + BaseName + '"');
-            FileSystem.PrintLine(3, "   DestFileType = BGL");
-            FileSystem.PrintLine(3, "   LOD = Auto");
-            FileSystem.PrintLine(3, "   UseSourceDimensions = 1");
-            FileSystem.PrintLine(3, "   CompressionQuality = " + CompressionQuality.ToString());
-            FileSystem.FileClose(3);
             Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             moduleMAIN.ExecCmd(Command);
             if (!CopyBGLs)
@@ -901,81 +902,82 @@ namespace SBuilderXX
             if (File.Exists(BGLFile))
                 File.Delete(BGLFile);
             string Command = "resample" + @" work\" + BaseName + ".INF";
-            FileSystem.FileOpen(3, InfFile, OpenMode.Output);
-            FileSystem.PrintLine(3, "[Source]");
-            if (NoOfSources == 2)
+            using (StreamWriter file = new StreamWriter(InfFile))
             {
-                FileSystem.PrintLine(3, "   Type = MultiSource");
-                FileSystem.PrintLine(3, "   NumberOfSources = 2");
-                FileSystem.PrintLine(3, "[Source1]");
-            }
-
-            if (NoOfSources == 3)
-            {
-                FileSystem.PrintLine(3, "   Type = MultiSource");
-                FileSystem.PrintLine(3, "   NumberOfSources = 3");
-                FileSystem.PrintLine(3, "[Source1]");
-            }
-
-            FileSystem.PrintLine(3, "   Type = BMP");
-            FileSystem.PrintLine(3, "   Layer = Imagery");
-            FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-            FileSystem.PrintLine(3, "   SourceFile = " + '"' + SourceName + '"');
-            FileSystem.PrintLine(3, "   Variation = All");
-            if (IsBlend)
-                FileSystem.PrintLine(3, "   Channel_BlendMask = 2.0");
-            if (IsWater & NoOfSources == 2)
-                FileSystem.PrintLine(3, "   Channel_LandWaterMask = 2.0");
-            if (IsWater & NoOfSources == 3)
-                FileSystem.PrintLine(3, "   Channel_LandWaterMask = 3.0");
-            FileSystem.PrintLine(3, "   NullValue = 255,255,255");
-            FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-            FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
-            FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
-            FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
-            FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
-            if (IsBlend)
-            {
-                FileSystem.PrintLine(3);
-                FileSystem.PrintLine(3, "[Source2]");
-                FileSystem.PrintLine(3, "   Type = TIFF");
-                FileSystem.PrintLine(3, "   Layer = None");
-                FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-                FileSystem.PrintLine(3, "   SourceFile = " + '"' + BlendName + '"');
-                FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
-                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
-                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
-                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
-            }
-
-            if (IsWater)
-            {
-                FileSystem.PrintLine(3);
+                file.WriteLine("[Source]");
                 if (NoOfSources == 2)
-                    FileSystem.PrintLine(3, "[Source2]");
-                if (NoOfSources == 3)
-                    FileSystem.PrintLine(3, "[Source3]");
-                FileSystem.PrintLine(3, "   Type = TIFF");
-                FileSystem.PrintLine(3, "   Layer = None");
-                FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-                FileSystem.PrintLine(3, "   SourceFile = " + '"' + WaterName + '"');
-                FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
-                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
-                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
-                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
-            }
+                {
+                    file.WriteLine("   Type = MultiSource");
+                    file.WriteLine("   NumberOfSources = 2");
+                    file.WriteLine("[Source1]");
+                }
 
-            FileSystem.PrintLine(3);
-            FileSystem.PrintLine(3, "[Destination]");
-            FileSystem.PrintLine(3, "   DestDir = " + '"' + "." + '"');
-            FileSystem.PrintLine(3, "   DestBaseFileName = " + '"' + BaseName + '"');
-            FileSystem.PrintLine(3, "   DestFileType = BGL");
-            FileSystem.PrintLine(3, "   LOD = Auto");
-            FileSystem.PrintLine(3, "   UseSourceDimensions = 1");
-            FileSystem.PrintLine(3, "   CompressionQuality = " + CompressionQuality.ToString());
-            FileSystem.FileClose(3);
+                if (NoOfSources == 3)
+                {
+                    file.WriteLine("   Type = MultiSource");
+                    file.WriteLine("   NumberOfSources = 3");
+                    file.WriteLine("[Source1]");
+                }
+
+                file.WriteLine("   Type = BMP");
+                file.WriteLine("   Layer = Imagery");
+                file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                file.WriteLine("   SourceFile = " + '"' + SourceName + '"');
+                file.WriteLine("   Variation = All");
+                if (IsBlend)
+                    file.WriteLine("   Channel_BlendMask = 2.0");
+                if (IsWater & NoOfSources == 2)
+                    file.WriteLine("   Channel_LandWaterMask = 2.0");
+                if (IsWater & NoOfSources == 3)
+                    file.WriteLine("   Channel_LandWaterMask = 3.0");
+                file.WriteLine("   NullValue = 255,255,255");
+                file.WriteLine("   SamplingMethod = Gaussian");
+                file.WriteLine("   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                file.WriteLine("   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                file.WriteLine("   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                file.WriteLine("   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
+                if (IsBlend)
+                {
+                    file.WriteLine();
+                    file.WriteLine("[Source2]");
+                    file.WriteLine("   Type = TIFF");
+                    file.WriteLine("   Layer = None");
+                    file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                    file.WriteLine("   SourceFile = " + '"' + BlendName + '"');
+                    file.WriteLine("   SamplingMethod = Gaussian");
+                    file.WriteLine("   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                    file.WriteLine("   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                    file.WriteLine("   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                    file.WriteLine("   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
+                }
+
+                if (IsWater)
+                {
+                    file.WriteLine();
+                    if (NoOfSources == 2)
+                        file.WriteLine("[Source2]");
+                    if (NoOfSources == 3)
+                        file.WriteLine("[Source3]");
+                    file.WriteLine("   Type = TIFF");
+                    file.WriteLine("   Layer = None");
+                    file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                    file.WriteLine("   SourceFile = " + '"' + WaterName + '"');
+                    file.WriteLine("   SamplingMethod = Gaussian");
+                    file.WriteLine("   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                    file.WriteLine("   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                    file.WriteLine("   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                    file.WriteLine("   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
+                }
+
+                file.WriteLine();
+                file.WriteLine("[Destination]");
+                file.WriteLine("   DestDir = " + '"' + "." + '"');
+                file.WriteLine("   DestBaseFileName = " + '"' + BaseName + '"');
+                file.WriteLine("   DestFileType = BGL");
+                file.WriteLine("   LOD = Auto");
+                file.WriteLine("   UseSourceDimensions = 1");
+                file.WriteLine("   CompressionQuality = " + CompressionQuality.ToString());
+            }
             Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             moduleMAIN.ExecCmd(Command);
             if (!CopyBGLs)
@@ -1017,43 +1019,44 @@ namespace SBuilderXX
             }
 
             string Command = "resample" + @" work\" + BaseName + ".INF";
-            FileSystem.FileOpen(3, InfFile, OpenMode.Output);
-            FileSystem.PrintLine(3, "[Source]");
-            FileSystem.PrintLine(3, "   Type = MultiSource");
-            FileSystem.PrintLine(3, "   NumberOfSources = 2");
-            FileSystem.PrintLine(3, "[Source1]");
-            FileSystem.PrintLine(3, "   Type = BMP");
-            FileSystem.PrintLine(3, "   Layer = Imagery");
-            FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-            FileSystem.PrintLine(3, "   SourceFile = " + '"' + BMPSourceName + '"');
-            FileSystem.PrintLine(3, "   Variation = All");
-            FileSystem.PrintLine(3, "   Channel_BlendMask = 2.0");
-            FileSystem.PrintLine(3, "   NullValue = 255,255,255");
-            FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-            FileSystem.PrintLine(3, "   ulyMap = " + MapBackground.NLAT);
-            FileSystem.PrintLine(3, "   ulxMap = " + MapBackground.WLON);
-            FileSystem.PrintLine(3, "   xDim = " + (MapBackground.ELON - MapBackground.WLON) / MapBackground.COLS);
-            FileSystem.PrintLine(3, "   yDim = " + (MapBackground.NLAT - MapBackground.SLAT) / MapBackground.ROWS);
-            FileSystem.PrintLine(3);
-            FileSystem.PrintLine(3, "[Source2]");
-            FileSystem.PrintLine(3, "   Type = TIFF");
-            FileSystem.PrintLine(3, "   Layer = None");
-            FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-            FileSystem.PrintLine(3, "   SourceFile = " + '"' + "blendmask.tif" + '"');
-            FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-            FileSystem.PrintLine(3, "   ulyMap = " + MapBackground.NLAT);
-            FileSystem.PrintLine(3, "   ulxMap = " + MapBackground.WLON);
-            FileSystem.PrintLine(3, "   xDim = " + (MapBackground.ELON - MapBackground.WLON) / MapBackground.COLS);
-            FileSystem.PrintLine(3, "   yDim = " + (MapBackground.NLAT - MapBackground.SLAT) / MapBackground.ROWS);
-            FileSystem.PrintLine(3);
-            FileSystem.PrintLine(3, "[Destination]");
-            FileSystem.PrintLine(3, "   DestDir = " + '"' + "." + '"');
-            FileSystem.PrintLine(3, "   DestBaseFileName = " + '"' + BaseName + '"');
-            FileSystem.PrintLine(3, "   DestFileType = BGL");
-            FileSystem.PrintLine(3, "   LOD = Auto");
-            FileSystem.PrintLine(3, "   UseSourceDimensions = 1");
-            FileSystem.PrintLine(3, "   CompressionQuality = " + CompressionQuality.ToString());
-            FileSystem.FileClose(3);
+            using (StreamWriter file = new StreamWriter(InfFile))
+            {
+                file.WriteLine("[Source]");
+                file.WriteLine("   Type = MultiSource");
+                file.WriteLine("   NumberOfSources = 2");
+                file.WriteLine("[Source1]");
+                file.WriteLine("   Type = BMP");
+                file.WriteLine("   Layer = Imagery");
+                file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                file.WriteLine("   SourceFile = " + '"' + BMPSourceName + '"');
+                file.WriteLine("   Variation = All");
+                file.WriteLine("   Channel_BlendMask = 2.0");
+                file.WriteLine("   NullValue = 255,255,255");
+                file.WriteLine("   SamplingMethod = Gaussian");
+                file.WriteLine("   ulyMap = " + MapBackground.NLAT);
+                file.WriteLine("   ulxMap = " + MapBackground.WLON);
+                file.WriteLine("   xDim = " + (MapBackground.ELON - MapBackground.WLON) / MapBackground.COLS);
+                file.WriteLine("   yDim = " + (MapBackground.NLAT - MapBackground.SLAT) / MapBackground.ROWS);
+                file.WriteLine();
+                file.WriteLine("[Source2]");
+                file.WriteLine("   Type = TIFF");
+                file.WriteLine("   Layer = None");
+                file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                file.WriteLine("   SourceFile = " + '"' + "blendmask.tif" + '"');
+                file.WriteLine("   SamplingMethod = Gaussian");
+                file.WriteLine("   ulyMap = " + MapBackground.NLAT);
+                file.WriteLine("   ulxMap = " + MapBackground.WLON);
+                file.WriteLine("   xDim = " + (MapBackground.ELON - MapBackground.WLON) / MapBackground.COLS);
+                file.WriteLine("   yDim = " + (MapBackground.NLAT - MapBackground.SLAT) / MapBackground.ROWS);
+                file.WriteLine();
+                file.WriteLine("[Destination]");
+                file.WriteLine("   DestDir = " + '"' + "." + '"');
+                file.WriteLine("   DestBaseFileName = " + '"' + BaseName + '"');
+                file.WriteLine("   DestFileType = BGL");
+                file.WriteLine("   LOD = Auto");
+                file.WriteLine("   UseSourceDimensions = 1");
+                file.WriteLine("   CompressionQuality = " + CompressionQuality.ToString());
+            }
             Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             moduleMAIN.ExecCmd(Command);
             if (!CopyBGLs)
@@ -1102,95 +1105,96 @@ namespace SBuilderXX
             if (File.Exists(BGLFile))
                 File.Delete(BGLFile);
             string Command = "resample" + @" work\" + BaseName + ".INF";
-            FileSystem.FileOpen(3, InfFile, OpenMode.Output);
-            FileSystem.PrintLine(3, "[Source]");
-            FileSystem.PrintLine(3, "   Type = MultiSource");
-            if (NoOfSources == 2)
-                FileSystem.PrintLine(3, "   NumberOfSources = 2");
-            if (NoOfSources == 3)
-                FileSystem.PrintLine(3, "   NumberOfSources = 3");
-            if (NoOfSources == 4)
-                FileSystem.PrintLine(3, "   NumberOfSources = 4");
-            FileSystem.PrintLine(3);
-            FileSystem.PrintLine(3, "[Source1]");
-            FileSystem.PrintLine(3, "   Type = BMP");
-            FileSystem.PrintLine(3, "   Layer = Imagery");
-            FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-            FileSystem.PrintLine(3, "   SourceFile = " + '"' + SourceDay + '"');
-            FileSystem.PrintLine(3, "   Variation = Day");
-            if (IsBlend)
-                FileSystem.PrintLine(3, "   Channel_BlendMask = 3.0");
-            if (IsWater & NoOfSources == 3)
-                FileSystem.PrintLine(3, "   Channel_LandWaterMask = 3.0");
-            if (IsWater & NoOfSources == 4)
-                FileSystem.PrintLine(3, "   Channel_LandWaterMask = 4.0");
-            FileSystem.PrintLine(3, "   NullValue = 255,255,255");
-            FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-            FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
-            FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
-            FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
-            FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
-            FileSystem.PrintLine(3);
-            FileSystem.PrintLine(3, "[Source2]");
-            FileSystem.PrintLine(3, "   Type = BMP");
-            FileSystem.PrintLine(3, "   Layer = Imagery");
-            FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-            FileSystem.PrintLine(3, "   SourceFile = " + '"' + SourceNight + '"');
-            FileSystem.PrintLine(3, "   Variation = Night");
-            if (IsBlend)
-                FileSystem.PrintLine(3, "   Channel_BlendMask = 3.0");
-            if (IsWater & NoOfSources == 3)
-                FileSystem.PrintLine(3, "   Channel_LandWaterMask = 3.0");
-            if (IsWater & NoOfSources == 4)
-                FileSystem.PrintLine(3, "   Channel_LandWaterMask = 4.0");
-            FileSystem.PrintLine(3, "   NullValue = 255,255,255");
-            FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-            FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
-            FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
-            FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
-            FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
-            if (IsBlend)
+            using (StreamWriter file = new StreamWriter(InfFile))
             {
-                FileSystem.PrintLine(3);
-                FileSystem.PrintLine(3, "[Source3]");
-                FileSystem.PrintLine(3, "   Type = TIFF");
-                FileSystem.PrintLine(3, "   Layer = None");
-                FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-                FileSystem.PrintLine(3, "   SourceFile = " + '"' + BlendName + '"');
-                FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
-                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
-                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
-                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
-            }
-
-            if (IsWater)
-            {
-                FileSystem.PrintLine(3);
+                file.WriteLine("[Source]");
+                file.WriteLine("   Type = MultiSource");
+                if (NoOfSources == 2)
+                    file.WriteLine("   NumberOfSources = 2");
                 if (NoOfSources == 3)
-                    FileSystem.PrintLine(3, "[Source3]");
+                    file.WriteLine("   NumberOfSources = 3");
                 if (NoOfSources == 4)
-                    FileSystem.PrintLine(3, "[Source4]");
-                FileSystem.PrintLine(3, "   Type = TIFF");
-                FileSystem.PrintLine(3, "   Layer = None");
-                FileSystem.PrintLine(3, "   SourceDir = " + '"' + "." + '"');
-                FileSystem.PrintLine(3, "   SourceFile = " + '"' + WaterName + '"');
-                FileSystem.PrintLine(3, "   SamplingMethod = Gaussian");
-                FileSystem.PrintLine(3, "   ulyMap = " + moduleMAPS.Maps[N].NLAT);
-                FileSystem.PrintLine(3, "   ulxMap = " + moduleMAPS.Maps[N].WLON);
-                FileSystem.PrintLine(3, "   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
-                FileSystem.PrintLine(3, "   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
-            }
+                    file.WriteLine("   NumberOfSources = 4");
+                file.WriteLine();
+                file.WriteLine("[Source1]");
+                file.WriteLine("   Type = BMP");
+                file.WriteLine("   Layer = Imagery");
+                file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                file.WriteLine("   SourceFile = " + '"' + SourceDay + '"');
+                file.WriteLine("   Variation = Day");
+                if (IsBlend)
+                    file.WriteLine("   Channel_BlendMask = 3.0");
+                if (IsWater & NoOfSources == 3)
+                    file.WriteLine("   Channel_LandWaterMask = 3.0");
+                if (IsWater & NoOfSources == 4)
+                    file.WriteLine("   Channel_LandWaterMask = 4.0");
+                file.WriteLine("   NullValue = 255,255,255");
+                file.WriteLine("   SamplingMethod = Gaussian");
+                file.WriteLine("   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                file.WriteLine("   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                file.WriteLine("   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                file.WriteLine("   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
+                file.WriteLine();
+                file.WriteLine("[Source2]");
+                file.WriteLine("   Type = BMP");
+                file.WriteLine("   Layer = Imagery");
+                file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                file.WriteLine("   SourceFile = " + '"' + SourceNight + '"');
+                file.WriteLine("   Variation = Night");
+                if (IsBlend)
+                    file.WriteLine("   Channel_BlendMask = 3.0");
+                if (IsWater & NoOfSources == 3)
+                    file.WriteLine("   Channel_LandWaterMask = 3.0");
+                if (IsWater & NoOfSources == 4)
+                    file.WriteLine("   Channel_LandWaterMask = 4.0");
+                file.WriteLine("   NullValue = 255,255,255");
+                file.WriteLine("   SamplingMethod = Gaussian");
+                file.WriteLine("   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                file.WriteLine("   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                file.WriteLine("   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                file.WriteLine("   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
+                if (IsBlend)
+                {
+                    file.WriteLine(3);
+                    file.WriteLine("[Source3]");
+                    file.WriteLine("   Type = TIFF");
+                    file.WriteLine("   Layer = None");
+                    file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                    file.WriteLine("   SourceFile = " + '"' + BlendName + '"');
+                    file.WriteLine("   SamplingMethod = Gaussian");
+                    file.WriteLine("   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                    file.WriteLine("   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                    file.WriteLine("   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                    file.WriteLine("   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
+                }
 
-            FileSystem.PrintLine(3);
-            FileSystem.PrintLine(3, "[Destination]");
-            FileSystem.PrintLine(3, "   DestDir = " + '"' + "." + '"');
-            FileSystem.PrintLine(3, "   DestBaseFileName = " + '"' + BaseName + '"');
-            FileSystem.PrintLine(3, "   DestFileType = BGL");
-            FileSystem.PrintLine(3, "   LOD = Auto");
-            FileSystem.PrintLine(3, "   UseSourceDimensions = 1");
-            FileSystem.PrintLine(3, "   CompressionQuality = " + CompressionQuality.ToString());
-            FileSystem.FileClose(3);
+                if (IsWater)
+                {
+                    file.WriteLine();
+                    if (NoOfSources == 3)
+                        file.WriteLine("[Source3]");
+                    if (NoOfSources == 4)
+                        file.WriteLine("[Source4]");
+                    file.WriteLine("   Type = TIFF");
+                    file.WriteLine("   Layer = None");
+                    file.WriteLine("   SourceDir = " + '"' + "." + '"');
+                    file.WriteLine("   SourceFile = " + '"' + WaterName + '"');
+                    file.WriteLine("   SamplingMethod = Gaussian");
+                    file.WriteLine("   ulyMap = " + moduleMAPS.Maps[N].NLAT);
+                    file.WriteLine("   ulxMap = " + moduleMAPS.Maps[N].WLON);
+                    file.WriteLine("   xDim = " + (moduleMAPS.Maps[N].ELON - moduleMAPS.Maps[N].WLON) / moduleMAPS.Maps[N].COLS);
+                    file.WriteLine("   yDim = " + (moduleMAPS.Maps[N].NLAT - moduleMAPS.Maps[N].SLAT) / moduleMAPS.Maps[N].ROWS);
+                }
+
+                file.WriteLine();
+                file.WriteLine("[Destination]");
+                file.WriteLine("   DestDir = " + '"' + "." + '"');
+                file.WriteLine("   DestBaseFileName = " + '"' + BaseName + '"');
+                file.WriteLine("   DestFileType = BGL");
+                file.WriteLine("   LOD = Auto");
+                file.WriteLine("   UseSourceDimensions = 1");
+                file.WriteLine("   CompressionQuality = " + CompressionQuality.ToString());
+            }
             Directory.SetCurrentDirectory(My.MyProject.Application.Info.DirectoryPath + @"\tools\");
             moduleMAIN.ExecCmd(Command);
             if (!CopyBGLs)

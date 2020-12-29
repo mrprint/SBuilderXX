@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -1471,51 +1470,51 @@ namespace SBuilderXX
             {
                 File1 = moduleMAIN.ProjectName + "_LOB1";
                 File1 = File1.Replace(" ", "_");
-                FileSystem.FileOpen(3, My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File1 + ".scm", OpenMode.Output);
-                A = "Header( 0x201 )";
-                FileSystem.PrintLine(3, A);
-                FileSystem.PrintLine(3);
-                A = "; FS9 Line(s) of Library Objects";
-                int loopTo3 = NoOfLines;
-                for (N = 1; N <= loopTo3; N++)
+                using (StreamWriter file = new StreamWriter(My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File1 + ".scm"))
                 {
-                    if (Lines[N].Selected)
+                    A = "Header( 0x201 )";
+                    file.WriteLine(A);
+                    file.WriteLine();
+                    A = "; FS9 Line(s) of Library Objects";
+                    int loopTo3 = NoOfLines;
+                    for (N = 1; N <= loopTo3; N++)
                     {
-                        if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "OBJ")
+                        if (Lines[N].Selected)
                         {
-                            if (Lines[N].Guid.Substring(0, 1) != "{")
+                            if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "OBJ")
                             {
-                                moduleOBJECTS.ObjLibID = Lines[N].Guid;
-                                A = Lines[N].Type.Substring(4);
-                                J = A.IndexOf("|");
-                                A = A.Substring(J + 1);
-                                J = A.IndexOf("|");
-                                A = A.Substring(J + 1);
-                                Complexity = Convert.ToInt32(A);
-                                int loopTo4 = Lines[N].NoOfPoints;
-                                for (K = 1; K <= loopTo4; K++)
+                                if (Lines[N].Guid.Substring(0, 1) != "{")
                                 {
-                                    Latitude = Lines[N].GLPoints[K].lat.ToString("0.00000000");
-                                    Longitude = Lines[N].GLPoints[K].lon.ToString("0.00000000");
-                                    Altitude = Lines[N].GLPoints[K].alt.ToString("0.000");
-                                    Heading = Lines[N].GLPoints[K].wid.ToString("0.000");
-                                    Latitude = Latitude.Replace(",", ".");
-                                    Longitude = Longitude.Replace(",", ".");
-                                    Altitude = Altitude.Replace(",", ".");
-                                    Heading = Heading.Replace(",", ".");
-                                    A = "; Line_of_Objects_#" + N.ToString() + Environment.NewLine;
-                                    A = A + "LibraryObject( " + Latitude + " " + Longitude + " " + Altitude + " 1";
-                                    FileSystem.PrintLine(3, A);
-                                    A = "               0 0 " + Heading + " " + Complexity.ToString() + " " + FixLibID(moduleOBJECTS.ObjLibID) + " 1 )";
-                                    FileSystem.PrintLine(3, A);
+                                    moduleOBJECTS.ObjLibID = Lines[N].Guid;
+                                    A = Lines[N].Type.Substring(4);
+                                    J = A.IndexOf("|");
+                                    A = A.Substring(J + 1);
+                                    J = A.IndexOf("|");
+                                    A = A.Substring(J + 1);
+                                    Complexity = Convert.ToInt32(A);
+                                    int loopTo4 = Lines[N].NoOfPoints;
+                                    for (K = 1; K <= loopTo4; K++)
+                                    {
+                                        Latitude = Lines[N].GLPoints[K].lat.ToString("0.00000000");
+                                        Longitude = Lines[N].GLPoints[K].lon.ToString("0.00000000");
+                                        Altitude = Lines[N].GLPoints[K].alt.ToString("0.000");
+                                        Heading = Lines[N].GLPoints[K].wid.ToString("0.000");
+                                        Latitude = Latitude.Replace(",", ".");
+                                        Longitude = Longitude.Replace(",", ".");
+                                        Altitude = Altitude.Replace(",", ".");
+                                        Heading = Heading.Replace(",", ".");
+                                        A = "; Line_of_Objects_#" + N.ToString() + Environment.NewLine;
+                                        A = A + "LibraryObject( " + Latitude + " " + Longitude + " " + Altitude + " 1";
+                                        file.WriteLine(A);
+                                        A = "               0 0 " + Heading + " " + Complexity.ToString() + " " + FixLibID(moduleOBJECTS.ObjLibID) + " 1 )";
+                                        file.WriteLine(A);
+                                    }
                                 }
                             }
                         }
                     }
+                    file.WriteLine();
                 }
-
-                FileSystem.PrintLine(3);
-                FileSystem.FileClose(3);
 
                 // delete BGL File1
                 BGLFile1 = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File1 + ".BGL";

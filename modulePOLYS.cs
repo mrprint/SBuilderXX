@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -2913,111 +2912,111 @@ namespace SBuilderXX
             string Longitude, Latitude, Altitude;
             myFile = moduleMAIN.ProjectName + "_TELL";
             myFile = myFile.Replace(" ", "_");
-            FileSystem.FileOpen(3, My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".scm", OpenMode.Output);
-            A = "Header( 1 ";
-            A = A + ((int)(H_NLat + 1.5d)).ToString() + " ";
-            A = A + ((int)(H_SLat - 0.5d)).ToString() + " ";
-            A = A + ((int)(H_ELon + 1.5d)).ToString() + " ";
-            A = A + ((int)(H_WLon - 0.5d)).ToString() + " )";
-            FileSystem.PrintLine(3, A);
-            A = "LatRange( ";
-            A = A + ((int)(H_SLat - 0.5d)).ToString() + " ";
-            A = A + ((int)(H_NLat + 1.5d)).ToString() + " )";
-            FileSystem.PrintLine(3, A);
-            FileSystem.PrintLine(3);
-            int loopTo = moduleLINES.NoOfLines;
-            for (N = 1; N <= loopTo; N++)
+            using (StreamWriter file = new StreamWriter(My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".scm"))
             {
-                if (moduleLINES.Lines[N].Selected)
+                A = "Header( 1 ";
+                A = A + ((int)(H_NLat + 1.5d)).ToString() + " ";
+                A = A + ((int)(H_SLat - 0.5d)).ToString() + " ";
+                A = A + ((int)(H_ELon + 1.5d)).ToString() + " ";
+                A = A + ((int)(H_WLon - 0.5d)).ToString() + " )";
+                file.WriteLine(A);
+                A = "LatRange( ";
+                A = A + ((int)(H_SLat - 0.5d)).ToString() + " ";
+                A = A + ((int)(H_NLat + 1.5d)).ToString() + " )";
+                file.WriteLine(A);
+                file.WriteLine();
+                int loopTo = moduleLINES.NoOfLines;
+                for (N = 1; N <= loopTo; N++)
                 {
-                    A = moduleLINES.Lines[N].Type;
-                    if (string.IsNullOrEmpty(A))
-                        continue;
-                    B = (A.Length < 5) ? "" : A.Substring(0, 5);
-                    if (B != "TEX|L")
-                        continue;
-                    A = A.Substring(10);   // TEX|Lying|   is removed
-                    M = A.IndexOf("|");
-                    PolyTex = A.Substring(0, M);
-                    A = A.Substring(M + 1);
-                    M = A.IndexOf("|");
-                    B = A.Substring(0, M);
-                    Priority = Convert.ToInt32(B).ToString();
-                    A = A.Substring(M + 1);
-                    M = A.IndexOf("|"); ;
-                    B = A.Substring(0, M);
-                    Visibility = Convert.ToInt32(B).ToString();
-                    A = A.Substring(M + 1);
-                    M = A.IndexOf("|");
-                    B = A.Substring(0, M);
-                    Complex = Convert.ToInt32(B).ToString();
-                    A = A.Substring(M + 1);
-                    M = A.IndexOf("|");
-                    B = A.Substring(0, M);
-                    Night = 0;
-                    if (Convert.ToBoolean(B))
-                        Night = 1;
-                    A = A.Substring(M + 1, 1);
-                    Tiled = 0;
-                    if (A == "T")
-                        Tiled = 1;
-                    MakePoly_0_FromLine(N);
-                    LZL = GetLatZLonTexPoly(0);
-                    AuxLatPoly = LZL.Y;
-                    Latitude = AuxLatPoly.ToString("0.00000000");
-                    AuxLonPoly = LZL.X;
-                    Longitude = AuxLonPoly.ToString("0.00000000");
-                    AuxZPoly = LZL.Z;
-                    Altitude = AuxZPoly.ToString("0.00000000");
-                    Latitude = Latitude.Replace(",", ".");
-                    Longitude = Longitude.Replace(",", ".");
-                    Altitude = Altitude.Replace(",", ".");
-                    Visibility = Visibility.Replace(",", ".");
-                    A = "; Textured Line #" + N + Environment.NewLine + Environment.NewLine;
-                    A = A + "Area( 5 ";
-                    A = A + Latitude + " " + Longitude + " 50 )";
-                    FileSystem.PrintLine(3, A);
-                    A = "IfVarRange( : 346 " + Complex + " 5 )";
-                    FileSystem.PrintLine(3, A);
-                    A = "LayerCall( :lcall " + Priority + " )";
-                    FileSystem.PrintLine(3, A);
-                    A = "Jump( : )" + Environment.NewLine + ":lcall";
-                    FileSystem.PrintLine(3, A);
-                    A = "RefPoint( 2 :return 1 " + Latitude + " " + Longitude;
-                    A = A + " E= " + Altitude + " v1= " + Visibility + " v2= " + GetV2(0) + " )";
-                    FileSystem.PrintLine(3, A);
-                    A = "BGLVersion( 0800 )";
-                    FileSystem.PrintLine(3, A);
-                    if (!string.IsNullOrEmpty(PolyTex))
+                    if (moduleLINES.Lines[N].Selected)
                     {
-                        A = FillTextureList(Night);
-                        FileSystem.PrintLine(3, A);
-                    }
+                        A = moduleLINES.Lines[N].Type;
+                        if (string.IsNullOrEmpty(A))
+                            continue;
+                        B = (A.Length < 5) ? "" : A.Substring(0, 5);
+                        if (B != "TEX|L")
+                            continue;
+                        A = A.Substring(10);   // TEX|Lying|   is removed
+                        M = A.IndexOf("|");
+                        PolyTex = A.Substring(0, M);
+                        A = A.Substring(M + 1);
+                        M = A.IndexOf("|");
+                        B = A.Substring(0, M);
+                        Priority = Convert.ToInt32(B).ToString();
+                        A = A.Substring(M + 1);
+                        M = A.IndexOf("|"); ;
+                        B = A.Substring(0, M);
+                        Visibility = Convert.ToInt32(B).ToString();
+                        A = A.Substring(M + 1);
+                        M = A.IndexOf("|");
+                        B = A.Substring(0, M);
+                        Complex = Convert.ToInt32(B).ToString();
+                        A = A.Substring(M + 1);
+                        M = A.IndexOf("|");
+                        B = A.Substring(0, M);
+                        Night = 0;
+                        if (Convert.ToBoolean(B))
+                            Night = 1;
+                        A = A.Substring(M + 1, 1);
+                        Tiled = 0;
+                        if (A == "T")
+                            Tiled = 1;
+                        MakePoly_0_FromLine(N);
+                        LZL = GetLatZLonTexPoly(0);
+                        AuxLatPoly = LZL.Y;
+                        Latitude = AuxLatPoly.ToString("0.00000000");
+                        AuxLonPoly = LZL.X;
+                        Longitude = AuxLonPoly.ToString("0.00000000");
+                        AuxZPoly = LZL.Z;
+                        Altitude = AuxZPoly.ToString("0.00000000");
+                        Latitude = Latitude.Replace(",", ".");
+                        Longitude = Longitude.Replace(",", ".");
+                        Altitude = Altitude.Replace(",", ".");
+                        Visibility = Visibility.Replace(",", ".");
+                        A = "; Textured Line #" + N + Environment.NewLine + Environment.NewLine;
+                        A = A + "Area( 5 ";
+                        A = A + Latitude + " " + Longitude + " 50 )";
+                        file.WriteLine(A);
+                        A = "IfVarRange( : 346 " + Complex + " 5 )";
+                        file.WriteLine(A);
+                        A = "LayerCall( :lcall " + Priority + " )";
+                        file.WriteLine(A);
+                        A = "Jump( : )" + Environment.NewLine + ":lcall";
+                        file.WriteLine(A);
+                        A = "RefPoint( 2 :return 1 " + Latitude + " " + Longitude;
+                        A = A + " E= " + Altitude + " v1= " + Visibility + " v2= " + GetV2(0) + " )";
+                        file.WriteLine(A);
+                        A = "BGLVersion( 0800 )";
+                        file.WriteLine(A);
+                        if (!string.IsNullOrEmpty(PolyTex))
+                        {
+                            A = FillTextureList(Night);
+                            file.WriteLine(A);
+                        }
 
-                    A = FillMaterialList(0);
-                    FileSystem.PrintLine(3, A);
-                    A = FillVextexList_0(N, Tiled);
-                    FileSystem.PrintLine(3, A);
-                    if (!string.IsNullOrEmpty(PolyTex))
-                    {
-                        A = "SetMaterial( 0 0 )";
-                    }
-                    else
-                    {
-                        A = "SetMaterial( 0 -1 )";
-                    }
+                        A = FillMaterialList(0);
+                        file.WriteLine(A);
+                        A = FillVextexList_0(N, Tiled);
+                        file.WriteLine(A);
+                        if (!string.IsNullOrEmpty(PolyTex))
+                        {
+                            A = "SetMaterial( 0 0 )";
+                        }
+                        else
+                        {
+                            A = "SetMaterial( 0 -1 )";
+                        }
 
-                    FileSystem.PrintLine(3, A);
-                    A = FillDrawTriList_0(N);
-                    FileSystem.PrintLine(3, A);
-                    A = "EndVersion";
-                    FileSystem.PrintLine(3, A);
-                    A = ":return" + Environment.NewLine + "Return" + Environment.NewLine + "EndA" + Environment.NewLine;
-                    FileSystem.PrintLine(3, A);
+                        file.WriteLine(A);
+                        A = FillDrawTriList_0(N);
+                        file.WriteLine(A);
+                        A = "EndVersion";
+                        file.WriteLine(A);
+                        A = ":return" + Environment.NewLine + "Return" + Environment.NewLine + "EndA" + Environment.NewLine;
+                        file.WriteLine(A);
+                    }
                 }
             }
-
-            FileSystem.FileClose(3);
 
             // delete BGL file
             A = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".BGL";
@@ -3407,107 +3406,107 @@ namespace SBuilderXX
 
             myFile = moduleMAIN.ProjectName + "_TEXP";
             myFile = myFile.Replace(" ", "_");
-            FileSystem.FileOpen(3, My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".scm", OpenMode.Output);
-            a = "Header( 1 ";
-            a = a + (int)(H_NLat + 1.5d) + " ";
-            a = a + (int)(H_SLat - 0.5d) + " ";
-            a = a + (int)(H_ELon + 1.5d) + " ";
-            a = a + (int)(H_WLon - 0.5d) + " )";
-            FileSystem.PrintLine(3, a);
-            a = "LatRange( ";
-            a = a + (int)(H_SLat - 0.5d) + " ";
-            a = a + (int)(H_NLat + 1.5d) + " )";
-            FileSystem.PrintLine(3, a);
-            FileSystem.PrintLine(3);
-            int loopTo1 = NoOfPolys;
-            for (N = 1; N <= loopTo1; N++)
+            using (StreamWriter file = new StreamWriter(My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".scm"))
             {
-                if (Polys[N].Selected)
+                a = "Header( 1 ";
+                a = a + (int)(H_NLat + 1.5d) + " ";
+                a = a + (int)(H_SLat - 0.5d) + " ";
+                a = a + (int)(H_ELon + 1.5d) + " ";
+                a = a + (int)(H_WLon - 0.5d) + " )";
+                file.WriteLine(a);
+                a = "LatRange( ";
+                a = a + (int)(H_SLat - 0.5d) + " ";
+                a = a + (int)(H_NLat + 1.5d) + " )";
+                file.WriteLine(a);
+                file.WriteLine();
+                int loopTo1 = NoOfPolys;
+                for (N = 1; N <= loopTo1; N++)
                 {
-                    a = Polys[N].Type;
-                    if (string.IsNullOrEmpty(a))
-                        continue;
-                    b = (a.Length < 3) ? "" : a.Substring(0, 3);
-                    if (b != "TEX")
-                        continue;
-                    M = a.IndexOf("//");
-                    b = a.Substring(0, M);
-                    // b = "TEX"
-
-                    a = a.Substring(M + 2);
-                    M = a.IndexOf("//");
-                    PolyTex = a.Substring(0, M);
-                    a = a.Substring(M + 2);
-                    M = a.IndexOf("//");
-                    Priority = a.Substring(0, M);
-                    a = a.Substring(M + 2);
-                    M = a.IndexOf("//");
-                    TileX = Convert.ToInt32(a.Substring(0, M));
-                    a = a.Substring(M + 2);
-                    M = a.IndexOf("//");
-                    TileY = Convert.ToInt32(a.Substring(0, M));
-                    a = a.Substring(M + 2);
-                    M = a.IndexOf("//");
-                    Visibility = a.Substring(0, M);
-                    a = a.Substring(M + 2);
-                    M = a.IndexOf("//");
-                    Night = Convert.ToInt32(a.Substring(0, M));
-                    PolyTexString = a.Substring(M + 2);
-                    MakePolyTexString(N, false);
-                    LZL = GetLatZLonTexPoly(N);
-                    AuxLatPoly = LZL.Y;
-                    Latitude = AuxLatPoly.ToString("0.00000000");
-                    AuxLonPoly = LZL.X;
-                    Longitude = AuxLonPoly.ToString("0.00000000");
-                    AuxZPoly = LZL.Z;
-                    Altitude = AuxZPoly.ToString("0.00000000");
-                    Latitude = Latitude.Replace(",", ".");
-                    Longitude = Longitude.Replace(",", ".");
-                    Altitude = Altitude.Replace(",", ".");
-                    Visibility = Visibility.Replace(",", ".");
-                    a = "; Textured Poly #" + N + Environment.NewLine + Environment.NewLine;
-                    a = a + "Area( 5 ";
-                    a = a + Latitude + " " + Longitude + " 50 )";
-                    FileSystem.PrintLine(3, a);
-                    a = "LayerCall( :lcall " + Priority + " )";
-                    FileSystem.PrintLine(3, a);
-                    a = "Jump( : )" + Environment.NewLine + ":lcall";
-                    FileSystem.PrintLine(3, a);
-                    a = "RefPoint( 2 :return 1 " + Latitude + " " + Longitude;
-                    a = a + " E= " + Altitude + " v1= " + Visibility + " v2= " + GetV2(N) + " )";
-                    FileSystem.PrintLine(3, a);
-                    a = "BGLVersion( 0800 )";
-                    FileSystem.PrintLine(3, a);
-                    if (!string.IsNullOrEmpty(PolyTex))
+                    if (Polys[N].Selected)
                     {
-                        a = FillTextureList(Night);
-                        FileSystem.PrintLine(3, a);
-                    }
+                        a = Polys[N].Type;
+                        if (string.IsNullOrEmpty(a))
+                            continue;
+                        b = (a.Length < 3) ? "" : a.Substring(0, 3);
+                        if (b != "TEX")
+                            continue;
+                        M = a.IndexOf("//");
+                        b = a.Substring(0, M);
+                        // b = "TEX"
 
-                    a = FillMaterialList(N);
-                    FileSystem.PrintLine(3, a);
-                    a = FillVextexList(N, TileX, TileY);
-                    FileSystem.PrintLine(3, a);
-                    if (!string.IsNullOrEmpty(PolyTex))
-                    {
-                        a = "SetMaterial( 0 0 )";
-                    }
-                    else
-                    {
-                        a = "SetMaterial( 0 -1 )";
-                    }
+                        a = a.Substring(M + 2);
+                        M = a.IndexOf("//");
+                        PolyTex = a.Substring(0, M);
+                        a = a.Substring(M + 2);
+                        M = a.IndexOf("//");
+                        Priority = a.Substring(0, M);
+                        a = a.Substring(M + 2);
+                        M = a.IndexOf("//");
+                        TileX = Convert.ToInt32(a.Substring(0, M));
+                        a = a.Substring(M + 2);
+                        M = a.IndexOf("//");
+                        TileY = Convert.ToInt32(a.Substring(0, M));
+                        a = a.Substring(M + 2);
+                        M = a.IndexOf("//");
+                        Visibility = a.Substring(0, M);
+                        a = a.Substring(M + 2);
+                        M = a.IndexOf("//");
+                        Night = Convert.ToInt32(a.Substring(0, M));
+                        PolyTexString = a.Substring(M + 2);
+                        MakePolyTexString(N, false);
+                        LZL = GetLatZLonTexPoly(N);
+                        AuxLatPoly = LZL.Y;
+                        Latitude = AuxLatPoly.ToString("0.00000000");
+                        AuxLonPoly = LZL.X;
+                        Longitude = AuxLonPoly.ToString("0.00000000");
+                        AuxZPoly = LZL.Z;
+                        Altitude = AuxZPoly.ToString("0.00000000");
+                        Latitude = Latitude.Replace(",", ".");
+                        Longitude = Longitude.Replace(",", ".");
+                        Altitude = Altitude.Replace(",", ".");
+                        Visibility = Visibility.Replace(",", ".");
+                        a = "; Textured Poly #" + N + Environment.NewLine + Environment.NewLine;
+                        a = a + "Area( 5 ";
+                        a = a + Latitude + " " + Longitude + " 50 )";
+                        file.WriteLine(a);
+                        a = "LayerCall( :lcall " + Priority + " )";
+                        file.WriteLine(a);
+                        a = "Jump( : )" + Environment.NewLine + ":lcall";
+                        file.WriteLine(a);
+                        a = "RefPoint( 2 :return 1 " + Latitude + " " + Longitude;
+                        a = a + " E= " + Altitude + " v1= " + Visibility + " v2= " + GetV2(N) + " )";
+                        file.WriteLine(a);
+                        a = "BGLVersion( 0800 )";
+                        file.WriteLine(a);
+                        if (!string.IsNullOrEmpty(PolyTex))
+                        {
+                            a = FillTextureList(Night);
+                            file.WriteLine(a);
+                        }
 
-                    FileSystem.PrintLine(3, a);
-                    a = FillDrawTriList(N);
-                    FileSystem.PrintLine(3, a);
-                    a = "EndVersion";
-                    FileSystem.PrintLine(3, a);
-                    a = ":return" + Environment.NewLine + "Return" + Environment.NewLine + "EndA" + Environment.NewLine;
-                    FileSystem.PrintLine(3, a);
+                        a = FillMaterialList(N);
+                        file.WriteLine(a);
+                        a = FillVextexList(N, TileX, TileY);
+                        file.WriteLine(a);
+                        if (!string.IsNullOrEmpty(PolyTex))
+                        {
+                            a = "SetMaterial( 0 0 )";
+                        }
+                        else
+                        {
+                            a = "SetMaterial( 0 -1 )";
+                        }
+
+                        file.WriteLine(a);
+                        a = FillDrawTriList(N);
+                        file.WriteLine(a);
+                        a = "EndVersion";
+                        file.WriteLine(a);
+                        a = ":return" + Environment.NewLine + "Return" + Environment.NewLine + "EndA" + Environment.NewLine;
+                        file.WriteLine(a);
+                    }
                 }
             }
-
-            FileSystem.FileClose(3);
 
             // delete BGL file
             a = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".BGL";

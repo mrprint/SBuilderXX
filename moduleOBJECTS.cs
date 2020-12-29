@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic;
+﻿//using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +7,8 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using VB = Microsoft.VisualBasic;
+using System.Linq;
+//using VB = Microsoft.VisualBasic;
 
 namespace SBuilderXX
 {
@@ -1422,38 +1423,32 @@ namespace SBuilderXX
         {
             try
             {
-                string a, b, File;
+                string a, b, FileName;
                 CheckLibObjects();
                 if (LibObjectsIsOn == false)
                     return;
-                int Marker, N;
+                int N;
                 LibCategories = new LibCategory[501];
                 string[] IncFiles = new string[501];
                 NoOfLibCategories = 0;
                 int NoIncFiles = 0;
-                File = LibObjectsPath + @"\objects.txt";
-                FileSystem.FileOpen(2, File, OpenMode.Input);
-                N = (int)FileSystem.LOF(2);
-                Marker = 0;
-                while (Marker < N)
+                FileName = LibObjectsPath + @"\objects.txt";
+                using (var file = File.OpenText(FileName))
                 {
-                    a = FileSystem.LineInput(2);
-                    Marker = Marker + a.Length + 2;
-                    a = a.Trim();
-                    if (string.IsNullOrEmpty(a))
-                        continue;
-                    b = (a.Length < 8) ? "" : a.Substring(0, 8);
-                    if (b == "include=")
+                    while ((a = file.ReadLine()) != null)
                     {
-                        NoIncFiles = NoIncFiles + 1;
-                        IncFiles[NoIncFiles] = a.Substring(8);
+                        a = a.Trim();
+                        if (string.IsNullOrEmpty(a))
+                            continue;
+                        b = (a.Length < 8) ? "" : a.Substring(0, 8);
+                        if (b == "include=")
+                        {
+                            NoIncFiles = NoIncFiles + 1;
+                            IncFiles[NoIncFiles] = a.Substring(8);
+                        }
                     }
                 }
-
-                FileSystem.FileClose();
-                System.Collections.ObjectModel.ReadOnlyCollection<string> counter;
-                counter = My.MyProject.Computer.FileSystem.GetFiles(LibObjectsPath + @"\NewJpegs");
-                NoOfJpegs = counter.Count;
+                NoOfJpegs = Directory.EnumerateFiles(LibObjectsPath + @"\NewJpegs").Count();
                 int loopTo = NoIncFiles;
                 for (N = 1; N <= loopTo; N++)
                     SetLibObjectFile(IncFiles[N]);
@@ -1465,15 +1460,17 @@ namespace SBuilderXX
                 // copy New to Old jpegs
                 a = LibObjectsPath + @"\NewJpegs";
                 b = LibObjectsPath + @"\BackUps\";
-                foreach (string foundFile in My.MyProject.Computer.FileSystem.GetFiles(a, VB.FileIO.SearchOption.SearchAllSubDirectories, "*.*"))
+                foreach (string foundFile in Directory.EnumerateFiles(a, "*.*", SearchOption.AllDirectories))
                 {
                     FileInfo foundFileInfo = new FileInfo(foundFile);
-                    My.MyProject.Computer.FileSystem.MoveFile(foundFile, b + foundFileInfo.Name, true);
+                    string c = b + foundFileInfo.Name;
+                    if (File.Exists(c))
+                        File.Delete(c);
+                    File.Move(foundFile, c);
                 }
             }
             catch (Exception)
             {
-                FileSystem.FileClose();
                 string s = "There was an error related to <objects.txt>. Library Objects were turned off.";
                 MessageBox.Show(s, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 LibObjectsIsOn = false;
@@ -1482,8 +1479,7 @@ namespace SBuilderXX
 
         private static void SetLibObjectFile(string ThisFile)
         {
-            string a, b, c, File;
-            int Marker, N;
+            string a, b, c, FileName;
             int J;
             int M1, M2;
             string LibCatFolder = "";
@@ -1492,76 +1488,68 @@ namespace SBuilderXX
 
             try
             {
-                File = LibObjectsPath + @"\" + ThisFile;
-                FileSystem.FileOpen(2, File, OpenMode.Input);
-                N = (int)FileSystem.LOF(2);
-                Marker = 0;
-                J = NoOfLibCategories;  // for the categories
-                while (Marker < N)
+                FileName = LibObjectsPath + @"\" + ThisFile;
+                using (var file = File.OpenText(FileName))
                 {
-                    a = FileSystem.LineInput(2);
-                    Marker = Marker + a.Length + 2;
-                    a = a.Trim();
-                    if (string.IsNullOrEmpty(a))
-                        goto next_1;
-                    b = a.Substring(0, 1);
-                    if (b == "[")
+                    J = NoOfLibCategories;  // for the categories
+                    while ((a = file.ReadLine()) != null)
                     {
-                        M2 = a.Length - 2;
-                        J = J + 1;
-                        LibCategories[J].Name = a.Substring(1, M2);
-                        LibCategories[J].Objs = new List<LibObject>();
-                        LibCatFolder = Path.GetFileNameWithoutExtension(LibCategories[J].Name);
-                        LibCatFolder = LibObjectsPath + @"\" + LibCatFolder;
-                    }
-                    else if (b != ";" & b != "i")
-                    {
-                        M1 = 0;
-                        M2 = a.IndexOf(" ", M1);
-                        myLibObj.ID = a.Substring(M1, M2 - M1);
-                        M1 = M2 + 1;
-                        M2 = a.IndexOf(" ", M1);
-                        myLibObj.Type = Convert.ToInt32(a.Substring(M1, M2 - M1));
-                        M1 = M2 + 1;
-                        M2 = a.IndexOf(" ", M1);
-                        myLibObj.Width = Convert.ToSingle(a.Substring(M1, M2 - M1));
-                        M1 = M2 + 1;
-                        M2 = a.IndexOf(" ", M1);
-                        myLibObj.Length = Convert.ToSingle(a.Substring(M1, M2 - M1));
-                        M1 = M2 + 1;
-                        M2 = a.IndexOf(" ", M1);
-                        myLibObj.Scaling = Convert.ToSingle(a.Substring(M1, M2 - M1));
-                        M1 = M2 + 1;
-                        myLibObj.Name = a.Substring(M1);
-                        LibCategories[J].Objs.Add(myLibObj);
-                        if (NoOfJpegs > 0)
+                        a = a.Trim();
+                        if (string.IsNullOrEmpty(a))
+                            continue;
+                        b = a.Substring(0, 1);
+                        if (b == "[")
                         {
-                            b = LibCatFolder + @"\" + myLibObj.ID + ".jpg";
-                            if (!My.MyProject.Computer.FileSystem.FileExists(b))
+                            M2 = a.Length - 2;
+                            J = J + 1;
+                            LibCategories[J].Name = a.Substring(1, M2);
+                            LibCategories[J].Objs = new List<LibObject>();
+                            LibCatFolder = Path.GetFileNameWithoutExtension(LibCategories[J].Name);
+                            LibCatFolder = LibObjectsPath + @"\" + LibCatFolder;
+                        }
+                        else if (b != ";" & b != "i")
+                        {
+                            M1 = 0;
+                            M2 = a.IndexOf(" ", M1);
+                            myLibObj.ID = a.Substring(M1, M2 - M1);
+                            M1 = M2 + 1;
+                            M2 = a.IndexOf(" ", M1);
+                            myLibObj.Type = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                            M1 = M2 + 1;
+                            M2 = a.IndexOf(" ", M1);
+                            myLibObj.Width = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                            M1 = M2 + 1;
+                            M2 = a.IndexOf(" ", M1);
+                            myLibObj.Length = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                            M1 = M2 + 1;
+                            M2 = a.IndexOf(" ", M1);
+                            myLibObj.Scaling = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                            M1 = M2 + 1;
+                            myLibObj.Name = a.Substring(M1);
+                            LibCategories[J].Objs.Add(myLibObj);
+                            if (NoOfJpegs > 0)
                             {
-                                c = myLibObj.ID + "*.jpg";
-                                System.Collections.ObjectModel.ReadOnlyCollection<string> myfiles = My.MyProject.Computer.FileSystem.GetFiles(LibObjectsPath + @"\NewJpegs", VB.FileIO.SearchOption.SearchAllSubDirectories, c);
-
-                                foreach (string myfile in myfiles)
+                                b = LibCatFolder + @"\" + myLibObj.ID + ".jpg";
+                                if (!File.Exists(b))
                                 {
-                                    My.MyProject.Computer.FileSystem.MoveFile(myfile, b, true);
-                                    NoOfJpegs = NoOfJpegs - 1;
+                                    c = myLibObj.ID + "*.jpg";
+                                    foreach (string myfile in Directory.EnumerateFiles(LibObjectsPath + @"\NewJpegs", c, SearchOption.AllDirectories))
+                                    {
+                                        if (File.Exists(b))
+                                            File.Delete(b);
+                                        File.Move(myfile, b);
+                                        NoOfJpegs = NoOfJpegs - 1;
+                                    }
                                 }
                             }
                         }
                     }
-
-                next_1:
-                    ;
                 }
-
-                FileSystem.FileClose();
                 NoOfLibCategories = J;
                 return;
             }
             catch (Exception)
             {
-                FileSystem.FileClose();
                 NoOfLibCategories = NoC;
                 a = "Could not find/process the file:" + Environment.NewLine + ThisFile;
                 MessageBox.Show(a, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1570,73 +1558,62 @@ namespace SBuilderXX
 
         internal static void SetRwy12Objects()
         {
-            string a, File;
             CheckRwy12();
             if (Rwy12IsOn == false)
                 return;
             NoOfRwy12Categories = 0;
             Rwy12Categories = new Rwy12Category[2];
-            File = Rwy12Path + @"\add_*.xml";
-            a = FileSystem.Dir(File);
-            do
+            foreach (string myfile in Directory.EnumerateFiles(Rwy12Path, "add_*.xml", SearchOption.AllDirectories))
             {
-                if (string.IsNullOrEmpty(a))
-                    break;
-                AddRwy12File(a);
-                a = FileSystem.Dir();
+                AddRwy12File(myfile.Substring(Rwy12Path.Length + 1));
             }
-            while (true);
         }
 
-        private static void AddRwy12File(string File)
+        private static void AddRwy12File(string FileName)
         {
             string a, b;
-            int M, N, Marker, K = default, L;
-            FileSystem.FileOpen(2, Rwy12Path + @"\" + File, OpenMode.Input);
-            N = (int)FileSystem.LOF(2);
-            Marker = 0;
-            while (Marker < N)
+            int M, K = default, L;
+            using (var file = File.OpenText(Rwy12Path + @"\" + FileName))
             {
-                a = FileSystem.LineInput(2);
-                Marker = Marker + a.Length + 2;
-                a = a.Replace("\t", "");
-                a = a.Trim();
-                M = a.Length;
-                b = (M < 15) ? "" : a.Substring(0, 15);
-                if (b == "<category name=")
+                while ((a = file.ReadLine()) != null)
                 {
-                    NoOfRwy12Categories = NoOfRwy12Categories + 1;
-                    Array.Resize(ref Rwy12Categories, NoOfRwy12Categories + 1);
-                    L = a.IndexOf("\"", 16);
-                    Rwy12Categories[NoOfRwy12Categories].Name = a.Substring(16, L - 16);
-                    K = 1;
-                }
+                    a = a.Replace("\t", "");
+                    a = a.Trim();
+                    M = a.Length;
+                    b = (M < 15) ? "" : a.Substring(0, 15);
+                    if (b == "<category name=")
+                    {
+                        NoOfRwy12Categories = NoOfRwy12Categories + 1;
+                        Array.Resize(ref Rwy12Categories, NoOfRwy12Categories + 1);
+                        L = a.IndexOf("\"", 16);
+                        Rwy12Categories[NoOfRwy12Categories].Name = a.Substring(16, L - 16);
+                        K = 1;
+                    }
 
-                b = (M < 10) ? "" : a.Substring(0, 10);
-                if (b == "<obj name=")
-                {
-                    Rwy12Categories[NoOfRwy12Categories].NOB = K;
-                    Array.Resize(ref Rwy12Categories[NoOfRwy12Categories].Rwy12Objects, K + 1);
-                    L = a.IndexOf("\"", 11);
-                    Rwy12Categories[NoOfRwy12Categories].Rwy12Objects[K].Name = a.Substring(11, L - 11);
-                    K = K + 1;
-                }
+                    b = (M < 10) ? "" : a.Substring(0, 10);
+                    if (b == "<obj name=")
+                    {
+                        Rwy12Categories[NoOfRwy12Categories].NOB = K;
+                        Array.Resize(ref Rwy12Categories[NoOfRwy12Categories].Rwy12Objects, K + 1);
+                        L = a.IndexOf("\"", 11);
+                        Rwy12Categories[NoOfRwy12Categories].Rwy12Objects[K].Name = a.Substring(11, L - 11);
+                        K = K + 1;
+                    }
 
-                b = (M < 5) ? "" : a.Substring(0, 5);
-                if (b == "guid=")
-                {
-                    Rwy12Categories[NoOfRwy12Categories].Rwy12Objects[K - 1].ID = a.Substring(6, 32);
-                }
+                    b = (M < 5) ? "" : a.Substring(0, 5);
+                    if (b == "guid=")
+                    {
+                        Rwy12Categories[NoOfRwy12Categories].Rwy12Objects[K - 1].ID = a.Substring(6, 32);
+                    }
 
-                b = (M < 6) ? "" : a.Substring(0, 6);
-                if (b == "image=")
-                {
-                    L = a.IndexOf("\"", 7);
-                    Rwy12Categories[NoOfRwy12Categories].Rwy12Objects[K - 1].Texture = a.Substring(7, L - 7);
+                    b = (M < 6) ? "" : a.Substring(0, 6);
+                    if (b == "image=")
+                    {
+                        L = a.IndexOf("\"", 7);
+                        Rwy12Categories[NoOfRwy12Categories].Rwy12Objects[K - 1].Texture = a.Substring(7, L - 7);
+                    }
                 }
             }
-
-            FileSystem.FileClose();
         }
 
         internal static void AnalyseLibObject(int N)
@@ -2535,59 +2512,60 @@ namespace SBuilderXX
             {
                 File1 = moduleMAIN.ProjectName + "_OB1";
                 File1 = File1.Replace(" ", "_");
-                FileSystem.FileOpen(3, My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File1 + ".scm", OpenMode.Output);
-                a = "Header( 0x201 )";
-                FileSystem.PrintLine(3, a);
-                FileSystem.PrintLine(3);
-                a = "; FS9 objects";
-                int loopTo9 = NoOfObjects;
-                for (N = 1; N <= loopTo9; N++)
+                using (StreamWriter file = new StreamWriter(My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File1 + ".scm"))
                 {
-                    if (Objects[N].Selected)
+                    a = "Header( 0x201 )";
+                    file.WriteLine(a);
+                    file.WriteLine();
+                    a = "; FS9 objects";
+                    int loopTo9 = NoOfObjects;
+                    for (N = 1; N <= loopTo9; N++)
                     {
-                        if (Objects[N].Type == 2 | Objects[N].Type == 3)
+                        if (Objects[N].Selected)
                         {
-                            lat = Objects[N].lat;
-                            lon = Objects[N].lon;
-                            alt = Objects[N].Altitude;
-                            BiasX = Objects[N].BiasX;
-                            BiasY = Objects[N].BiasY;
-                            BiasZ = Objects[N].BiasZ;
-                            alt = alt + BiasZ;
-                            if (BiasX != 0d | BiasY != 0d)
+                            if (Objects[N].Type == 2 | Objects[N].Type == 3)
                             {
-                                lon = lon + BiasX / moduleMAIN.MetersPerDegLon(lat);
-                                lat = lat + BiasY / moduleMAIN.MetersPerDegLat;
-                            }
+                                lat = Objects[N].lat;
+                                lon = Objects[N].lon;
+                                alt = Objects[N].Altitude;
+                                BiasX = Objects[N].BiasX;
+                                BiasY = Objects[N].BiasY;
+                                BiasZ = Objects[N].BiasZ;
+                                alt = alt + BiasZ;
+                                if (BiasX != 0d | BiasY != 0d)
+                                {
+                                    lon = lon + BiasX / moduleMAIN.MetersPerDegLon(lat);
+                                    lat = lat + BiasY / moduleMAIN.MetersPerDegLat;
+                                }
 
-                            Latitude = lat.ToString("0.00000000");
-                            Longitude = lon.ToString("0.00000000");
-                            Altitude = alt.ToString("0.000");
-                            AGL = Objects[N].AGL.ToString().Trim();
-                            Heading = Objects[N].Heading.ToString("0.000");
-                            Pitch = Objects[N].Pitch.ToString("0.000");
-                            Bank = Objects[N].Bank.ToString("0.000");
-                            Complex = Objects[N].Complexity.ToString().Trim();
-                            Latitude = Latitude.Replace(",", ".");
-                            Longitude = Longitude.Replace(",", ".");
-                            Altitude = Altitude.Replace(",", ".");
-                            Heading = Heading.Replace(",", ".");
-                            Pitch = Pitch.Replace(",", ".");
-                            Bank = Bank.Replace(",", ".");
-                            ObjLibType = 1;
-                            AnalyseLibObject(N);
-                            ObjComment = ObjComment + "_Obj_" + N.ToString();
-                            a = "; Library_Object_" + ObjComment + Environment.NewLine;
-                            a = a + "LibraryObject( " + Latitude + " " + Longitude + " " + Altitude + " " + AGL;
-                            FileSystem.PrintLine(3, a);
-                            a = "               " + Pitch + " " + Bank + " " + Heading + " " + Complex + "  " + FixLibID(ObjLibID) + " " + ObjLibScale.ToString() + " )";
-                            FileSystem.PrintLine(3, a);
+                                Latitude = lat.ToString("0.00000000");
+                                Longitude = lon.ToString("0.00000000");
+                                Altitude = alt.ToString("0.000");
+                                AGL = Objects[N].AGL.ToString().Trim();
+                                Heading = Objects[N].Heading.ToString("0.000");
+                                Pitch = Objects[N].Pitch.ToString("0.000");
+                                Bank = Objects[N].Bank.ToString("0.000");
+                                Complex = Objects[N].Complexity.ToString().Trim();
+                                Latitude = Latitude.Replace(",", ".");
+                                Longitude = Longitude.Replace(",", ".");
+                                Altitude = Altitude.Replace(",", ".");
+                                Heading = Heading.Replace(",", ".");
+                                Pitch = Pitch.Replace(",", ".");
+                                Bank = Bank.Replace(",", ".");
+                                ObjLibType = 1;
+                                AnalyseLibObject(N);
+                                ObjComment = ObjComment + "_Obj_" + N.ToString();
+                                a = "; Library_Object_" + ObjComment + Environment.NewLine;
+                                a = a + "LibraryObject( " + Latitude + " " + Longitude + " " + Altitude + " " + AGL;
+                                file.WriteLine(a);
+                                a = "               " + Pitch + " " + Bank + " " + Heading + " " + Complex + "  " + FixLibID(ObjLibID) + " " + ObjLibScale.ToString() + " )";
+                                file.WriteLine(a);
+                            }
                         }
                     }
-                }
 
-                FileSystem.PrintLine(3);
-                FileSystem.FileClose(3);
+                    file.WriteLine();
+                }
 
                 // delete BGL File1
                 BGLFile1 = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File1 + ".BGL";
@@ -2615,157 +2593,157 @@ namespace SBuilderXX
             {
                 File0 = moduleMAIN.ProjectName + "_OB0";
                 File0 = File0.Replace(" ", "_");
-                FileSystem.FileOpen(3, My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File0 + ".scm", OpenMode.Output);
-                a = "Header( 1 ";
-                a = a + (int)(H_NLat + 1.5d) + " ";
-                a = a + (int)(H_SLat - 0.5d) + " ";
-                a = a + (int)(H_ELon + 1.5d) + " ";
-                a = a + (int)(H_WLon - 0.5d) + " )";
-                FileSystem.PrintLine(3, a);
-                a = "LatRange( ";
-                a = a + (int)(H_SLat - 0.5d) + " ";
-                a = a + (int)(H_NLat + 1.5d) + " )";
-                FileSystem.PrintLine(3, a);
-                FileSystem.PrintLine(3);
-                int loopTo10 = NoOfObjects;
-                for (N = 1; N <= loopTo10; N++)
+                using (StreamWriter file = new StreamWriter(My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File0 + ".scm"))
                 {
-                    if (Objects[N].Selected)
+                    a = "Header( 1 ";
+                    a = a + (int)(H_NLat + 1.5d) + " ";
+                    a = a + (int)(H_SLat - 0.5d) + " ";
+                    a = a + (int)(H_ELon + 1.5d) + " ";
+                    a = a + (int)(H_WLon - 0.5d) + " )";
+                    file.WriteLine(a);
+                    a = "LatRange( ";
+                    a = a + (int)(H_SLat - 0.5d) + " ";
+                    a = a + (int)(H_NLat + 1.5d) + " )";
+                    file.WriteLine(a);
+                    file.WriteLine();
+                    int loopTo10 = NoOfObjects;
+                    for (N = 1; N <= loopTo10; N++)
                     {
-                        if (Objects[N].Type == 1)
+                        if (Objects[N].Selected)
                         {
-                            lbNext = ":next_" + N.ToString().Trim();
-                            lbRet = ":return_" + N.ToString().Trim();
-                            lbPcall = ":pcall_" + N.ToString().Trim();
-                            lbStart = ":start_" + N.ToString().Trim();
-                            lat = Objects[N].lat;
-                            lon = Objects[N].lon;
-                            alt = Objects[N].Altitude;
-                            BiasX = Objects[N].BiasX;
-                            BiasY = Objects[N].BiasY;
-                            BiasZ = Objects[N].BiasZ;
-                            alt = alt + BiasZ;
-                            if (BiasX != 0d | BiasY != 0d)
+                            if (Objects[N].Type == 1)
                             {
-                                lon = lon + BiasX / moduleMAIN.MetersPerDegLon(lat);
-                                lat = lat + BiasY / moduleMAIN.MetersPerDegLat;
-                            }
+                                lbNext = ":next_" + N.ToString().Trim();
+                                lbRet = ":return_" + N.ToString().Trim();
+                                lbPcall = ":pcall_" + N.ToString().Trim();
+                                lbStart = ":start_" + N.ToString().Trim();
+                                lat = Objects[N].lat;
+                                lon = Objects[N].lon;
+                                alt = Objects[N].Altitude;
+                                BiasX = Objects[N].BiasX;
+                                BiasY = Objects[N].BiasY;
+                                BiasZ = Objects[N].BiasZ;
+                                alt = alt + BiasZ;
+                                if (BiasX != 0d | BiasY != 0d)
+                                {
+                                    lon = lon + BiasX / moduleMAIN.MetersPerDegLon(lat);
+                                    lat = lat + BiasY / moduleMAIN.MetersPerDegLat;
+                                }
 
-                            Latitude = lat.ToString("0.00000000");
-                            Longitude = lon.ToString("0.00000000");
-                            Altitude = alt.ToString("0.000");
-                            AGL = Objects[N].AGL.ToString().Trim();
-                            Heading = Objects[N].Heading.ToString("0.000");
-                            Pitch = Objects[N].Pitch.ToString("0.000");
-                            Bank = Objects[N].Bank.ToString("0.000");
-                            Latitude = Latitude.Replace(",", ".");
-                            Longitude = Longitude.Replace(",", ".");
-                            Altitude = Altitude.Replace(",", ".");
-                            Heading = Heading.Replace(",", ".");
-                            Pitch = Pitch.Replace(",", ".");
-                            Bank = Bank.Replace(",", ".");
-                            Complex = Objects[N].Complexity.ToString().Trim();
-                            ObjLibType = 0;
-                            AnalyseLibObject(N);
-                            V1 = ObjLibV1.ToString().Trim();
-                            V2 = ObjLibV2.ToString().Trim();
-                            if (string.IsNullOrEmpty(ObjComment))
-                                ObjComment = "Object # " + N.ToString();
-                            a = "; " + ObjComment + Environment.NewLine;
-                            a = a + "Area( 5 ";
-                            a = a + Latitude + " " + Longitude + " 50 )";
-                            FileSystem.PrintLine(3, a);
-                            a = "IfVarRange( " + lbNext + " 346 " + Complex + " 5 )";
-                            FileSystem.PrintLine(3, a);
-                            a = "PerspectiveCall( " + lbPcall + " )";
-                            FileSystem.PrintLine(3, a);
-                            a = "Jump( " + lbNext + " )";
-                            FileSystem.PrintLine(3, a);
-                            a = lbPcall;
-                            FileSystem.PrintLine(3, a);
-                            a = "Perspective";
-                            FileSystem.PrintLine(3, a);
-                            if (AGL == "1")
-                            {
-                                a = "RefPoint( 7 " + lbRet + " 1 " + Latitude + " " + Longitude;
-                                a = a + " v1= " + V1 + " v2= " + V2 + " )";
-                                FileSystem.PrintLine(3, a);
-                            }
-                            else
-                            {
-                                a = "RefPoint( 2 " + lbRet + " 1 " + Latitude + " " + Longitude;
-                                a = a + " E= " + Altitude + " v1= " + V1 + " v2= " + V2 + " )";
-                                FileSystem.PrintLine(3, a);
-                            }
+                                Latitude = lat.ToString("0.00000000");
+                                Longitude = lon.ToString("0.00000000");
+                                Altitude = alt.ToString("0.000");
+                                AGL = Objects[N].AGL.ToString().Trim();
+                                Heading = Objects[N].Heading.ToString("0.000");
+                                Pitch = Objects[N].Pitch.ToString("0.000");
+                                Bank = Objects[N].Bank.ToString("0.000");
+                                Latitude = Latitude.Replace(",", ".");
+                                Longitude = Longitude.Replace(",", ".");
+                                Altitude = Altitude.Replace(",", ".");
+                                Heading = Heading.Replace(",", ".");
+                                Pitch = Pitch.Replace(",", ".");
+                                Bank = Bank.Replace(",", ".");
+                                Complex = Objects[N].Complexity.ToString().Trim();
+                                ObjLibType = 0;
+                                AnalyseLibObject(N);
+                                V1 = ObjLibV1.ToString().Trim();
+                                V2 = ObjLibV2.ToString().Trim();
+                                if (string.IsNullOrEmpty(ObjComment))
+                                    ObjComment = "Object # " + N.ToString();
+                                a = "; " + ObjComment + Environment.NewLine;
+                                a = a + "Area( 5 ";
+                                a = a + Latitude + " " + Longitude + " 50 )";
+                                file.WriteLine(a);
+                                a = "IfVarRange( " + lbNext + " 346 " + Complex + " 5 )";
+                                file.WriteLine(a);
+                                a = "PerspectiveCall( " + lbPcall + " )";
+                                file.WriteLine(a);
+                                a = "Jump( " + lbNext + " )";
+                                file.WriteLine(a);
+                                a = lbPcall;
+                                file.WriteLine(a);
+                                a = "Perspective";
+                                file.WriteLine(a);
+                                if (AGL == "1")
+                                {
+                                    a = "RefPoint( 7 " + lbRet + " 1 " + Latitude + " " + Longitude;
+                                    a = a + " v1= " + V1 + " v2= " + V2 + " )";
+                                    file.WriteLine(a);
+                                }
+                                else
+                                {
+                                    a = "RefPoint( 2 " + lbRet + " 1 " + Latitude + " " + Longitude;
+                                    a = a + " E= " + Altitude + " v1= " + V1 + " v2= " + V2 + " )";
+                                    file.WriteLine(a);
+                                }
 
-                            if (ObjLibScale != 1f)
-                            {
-                                a = "SetScale( " + lbRet + " 0 0 " + ObjLibScale + " )";
-                                FileSystem.PrintLine(3, a);
-                            }
+                                if (ObjLibScale != 1f)
+                                {
+                                    a = "SetScale( " + lbRet + " 0 0 " + ObjLibScale + " )";
+                                    file.WriteLine(a);
+                                }
 
-                            a = "RotatedCall( " + lbStart + " 0 0 " + Heading + " )";
-                            FileSystem.PrintLine(3, a);
-                            a = lbRet;
-                            FileSystem.PrintLine(3, a);
-                            a = "Return";
-                            FileSystem.PrintLine(3, a);
-                            a = lbStart;
-                            FileSystem.PrintLine(3, a);
-                            a = "CallLibObj( 0 " + FixLibID(ObjLibID) + " )";
-                            FileSystem.PrintLine(3, a);
-                            a = "Return";
-                            FileSystem.PrintLine(3, a);
-                            a = lbNext;
-                            FileSystem.PrintLine(3, a);
-                            a = "EndA";
-                            FileSystem.PrintLine(3, a);
-                            FileSystem.PrintLine(3);
-                        }
-
-                        if (Objects[N].Type == 4) // API macros"
-                        {
-                            moduleMACROS.AnalyseAPIMacro(N);
-                            if (string.IsNullOrEmpty(ObjComment))
-                                ObjComment = "Object # " + N.ToString();
-                            a = "; " + ObjComment;
-                            FileSystem.PrintLine(3, a);
-                            if (moduleMACROS.MacroID == "AREAEND.API")
-                            {
+                                a = "RotatedCall( " + lbStart + " 0 0 " + Heading + " )";
+                                file.WriteLine(a);
+                                a = lbRet;
+                                file.WriteLine(a);
+                                a = "Return";
+                                file.WriteLine(a);
+                                a = lbStart;
+                                file.WriteLine(a);
+                                a = "CallLibObj( 0 " + FixLibID(ObjLibID) + " )";
+                                file.WriteLine(a);
+                                a = "Return";
+                                file.WriteLine(a);
+                                a = lbNext;
+                                file.WriteLine(a);
                                 a = "EndA";
-                            }
-                            else
-                            {
-                                a = PackAPIMacro(N);
+                                file.WriteLine(a);
+                                file.WriteLine();
                             }
 
-                            FileSystem.PrintLine(3, a);
-                            FileSystem.PrintLine(3);
-                        }
-
-                        if (Objects[N].Type == 5) // ASD macros"
-                        {
-                            moduleMACROS.AnalyseASDMacro(N);
-                            if (string.IsNullOrEmpty(ObjComment))
-                                ObjComment = "Object # " + N.ToString();
-                            a = "; " + ObjComment;
-                            FileSystem.PrintLine(3, a);
-                            if (moduleMACROS.MacroID == "AREAEND.SCM")
+                            if (Objects[N].Type == 4) // API macros"
                             {
-                                a = "EndA";
-                            }
-                            else
-                            {
-                                a = PackASDMacro(N);
+                                moduleMACROS.AnalyseAPIMacro(N);
+                                if (string.IsNullOrEmpty(ObjComment))
+                                    ObjComment = "Object # " + N.ToString();
+                                a = "; " + ObjComment;
+                                file.WriteLine(a);
+                                if (moduleMACROS.MacroID == "AREAEND.API")
+                                {
+                                    a = "EndA";
+                                }
+                                else
+                                {
+                                    a = PackAPIMacro(N);
+                                }
+
+                                file.WriteLine(a);
+                                file.WriteLine();
                             }
 
-                            FileSystem.PrintLine(3, a);
-                            FileSystem.PrintLine(3);
+                            if (Objects[N].Type == 5) // ASD macros"
+                            {
+                                moduleMACROS.AnalyseASDMacro(N);
+                                if (string.IsNullOrEmpty(ObjComment))
+                                    ObjComment = "Object # " + N.ToString();
+                                a = "; " + ObjComment;
+                                file.WriteLine(a);
+                                if (moduleMACROS.MacroID == "AREAEND.SCM")
+                                {
+                                    a = "EndA";
+                                }
+                                else
+                                {
+                                    a = PackASDMacro(N);
+                                }
+
+                                file.WriteLine(a);
+                                file.WriteLine();
+                            }
                         }
                     }
                 }
-
-                FileSystem.FileClose(3);
 
                 // delete BGL File0
                 BGLFile0 = My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + File0 + ".BGL";
@@ -2881,16 +2859,12 @@ namespace SBuilderXX
 
         private static void CheckLibObjects()
         {
-            LibObjectsIsOn = false;
-            if (!string.IsNullOrEmpty(FileSystem.Dir(LibObjectsPath + @"\objects.txt")))
-                LibObjectsIsOn = true;
+            LibObjectsIsOn = Directory.EnumerateFiles(LibObjectsPath, "objects.txt").Any();
         }
 
         private static void CheckRwy12()
         {
-            Rwy12IsOn = false;
-            if (!string.IsNullOrEmpty(FileSystem.Dir(Rwy12Path + @"\add_*.xml")))
-                Rwy12IsOn = true;
+            Rwy12IsOn = Directory.EnumerateFiles(Rwy12Path, "add_*.xml").Any();
         }
 
         internal static int IsMouseOnObject(double x, double y)
@@ -2994,25 +2968,26 @@ namespace SBuilderXX
             string V1;
             string Range, Scaling;
             FileName = moduleMACROS.MacroASDPath + @"\" + moduleMACROS.MacroID;
-            FileSystem.FileOpen(2, FileName, OpenMode.Input);
-            a = FileSystem.LineInput(2);
-            b = "";
-            do
+            using (var file = File.OpenText(FileName))
             {
-                a = FileSystem.LineInput(2);
-                K = a.IndexOf(@"\");
-                if (K != -1)
+                a = file.ReadLine();
+                b = "";
+                do
                 {
-                    b = b + a.Substring(1, K - 1) + ",";
+                    a = file.ReadLine();
+                    K = a.IndexOf(@"\");
+                    if (K != -1)
+                    {
+                        b = b + a.Substring(1, K - 1) + ",";
+                    }
+                    else
+                    {
+                        b = b + a.Substring(1) + ",";
+                        break;
+                    }
                 }
-                else
-                {
-                    b = b + a.Substring(1) + ",";
-                    break;
-                }
+                while (true);
             }
-            while (true);
-            FileSystem.FileClose(2);
             b = b.Replace(", ", ",");
             b = b.Replace(" ,", ",");
             b = b.Replace(",,", ",");
