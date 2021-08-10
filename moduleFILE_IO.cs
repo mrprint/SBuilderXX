@@ -1325,7 +1325,8 @@ namespace SBuilderXX
 
             using (var file = File.OpenText(Filename))
             {
-                for (N = 1; !file.EndOfStream; N++)
+                int loopTo1 = moduleLINES.NoOfLines;
+                for (N = 1; N <= loopTo1; N++)
                 {
                     KEY = "[Line." + N.ToString().Trim() + "]";
                     GoToThisKey(in file, KEY);
@@ -1656,7 +1657,8 @@ namespace SBuilderXX
 
             using (var file = File.OpenText(Filename))
             {
-                for (N = 1; !file.EndOfStream; N++)
+                int loopTo1 = moduleLINES.NoOfLines;
+                for (N = 1; N <= loopTo1; N++)
                 {
                     KEY = "[Line." + N.ToString().Trim() + "]";
                     GoToThisKey(in file, KEY);
@@ -1941,7 +1943,8 @@ namespace SBuilderXX
 
             using (var file = File.OpenText(Filename))
             {
-                for (N = 1; !file.EndOfStream; N++)
+                int loopTo1 = NoOfLinesX;
+                for (K = 1; K <= loopTo1; K++)
                 {
                     N = K + moduleLINES.NoOfLines;
                     KEY = "[Line." + K.ToString().Trim() + "]";
