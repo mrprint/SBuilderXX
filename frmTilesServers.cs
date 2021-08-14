@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace SBuilderXX
 {
@@ -69,8 +70,8 @@ namespace SBuilderXX
             {
                 moduleTILES.TilesToCome = 0;
             }
-            foreach (string foundFile in My.MyProject.Computer.FileSystem.GetFiles(moduleMAIN.AppPath + @"\Tiles", Microsoft.VisualBasic.FileIO.SearchOption.SearchTopLevelOnly, "L*"))
-                My.MyProject.Computer.FileSystem.DeleteFile(foundFile);
+            foreach (string foundFile in Directory.EnumerateFiles(moduleMAIN.AppPath + @"\Tiles", "L*", SearchOption.TopDirectoryOnly))
+                File.Delete(foundFile);
             if (ListMapServers.Enabled)
             {
                 K = ListMapServers.SelectedIndex + 1;

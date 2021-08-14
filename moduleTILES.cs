@@ -79,10 +79,10 @@ namespace SBuilderXX
             ServerTypes = new Type[31];
             int K;
             myFiles = Directory.GetFiles(myFolder + @"\Tiles", "*.dll");
-            foreach (string foundFile in My.MyProject.Computer.FileSystem.GetFiles(moduleMAIN.AppPath + @"\Tiles", Microsoft.VisualBasic.FileIO.SearchOption.SearchTopLevelOnly, "L*"))
+            foreach (string foundFile in Directory.EnumerateFiles(moduleMAIN.AppPath + @"\Tiles", "L*", SearchOption.TopDirectoryOnly))
             {
-                MessageBox.Show(foundFile);
-                My.MyProject.Computer.FileSystem.DeleteFile(foundFile);
+                MessageBox.Show(foundFile); // move it out of the loop
+                File.Delete(foundFile);
             }
 
             string DllBase;

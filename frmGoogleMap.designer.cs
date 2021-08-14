@@ -3,11 +3,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderXX
 {
-    [DesignerGenerated()]
     internal partial class frmGoogleMap : Form
     {
 

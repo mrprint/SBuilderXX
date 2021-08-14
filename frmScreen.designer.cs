@@ -5,7 +5,6 @@ using System.Windows.Forms;
 
 namespace SBuilderXX
 {
-    [Microsoft.VisualBasic.CompilerServices.DesignerGenerated()]
     public partial class frmSCREEN : Form
     {
 

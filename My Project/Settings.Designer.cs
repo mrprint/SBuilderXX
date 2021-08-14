@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SBuilderX.My {
+namespace SBuilderXX.My {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

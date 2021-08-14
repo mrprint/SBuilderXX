@@ -434,13 +434,14 @@ namespace SBuilderXX
                                     g = currentG1;
                                     LibCatFolder = moduleOBJECTS.LibObjectsPath + @"\" + moduleOBJECTS.LibCategories[N].Name;
                                     B = LibCatFolder + @"\" + g.ID + ".jpg";
-                                    if (!My.MyProject.Computer.FileSystem.FileExists(B))
+                                    if (!File.Exists(B))
                                     {
                                         C = g.ID + "*.jpg";
-                                        System.Collections.ObjectModel.ReadOnlyCollection<string> myfiles = My.MyProject.Computer.FileSystem.GetFiles(moduleOBJECTS.LibObjectsPath + @"\NewJpegs", Microsoft.VisualBasic.FileIO.SearchOption.SearchAllSubDirectories, C);
-                                        foreach (string myfile in myfiles)
+                                        foreach (string myfile in Directory.EnumerateFiles(moduleOBJECTS.LibObjectsPath + @"\NewJpegs", C, SearchOption.AllDirectories))
                                         {
-                                            My.MyProject.Computer.FileSystem.MoveFile(myfile, B, true);
+                                            if (File.Exists(B))
+                                                File.Delete(B);
+                                            File.Move(myfile, B);
                                             moduleOBJECTS.NoOfJpegs = moduleOBJECTS.NoOfJpegs - 1;
                                         }
                                     }
@@ -511,10 +512,13 @@ namespace SBuilderXX
                 // move rest of New to BackUp jpegs
                 A = moduleOBJECTS.LibObjectsPath + @"\NewJpegs";
                 B = moduleOBJECTS.LibObjectsPath + @"\BackUps\";
-                foreach (string foundFile in My.MyProject.Computer.FileSystem.GetFiles(A, Microsoft.VisualBasic.FileIO.SearchOption.SearchAllSubDirectories, "*.*"))
+                foreach (string foundFile in Directory.EnumerateFiles(A, "*.*", SearchOption.AllDirectories))
                 {
                     FileInfo foundFileInfo = new FileInfo(foundFile);
-                    My.MyProject.Computer.FileSystem.MoveFile(foundFile, B + foundFileInfo.Name, true);
+                    string c = B + foundFileInfo.Name;
+                    if (File.Exists(c))
+                        File.Delete(c);
+                    File.Move(foundFile, c);
                 }
             }
             catch (Exception)

@@ -1,11 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace SBuilderXX
 {
-    [DesignerGenerated()]
     public partial class frmWaiting : Form
     {
 
