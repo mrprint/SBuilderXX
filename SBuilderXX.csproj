@@ -58,10 +58,11 @@
     <NoWarn>41999,42016,42020,42021,42022</NoWarn>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
     <WarningsAsErrors>
     </WarningsAsErrors>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -692,7 +693,7 @@
     <None Include="bin\Debug\ASD\Total_Barrel_1.scm" />
     <None Include="bin\Debug\Help\SBuilderX313.chm" />
     <None Include="bin\Debug\Help\SBuilderX313.chw" />
-    <None Include="bin\Debug\SBuilderX.exe.config" />
+    <None Include="bin\Debug\SBuilderXX.exe.config" />
     <None Include="bin\Debug\Texture\fence_CLW.dds" />
     <None Include="bin\Debug\Texture\house_100.bmp.lnk" />
     <None Include="bin\Debug\Tools\bglcom9.xsd">
@@ -708,7 +709,7 @@
     </None>
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <CustomToolNamespace>SBuilderX.My</CustomToolNamespace>
+      <CustomToolNamespace>SBuilderXX.My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="SBuilder_TemporaryKey.pfx" />
@@ -1431,8 +1432,8 @@
     <Content Include="bin\Debug\Rwy12\img\ag_tree_lib - Arno Gerretsen\tree15.jpg" />
     <Content Include="bin\Debug\Rwy12\img\ag_tree_lib - Arno Gerretsen\tree16.jpg" />
     <Content Include="bin\Debug\Rwy12\img\ag_tree_lib - Arno Gerretsen\tree17.jpg" />
-    <Content Include="bin\Debug\SBuilderX.exe" />
-    <Content Include="bin\Debug\SBuilderX.pdb" />
+    <Content Include="bin\Debug\SBuilderXX.exe" />
+    <Content Include="bin\Debug\SBuilderXX.pdb" />
     <Content Include="bin\Debug\SlimDX-x86.dll" />
     <Content Include="bin\Debug\SlimDX.dll" />
     <Content Include="bin\Debug\Texture\010b2su1.bmp" />
