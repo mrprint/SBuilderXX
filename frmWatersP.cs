@@ -136,6 +136,7 @@ namespace SBuilderXX
 
         private void CmdClose_Click(object sender, EventArgs e)
         {
+            SetSize();
             Dispose();
         }
 
