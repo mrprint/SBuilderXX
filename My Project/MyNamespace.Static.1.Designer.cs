@@ -1,117 +1,249 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the Apache License, Version 2.0.  See License.txt in the project root for license information.
 
+using Microsoft.Win32;
 using System;
 using System.Collections;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
+using System.Threading;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
-/* TODO ERROR: Skipped IfDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped EndIfDirectiveTrivia */
-/* TODO ERROR: Skipped IfDirectiveTrivia */
-/* TODO ERROR: Skipped DefineDirectiveTrivia *//* TODO ERROR: Skipped DefineDirectiveTrivia *//* TODO ERROR: Skipped DefineDirectiveTrivia *//* TODO ERROR: Skipped DefineDirectiveTrivia *//* TODO ERROR: Skipped DefineDirectiveTrivia */
-/* TODO ERROR: Skipped ElifDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped ElifDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped ElifDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped ElifDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped ElifDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped ElifDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped ElifDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped EndIfDirectiveTrivia */
-/* TODO ERROR: Skipped IfDirectiveTrivia */
 namespace SBuilderXX.My
 {
-
-    /* TODO ERROR: Skipped IfDirectiveTrivia */
     [System.CodeDom.Compiler.GeneratedCode("MyTemplate", "11.0.0.0")]
     [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-
-    /* TODO ERROR: Skipped IfDirectiveTrivia */
     internal partial class MyApplication : Microsoft.VisualBasic.ApplicationServices.WindowsFormsApplicationBase
     {
-        /* TODO ERROR: Skipped IfDirectiveTrivia */
         [STAThread()]
         [DebuggerHidden()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static void Main(string[] Args)
+        internal static void Main(string[] args)
         {
-            try
-            {
-                Application.SetCompatibleTextRenderingDefault(UseCompatibleTextRendering);
-            }
-            finally
-            {
-            }
-
-            MyProject.Application.Run(Args);
+            MyProject.Application.Run(args);
         }
-        /* TODO ERROR: Skipped EndIfDirectiveTrivia */
-        /* TODO ERROR: Skipped ElifDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped ElifDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped EndIfDirectiveTrivia */
+
+        public event EventHandler<Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs> UnhandledException;
+
+        internal void RaiseUnhandledException(Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs e)
+        {
+            UnhandledException?.Invoke(this, e);
+        }
     }
 
-    /* TODO ERROR: Skipped EndIfDirectiveTrivia */
-    /* TODO ERROR: Skipped IfDirectiveTrivia */
+    namespace ApplicationServices
+    {
+        public enum AuthenticationMode
+        {
+            Windows,
+            ApplicationDefined
+        }
+
+        public enum ShutdownMode
+        {
+            AfterMainFormCloses,
+            AfterAllFormsClose
+        }
+    }
+
+    public class UnhandledExceptionEventArgs : EventArgs
+    {
+        public Exception Exception { get; }
+        public bool ExitApplication { get; set; } = true;
+
+        public UnhandledExceptionEventArgs(Exception ex)
+        {
+            Exception = ex;
+        }
+    }
+
     [System.CodeDom.Compiler.GeneratedCode("MyTemplate", "11.0.0.0")]
     [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-
-    /* TODO ERROR: Skipped IfDirectiveTrivia */
-    internal partial class MyComputer : Microsoft.VisualBasic.Devices.Computer
+    internal partial class MyComputer
     {
-        /* TODO ERROR: Skipped ElifDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped EndIfDirectiveTrivia */
         [DebuggerHidden()]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        public MyComputer() : base()
+        public MyComputer()
         {
         }
+
+        public MyFileSystem FileSystem { get; } = new MyFileSystem();
+        public MyNetwork Network { get; } = new MyNetwork();
+        public MyKeyboard Keyboard { get; } = new MyKeyboard();
+        public MyMouse Mouse { get; } = new MyMouse();
+        public MyClipboard Clipboard { get; } = new MyClipboard();
+
+        public string Name => Environment.MachineName;
+
+        public MyScreen Screen { get; } = new MyScreen();
+        public MyRegistry Registry { get; } = new MyRegistry();
     }
-    /* TODO ERROR: Skipped EndIfDirectiveTrivia */
+
+    public class MyFileSystem
+    {
+        public string CurrentDirectory
+        {
+            get => Directory.GetCurrentDirectory();
+            set => Directory.SetCurrentDirectory(value);
+        }
+
+        public string[] GetFiles(string directory)
+        => Directory.GetFiles(directory);
+
+        public string[] GetFiles(string directory, string searchPattern)
+            => Directory.GetFiles(directory, searchPattern);
+
+        public string[] GetFiles(string directory, string searchPattern, SearchOption searchOption)
+            => Directory.GetFiles(directory, searchPattern, searchOption);
+
+        public string[] GetDirectories(string directory)
+            => Directory.GetDirectories(directory);
+
+        public string[] GetDirectories(string directory, string searchPattern)
+            => Directory.GetDirectories(directory, searchPattern);
+
+        public string[] GetDirectories(string directory, string searchPattern, SearchOption searchOption)
+            => Directory.GetDirectories(directory, searchPattern, searchOption);
+
+        public bool FileExists(string file) => File.Exists(file);
+        public bool DirectoryExists(string directory) => Directory.Exists(directory);
+
+        public void CreateDirectory(string directory) => Directory.CreateDirectory(directory);
+
+        public void DeleteFile(string file) => File.Delete(file);
+        public void DeleteDirectory(string directory, bool recursive) =>
+            Directory.Delete(directory, recursive);
+
+        public void CopyFile(string sourceFile, string destinationFile, bool overwrite = false) =>
+            File.Copy(sourceFile, destinationFile, overwrite);
+
+        public void MoveFile(string sourceFile, string destinationFile) =>
+            File.Move(sourceFile, destinationFile);
+
+        public void MoveDirectory(string sourceDirectory, string destinationDirectory) =>
+            Directory.Move(sourceDirectory, destinationDirectory);
+
+        public string ReadAllText(string file) => File.ReadAllText(file);
+        public string ReadAllText(string file, System.Text.Encoding encoding) =>
+            File.ReadAllText(file, encoding);
+
+        public void WriteAllText(string file, string text, bool append)
+        {
+            if (append)
+                File.AppendAllText(file, text);
+            else
+                File.WriteAllText(file, text);
+        }
+
+        public byte[] ReadAllBytes(string file) => File.ReadAllBytes(file);
+        public void WriteAllBytes(string file, byte[] data) => File.WriteAllBytes(file, data);
+
+        public string GetTempFileName() => Path.GetTempFileName();
+        public string SpecialDirectories_Temp => Path.GetTempPath();
+
+        // MoveFile с 3 аргументами (overwrite)
+        public void MoveFile(string sourceFile, string destinationFile, bool overwrite)
+        {
+            if (overwrite && File.Exists(destinationFile))
+                File.Delete(destinationFile);
+            File.Move(sourceFile, destinationFile);
+        }
+
+        // WriteAllText с 4 аргументами (file, text, append, encoding)
+        public void WriteAllText(string file, string text, bool append, System.Text.Encoding encoding)
+        {
+            if (append)
+                File.AppendAllText(file, text, encoding);
+            else
+                File.WriteAllText(file, text, encoding);
+        }
+
+    }
+
+    public class MyNetwork
+    {
+        public bool IsAvailable =>
+            System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
+    }
+
+    public class MyKeyboard
+    {
+        public bool CapsLock => Control.IsKeyLocked(Keys.CapsLock);
+        public bool NumLock => Control.IsKeyLocked(Keys.NumLock);
+        public bool ScrollLock => Control.IsKeyLocked(Keys.Scroll);
+    }
+
+    public class MyMouse
+    {
+        public bool ButtonsSwapped => SystemInformation.MouseButtonsSwapped;
+        public bool WheelExists => SystemInformation.MouseWheelPresent;
+        public int WheelScrollLines => SystemInformation.MouseWheelScrollLines;
+    }
+
+    public class MyClipboard
+    {
+        public bool ContainsText() => Clipboard.ContainsText();
+        public string GetText() => Clipboard.GetText();
+        public void SetText(string text) => Clipboard.SetText(text);
+    }
+
+    public class MyUser
+    {
+        public System.Security.Principal.IPrincipal CurrentPrincipal
+        {
+            get => Thread.CurrentPrincipal;
+            set => Thread.CurrentPrincipal = value;
+        }
+
+        public System.Security.Principal.IIdentity CurrentUser => Thread.CurrentPrincipal?.Identity;
+        public string Name => Thread.CurrentPrincipal?.Identity?.Name ?? string.Empty;
+
+        public bool IsInRole(string role) =>
+            Thread.CurrentPrincipal?.IsInRole(role) ?? false;
+
+        public bool IsAuthenticated =>
+            Thread.CurrentPrincipal?.Identity?.IsAuthenticated ?? false;
+    }
+
     [HideModuleName()]
     [System.CodeDom.Compiler.GeneratedCode("MyTemplate", "11.0.0.0")]
     internal static partial class MyProject
     {
-
-        /* TODO ERROR: Skipped IfDirectiveTrivia */
         [System.ComponentModel.Design.HelpKeyword("My.Computer")]
         internal static MyComputer Computer
         {
             [DebuggerHidden()]
-            get
-            {
-                return m_ComputerObjectProvider.GetInstance;
-            }
+            get => m_ComputerObjectProvider.GetInstance;
         }
+        private readonly static ThreadSafeObjectProvider<MyComputer> m_ComputerObjectProvider =
+            new ThreadSafeObjectProvider<MyComputer>();
 
-        private readonly static ThreadSafeObjectProvider<MyComputer> m_ComputerObjectProvider = new ThreadSafeObjectProvider<MyComputer>();
-        /* TODO ERROR: Skipped EndIfDirectiveTrivia */
-        /* TODO ERROR: Skipped IfDirectiveTrivia */
         [System.ComponentModel.Design.HelpKeyword("My.Application")]
         internal static MyApplication Application
         {
             [DebuggerHidden()]
-            get
-            {
-                return m_AppObjectProvider.GetInstance;
-            }
+            get => m_AppObjectProvider.GetInstance;
         }
+        private readonly static ThreadSafeObjectProvider<MyApplication> m_AppObjectProvider =
+            new ThreadSafeObjectProvider<MyApplication>();
 
-        private readonly static ThreadSafeObjectProvider<MyApplication> m_AppObjectProvider = new ThreadSafeObjectProvider<MyApplication>();
-        /* TODO ERROR: Skipped EndIfDirectiveTrivia */
-        /* TODO ERROR: Skipped IfDirectiveTrivia */
         [System.ComponentModel.Design.HelpKeyword("My.User")]
         internal static Microsoft.VisualBasic.ApplicationServices.User User
         {
             [DebuggerHidden()]
-            get
-            {
-                return m_UserObjectProvider.GetInstance;
-            }
+            get => m_UserObjectProvider.GetInstance;
         }
 
-        private readonly static ThreadSafeObjectProvider<Microsoft.VisualBasic.ApplicationServices.User> m_UserObjectProvider = new ThreadSafeObjectProvider<Microsoft.VisualBasic.ApplicationServices.User>();
-        /* TODO ERROR: Skipped ElifDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped EndIfDirectiveTrivia */
-        /* TODO ERROR: Skipped IfDirectiveTrivia */
-        /* TODO ERROR: Skipped DefineDirectiveTrivia */
+        private readonly static ThreadSafeObjectProvider<Microsoft.VisualBasic.ApplicationServices.User> m_UserObjectProvider =
+            new ThreadSafeObjectProvider<Microsoft.VisualBasic.ApplicationServices.User>();
+
         [System.ComponentModel.Design.HelpKeyword("My.Forms")]
         internal static MyForms Forms
         {
             [DebuggerHidden()]
-            get
-            {
-                return m_MyFormsObjectProvider.GetInstance;
-            }
+            get => m_MyFormsObjectProvider.GetInstance;
         }
 
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -127,7 +259,8 @@ namespace SBuilderXX.My
                     {
                         if (m_FormBeingCreated.ContainsKey(typeof(T)) == true)
                         {
-                            throw new InvalidOperationException(Microsoft.VisualBasic.CompilerServices.Utils.GetResourceString("WinForms_RecursiveFormCreate"));
+                            throw new InvalidOperationException(
+                                "An attempt was made to create a form recursively.");
                         }
                     }
                     else
@@ -142,8 +275,9 @@ namespace SBuilderXX.My
                     }
                     catch (System.Reflection.TargetInvocationException ex) when (ex.InnerException is object)
                     {
-                        string BetterMessage = Microsoft.VisualBasic.CompilerServices.Utils.GetResourceString("WinForms_SeeInnerException", ex.InnerException.Message);
-                        throw new InvalidOperationException(BetterMessage, ex.InnerException);
+                        throw new InvalidOperationException(
+                            $"An error occurred creating the form. See InnerException: {ex.InnerException.Message}",
+                            ex.InnerException);
                     }
                     finally
                     {
@@ -173,42 +307,26 @@ namespace SBuilderXX.My
             private static Hashtable m_FormBeingCreated;
 
             [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-            public override bool Equals(object o)
-            {
-                return base.Equals(o);
-            }
+            public override bool Equals(object o) => base.Equals(o);
 
             [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-            public override int GetHashCode()
-            {
-                return base.GetHashCode();
-            }
+            public override int GetHashCode() => base.GetHashCode();
 
             [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-            internal new Type GetType()
-            {
-                return typeof(MyForms);
-            }
+            internal new Type GetType() => typeof(MyForms);
 
             [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-            public override string ToString()
-            {
-                return base.ToString();
-            }
+            public override string ToString() => base.ToString();
         }
 
-        private static ThreadSafeObjectProvider<MyForms> m_MyFormsObjectProvider = new ThreadSafeObjectProvider<MyForms>();
+        private static ThreadSafeObjectProvider<MyForms> m_MyFormsObjectProvider =
+            new ThreadSafeObjectProvider<MyForms>();
 
-        /* TODO ERROR: Skipped EndIfDirectiveTrivia */
-        /* TODO ERROR: Skipped IfDirectiveTrivia */
         [System.ComponentModel.Design.HelpKeyword("My.WebServices")]
         internal static MyWebServices WebServices
         {
             [DebuggerHidden()]
-            get
-            {
-                return m_MyWebServicesObjectProvider.GetInstance;
-            }
+            get => m_MyWebServicesObjectProvider.GetInstance;
         }
 
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -217,50 +335,26 @@ namespace SBuilderXX.My
         {
             [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
             [DebuggerHidden()]
-            public override bool Equals(object o)
-            {
-                return base.Equals(o);
-            }
+            public override bool Equals(object o) => base.Equals(o);
 
             [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
             [DebuggerHidden()]
-            public override int GetHashCode()
-            {
-                return base.GetHashCode();
-            }
+            public override int GetHashCode() => base.GetHashCode();
 
             [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
             [DebuggerHidden()]
-            internal new Type GetType()
-            {
-                return typeof(MyWebServices);
-            }
+            internal new Type GetType() => typeof(MyWebServices);
 
             [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
             [DebuggerHidden()]
-            public override string ToString()
-            {
-                return base.ToString();
-            }
+            public override string ToString() => base.ToString();
 
             [DebuggerHidden()]
-            private static T Create__Instance__<T>(T instance) where T : new()
-            {
-                if (instance is null)
-                {
-                    return new T();
-                }
-                else
-                {
-                    return instance;
-                }
-            }
+            private static T Create__Instance__<T>(T instance) where T : new() =>
+                instance is null ? new T() : instance;
 
             [DebuggerHidden()]
-            private void Dispose__Instance__<T>(ref T instance)
-            {
-                instance = default;
-            }
+            private void Dispose__Instance__<T>(ref T instance) => instance = default;
 
             [DebuggerHidden()]
             [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
@@ -269,16 +363,15 @@ namespace SBuilderXX.My
             }
         }
 
-        private readonly static ThreadSafeObjectProvider<MyWebServices> m_MyWebServicesObjectProvider = new ThreadSafeObjectProvider<MyWebServices>();
-        /* TODO ERROR: Skipped EndIfDirectiveTrivia */
-        /* TODO ERROR: Skipped IfDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped EndIfDirectiveTrivia */
+        private readonly static ThreadSafeObjectProvider<MyWebServices> m_MyWebServicesObjectProvider =
+            new ThreadSafeObjectProvider<MyWebServices>();
+
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [ComVisible(false)]
         internal sealed class ThreadSafeObjectProvider<T> where T : new()
         {
             internal T GetInstance
             {
-                /* TODO ERROR: Skipped IfDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped ElseDirectiveTrivia */
                 [DebuggerHidden()]
                 get
                 {
@@ -286,7 +379,6 @@ namespace SBuilderXX.My
                         m_ThreadStaticValue = new T();
                     return m_ThreadStaticValue;
                 }
-                /* TODO ERROR: Skipped EndIfDirectiveTrivia */
             }
 
             [DebuggerHidden()]
@@ -295,12 +387,39 @@ namespace SBuilderXX.My
             {
             }
 
-            /* TODO ERROR: Skipped IfDirectiveTrivia *//* TODO ERROR: Skipped DisabledTextTrivia *//* TODO ERROR: Skipped ElseDirectiveTrivia */
             [System.Runtime.CompilerServices.CompilerGenerated()]
             [ThreadStatic()]
             private static T m_ThreadStaticValue;
-            /* TODO ERROR: Skipped EndIfDirectiveTrivia */
+        }
+    }
+
+    /// <summary>
+    /// Stub attribute replacing Microsoft.VisualBasic.HideModuleNameAttribute
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class)]
+    internal sealed class HideModuleNameAttribute : Attribute { }
+
+    /// <summary>
+    /// Stub attribute replacing Microsoft.VisualBasic.MyGroupCollectionAttribute
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class)]
+    internal sealed class MyGroupCollectionAttribute : Attribute
+    {
+        public string TypeToCollect { get; }
+        public string CreateInstanceMethodName { get; }
+        public string DisposeInstanceMethodName { get; }
+        public string DefaultInstanceAlias { get; }
+
+        public MyGroupCollectionAttribute(
+            string typeToCollect,
+            string createInstanceMethodName,
+            string disposeInstanceMethodName,
+            string defaultInstanceAlias)
+        {
+            TypeToCollect = typeToCollect;
+            CreateInstanceMethodName = createInstanceMethodName;
+            DisposeInstanceMethodName = disposeInstanceMethodName;
+            DefaultInstanceAlias = defaultInstanceAlias;
         }
     }
 }
-/* TODO ERROR: Skipped EndIfDirectiveTrivia */

@@ -9,7 +9,6 @@ using System.Xml;
 
 namespace SBuilderXX
 {
-    // Imports VB = Microsoft.VisualBasic
     static class moduleLINES
     {
         [Serializable()]

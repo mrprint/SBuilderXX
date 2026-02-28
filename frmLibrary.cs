@@ -390,9 +390,7 @@ namespace SBuilderXX
                 }
 
                 // Count Objects and initiate NoOfJpegs
-                System.Collections.ObjectModel.ReadOnlyCollection<string> counter;
-                counter = My.MyProject.Computer.FileSystem.GetFiles(moduleOBJECTS.LibObjectsPath + @"\NewJpegs");
-                moduleOBJECTS.NoOfJpegs = counter.Count;
+                moduleOBJECTS.NoOfJpegs = Directory.GetFiles(moduleOBJECTS.LibObjectsPath + @"\NewJpegs").Length;
                 moduleOBJECTS.LibObject g;
                 int loopTo1 = moduleOBJECTS.NoOfLibCategories;
                 for (N = 1; N <= loopTo1; N++)

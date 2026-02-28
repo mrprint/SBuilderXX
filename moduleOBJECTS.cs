@@ -1,5 +1,4 @@
-﻿//using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -8,7 +7,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Linq;
-//using VB = Microsoft.VisualBasic;
 
 namespace SBuilderXX
 {
