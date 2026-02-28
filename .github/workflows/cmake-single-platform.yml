@@ -1,0 +1,67 @@
+name: Build SBuilderXX
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    tags:
+      - "v*"
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore NuGet packages
+        run: nuget restore SBuilderXX.csproj
+
+      - name: Build
+        run: |
+          msbuild SBuilderXX.csproj `
+            /p:Configuration=Release `
+            /p:Platform=AnyCPU `
+            /p:TargetFrameworkVersion=v4.8 `
+            /m `
+            /v:minimal
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: SBuilderXX-Release
+          path: bin\Release\
+          retention-days: 30
+
+      # --- Release publication (runs only when a tag is pushed) ---
+
+      - name: Get short SHA
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
+      - name: Zip output
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        run: |
+          Compress-Archive `
+            -Path "bin\Release\*" `
+            -DestinationPath "SBuilderXX-Release-${{ env.SHORT_SHA }}.zip"
+
+      - name: Publish to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          files: |
+            SBuilderXX-Release-${{ env.SHORT_SHA }}.zip
