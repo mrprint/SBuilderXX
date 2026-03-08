@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Drawing;
-using System.Drawing.Imaging;
+using Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;

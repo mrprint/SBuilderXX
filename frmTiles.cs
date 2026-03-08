@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using CompatDrawing = Drawing;
 
 namespace SBuilderXX
 {
@@ -155,7 +156,7 @@ namespace SBuilderXX
         private void BuildImageBuffer()
         {
             Graphics g = Graphics.FromImage(ImgBuffer);
-            g.DrawImage(moduleTILES.ImageBackground, 0, 0, XW, YH);
+            g.DrawImage(CompatDrawing.DrawingBridgeExtensions.ToSystemBitmap(moduleTILES.ImageBackground), 0, 0, XW, YH);
             int Z = ZZZ - moduleMAIN.Zoom;
             Z = (int)Math.Pow(2d, Z);
             // Dim NY As Integer = Z * 5
@@ -421,8 +422,8 @@ namespace SBuilderXX
                 moduleMAPS.NoOfMaps = moduleMAPS.NoOfMaps + 1;
                 Array.Resize(ref moduleMAPS.ImgMaps, moduleMAPS.NoOfMaps + 1);
                 Array.Resize(ref moduleMAPS.Maps, moduleMAPS.NoOfMaps + 1);
-                moduleMAPS.ImgMaps[moduleMAPS.NoOfMaps] = new Bitmap(256 * (NX + 1), HH);
-                Graphics g = Graphics.FromImage(moduleMAPS.ImgMaps[moduleMAPS.NoOfMaps]);
+                moduleMAPS.ImgMaps[moduleMAPS.NoOfMaps] = new Drawing.Bitmap(256 * (NX + 1), HH);
+                Graphics g = Graphics.FromImage(CompatDrawing.DrawingBridgeExtensions.ToSystemBitmap(moduleMAPS.ImgMaps[moduleMAPS.NoOfMaps]));
                 box.Y = 0;
                 KT = (NY + 1) * (NX + 1);
                 K = 0;
@@ -519,7 +520,7 @@ namespace SBuilderXX
             {
                 if (moduleMAPS.ImgMaps[moduleMAPS.NoOfMaps] is object)
                 {
-                    moduleMAPS.ImgMaps[moduleMAPS.NoOfMaps].Save(myfile, ImageFormat.Bmp);
+                    moduleMAPS.ImgMaps[moduleMAPS.NoOfMaps].Save(myfile, Drawing.ImageFormat.Bmp);
                 }
             }
             catch (Exception)

@@ -24,7 +24,9 @@ jobs:
         uses: NuGet/setup-nuget@v2
 
       - name: Restore NuGet packages
-        run: nuget restore SBuilderXX.csproj
+        run: |
+          nuget restore SBuilderXX.csproj
+          nuget restore SkiaSharpCompat\Drawing.SkiaSharpCompat.csproj
 
       - name: Build
         run: |
@@ -34,6 +36,13 @@ jobs:
             /p:TargetFrameworkVersion=v4.8 `
             /m `
             /v:minimal
+
+      - name: Remove SkiaSharp PDBs
+        shell: pwsh
+        run: |
+          Get-ChildItem -Path "bin\Release\" -Filter "*.pdb" |
+            Where-Object { $_.Name -match "^Skia" -or $_.Name -match "^HarfBuzz" } |
+            Remove-Item -Force
 
       - name: Upload
         uses: actions/upload-artifact@v4

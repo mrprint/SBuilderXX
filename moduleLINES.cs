@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Drawing;
+using Drawing;
 using System.IO;
 using System.Media;
 using System.Text;
@@ -1065,7 +1065,7 @@ namespace SBuilderXX
                 bool IsExtrusion = false;
                 bool IsObjects = false;
                 myPen.Width = LinePenWidth;
-                myPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+                myPen.DashStyle = DashStyle.Solid;
                 if (Lines[N].Type != default)
                 {
                     if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "EXT")
@@ -1212,7 +1212,7 @@ namespace SBuilderXX
                                 gr.DrawRectangle(myPen, P0X - 3f, P0Y - 3f, 6f, 6f);
                                 if ((WID + LEN) * moduleMAIN.PixelsPerMeter > 10d)
                                 {
-                                    myPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                                    myPen.DashStyle = DashStyle.Dash;
                                     gr.DrawLine(myPen, P1X, P1Y, P2X, P2Y);
                                     gr.DrawLine(myPen, P2X, P2Y, P3X, P3Y);
                                     gr.DrawLine(myPen, P3X, P3Y, P4X, P4Y);
@@ -1220,7 +1220,7 @@ namespace SBuilderXX
                                     gr.DrawLine(myPen, P0X, P0Y, HDX, HDY);
                                     if (LineON)
                                     {
-                                        myPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+                                        myPen.DashStyle = DashStyle.Solid;
                                         gr.DrawRectangle(myPen, P1X - 2f, P1Y - 2f, 4f, 4f);
                                         gr.DrawRectangle(myPen, P2X - 2f, P2Y - 2f, 4f, 4f);
                                         gr.DrawRectangle(myPen, P3X - 2f, P3Y - 3f, 4f, 4f);

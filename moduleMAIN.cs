@@ -160,20 +160,12 @@ namespace SBuilderXX
         internal static int DisplayHeight; // value in pixels
         internal static int DisplayCenterX; // value in pixels
         internal static int DisplayCenterY; // value in pixels
-        internal static SKBitmap BitmapBuffer;
 
-        internal static void RebuildDisplay()
+        internal static Action RebuildDisplayAction;
+
+        public static void RebuildDisplay()
         {
-
-            // builds the buffer
-            // copies the buffer to the display
-
-            if (WAIT)
-                return;
-            WAIT = true;
-            My.MyProject.Forms.FrmStart.BuildBitmapBuffer();
-            My.MyProject.Forms.FrmStart.UpdateDisplay();
-            WAIT = false;
+            RebuildDisplayAction?.Invoke();
         }
 
         internal static void SetDispCenter(int X, int Y)

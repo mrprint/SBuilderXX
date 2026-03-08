@@ -120,6 +120,16 @@ namespace Drawing
             }
         }
 
+        public static SD.Bitmap ToSystemBitmap(this Image src)
+        {
+            using (var stream = new MemoryStream())
+            {
+                src.Save(stream, ImageFormat.Png);
+                stream.Position = 0;
+                return new SD.Bitmap(stream);
+            }
+        }
+
         /// <summary>Converts a System.Drawing.Bitmap to a Drawing.Bitmap.</summary>
         public static Bitmap ToDrawingBitmap(this SD.Bitmap src)
         {

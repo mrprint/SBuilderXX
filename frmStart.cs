@@ -3,8 +3,7 @@ using Microsoft.Win32;
 using ScruffyDuck.Flightsim.Scenery.SceneryFile;
 using System;
 using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Imaging;
+using Drawing;
 using System.Globalization;
 using System.IO;
 using System.Media;
@@ -228,7 +227,6 @@ namespace SBuilderXX
                 int h = _skCanvas.Height;
                 if (w < 2 || h < 2) return;
 
-                // 1. dimensions first
                 moduleMAIN.DisplayWidth = w;
                 moduleMAIN.DisplayHeight = h;
                 if (moduleMAIN.DisplayWidth > 2 * moduleMAIN.DisplayHeight)
@@ -236,35 +234,42 @@ namespace SBuilderXX
                 moduleMAIN.DisplayCenterX = moduleMAIN.DisplayWidth / 2;
                 moduleMAIN.DisplayCenterY = moduleMAIN.DisplayHeight / 2;
 
-                // 2. buffer
-                moduleMAIN.BitmapBuffer?.Dispose();
-                moduleMAIN.BitmapBuffer = new SkiaSharp.SKBitmap(
-                    moduleMAIN.DisplayWidth,
-                    moduleMAIN.DisplayHeight,
-                    SkiaSharp.SKColorType.Bgra8888,
-                    SkiaSharp.SKAlphaType.Premul);
-
-                // 3. geo setup — only if a project is actually loaded
                 if (!moduleMAIN.ViewON) return;
-
                 moduleMAIN.SetDispCenter(0, 0);
-                BuildBitmapBuffer();
+                DisplayScale();
                 _skCanvas.Invalidate();
             };
 
             // Insert BEHIND toolbar and menu (index 0 = back of z-order)
             Controls.Add(_skCanvas);
             Controls.SetChildIndex(_skCanvas, 0);
+
+            moduleMAIN.RebuildDisplayAction = () =>
+            {
+                DisplayScale();
+                _skCanvas.Invalidate();
+            };
         }
 
         private void SkCanvas_PaintSurface(object sender, SkiaSharp.Views.Desktop.SKPaintGLSurfaceEventArgs e)
         {
             var canvas = e.Surface.Canvas;
-            canvas.Clear(SkiaSharp.SKColors.White);
+            canvas.Clear(BackColorGray ? SkiaSharp.SKColors.Gray : SkiaSharp.SKColors.White);
 
-            // Direct draw — no conversion needed
-            if (moduleMAIN.BitmapBuffer != null)
-                canvas.DrawBitmap(moduleMAIN.BitmapBuffer, 0, 0);
+            if (moduleMAIN.ViewON)
+            {
+                using var g = Drawing.Graphics.FromSKCanvas(canvas);
+
+                if (moduleTILES.TileVIEW) moduleTILES.DisplayTiles(g);
+                if (moduleMAPS.MapVIEW) moduleMAPS.DisplayMaps(g);
+                if (moduleCLASSES.WaterVIEW) moduleCLASSES.DisplayWaters(g);
+                if (moduleCLASSES.LandVIEW) moduleCLASSES.DisplayLands(g);
+                if (modulePOLYS.PolyVIEW) modulePOLYS.DisplayPolys(g);
+                if (moduleLINES.LineVIEW) moduleLINES.DisplayLines(g);
+                if (moduleOBJECTS.ObjectVIEW) moduleOBJECTS.DisplayObjects(g);
+                if (moduleEXCLUDES.ExcludeVIEW) moduleEXCLUDES.DisplayExcludes(g);
+                DisplayGrids(g);
+            }
 
             // Persistent overlays
             if (moduleLINES.CheckLine > 0) DisplayCheckLine(canvas);
@@ -309,6 +314,9 @@ namespace SBuilderXX
                 case OverlayKind.LineSegment: PaintLineSegment(canvas, _overlayX, _overlayY); break;
                 case OverlayKind.PolySegment: PaintPolySegment(canvas, _overlayX, _overlayY); break;
             }
+
+            _lastFrame?.Dispose();
+            _lastFrame = e.Surface.Snapshot();
         }
 
         internal Offset<long> LatAircraft = new Offset<long>(0x560);
@@ -332,6 +340,7 @@ namespace SBuilderXX
         private double LatitudeDelta;
         private double LongitudeDelta;
         private bool BackColorGray = false;
+        private SkiaSharp.SKImage _lastFrame;
         // Skia control
         private SkiaSharp.Views.Desktop.SKGLControl _skCanvas;
 
@@ -349,39 +358,6 @@ namespace SBuilderXX
         }
         private OverlayKind _overlayKind = OverlayKind.None;
         private int _overlayX, _overlayY, _overlayN, _overlayM;
-
-        public void BuildBitmapBuffer()
-        {
-            if (moduleMAIN.BitmapBuffer == null) return;
-            if (moduleMAIN.DisplayWidth < 2 || moduleMAIN.DisplayHeight < 2) return;
-            if (moduleMAIN.PixelsPerLatDeg < 0.0001) return;
-
-            int w = moduleMAIN.BitmapBuffer.Width;
-            int h = moduleMAIN.BitmapBuffer.Height;
-
-            // Draw everything into a temporary System.Drawing.Bitmap
-            using var sdBmp = new System.Drawing.Bitmap(w, h,
-                System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            using (var g = System.Drawing.Graphics.FromImage(sdBmp))
-            {
-                g.Clear(BackColorGray ? System.Drawing.Color.Gray
-                                      : System.Drawing.Color.White);
-
-                if (moduleTILES.TileVIEW) moduleTILES.DisplayTiles(g);
-                if (moduleMAPS.MapVIEW) moduleMAPS.DisplayMaps(g);
-                if (moduleCLASSES.WaterVIEW) moduleCLASSES.DisplayWaters(g);
-                if (moduleCLASSES.LandVIEW) moduleCLASSES.DisplayLands(g);
-                if (modulePOLYS.PolyVIEW) modulePOLYS.DisplayPolys(g);
-                if (moduleLINES.LineVIEW) moduleLINES.DisplayLines(g);
-                if (moduleOBJECTS.ObjectVIEW) moduleOBJECTS.DisplayObjects(g);
-                if (moduleEXCLUDES.ExcludeVIEW) moduleEXCLUDES.DisplayExcludes(g);
-                DisplayGrids(g);
-                DisplayScale();
-            }
-
-            // Copy pixels from System.Drawing.Bitmap into the SKBitmap — no unsafe
-            CopyToSKBitmap(sdBmp, moduleMAIN.BitmapBuffer);
-        }
 
         private static void CopyToSKBitmap(System.Drawing.Bitmap src, SkiaSharp.SKBitmap dst)
         {
@@ -641,7 +617,7 @@ namespace SBuilderXX
             Pen p = new Pen(myColor)
             {
                 Width = moduleMAIN.GridWidth,
-                DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
+                DashStyle = DashStyle.Dash
             };
             G = G - 2; // QMID=LOD+2
             int LA1, LA, LA2;
@@ -1468,13 +1444,10 @@ namespace SBuilderXX
 
             ToolStrip.Cursor = Cursors.Arrow;
             MenuStrip.Cursor = Cursors.Arrow;
-            if (moduleMAIN.BitmapBuffer is null)
-            {
-                moduleMAIN.DisplayWidth = ClientSize.Width;
-                moduleMAIN.DisplayHeight = ClientSize.Height;
-                moduleMAIN.DisplayCenterX = (int)(moduleMAIN.DisplayWidth / 2d);
-                moduleMAIN.DisplayCenterY = (int)(moduleMAIN.DisplayHeight / 2d);
-            }
+            moduleMAIN.DisplayWidth = ClientSize.Width;
+            moduleMAIN.DisplayHeight = ClientSize.Height;
+            moduleMAIN.DisplayCenterX = (int)(moduleMAIN.DisplayWidth / 2d);
+            moduleMAIN.DisplayCenterY = (int)(moduleMAIN.DisplayHeight / 2d);
 
             UncheckToolButtons();
             UncheckViews();
@@ -1681,7 +1654,6 @@ namespace SBuilderXX
             moduleMAIN.ViewON = true;
             BackColorGray = false;
             moduleMAIN.SetDispCenter(0, 0);
-            BuildBitmapBuffer();
         }
 
         private void NewProject()
@@ -1763,7 +1735,6 @@ namespace SBuilderXX
             }
 
             moduleMAIN.SetDispCenter(0, 0);
-            BuildBitmapBuffer();
         }
 
         private void CheckFS10()
@@ -2119,7 +2090,6 @@ namespace SBuilderXX
 
             moduleMAIN.DisplayWidth = ClientSize.Width;
             moduleMAIN.DisplayHeight = ClientSize.Height;
-            moduleMAIN.BitmapBuffer = new SkiaSharp.SKBitmap(moduleMAIN.DisplayWidth, moduleMAIN.DisplayHeight);
             BackColor = Color.White;
             moduleMAIN.Season = "Summer";
             moduleMAPS.SetBitmapSeason();
@@ -5659,11 +5629,22 @@ namespace SBuilderXX
             }
         }
 
-        private void ColorFromMap(int X, int y)
+        private void ColorFromMap(int X, int Y)
         {
-            SkiaSharp.SKColor skColor = moduleMAIN.BitmapBuffer.GetPixel(X, y);
+            if (_lastFrame == null) return;
+
+            var info = new SkiaSharp.SKImageInfo(1, 1,
+                SkiaSharp.SKColorType.Rgba8888,
+                SkiaSharp.SKAlphaType.Premul);
+            using var bmp = new SkiaSharp.SKBitmap(info);
+            using var canvas = new SkiaSharp.SKCanvas(bmp);
+            canvas.DrawImage(_lastFrame, -X, -Y);
+            canvas.Flush();
+
+            var skColor = bmp.GetPixel(0, 0);
             System.Drawing.Color myColor = System.Drawing.Color.FromArgb(
                 skColor.Alpha, skColor.Red, skColor.Green, skColor.Blue);
+
             int N = My.MyProject.Forms.FrmProjectP.lstClassItems.SelectedIndex + 1;
             moduleCLASSES.LWCIs[N].ColorArgb = myColor.ToArgb();
             My.MyProject.Forms.FrmProjectP.lbClassItem.BackColor = myColor;

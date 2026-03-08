@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
+using Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -352,7 +352,7 @@ namespace SBuilderXX
 
                 g.FillRectangle(myBrush, X - 3f, Y - 3f, 6f, 6f);
                 g.DrawRectangle(myPen, X - 3f, Y - 3f, 6f, 6f);
-                myPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                myPen.DashStyle = DashStyle.Dash;
                 P0.X = X;
                 P0.Y = Y;
                 P1.X = (float)(Objects[N].P1X * moduleMAIN.PixelsPerMeter + X);
@@ -372,7 +372,7 @@ namespace SBuilderXX
                 g.DrawLine(myPen, P0, P5);
                 if (ObjectON)
                 {
-                    myPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+                    myPen.DashStyle = DashStyle.Solid;
                     g.DrawRectangle(myPen, P1.X - 2f, P1.Y - 2f, 4f, 4f);
                     g.DrawRectangle(myPen, P2.X - 2f, P2.Y - 2f, 4f, 4f);
                     g.DrawRectangle(myPen, P3.X - 2f, P3.Y - 3f, 4f, 4f);
@@ -595,8 +595,8 @@ namespace SBuilderXX
                                 ObjWinLight = 0;
                                 if (reader.GetAttribute("lighted").Substring(0, 1) == "T")
                                     ObjWinLight = 1;
-                                ObjWindPoleColor = ColorTranslator.ToOle(Color.Gray);
-                                ObjWindSockColor = ColorTranslator.ToOle(Color.Orange);
+                                ObjWindPoleColor = System.Drawing.ColorTranslator.ToOle(Color.Gray);
+                                ObjWindSockColor = System.Drawing.ColorTranslator.ToOle(Color.Orange);
                                 do
                                 {
                                     reader.Read();
@@ -607,7 +607,7 @@ namespace SBuilderXX
                                         R = Convert.ToInt32(reader.GetAttribute("red"));
                                         B = Convert.ToInt32(reader.GetAttribute("blue"));
                                         G = Convert.ToInt32(reader.GetAttribute("green"));
-                                        ObjWindPoleColor = ColorTranslator.ToOle(Color.FromArgb(255, R, G, B));
+                                        ObjWindPoleColor = System.Drawing.ColorTranslator.ToOle(Color.FromArgb(255, R, G, B));
                                     }
 
                                     if (reader.Name == "SockColor")
@@ -615,7 +615,7 @@ namespace SBuilderXX
                                         R = Convert.ToInt32(reader.GetAttribute("red"));
                                         B = Convert.ToInt32(reader.GetAttribute("blue"));
                                         G = Convert.ToInt32(reader.GetAttribute("green"));
-                                        ObjWindSockColor = ColorTranslator.ToOle(Color.FromArgb(255, R, G, B));
+                                        ObjWindSockColor = System.Drawing.ColorTranslator.ToOle(Color.FromArgb(255, R, G, B));
                                     }
                                 }
                                 while (true);
@@ -2823,7 +2823,7 @@ namespace SBuilderXX
 
             // this changed when making FSX version!!! hope it works!
             C = Color.FromArgb(Col);
-            X = ColorTranslator.ToOle(C);
+            X = System.Drawing.ColorTranslator.ToOle(C);
             Color2HexStrRet = X.ToString("X");
             return Color2HexStrRet;
         }

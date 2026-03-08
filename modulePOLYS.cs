@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Drawing;
+using Drawing;
 using System.IO;
 using System.Media;
 using System.Text;
@@ -638,7 +638,7 @@ namespace SBuilderXX
             int J, K, N, M, NC, NP;
             Pen myPen = new Pen(PolyColorBorder, PolyPenWidth);
             SolidBrush myBrush = new SolidBrush(Color.Yellow);
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            GraphicsPath path = new GraphicsPath();
             int P1, P2;  // to draw the points
             P1 = 2;
             if (PolyPenWidth == 2)

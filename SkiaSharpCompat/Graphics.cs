@@ -110,22 +110,25 @@ namespace Drawing
         // ── Factories ────────────────────────────────────────────────────────
 
         public static Graphics FromImage(Image image)
-            => new Graphics(new SKCanvas(image.SKBitmap), null);
+            => new Graphics(new SKCanvas(image.SKBitmap), null, ownsCanvas: true);
 
         public static Graphics FromSKCanvas(SKCanvas canvas)
-            => new Graphics(canvas, null);
+            => new Graphics(canvas, null, ownsCanvas: false);
 
         /// <summary>Creates a Graphics that draws into a new in-memory bitmap surface.</summary>
         public static Graphics FromSize(int width, int height)
         {
             var surface = SKSurface.Create(new SKImageInfo(width, height));
-            return new Graphics(surface.Canvas, surface);
+            return new Graphics(surface.Canvas, surface, ownsCanvas: false);
         }
 
-        private Graphics(SKCanvas canvas, SKSurface surface)
+        private bool _ownsCanvas;
+
+        private Graphics(SKCanvas canvas, SKSurface surface, bool ownsCanvas = true)
         {
-            _canvas  = canvas  ?? throw new ArgumentNullException(nameof(canvas));
-            _surface = surface;
+            _canvas     = canvas ?? throw new ArgumentNullException(nameof(canvas));
+            _surface    = surface;
+            _ownsCanvas = ownsCanvas;
         }
 
         // ── State: Save / Restore ─────────────────────────────────────────────
@@ -460,8 +463,8 @@ namespace Drawing
         {
             if (_disposed) return;
             _disposed = true;
-            OnDisposing();   // hook for SystemDrawingBridge partial
-            _canvas?.Dispose();
+            OnDisposing();
+            if (_ownsCanvas) _canvas?.Dispose();  // ← only dispose if we created it
             _surface?.Dispose();
         }
 

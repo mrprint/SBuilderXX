@@ -227,7 +227,7 @@ namespace SBuilderXX
         {
             Image GeoTiff;
             MemoryStream Stream = new MemoryStream();
-            moduleMAPS.ImgMaps[modulePOPUP.POPIndex].Save(Stream, ImageFormat.Tiff);
+            moduleMAPS.ImgMaps[modulePOPUP.POPIndex].Save(Stream, Drawing.ImageFormat.Tiff);
             GeoTiff = Image.FromStream(Stream);
             PropertyItem propItem;
             propItem = GeoTiff.GetPropertyItem(256);

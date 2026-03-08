@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Imaging;
+using Drawing;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
