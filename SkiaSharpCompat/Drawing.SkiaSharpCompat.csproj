@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>Drawing.SkiaSharpCompat</AssemblyName>
+    <RootNamespace>Drawing</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Description>Drop-in replacement for System.Drawing using SkiaSharp. Target .NET 4.8.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp" Version="2.*" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="2.*" />
+    <PackageReference Include="SkiaSharp.Views.WindowsForms" Version="2.88.8" />
+    <!-- Linux / macOS runners: -->
+    <!-- <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.*" /> -->
+    <!-- <PackageReference Include="SkiaSharp.NativeAssets.macOS" Version="2.*" /> -->
+  </ItemGroup>
+
+</Project>

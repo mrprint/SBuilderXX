@@ -2536,7 +2536,12 @@
     <None Include="Resources\objects.png" />
     <None Include="Resources\maps.gif" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="E:\projects\SBuilderXX\SkiaSharpCompat\Drawing.SkiaSharpCompat.csproj">
+      <Project>{731d7c75-d476-0b3d-d17b-4907a33b1d2a}</Project>
+      <Name>Drawing.SkiaSharpCompat</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
