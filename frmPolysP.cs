@@ -119,8 +119,8 @@ namespace SBuilderXX
                 lbName.Enabled = true;
                 txtName.Enabled = true;
                 txtName.Text = modulePOLYS.Polys[0].Name;
-                ckThisColor.BackColor = modulePOLYS.Polys[0].Color;
-                ckThisColor.ForeColor = moduleMAIN.InvertColor(modulePOLYS.Polys[0].Color);
+                ckThisColor.BackColor = Color.FromArgb(modulePOLYS.Polys[0].ColorArgb);
+                ckThisColor.ForeColor = moduleMAIN.InvertColor(Color.FromArgb(modulePOLYS.Polys[0].ColorArgb));
             }
 
             LT = 0;
@@ -199,8 +199,8 @@ namespace SBuilderXX
             N = a.IndexOf("//");
             ckNight.CheckState = (CheckState)Convert.ToInt32(a.Substring(0, N));
             a = a.Substring(N + 2);
-            lbPolyColor.BackColor = modulePOLYS.Polys[modulePOPUP.POPIndex].Color;
-            lbPolyColor.ForeColor = moduleMAIN.InvertColor(modulePOLYS.Polys[modulePOPUP.POPIndex].Color);
+            lbPolyColor.BackColor = Color.FromArgb(modulePOLYS.Polys[modulePOPUP.POPIndex].ColorArgb);
+            lbPolyColor.ForeColor = moduleMAIN.InvertColor(Color.FromArgb(modulePOLYS.Polys[modulePOPUP.POPIndex].ColorArgb));
             modulePOLYS.PolyTexString = a;
         }
 
@@ -299,7 +299,7 @@ namespace SBuilderXX
                     modulePOLYS.Polys[N].Type = A;
                     modulePOLYS.MakePolyTexString(N, false);
                     modulePOLYS.Polys[N].Type = A + modulePOLYS.PolyTexString;
-                    modulePOLYS.Polys[N].Color = lbPolyColor.BackColor;
+                    modulePOLYS.Polys[N].ColorArgb = lbPolyColor.BackColor.ToArgb();
                     return;
                 }
                 catch (Exception)
@@ -312,11 +312,11 @@ namespace SBuilderXX
             {
                 if (ckThisColor.Checked)
                 {
-                    modulePOLYS.Polys[N].Color = ckThisColor.BackColor;
+                    modulePOLYS.Polys[N].ColorArgb = ckThisColor.BackColor.ToArgb();
                 }
                 else
                 {
-                    modulePOLYS.Polys[N].Color = lbTexture.BackColor;
+                    modulePOLYS.Polys[N].ColorArgb = lbTexture.BackColor.ToArgb();
                 }
 
                 if (modulePOLYS.PolyTypes[ThisPolyType].Type == "XXX")
@@ -370,7 +370,7 @@ namespace SBuilderXX
 
         private void CopyProperties(int source, int dest)
         {
-            modulePOLYS.Polys[dest].Color = modulePOLYS.Polys[source].Color;
+            modulePOLYS.Polys[dest].ColorArgb = modulePOLYS.Polys[source].ColorArgb;
             modulePOLYS.Polys[dest].Guid = modulePOLYS.Polys[source].Guid;
             modulePOLYS.Polys[dest].Type = modulePOLYS.Polys[source].Type;
         }

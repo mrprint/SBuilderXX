@@ -141,7 +141,7 @@ namespace SBuilderXX
             public byte Class1; // not exported 
             public byte Class2; // not exported 
             public byte Class3; // not exported 
-            public Color Color;
+            public int ColorArgb;
         }
 
         internal static LWCIndex[] LWCIs = new LWCIndex[2];
@@ -1628,7 +1628,7 @@ namespace SBuilderXX
                                 {
                                     if (LWCIs[N].IsLand)
                                     {
-                                        if (LWCIs[N].Color == myColor)
+                                        if (LWCIs[N].ColorArgb == myColor.ToArgb())
                                         {
                                             msg = (float)rand.NextDouble() * 100f;
                                             if (msg < 58f)
@@ -1740,7 +1740,7 @@ namespace SBuilderXX
                                 {
                                     if (!LWCIs[N].IsLand)
                                     {
-                                        if (LWCIs[N].Color == myColor)
+                                        if (LWCIs[N].ColorArgb == myColor.ToArgb())
                                         {
                                             msg = (float)rand.NextDouble() * 100f;
                                             if (msg < 58f)

@@ -17,7 +17,7 @@ namespace SBuilderXX
             public string Name;
             public string Type;
             public string Guid;
-            public Color Color;
+            public int ColorArgb;
             public bool Selected;
             public int NoOfPoints;
             public modulePOINTS.GLPoint[] GLPoints;
@@ -280,7 +280,7 @@ namespace SBuilderXX
                 PtLineCounter = 3;
                 NewLine.GLPoints = new modulePOINTS.GLPoint[3];
                 NewLine.NoOfPoints = 2;
-                NewLine.Color = DefaultLineColor;
+                NewLine.ColorArgb = DefaultLineColor.ToArgb();
                 NewLine.Selected = false;
                 NewLine.GLPoints[1].lat = AuxLatLine;
                 NewLine.GLPoints[1].lon = AuxLonLine;
@@ -846,7 +846,7 @@ namespace SBuilderXX
                             Lines[NoOfLines].GLPoints[L - K + 1].lon = Lines[N].GLPoints[L].lon;
                         }
 
-                        Lines[NoOfLines].Color = Lines[N].Color;
+                        Lines[NoOfLines].ColorArgb = Lines[N].ColorArgb;
                         Lines[NoOfLines].Name = Lines[N].Name;
                         Lines[NoOfLines].Type = Lines[N].Type;
                         Lines[NoOfLines].Guid = Lines[N].Guid;
@@ -1089,8 +1089,8 @@ namespace SBuilderXX
                 }
                 else
                 {
-                    myPen.Color = Lines[N].Color;
-                    myBrush.Color = Lines[N].Color;
+                    myPen.Color = Color.FromArgb(Lines[N].ColorArgb);
+                    myBrush.Color = Color.FromArgb(Lines[N].ColorArgb);
                 }
 
                 PointOnDisplay = new bool[NP + 1];
@@ -1847,7 +1847,7 @@ namespace SBuilderXX
             modulePOLYS.Polys[modulePOLYS.NoOfPolys].Name = modulePOLYS.Polys[modulePOLYS.NoOfPolys].NoOfPoints.ToString() + "_Pts_Polygon_of_Type_None";
             modulePOLYS.Polys[modulePOLYS.NoOfPolys].Guid = modulePOLYS.DefaultPolyNoneGuid;
             modulePOLYS.Polys[modulePOLYS.NoOfPolys].NoOfChilds = 0;
-            modulePOLYS.Polys[modulePOLYS.NoOfPolys].Color = modulePOLYS.DefaultPolyColor;
+            modulePOLYS.Polys[modulePOLYS.NoOfPolys].ColorArgb = modulePOLYS.DefaultPolyColor.ToArgb();
             modulePOLYS.Polys[modulePOLYS.NoOfPolys].GPoints = new modulePOINTS.GPoint[2 * NP + 1];
             M = 1;
             int loopTo3 = NP;

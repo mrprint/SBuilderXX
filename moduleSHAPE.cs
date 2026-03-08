@@ -366,18 +366,18 @@ namespace SBuilderXX
 
                 if (ShapeLineColorField == 0)
                 {
-                    myLines[N].Color = ShapeLineColor;
+                    myLines[N].ColorArgb = ShapeLineColor.ToArgb();
                 }
                 else
                 {
                     A = DBF.Attribute(N, ShapeLineColorField - 1);
                     if (!string.IsNullOrEmpty(A))
                     {
-                        myLines[N].Color = Color.FromArgb(Convert.ToInt32(A));
+                        myLines[N].ColorArgb = Convert.ToInt32(A);
                     }
                     else
                     {
-                        myLines[N].Color = ShapeLineColor;
+                        myLines[N].ColorArgb = ShapeLineColor.ToArgb();
                     }
                 }
 
@@ -743,7 +743,7 @@ namespace SBuilderXX
                     {
                         K = K + 1;
                         modulePOLYS.Polys[K].Name = myNames[N - 1];
-                        modulePOLYS.Polys[K].Color = myColors[N - 1];
+                        modulePOLYS.Polys[K].ColorArgb = myColors[N - 1].ToArgb();
                         modulePOLYS.Polys[K].Guid = myGuids[N - 1];
                         modulePOLYS.Polys[K].Type = myTypes[N - 1];
                         if (NP == 1)
@@ -894,7 +894,7 @@ namespace SBuilderXX
                 {
                     DBF.AddRecord(N, 1, moduleLINES.Lines[N].Name);
                     DBF.AddRecord(N, 2, moduleLINES.Lines[N].Type);
-                    DBF.AddRecord(N, 3, moduleLINES.Lines[N].Color.ToArgb().ToString());
+                    DBF.AddRecord(N, 3, moduleLINES.Lines[N].ColorArgb.ToString());
                     DBF.AddRecord(N, 4, moduleLINES.Lines[N].Guid);
                 }
 
@@ -950,7 +950,7 @@ namespace SBuilderXX
                         K = K + 1;
                         DBF.AddRecord(K, 1, modulePOLYS.Polys[N].Name);
                         DBF.AddRecord(K, 2, modulePOLYS.Polys[N].Type);
-                        DBF.AddRecord(K, 3, modulePOLYS.Polys[N].Color.ToArgb().ToString());
+                        DBF.AddRecord(K, 3, modulePOLYS.Polys[N].ColorArgb.ToString());
                         DBF.AddRecord(K, 4, modulePOLYS.Polys[N].Guid);
                     }
                 }

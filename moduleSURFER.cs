@@ -179,7 +179,7 @@ namespace SBuilderXX
                                 modulePOLYS.Polys[NoP].Name = myLine.Name;
                             }
 
-                            modulePOLYS.Polys[NoP].Color = BLNPolyColor;
+                            modulePOLYS.Polys[NoP].ColorArgb = BLNPolyColor.ToArgb();
                             modulePOLYS.Polys[NoP].Type = BLNPolyType;
                             modulePOLYS.Polys[NoP].Guid = BLNPolyGuid;
                             modulePOLYS.Polys[NoP].NoOfPoints = N - 1;
@@ -251,7 +251,7 @@ namespace SBuilderXX
                                     moduleLINES.Lines[NoL].Name = myLine.Name;
                                 }
 
-                                moduleLINES.Lines[NoL].Color = BLNLineColor;
+                                moduleLINES.Lines[NoL].ColorArgb = BLNLineColor.ToArgb();
                                 moduleLINES.Lines[NoL].Type = BLNLineType;
                                 moduleLINES.Lines[NoL].Guid = BLNLineGuid;
                                 moduleLINES.Lines[NoL].NoOfPoints = N;
@@ -306,7 +306,7 @@ namespace SBuilderXX
                                 moduleLINES.Lines[NoL].Name = myLine.Name;
                             }
 
-                            moduleLINES.Lines[NoL].Color = BLNLineColor;
+                            moduleLINES.Lines[NoL].ColorArgb = BLNLineColor.ToArgb();
                             moduleLINES.Lines[NoL].Type = BLNLineType;
                             moduleLINES.Lines[NoL].Guid = BLNLineGuid;
                             moduleLINES.Lines[NoL].NoOfPoints = N;

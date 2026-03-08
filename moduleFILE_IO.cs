@@ -1031,7 +1031,7 @@ namespace SBuilderXX
                     file.WriteLine("Name=" + moduleLINES.Lines[N].Name);
                     file.WriteLine("Type=" + moduleLINES.Lines[N].Type);
                     file.WriteLine("Guid=" + moduleLINES.Lines[N].Guid);
-                    file.WriteLine("Color=" + ArgbFromColor(moduleLINES.Lines[N].Color));
+                    file.WriteLine("Color=" + ArgbFromColor(Color.FromArgb(moduleLINES.Lines[N].ColorArgb)));
                     file.WriteLine("NoOfPoints=" + moduleLINES.Lines[N].NoOfPoints.ToString());
                     int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
                     for (M = 1; M <= loopTo2; M++)
@@ -1052,7 +1052,7 @@ namespace SBuilderXX
                     file.WriteLine("Name=" + modulePOLYS.Polys[N].Name);
                     file.WriteLine("Type=" + modulePOLYS.Polys[N].Type);
                     file.WriteLine("Guid=" + modulePOLYS.Polys[N].Guid);
-                    file.WriteLine("Color=" + ArgbFromColor(modulePOLYS.Polys[N].Color));
+                    file.WriteLine("Color=" + ArgbFromColor(Color.FromArgb(modulePOLYS.Polys[N].ColorArgb)));
                     file.WriteLine("NoOfChilds=" + modulePOLYS.Polys[N].NoOfChilds.ToString());
                     int loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
                     for (M = 1; M <= loopTo4; M++)
@@ -1191,7 +1191,7 @@ namespace SBuilderXX
                     KEY = "[LWCI." + N.ToString().Trim() + "]";
                     file.WriteLine(KEY);
                     file.WriteLine("Text=" + moduleCLASSES.LWCIs[N].Text);
-                    file.WriteLine("Color=" + ArgbFromColor(moduleCLASSES.LWCIs[N].Color));
+                    file.WriteLine("Color=" + ArgbFromColor(Color.FromArgb(moduleCLASSES.LWCIs[N].ColorArgb)));
                 }
 
             }
@@ -1335,11 +1335,11 @@ namespace SBuilderXX
                     moduleLINES.Lines[N].Guid = file.ReadLine().Substring(5);
                     if (Version == "SB301")
                     {
-                        moduleLINES.Lines[N].Color = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
+                        moduleLINES.Lines[N].ColorArgb = Convert.ToInt32(file.ReadLine().Substring(6));
                     }
                     else
                     {
-                        moduleLINES.Lines[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
+                        moduleLINES.Lines[N].ColorArgb = ColorFromArgb(file.ReadLine().Substring(6)).ToArgb();
                     }
 
                     moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
@@ -1398,11 +1398,11 @@ namespace SBuilderXX
                     modulePOLYS.Polys[N].Guid = file.ReadLine().Substring(5);
                     if (Version == "SB301")
                     {
-                        modulePOLYS.Polys[N].Color = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
+                        modulePOLYS.Polys[N].ColorArgb = Convert.ToInt32(file.ReadLine().Substring(6));
                     }
                     else
                     {
-                        modulePOLYS.Polys[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
+                        modulePOLYS.Polys[N].ColorArgb = ColorFromArgb(file.ReadLine().Substring(6)).ToArgb();
                     }
 
                     J = Convert.ToInt32(file.ReadLine().Substring(11));
@@ -1579,7 +1579,7 @@ namespace SBuilderXX
                     KEY = "[LWCI." + N.ToString().Trim() + "]";
                     GoToThisKey(in file, KEY);
                     moduleCLASSES.LWCIs[N].Text = file.ReadLine().Substring(5);
-                    moduleCLASSES.LWCIs[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
+                    moduleCLASSES.LWCIs[N].ColorArgb = ColorFromArgb(file.ReadLine().Substring(6)).ToArgb();
                 }
 
                 SetLWCIs();
@@ -1671,7 +1671,7 @@ namespace SBuilderXX
                     R = C.R;
                     G = C.G;
                     B = C.B;
-                    moduleLINES.Lines[N].Color = Color.FromArgb(B, G, R);
+                    moduleLINES.Lines[N].ColorArgb = Color.FromArgb(B, G, R).ToArgb();
                     moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
                     if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
                         moduleLINES.Lines[N].Name = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_Imported_Line";
@@ -1732,7 +1732,7 @@ namespace SBuilderXX
                     R = C.R;
                     G = C.G;
                     B = C.B;
-                    modulePOLYS.Polys[N].Color = Color.FromArgb(B, G, R);
+                    modulePOLYS.Polys[N].ColorArgb = Color.FromArgb(B, G, R).ToArgb();
                     modulePOLYS.Polys[N].NoOfChilds = 0;
                     // ReDim Polys(N).Childs(Polys(N).NoOfChilds)
                     modulePOLYS.Polys[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
@@ -1954,11 +1954,11 @@ namespace SBuilderXX
                     moduleLINES.Lines[N].Guid = file.ReadLine().Substring(5);
                     if (Version == "SB301")
                     {
-                        moduleLINES.Lines[N].Color = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
+                        moduleLINES.Lines[N].ColorArgb = Convert.ToInt32(file.ReadLine().Substring(6));
                     }
                     else
                     {
-                        moduleLINES.Lines[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
+                        moduleLINES.Lines[N].ColorArgb = ColorFromArgb(file.ReadLine().Substring(6)).ToArgb();
                     }
 
                     moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
@@ -2018,11 +2018,11 @@ namespace SBuilderXX
                     modulePOLYS.Polys[N].Guid = file.ReadLine().Substring(5);
                     if (Version == "SB301")
                     {
-                        modulePOLYS.Polys[N].Color = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
+                        modulePOLYS.Polys[N].ColorArgb = Convert.ToInt32(file.ReadLine().Substring(6));
                     }
                     else
                     {
-                        modulePOLYS.Polys[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
+                        modulePOLYS.Polys[N].ColorArgb = ColorFromArgb(file.ReadLine().Substring(6)).ToArgb();
                     }
 
                     L = Convert.ToInt32(file.ReadLine().Substring(11));
@@ -2290,7 +2290,7 @@ namespace SBuilderXX
                     KEY = "[LWCI." + K.ToString().Trim() + "]";
                     GoToThisKey(in file, KEY);
                     moduleCLASSES.LWCIs[N].Text = file.ReadLine().Substring(5);
-                    moduleCLASSES.LWCIs[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
+                    moduleCLASSES.LWCIs[N].ColorArgb = ColorFromArgb(file.ReadLine().Substring(6)).ToArgb();
                 }
 
             }
@@ -2303,7 +2303,7 @@ namespace SBuilderXX
             SetLWCIs();
             int loopTo13 = moduleCLASSES.NoOfLWCIs;
             for (K = 1; K <= loopTo13; K++)
-                MessageBox.Show(moduleCLASSES.LWCIs[2].Color.ToString() + " " + moduleCLASSES.LWCIs[2].IsLand.ToString() + " Text= " + moduleCLASSES.LWCIs[2].Text);
+                MessageBox.Show(moduleCLASSES.LWCIs[2].ColorArgb.ToString() + " " + moduleCLASSES.LWCIs[2].IsLand.ToString() + " Text= " + moduleCLASSES.LWCIs[2].Text);
             My.MyProject.Forms.FrmStart.SetMouseIcon();
         }
 

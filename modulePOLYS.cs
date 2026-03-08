@@ -25,7 +25,7 @@ namespace SBuilderXX
             public string Name;
             public string Type;
             public string Guid;
-            public Color Color;
+            public int ColorArgb;
             public bool Selected;
             public int NoOfChilds;
             public int[] Childs;
@@ -242,7 +242,7 @@ namespace SBuilderXX
                 PtPolyCounter = 3;
                 NewPoly.GPoints = new modulePOINTS.GPoint[3];
                 NewPoly.NoOfPoints = 2;
-                NewPoly.Color = DefaultPolyColor;
+                NewPoly.ColorArgb = DefaultPolyColor.ToArgb();
                 NewPoly.Selected = false;
                 NewPoly.GPoints[1].lat = AuxLatPoly;
                 NewPoly.GPoints[1].lon = AuxLonPoly;
@@ -397,7 +397,7 @@ namespace SBuilderXX
                 MakePolyAntiClockWise(K);
                 Polys[K].Guid = Polys[N].Guid;
                 Polys[K].Type = Polys[N].Type;
-                Polys[K].Color = Polys[N].Color;
+                Polys[K].ColorArgb = Polys[N].ColorArgb;
                 Polys[K].NoOfChilds = -N;
                 Array.Resize(ref Polys[N].Childs, Polys[N].NoOfChilds + 1 + 1);
                 Polys[N].NoOfChilds = Polys[N].NoOfChilds + 1;
@@ -436,7 +436,7 @@ namespace SBuilderXX
                             MakePolyAntiClockWise(K);
                             Polys[K].Guid = Polys[N].Guid;
                             Polys[K].Type = Polys[N].Type;
-                            Polys[K].Color = Polys[N].Color;
+                            Polys[K].ColorArgb = Polys[N].ColorArgb;
                             Polys[K].NoOfChilds = -N;
                             OK[K] = true;
                             NoOfOKs = NoOfOKs + 1;
@@ -702,7 +702,7 @@ namespace SBuilderXX
 
                 if (PolyFILL)
                 {
-                    myBrush.Color = Polys[N].Color;
+                    myBrush.Color = Color.FromArgb(Polys[N].ColorArgb);
                     gr.FillPath(myBrush, path);
                 }
 
@@ -3138,7 +3138,7 @@ namespace SBuilderXX
             Polys[0].Name = "0";
             Polys[0].Guid = "0";
             Polys[0].NoOfChilds = 0;
-            Polys[0].Color = DefaultPolyColor;
+            Polys[0].ColorArgb = DefaultPolyColor.ToArgb();
             Polys[0].GPoints = new modulePOINTS.GPoint[2 * NP + 1];
             M = 1;
             int loopTo3 = NP;
@@ -3622,7 +3622,7 @@ namespace SBuilderXX
             string FillMaterialListRet = default;
             Color C;
             string a;
-            C = Polys[P].Color;
+            C = Color.FromArgb(Polys[P].ColorArgb);
             FillMaterialListRet = "MaterialList( 0   ";
             a = (C.R / 255d).ToString("0.000") + " ";
             a = a + (C.G / 255d).ToString("0.000") + " ";

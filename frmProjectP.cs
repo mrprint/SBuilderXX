@@ -43,8 +43,8 @@ namespace SBuilderXX
             {
                 // lbClassItem.Text = VB6.GetItemString(lstClassItems, N - 1)
                 lbClassItem.Text = lstClassItems.GetItemText(N - 1);
-                lbClassItem.BackColor = moduleCLASSES.LWCIs[N].Color;
-                lbClassItem.ForeColor = moduleMAIN.InvertColor(moduleCLASSES.LWCIs[N].Color);
+                lbClassItem.BackColor = Color.FromArgb(moduleCLASSES.LWCIs[N].ColorArgb);
+                lbClassItem.ForeColor = moduleMAIN.InvertColor(Color.FromArgb(moduleCLASSES.LWCIs[N].ColorArgb));
                 lstClassItems.SelectedIndex = N - 1;
             }
 
@@ -229,12 +229,12 @@ namespace SBuilderXX
                 moduleCLASSES.LWCIs[N].Class3 = P3;
                 if (IsLand)
                 {
-                    moduleCLASSES.LWCIs[N].Color = Color.GreenYellow;
+                    moduleCLASSES.LWCIs[N].ColorArgb = Color.GreenYellow.ToArgb();
                     moduleCLASSES.LWCIs[N].IsLand = true;
                 }
                 else
                 {
-                    moduleCLASSES.LWCIs[N].Color = Color.Blue;
+                    moduleCLASSES.LWCIs[N].ColorArgb = Color.Blue.ToArgb();
                     moduleCLASSES.LWCIs[N].IsLand = false;
                 }
 
@@ -242,8 +242,8 @@ namespace SBuilderXX
                 lstClassItems.Items.Add(A);
                 // lbClassItem.Text = VB6.GetItemString(lstClassItems, N - 1)
                 lbClassItem.Text = lstClassItems.GetItemText(N - 1);
-                lbClassItem.BackColor = moduleCLASSES.LWCIs[N].Color;
-                lbClassItem.ForeColor = moduleMAIN.InvertColor(moduleCLASSES.LWCIs[N].Color);
+                lbClassItem.BackColor = Color.FromArgb(moduleCLASSES.LWCIs[N].ColorArgb);
+                lbClassItem.ForeColor = moduleMAIN.InvertColor(Color.FromArgb(moduleCLASSES.LWCIs[N].ColorArgb));
                 moduleMAIN.Dirty = true;
                 return;
             }
@@ -285,7 +285,7 @@ namespace SBuilderXX
                 moduleCLASSES.LWCIs[K].Class1 = moduleCLASSES.LWCIs[K + 1].Class1;
                 moduleCLASSES.LWCIs[K].Class2 = moduleCLASSES.LWCIs[K + 1].Class2;
                 moduleCLASSES.LWCIs[K].Class3 = moduleCLASSES.LWCIs[K + 1].Class3;
-                moduleCLASSES.LWCIs[K].Color = moduleCLASSES.LWCIs[K + 1].Color;
+                moduleCLASSES.LWCIs[K].ColorArgb = moduleCLASSES.LWCIs[K + 1].ColorArgb;
                 moduleCLASSES.LWCIs[K].IsLand = moduleCLASSES.LWCIs[K + 1].IsLand;
                 moduleCLASSES.LWCIs[K].Text = moduleCLASSES.LWCIs[K + 1].Text;
             }
@@ -447,8 +447,8 @@ namespace SBuilderXX
 
             // lbClassItem.Text = VB6.GetItemString(lstClassItems, N - 1)
             lbClassItem.Text = lstClassItems.GetItemText(N - 1);
-            lbClassItem.BackColor = moduleCLASSES.LWCIs[N].Color;
-            lbClassItem.ForeColor = moduleMAIN.InvertColor(moduleCLASSES.LWCIs[N].Color);
+            lbClassItem.BackColor = Color.FromArgb(moduleCLASSES.LWCIs[N].ColorArgb);
+            lbClassItem.ForeColor = moduleMAIN.InvertColor(Color.FromArgb(moduleCLASSES.LWCIs[N].ColorArgb));
         }
 
         private void LbClassItem_Click(object sender, EventArgs e)
@@ -497,7 +497,7 @@ namespace SBuilderXX
 
             int N;
             N = lstClassItems.SelectedIndex + 1;
-            moduleCLASSES.LWCIs[N].Color = moduleMAIN.ARGBColor;
+            moduleCLASSES.LWCIs[N].ColorArgb = moduleMAIN.ARGBColor.ToArgb();
             lbClassItem.ForeColor = moduleMAIN.InvertColor(moduleMAIN.ARGBColor);
             moduleEDIT.BackUp();
             moduleMAIN.Dirty = true;

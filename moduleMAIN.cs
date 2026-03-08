@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using SkiaSharp;
 
 namespace SBuilderXX
 {
@@ -159,7 +160,7 @@ namespace SBuilderXX
         internal static int DisplayHeight; // value in pixels
         internal static int DisplayCenterX; // value in pixels
         internal static int DisplayCenterY; // value in pixels
-        internal static Bitmap BitmapBuffer;
+        internal static SKBitmap BitmapBuffer;
 
         internal static void RebuildDisplay()
         {

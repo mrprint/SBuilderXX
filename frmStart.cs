@@ -20,6 +20,7 @@ namespace SBuilderXX
 
             // This call is required by the Windows Form Designer.
             InitializeComponent();
+            InitSkiaControl();
             _NewMenuItem.Name = "NewMenuItem";
             _OpenMenuItem.Name = "OpenMenuItem";
             _SaveMenuItem.Name = "SaveMenuItem";
@@ -204,6 +205,112 @@ namespace SBuilderXX
 
         }
 
+        private void InitSkiaControl()
+        {
+            _skCanvas = new SkiaSharp.Views.Desktop.SKGLControl
+            {
+                Dock = DockStyle.Fill,
+                VSync = true,
+                Name = "SkiaCanvas",
+                TabStop = true
+            };
+
+            _skCanvas.PaintSurface += SkCanvas_PaintSurface;
+            _skCanvas.MouseDown += FrmStart_MouseDown;
+            _skCanvas.MouseMove += FrmStart_MouseMove;
+            _skCanvas.MouseUp += FrmStart_MouseUp;
+            _skCanvas.MouseWheel += FrmStart_MouseWheel;
+            _skCanvas.KeyDown += FrmStart_KeyDown;
+            _skCanvas.KeyUp += FrmStart_KeyUp;
+            _skCanvas.Resize += (s, e) =>
+            {
+                int w = _skCanvas.Width;
+                int h = _skCanvas.Height;
+                if (w < 2 || h < 2) return;
+
+                // 1. dimensions first
+                moduleMAIN.DisplayWidth = w;
+                moduleMAIN.DisplayHeight = h;
+                if (moduleMAIN.DisplayWidth > 2 * moduleMAIN.DisplayHeight)
+                    moduleMAIN.DisplayWidth = 2 * moduleMAIN.DisplayHeight;
+                moduleMAIN.DisplayCenterX = moduleMAIN.DisplayWidth / 2;
+                moduleMAIN.DisplayCenterY = moduleMAIN.DisplayHeight / 2;
+
+                // 2. buffer
+                moduleMAIN.BitmapBuffer?.Dispose();
+                moduleMAIN.BitmapBuffer = new SkiaSharp.SKBitmap(
+                    moduleMAIN.DisplayWidth,
+                    moduleMAIN.DisplayHeight,
+                    SkiaSharp.SKColorType.Bgra8888,
+                    SkiaSharp.SKAlphaType.Premul);
+
+                // 3. geo setup — only if a project is actually loaded
+                if (!moduleMAIN.ViewON) return;
+
+                moduleMAIN.SetDispCenter(0, 0);
+                BuildBitmapBuffer();
+                _skCanvas.Invalidate();
+            };
+
+            // Insert BEHIND toolbar and menu (index 0 = back of z-order)
+            Controls.Add(_skCanvas);
+            Controls.SetChildIndex(_skCanvas, 0);
+        }
+
+        private void SkCanvas_PaintSurface(object sender, SkiaSharp.Views.Desktop.SKPaintGLSurfaceEventArgs e)
+        {
+            var canvas = e.Surface.Canvas;
+            canvas.Clear(SkiaSharp.SKColors.White);
+
+            // Direct draw — no conversion needed
+            if (moduleMAIN.BitmapBuffer != null)
+                canvas.DrawBitmap(moduleMAIN.BitmapBuffer, 0, 0);
+
+            // Persistent overlays
+            if (moduleLINES.CheckLine > 0) DisplayCheckLine(canvas);
+            if (modulePOLYS.CheckPoly > 0) DisplayCheckPoly(canvas);
+            if (moduleMAIN.AircraftVIEW) DisplayAircraft(canvas);
+
+            if (_showSelectBox)
+            {
+                using var paint = new SkiaSharp.SKPaint
+                {
+                    Style = SkiaSharp.SKPaintStyle.Stroke,
+                    Color = SkiaSharp.SKColors.Red,
+                    StrokeWidth = 1f,
+                    PathEffect = SkiaSharp.SKPathEffect.CreateDash(new float[] { 4f, 4f }, 0f)
+                };
+                canvas.DrawRect(SkiaSharp.SKRect.Create(
+                    _selectBoxRect.X, _selectBoxRect.Y,
+                    _selectBoxRect.Width, _selectBoxRect.Height), paint);
+            }
+
+            if (_showExcludeBox)
+            {
+                using var paint = new SkiaSharp.SKPaint
+                {
+                    Style = SkiaSharp.SKPaintStyle.Stroke,
+                    Color = SkiaSharp.SKColors.Black,
+                    StrokeWidth = 2f
+                };
+                canvas.DrawRect(SkiaSharp.SKRect.Create(
+                    _excludeBoxRect.X, _excludeBoxRect.Y,
+                    _excludeBoxRect.Width, _excludeBoxRect.Height), paint);
+            }
+
+            // Transient overlays
+            switch (_overlayKind)
+            {
+                case OverlayKind.Measure: PaintMeasure(canvas, _overlayX, _overlayY); break;
+                case OverlayKind.LineLabel: PaintLineLabel(canvas, _overlayX, _overlayY, _overlayN); break;
+                case OverlayKind.PolyLabel: PaintPolyLabel(canvas, _overlayX, _overlayY, _overlayN, _overlayM); break;
+                case OverlayKind.ParentLabel: PaintParentLabel(canvas, _overlayX, _overlayY); break;
+                case OverlayKind.ObjectLabel: PaintObjectLabel(canvas, _overlayX, _overlayY, _overlayN); break;
+                case OverlayKind.LineSegment: PaintLineSegment(canvas, _overlayX, _overlayY); break;
+                case OverlayKind.PolySegment: PaintPolySegment(canvas, _overlayX, _overlayY); break;
+            }
+        }
+
         internal Offset<long> LatAircraft = new Offset<long>(0x560);
         internal Offset<long> LonAircraft = new Offset<long>(0x568);
         internal Offset<int> Alt1Aircraft = new Offset<int>(0x574);   // units
@@ -225,107 +332,80 @@ namespace SBuilderXX
         private double LatitudeDelta;
         private double LongitudeDelta;
         private bool BackColorGray = false;
+        // Skia control
+        private SkiaSharp.Views.Desktop.SKGLControl _skCanvas;
 
-        protected override void OnPaint(PaintEventArgs e)
+        // Box overlays
+        private bool _showSelectBox;
+        private System.Drawing.Rectangle _selectBoxRect;
+        private bool _showExcludeBox;
+        private System.Drawing.Rectangle _excludeBoxRect;
+
+        // Transient overlays
+        private enum OverlayKind
         {
-
-            // If InitON Then Exit Sub
-
-            if (moduleMAIN.BitmapBuffer is null)
-            {
-                moduleMAIN.DisplayWidth = ClientSize.Width;
-                moduleMAIN.DisplayHeight = ClientSize.Height;
-
-                // put this because when minimized there were crashes
-                if (moduleMAIN.DisplayWidth == 0)
-                    moduleMAIN.DisplayWidth = 10;
-                if (moduleMAIN.DisplayHeight == 0)
-                    moduleMAIN.DisplayHeight = 10;
-                if (moduleMAIN.DisplayWidth > 2 * moduleMAIN.DisplayHeight)
-                {
-                    Width = 2 * moduleMAIN.DisplayHeight + 8;
-                    moduleMAIN.DisplayWidth = 2 * moduleMAIN.DisplayHeight;
-                }
-
-                moduleMAIN.DisplayCenterX = (int)(moduleMAIN.DisplayWidth / 2d);
-                moduleMAIN.DisplayCenterY = (int)(moduleMAIN.DisplayHeight / 2d);
-                moduleMAIN.BitmapBuffer = new Bitmap(moduleMAIN.DisplayWidth, moduleMAIN.DisplayHeight);
-                moduleMAIN.SetDispCenter(0, 0);
-                BuildBitmapBuffer();
-                e.Graphics.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-            }
-            else
-            {
-                e.Graphics.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-            }
+            None, Measure, LineLabel, PolyLabel,
+            ParentLabel, ObjectLabel, LineSegment, PolySegment
         }
-
-        protected override void OnSizeChanged(EventArgs e)
-        {
-            if (moduleMAIN.BitmapBuffer is object)
-            {
-                moduleMAIN.BitmapBuffer.Dispose();
-                moduleMAIN.BitmapBuffer = null;
-                Invalidate();
-            }
-
-            base.OnSizeChanged(e);
-        }
+        private OverlayKind _overlayKind = OverlayKind.None;
+        private int _overlayX, _overlayY, _overlayN, _overlayM;
 
         public void BuildBitmapBuffer()
         {
-            if (moduleMAIN.BitmapBuffer is object)
-            {
-                Graphics g = Graphics.FromImage(moduleMAIN.BitmapBuffer);
-                if (BackColorGray)
-                {
-                    g.Clear(Color.Gray);
-                }
-                else
-                {
-                    g.Clear(Color.White);
-                }
+            if (moduleMAIN.BitmapBuffer == null) return;
+            if (moduleMAIN.DisplayWidth < 2 || moduleMAIN.DisplayHeight < 2) return;
+            if (moduleMAIN.PixelsPerLatDeg < 0.0001) return;
 
-                if (moduleTILES.TileVIEW)
-                    moduleTILES.DisplayTiles(g);
-                if (moduleMAPS.MapVIEW)
-                    moduleMAPS.DisplayMaps(g);
-                if (moduleCLASSES.WaterVIEW)
-                    moduleCLASSES.DisplayWaters(g);
-                if (moduleCLASSES.LandVIEW)
-                    moduleCLASSES.DisplayLands(g);
-                if (modulePOLYS.PolyVIEW)
-                    modulePOLYS.DisplayPolys(g);
-                if (moduleLINES.LineVIEW)
-                    moduleLINES.DisplayLines(g);
-                if (moduleOBJECTS.ObjectVIEW)
-                    moduleOBJECTS.DisplayObjects(g);
-                if (moduleEXCLUDES.ExcludeVIEW)
-                    moduleEXCLUDES.DisplayExcludes(g);
+            int w = moduleMAIN.BitmapBuffer.Width;
+            int h = moduleMAIN.BitmapBuffer.Height;
+
+            // Draw everything into a temporary System.Drawing.Bitmap
+            using var sdBmp = new System.Drawing.Bitmap(w, h,
+                System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            using (var g = System.Drawing.Graphics.FromImage(sdBmp))
+            {
+                g.Clear(BackColorGray ? System.Drawing.Color.Gray
+                                      : System.Drawing.Color.White);
+
+                if (moduleTILES.TileVIEW) moduleTILES.DisplayTiles(g);
+                if (moduleMAPS.MapVIEW) moduleMAPS.DisplayMaps(g);
+                if (moduleCLASSES.WaterVIEW) moduleCLASSES.DisplayWaters(g);
+                if (moduleCLASSES.LandVIEW) moduleCLASSES.DisplayLands(g);
+                if (modulePOLYS.PolyVIEW) modulePOLYS.DisplayPolys(g);
+                if (moduleLINES.LineVIEW) moduleLINES.DisplayLines(g);
+                if (moduleOBJECTS.ObjectVIEW) moduleOBJECTS.DisplayObjects(g);
+                if (moduleEXCLUDES.ExcludeVIEW) moduleEXCLUDES.DisplayExcludes(g);
                 DisplayGrids(g);
                 DisplayScale();
-                g.Dispose();
+            }
+
+            // Copy pixels from System.Drawing.Bitmap into the SKBitmap — no unsafe
+            CopyToSKBitmap(sdBmp, moduleMAIN.BitmapBuffer);
+        }
+
+        private static void CopyToSKBitmap(System.Drawing.Bitmap src, SkiaSharp.SKBitmap dst)
+        {
+            var rect = new System.Drawing.Rectangle(0, 0, src.Width, src.Height);
+            var data = src.LockBits(rect,
+                System.Drawing.Imaging.ImageLockMode.ReadOnly,
+                System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            try
+            {
+                int bytes = data.Stride * src.Height;
+                byte[] buffer = new byte[bytes];
+                System.Runtime.InteropServices.Marshal.Copy(data.Scan0, buffer, 0, bytes);
+                System.Runtime.InteropServices.Marshal.Copy(buffer, 0, dst.GetPixels(), bytes);
+            }
+            finally
+            {
+                src.UnlockBits(data);
             }
         }
 
         public void UpdateDisplay()
         {
 
-            // copies the buffer to the display
-            // draws grids if necessary
-
-            if (moduleMAIN.BitmapBuffer is object)
-            {
-                Graphics gr = CreateGraphics();
-                gr.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);   // copy buffer to display
-                if (moduleLINES.CheckLine > 0)
-                    DisplayCheckLine(gr);
-                if (modulePOLYS.CheckPoly > 0)
-                    DisplayCheckPoly(gr);
-                if (moduleMAIN.AircraftVIEW)
-                    DisplayAircraft(gr);
-                gr.Dispose();
-            }
+            _skCanvas.Invalidate();
         }
 
         private void DisplayScale()
@@ -627,24 +707,6 @@ namespace SBuilderXX
             }
 
             p.Dispose();
-        }
-
-        private void DisplayCheckLine(Graphics g)
-        {
-            string A;
-            A = "Line #" + moduleLINES.CheckLine.ToString().Trim() + Environment.NewLine + "Point #" + moduleLINES.CheckLinePt.ToString().Trim();
-            Font drawFont = new Font("MS Reference Sans Serif", 8f);
-            g.DrawString(A, drawFont, Brushes.Black, moduleMAIN.DisplayCenterX + 6, moduleMAIN.DisplayCenterY - 12);
-            drawFont.Dispose();
-        }
-
-        private void DisplayCheckPoly(Graphics g)
-        {
-            string A;
-            A = "Poly #" + modulePOLYS.CheckPoly.ToString().Trim() + Environment.NewLine + "Point #" + modulePOLYS.CheckPolyPt.ToString().Trim();
-            Font drawFont = new Font("MS Reference Sans Serif", 8f);
-            g.DrawString(A, drawFont, Brushes.Black, moduleMAIN.DisplayCenterX + 6, moduleMAIN.DisplayCenterY - 12);
-            drawFont.Dispose();
         }
 
         private void ZoomInOut(short Button)
@@ -2057,7 +2119,7 @@ namespace SBuilderXX
 
             moduleMAIN.DisplayWidth = ClientSize.Width;
             moduleMAIN.DisplayHeight = ClientSize.Height;
-            moduleMAIN.BitmapBuffer = new Bitmap(moduleMAIN.DisplayWidth, moduleMAIN.DisplayHeight);
+            moduleMAIN.BitmapBuffer = new SkiaSharp.SKBitmap(moduleMAIN.DisplayWidth, moduleMAIN.DisplayHeight);
             BackColor = Color.White;
             moduleMAIN.Season = "Summer";
             moduleMAPS.SetBitmapSeason();
@@ -2869,6 +2931,7 @@ namespace SBuilderXX
             short Shift = (short)((int)ModifierKeys / 0x10000);
             int X = e.X;
             int Y = e.Y;
+            _skCanvas.Focus();
             if (!moduleMAIN.ViewON)
                 return;
             if (moduleMAIN.WAIT)
@@ -3411,64 +3474,27 @@ namespace SBuilderXX
 
         private void DrawSelectBox(int X, int Y)
         {
-            int DX, DY;
-            int PX, PY;
-            Pen p = new Pen(Color.Red);
-            Graphics g;
-            p.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            g = CreateGraphics();
-            if (moduleMAIN.BitmapBuffer is object)
-                g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-            DX = X - moduleMAIN.AuxXInt;
-            DY = Y - moduleMAIN.AuxYInt;
-            PX = moduleMAIN.AuxXInt;
-            PY = moduleMAIN.AuxYInt;
-            if (X < moduleMAIN.AuxXInt)
-            {
-                DX = moduleMAIN.AuxXInt - X;
-                PX = X;
-            }
+            int dx = X - moduleMAIN.AuxXInt;
+            int dy = Y - moduleMAIN.AuxYInt;
+            int px = dx < 0 ? X : moduleMAIN.AuxXInt;
+            int py = dy < 0 ? Y : moduleMAIN.AuxYInt;
 
-            if (Y < moduleMAIN.AuxYInt)
-            {
-                DY = moduleMAIN.AuxYInt - Y;
-                PY = Y;
-            }
-
-            g.DrawRectangle(p, new Rectangle(PX, PY, DX, DY));
-            p.Dispose();
-            g.Dispose();
+            _selectBoxRect = new System.Drawing.Rectangle(px, py,
+                                  Math.Abs(dx), Math.Abs(dy));
+            _showSelectBox = true;
+            _skCanvas.Invalidate();
         }
 
         private void DrawExcludeBox(int X, int Y)
         {
-            int DX, DY;
-            int PX, PY;
-            Pen p = new Pen(Color.Black);
-            Graphics g;
-            p.Width = 2f;
-            g = CreateGraphics();
-            if (moduleMAIN.BitmapBuffer is object)
-                g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-            DX = X - moduleMAIN.AuxXInt;
-            DY = Y - moduleMAIN.AuxYInt;
-            PX = moduleMAIN.AuxXInt;
-            PY = moduleMAIN.AuxYInt;
-            if (X < moduleMAIN.AuxXInt)
-            {
-                DX = moduleMAIN.AuxXInt - X;
-                PX = X;
-            }
-
-            if (Y < moduleMAIN.AuxYInt)
-            {
-                DY = moduleMAIN.AuxYInt - Y;
-                PY = Y;
-            }
-
-            g.DrawRectangle(p, new Rectangle(PX, PY, DX, DY));
-            p.Dispose();
-            g.Dispose();
+            int dx = X - moduleMAIN.AuxXInt;
+            int dy = Y - moduleMAIN.AuxYInt;
+            _excludeBoxRect = new System.Drawing.Rectangle(
+                dx < 0 ? X : moduleMAIN.AuxXInt,
+                dy < 0 ? Y : moduleMAIN.AuxYInt,
+                Math.Abs(dx), Math.Abs(dy));
+            _showExcludeBox = true;
+            _skCanvas.Invalidate();
         }
 
         private void ShowLatLon(int X1, int Y1)
@@ -3519,6 +3545,11 @@ namespace SBuilderXX
 
         private void FrmStart_MouseUp(object sender, MouseEventArgs e)
         {
+            _showSelectBox = false;
+            _showExcludeBox = false;
+            _overlayKind = OverlayKind.None;
+            _skCanvas.Invalidate();
+
             short Button = (short)((int)e.Button / 0x100000);
             short Shift = (short)((int)ModifierKeys / 0x10000);
             int X = e.X;
@@ -3970,265 +4001,119 @@ namespace SBuilderXX
 
         private void ShowMeasure(int X1, int Y1)
         {
-            double DX, DY;
-            string A;
-            double CLat, CLon;
+            // Keep only the calculation logic, remove ALL drawing:
+            double DX, DY, CLat, CLon;
             CLat = moduleMAIN.LatDispNorth - (moduleMAIN.AuxYInt + Y1) / 2d / moduleMAIN.PixelsPerLatDeg;
             CLon = (moduleMAIN.AuxXInt + X1) / 2d / moduleMAIN.PixelsPerLonDeg + moduleMAIN.LonDispWest;
-            DX = (X1 - moduleMAIN.AuxXInt) / moduleMAIN.PixelsPerLonDeg;     // delta X in degrees of longitude
-            DX = DX * moduleMAIN.MetersPerDegLon(CLat);                 // in meters
-            DY = (moduleMAIN.AuxYInt - Y1) / moduleMAIN.PixelsPerLatDeg;
-            DY = DY * moduleMAIN.MetersPerDegLat;
-            if (DX > -0.0001d & DX < 0.0001d)
+            DX = (X1 - moduleMAIN.AuxXInt) / moduleMAIN.PixelsPerLonDeg * moduleMAIN.MetersPerDegLon(CLat);
+            DY = (moduleMAIN.AuxYInt - Y1) / moduleMAIN.PixelsPerLatDeg * moduleMAIN.MetersPerDegLat;
+            if (DX > -0.0001d && DX < 0.0001d)
             {
-                if (DY >= 0d)
-                    moduleOBJECTS.ObjMHead = 0d;
-                if (DY < 0d)
-                    moduleOBJECTS.ObjMHead = 180d;
+                moduleOBJECTS.ObjMHead = DY >= 0d ? 0d : 180d;
             }
             else
             {
                 moduleOBJECTS.ObjMHead = Math.Atan(DY / DX) * (180.0d / moduleMAIN.PI);
-                if (DX > 0d)
-                {
-                    moduleOBJECTS.ObjMHead = 90d - moduleOBJECTS.ObjMHead;
-                }
-                else
-                {
-                    moduleOBJECTS.ObjMHead = 270d - moduleOBJECTS.ObjMHead;
-                }
+                moduleOBJECTS.ObjMHead = DX > 0d ? 90d - moduleOBJECTS.ObjMHead
+                                                  : 270d - moduleOBJECTS.ObjMHead;
             }
-
-            DX = DX * DX + DY * DY;
-            DX = Math.Sqrt(DX);
-            if (moduleMAIN.MeasuringMeters)
-            {
-                A = "Lenght= " + DX.ToString("0.000") + " m";
-            }
-            else
-            {
-                DX = DX * 3.2808d;
-                A = "Lenght= " + DX.ToString("0.000") + " ft";
-            }
-
-            A = A + Environment.NewLine + "Heading = " + moduleOBJECTS.ObjMHead.ToString("0.000") + " deg";
-            A = A + Environment.NewLine + Environment.NewLine + "Lat. = " + moduleMAIN.Lat2Str(CLat) + Environment.NewLine + "Lon. = " + moduleMAIN.Lon2Str(CLon);
-            Graphics g;
-            Pen p = new Pen(moduleLINES.DefaultLineColor);
-            g = CreateGraphics();
-            if (moduleMAIN.BitmapBuffer is object)
-                g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-            g.DrawLine(p, moduleMAIN.AuxXInt, moduleMAIN.AuxYInt, X1, Y1);
-            p.Color = modulePOINTS.UnselectedPointColor;
-            g.DrawEllipse(p, moduleMAIN.AuxXInt - 3, moduleMAIN.AuxYInt - 3, 6, 6);
-            g.DrawEllipse(p, X1 - 3, Y1 - 3, 6, 6);
-            X1 = (int)((X1 + moduleMAIN.AuxXInt) / 2d);
-            Y1 = (int)((Y1 + moduleMAIN.AuxYInt) / 2d);
-            g.DrawEllipse(p, X1 - 3, Y1 - 3, 6, 6);
+            DX = Math.Sqrt(DX * DX + DY * DY);
+            string A = moduleMAIN.MeasuringMeters
+                ? $"Length= {DX:0.000} m"
+                : $"Length= {DX * 3.2808:0.000} ft";
+            A += $"\nHeading = {moduleOBJECTS.ObjMHead:0.000} deg";
+            A += $"\n\nLat. = {moduleMAIN.Lat2Str(CLat)}\nLon. = {moduleMAIN.Lon2Str(CLon)}";
             TextBoxMeasure.Text = A;
             TextBoxMeasure.Visible = true;
             TextBoxMeasure.Refresh();
-            if (moduleOBJECTS.ObjectON)
-                moduleOBJECTS.ObjMYes = true;
-            g.Dispose();
-            p.Dispose();
+            if (moduleOBJECTS.ObjectON) moduleOBJECTS.ObjMYes = true;
+
+            // No drawing here — just trigger PaintSurface
+            _overlayKind = OverlayKind.Measure;
+            _overlayX = X1;
+            _overlayY = Y1;
+            _skCanvas.Invalidate();
         }
 
         private void DrawLineLabel(int X, int Y, int N)
         {
-            string A;
-            if (N > 0)
-            {
-                if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
-                {
-                    A = "Line #" + N;
-                }
-                else
-                {
-                    A = moduleLINES.Lines[N].Name;
-                }
-
-                Graphics g;
-                g = CreateGraphics();
-                if (moduleMAIN.BitmapBuffer is object)
-                    g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-                Font drawFont = new Font("Arial", 10f);
-                g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, A.Length * 7, 18));
-                g.DrawString(A, drawFont, Brushes.Black, X, Y - 20);
-                drawFont.Dispose();
-                g.Dispose();
-            }
+            _overlayKind = OverlayKind.LineLabel;
+            _overlayX = X; _overlayY = Y; _overlayN = N;
+            _skCanvas.Invalidate();
         }
 
         private void DrawPolyLabel(int X, int Y, int N, int M)
         {
-            string A;
-            if (N > 0)
-            {
-                if (string.IsNullOrEmpty(modulePOLYS.Polys[N].Name))
-                {
-                    A = "Poly #" + N;
-                }
-                else
-                {
-                    A = modulePOLYS.Polys[N].Name;
-                }
-
-                if (M > 0)
-                {
-                    A = "Pt#" + M + " Alt = " + modulePOLYS.Polys[N].GPoints[M].alt.ToString("0.00");
-                }
-
-                Graphics g;
-                g = CreateGraphics();
-                if (moduleMAIN.BitmapBuffer is object)
-                    g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-                Font drawFont = new Font("Arial", 10f);
-                g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, A.Length * 7, 18));
-                g.DrawString(A, drawFont, Brushes.Black, X, Y - 20);
-                drawFont.Dispose();
-                g.Dispose();
-            }
+            _overlayKind = OverlayKind.PolyLabel;
+            _overlayX = X; _overlayY = Y; _overlayN = N; _overlayM = M;
+            _skCanvas.Invalidate();
         }
 
         private void DrawParentSelectLabel(int X, int Y)
         {
-            string A = "Click to Select Parent Poly";
-            Graphics g;
-            g = CreateGraphics();
-            if (moduleMAIN.BitmapBuffer is object)
-                g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-            Font drawFont = new Font("Arial", 10f);
-            g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, A.Length * 6 + 3, 18));
-            g.DrawString(A, drawFont, Brushes.Black, X, Y - 20);
-            drawFont.Dispose();
-            g.Dispose();
+            _overlayKind = OverlayKind.ParentLabel;
+            _overlayX = X; _overlayY = Y;
+            _skCanvas.Invalidate();
         }
 
         private void DrawObjectLabel(int X, int Y, int N)
         {
-            string A;
-            if (N > 0)
-            {
-                A = "Object #" + N;
-                Graphics g;
-                g = CreateGraphics();
-                if (moduleMAIN.BitmapBuffer is object)
-                    g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-                Font drawFont = new Font("Arial", 10f);
-                g.FillRectangle(Brushes.Beige, new Rectangle(X - 3, Y - 20, A.Length * 7, 18));
-                g.DrawString(A, drawFont, Brushes.Black, X, Y - 20);
-                drawFont.Dispose();
-                g.Dispose();
-            }
+            _overlayKind = OverlayKind.ObjectLabel;
+            _overlayX = X; _overlayY = Y; _overlayN = N;
+            _skCanvas.Invalidate();
         }
 
         private void DrawLineSegment(int X, int Y)
         {
-            int X0, Y0;
-            X0 = (int)((moduleLINES.AuxLonLine - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-            Y0 = (int)((moduleMAIN.LatDispNorth - moduleLINES.AuxLatLine) * moduleMAIN.PixelsPerLatDeg);
-            Graphics g;
-            Pen p = new Pen(moduleLINES.DefaultLineColor) { Width = moduleLINES.LinePenWidth };
-            g = CreateGraphics();
-            if (moduleMAIN.BitmapBuffer is object)
-                g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-            if (moduleLINES.PtLineCounter > 2)
-                DrawNewLine(g);
-            g.DrawLine(p, X0, Y0, X, Y);
-            p.Color = modulePOINTS.UnselectedPointColor;
-            g.DrawRectangle(p, X0 - 3, Y0 - 3, 6, 6);
-            p.Dispose();
-            g.Dispose();
+            _overlayKind = OverlayKind.LineSegment;
+            _overlayX = X; _overlayY = Y;
+            _skCanvas.Invalidate();
         }
 
-        private void DrawNewLine(Graphics gr)
+        private void PaintNewLine(SkiaSharp.SKCanvas canvas)
         {
             int K;
-            int PX0, PY0, PX1, PY1;
-            int P1, P2;  // to draw the points
-            P1 = 2;
-            if (moduleLINES.LinePenWidth == 2)
-                P1 = 3;
-            P2 = 2 * P1;
-            Pen myPen = new Pen(moduleLINES.DefaultLineColor, moduleLINES.LinePenWidth);
-            SolidBrush myBrush = new SolidBrush(modulePOINTS.UnselectedPointColor);
-            PX1 = (int)((moduleLINES.NewLine.GLPoints[1].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-            PY1 = (int)((moduleMAIN.LatDispNorth - moduleLINES.NewLine.GLPoints[1].lat) * moduleMAIN.PixelsPerLatDeg);
-            int loopTo = moduleLINES.NewLine.NoOfPoints;
-            for (K = 2; K <= loopTo; K++)
+            float PX0, PY0, PX1, PY1;
+            int P1 = moduleLINES.LinePenWidth == 2 ? 3 : 2;
+            int P2 = 2 * P1;
+
+            using var linePaint = new SkiaSharp.SKPaint
+            {
+                Color = ToSKColor(moduleLINES.DefaultLineColor),
+                StrokeWidth = moduleLINES.LinePenWidth,
+                IsAntialias = true
+            };
+            using var ptPaint = new SkiaSharp.SKPaint
+            {
+                Color = ToSKColor(modulePOINTS.UnselectedPointColor),
+                Style = SkiaSharp.SKPaintStyle.Fill
+            };
+
+            PX1 = (float)((moduleLINES.NewLine.GLPoints[1].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+            PY1 = (float)((moduleMAIN.LatDispNorth - moduleLINES.NewLine.GLPoints[1].lat) * moduleMAIN.PixelsPerLatDeg);
+
+            for (K = 2; K <= moduleLINES.NewLine.NoOfPoints; K++)
             {
                 PX0 = PX1;
                 PY0 = PY1;
-                PX1 = (int)((moduleLINES.NewLine.GLPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                PY1 = (int)((moduleMAIN.LatDispNorth - moduleLINES.NewLine.GLPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
-                gr.DrawLine(myPen, PX0, PY0, PX1, PY1);
+                PX1 = (float)((moduleLINES.NewLine.GLPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                PY1 = (float)((moduleMAIN.LatDispNorth - moduleLINES.NewLine.GLPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
+                canvas.DrawLine(PX0, PY0, PX1, PY1, linePaint);
             }
 
-            // now draw point
-            int loopTo1 = moduleLINES.NewLine.NoOfPoints - 1;
-            for (K = 1; K <= loopTo1; K++)
+            for (K = 1; K <= moduleLINES.NewLine.NoOfPoints - 1; K++)
             {
-                PX0 = (int)((moduleLINES.NewLine.GLPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                PY0 = (int)((moduleMAIN.LatDispNorth - moduleLINES.NewLine.GLPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
-                gr.FillRectangle(myBrush, PX0 - P1, PY0 - P1, P2, P2);
+                PX0 = (float)((moduleLINES.NewLine.GLPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                PY0 = (float)((moduleMAIN.LatDispNorth - moduleLINES.NewLine.GLPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
+                canvas.DrawRect(PX0 - P1, PY0 - P1, P2, P2, ptPaint);
             }
-
-            myPen.Dispose();
-            myBrush.Dispose();
         }
 
         private void DrawPolySegment(int X, int Y)
         {
-
-            // AddGridsToBitmapBuffer()
-
-            int K, X0, Y0;
-            int P1, P2;  // to draw the points
-            P1 = 2;
-            if (modulePOLYS.PolyPenWidth == 2)
-                P1 = 3;
-            P2 = 2 * P1;
-            X0 = (int)((modulePOLYS.AuxLonPoly - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-            Y0 = (int)((moduleMAIN.LatDispNorth - modulePOLYS.AuxLatPoly) * moduleMAIN.PixelsPerLatDeg);
-            Graphics g;
-            Pen myPen = new Pen(modulePOLYS.PolyColorBorder, modulePOLYS.PolyPenWidth);
-            SolidBrush myBrush = new SolidBrush(modulePOLYS.DefaultPolyColor);
-            g = CreateGraphics();
-            if (moduleMAIN.BitmapBuffer is object)
-                g.DrawImageUnscaled(moduleMAIN.BitmapBuffer, 0, 0);
-            if (modulePOLYS.PtPolyCounter > 2)
-            {
-                modulePOLYS.PTS = new Point[modulePOLYS.NewPoly.NoOfPoints + 1];
-                int loopTo = modulePOLYS.NewPoly.NoOfPoints - 1;
-                for (K = 0; K <= loopTo; K++)
-                {
-                    modulePOLYS.PTS[K].X = (int)((modulePOLYS.NewPoly.GPoints[K + 1].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                    modulePOLYS.PTS[K].Y = (int)((moduleMAIN.LatDispNorth - modulePOLYS.NewPoly.GPoints[K + 1].lat) * moduleMAIN.PixelsPerLatDeg);
-                }
-
-                modulePOLYS.PTS[modulePOLYS.NewPoly.NoOfPoints].X = X;
-                modulePOLYS.PTS[modulePOLYS.NewPoly.NoOfPoints].Y = Y;
-                g.FillPolygon(myBrush, modulePOLYS.PTS);
-                g.DrawPolygon(myPen, modulePOLYS.PTS);
-
-                // now draw points
-                myBrush.Color = modulePOINTS.UnselectedPointColor;
-                int loopTo1 = modulePOLYS.NewPoly.NoOfPoints - 1;
-                for (K = 0; K <= loopTo1; K++)
-                    g.FillRectangle(myBrush, modulePOLYS.PTS[K].X - P1, modulePOLYS.PTS[K].Y - P1, P2, P2);
-            }
-            else
-            {
-                myBrush.Color = modulePOINTS.UnselectedPointColor;
-                g.DrawLine(myPen, X0, Y0, X, Y);
-                g.FillRectangle(myBrush, X - P1, Y - P1, P2, P2);
-                g.FillRectangle(myBrush, X0 - P1, Y0 - P1, P2, P2);
-            }
-
-            myPen.Dispose();
-            myBrush.Dispose();
-            g.Dispose();
+            _overlayKind = OverlayKind.PolySegment;
+            _overlayX = X; _overlayY = Y;
+            _skCanvas.Invalidate();
         }
 
         private void DeleteMenuItem_Click(object sender, EventArgs e)
@@ -4606,7 +4491,7 @@ namespace SBuilderXX
             if (modulePOLYS.MakeClosedLineFromPoly)
                 moduleLINES.Lines[L].NoOfPoints = N + 1;
             moduleLINES.Lines[L].GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[L].NoOfPoints + 1];
-            moduleLINES.Lines[L].Color = moduleLINES.DefaultLineColor;
+            moduleLINES.Lines[L].ColorArgb = moduleLINES.DefaultLineColor.ToArgb();
             int loopTo = N;
             for (K = 1; K <= loopTo; K++)
             {
@@ -4633,7 +4518,7 @@ namespace SBuilderXX
             N = moduleLINES.Lines[P].NoOfPoints;
             modulePOLYS.Polys[L].NoOfPoints = N;
             modulePOLYS.Polys[L].GPoints = new modulePOINTS.GPoint[modulePOLYS.Polys[L].NoOfPoints + 1];
-            modulePOLYS.Polys[L].Color = modulePOLYS.DefaultPolyColor;
+            modulePOLYS.Polys[L].ColorArgb = modulePOLYS.DefaultPolyColor.ToArgb();
             int loopTo = N;
             for (K = 1; K <= loopTo; K++)
             {
@@ -5456,7 +5341,7 @@ namespace SBuilderXX
             // make bulk
             if (modulePOLYS.PolyON)
             {
-                modulePOLYS.Polys[modulePOPUP.POPIndex].Selected = true; // make sure POPIndex is selected 
+                modulePOLYS.Polys[modulePOPUP.POPIndex].Selected = true; // make sure POPIndex is selected
                 Flag = true;
                 int loopTo = modulePOLYS.NoOfPolys;
                 for (K = 1; K <= loopTo; K++)
@@ -5522,15 +5407,15 @@ namespace SBuilderXX
         private void SetTransparencyPopUpMenu_Click(object sender, EventArgs e)
         {
             if (modulePOPUP.POPType == "Line")
-                moduleMAIN.ARGBColor = moduleLINES.Lines[modulePOPUP.POPIndex].Color;
+                moduleMAIN.ARGBColor = Color.FromArgb(moduleLINES.Lines[modulePOPUP.POPIndex].ColorArgb);
             if (modulePOPUP.POPType == "Poly")
-                moduleMAIN.ARGBColor = modulePOLYS.Polys[modulePOPUP.POPIndex].Color;
+                moduleMAIN.ARGBColor = Color.FromArgb(modulePOLYS.Polys[modulePOPUP.POPIndex].ColorArgb);
             if (My.MyProject.Forms.FrmTransparency.ShowDialog() == DialogResult.OK)
             {
                 if (modulePOPUP.POPType == "Line")
-                    moduleLINES.Lines[modulePOPUP.POPIndex].Color = moduleMAIN.ARGBColor;
+                    moduleLINES.Lines[modulePOPUP.POPIndex].ColorArgb = moduleMAIN.ARGBColor.ToArgb();
                 if (modulePOPUP.POPType == "Poly")
-                    modulePOLYS.Polys[modulePOPUP.POPIndex].Color = moduleMAIN.ARGBColor;
+                    modulePOLYS.Polys[modulePOPUP.POPIndex].ColorArgb = moduleMAIN.ARGBColor.ToArgb();
             }
 
             moduleMAIN.RebuildDisplay();
@@ -5680,26 +5565,6 @@ namespace SBuilderXX
             }
         }
 
-        private void DisplayAircraft(Graphics g)
-        {
-            Pen myPen = new Pen(Color.Red);
-            int X1, Y1, X2, Y2;
-            int CenterX, CenterY;
-            CenterX = (int)((AircraftLongitude - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-            CenterY = (int)((moduleMAIN.LatDispNorth - AircraftLatitude) * moduleMAIN.PixelsPerLatDeg);
-            X1 = CenterX;
-            X2 = CenterX;
-            Y1 = CenterY - 10;
-            Y2 = CenterY + 10;
-            g.DrawLine(myPen, X1, Y1, X2, Y2);
-            X1 = CenterX - 10;
-            X2 = CenterX + 10;
-            Y1 = CenterY;
-            Y2 = CenterY;
-            g.DrawLine(myPen, X1, Y1, X2, Y2);
-            myPen.Dispose();
-        }
-
         private void PropertiesMenuItem_Click(object sender, EventArgs e)
         {
             My.MyProject.Forms.FrmProjectP.ShowDialog();
@@ -5796,9 +5661,11 @@ namespace SBuilderXX
 
         private void ColorFromMap(int X, int y)
         {
-            Color myColor = moduleMAIN.BitmapBuffer.GetPixel(X, y);
+            SkiaSharp.SKColor skColor = moduleMAIN.BitmapBuffer.GetPixel(X, y);
+            System.Drawing.Color myColor = System.Drawing.Color.FromArgb(
+                skColor.Alpha, skColor.Red, skColor.Green, skColor.Blue);
             int N = My.MyProject.Forms.FrmProjectP.lstClassItems.SelectedIndex + 1;
-            moduleCLASSES.LWCIs[N].Color = myColor;
+            moduleCLASSES.LWCIs[N].ColorArgb = myColor.ToArgb();
             My.MyProject.Forms.FrmProjectP.lbClassItem.BackColor = myColor;
             My.MyProject.Forms.FrmProjectP.lbClassItem.ForeColor = moduleMAIN.InvertColor(myColor);
             My.MyProject.Forms.FrmProjectP.Show();
@@ -6549,7 +6416,7 @@ namespace SBuilderXX
             int N, K, J;
             string Name = modulePOLYS.Polys[P].Name;
             string Type = modulePOLYS.Polys[P].Type;
-            Color Color = modulePOLYS.Polys[P].Color;
+            Color Color = Color.FromArgb(modulePOLYS.Polys[P].ColorArgb);
             bool Selected = modulePOLYS.Polys[P].Selected;
             int n0 = default, n1 = default, n2 = default;
             double k1 = default, k2 = default, k3 = default, lat = default, lon;
@@ -6562,7 +6429,7 @@ namespace SBuilderXX
                 modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].Name = Name;
                 modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].Type = Type;
                 modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].Guid = SliceGuid;
-                modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].Color = Color;
+                modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].ColorArgb = Color.ToArgb();
                 modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].Selected = Selected;
                 modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].NoOfPoints = moduleMAIN.Slices[N].N;
                 modulePOLYS.Polys[modulePOLYS.NoOfPolys + N].GPoints = new modulePOINTS.GPoint[moduleMAIN.Slices[N].N + 1];
@@ -6607,12 +6474,12 @@ namespace SBuilderXX
             string Name = moduleLINES.Lines[L].Name;
             string Type = moduleLINES.Lines[L].Type;
             string Guid = moduleLINES.Lines[L].Guid;
-            Color Color = moduleLINES.Lines[L].Color;
+            Color Color = Color.FromArgb(moduleLINES.Lines[L].ColorArgb);
             bool Selected = moduleLINES.Lines[L].Selected;
             moduleLINES.Lines[L].Name = Name;
             moduleLINES.Lines[L].Type = Type;
             moduleLINES.Lines[L].Guid = Guid;
-            moduleLINES.Lines[L].Color = Color;
+            moduleLINES.Lines[L].ColorArgb = Color.ToArgb();
             moduleLINES.Lines[L].Selected = Selected;
             moduleLINES.Lines[L].NoOfPoints = moduleMAIN.Fragments[1].N;
             moduleLINES.Lines[L].GLPoints = new modulePOINTS.GLPoint[moduleMAIN.Fragments[1].N + 1];
@@ -6635,7 +6502,7 @@ namespace SBuilderXX
                 moduleLINES.Lines[M].Name = Name;
                 moduleLINES.Lines[M].Type = Type;
                 moduleLINES.Lines[M].Guid = Guid;
-                moduleLINES.Lines[M].Color = Color;
+                moduleLINES.Lines[M].ColorArgb = Color.ToArgb();
                 moduleLINES.Lines[M].Selected = Selected;
                 moduleLINES.Lines[M].NoOfPoints = moduleMAIN.Fragments[N].N;
                 moduleLINES.Lines[M].GLPoints = new modulePOINTS.GLPoint[moduleMAIN.Fragments[N].N + 1];
@@ -7051,7 +6918,7 @@ namespace SBuilderXX
         private void EditMenuItem_Click(object sender, EventArgs e)
         {
 
-            // added this in October 2017 because of the cosmetic change on Enable Undo Redo! 
+            // added this in October 2017 because of the cosmetic change on Enable Undo Redo!
             EnableUndoRedoMenuItem.CheckState = CheckState.Unchecked;
             if (moduleEDIT.BackUpON)
             {
@@ -7072,5 +6939,183 @@ namespace SBuilderXX
                 MessageBox.Show(A, "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private static SkiaSharp.SKPoint ToSK(int x, int y) => new(x, y);
+
+        private void DisplayCheckLine(SkiaSharp.SKCanvas canvas)
+        {
+            string A = $"Line #{moduleLINES.CheckLine}\nPoint #{moduleLINES.CheckLinePt}";
+            using var paint = new SkiaSharp.SKPaint
+            {
+                Color = SkiaSharp.SKColors.Black,
+                TextSize = 13f,
+                IsAntialias = true
+            };
+            canvas.DrawText(A, moduleMAIN.DisplayCenterX + 6, moduleMAIN.DisplayCenterY - 12, paint);
+        }
+
+        private void DisplayCheckPoly(SkiaSharp.SKCanvas canvas)
+        {
+            string A = $"Poly #{modulePOLYS.CheckPoly}\nPoint #{modulePOLYS.CheckPolyPt}";
+            using var paint = new SkiaSharp.SKPaint
+            {
+                Color = SkiaSharp.SKColors.Black,
+                TextSize = 13f,
+                IsAntialias = true
+            };
+            canvas.DrawText(A, moduleMAIN.DisplayCenterX + 6, moduleMAIN.DisplayCenterY - 12, paint);
+        }
+
+        private void DisplayAircraft(SkiaSharp.SKCanvas canvas)
+        {
+            int cx = (int)((AircraftLongitude - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+            int cy = (int)((moduleMAIN.LatDispNorth - AircraftLatitude) * moduleMAIN.PixelsPerLatDeg);
+            using var paint = new SkiaSharp.SKPaint
+            {
+                Color = SkiaSharp.SKColors.Red,
+                StrokeWidth = 1,
+                IsAntialias = true
+            };
+            canvas.DrawLine(cx, cy - 10, cx, cy + 10, paint);
+            canvas.DrawLine(cx - 10, cy, cx + 10, cy, paint);
+        }
+
+        private void PaintMeasure(SkiaSharp.SKCanvas canvas, int X1, int Y1)
+        {
+            var lineColor = new SkiaSharp.SKColor(
+                (byte)moduleLINES.DefaultLineColor.R,
+                (byte)moduleLINES.DefaultLineColor.G,
+                (byte)moduleLINES.DefaultLineColor.B);
+            var ptColor = new SkiaSharp.SKColor(
+                (byte)modulePOINTS.UnselectedPointColor.R,
+                (byte)modulePOINTS.UnselectedPointColor.G,
+                (byte)modulePOINTS.UnselectedPointColor.B);
+
+            using var linePaint = new SkiaSharp.SKPaint { Color = lineColor, StrokeWidth = 1 };
+            using var ptPaint = new SkiaSharp.SKPaint
+            { Color = ptColor, Style = SkiaSharp.SKPaintStyle.Stroke, StrokeWidth = 1 };
+
+            canvas.DrawLine(moduleMAIN.AuxXInt, moduleMAIN.AuxYInt, X1, Y1, linePaint);
+            canvas.DrawOval(moduleMAIN.AuxXInt, moduleMAIN.AuxYInt, 3, 3, ptPaint);
+            canvas.DrawOval(X1, Y1, 3, 3, ptPaint);
+            canvas.DrawOval((moduleMAIN.AuxXInt + X1) / 2, (moduleMAIN.AuxYInt + Y1) / 2, 3, 3, ptPaint);
+        }
+
+        private void PaintLineLabel(SkiaSharp.SKCanvas canvas, int X, int Y, int N)
+        {
+            if (N <= 0) return;
+            string A = string.IsNullOrEmpty(moduleLINES.Lines[N].Name) ? $"Line #{N}" : moduleLINES.Lines[N].Name;
+            PaintLabelBox(canvas, X, Y, A);
+        }
+
+        private void PaintPolyLabel(SkiaSharp.SKCanvas canvas, int X, int Y, int N, int M)
+        {
+            if (N <= 0) return;
+            string A = string.IsNullOrEmpty(modulePOLYS.Polys[N].Name) ? $"Poly #{N}" : modulePOLYS.Polys[N].Name;
+            if (M > 0) A = $"Pt#{M} Alt = {modulePOLYS.Polys[N].GPoints[M].alt:0.00}";
+            PaintLabelBox(canvas, X, Y, A);
+        }
+
+        private void PaintParentLabel(SkiaSharp.SKCanvas canvas, int X, int Y)
+            => PaintLabelBox(canvas, X, Y, "Click to Select Parent Poly");
+
+        private void PaintObjectLabel(SkiaSharp.SKCanvas canvas, int X, int Y, int N)
+        {
+            if (N <= 0) return;
+            PaintLabelBox(canvas, X, Y, $"Object #{N}");
+        }
+
+        private void PaintLabelBox(SkiaSharp.SKCanvas canvas, int X, int Y, string text)
+        {
+            using var textPaint = new SkiaSharp.SKPaint
+            {
+                Color = SkiaSharp.SKColors.Black,
+                TextSize = 13f,
+                IsAntialias = true
+            };
+            float w = textPaint.MeasureText(text);
+            using var bgPaint = new SkiaSharp.SKPaint
+            { Color = new SkiaSharp.SKColor(245, 245, 220) };  // Beige
+            canvas.DrawRect(X - 3, Y - 18, w + 6, 18, bgPaint);
+            canvas.DrawText(text, X, Y - 4, textPaint);
+        }
+
+        private void PaintLineSegment(SkiaSharp.SKCanvas canvas, int X, int Y)
+        {
+            int X0 = (int)((moduleLINES.AuxLonLine - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+            int Y0 = (int)((moduleMAIN.LatDispNorth - moduleLINES.AuxLatLine) * moduleMAIN.PixelsPerLatDeg);
+
+            var color = ToSKColor(moduleLINES.DefaultLineColor);
+            using var linePaint = new SkiaSharp.SKPaint
+            { Color = color, StrokeWidth = moduleLINES.LinePenWidth };
+
+            if (moduleLINES.PtLineCounter > 2) PaintNewLine(canvas);
+
+            canvas.DrawLine(X0, Y0, X, Y, linePaint);
+
+            using var ptPaint = new SkiaSharp.SKPaint
+            {
+                Color = ToSKColor(modulePOINTS.UnselectedPointColor),
+                Style = SkiaSharp.SKPaintStyle.Stroke,
+                StrokeWidth = 1
+            };
+            canvas.DrawRect(X0 - 3, Y0 - 3, 6, 6, ptPaint);
+        }
+
+        private void PaintPolySegment(SkiaSharp.SKCanvas canvas, int X, int Y)
+        {
+            int X0 = (int)((modulePOLYS.AuxLonPoly - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+            int Y0 = (int)((moduleMAIN.LatDispNorth - modulePOLYS.AuxLatPoly) * moduleMAIN.PixelsPerLatDeg);
+            int P1 = modulePOLYS.PolyPenWidth == 2 ? 3 : 2;
+            int P2 = 2 * P1;
+
+            using var borderPaint = new SkiaSharp.SKPaint
+            {
+                Color = ToSKColor(modulePOLYS.PolyColorBorder),
+                StrokeWidth = modulePOLYS.PolyPenWidth,
+                Style = SkiaSharp.SKPaintStyle.Stroke
+            };
+            using var fillPaint = new SkiaSharp.SKPaint
+            {
+                Color = ToSKColor(modulePOLYS.DefaultPolyColor),
+                Style = SkiaSharp.SKPaintStyle.Fill
+            };
+            using var ptPaint = new SkiaSharp.SKPaint
+            {
+                Color = ToSKColor(modulePOINTS.UnselectedPointColor),
+                Style = SkiaSharp.SKPaintStyle.Fill
+            };
+
+            if (modulePOLYS.PtPolyCounter > 2)
+            {
+                int n = modulePOLYS.NewPoly.NoOfPoints;
+                using var path = new SkiaSharp.SKPath();
+                path.MoveTo(
+                    (float)((modulePOLYS.NewPoly.GPoints[1].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg),
+                    (float)((moduleMAIN.LatDispNorth - modulePOLYS.NewPoly.GPoints[1].lat) * moduleMAIN.PixelsPerLatDeg));
+                for (int K = 2; K < n; K++)
+                    path.LineTo(
+                        (float)((modulePOLYS.NewPoly.GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg),
+                        (float)((moduleMAIN.LatDispNorth - modulePOLYS.NewPoly.GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg));
+                path.LineTo(X, Y);
+                path.Close();
+                canvas.DrawPath(path, fillPaint);
+                canvas.DrawPath(path, borderPaint);
+                for (int K = 1; K < n; K++)
+                {
+                    float px = (float)((modulePOLYS.NewPoly.GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                    float py = (float)((moduleMAIN.LatDispNorth - modulePOLYS.NewPoly.GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
+                    canvas.DrawRect(px - P1, py - P1, P2, P2, ptPaint);
+                }
+            }
+            else
+            {
+                canvas.DrawLine(X0, Y0, X, Y, borderPaint);
+                canvas.DrawRect(X - P1, Y - P1, P2, P2, ptPaint);
+                canvas.DrawRect(X0 - P1, Y0 - P1, P2, P2, ptPaint);
+            }
+        }
+
+        private static SkiaSharp.SKColor ToSKColor(System.Drawing.Color c) => new(c.R, c.G, c.B, c.A);
     }
 }
