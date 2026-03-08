@@ -24,25 +24,24 @@ jobs:
         uses: NuGet/setup-nuget@v2
 
       - name: Restore NuGet packages
-        run: |
-          nuget restore SBuilderXX.csproj
-          nuget restore SkiaSharpCompat\Drawing.SkiaSharpCompat.csproj
+        run: nuget restore SBuilderXX.sln
 
       - name: Build
         run: |
-          msbuild SBuilderXX.csproj `
+          msbuild SBuilderXX.sln `
             /p:Configuration=Release `
-            /p:Platform=AnyCPU `
+            /p:Platform="Any CPU" `
             /p:TargetFrameworkVersion=v4.8 `
             /m `
             /v:minimal
 
-      - name: Remove SkiaSharp PDBs
+      - name: Remove unnecessary files
         shell: pwsh
         run: |
-          Get-ChildItem -Path "bin\Release\" -Filter "*.pdb" |
-            Where-Object { $_.Name -match "^Skia" -or $_.Name -match "^HarfBuzz" } |
-            Remove-Item -Force
+          Get-ChildItem -Path "bin\Release\" -Filter "*.pdb" -Recurse | Remove-Item -Force
+          Get-ChildItem -Path "bin\Release\" -Filter "*.xml" -Recurse | Where-Object { Test-Path ($_.FullName -replace '\.xml$', '.dll') } | Remove-Item -Force
+          Get-ChildItem -Path "bin\Release\" -Filter "*.dylib" -Recurse | Remove-Item -Force
+          Get-ChildItem -Path "bin\Release\" -Filter "*.so" -Recurse | Remove-Item -Force
 
       - name: Upload
         uses: actions/upload-artifact@v4
@@ -63,7 +62,8 @@ jobs:
         shell: pwsh
         run: |
           if (Test-Path "prepackaged") {
-            Copy-Item -Path "prepackaged\*" -Destination "bin\Release\" -Recurse -Force
+            robocopy "prepackaged" "bin\Release" /E /NFL /NDL /NJH /NJS
+            if ($LASTEXITCODE -le 7) { $LASTEXITCODE = 0 }
           }
           Compress-Archive `
             -Path "bin\Release\*" `
@@ -75,5 +75,6 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           name: ${{ github.ref_name }}
+          generate_release_notes: true
           files: |
             SBuilderXX-Release-${{ env.SHORT_SHA }}.zip
