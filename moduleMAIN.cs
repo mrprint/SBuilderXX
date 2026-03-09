@@ -239,22 +239,24 @@ namespace SBuilderXX
         internal static bool IsCenterDisplay(int X, int Y)
         {
             bool IsCenterDisplayRet = default;
-            int X1, X2, Y1, Y2, YY;
+            int X1, X2, Y1, Y2;
             IsCenterDisplayRet = true;
+
             X1 = (int)(DisplayWidth * 0.05d);
-            if (X < X1)
-                return IsCenterDisplayRet;
+            if (X < X1) return IsCenterDisplayRet;
+
             X2 = (int)(DisplayWidth * 0.95d);
-            if (X > X2)
-                return IsCenterDisplayRet;
-            YY = DisplayHeight - My.MyProject.Forms.FrmStart.MenuStrip.Height - My.MyProject.Forms.FrmStart.StatusStrip.Height - My.MyProject.Forms.FrmStart.ToolStrip.Height;
-            YY = (int)(0.05d * YY);
-            Y1 = YY + My.MyProject.Forms.FrmStart.MenuStrip.Height + My.MyProject.Forms.FrmStart.ToolStrip.Height;
-            if (Y < Y1)
-                return IsCenterDisplayRet;
-            Y2 = DisplayHeight - YY - My.MyProject.Forms.FrmStart.StatusStrip.Height;
-            if (Y > Y2)
-                return IsCenterDisplayRet;
+            if (X > X2) return IsCenterDisplayRet;
+
+            // Canvas-relative: Y goes from 0 (top of canvas) to DisplayHeight
+            // StatusStrip is below the canvas so subtract its height from bottom
+            int statusH = My.MyProject.Forms.FrmStart.StatusStrip.Height;
+            Y1 = (int)(DisplayHeight * 0.05d);
+            Y2 = DisplayHeight - statusH - (int)(DisplayHeight * 0.05d);
+
+            if (Y < Y1) return IsCenterDisplayRet;
+            if (Y > Y2) return IsCenterDisplayRet;
+
             IsCenterDisplayRet = false;
             return IsCenterDisplayRet;
         }

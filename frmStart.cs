@@ -7074,7 +7074,7 @@ namespace SBuilderXX
                 path.MoveTo(
                     (float)((modulePOLYS.NewPoly.GPoints[1].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg),
                     (float)((moduleMAIN.LatDispNorth - modulePOLYS.NewPoly.GPoints[1].lat) * moduleMAIN.PixelsPerLatDeg));
-                for (int K = 2; K < n; K++)
+                for (int K = 2; K <= n; K++)
                     path.LineTo(
                         (float)((modulePOLYS.NewPoly.GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg),
                         (float)((moduleMAIN.LatDispNorth - modulePOLYS.NewPoly.GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg));
