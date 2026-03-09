@@ -325,28 +325,28 @@ namespace SBuilderXX
                 if (type == 8) // taxi sign
                 {
                     a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\taxisign.bmp";
-                    myImage = Image.FromFile(a);
+                    myImage = moduleMAIN.LoadTexture(a);
                     g.DrawImage(myImage, X - 40f, Y - 20f, 80f, 40f);
                 }
 
                 if (type == 32) // beacon
                 {
                     a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\beacon.gif";
-                    myImage = Image.FromFile(a);
+                    myImage = moduleMAIN.LoadTexture(a);
                     g.DrawImage(myImage, X - 20f, Y - 20f, 40f, 40f);
                 }
 
                 if (type == 64) // windsock
                 {
                     a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\windsock.gif";
-                    myImage = Image.FromFile(a);
+                    myImage = moduleMAIN.LoadTexture(a);
                     g.DrawImage(myImage, X - 20f, Y - 20f, 40f, 40f);
                 }
 
                 if (type == 16) // effect
                 {
                     a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\effect.gif";
-                    myImage = Image.FromFile(a);
+                    myImage = moduleMAIN.LoadTexture(a);
                     g.DrawImage(myImage, X - 20f, Y - 20f, 40f, 40f);
                 }
 

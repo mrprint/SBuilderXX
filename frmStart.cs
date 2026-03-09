@@ -234,6 +234,7 @@ namespace SBuilderXX
                 moduleMAIN.DisplayCenterX = moduleMAIN.DisplayWidth / 2;
                 moduleMAIN.DisplayCenterY = moduleMAIN.DisplayHeight / 2;
 
+                _staticDirty = true;
                 if (!moduleMAIN.ViewON) return;
                 moduleMAIN.SetDispCenter(0, 0);
                 DisplayScale();
@@ -246,6 +247,7 @@ namespace SBuilderXX
 
             moduleMAIN.RebuildDisplayAction = () =>
             {
+                _staticDirty = true;
                 DisplayScale();
                 _skCanvas.Invalidate();
             };
@@ -258,12 +260,14 @@ namespace SBuilderXX
 
             if (moduleMAIN.ViewON)
             {
-                using var g = Drawing.Graphics.FromSKCanvas(canvas);
+                // Static layer — tiles and maps
+                if (_staticDirty)
+                    RebuildStaticLayer();
+                if (_staticLayer != null)
+                    canvas.DrawPicture(_staticLayer);
 
-                if (moduleTILES.TileVIEW) moduleTILES.DisplayTiles(g);
-                if (moduleMAPS.MapVIEW) moduleMAPS.DisplayMaps(g);
-                if (moduleCLASSES.WaterVIEW) moduleCLASSES.DisplayWaters(g);
-                if (moduleCLASSES.LandVIEW) moduleCLASSES.DisplayLands(g);
+                // Dynamic layers — redrawn every frame
+                using var g = Drawing.Graphics.FromSKCanvas(canvas);
                 if (modulePOLYS.PolyVIEW) modulePOLYS.DisplayPolys(g);
                 if (moduleLINES.LineVIEW) moduleLINES.DisplayLines(g);
                 if (moduleOBJECTS.ObjectVIEW) moduleOBJECTS.DisplayObjects(g);
@@ -358,30 +362,33 @@ namespace SBuilderXX
         }
         private OverlayKind _overlayKind = OverlayKind.None;
         private int _overlayX, _overlayY, _overlayN, _overlayM;
-
-        private static void CopyToSKBitmap(System.Drawing.Bitmap src, SkiaSharp.SKBitmap dst)
-        {
-            var rect = new System.Drawing.Rectangle(0, 0, src.Width, src.Height);
-            var data = src.LockBits(rect,
-                System.Drawing.Imaging.ImageLockMode.ReadOnly,
-                System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            try
-            {
-                int bytes = data.Stride * src.Height;
-                byte[] buffer = new byte[bytes];
-                System.Runtime.InteropServices.Marshal.Copy(data.Scan0, buffer, 0, bytes);
-                System.Runtime.InteropServices.Marshal.Copy(buffer, 0, dst.GetPixels(), bytes);
-            }
-            finally
-            {
-                src.UnlockBits(data);
-            }
-        }
+        private SkiaSharp.SKPicture _staticLayer;
+        private bool _staticDirty = true;
 
         public void UpdateDisplay()
         {
 
             _skCanvas.Invalidate();
+        }
+
+        private void RebuildStaticLayer()
+        {
+            _staticLayer?.Dispose();
+            _staticLayer = null;
+
+            using var recorder = new SkiaSharp.SKPictureRecorder();
+            var recordCanvas = recorder.BeginRecording(
+                new SkiaSharp.SKRect(0, 0, moduleMAIN.DisplayWidth, moduleMAIN.DisplayHeight));
+
+            using var g = Drawing.Graphics.FromSKCanvas(recordCanvas);
+
+            if (moduleTILES.TileVIEW) moduleTILES.DisplayTiles(g);
+            if (moduleMAPS.MapVIEW) moduleMAPS.DisplayMaps(g);
+            if (moduleCLASSES.WaterVIEW) moduleCLASSES.DisplayWaters(g);
+            if (moduleCLASSES.LandVIEW) moduleCLASSES.DisplayLands(g);
+
+            _staticLayer = recorder.EndRecording();
+            _staticDirty = false;
         }
 
         private void DisplayScale()
@@ -702,6 +709,7 @@ namespace SBuilderXX
             }
 
             moduleMAIN.ResetZoom();
+            _staticDirty = true;
             MakeBackground();
             StatusZoom.Text = "Zoom = " + moduleMAIN.Zoom.ToString();
         }
@@ -1005,6 +1013,7 @@ namespace SBuilderXX
             moduleOBJECTS.Objects = new moduleOBJECTS.Objecto[2];
             moduleEXCLUDES.Excludes = new moduleEXCLUDES.Exclude[2];
             moduleCLASSES.LWCIs = new moduleCLASSES.LWCIndex[2];
+            _staticDirty = true;
         }
 
         private void UnSelectAll()
@@ -1707,6 +1716,7 @@ namespace SBuilderXX
             moduleMAIN.AircraftVIEW = false;
             if (moduleEDIT.BackUpON)
                 moduleEDIT.BackUpInit();
+            _staticDirty = true;
             UncheckToolButtons();
             UncheckViews();
             UncheckSelections();
@@ -1735,6 +1745,7 @@ namespace SBuilderXX
             }
 
             moduleMAIN.SetDispCenter(0, 0);
+            moduleMAIN.ClearTextureCache();
         }
 
         private void CheckFS10()
@@ -2050,6 +2061,7 @@ namespace SBuilderXX
 
         private void FileOpenTrailer()
         {
+            _staticDirty = true;
             MakeAllOff();
             moduleMAIN.ResetZoom();
             moduleMAIN.SetDispCenter(0, 0);
@@ -2110,6 +2122,7 @@ namespace SBuilderXX
             moduleMAIN.SomeSelected = true;
             moduleMAIN.Dirty = false;
             lbDonation.Visible = false;
+            moduleMAIN.ClearTextureCache();
         }
 
         private void BGLMenuItem_Click(object sender, EventArgs e)
@@ -2227,12 +2240,14 @@ namespace SBuilderXX
             }
 
             moduleMAPS.MapVIEW = !moduleMAPS.MapVIEW;
+            _staticDirty = true;
             if (moduleMAPS.NoOfMaps > 0)
                 moduleMAIN.RebuildDisplay();
         }
 
         private void ViewAllWatersMenuItem_Click(object sender, EventArgs e)
         {
+            _staticDirty = true;
             if (moduleCLASSES.WaterON)
             {
                 SelectAllWatersMenuItem.Enabled = true;
@@ -2345,6 +2360,7 @@ namespace SBuilderXX
 
         private void ViewAllLandsMenuItem_Click(object sender, EventArgs e)
         {
+            _staticDirty = true;
             if (moduleCLASSES.LandON)
             {
                 SelectAllLandsMenuItem.Enabled = true;
@@ -3432,12 +3448,14 @@ namespace SBuilderXX
             if (moduleCLASSES.LandON & moduleCLASSES.LandWaterRasON)
             {
                 moduleCLASSES.LandRasterMode(X, Y);
+                _staticDirty = true;
                 return;
             }
 
             if (moduleCLASSES.WaterON & moduleCLASSES.LandWaterRasON)
             {
                 moduleCLASSES.WaterRasterMode(X, Y);
+                _staticDirty = true;
                 return;
             }
         }
@@ -4219,6 +4237,7 @@ namespace SBuilderXX
         {
             moduleMAIN.Season = "Fall";
             moduleMAPS.SetBitmapSeason();
+            _staticDirty = true;
             moduleMAIN.ViewON = true;
             moduleMAIN.RebuildDisplay();
         }
@@ -4227,6 +4246,7 @@ namespace SBuilderXX
         {
             moduleMAIN.Season = "Hard";
             moduleMAPS.SetBitmapSeason();
+            _staticDirty = true;
             moduleMAIN.ViewON = true;
             moduleMAIN.RebuildDisplay();
         }
@@ -4235,6 +4255,7 @@ namespace SBuilderXX
         {
             moduleMAIN.Season = "Mesh";
             moduleMAPS.SetBitmapSeason();
+            _staticDirty = true;
             moduleMAIN.ViewON = true;
             moduleMAIN.RebuildDisplay();
         }
@@ -4243,6 +4264,7 @@ namespace SBuilderXX
         {
             moduleMAIN.Season = "Spring";
             moduleMAPS.SetBitmapSeason();
+            _staticDirty = true;
             moduleMAIN.ViewON = true;
             moduleMAIN.RebuildDisplay();
         }
@@ -4251,6 +4273,7 @@ namespace SBuilderXX
         {
             moduleMAIN.Season = "Alpha";
             moduleMAPS.SetBitmapSeason();
+            _staticDirty = true;
             moduleMAIN.ViewON = true;
             moduleMAIN.RebuildDisplay();
         }
@@ -4259,6 +4282,7 @@ namespace SBuilderXX
         {
             moduleMAIN.Season = "Summer";
             moduleMAPS.SetBitmapSeason();
+            _staticDirty = true;
             moduleMAIN.ViewON = true;
             moduleMAIN.RebuildDisplay();
         }
@@ -4267,6 +4291,7 @@ namespace SBuilderXX
         {
             moduleMAIN.Season = "Winter";
             moduleMAPS.SetBitmapSeason();
+            _staticDirty = true;
             moduleMAIN.ViewON = true;
             moduleMAIN.RebuildDisplay();
         }
@@ -4275,6 +4300,7 @@ namespace SBuilderXX
         {
             moduleMAIN.Season = "Night";
             moduleMAPS.SetBitmapSeason();
+            _staticDirty = true;
             moduleMAIN.ViewON = true;
             moduleMAIN.RebuildDisplay();
         }
@@ -4283,6 +4309,7 @@ namespace SBuilderXX
         {
             moduleMAIN.Season = "Class";
             moduleMAPS.SetBitmapSeason();
+            _staticDirty = true;
             moduleMAIN.ViewON = true;
             moduleMAIN.RebuildDisplay();
         }
@@ -4290,6 +4317,7 @@ namespace SBuilderXX
         private void CenterPopUPMenu_Click(object sender, EventArgs e)
         {
             moduleMAIN.SetDispCenter(modulePOPUP.XPOP - moduleMAIN.DisplayCenterX, modulePOPUP.YPOP - moduleMAIN.DisplayCenterY);
+            _staticDirty = true;
             moduleMAIN.RebuildDisplay();
         }
 
@@ -5606,7 +5634,7 @@ namespace SBuilderXX
                 moduleTILES.TileVIEW = false;
                 lbTilesRemaining.Visible = false;
             }
-
+            _staticDirty = true;
             moduleMAIN.RebuildDisplay();
         }
 
@@ -5656,6 +5684,7 @@ namespace SBuilderXX
         {
             if (moduleTILES.TileVIEW == false)
                 return;
+            _staticDirty = true;
             bool Download = false;
             if (moduleMAIN.Zoom > moduleTILES.GlobeOrTiles)
             {
@@ -5722,7 +5751,7 @@ namespace SBuilderXX
                             try
                             {
                                 TileFull = moduleTILES.TileFolder + TileDir + TileName;
-                                img_tile = (Bitmap)Image.FromFile(TileFull);
+                                img_tile = (Bitmap)moduleMAIN.LoadTexture(TileFull);
                             }
                             catch (FileNotFoundException)
                             {
@@ -5785,6 +5814,7 @@ namespace SBuilderXX
             {
                 moduleTILES.MapBackground = moduleTILES.MapBackground0;
                 moduleTILES.ImageBackground = moduleTILES.ImageBackground0;
+                _staticDirty = true;
             }
         }
 
@@ -5889,6 +5919,7 @@ namespace SBuilderXX
             {
                 PointerToolStripButton_Click(PointerToolStripButton, new EventArgs());
                 My.MyProject.Forms.FrmTiles.ShowDialog();
+                _staticDirty = true;
             }
         }
 
@@ -6867,6 +6898,7 @@ namespace SBuilderXX
         private void TileServerMenuItem_Click(object sender, EventArgs e)
         {
             My.MyProject.Forms.frmTilesServers.ShowDialog();
+            _staticDirty = true;
         }
 
         private void EnableUndoRedoMenuItem_Click(object sender, EventArgs e)

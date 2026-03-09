@@ -747,13 +747,13 @@ namespace SBuilderXX
                                     else if (moduleMAIN.Zoom < 15 & moduleMAIN.Zoom > 9)
                                     {
                                         A = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\" + LC[MyL].Texture + bmp;
-                                        myImage = Image.FromFile(A);
+                                        myImage = moduleMAIN.LoadTexture(A);
                                         gr.DrawImage(myImage, X1, Y1, X2 + 1f, Y2 + 1f);
                                     }
                                     else if (moduleMAIN.Zoom > 14)
                                     {
                                         A = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\" + LC[MyL].Texture + jpg;
-                                        myImage = Image.FromFile(A);
+                                        myImage = moduleMAIN.LoadTexture(A);
                                         gr.DrawImage(myImage, X1, Y1, X2 + 1f, Y2 + 1f);
                                     }
                                 }
@@ -846,13 +846,13 @@ namespace SBuilderXX
                                     else if (moduleMAIN.Zoom < 15 & moduleMAIN.Zoom > 9)
                                     {
                                         A = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\" + WC[MyL].Texture + bmp;
-                                        myImage = Image.FromFile(A);
+                                        myImage = moduleMAIN.LoadTexture(A);
                                         gr.DrawImage(myImage, X1, Y1, X2 + 1f, Y2 + 1f);
                                     }
                                     else if (moduleMAIN.Zoom > 14)
                                     {
                                         A = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\" + WC[MyL].Texture + jpg;
-                                        myImage = Image.FromFile(A);
+                                        myImage = moduleMAIN.LoadTexture(A);
                                         gr.DrawImage(myImage, X1, Y1, X2 + 1f, Y2 + 1f);
                                     }
                                 }
@@ -1564,7 +1564,7 @@ namespace SBuilderXX
                 Random rand = new Random(0);
 
                 // Dim image As Bitmap = Bitmap.FromFile(Maps(Map).BMPSu)     ' was like this in October 2017
-                Bitmap image = (Bitmap)Image.FromFile(moduleMAPS.Maps[Map].BMPSu);
+                Bitmap image = (Bitmap)moduleMAIN.LoadTexture(moduleMAPS.Maps[Map].BMPSu);
                 Color myColor;
                 double Lon, Lat, Lat0, Lon0, DX, DY;
                 int N;
@@ -1679,7 +1679,7 @@ namespace SBuilderXX
                 Random rand = new Random(0);
 
                 // Dim image As Bitmap = Bitmap.FromFile(Maps(Map).BMPSu)    ' was like this in October 2017
-                Bitmap image = (Bitmap)Image.FromFile(moduleMAPS.Maps[Map].BMPSu);
+                Bitmap image = (Bitmap)moduleMAIN.LoadTexture(moduleMAPS.Maps[Map].BMPSu);
                 Color myColor;
                 double Lon, Lat, Lat0, Lon0, DX, DY;
                 int N;

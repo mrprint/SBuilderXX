@@ -1,9 +1,11 @@
-﻿using System;
+﻿using SkiaSharp;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using SkiaSharp;
+using CompatDrawing = Drawing;
 
 namespace SBuilderXX
 {
@@ -160,6 +162,25 @@ namespace SBuilderXX
         internal static int DisplayHeight; // value in pixels
         internal static int DisplayCenterX; // value in pixels
         internal static int DisplayCenterY; // value in pixels
+
+        internal static Dictionary<string, CompatDrawing.Image> TextureCache = new();
+
+        internal static CompatDrawing.Image LoadTexture(string path)
+        {
+            if (!TextureCache.TryGetValue(path, out var img))
+            {
+                img = CompatDrawing.Image.FromFile(path);
+                TextureCache[path] = img;
+            }
+            return img;
+        }
+
+        internal static void ClearTextureCache()
+        {
+            foreach (var img in TextureCache.Values)
+                img.Dispose();
+            TextureCache.Clear();
+        }
 
         internal static Action RebuildDisplayAction;
 
