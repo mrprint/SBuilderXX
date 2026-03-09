@@ -1027,69 +1027,63 @@ namespace SBuilderXX
 
         internal static void DisplayLines(Graphics gr)
         {
+            var canvas = gr.Canvas;                    // SKCanvas from your wrapper
             double X1, X0, Y0, Y1;
             int N, K, NP;
             bool Flag;
             float[] BR;
-            BR = new float[4];
-            BR[0] = 0.0f;
-            BR[1] = 0.2f;
-            BR[2] = 0.8f;
-            BR[3] = 1.0f;
+            BR = new float[4] { 0.0f, 0.2f, 0.8f, 1.0f };
             int PX0, PY0, PX1, PY1, L0, L1;
             bool[] PointOnDisplay;
             bool SkipSegment;
             double UY, UX, U;
             int DX, DY;
+
+            // Keep a GDI pen ONLY for the variable-width extrusion fills —
+            // those use FillPolygon which still goes through the Graphics wrapper.
             Pen myPen = new Pen(Color.Red);
             SolidBrush myBrush = new SolidBrush(Color.Red);
-            int P1, P2;  // to draw the points
-            P1 = 2;
-            if (LinePenWidth == 2)
-                P1 = 3;
-            P2 = 2 * P1;
+
+            int P1 = 2;
+            if (LinePenWidth == 2) P1 = 3;
+            int P2 = 2 * P1;
+
             int loopTo = NoOfLines;
             for (N = 1; N <= loopTo; N++)
             {
-                if (!moduleMAIN.MoveON)
-                    Lines[N].OnScreen = false;
-                if (Lines[N].NLAT < moduleMAIN.LatDispSouth)
-                    goto skip_this_one;
-                if (Lines[N].SLAT > moduleMAIN.LatDispNorth)
-                    goto skip_this_one;
-                if (Lines[N].WLON > moduleMAIN.LonDispEast)
-                    goto skip_this_one;
-                if (Lines[N].ELON < moduleMAIN.LonDispWest)
-                    goto skip_this_one;
+                if (!moduleMAIN.MoveON) Lines[N].OnScreen = false;
+                if (Lines[N].NLAT < moduleMAIN.LatDispSouth) goto skip_this_one;
+                if (Lines[N].SLAT > moduleMAIN.LatDispNorth) goto skip_this_one;
+                if (Lines[N].WLON > moduleMAIN.LonDispEast)  goto skip_this_one;
+                if (Lines[N].ELON < moduleMAIN.LonDispWest)  goto skip_this_one;
+
                 NP = Lines[N].NoOfPoints;
                 bool IsExtrusion = false;
-                bool IsObjects = false;
-                myPen.Width = LinePenWidth;
-                myPen.DashStyle = DashStyle.Solid;
-                if (Lines[N].Type != default)
+                bool IsObjects   = false;
+
+                if (Lines[N].Type != null)
                 {
-                    if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "EXT")
-                        IsExtrusion = true;
+                    if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "EXT") IsExtrusion = true;
                     if (Lines[N].Type.Length >= 3 && Lines[N].Type.Substring(0, 3) == "OBJ")
                     {
                         IsObjects = true;
-                        // myPen.DashStyle = Drawing2D.DashStyle.Dash
                         SetLenWidFromObject(N);
                     }
                 }
 
                 Flag = false;
-                if (Lines[N].GLPoints[1].Selected)
-                    Flag = true; // only the first the others below
+                if (Lines[N].GLPoints[1].Selected) Flag = true;
+
+                SkiaSharp.SKColor lineColor;
                 if (Lines[N].Selected)
                 {
-                    myPen.Color = SelectedLineColor;
-                    myBrush.Color = SelectedLineColor;
+                    lineColor = FrmStart.ToSKColor(SelectedLineColor);
+                    myBrush.Color = SelectedLineColor;           // still needed for FillPolygon
                     Flag = true;
                 }
                 else
                 {
-                    myPen.Color = Color.FromArgb(Lines[N].ColorArgb);
+                    lineColor = FrmStart.ToSKColor(Color.FromArgb(Lines[N].ColorArgb));
                     myBrush.Color = Color.FromArgb(Lines[N].ColorArgb);
                 }
 
@@ -1098,164 +1092,131 @@ namespace SBuilderXX
                 Y1 = Lines[N].GLPoints[1].lat;
                 PX1 = (int)((X1 - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
                 PY1 = (int)((moduleMAIN.LatDispNorth - Y1) * moduleMAIN.PixelsPerLatDeg);
-                L1 = (int)(Lines[N].GLPoints[1].wid * moduleMAIN.PixelsPerMeter / 2d);
-                if (L1 < LinePenWidth)
-                    L1 = LinePenWidth;
+                L1  = (int)(Lines[N].GLPoints[1].wid * moduleMAIN.PixelsPerMeter / 2d);
+                if (L1 < LinePenWidth) L1 = LinePenWidth;
+
                 int loopTo1 = NP;
                 for (K = 2; K <= loopTo1; K++)
                 {
-                    Flag = Flag | Lines[N].GLPoints[K].Selected; // was before on another for next
+                    Flag |= Lines[N].GLPoints[K].Selected;
                     PointOnDisplay[K - 1] = false;
                     SkipSegment = false;
-                    X0 = X1;
-                    Y0 = Y1;
+                    X0 = X1; Y0 = Y1;
                     X1 = Lines[N].GLPoints[K].lon;
                     Y1 = Lines[N].GLPoints[K].lat;
-                    if (moduleMAIN.IsPtInDisplay(X0, Y0))
-                    {
-                        PointOnDisplay[K - 1] = true;
-                    }
-                    else if (!moduleMAIN.IsPtInDisplay(X1, Y1))
-                    {
-                        if (!moduleMAIN.IsSegInDisplay(X0, Y0, X1, Y1))
-                        {
-                            SkipSegment = true;
-                        }
-                    }
 
-                    PX0 = PX1;
-                    PY0 = PY1;
-                    L0 = L1;
+                    if      (moduleMAIN.IsPtInDisplay(X0, Y0)) PointOnDisplay[K - 1] = true;
+                    else if (!moduleMAIN.IsPtInDisplay(X1, Y1))
+                        if (!moduleMAIN.IsSegInDisplay(X0, Y0, X1, Y1)) SkipSegment = true;
+
+                    PX0 = PX1; PY0 = PY1; L0 = L1;
                     PX1 = (int)((X1 - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
                     PY1 = (int)((moduleMAIN.LatDispNorth - Y1) * moduleMAIN.PixelsPerLatDeg);
-                    L1 = (int)(Lines[N].GLPoints[K].wid * moduleMAIN.PixelsPerMeter / 2d);
-                    if (L1 < LinePenWidth)
-                        L1 = LinePenWidth;
-                    if (SkipSegment)
-                        goto jump_next_segment;
+                    L1  = (int)(Lines[N].GLPoints[K].wid * moduleMAIN.PixelsPerMeter / 2d);
+                    if (L1 < LinePenWidth) L1 = LinePenWidth;
+
+                    if (SkipSegment) goto jump_next_segment;
+
                     if (L0 == LinePenWidth & L1 == LinePenWidth | IsObjects)
                     {
-                        gr.DrawLine(myPen, PX0, PY0, PX1, PY1);
+                        // ── plain or object segment ──────────────────────────────────────
+                        if (Lines[N].Selected)
+                            ContrastDraw.DotLineSelected(canvas, PX0, PY0, PX1, PY1,
+                                                        lineColor, My.MyProject.Forms.FrmStart.MarchOffset);
+                        else
+                            ContrastDraw.DotLine(canvas, PX0, PY0, PX1, PY1, lineColor,
+                                                strokeWidth: LinePenWidth);
                     }
                     else if (IsExtrusion)
                     {
+                        // ── extrusion: variable-width filled band (keep GDI FillPolygon) ─
                         myPen.CompoundArray = BR;
                         myPen.Width = L0 + L1;
-                        gr.DrawLine(myPen, PX0, PY0, PX1, PY1);
+                        gr.DrawLine(myPen, PX0, PY0, PX1, PY1);   // GDI — compound pen needs it
                     }
                     else
                     {
-                        UX = PX1 - PX0;
-                        UY = PY1 - PY0;
-                        U = UX * UX + UY * UY;
-                        U = Math.Sqrt(U);
-                        if (U < moduleMAIN.MinValue)
-                            U = moduleMAIN.MinValue;
-                        UX = UX / U;
-                        UY = UY / U;
-                        DX = (int)(L0 * UX);
-                        DY = (int)(L0 * UY);
-                        PTS[0].X = PX0 - DY;
-                        PTS[0].Y = PY0 + DX;
-                        PTS[1].X = PX0 + DY;
-                        PTS[1].Y = PY0 - DX;
-                        if (PointOnDisplay[K - 1])
-                        {
-                            if (K > 2)
-                            {
-                                gr.FillPolygon(myBrush, PTS);   // the junction
-                            }
-                        }
-
-                        DX = (int)(L1 * UX);
-                        DY = (int)(L1 * UY);
-                        PTS[2].X = PX1 + DY;
-                        PTS[2].Y = PY1 - DX;
-                        PTS[3].X = PX1 - DY;
-                        PTS[3].Y = PY1 + DX;
+                        // ── tapered line — still GDI FillPolygon (filled area, not a stroke) ─
+                        UX = PX1 - PX0; UY = PY1 - PY0;
+                        U  = Math.Sqrt(UX * UX + UY * UY);
+                        if (U < moduleMAIN.MinValue) U = moduleMAIN.MinValue;
+                        UX /= U; UY /= U;
+                        DX = (int)(L0 * UX); DY = (int)(L0 * UY);
+                        PTS[0].X = PX0 - DY; PTS[0].Y = PY0 + DX;
+                        PTS[1].X = PX0 + DY; PTS[1].Y = PY0 - DX;
+                        if (PointOnDisplay[K - 1] && K > 2)
+                            gr.FillPolygon(myBrush, PTS);
+                        DX = (int)(L1 * UX); DY = (int)(L1 * UY);
+                        PTS[2].X = PX1 + DY; PTS[2].Y = PY1 - DX;
+                        PTS[3].X = PX1 - DY; PTS[3].Y = PY1 + DX;
                         gr.FillPolygon(myBrush, PTS);
                     }
 
                     Lines[N].OnScreen = true;
-                jump_next_segment:
-                    ;
+                jump_next_segment:;
                 }
-                // check if last point is outside the display
-                if (moduleMAIN.IsPtInDisplay(Lines[N].GLPoints[NP].lon, Lines[N].GLPoints[NP].lat))
+
+                if (moduleMAIN.IsPtInDisplay(Lines[N].GLPoints[NP].lon,
+                                            Lines[N].GLPoints[NP].lat))
                     PointOnDisplay[NP] = true;
 
-                // now draw selected points
-                if (IsExtrusion)
-                    myPen.Width = LinePenWidth;
+                if (IsExtrusion) myPen.Width = LinePenWidth;
+
+                // ── draw vertex markers ──────────────────────────────────────────────────
                 int loopTo2 = NP;
                 for (K = 1; K <= loopTo2; K++)
                 {
-                    if (PointOnDisplay[K])
+                    if (!PointOnDisplay[K]) continue;
+                    if (!(Flag | LineON)) continue;
+
+                    if (IsObjects)
                     {
-                        if (Flag | LineON)
+                        SetCornersFromObject(N, K);
+                        var ptColor = Lines[N].GLPoints[K].Selected
+                            ? FrmStart.ToSKColor(Color.SpringGreen)
+                            : FrmStart.ToSKColor(Color.SkyBlue);
+
+                        // centre dot
+                        ContrastDraw.DotPoint(canvas, P0X, P0Y, ptColor, radius: 3f);
+
+                        if ((WID + LEN) * moduleMAIN.PixelsPerMeter > 10d)
                         {
-                            if (IsObjects)
-                            {
-                                SetCornersFromObject(N, K);
-                                if (Lines[N].GLPoints[K].Selected)
-                                {
-                                    myBrush.Color = Color.SpringGreen;
-                                    myPen.Color = Color.Green;
-                                }
-                                else
-                                {
-                                    myBrush.Color = Color.SkyBlue;
-                                    myPen.Color = Color.Black;
-                                }
+                            // footprint outline — dashed via ContrastDraw
+                            ContrastDraw.DotLine(canvas, P1X, P1Y, P2X, P2Y, ptColor);
+                            ContrastDraw.DotLine(canvas, P2X, P2Y, P3X, P3Y, ptColor);
+                            ContrastDraw.DotLine(canvas, P3X, P3Y, P4X, P4Y, ptColor);
+                            ContrastDraw.DotLine(canvas, P4X, P4Y, P1X, P1Y, ptColor);
+                            ContrastDraw.DotLine(canvas, P0X, P0Y, HDX, HDY, ptColor);
 
-                                gr.FillRectangle(myBrush, P0X - 3f, P0Y - 3f, 6f, 6f);
-                                gr.DrawRectangle(myPen, P0X - 3f, P0Y - 3f, 6f, 6f);
-                                if ((WID + LEN) * moduleMAIN.PixelsPerMeter > 10d)
-                                {
-                                    myPen.DashStyle = DashStyle.Dash;
-                                    gr.DrawLine(myPen, P1X, P1Y, P2X, P2Y);
-                                    gr.DrawLine(myPen, P2X, P2Y, P3X, P3Y);
-                                    gr.DrawLine(myPen, P3X, P3Y, P4X, P4Y);
-                                    gr.DrawLine(myPen, P4X, P4Y, P1X, P1Y);
-                                    gr.DrawLine(myPen, P0X, P0Y, HDX, HDY);
-                                    if (LineON)
-                                    {
-                                        myPen.DashStyle = DashStyle.Solid;
-                                        gr.DrawRectangle(myPen, P1X - 2f, P1Y - 2f, 4f, 4f);
-                                        gr.DrawRectangle(myPen, P2X - 2f, P2Y - 2f, 4f, 4f);
-                                        gr.DrawRectangle(myPen, P3X - 2f, P3Y - 3f, 4f, 4f);
-                                        gr.DrawRectangle(myPen, P4X - 2f, P4Y - 2f, 4f, 4f);
-                                        gr.DrawRectangle(myPen, HDX - 2f, HDY - 2f, 4f, 4f);
-                                    }
-                                }
-                            }
-                            else
+                            if (LineON)
                             {
-                                PX0 = (int)((Lines[N].GLPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                                PY0 = (int)((moduleMAIN.LatDispNorth - Lines[N].GLPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
-                                myPen.Color = modulePOINTS.UnselectedPointColor;
-                                myBrush.Color = modulePOINTS.UnselectedPointColor;
-                                if (Lines[N].GLPoints[K].Selected)
-                                {
-                                    myPen.Color = modulePOINTS.SelectedPointColor;
-                                    myBrush.Color = modulePOINTS.SelectedPointColor;
-                                }
-
-                                if (K == NP)
-                                {
-                                    gr.DrawRectangle(myPen, PX0 - 3, PY0 - 3, 6, 6);
-                                }
-                                else
-                                {
-                                    gr.FillRectangle(myBrush, PX0 - P1, PY0 - P1, P2, P2);
-                                }
+                                ContrastDraw.DotPoint(canvas, P1X, P1Y, ptColor, radius: 2f);
+                                ContrastDraw.DotPoint(canvas, P2X, P2Y, ptColor, radius: 2f);
+                                ContrastDraw.DotPoint(canvas, P3X, P3Y, ptColor, radius: 2f);
+                                ContrastDraw.DotPoint(canvas, P4X, P4Y, ptColor, radius: 2f);
+                                ContrastDraw.DotPoint(canvas, HDX,  HDY, ptColor, radius: 2f);
                             }
                         }
                     }
+                    else
+                    {
+                        PX0 = (int)((Lines[N].GLPoints[K].lon - moduleMAIN.LonDispWest)
+                                    * moduleMAIN.PixelsPerLonDeg);
+                        PY0 = (int)((moduleMAIN.LatDispNorth - Lines[N].GLPoints[K].lat)
+                                    * moduleMAIN.PixelsPerLatDeg);
+
+                        var ptColor = Lines[N].GLPoints[K].Selected
+                            ? FrmStart.ToSKColor(modulePOINTS.SelectedPointColor)
+                            : FrmStart.ToSKColor(modulePOINTS.UnselectedPointColor);
+
+                        if (K == NP)
+                            ContrastDraw.DotRect(canvas, PX0 - 3, PY0 - 3, 6, 6, ptColor);
+                        else
+                            ContrastDraw.DotPoint(canvas, PX0, PY0, ptColor, radius: P1);
+                    }
                 }
 
-            skip_this_one:
-                ;
+            skip_this_one:;
             }
 
             myBrush.Dispose();

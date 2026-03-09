@@ -241,6 +241,17 @@ namespace SBuilderXX
                 _skCanvas.Invalidate();
             };
 
+            var marchTimer = new System.Windows.Forms.Timer { Interval = 100 };
+            marchTimer.Tick += (s, e) => {
+                _marchOffset = (_marchOffset + 1f) % 8f;
+                if (moduleMAIN.SomeSelected && !_marchPending)
+                {
+                    _marchPending = true;
+                    _skCanvas.Invalidate();
+                }
+            };
+            marchTimer.Start();
+
             // Insert BEHIND toolbar and menu (index 0 = back of z-order)
             Controls.Add(_skCanvas);
             Controls.SetChildIndex(_skCanvas, 0);
@@ -321,6 +332,7 @@ namespace SBuilderXX
 
             _lastFrame?.Dispose();
             _lastFrame = e.Surface.Snapshot();
+            _marchPending = false;
         }
 
         internal Offset<long> LatAircraft = new Offset<long>(0x560);
@@ -364,6 +376,10 @@ namespace SBuilderXX
         private int _overlayX, _overlayY, _overlayN, _overlayM;
         private SkiaSharp.SKPicture _staticLayer;
         private bool _staticDirty = true;
+        private float _marchOffset = 0f;
+        private bool _marchPending = false;
+
+        public float MarchOffset => _marchOffset;
 
         public void UpdateDisplay()
         {
@@ -3536,7 +3552,6 @@ namespace SBuilderXX
             _showSelectBox = false;
             _showExcludeBox = false;
             _overlayKind = OverlayKind.None;
-            _skCanvas.Invalidate();
 
             short Button = (short)((int)e.Button / 0x100000);
             short Shift = (short)((int)ModifierKeys / 0x10000);
@@ -3559,6 +3574,7 @@ namespace SBuilderXX
 
             if (ZoomRollON)
             {
+                _skCanvas.Invalidate();
                 ZoomRollON = false;
                 return;
             }
@@ -3571,6 +3587,8 @@ namespace SBuilderXX
                 SetMouseIcon();
                 return;
             }
+
+            _skCanvas.Invalidate();
 
             if (moduleEXCLUDES.DrawExclude)
             {
@@ -7129,6 +7147,6 @@ namespace SBuilderXX
             }
         }
 
-        private static SkiaSharp.SKColor ToSKColor(System.Drawing.Color c) => new(c.R, c.G, c.B, c.A);
+        public static SkiaSharp.SKColor ToSKColor(System.Drawing.Color c) => new(c.R, c.G, c.B, c.A);
     }
 }

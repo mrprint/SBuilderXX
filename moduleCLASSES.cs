@@ -38,7 +38,7 @@ namespace SBuilderXX
 
         internal static LWClass[] LC = new LWClass[256];
         internal static int NoOfLCs; // taken from Lands.txt =120 at present
-        internal static byte[] ILC = new byte[256];  // we set this array at the start. 
+        internal static byte[] ILC = new byte[256];  // we set this array at the start.
                                                      // For the example above when we read the 3rd element in Lands.txt
                                                      // ILC(135) = 3
                                                      // this is useful to get the index of LC() given the FSX landclass
@@ -86,7 +86,7 @@ namespace SBuilderXX
 
         // and the following 3-D array of bytes
         internal static byte[,,] LLands;
-        internal static int NoOfLands = 0; // number of land tiles 
+        internal static int NoOfLands = 0; // number of land tiles
 
         // To understand this, suppose we have no land tile defined. In that situation
         // all the elements of LL_XY() will have their Field NoOfLWs = 0. This means
@@ -95,7 +95,7 @@ namespace SBuilderXX
         // LL_XY(13,23).NoOfLWs=1
         // meaning that this LOD5 has now an "active" LOD13. Also NoOfLLXYs is incremented
         // (in this case from 0 to 1). Now an array of size LLands(256,256,1) is created and
-        // the value of 3 (see above) is place into element (55,154,1). We only need to set 
+        // the value of 3 (see above) is place into element (55,154,1). We only need to set
         // LL_XY(13,23).Pointer = 1 (see below). We also need to increment NoOfLands by one.
         // Say you add the same class to tile (J=13 K=23 C=55 R=164). As it is on the same
         // LOD13 you only increment LL_XY(13,23).NoOfLWs and NoOfLands and set
@@ -137,10 +137,10 @@ namespace SBuilderXX
         internal struct LWCIndex
         {
             public string Text;
-            public bool IsLand; // not exported 
-            public byte Class1; // not exported 
-            public byte Class2; // not exported 
-            public byte Class3; // not exported 
+            public bool IsLand; // not exported
+            public byte Class1; // not exported
+            public byte Class2; // not exported
+            public byte Class3; // not exported
             public int ColorArgb;
         }
 

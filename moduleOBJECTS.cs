@@ -270,122 +270,121 @@ namespace SBuilderXX
 
         internal static void DisplayObjects(Graphics g)
         {
+            var canvas = g.Canvas;
             string a;
             float X, Y;
-            PointF P0 = default, P4 = default, P2 = default, P1 = default, P3 = default, P5 = default;
+            PointF P0 = default, P4 = default, P2 = default,
+                P1 = default, P3 = default, P5 = default;
             int N;
             bool Flag;
             int type;
-            Pen myPen = new Pen(Color.Black);
-            SolidBrush myBrush = new SolidBrush(Color.Green);
             Image myImage;
+
             int loopTo = NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
-                if (Objects[N].NLAT < moduleMAIN.LatDispSouth)
-                    goto JumpHere;
-                if (Objects[N].SLAT > moduleMAIN.LatDispNorth)
-                    goto JumpHere;
-                if (Objects[N].WLON > moduleMAIN.LonDispEast)
-                    goto JumpHere;
-                if (Objects[N].ELON < moduleMAIN.LonDispWest)
-                    goto JumpHere;
+                if (Objects[N].NLAT < moduleMAIN.LatDispSouth) goto JumpHere;
+                if (Objects[N].SLAT > moduleMAIN.LatDispNorth) goto JumpHere;
+                if (Objects[N].WLON > moduleMAIN.LonDispEast)  goto JumpHere;
+                if (Objects[N].ELON < moduleMAIN.LonDispWest)  goto JumpHere;
+
                 type = Objects[N].Type;
+
+                SkiaSharp.SKColor fillColor, borderColor;
                 if (Objects[N].Selected)
                 {
-                    myBrush.Color = Color.SpringGreen;
-                    myPen.Color = Color.Green;
+                    fillColor   = FrmStart.ToSKColor(Color.SpringGreen);
+                    borderColor = FrmStart.ToSKColor(Color.Green);
                 }
                 else if (type < 3)
                 {
-                    myBrush.Color = Color.SkyBlue;
-                    myPen.Color = Color.Black;
+                    fillColor   = FrmStart.ToSKColor(Color.SkyBlue);
+                    borderColor = FrmStart.ToSKColor(Color.Black);
                 }
                 else if (type > 255)
                 {
-                    myBrush.Color = Color.Chocolate;
-                    myPen.Color = Color.Black;
+                    fillColor   = FrmStart.ToSKColor(Color.Chocolate);
+                    borderColor = FrmStart.ToSKColor(Color.Black);
                 }
                 else
                 {
-                    myBrush.Color = Color.Yellow;
-                    myPen.Color = Color.Black;
+                    fillColor   = FrmStart.ToSKColor(Color.Yellow);
+                    borderColor = FrmStart.ToSKColor(Color.Black);
                 }
 
                 X = (float)((Objects[N].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
                 Y = (float)((moduleMAIN.LatDispNorth - Objects[N].lat) * moduleMAIN.PixelsPerLatDeg);
+
                 Flag = (Objects[N].Width + Objects[N].Length) * moduleMAIN.PixelsPerMeter < 20d;
                 if (Flag)
                 {
-                    g.FillRectangle(myBrush, X - 3f, Y - 3f, 6f, 6f);
-                    g.DrawRectangle(myPen, X - 3f, Y - 3f, 6f, 6f);
+                    // tiny object — just a dot
+                    ContrastDraw.DotRectFilled(canvas, X - 3f, Y - 3f, 6f, 6f,
+                                            fillColor, strokeWidth: 1f);
                     goto JumpHere;
                 }
 
-                if (type == 8) // taxi sign
+                // ── special-type icons (images) — unchanged ──────────────────────────
+                if (type == 8)
                 {
                     a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\taxisign.bmp";
                     myImage = moduleMAIN.LoadTexture(a);
                     g.DrawImage(myImage, X - 40f, Y - 20f, 80f, 40f);
                 }
-
-                if (type == 32) // beacon
+                if (type == 32)
                 {
                     a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\beacon.gif";
                     myImage = moduleMAIN.LoadTexture(a);
                     g.DrawImage(myImage, X - 20f, Y - 20f, 40f, 40f);
                 }
-
-                if (type == 64) // windsock
+                if (type == 64)
                 {
                     a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\windsock.gif";
                     myImage = moduleMAIN.LoadTexture(a);
                     g.DrawImage(myImage, X - 20f, Y - 20f, 40f, 40f);
                 }
-
-                if (type == 16) // effect
+                if (type == 16)
                 {
                     a = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\effect.gif";
                     myImage = moduleMAIN.LoadTexture(a);
                     g.DrawImage(myImage, X - 20f, Y - 20f, 40f, 40f);
                 }
 
-                g.FillRectangle(myBrush, X - 3f, Y - 3f, 6f, 6f);
-                g.DrawRectangle(myPen, X - 3f, Y - 3f, 6f, 6f);
-                myPen.DashStyle = DashStyle.Dash;
-                P0.X = X;
-                P0.Y = Y;
+                // ── centre marker ────────────────────────────────────────────────────
+                ContrastDraw.DotRectFilled(canvas, X - 3f, Y - 3f, 6f, 6f,
+                                        fillColor, strokeWidth: 1f);
+
+                // ── footprint outline (was DashStyle.Dash) ───────────────────────────
+                P0.X = X; P0.Y = Y;
                 P1.X = (float)(Objects[N].P1X * moduleMAIN.PixelsPerMeter + X);
                 P2.X = (float)(Objects[N].P2X * moduleMAIN.PixelsPerMeter + X);
                 P3.X = (float)(Objects[N].P3X * moduleMAIN.PixelsPerMeter + X);
                 P4.X = (float)(Objects[N].P4X * moduleMAIN.PixelsPerMeter + X);
-                P5.X = (float)(Objects[N].HDX * moduleMAIN.PixelsPerMeter + X);
+                P5.X = (float)(Objects[N].HDX  * moduleMAIN.PixelsPerMeter + X);
                 P1.Y = (float)(-Objects[N].P1Y * moduleMAIN.PixelsPerMeter + Y);
                 P2.Y = (float)(-Objects[N].P2Y * moduleMAIN.PixelsPerMeter + Y);
                 P3.Y = (float)(-Objects[N].P3Y * moduleMAIN.PixelsPerMeter + Y);
                 P4.Y = (float)(-Objects[N].P4Y * moduleMAIN.PixelsPerMeter + Y);
-                P5.Y = (float)(-Objects[N].HDY * moduleMAIN.PixelsPerMeter + Y);
-                g.DrawLine(myPen, P1, P2);
-                g.DrawLine(myPen, P2, P3);
-                g.DrawLine(myPen, P3, P4);
-                g.DrawLine(myPen, P4, P1);
-                g.DrawLine(myPen, P0, P5);
+                P5.Y = (float)(-Objects[N].HDY  * moduleMAIN.PixelsPerMeter + Y);
+
+                ContrastDraw.DotLine(canvas, P1.X, P1.Y, P2.X, P2.Y, borderColor);
+                ContrastDraw.DotLine(canvas, P2.X, P2.Y, P3.X, P3.Y, borderColor);
+                ContrastDraw.DotLine(canvas, P3.X, P3.Y, P4.X, P4.Y, borderColor);
+                ContrastDraw.DotLine(canvas, P4.X, P4.Y, P1.X, P1.Y, borderColor);
+                ContrastDraw.DotLine(canvas, P0.X, P0.Y, P5.X, P5.Y, borderColor);  // heading
+
+                // ── corner handles (ObjectON mode) ───────────────────────────────────
                 if (ObjectON)
                 {
-                    myPen.DashStyle = DashStyle.Solid;
-                    g.DrawRectangle(myPen, P1.X - 2f, P1.Y - 2f, 4f, 4f);
-                    g.DrawRectangle(myPen, P2.X - 2f, P2.Y - 2f, 4f, 4f);
-                    g.DrawRectangle(myPen, P3.X - 2f, P3.Y - 3f, 4f, 4f);
-                    g.DrawRectangle(myPen, P4.X - 2f, P4.Y - 2f, 4f, 4f);
-                    g.DrawRectangle(myPen, P5.X - 2f, P5.Y - 2f, 4f, 4f);
+                    ContrastDraw.DotPoint(canvas, P1.X, P1.Y, borderColor, radius: 2f);
+                    ContrastDraw.DotPoint(canvas, P2.X, P2.Y, borderColor, radius: 2f);
+                    ContrastDraw.DotPoint(canvas, P3.X, P3.Y, borderColor, radius: 2f);
+                    ContrastDraw.DotPoint(canvas, P4.X, P4.Y, borderColor, radius: 2f);
+                    ContrastDraw.DotPoint(canvas, P5.X, P5.Y, borderColor, radius: 2f);
                 }
 
-            JumpHere:
-                ;
+            JumpHere:;
             }
-
-            myBrush.Dispose();
-            myPen.Dispose();
         }
 
         internal static void AddLatLonToObjects(int N)

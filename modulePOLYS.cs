@@ -340,8 +340,8 @@ namespace SBuilderXX
         {
 
             // this is called upon mouse down when SelectParent is ON.
-            // it uses POPIndex which points to the polygon that we want 
-            // to make a child. In April 2014, if there are also selected polygons 
+            // it uses POPIndex which points to the polygon that we want
+            // to make a child. In April 2014, if there are also selected polygons
             // in Poly mode we will try to make childs of the chosed
             // parent polygon
 
@@ -712,39 +712,34 @@ namespace SBuilderXX
                 NP = Polys[N].NoOfPoints;
                 if (Polys[N].Selected)
                 {
-                    myBrush.Color = moduleLINES.SelectedLineColor;
+                    var selColor = FrmStart.ToSKColor(moduleLINES.SelectedLineColor);
                     int loopTo4 = NP;
                     for (K = 1; K <= loopTo4; K++)
                     {
                         X = (int)((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
                         Y = (int)((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
-                        gr.FillRectangle(myBrush, X - P1, Y - P1, P2, P2);
+                        ContrastDraw.DotPoint(gr.Canvas, X, Y, selColor, radius: P1);
                     }
                 }
                 else
                 {
+                    // ── REPLACE the unselected / PolyON vertex block ──────────────────────
                     Flag = false;
                     int loopTo5 = NP;
                     for (K = 1; K <= loopTo5; K++)
-                    {
-                        if (Polys[N].GPoints[K].Selected)
-                        {
-                            Flag = true;
-                            break;
-                        }
-                    }
+                        if (Polys[N].GPoints[K].Selected) { Flag = true; break; }
 
                     if (PolyON | Flag)
                     {
                         int loopTo6 = NP;
                         for (K = 1; K <= loopTo6; K++)
                         {
-                            myBrush.Color = modulePOINTS.UnselectedPointColor;
-                            if (Polys[N].GPoints[K].Selected)
-                                myBrush.Color = moduleLINES.SelectedLineColor;
+                            var ptColor = Polys[N].GPoints[K].Selected
+                                ? FrmStart.ToSKColor(moduleLINES.SelectedLineColor)
+                                : FrmStart.ToSKColor(modulePOINTS.UnselectedPointColor);
                             X = (int)((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
                             Y = (int)((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
-                            gr.FillRectangle(myBrush, X - P1, Y - P1, P2, P2);
+                            ContrastDraw.DotPoint(gr.Canvas, X, Y, ptColor, radius: P1);
                         }
                     }
                 }
