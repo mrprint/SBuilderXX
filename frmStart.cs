@@ -3379,7 +3379,11 @@ namespace SBuilderXX
                         return;
                     }
 
-                    UpdateDisplay();
+                    if (_overlayKind != OverlayKind.None)
+                    {
+                        _overlayKind = OverlayKind.None;
+                        _skCanvas.Invalidate();
+                    }
                 }
 
                 return;
@@ -3408,7 +3412,11 @@ namespace SBuilderXX
                     }
                     else
                     {
-                        UpdateDisplay();
+                        if (_overlayKind != OverlayKind.None)
+                        {
+                            _overlayKind = OverlayKind.None;
+                            _skCanvas.Invalidate();
+                        }
                     }
                 }
 
@@ -3430,7 +3438,11 @@ namespace SBuilderXX
                     }
                     else
                     {
-                        UpdateDisplay();
+                        if (_overlayKind != OverlayKind.None)
+                        {
+                            _overlayKind = OverlayKind.None;
+                            _skCanvas.Invalidate();
+                        }
                     }
                 }
 
