@@ -318,10 +318,10 @@ namespace SBuilderXX
             int loopTo = NoOfExcludes;
             for (N = 1; N <= loopTo; N++)
             {
-                if (Excludes[N].NLAT < moduleMAIN.LatDispSouth) goto JumpHere;
-                if (Excludes[N].SLAT > moduleMAIN.LatDispNorth) goto JumpHere;
-                if (Excludes[N].WLON > moduleMAIN.LonDispEast)  goto JumpHere;
-                if (Excludes[N].ELON < moduleMAIN.LonDispWest)  goto JumpHere;
+                if (Excludes[N].NLAT < moduleMAIN.LatDispSouth) continue;
+                if (Excludes[N].SLAT > moduleMAIN.LatDispNorth) continue;
+                if (Excludes[N].WLON > moduleMAIN.LonDispEast)  continue;
+                if (Excludes[N].ELON < moduleMAIN.LonDispWest)  continue;
 
                 var lineColor = Excludes[N].Selected
                     ? FrmStart.ToSKColor(Color.SpringGreen)
@@ -346,7 +346,7 @@ namespace SBuilderXX
                     else
                         ContrastDraw.DotRect(canvas, X - 3f, Y - 3f, 6f, 6f,
                                             lineColor, strokeWidth: 1f);
-                    goto JumpHere;
+                    continue;
                 }
 
                 // ── full-size exclude ─────────────────────────────────────────────────
@@ -383,8 +383,6 @@ namespace SBuilderXX
                         P2.X - P1.X, P3.Y - P1.Y,
                         lineColor, strokeWidth: 2f);
                 }
-
-            JumpHere:;
             }
         }
 

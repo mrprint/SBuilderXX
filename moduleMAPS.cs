@@ -775,13 +775,13 @@ namespace SBuilderXX
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (Maps[N].NLAT < moduleMAIN.LatDispSouth)
-                        goto JumpHere;
+                        continue;
                     if (Maps[N].SLAT > moduleMAIN.LatDispNorth)
-                        goto JumpHere;
+                        continue;
                     if (Maps[N].WLON > moduleMAIN.LonDispEast)
-                        goto JumpHere;
+                        continue;
                     if (Maps[N].ELON < moduleMAIN.LonDispWest)
-                        goto JumpHere;
+                        continue;
                     if (Maps[N].WLON > moduleMAIN.LonDispWest)
                     {
                         if (Maps[N].ELON > moduleMAIN.LonDispEast)
@@ -877,9 +877,6 @@ namespace SBuilderXX
                         mypen.Width = 1f;
                         g.DrawRectangle(mypen, new Rectangle(screen.X, screen.Y, screen.Width, screen.Height));
                     }
-
-                JumpHere:
-                    ;
                 }
 
                 mypen.Dispose();

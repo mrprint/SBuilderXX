@@ -1052,10 +1052,10 @@ namespace SBuilderXX
             for (N = 1; N <= loopTo; N++)
             {
                 if (!moduleMAIN.MoveON) Lines[N].OnScreen = false;
-                if (Lines[N].NLAT < moduleMAIN.LatDispSouth) goto skip_this_one;
-                if (Lines[N].SLAT > moduleMAIN.LatDispNorth) goto skip_this_one;
-                if (Lines[N].WLON > moduleMAIN.LonDispEast)  goto skip_this_one;
-                if (Lines[N].ELON < moduleMAIN.LonDispWest)  goto skip_this_one;
+                if (Lines[N].NLAT < moduleMAIN.LatDispSouth) continue;
+                if (Lines[N].SLAT > moduleMAIN.LatDispNorth) continue;
+                if (Lines[N].WLON > moduleMAIN.LonDispEast)  continue;
+                if (Lines[N].ELON < moduleMAIN.LonDispWest)  continue;
 
                 NP = Lines[N].NoOfPoints;
                 bool IsExtrusion = false;
@@ -1115,7 +1115,7 @@ namespace SBuilderXX
                     L1  = (int)(Lines[N].GLPoints[K].wid * moduleMAIN.PixelsPerMeter / 2d);
                     if (L1 < LinePenWidth) L1 = LinePenWidth;
 
-                    if (SkipSegment) goto jump_next_segment;
+                    if (SkipSegment) continue;
 
                     if (L0 == LinePenWidth & L1 == LinePenWidth | IsObjects)
                     {
@@ -1153,7 +1153,6 @@ namespace SBuilderXX
                     }
 
                     Lines[N].OnScreen = true;
-                jump_next_segment:;
                 }
 
                 if (moduleMAIN.IsPtInDisplay(Lines[N].GLPoints[NP].lon,
@@ -1215,8 +1214,6 @@ namespace SBuilderXX
                             ContrastDraw.DotPoint(canvas, PX0, PY0, ptColor, radius: P1);
                     }
                 }
-
-            skip_this_one:;
             }
 
             myBrush.Dispose();

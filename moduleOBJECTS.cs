@@ -283,10 +283,10 @@ namespace SBuilderXX
             int loopTo = NoOfObjects;
             for (N = 1; N <= loopTo; N++)
             {
-                if (Objects[N].NLAT < moduleMAIN.LatDispSouth) goto JumpHere;
-                if (Objects[N].SLAT > moduleMAIN.LatDispNorth) goto JumpHere;
-                if (Objects[N].WLON > moduleMAIN.LonDispEast)  goto JumpHere;
-                if (Objects[N].ELON < moduleMAIN.LonDispWest)  goto JumpHere;
+                if (Objects[N].NLAT < moduleMAIN.LatDispSouth) continue;
+                if (Objects[N].SLAT > moduleMAIN.LatDispNorth) continue;
+                if (Objects[N].WLON > moduleMAIN.LonDispEast)  continue;
+                if (Objects[N].ELON < moduleMAIN.LonDispWest)  continue;
 
                 type = Objects[N].Type;
 
@@ -321,7 +321,7 @@ namespace SBuilderXX
                     // tiny object — just a dot
                     ContrastDraw.DotRectFilled(canvas, X - 3f, Y - 3f, 6f, 6f,
                                             fillColor, strokeWidth: 1f);
-                    goto JumpHere;
+                    continue;
                 }
 
                 // ── special-type icons (images) — unchanged ──────────────────────────
@@ -382,8 +382,6 @@ namespace SBuilderXX
                     ContrastDraw.DotPoint(canvas, P4.X, P4.Y, borderColor, radius: 2f);
                     ContrastDraw.DotPoint(canvas, P5.X, P5.Y, borderColor, radius: 2f);
                 }
-
-            JumpHere:;
             }
         }
 
@@ -2884,17 +2882,15 @@ namespace SBuilderXX
                 PC.X = Objects[N].lon * moduleMAIN.PixelsPerLonDeg;
                 PC.Y = Objects[N].lat * moduleMAIN.PixelsPerLatDeg;
                 if (PC.X > x + 5d)
-                    goto Jump_Next;
+                    continue;
                 if (PC.X < x - 5d)
-                    goto Jump_Next;
+                    continue;
                 if (PC.Y < y - 5d)
-                    goto Jump_Next;
+                    continue;
                 if (PC.Y > y + 5d)
-                    goto Jump_Next;
+                    continue;
                 IsMouseOnObjectRet = N;
                 return IsMouseOnObjectRet;
-            Jump_Next:
-                ;
             }
 
             return IsMouseOnObjectRet;
@@ -3038,109 +3034,107 @@ namespace SBuilderXX
                 if (PN[J] == "Latitude")
                 {
                     PV[J] = Latitude;
-                    goto next_j;
+                    continue;
                 }
 
                 if (PN[J] == "Longitude")
                 {
                     PV[J] = Longitude;
-                    goto next_j;
+                    continue;
                 }
 
                 if (PN[J] == "Elevation")
                 {
                     PV[J] = Altitude;
-                    goto next_j;
+                    continue;
                 }
 
                 if (PN[J] == "Rotation")
                 {
                     PV[J] = Heading;
-                    goto next_j;
+                    continue;
                 }
 
                 if (PN[J] == "Visibility")
                 {
                     PV[J] = V1;
-                    goto next_j;
+                    continue;
                 }
 
                 if (PN[J] == "Range")
                 {
                     PV[J] = Range;
-                    goto next_j;
+                    continue;
                 }
 
                 if (PN[J] == "Density")
                 {
                     PV[J] = Complex;
-                    goto next_j;
+                    continue;
                 }
 
                 if (PN[J] == "Scale")
                 {
                     PV[J] = Scaling;
-                    goto next_j;
+                    continue;
                 }
 
                 if (PN[J] == "Length")
                 {
                     PV[J] = Length;
-                    goto next_j;
+                    continue;
                 }
 
                 if (PN[J] == "Width")
                 {
                     PV[J] = Width;
-                    goto next_j;
+                    continue;
                 }
 
                 if ((PN[J] ?? "") == (moduleMACROS.MacroP6Name ?? ""))
                 {
                     PV[J] = moduleMACROS.MacroP6Value;
-                    goto next_j;
+                    continue;
                 }
 
                 if ((PN[J] ?? "") == (moduleMACROS.MacroP7Name ?? ""))
                 {
                     PV[J] = moduleMACROS.MacroP7Value;
-                    goto next_j;
+                    continue;
                 }
 
                 if ((PN[J] ?? "") == (moduleMACROS.MacroP8Name ?? ""))
                 {
                     PV[J] = moduleMACROS.MacroP8Value;
-                    goto next_j;
+                    continue;
                 }
 
                 if ((PN[J] ?? "") == (moduleMACROS.MacroP9Name ?? ""))
                 {
                     PV[J] = moduleMACROS.MacroP9Value;
-                    goto next_j;
+                    continue;
                 }
 
                 if ((PN[J] ?? "") == (moduleMACROS.MacroPAName ?? ""))
                 {
                     PV[J] = moduleMACROS.MacroPAValue;
-                    goto next_j;
+                    continue;
                 }
 
                 if ((PN[J] ?? "") == (moduleMACROS.MacroPBName ?? ""))
                 {
                     PV[J] = moduleMACROS.MacroPBValue;
-                    goto next_j;
+                    continue;
                 }
 
                 if ((PN[J] ?? "") == (moduleMACROS.MacroPCName ?? ""))
                 {
                     PV[J] = moduleMACROS.MacroPCValue;
-                    goto next_j;
+                    continue;
                 }
 
                 if ((PN[J] ?? "") == (moduleMACROS.MacroPDName ?? ""))
                     PV[J] = moduleMACROS.MacroPDValue;
-                next_j:
-                ;
             }
 
             a = "macro( \"" + moduleMACROS.MacroASDPath + @"\" + moduleMACROS.MacroID + "\"" + " ";
@@ -3212,7 +3206,7 @@ namespace SBuilderXX
                 {
                     NoOfObjectsSelected = NoOfObjectsSelected - 1;
                     Objects[N].Selected = false;
-                    goto Jump_Next;
+                    continue;
                 }
                 else
                 {
@@ -3220,9 +3214,6 @@ namespace SBuilderXX
                     moduleMAIN.SomeSelected = true;
                     Objects[N].Selected = true;
                 }
-
-            Jump_Next:
-                ;
             }
         }
 
