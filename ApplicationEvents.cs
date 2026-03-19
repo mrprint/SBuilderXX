@@ -31,7 +31,7 @@ namespace SBuilderXX.My
                     errorFile = errorFile + @"\" + Path.GetFileNameWithoutExtension(moduleMAIN.WorkFile) + "_ERR.SBP";
                 }
 
-                moduleFILE_IO.SaveFile(errorFile);
+                moduleFILE_IO.SaveProject(errorFile);
             }
 
             errorMessage = "Error Report created by SBuilderXX on " + DateTime.Now.ToString() + nl + nl;

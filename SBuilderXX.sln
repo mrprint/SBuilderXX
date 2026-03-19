@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBuilderXX", "SBuilderXX.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drawing.SkiaSharpCompat", "SkiaSharpCompat\Drawing.SkiaSharpCompat.csproj", "{731D7C75-D476-0B3D-D17B-4907A33B1D2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBuilderXX.Tests", "E:\projects\SBuilderXX\SBuilderXX.Tests\SBuilderXX.Tests.csproj", "{B1C2D3E4-F5A6-7890-ABCD-EF1234567890}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,14 @@ Global
 		{731D7C75-D476-0B3D-D17B-4907A33B1D2A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{731D7C75-D476-0B3D-D17B-4907A33B1D2A}.Release|x86.ActiveCfg = Release|Any CPU
 		{731D7C75-D476-0B3D-D17B-4907A33B1D2A}.Release|x86.Build.0 = Release|Any CPU
+		{B1C2D3E4-F5A6-7890-ABCD-EF1234567890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1C2D3E4-F5A6-7890-ABCD-EF1234567890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1C2D3E4-F5A6-7890-ABCD-EF1234567890}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B1C2D3E4-F5A6-7890-ABCD-EF1234567890}.Debug|x86.Build.0 = Debug|Any CPU
+		{B1C2D3E4-F5A6-7890-ABCD-EF1234567890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1C2D3E4-F5A6-7890-ABCD-EF1234567890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1C2D3E4-F5A6-7890-ABCD-EF1234567890}.Release|x86.ActiveCfg = Release|Any CPU
+		{B1C2D3E4-F5A6-7890-ABCD-EF1234567890}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

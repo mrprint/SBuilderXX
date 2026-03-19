@@ -2050,7 +2050,7 @@ namespace SBuilderXX
             if (string.IsNullOrEmpty(FileName))
                 return;
             FileOpenHeader();
-            moduleFILE_IO.OpenFile(FileName);
+            moduleFILE_IO.LoadProject(FileName);
             moduleMAIN.WorkFile = FileName;
             FileOpenTrailer();
         }
@@ -2161,7 +2161,7 @@ namespace SBuilderXX
             if (string.IsNullOrEmpty(a))
                 return;
             moduleMAIN.WorkFile = a;
-            moduleFILE_IO.SaveFile(a);
+            moduleFILE_IO.SaveProject(a);
             moduleFILE_IO.SetFileBackUp(a);
             moduleMAIN.Dirty = false;
             N = a.LastIndexOf(@"\") + 1;
@@ -2173,7 +2173,7 @@ namespace SBuilderXX
 
         private void SaveMenuItem_Click(object sender, EventArgs e)
         {
-            moduleFILE_IO.SaveFile(moduleMAIN.WorkFile);
+            moduleFILE_IO.SaveProject(moduleMAIN.WorkFile);
             moduleMAIN.Dirty = false;
         }
 
@@ -4189,7 +4189,7 @@ namespace SBuilderXX
             if (string.IsNullOrEmpty(FileName))
                 return;
             FileOpenHeader();
-            moduleFILE_IO.OpenFile(FileName);
+            moduleFILE_IO.LoadProject(FileName);
             moduleMAIN.WorkFile = FileName;
             FileOpenTrailer();
         }
@@ -4210,7 +4210,7 @@ namespace SBuilderXX
 
             FileName = moduleFILE_IO.RecentFiles[2];
             FileOpenHeader();
-            moduleFILE_IO.OpenFile(FileName);
+            moduleFILE_IO.LoadProject(FileName);
             if (string.IsNullOrEmpty(FileName))
                 return;
             moduleMAIN.WorkFile = FileName;
@@ -4235,7 +4235,7 @@ namespace SBuilderXX
             if (string.IsNullOrEmpty(FileName))
                 return;
             FileOpenHeader();
-            moduleFILE_IO.OpenFile(FileName);
+            moduleFILE_IO.LoadProject(FileName);
             moduleMAIN.WorkFile = FileName;
             FileOpenTrailer();
         }
@@ -4258,7 +4258,7 @@ namespace SBuilderXX
             if (string.IsNullOrEmpty(FileName))
                 return;
             FileOpenHeader();
-            moduleFILE_IO.OpenFile(FileName);
+            moduleFILE_IO.LoadProject(FileName);
             moduleMAIN.WorkFile = FileName;
             FileOpenTrailer();
         }
@@ -5959,7 +5959,7 @@ namespace SBuilderXX
             if (moduleFILE_IO.BackUpFileCounter == 100)
                 moduleFILE_IO.BackUpFileCounter = 0;
             string A = moduleFILE_IO.BackUpFileCounter.ToString("00") + ".SBP";
-            moduleFILE_IO.SaveFile(moduleFILE_IO.BackUpFileName + A);
+            moduleFILE_IO.SaveProject(moduleFILE_IO.BackUpFileName + A);
         }
 
         private void CmdLink_Click(object sender, EventArgs e)
