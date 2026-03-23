@@ -421,10 +421,17 @@ namespace SBuilderXX
             try
             {
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(makeurl);
-                HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-                index = res.ContentType.IndexOf("image");
-                ImgMaps[NoOfMaps] = Image.FromStream(res.GetResponseStream());
-                res.Close();
+
+                using (HttpWebResponse res = (HttpWebResponse)req.GetResponse())
+                using (var stream = res.GetResponseStream())
+                using (var ms = new MemoryStream())
+                {
+                    index = res.ContentType.IndexOf("image");
+                    stream.CopyTo(ms);
+                    ms.Position = 0;
+
+                    ImgMaps[NoOfMaps] = Image.FromStream(ms);
+                }
             }
             catch (Exception)
             {
