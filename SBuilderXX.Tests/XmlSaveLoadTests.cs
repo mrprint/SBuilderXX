@@ -61,6 +61,20 @@ namespace SBuilderXX.Tests
         }
 
         [TestMethod]
+        public void Header_EmptyBGLFolder_DoesNotCallCheckFolders()
+        {
+            // Regression: CheckFolders() must not be called when BGLProjectFolder
+            // is empty or null — it would create directories in the wrong location.
+            // Saving and loading a project with no BGL folder set must not throw.
+            moduleMAIN.BGLProjectFolder = string.Empty;
+            moduleMAIN.ProjectName = "No BGL Folder";
+            // In MSTest any unhandled exception fails the test automatically,
+            // so just call SaveAndReload() directly — no wrapper needed.
+            SaveAndReload();
+            Assert.AreEqual(string.Empty, moduleMAIN.BGLProjectFolder);
+        }
+
+        [TestMethod]
         public void Header_ProjectNameWithXmlSpecialChars_RoundTrip()
         {
             moduleMAIN.ProjectName = "Test <Project> & \"Quotes\"";
@@ -336,6 +350,65 @@ namespace SBuilderXX.Tests
             Assert.AreEqual(-20.0, p.WLON, 1e-10);
         }
 
+        [TestMethod]
+        public void Polys_NullStringFields_DoNotThrow()
+        {
+            // Regression: newly created polys have null Name/Type/Guid.
+            // XAttribute throws ArgumentNullException on null — must use empty string.
+            modulePOLYS.NoOfPolys = 1;
+            modulePOLYS.Polys = new modulePOLYS.GPoly[2];
+            modulePOLYS.Polys[1].Name = null;
+            modulePOLYS.Polys[1].Type = null;
+            modulePOLYS.Polys[1].Guid = null;
+            modulePOLYS.Polys[1].NoOfChilds = 0;
+            modulePOLYS.Polys[1].Childs = new int[1];
+            modulePOLYS.Polys[1].NoOfPoints = 1;
+            modulePOLYS.Polys[1].GPoints = new modulePOINTS.GPoint[2];
+            modulePOLYS.Polys[1].GPoints[1].lat = 38.0;
+            modulePOLYS.Polys[1].GPoints[1].lon = -9.0;
+
+            SaveAndReload();
+            // Null name is auto-filled with "{nPts}_Pts_Polygon" by the loader — correct behaviour.
+            Assert.AreEqual("1_Pts_Polygon", modulePOLYS.Polys[1].Name);
+            // Type and Guid round-trip as empty string when null on save.
+            Assert.AreEqual(string.Empty, modulePOLYS.Polys[1].Type);
+            Assert.AreEqual(string.Empty, modulePOLYS.Polys[1].Guid);
+        }
+
+        [TestMethod]
+        public void Lines_NullStringFields_DoNotThrow()
+        {
+            moduleLINES.NoOfLines = 1;
+            moduleLINES.Lines = new moduleLINES.GLine[2];
+            moduleLINES.Lines[1].Name = null;
+            moduleLINES.Lines[1].Type = null;
+            moduleLINES.Lines[1].Guid = null;
+            moduleLINES.Lines[1].NoOfPoints = 1;
+            moduleLINES.Lines[1].GLPoints = new modulePOINTS.GLPoint[2];
+            moduleLINES.Lines[1].GLPoints[1].lat = 38.0;
+            moduleLINES.Lines[1].GLPoints[1].lon = -9.0;
+
+            SaveAndReload();
+            // Null name is auto-filled with "{nPts}_Pts_Line" by the loader — correct behaviour.
+            Assert.AreEqual("1_Pts_Line", moduleLINES.Lines[1].Name);
+            // Type and Guid round-trip as empty string when null on save.
+            Assert.AreEqual(string.Empty, moduleLINES.Lines[1].Type);
+            Assert.AreEqual(string.Empty, moduleLINES.Lines[1].Guid);
+        }
+
+        [TestMethod]
+        public void Objects_NullDescription_DoesNotThrow()
+        {
+            moduleOBJECTS.NoOfObjects = 1;
+            moduleOBJECTS.Objects = new moduleOBJECTS.Objecto[2];
+            moduleOBJECTS.Objects[1].Description = null;
+            moduleOBJECTS.Objects[1].lat = 51.0;
+            moduleOBJECTS.Objects[1].lon = -1.0;
+
+            SaveAndReload();  // unhandled exception = test failure in MSTest
+            Assert.AreEqual(string.Empty, moduleOBJECTS.Objects[1].Description);
+        }
+
 
         // ==========================================================
         //  E X C L U D E S
@@ -451,6 +524,11 @@ namespace SBuilderXX.Tests
         [TestMethod]
         public void Objects_Altitude_PreservesDoubleNotFloat()
         {
+            // Regression test: Altitude is double in the struct.
+            // The XML loader previously used XfAttr (float), which
+            // silently truncates precision beyond ~7 significant digits.
+            // A real-world altitude like 12345.6789012345 must survive
+            // the round-trip without being narrowed to float range.
             double precAlt = 12345.6789012345;
 
             moduleOBJECTS.NoOfObjects = 1;
