@@ -2057,11 +2057,19 @@ namespace SBuilderXX
 
         private void FileOpenHeader()
         {
-            int N;
+            // Dispose map bitmaps that ImgMaps owns directly
+            // (not through LoadTexture cache — see SetBitmapSeason fix).
+            if (moduleMAPS.ImgMaps != null)
+            {
+                int loopTo = Math.Min(moduleMAPS.NoOfMaps, moduleMAPS.ImgMaps.Length - 1);
+                for (int N = 1; N <= loopTo; N++)
+                {
+                    if (moduleMAPS.ImgMaps[N] != null)
+                        moduleMAPS.ImgMaps[N].Dispose();
+                }
+            }
+
             DisableSelections(true);
-            int loopTo = moduleMAPS.NoOfMaps;
-            for (N = 1; N <= loopTo; N++)
-                moduleMAPS.ImgMaps[N].Dispose();
             moduleMAPS.Maps = new moduleMAPS.Map[1];
             moduleMAPS.ImgMaps = new Image[1];
             moduleCLASSES.LLands = new byte[257, 257, 1];

@@ -465,7 +465,7 @@ namespace SBuilderXX
             if (moduleMAIN.Zoom < 8)          // I do not remember how it works - October 2017
             {
                 FileMercator2LatLon(LN, LS, myfile, myfile);
-                ImgMaps[NoOfMaps] = moduleMAIN.LoadTexture(myfile);
+                ImgMaps[NoOfMaps] = Image.FromFile(myfile);
             }
 
             Maps[NoOfMaps].NLAT = LN;
@@ -489,7 +489,7 @@ namespace SBuilderXX
             double lat, dlat;
             double merc, dmerc;
             double north_m, south_m;
-            Image img = moduleMAIN.LoadTexture(inputfile);
+            Image img = Image.FromFile(inputfile);
             ImageFormat imgformat = img.RawFormat;
             int rows = img.Height;
             int cols = img.Width;
@@ -607,6 +607,18 @@ namespace SBuilderXX
 
         internal static void SetBitmapSeason()
         {
+            if (ImgMaps != null)
+            {
+                for (int i = 1; i < ImgMaps.Length; i++)
+                {
+                    if (ImgMaps[i] != null)
+                    {
+                        ImgMaps[i].Dispose();
+                        ImgMaps[i] = null;
+                    }
+                }
+            }
+
             int N;
             string A;
             My.MyProject.Forms.FrmStart.Cursor = Cursors.WaitCursor;
@@ -640,7 +652,7 @@ namespace SBuilderXX
                             for (N = 1; N <= loopTo; N++)
                             {
                                 A = Maps[N].BMPSu;
-                                ImgMaps[N] = moduleMAIN.LoadTexture(A);
+                                ImgMaps[N] = Image.FromFile(A);
                             }
 
                             break;
@@ -653,7 +665,7 @@ namespace SBuilderXX
                             for (N = 1; N <= loopTo1; N++)
                             {
                                 A = Maps[N].BMPWi;
-                                ImgMaps[N] = moduleMAIN.LoadTexture(A);
+                                ImgMaps[N] = Image.FromFile(A);
                             }
 
                             break;
@@ -666,7 +678,7 @@ namespace SBuilderXX
                             for (N = 1; N <= loopTo2; N++)
                             {
                                 A = Maps[N].BMPHw;
-                                ImgMaps[N] = moduleMAIN.LoadTexture(A);
+                                ImgMaps[N] = Image.FromFile(A);
                             }
 
                             break;
@@ -679,7 +691,7 @@ namespace SBuilderXX
                             for (N = 1; N <= loopTo3; N++)
                             {
                                 A = Maps[N].BMPSp;
-                                ImgMaps[N] = moduleMAIN.LoadTexture(A);
+                                ImgMaps[N] = Image.FromFile(A);
                             }
 
                             break;
@@ -692,7 +704,7 @@ namespace SBuilderXX
                             for (N = 1; N <= loopTo4; N++)
                             {
                                 A = Maps[N].BMPFa;
-                                ImgMaps[N] = moduleMAIN.LoadTexture(A);
+                                ImgMaps[N] = Image.FromFile(A);
                             }
 
                             break;
@@ -705,7 +717,7 @@ namespace SBuilderXX
                             for (N = 1; N <= loopTo5; N++)
                             {
                                 A = Maps[N].BMPLm;
-                                ImgMaps[N] = moduleMAIN.LoadTexture(A);
+                                ImgMaps[N] = Image.FromFile(A);
                             }
 
                             break;
