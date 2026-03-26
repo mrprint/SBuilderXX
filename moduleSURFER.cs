@@ -93,7 +93,7 @@ namespace SBuilderXX
                         K1 = A.IndexOf(BLNSeparator);
                         if (K1 != -1)
                         {
-                            N = Convert.ToInt32(A.Substring(0, K1));
+                            N = VB.CInt(A.Substring(0, K1));
                             B = (A.Length >= K1 + 3) ? A.Substring(K1 + 1, 2) : "";
                             if (B == ("0" + BLNSeparator ?? "") || B == ("1" + BLNSeparator ?? ""))
                             {
@@ -106,7 +106,7 @@ namespace SBuilderXX
                         }
                         else
                         {
-                            N = Convert.ToInt32(A);
+                            N = VB.CInt(A);
                         }
 
                         myLine.GLPoints = new modulePOINTS.GLPoint[N + 1];

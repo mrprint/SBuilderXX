@@ -144,7 +144,7 @@ namespace SBuilderXX
                 return;
             try
             {
-                Alpha = Convert.ToInt32(txtA.Text);
+                Alpha = VB.CInt(txtA.Text);
                 if (Alpha < 0)
                     Alpha = 0;
                 if (Alpha > 255)
@@ -165,7 +165,7 @@ namespace SBuilderXX
                 return;
             try
             {
-                Red = Convert.ToInt32(txtR.Text);
+                Red = VB.CInt(txtR.Text);
                 if (Red < 0)
                     Red = 0;
                 if (Red > 255)
@@ -186,7 +186,7 @@ namespace SBuilderXX
             int EC = Green;
             try
             {
-                Green = Convert.ToInt32(txtG.Text);
+                Green = VB.CInt(txtG.Text);
                 if (Green < 0)
                     Green = 0;
                 if (Green > 255)
@@ -207,7 +207,7 @@ namespace SBuilderXX
             int EC = Blue;
             try
             {
-                Blue = Convert.ToInt32(txtB.Text);
+                Blue = VB.CInt(txtB.Text);
                 if (Blue < 0)
                     Blue = 0;
                 if (Blue > 255)

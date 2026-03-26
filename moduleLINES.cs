@@ -1090,9 +1090,9 @@ namespace SBuilderXX
                 PointOnDisplay = new bool[NP + 1];
                 X1 = Lines[N].GLPoints[1].lon;
                 Y1 = Lines[N].GLPoints[1].lat;
-                PX1 = (int)((X1 - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                PY1 = (int)((moduleMAIN.LatDispNorth - Y1) * moduleMAIN.PixelsPerLatDeg);
-                L1  = (int)(Lines[N].GLPoints[1].wid * moduleMAIN.PixelsPerMeter / 2d);
+                PX1 = VB.CInt((X1 - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                PY1 = VB.CInt((moduleMAIN.LatDispNorth - Y1) * moduleMAIN.PixelsPerLatDeg);
+                L1 = VB.CInt(Lines[N].GLPoints[1].wid * moduleMAIN.PixelsPerMeter / 2d);
                 if (L1 < LinePenWidth) L1 = LinePenWidth;
 
                 int loopTo1 = NP;
@@ -1110,9 +1110,9 @@ namespace SBuilderXX
                         if (!moduleMAIN.IsSegInDisplay(X0, Y0, X1, Y1)) SkipSegment = true;
 
                     PX0 = PX1; PY0 = PY1; L0 = L1;
-                    PX1 = (int)((X1 - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                    PY1 = (int)((moduleMAIN.LatDispNorth - Y1) * moduleMAIN.PixelsPerLatDeg);
-                    L1  = (int)(Lines[N].GLPoints[K].wid * moduleMAIN.PixelsPerMeter / 2d);
+                    PX1 = VB.CInt((X1 - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                    PY1 = VB.CInt((moduleMAIN.LatDispNorth - Y1) * moduleMAIN.PixelsPerLatDeg);
+                    L1 = VB.CInt(Lines[N].GLPoints[K].wid * moduleMAIN.PixelsPerMeter / 2d);
                     if (L1 < LinePenWidth) L1 = LinePenWidth;
 
                     if (SkipSegment) continue;
@@ -1141,12 +1141,12 @@ namespace SBuilderXX
                         U  = Math.Sqrt(UX * UX + UY * UY);
                         if (U < moduleMAIN.MinValue) U = moduleMAIN.MinValue;
                         UX /= U; UY /= U;
-                        DX = (int)(L0 * UX); DY = (int)(L0 * UY);
+                        DX = VB.CInt(L0 * UX); DY = VB.CInt(L0 * UY);
                         PTS[0].X = PX0 - DY; PTS[0].Y = PY0 + DX;
                         PTS[1].X = PX0 + DY; PTS[1].Y = PY0 - DX;
                         if (PointOnDisplay[K - 1] && K > 2)
                             gr.FillPolygon(myBrush, PTS);
-                        DX = (int)(L1 * UX); DY = (int)(L1 * UY);
+                        DX = VB.CInt(L1 * UX); DY = VB.CInt(L1 * UY);
                         PTS[2].X = PX1 + DY; PTS[2].Y = PY1 - DX;
                         PTS[3].X = PX1 - DY; PTS[3].Y = PY1 + DX;
                         gr.FillPolygon(myBrush, PTS);
@@ -1199,9 +1199,9 @@ namespace SBuilderXX
                     }
                     else
                     {
-                        PX0 = (int)((Lines[N].GLPoints[K].lon - moduleMAIN.LonDispWest)
+                        PX0 = VB.CInt((Lines[N].GLPoints[K].lon - moduleMAIN.LonDispWest)
                                     * moduleMAIN.PixelsPerLonDeg);
-                        PY0 = (int)((moduleMAIN.LatDispNorth - Lines[N].GLPoints[K].lat)
+                        PY0 = VB.CInt((moduleMAIN.LatDispNorth - Lines[N].GLPoints[K].lat)
                                     * moduleMAIN.PixelsPerLatDeg);
 
                         var ptColor = Lines[N].GLPoints[K].Selected
@@ -1242,10 +1242,10 @@ namespace SBuilderXX
             string A;
             A = Lines[N].Type.Substring(4);
             N = A.IndexOf("|");
-            WID = Convert.ToSingle(A.Substring(0, N)) / 2f;
+            WID = VB.CSng(Convert.ToSingle(A.Substring(0, N))) / 2f;
             A = A.Substring(N);
             N = A.IndexOf("|");
-            LEN = Convert.ToSingle(A.Substring(0, N)) / 2f;
+            LEN = VB.CSng(Convert.ToSingle(A.Substring(0, N))) / 2f;
         }
 
         private static void SetCornersFromObject(int N, int K)
@@ -1253,9 +1253,9 @@ namespace SBuilderXX
 
             // N is line and K is the point
             float C, teta, S;
-            teta = (float)(Lines[N].GLPoints[K].wid * moduleMAIN.PI / 180d);
-            C = (float)(Math.Cos(teta) * moduleMAIN.PixelsPerMeter);
-            S = (float)(Math.Sin(teta) * moduleMAIN.PixelsPerMeter);
+            teta = VB.CSng(Lines[N].GLPoints[K].wid * moduleMAIN.PI / 180d);
+            C = VB.CSng(Math.Cos(teta) * moduleMAIN.PixelsPerMeter);
+            S = VB.CSng(Math.Sin(teta) * moduleMAIN.PixelsPerMeter);
             P1X = -WID;
             P1Y = LEN;
             RotateXY(ref P1X, ref P1Y, C, S);
@@ -1271,8 +1271,8 @@ namespace SBuilderXX
             HDX = 0f;
             HDY = LEN;
             RotateXY(ref HDX, ref HDY, C, S);
-            P0X = (float)((Lines[N].GLPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-            P0Y = (float)((moduleMAIN.LatDispNorth - Lines[N].GLPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
+            P0X = VB.CSng((Lines[N].GLPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+            P0Y = VB.CSng((moduleMAIN.LatDispNorth - Lines[N].GLPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
             P1X = P1X + P0X;
             P2X = P2X + P0X;
             P3X = P3X + P0X;
@@ -1290,14 +1290,14 @@ namespace SBuilderXX
 
             // N is line and K is the point
             float C, teta, S;
-            teta = (float)(Lines[N].GLPoints[K].wid * moduleMAIN.PI / 180d);
-            C = (float)(Math.Cos(teta) * moduleMAIN.PixelsPerMeter);
-            S = (float)(Math.Sin(teta) * moduleMAIN.PixelsPerMeter);
+            teta = VB.CSng(Lines[N].GLPoints[K].wid * moduleMAIN.PI / 180d);
+            C = VB.CSng(Math.Cos(teta) * moduleMAIN.PixelsPerMeter);
+            S = VB.CSng(Math.Sin(teta) * moduleMAIN.PixelsPerMeter);
             HDX = 0f;
             HDY = LEN;
             RotateXY(ref HDX, ref HDY, C, S);
-            P0X = (float)((Lines[N].GLPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-            P0Y = (float)((moduleMAIN.LatDispNorth - Lines[N].GLPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
+            P0X = VB.CSng((Lines[N].GLPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+            P0Y = VB.CSng((moduleMAIN.LatDispNorth - Lines[N].GLPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
             HDX = HDX + P0X;
             HDY = -HDY + P0Y;
         }
@@ -2342,7 +2342,7 @@ namespace SBuilderXX
             modulePOINTS.GLPoint x;
             int M, NP, K;
             NP = Lines[N].NoOfPoints;
-            M = (int)(NP / 2d);
+            M = VB.CInt(NP / 2d);
             NP = NP + 1;
             int loopTo = M;
             for (K = 1; K <= loopTo; K++)

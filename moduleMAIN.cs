@@ -263,17 +263,17 @@ namespace SBuilderXX
             int X1, X2, Y1, Y2;
             IsCenterDisplayRet = true;
 
-            X1 = (int)(DisplayWidth * 0.05d);
+            X1 = VB.CInt(DisplayWidth * 0.05d);
             if (X < X1) return IsCenterDisplayRet;
 
-            X2 = (int)(DisplayWidth * 0.95d);
+            X2 = VB.CInt(DisplayWidth * 0.95d);
             if (X > X2) return IsCenterDisplayRet;
 
             // Canvas-relative: Y goes from 0 (top of canvas) to DisplayHeight
             // StatusStrip is below the canvas so subtract its height from bottom
             int statusH = My.MyProject.Forms.FrmStart.StatusStrip.Height;
-            Y1 = (int)(DisplayHeight * 0.05d);
-            Y2 = DisplayHeight - statusH - (int)(DisplayHeight * 0.05d);
+            Y1 = VB.CInt(DisplayHeight * 0.05d);
+            Y2 = DisplayHeight - statusH - VB.CInt(DisplayHeight * 0.05d);
 
             if (Y < Y1) return IsCenterDisplayRet;
             if (Y > Y2) return IsCenterDisplayRet;
@@ -648,7 +648,7 @@ namespace SBuilderXX
             {
                 if (DecimalDegrees)
                 {
-                    Str2LonRet = Convert.ToDouble(lon);
+                    Str2LonRet = VB.CInt(lon);
                 }
                 else
                 {
@@ -683,14 +683,14 @@ namespace SBuilderXX
                     N = lon.IndexOf(" ");
                     if (N == -1)
                     {
-                        Str2LonRet = Convert.ToDouble(lon);
+                        Str2LonRet = VB.CInt(lon);
                         if (Neg)
                             Str2LonRet = -1 * Str2LonRet;
                         return Str2LonRet;
                     }
 
                     a = lon.Substring(0, N);
-                    Str2LonRet = Convert.ToDouble(a);
+                    Str2LonRet = VB.CInt(a);
                     M = lon.IndexOf(" ", N + 1);
                     if (M == -1)
                     {
@@ -738,10 +738,10 @@ namespace SBuilderXX
                     a = "E";
                 }
 
-                N = (int)lon;
+                N = VB.Fix(lon);
                 Lon2StrRet = N.ToString();
                 X = (lon - N) * 60d;
-                N = (int)X;
+                N = VB.Fix(X);
                 Lon2StrRet = Lon2StrRet + '°' + " " + N.ToString("00");
                 X = (X - N) * 60d;
                 X = Math.Round(X, 4);
@@ -773,10 +773,10 @@ namespace SBuilderXX
                     b = "N";
                 }
 
-                N = (int)lat;
+                N = VB.Fix(lat);
                 Lat2StrRet = N.ToString();
                 X = (lat - N) * 60d;
-                N = (int)X;
+                N = VB.Fix(X);
                 Lat2StrRet = Lat2StrRet + '°' + " " + N.ToString("00");
                 X = (X - N) * 60d;
                 X = Math.Round(X, 4);

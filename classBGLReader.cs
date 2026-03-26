@@ -52,14 +52,14 @@ namespace SBuilderXX
                 if (reader.ReadUInt16() != 6546)
                     return readRet; // version number
                 reader.ReadBytes(16);  // skip 16 bytes
-                NoOfSPs = (int)reader.ReadUInt32();
+                NoOfSPs = VB.CInt(reader.ReadUInt32());
                 reader.ReadBytes(32);  // skip 132 bytes
                 int loopTo = NoOfSPs;
                 for (N = 1; N <= loopTo; N++) // read all section pointers
                 {
                     SType = reader.ReadUInt32();
                     reader.ReadBytes(4);  // skip 4 bytes
-                    NoOfSubSPs = (int)reader.ReadUInt32();
+                    NoOfSubSPs = VB.CInt(reader.ReadUInt32());
                     SOffset = reader.ReadUInt32();
                     reader.ReadBytes(4);  // skip 4 bytes - size of header
                     if (SType == 43L)  // section type = 2b (mdl)
@@ -69,7 +69,7 @@ namespace SBuilderXX
                         for (J = 1; J <= loopTo1; J++)    // read all section headers
                         {
                             reader.ReadBytes(4);  // skip ID - 4 bytes
-                            NoOfRs = (int)reader.ReadUInt32();
+                            NoOfRs = VB.CInt(reader.ReadUInt32());
                             SubSOffset = reader.ReadUInt32();
                             reader.ReadBytes(4);  // skip size - 4 bytes
                             SPos = reader.BaseStream.Position;

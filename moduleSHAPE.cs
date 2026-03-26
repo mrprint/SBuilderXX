@@ -373,7 +373,7 @@ namespace SBuilderXX
                     A = DBF.Attribute(N, ShapeLineColorField - 1);
                     if (!string.IsNullOrEmpty(A))
                     {
-                        myLines[N].ColorArgb = Convert.ToInt32(A);
+                        myLines[N].ColorArgb = VB.CInt(A);
                     }
                     else
                     {
@@ -665,7 +665,7 @@ namespace SBuilderXX
                     A = DBF.Attribute(N, ShapePolyColorField - 1);
                     if (!string.IsNullOrEmpty(A))  // '''
                     {
-                        myColors[N] = Color.FromArgb(Convert.ToInt32(A));
+                        myColors[N] = Color.FromArgb(VB.CInt(A));
                     }
                     else
                     {
@@ -1032,7 +1032,7 @@ namespace SBuilderXX
                             // new record 
                             REC = REC + 1;
                             ptrBegin = (int)fs.Position;
-                            RecOffset[REC] = (int)(ptrBegin / 2d);
+                            RecOffset[REC] = VB.CInt(ptrBegin / 2);
                             nParts = modulePOLYS.Polys[N].NoOfChilds + 1;   // the childs plus the parent
                             P = new int[nParts + 1];
                             P[1] = 0;     // always zero!
@@ -1153,7 +1153,7 @@ namespace SBuilderXX
                             bw.Seek((nPoints + 1) * 8, SeekOrigin.Current);     // advance Mmin Mmax and nPoints M points
                             bw.Write(0d);    // go back 8 and write a double = O to terminate
                             ptrEnd = (int)fs.Position;
-                            recLen = (int)((ptrEnd - ptrBegin) / 2d);    // get the record lenght
+                            recLen = VB.CInt((ptrEnd - ptrBegin) / 2);    // get the record lenght
                             recLen = recLen - 4; // contents lenght of record is less by 8 bytes
                             RecLenght[REC] = recLen;
                             // go back and fill the record header
@@ -1181,8 +1181,7 @@ namespace SBuilderXX
                     }
                 }
 
-                recLen = (int)fs.Length;    // recLen is free
-                recLen = (int)(recLen / 2d);
+                recLen = VB.CInt(fs.Length / 2);    // recLen is free
                 // now complete  header
                 bw.Seek(24, SeekOrigin.Begin);
                 bw.Write(BigEndian(recLen));
@@ -1299,7 +1298,7 @@ namespace SBuilderXX
                         // new record 
                         REC = REC + 1;
                         ptrBegin = (int)fs.Position;
-                        RecOffset[REC] = (int)(ptrBegin / 2d);
+                        RecOffset[REC] = VB.CInt(ptrBegin / 2);
                         nPoints = moduleLINES.Lines[N].NoOfPoints;
                         // advance 4 + 4 + 4 + 4 x 8 = 44 ( recNum recLen ShapeType and box )
                         // plus 4 + 4 (nParts nPoints) + 4  for P(1) ; P(1)=0 
@@ -1357,7 +1356,7 @@ namespace SBuilderXX
                         bw.Seek((nPoints + 1) * 8, SeekOrigin.Current);     // advance Mmin Mmax and nPoints M points
                         bw.Write(0d);    // go back 8 and write a double = O to terminate
                         ptrEnd = (int)fs.Position;
-                        recLen = (int)((ptrEnd - ptrBegin) / 2d);    // get the record lenght
+                        recLen = VB.CInt((ptrEnd - ptrBegin) / 2);    // get the record lenght
                         recLen = recLen - 4; // contents lenght of record is less by 8 bytes
                         RecLenght[REC] = recLen;
                         // go back and fill the record header
@@ -1381,8 +1380,7 @@ namespace SBuilderXX
                     }
                 }
 
-                recLen = (int)fs.Length;    // recLen is free
-                recLen = (int)(recLen / 2d);
+                recLen = VB.CInt(fs.Length / 2);    // recLen is free
                 // now complete  header
                 bw.Seek(24, SeekOrigin.Begin);
                 bw.Write(BigEndian(recLen));

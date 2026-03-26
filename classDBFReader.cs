@@ -85,7 +85,7 @@ namespace SBuilderXX
                 if (reader.ReadByte() != 3)
                     return FileReaderRet;
                 reader.ReadBytes(3);
-                NoOfRecords = (int)reader.ReadUInt32();
+                NoOfRecords = VB.CInt(reader.ReadUInt32());
                 GR = new bool[NoOfRecords];
                 LenHeader = reader.ReadUInt16();
                 LenRecord = reader.ReadUInt16();

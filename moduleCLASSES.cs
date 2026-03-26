@@ -1,5 +1,5 @@
-﻿using System;
-using Drawing;
+﻿using Drawing;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -210,12 +210,12 @@ namespace SBuilderXX
                 moduleEDIT.BackUp();
             X = X + 180d;
             X = X / moduleMAIN.D5Lon;
-            J = (int)X;
+            J = VB.CInt(X);
             Y = 90d - Y;
             Y = Y / moduleMAIN.D5Lat;
-            K = (int)Y;
-            C = (int)Math.Round((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
-            R = (int)Math.Round((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
+            K = VB.CInt(Y);
+            C = VB.CInt((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
+            R = VB.CInt((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
             int N1, N2, L, M, CC, RR;
             N1 = 1 - BrushSize;
             N2 = BrushSize - 1;
@@ -247,12 +247,12 @@ namespace SBuilderXX
                 moduleEDIT.BackUp();
             X = X + 180d;
             X = X / moduleMAIN.D5Lon;
-            J = (int)X;
+            J = VB.CInt(X);
             Y = 90d - Y;
             Y = Y / moduleMAIN.D5Lat;
-            K = (int)Y;
-            C = (int)Math.Round((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
-            R = (int)Math.Round((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
+            K = VB.CInt(Y);
+            C = VB.CInt((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
+            R = VB.CInt((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
             int N1, N2, L, M, CC, RR;
             N1 = 1 - BrushSize;
             N2 = BrushSize - 1;
@@ -690,18 +690,23 @@ namespace SBuilderXX
             SolidBrush myBrush = new SolidBrush(Color.Yellow);
             double LatNorth;
             double LonWest;
-            X1 = (float)(moduleMAIN.LonDispWest + 180d);
-            X1 = (float)(X1 / moduleMAIN.D5Lon);
-            LO1 = (int)X1;
-            Y1 = (float)(90d - moduleMAIN.LatDispNorth);
-            Y1 = (float)(Y1 / moduleMAIN.D5Lat);
-            LA1 = (int)Y1;
-            X1 = (float)(moduleMAIN.LonDispEast + 180d);
-            X1 = (float)(X1 / moduleMAIN.D5Lon);
-            LO2 = (int)X1;
-            Y1 = (float)(90d - moduleMAIN.LatDispSouth);
-            Y1 = (float)(Y1 / moduleMAIN.D5Lat);
-            LA2 = (int)Y1;
+
+            X1 = VB.CSng(moduleMAIN.LonDispWest + 180d);
+            X1 = VB.CSng(X1 / moduleMAIN.D5Lon);
+            LO1 = VB.CInt(X1);
+
+            Y1 = VB.CSng(90d - moduleMAIN.LatDispNorth);
+            Y1 = VB.CSng(Y1 / moduleMAIN.D5Lat);
+            LA1 = VB.CInt(Y1);
+
+            X1 = VB.CSng(moduleMAIN.LonDispEast + 180d);
+            X1 = VB.CSng(X1 / moduleMAIN.D5Lon);
+            LO2 = VB.CInt(X1);
+
+            Y1 = VB.CSng(90d - moduleMAIN.LatDispSouth);
+            Y1 = VB.CSng(Y1 / moduleMAIN.D5Lat);
+            LA2 = VB.CInt(Y1);
+
             int C, C0, R, R0, N;
             int loopTo = LA2;
             for (LA = LA1; LA <= loopTo; LA++)
@@ -714,18 +719,18 @@ namespace SBuilderXX
                     if (LL_XY[LO, LA].NoOfLWs > 0)
                     {
                         N = LL_XY[LO, LA].Pointer;
-                        X11 = (float)((LonWest - moduleMAIN.LonDispWest - moduleMAIN.D14Lon) * moduleMAIN.PixelsPerLonDeg);
-                        X2 = (float)(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
-                        Y1 = (float)((moduleMAIN.LatDispNorth - LatNorth - moduleMAIN.D14Lat) * moduleMAIN.PixelsPerLatDeg);
-                        Y2 = (float)(moduleMAIN.D13Lat * moduleMAIN.PixelsPerLatDeg);
-                        X2 = (float)(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
-                        R0 = (int)(-Y1 / Y2);
+                        X11 = VB.CSng((LonWest - moduleMAIN.LonDispWest - moduleMAIN.D14Lon) * moduleMAIN.PixelsPerLonDeg);
+                        X2 = VB.CSng(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
+                        Y1 = VB.CSng((moduleMAIN.LatDispNorth - LatNorth - moduleMAIN.D14Lat) * moduleMAIN.PixelsPerLatDeg);
+                        Y2 = VB.CSng(moduleMAIN.D13Lat * moduleMAIN.PixelsPerLatDeg);
+                        X2 = VB.CSng(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
+                        R0 = VB.CInt(-Y1 / Y2);
                         if (R0 > 256)
                             R0 = 256;
                         if (R0 < 0)
                             R0 = 0;
                         Y1 = Y1 + R0 * Y2;
-                        C0 = (int)(-X11 / X2);
+                        C0 = VB.CInt(-X11 / X2);
                         if (C0 > 256)
                             C0 = 256;
                         if (C0 < 0)
@@ -789,18 +794,23 @@ namespace SBuilderXX
             SolidBrush myBrush = new SolidBrush(Color.Yellow);
             double LatNorth;
             double LonWest;
-            X1 = (float)(moduleMAIN.LonDispWest + 180d);
-            X1 = (float)(X1 / moduleMAIN.D5Lon);
-            LO1 = (int)X1;
-            Y1 = (float)(90d - moduleMAIN.LatDispNorth);
-            Y1 = (float)(Y1 / moduleMAIN.D5Lat);
-            LA1 = (int)Y1;
-            X1 = (float)(moduleMAIN.LonDispEast + 180d);
-            X1 = (float)(X1 / moduleMAIN.D5Lon);
-            LO2 = (int)X1;
-            Y1 = (float)(90d - moduleMAIN.LatDispSouth);
-            Y1 = (float)(Y1 / moduleMAIN.D5Lat);
-            LA2 = (int)Y1;
+
+            X1 = VB.CSng(moduleMAIN.LonDispWest + 180d);
+            X1 = VB.CSng(X1 / moduleMAIN.D5Lon);
+            LO1 = VB.CInt(X1);
+
+            Y1 = VB.CSng(90d - moduleMAIN.LatDispNorth);
+            Y1 = VB.CSng(Y1 / moduleMAIN.D5Lat);
+            LA1 = VB.CInt(Y1);
+
+            X1 = VB.CSng(moduleMAIN.LonDispEast + 180d);
+            X1 = VB.CSng(X1 / moduleMAIN.D5Lon);
+            LO2 = VB.CInt(X1);
+
+            Y1 = VB.CSng(90d - moduleMAIN.LatDispSouth);
+            Y1 = VB.CSng(Y1 / moduleMAIN.D5Lat);
+            LA2 = VB.CInt(Y1);
+
             int C, C0, R, R0, N;
             int loopTo = LA2;
             for (LA = LA1; LA <= loopTo; LA++)
@@ -813,18 +823,19 @@ namespace SBuilderXX
                     if (WW_XY[LO, LA].NoOfLWs > 0)
                     {
                         N = WW_XY[LO, LA].Pointer;
-                        X11 = (float)((LonWest - moduleMAIN.LonDispWest - moduleMAIN.D14Lon) * moduleMAIN.PixelsPerLonDeg);
-                        X2 = (float)(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
-                        Y1 = (float)((moduleMAIN.LatDispNorth - LatNorth - moduleMAIN.D14Lat) * moduleMAIN.PixelsPerLatDeg);
-                        Y2 = (float)(moduleMAIN.D13Lat * moduleMAIN.PixelsPerLatDeg);
-                        X2 = (float)(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
-                        R0 = (int)(-Y1 / Y2);
+                        X11 = VB.CSng((LonWest - moduleMAIN.LonDispWest - moduleMAIN.D14Lon) * moduleMAIN.PixelsPerLonDeg);
+                        X2 = VB.CSng(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
+                        Y1 = VB.CSng((moduleMAIN.LatDispNorth - LatNorth - moduleMAIN.D14Lat) * moduleMAIN.PixelsPerLatDeg);
+                        Y2 = VB.CSng(moduleMAIN.D13Lat * moduleMAIN.PixelsPerLatDeg);
+                        X2 = VB.CSng(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
+
+                        R0 = VB.CInt(-Y1 / Y2);
                         if (R0 > 256)
                             R0 = 256;
                         if (R0 < 0)
                             R0 = 0;
                         Y1 = Y1 + R0 * Y2;
-                        C0 = (int)(-X11 / X2);
+                        C0 = VB.CInt(-X11 / X2);
                         if (C0 > 256)
                             C0 = 256;
                         if (C0 < 0)
@@ -978,16 +989,16 @@ namespace SBuilderXX
             int J, K, C, R;
             X = X + 180d;
             X = X / moduleMAIN.D5Lon;
-            J = (int)X;
+            J = VB.CInt(X);
+
             Y = 90d - Y;
             Y = Y / moduleMAIN.D5Lat;
-            K = (int)Y;
-            if (LL_XY[J, K].NoOfLWs == 0)
-                return;
-            C = (int)Math.Round((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
-            R = (int)Math.Round((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
-            if (LLands[C, R, LL_XY[J, K].Pointer] == 0)
-                return;
+            K = VB.CInt(Y);
+            if (LL_XY[J, K].NoOfLWs == 0) return;
+            C = VB.CInt((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
+            R = VB.CInt((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
+            if (LLands[C, R, LL_XY[J, K].Pointer] == 0) return;
+
             moduleEDIT.BackUp();
             DeleteOneLand(J, K, C, R);
         }
@@ -1002,14 +1013,14 @@ namespace SBuilderXX
             int J, K, C, R;
             X = X + 180d;
             X = X / moduleMAIN.D5Lon;
-            J = (int)X;
+            J = VB.CInt(X);
             Y = 90d - Y;
             Y = Y / moduleMAIN.D5Lat;
-            K = (int)Y;
+            K = VB.CInt(Y);
             if (WW_XY[J, K].NoOfLWs == 0)
                 return;
-            C = (int)Math.Round((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
-            R = (int)Math.Round((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
+            C = VB.CInt((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
+            R = VB.CInt((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
             if (WWaters[C, R, WW_XY[J, K].Pointer] == 0)
                 return;
             moduleEDIT.BackUp();
@@ -1616,12 +1627,12 @@ namespace SBuilderXX
                         for (R = R00; R <= loopTo2; R++)
                         {
                             Lat = Lat0 - R * moduleMAIN.D13Lat;
-                            PY = (int)Math.Round((Y0 - Lat) / DY);
+                            PY = VB.CInt((Y0 - Lat) / DY);
                             int loopTo3 = C11;
                             for (C = C00; C <= loopTo3; C++)
                             {
                                 Lon = Lon0 + C * moduleMAIN.D13Lon;
-                                PX = (int)Math.Round((Lon - X0) / DX);
+                                PX = VB.CInt((Lon - X0) / DX);
                                 myColor = image.GetPixel(PX, PY);
                                 int loopTo4 = NoOfLWCIs;
                                 for (N = 1; N <= loopTo4; N++)
@@ -1728,12 +1739,12 @@ namespace SBuilderXX
                         for (R = R00; R <= loopTo2; R++)
                         {
                             Lat = Lat0 - R * moduleMAIN.D13Lat;
-                            PY = (int)Math.Round((Y0 - Lat) / DY);
+                            PY = VB.CInt((Y0 - Lat) / DY);
                             int loopTo3 = C11;
                             for (C = C00; C <= loopTo3; C++)
                             {
                                 Lon = Lon0 + C * moduleMAIN.D13Lon;
-                                PX = (int)Math.Round((Lon - X0) / DX);
+                                PX = VB.CInt((Lon - X0) / DX);
                                 myColor = image.GetPixel(PX, PY);
                                 int loopTo4 = NoOfLWCIs;
                                 for (N = 1; N <= loopTo4; N++)

@@ -80,7 +80,7 @@ namespace SBuilderXX
                         {
                             A = A.Substring(14);
                             A = A.Replace(",", ".");
-                            MacroScale = Convert.ToSingle(A);
+                            MacroScale = VB.CSng(A);
                         }
 
                         if (B == ";DEFAULTRA")
@@ -88,11 +88,11 @@ namespace SBuilderXX
                             J = A.IndexOf(" ", 14);
                             if (J == -1)
                             {
-                                MacroRange = (int)(Convert.ToSingle(A.Substring(14)) / 1000f);
+                                MacroRange = VB.CInt(Convert.ToSingle(A.Substring(14)) / 1000f);
                             }
                             else
                             {
-                                MacroRange = (int)(Convert.ToSingle(A.Substring(14, J - 14)) / 1000f);
+                                MacroRange = VB.CInt(Convert.ToSingle(A.Substring(14, J - 14)) / 1000f);
                             }
                         }
 
@@ -107,11 +107,11 @@ namespace SBuilderXX
                             J = A.LastIndexOf(" ");
                             if (J == -1)
                                 continue;
-                            MacroWidth = Convert.ToSingle(A.Substring(J + 1));
+                            MacroWidth = VB.CSng(A.Substring(J + 1));
                             J = B.IndexOf(" ");
                             if (J == -1)
                                 continue;
-                            MacroLength = Convert.ToSingle(B.Substring(0, J));
+                            MacroLength = VB.CSng(B.Substring(0, J));
                         }
                     }
                 }
@@ -200,34 +200,34 @@ namespace SBuilderXX
                 A = GetMacroValue("autoscale");
                 A = GetMacroValue("FixedLength");
                 if (!string.IsNullOrEmpty(A))
-                    MacroLength = Convert.ToSingle(A);
+                    MacroLength = VB.CSng(A);
                 A = GetMacroValue("FixedWidth");
                 if (!string.IsNullOrEmpty(A))
-                    MacroWidth = Convert.ToSingle(A);
+                    MacroWidth = VB.CSng(A);
                 A = GetMacroValue("Length");
                 if (!string.IsNullOrEmpty(A))
-                    MacroLength = Convert.ToSingle(A);
+                    MacroLength = VB.CSng(A);
                 A = GetMacroValue("Width");
                 if (!string.IsNullOrEmpty(A))
-                    MacroWidth = Convert.ToSingle(A);
+                    MacroWidth = VB.CSng(A);
                 A = GetMacroValue("Range");
                 if (!string.IsNullOrEmpty(A))
-                    MacroRange = Convert.ToInt32(A);
+                    MacroRange = VB.CInt(A);
                 A = GetMacroValue("Scale");
                 if (!string.IsNullOrEmpty(A))
-                    MacroScale = Convert.ToSingle(A);
+                    MacroScale = VB.CSng(A);
                 A = GetMacroValue("Rotation");
                 if (!string.IsNullOrEmpty(A))
-                    MacroRotation = Convert.ToSingle(A);
+                    MacroRotation = VB.CSng(A);
                 A = GetMacroValue("Elevation");
                 if (!string.IsNullOrEmpty(A))
-                    MacroElevation = Convert.ToSingle(A);
+                    MacroElevation = VB.CSng(A);
                 A = GetMacroValue("Visibility");
                 if (!string.IsNullOrEmpty(A))
-                    MacroVisibility = Convert.ToSingle(A);
+                    MacroVisibility = VB.CSng(A);
                 A = GetMacroValue("Density");
                 if (!string.IsNullOrEmpty(A))
-                    MacroDensity = Convert.ToInt32(A);
+                    MacroDensity = VB.CInt(A);
                 A = GetMacroValue("Bitmap");
                 if (!string.IsNullOrEmpty(A))
                 {
@@ -379,13 +379,13 @@ namespace SBuilderXX
             moduleOBJECTS.ObjComment = A.Substring(M2 + 1);
             A = GetMacroValue("Range");
             if (!string.IsNullOrEmpty(A))
-                MacroRange = Convert.ToInt32(A);
+                MacroRange = VB.CInt(A);
             A = GetMacroValue("Scale");
             if (!string.IsNullOrEmpty(A))
-                MacroScale = Convert.ToSingle(A);
+                MacroScale = VB.CSng(A);
             A = GetMacroValue("V1");
             if (!string.IsNullOrEmpty(A))
-                MacroVisibility = Convert.ToSingle(A);
+                MacroVisibility = VB.CSng(A);
             if (MacroString.Length < 3)
                 return;
             A = GetMacroParameter();
@@ -687,10 +687,10 @@ namespace SBuilderXX
             moduleOBJECTS.ObjComment = A.Substring(M2 + 1);
             A = GetMacroValue("Range");
             if (!string.IsNullOrEmpty(A))
-                MacroRange = Convert.ToInt32(A);
+                MacroRange = VB.CInt(A);
             A = GetMacroValue("Scale");
             if (!string.IsNullOrEmpty(A))
-                MacroScale = Convert.ToSingle(A);
+                MacroScale = VB.CSng(A);
             A = GetMacroValue("P6");
             if (!string.IsNullOrEmpty(A))
                 MacroP6Value = A;
@@ -705,10 +705,10 @@ namespace SBuilderXX
                 MacroP9Value = A;
             A = GetMacroValue("V1");
             if (!string.IsNullOrEmpty(A))
-                MacroVisibility = Convert.ToSingle(A);
+                MacroVisibility = VB.CSng(A);
             A = GetMacroValue("V2");
             if (!string.IsNullOrEmpty(A))
-                MacroV2Value = Convert.ToSingle(A);
+                MacroV2Value = VB.CSng(A);
         }
 
         internal static string GetMacroValue(string str1)
