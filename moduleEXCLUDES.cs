@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using Drawing;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -308,82 +308,85 @@ namespace SBuilderXX
 
         internal static void DisplayExcludes(Graphics g)
         {
-            var canvas = g.Canvas;
             float X, Y;
             PointF P1 = default, P2 = default, P3 = default, P4 = default;
             int N;
             bool Flag;
+            Pen myPen = new Pen(Color.Black);
+            SolidBrush myBrush = new SolidBrush(Color.SpringGreen);
             double lat, lon, dlat, dlon;
-
             int loopTo = NoOfExcludes;
             for (N = 1; N <= loopTo; N++)
             {
-                if (Excludes[N].NLAT < moduleMAIN.LatDispSouth) continue;
-                if (Excludes[N].SLAT > moduleMAIN.LatDispNorth) continue;
-                if (Excludes[N].WLON > moduleMAIN.LonDispEast)  continue;
-                if (Excludes[N].ELON < moduleMAIN.LonDispWest)  continue;
-
-                var lineColor = Excludes[N].Selected
-                    ? FrmStart.ToSKColor(Color.SpringGreen)
-                    : FrmStart.ToSKColor(Color.Black);
+                if (Excludes[N].NLAT < moduleMAIN.LatDispSouth)
+                    goto JumpHere;
+                if (Excludes[N].SLAT > moduleMAIN.LatDispNorth)
+                    goto JumpHere;
+                if (Excludes[N].WLON > moduleMAIN.LonDispEast)
+                    goto JumpHere;
+                if (Excludes[N].ELON < moduleMAIN.LonDispWest)
+                    goto JumpHere;
+                if (Excludes[N].Selected)
+                {
+                    // myBrush.Color = Color.SpringGreen
+                    myPen.Color = Color.SpringGreen;
+                }
+                else
+                {
+                    // myBrush.Color = Color.Yellow
+                    myPen.Color = Color.Black;
+                }
 
                 dlat = Excludes[N].NLAT - Excludes[N].SLAT;
                 dlon = Excludes[N].ELON - Excludes[N].WLON;
-                Flag = dlat * moduleMAIN.PixelsPerLatDeg
-                    + dlon * moduleMAIN.PixelsPerLonDeg < 20d;
-
+                Flag = dlat * moduleMAIN.PixelsPerLatDeg + dlon * moduleMAIN.PixelsPerLonDeg < 20d;
                 if (Flag)
                 {
-                    // ── tiny exclude: single marker ──────────────────────────────────
                     lat = (Excludes[N].NLAT + Excludes[N].SLAT) / 2d;
                     lon = (Excludes[N].WLON + Excludes[N].ELON) / 2d;
-                    X   = (float)((lon - moduleMAIN.LonDispWest)  * moduleMAIN.PixelsPerLonDeg);
-                    Y   = (float)((moduleMAIN.LatDispNorth - lat) * moduleMAIN.PixelsPerLatDeg);
-
+                    X = (float)((lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                    Y = (float)((moduleMAIN.LatDispNorth - lat) * moduleMAIN.PixelsPerLatDeg);
                     if (Excludes[N].Selected)
-                        ContrastDraw.DotRectFilled(canvas, X - 3f, Y - 3f, 6f, 6f,
-                                                lineColor, strokeWidth: 1f);
+                    {
+                        g.FillRectangle(myBrush, X - 3f, Y - 3f, 6f, 6f);
+                    }
                     else
-                        ContrastDraw.DotRect(canvas, X - 3f, Y - 3f, 6f, 6f,
-                                            lineColor, strokeWidth: 1f);
-                    continue;
+                    {
+                        myPen.Width = 1f;
+                        g.DrawRectangle(myPen, X - 3f, Y - 3f, 6f, 6f);
+                    }
+
+                    goto JumpHere;
                 }
 
-                // ── full-size exclude ─────────────────────────────────────────────────
                 P1.X = (float)((Excludes[N].WLON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
                 P2.X = (float)((Excludes[N].ELON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                P3.X = P2.X; P4.X = P1.X;
+                P3.X = P2.X;
+                P4.X = P1.X;
                 P1.Y = (float)((moduleMAIN.LatDispNorth - Excludes[N].NLAT) * moduleMAIN.PixelsPerLatDeg);
                 P2.Y = P1.Y;
                 P3.Y = (float)((moduleMAIN.LatDispNorth - Excludes[N].SLAT) * moduleMAIN.PixelsPerLatDeg);
                 P4.Y = P3.Y;
-
-                // corner handles when in ExcludeON mode
                 if (ExcludeON)
                 {
-                    ContrastDraw.DotPoint(canvas, P1.X, P1.Y, lineColor, radius: 3f);
-                    ContrastDraw.DotPoint(canvas, P2.X, P2.Y, lineColor, radius: 3f);
-                    ContrastDraw.DotPoint(canvas, P3.X, P3.Y, lineColor, radius: 3f);
-                    ContrastDraw.DotPoint(canvas, P4.X, P4.Y, lineColor, radius: 3f);
+                    myPen.Width = 1f;
+                    g.DrawRectangle(myPen, P1.X - 3f, P1.Y - 3f, 6f, 6f);
+                    g.DrawRectangle(myPen, P2.X - 3f, P2.Y - 3f, 6f, 6f);
+                    g.DrawRectangle(myPen, P3.X - 3f, P3.Y - 3f, 6f, 6f);
+                    g.DrawRectangle(myPen, P4.X - 3f, P4.Y - 3f, 6f, 6f);
                 }
 
-                // outline — selected gets marching ants, unselected gets static dots
-                if (Excludes[N].Selected)
-                {
-                    ContrastDraw.DotRectSelected(canvas,
-                        P1.X, P1.Y,
-                        P2.X - P1.X, P3.Y - P1.Y,
-                        lineColor, My.MyProject.Forms.FrmStart.MarchOffset,
-                        strokeWidth: 2f);
-                }
-                else
-                {
-                    ContrastDraw.DotRect(canvas,
-                        P1.X, P1.Y,
-                        P2.X - P1.X, P3.Y - P1.Y,
-                        lineColor, strokeWidth: 2f);
-                }
+                myPen.Width = 2f;
+                g.DrawLine(myPen, P1, P2);
+                g.DrawLine(myPen, P2, P3);
+                g.DrawLine(myPen, P3, P4);
+                g.DrawLine(myPen, P4, P1);
+            JumpHere:
+                ;
             }
+
+            myBrush.Dispose();
+            myPen.Dispose();
         }
 
         internal static void DeleteExclude(int N)

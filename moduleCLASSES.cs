@@ -1,5 +1,5 @@
-﻿using Drawing;
-using System;
+﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -38,7 +38,7 @@ namespace SBuilderXX
 
         internal static LWClass[] LC = new LWClass[256];
         internal static int NoOfLCs; // taken from Lands.txt =120 at present
-        internal static byte[] ILC = new byte[256];  // we set this array at the start.
+        internal static byte[] ILC = new byte[256];  // we set this array at the start. 
                                                      // For the example above when we read the 3rd element in Lands.txt
                                                      // ILC(135) = 3
                                                      // this is useful to get the index of LC() given the FSX landclass
@@ -86,7 +86,7 @@ namespace SBuilderXX
 
         // and the following 3-D array of bytes
         internal static byte[,,] LLands;
-        internal static int NoOfLands = 0; // number of land tiles
+        internal static int NoOfLands = 0; // number of land tiles 
 
         // To understand this, suppose we have no land tile defined. In that situation
         // all the elements of LL_XY() will have their Field NoOfLWs = 0. This means
@@ -95,7 +95,7 @@ namespace SBuilderXX
         // LL_XY(13,23).NoOfLWs=1
         // meaning that this LOD5 has now an "active" LOD13. Also NoOfLLXYs is incremented
         // (in this case from 0 to 1). Now an array of size LLands(256,256,1) is created and
-        // the value of 3 (see above) is place into element (55,154,1). We only need to set
+        // the value of 3 (see above) is place into element (55,154,1). We only need to set 
         // LL_XY(13,23).Pointer = 1 (see below). We also need to increment NoOfLands by one.
         // Say you add the same class to tile (J=13 K=23 C=55 R=164). As it is on the same
         // LOD13 you only increment LL_XY(13,23).NoOfLWs and NoOfLands and set
@@ -137,11 +137,11 @@ namespace SBuilderXX
         internal struct LWCIndex
         {
             public string Text;
-            public bool IsLand; // not exported
-            public byte Class1; // not exported
-            public byte Class2; // not exported
-            public byte Class3; // not exported
-            public int ColorArgb;
+            public bool IsLand; // not exported 
+            public byte Class1; // not exported 
+            public byte Class2; // not exported 
+            public byte Class3; // not exported 
+            public Color Color;
         }
 
         internal static LWCIndex[] LWCIs = new LWCIndex[2];
@@ -210,12 +210,12 @@ namespace SBuilderXX
                 moduleEDIT.BackUp();
             X = X + 180d;
             X = X / moduleMAIN.D5Lon;
-            J = VB.CInt(X);
+            J = (int)X;
             Y = 90d - Y;
             Y = Y / moduleMAIN.D5Lat;
-            K = VB.CInt(Y);
-            C = VB.CInt((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
-            R = VB.CInt((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
+            K = (int)Y;
+            C = (int)Math.Round((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
+            R = (int)Math.Round((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
             int N1, N2, L, M, CC, RR;
             N1 = 1 - BrushSize;
             N2 = BrushSize - 1;
@@ -247,12 +247,12 @@ namespace SBuilderXX
                 moduleEDIT.BackUp();
             X = X + 180d;
             X = X / moduleMAIN.D5Lon;
-            J = VB.CInt(X);
+            J = (int)X;
             Y = 90d - Y;
             Y = Y / moduleMAIN.D5Lat;
-            K = VB.CInt(Y);
-            C = VB.CInt((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
-            R = VB.CInt((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
+            K = (int)Y;
+            C = (int)Math.Round((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
+            R = (int)Math.Round((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
             int N1, N2, L, M, CC, RR;
             N1 = 1 - BrushSize;
             N2 = BrushSize - 1;
@@ -690,23 +690,18 @@ namespace SBuilderXX
             SolidBrush myBrush = new SolidBrush(Color.Yellow);
             double LatNorth;
             double LonWest;
-
-            X1 = VB.CSng(moduleMAIN.LonDispWest + 180d);
-            X1 = VB.CSng(X1 / moduleMAIN.D5Lon);
-            LO1 = VB.CInt(X1);
-
-            Y1 = VB.CSng(90d - moduleMAIN.LatDispNorth);
-            Y1 = VB.CSng(Y1 / moduleMAIN.D5Lat);
-            LA1 = VB.CInt(Y1);
-
-            X1 = VB.CSng(moduleMAIN.LonDispEast + 180d);
-            X1 = VB.CSng(X1 / moduleMAIN.D5Lon);
-            LO2 = VB.CInt(X1);
-
-            Y1 = VB.CSng(90d - moduleMAIN.LatDispSouth);
-            Y1 = VB.CSng(Y1 / moduleMAIN.D5Lat);
-            LA2 = VB.CInt(Y1);
-
+            X1 = (float)(moduleMAIN.LonDispWest + 180d);
+            X1 = (float)(X1 / moduleMAIN.D5Lon);
+            LO1 = (int)X1;
+            Y1 = (float)(90d - moduleMAIN.LatDispNorth);
+            Y1 = (float)(Y1 / moduleMAIN.D5Lat);
+            LA1 = (int)Y1;
+            X1 = (float)(moduleMAIN.LonDispEast + 180d);
+            X1 = (float)(X1 / moduleMAIN.D5Lon);
+            LO2 = (int)X1;
+            Y1 = (float)(90d - moduleMAIN.LatDispSouth);
+            Y1 = (float)(Y1 / moduleMAIN.D5Lat);
+            LA2 = (int)Y1;
             int C, C0, R, R0, N;
             int loopTo = LA2;
             for (LA = LA1; LA <= loopTo; LA++)
@@ -719,18 +714,18 @@ namespace SBuilderXX
                     if (LL_XY[LO, LA].NoOfLWs > 0)
                     {
                         N = LL_XY[LO, LA].Pointer;
-                        X11 = VB.CSng((LonWest - moduleMAIN.LonDispWest - moduleMAIN.D14Lon) * moduleMAIN.PixelsPerLonDeg);
-                        X2 = VB.CSng(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
-                        Y1 = VB.CSng((moduleMAIN.LatDispNorth - LatNorth - moduleMAIN.D14Lat) * moduleMAIN.PixelsPerLatDeg);
-                        Y2 = VB.CSng(moduleMAIN.D13Lat * moduleMAIN.PixelsPerLatDeg);
-                        X2 = VB.CSng(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
-                        R0 = VB.CInt(-Y1 / Y2);
+                        X11 = (float)((LonWest - moduleMAIN.LonDispWest - moduleMAIN.D14Lon) * moduleMAIN.PixelsPerLonDeg);
+                        X2 = (float)(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
+                        Y1 = (float)((moduleMAIN.LatDispNorth - LatNorth - moduleMAIN.D14Lat) * moduleMAIN.PixelsPerLatDeg);
+                        Y2 = (float)(moduleMAIN.D13Lat * moduleMAIN.PixelsPerLatDeg);
+                        X2 = (float)(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
+                        R0 = (int)(-Y1 / Y2);
                         if (R0 > 256)
                             R0 = 256;
                         if (R0 < 0)
                             R0 = 0;
                         Y1 = Y1 + R0 * Y2;
-                        C0 = VB.CInt(-X11 / X2);
+                        C0 = (int)(-X11 / X2);
                         if (C0 > 256)
                             C0 = 256;
                         if (C0 < 0)
@@ -752,13 +747,13 @@ namespace SBuilderXX
                                     else if (moduleMAIN.Zoom < 15 & moduleMAIN.Zoom > 9)
                                     {
                                         A = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\" + LC[MyL].Texture + bmp;
-                                        myImage = moduleMAIN.LoadTexture(A);
+                                        myImage = Image.FromFile(A);
                                         gr.DrawImage(myImage, X1, Y1, X2 + 1f, Y2 + 1f);
                                     }
                                     else if (moduleMAIN.Zoom > 14)
                                     {
                                         A = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\" + LC[MyL].Texture + jpg;
-                                        myImage = moduleMAIN.LoadTexture(A);
+                                        myImage = Image.FromFile(A);
                                         gr.DrawImage(myImage, X1, Y1, X2 + 1f, Y2 + 1f);
                                     }
                                 }
@@ -794,23 +789,18 @@ namespace SBuilderXX
             SolidBrush myBrush = new SolidBrush(Color.Yellow);
             double LatNorth;
             double LonWest;
-
-            X1 = VB.CSng(moduleMAIN.LonDispWest + 180d);
-            X1 = VB.CSng(X1 / moduleMAIN.D5Lon);
-            LO1 = VB.CInt(X1);
-
-            Y1 = VB.CSng(90d - moduleMAIN.LatDispNorth);
-            Y1 = VB.CSng(Y1 / moduleMAIN.D5Lat);
-            LA1 = VB.CInt(Y1);
-
-            X1 = VB.CSng(moduleMAIN.LonDispEast + 180d);
-            X1 = VB.CSng(X1 / moduleMAIN.D5Lon);
-            LO2 = VB.CInt(X1);
-
-            Y1 = VB.CSng(90d - moduleMAIN.LatDispSouth);
-            Y1 = VB.CSng(Y1 / moduleMAIN.D5Lat);
-            LA2 = VB.CInt(Y1);
-
+            X1 = (float)(moduleMAIN.LonDispWest + 180d);
+            X1 = (float)(X1 / moduleMAIN.D5Lon);
+            LO1 = (int)X1;
+            Y1 = (float)(90d - moduleMAIN.LatDispNorth);
+            Y1 = (float)(Y1 / moduleMAIN.D5Lat);
+            LA1 = (int)Y1;
+            X1 = (float)(moduleMAIN.LonDispEast + 180d);
+            X1 = (float)(X1 / moduleMAIN.D5Lon);
+            LO2 = (int)X1;
+            Y1 = (float)(90d - moduleMAIN.LatDispSouth);
+            Y1 = (float)(Y1 / moduleMAIN.D5Lat);
+            LA2 = (int)Y1;
             int C, C0, R, R0, N;
             int loopTo = LA2;
             for (LA = LA1; LA <= loopTo; LA++)
@@ -823,19 +813,18 @@ namespace SBuilderXX
                     if (WW_XY[LO, LA].NoOfLWs > 0)
                     {
                         N = WW_XY[LO, LA].Pointer;
-                        X11 = VB.CSng((LonWest - moduleMAIN.LonDispWest - moduleMAIN.D14Lon) * moduleMAIN.PixelsPerLonDeg);
-                        X2 = VB.CSng(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
-                        Y1 = VB.CSng((moduleMAIN.LatDispNorth - LatNorth - moduleMAIN.D14Lat) * moduleMAIN.PixelsPerLatDeg);
-                        Y2 = VB.CSng(moduleMAIN.D13Lat * moduleMAIN.PixelsPerLatDeg);
-                        X2 = VB.CSng(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
-
-                        R0 = VB.CInt(-Y1 / Y2);
+                        X11 = (float)((LonWest - moduleMAIN.LonDispWest - moduleMAIN.D14Lon) * moduleMAIN.PixelsPerLonDeg);
+                        X2 = (float)(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
+                        Y1 = (float)((moduleMAIN.LatDispNorth - LatNorth - moduleMAIN.D14Lat) * moduleMAIN.PixelsPerLatDeg);
+                        Y2 = (float)(moduleMAIN.D13Lat * moduleMAIN.PixelsPerLatDeg);
+                        X2 = (float)(moduleMAIN.D13Lon * moduleMAIN.PixelsPerLonDeg);
+                        R0 = (int)(-Y1 / Y2);
                         if (R0 > 256)
                             R0 = 256;
                         if (R0 < 0)
                             R0 = 0;
                         Y1 = Y1 + R0 * Y2;
-                        C0 = VB.CInt(-X11 / X2);
+                        C0 = (int)(-X11 / X2);
                         if (C0 > 256)
                             C0 = 256;
                         if (C0 < 0)
@@ -857,13 +846,13 @@ namespace SBuilderXX
                                     else if (moduleMAIN.Zoom < 15 & moduleMAIN.Zoom > 9)
                                     {
                                         A = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\" + WC[MyL].Texture + bmp;
-                                        myImage = moduleMAIN.LoadTexture(A);
+                                        myImage = Image.FromFile(A);
                                         gr.DrawImage(myImage, X1, Y1, X2 + 1f, Y2 + 1f);
                                     }
                                     else if (moduleMAIN.Zoom > 14)
                                     {
                                         A = My.MyProject.Application.Info.DirectoryPath + @"\tools\bmps\" + WC[MyL].Texture + jpg;
-                                        myImage = moduleMAIN.LoadTexture(A);
+                                        myImage = Image.FromFile(A);
                                         gr.DrawImage(myImage, X1, Y1, X2 + 1f, Y2 + 1f);
                                     }
                                 }
@@ -989,16 +978,16 @@ namespace SBuilderXX
             int J, K, C, R;
             X = X + 180d;
             X = X / moduleMAIN.D5Lon;
-            J = VB.CInt(X);
-
+            J = (int)X;
             Y = 90d - Y;
             Y = Y / moduleMAIN.D5Lat;
-            K = VB.CInt(Y);
-            if (LL_XY[J, K].NoOfLWs == 0) return;
-            C = VB.CInt((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
-            R = VB.CInt((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
-            if (LLands[C, R, LL_XY[J, K].Pointer] == 0) return;
-
+            K = (int)Y;
+            if (LL_XY[J, K].NoOfLWs == 0)
+                return;
+            C = (int)Math.Round((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
+            R = (int)Math.Round((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
+            if (LLands[C, R, LL_XY[J, K].Pointer] == 0)
+                return;
             moduleEDIT.BackUp();
             DeleteOneLand(J, K, C, R);
         }
@@ -1013,14 +1002,14 @@ namespace SBuilderXX
             int J, K, C, R;
             X = X + 180d;
             X = X / moduleMAIN.D5Lon;
-            J = VB.CInt(X);
+            J = (int)X;
             Y = 90d - Y;
             Y = Y / moduleMAIN.D5Lat;
-            K = VB.CInt(Y);
+            K = (int)Y;
             if (WW_XY[J, K].NoOfLWs == 0)
                 return;
-            C = VB.CInt((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
-            R = VB.CInt((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
+            C = (int)Math.Round((X - J) * moduleMAIN.D5Lon / moduleMAIN.D13Lon);
+            R = (int)Math.Round((Y - K) * moduleMAIN.D5Lat / moduleMAIN.D13Lat);
             if (WWaters[C, R, WW_XY[J, K].Pointer] == 0)
                 return;
             moduleEDIT.BackUp();
@@ -1575,7 +1564,7 @@ namespace SBuilderXX
                 Random rand = new Random(0);
 
                 // Dim image As Bitmap = Bitmap.FromFile(Maps(Map).BMPSu)     ' was like this in October 2017
-                Bitmap image = (Bitmap)moduleMAIN.LoadTexture(moduleMAPS.Maps[Map].BMPSu);
+                Bitmap image = (Bitmap)Image.FromFile(moduleMAPS.Maps[Map].BMPSu);
                 Color myColor;
                 double Lon, Lat, Lat0, Lon0, DX, DY;
                 int N;
@@ -1627,19 +1616,19 @@ namespace SBuilderXX
                         for (R = R00; R <= loopTo2; R++)
                         {
                             Lat = Lat0 - R * moduleMAIN.D13Lat;
-                            PY = VB.CInt((Y0 - Lat) / DY);
+                            PY = (int)Math.Round((Y0 - Lat) / DY);
                             int loopTo3 = C11;
                             for (C = C00; C <= loopTo3; C++)
                             {
                                 Lon = Lon0 + C * moduleMAIN.D13Lon;
-                                PX = VB.CInt((Lon - X0) / DX);
+                                PX = (int)Math.Round((Lon - X0) / DX);
                                 myColor = image.GetPixel(PX, PY);
                                 int loopTo4 = NoOfLWCIs;
                                 for (N = 1; N <= loopTo4; N++)
                                 {
                                     if (LWCIs[N].IsLand)
                                     {
-                                        if (LWCIs[N].ColorArgb == myColor.ToArgb())
+                                        if (LWCIs[N].Color == myColor)
                                         {
                                             msg = (float)rand.NextDouble() * 100f;
                                             if (msg < 58f)
@@ -1690,7 +1679,7 @@ namespace SBuilderXX
                 Random rand = new Random(0);
 
                 // Dim image As Bitmap = Bitmap.FromFile(Maps(Map).BMPSu)    ' was like this in October 2017
-                Bitmap image = (Bitmap)moduleMAIN.LoadTexture(moduleMAPS.Maps[Map].BMPSu);
+                Bitmap image = (Bitmap)Image.FromFile(moduleMAPS.Maps[Map].BMPSu);
                 Color myColor;
                 double Lon, Lat, Lat0, Lon0, DX, DY;
                 int N;
@@ -1739,19 +1728,19 @@ namespace SBuilderXX
                         for (R = R00; R <= loopTo2; R++)
                         {
                             Lat = Lat0 - R * moduleMAIN.D13Lat;
-                            PY = VB.CInt((Y0 - Lat) / DY);
+                            PY = (int)Math.Round((Y0 - Lat) / DY);
                             int loopTo3 = C11;
                             for (C = C00; C <= loopTo3; C++)
                             {
                                 Lon = Lon0 + C * moduleMAIN.D13Lon;
-                                PX = VB.CInt((Lon - X0) / DX);
+                                PX = (int)Math.Round((Lon - X0) / DX);
                                 myColor = image.GetPixel(PX, PY);
                                 int loopTo4 = NoOfLWCIs;
                                 for (N = 1; N <= loopTo4; N++)
                                 {
                                     if (!LWCIs[N].IsLand)
                                     {
-                                        if (LWCIs[N].ColorArgb == myColor.ToArgb())
+                                        if (LWCIs[N].Color == myColor)
                                         {
                                             msg = (float)rand.NextDouble() * 100f;
                                             if (msg < 58f)

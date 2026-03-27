@@ -114,12 +114,12 @@ namespace SBuilderXX
             // and a lat/lon point inside the quad
 
             QMID = Q;
-            Q = VB.CInt(Math.Pow(2d, Q - 2));
+            Q = (int)Math.Pow(2d, Q - 2);
             DLat = 90d / Q;  // delta lat: the height of the quad
             DLon = 120d / Q;  // delta lon: the width of the quad
-            WLon = Math.Floor((lon + 180d) / DLon) * DLon - 180d;
+            WLon = (int)((lon + 180d) / DLon) * DLon - 180d;
             ELon = WLon + DLon;
-            NLat = 90d - Math.Floor((90d - lat) / DLat) * DLat;
+            NLat = 90d - (int)((90d - lat) / DLat) * DLat;
             SLat = NLat - DLat;
             CLat = (NLat + SLat) / 2d;
             CLon = (WLon + ELon) / 2d;
@@ -918,12 +918,12 @@ namespace SBuilderXX
             // and a lat/lon point inside the quad
 
             QMID = Q;
-            Q = VB.CInt(Math.Pow(2d, Q - 2));
+            Q = (int)Math.Pow(2d, Q - 2);
             DLat = 90d / Q;  // delta lat: the height of the quad
             DLon = 120d / Q;  // delta lon: the width of the quad
-            WLon = Math.Floor((lon + 180d) / DLon) * DLon - 180d;
+            WLon = (int)((lon + 180d) / DLon) * DLon - 180d;
             ELon = WLon + DLon;
-            NLat = 90d - Math.Floor((90d - lat) / DLat) * DLat;
+            NLat = 90d - (int)((90d - lat) / DLat) * DLat;
             SLat = NLat - DLat;
             CLat = (NLat + SLat) / 2d;
             CLon = (WLon + ELon) / 2d;

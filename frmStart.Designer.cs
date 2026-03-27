@@ -2367,7 +2367,7 @@ namespace SBuilderXX
             // 
             this.lbScale.AutoSize = true;
             this.lbScale.BackColor = System.Drawing.Color.Transparent;
-            this.lbScale.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbScale.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbScale.Location = new System.Drawing.Point(641, 404);
             this.lbScale.Name = "lbScale";
             this.lbScale.Size = new System.Drawing.Size(39, 13);
@@ -2379,7 +2379,7 @@ namespace SBuilderXX
             // 
             this.lbScaleBar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.lbScaleBar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbScaleBar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbScaleBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbScaleBar.Location = new System.Drawing.Point(580, 417);
             this.lbScaleBar.Name = "lbScaleBar";
             this.lbScaleBar.Size = new System.Drawing.Size(100, 5);

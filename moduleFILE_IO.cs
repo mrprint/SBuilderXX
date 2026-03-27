@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace SBuilderXX
 {
-    static partial class moduleFILE_IO
+    static class moduleFILE_IO
     {
         private struct LegacyPoly
         {
@@ -203,7 +203,7 @@ namespace SBuilderXX
 
                 // [Edit]
                 moduleEDIT.BackUpON = Convert.ToBoolean(IniSettings["BackUpON"]);
-                BackUpSeconds = VB.CInt(IniSettings["BackUpSeconds"]);
+                BackUpSeconds = (int)Convert.ToDouble(IniSettings["BackUpSeconds"]);
                 moduleMAPS.BorderON = Convert.ToBoolean(IniSettings["BorderON"]);
                 moduleMAIN.AskDelete = Convert.ToBoolean(IniSettings["AskDelete"]);
                 moduleMAIN.ShowAbout = Convert.ToBoolean(IniSettings["ShowAbout"]);
@@ -218,27 +218,27 @@ namespace SBuilderXX
                 moduleLINES.NameJoin = Convert.ToBoolean(IniSettings["NameJoin"]);
                 moduleMAIN.NoEndsSmooth = Convert.ToBoolean(IniSettings["NoEndsSmooth"]);
                 moduleMAIN.CornerSmooth = Convert.ToBoolean(IniSettings["CornerSmooth"]);
-                moduleMAIN.SampleDistance = VB.CSng(IniSettings["SampleDistance"]);
-                moduleMAIN.SmoothDistance = VB.CSng(IniSettings["SmoothDistance"]);
-                moduleCLASSES.DefaultLC = (byte)VB.CInt(IniSettings["DefaultLC"]);
-                moduleCLASSES.DefaultWC = (byte)VB.CInt(IniSettings["DefaultWC"]);
-                                                                              // Here_app_id = CStr(IniSettings.Item("Here_app_id"))
-                                                                              // Here_app_code = CStr(IniSettings.Item("Here_app_code"))
+                moduleMAIN.SampleDistance = Convert.ToDouble(IniSettings["SampleDistance"]);
+                moduleMAIN.SmoothDistance = Convert.ToDouble(IniSettings["SmoothDistance"]);
+                moduleCLASSES.DefaultLC = Convert.ToByte(IniSettings["DefaultLC"]);
+                moduleCLASSES.DefaultWC = Convert.ToByte(IniSettings["DefaultWC"]);
+                // Here_app_id = CStr(IniSettings.Item("Here_app_id"))
+                // Here_app_code = CStr(IniSettings.Item("Here_app_code"))
                 moduleMAPS.GoogleMapsAPI = IniSettings["GoogleMapsAPI"];
                 moduleMAIN.MakeSlopeXY = Convert.ToBoolean(IniSettings["MakeSlopeXY"]);
 
                 // [Grid]
                 moduleMAIN.GridColor = ColorFromArgb(IniSettings["GridColor"]);
                 moduleMAIN.GridLODColor = ColorFromArgb(IniSettings["GridLODColor"]);
-                moduleMAIN.GridWidth = VB.CInt(IniSettings["GridWidth"]);
+                moduleMAIN.GridWidth = (int)Convert.ToDouble(IniSettings["GridWidth"]);
                 moduleMAIN.ZoomOnQMID = Convert.ToBoolean(IniSettings["ZoomOnQMID"]);
                 if (moduleMAIN.GridWidth > 2)
                     moduleMAIN.GridWidth = 2;
                 moduleMAIN.CenterOnMouseWheel = Convert.ToBoolean(IniSettings["CenterOnMouseWheel"]);
 
                 // [Aircraft]
-                moduleMAIN.ShowAircraftPeriod = VB.CInt(IniSettings["ShowAircraftPeriod"]);
-                moduleMAIN.AircraftAltitudeOffset = VB.CSng(IniSettings["AircraftAltitudeOffset"]);
+                moduleMAIN.ShowAircraftPeriod = (int)Convert.ToDouble(IniSettings["ShowAircraftPeriod"]);
+                moduleMAIN.AircraftAltitudeOffset = Convert.ToDouble(IniSettings["AircraftAltitudeOffset"]);
                 moduleLINES.ExtraExtrusionAltitude = IniSettings["ExtraExtrusionAltitude"];
 
                 // [Objects]
@@ -248,9 +248,9 @@ namespace SBuilderXX
                 moduleOBJECTS.LibObjectsPath = IniSettings["LibObjectsPath"];
 
                 // [Lines]
-                moduleLINES.DefaultLineAltitude = VB.CSng(IniSettings["DefaultLineAltitude"]);
-                moduleLINES.DefaultLineWidth = VB.CSng(IniSettings["DefaultLineWidth"]);
-                moduleLINES.LinePenWidth = VB.CInt(IniSettings["LinePenWidth"]);
+                moduleLINES.DefaultLineAltitude = Convert.ToDouble(IniSettings["DefaultLineAltitude"]);
+                moduleLINES.DefaultLineWidth = Convert.ToDouble(IniSettings["DefaultLineWidth"]);
+                moduleLINES.LinePenWidth = (int)Convert.ToDouble(IniSettings["LinePenWidth"]);
                 if (moduleLINES.LinePenWidth > 2)
                     moduleLINES.LinePenWidth = 2;
                 moduleLINES.SelectedLineColor = ColorFromArgb(IniSettings["SelectedLineColor"]);
@@ -258,8 +258,8 @@ namespace SBuilderXX
                 modulePOLYS.MakeClosedLineFromPoly = Convert.ToBoolean(IniSettings["MakeClosedLineFromPoly"]);
 
                 // [Polys]
-                modulePOLYS.DefaultPolyAltitude = VB.CSng(IniSettings["DefaultPolyAltitude"]);
-                modulePOLYS.PolyPenWidth = VB.CInt(IniSettings["PolyPenWidth"]);
+                modulePOLYS.DefaultPolyAltitude = Convert.ToDouble(IniSettings["DefaultPolyAltitude"]);
+                modulePOLYS.PolyPenWidth = (int)Convert.ToDouble(IniSettings["PolyPenWidth"]);
                 if (modulePOLYS.PolyPenWidth > 2)
                     modulePOLYS.PolyPenWidth = 2;
                 modulePOLYS.PolyFILL = Convert.ToBoolean(IniSettings["PolyFILL"]);
@@ -268,11 +268,11 @@ namespace SBuilderXX
 
                 // [Shapes]
                 moduleSHAPE.ShapeLineGuid = IniSettings["ShapeLineGuid"];
-                moduleSHAPE.ShapeLineAltitude = VB.CSng(IniSettings["ShapeLineAltitude"]);
-                moduleSHAPE.ShapeLineWidth = VB.CSng(IniSettings["ShapeLineWidth"]);
+                moduleSHAPE.ShapeLineAltitude = Convert.ToDouble(IniSettings["ShapeLineAltitude"]);
+                moduleSHAPE.ShapeLineWidth = Convert.ToDouble(IniSettings["ShapeLineWidth"]);
                 moduleSHAPE.ShapeLineColor = ColorFromArgb(IniSettings["ShapeLineColor"]);
                 moduleSHAPE.ShapePolyGuid = IniSettings["ShapePolyGuid"];
-                moduleSHAPE.ShapePolyAltitude = VB.CSng(IniSettings["ShapePolyAltitude"]);
+                moduleSHAPE.ShapePolyAltitude = Convert.ToDouble(IniSettings["ShapePolyAltitude"]);
                 moduleSHAPE.ShapePolyColor = ColorFromArgb(IniSettings["ShapePolyColor"]);
                 moduleSHAPE.AddToCells = Convert.ToBoolean(IniSettings["AddToCells"]);
 
@@ -284,7 +284,7 @@ namespace SBuilderXX
                 moduleTILES.FallVariations = IniSettings["FallVariations"];
                 moduleTILES.WinterVariations = IniSettings["WinterVariations"];
                 moduleTILES.HardWinterVariations = IniSettings["HardWinterVariations"];
-                moduleTILES.CompressionQuality = VB.CInt(IniSettings["CompressionQuality"]);
+                moduleTILES.CompressionQuality = (int)Convert.ToSingle(IniSettings["CompressionQuality"]);
 
                 // [BLN]
                 moduleSURFER.BLNSeparator = IniSettings["BLNSeparator"];
@@ -296,8 +296,8 @@ namespace SBuilderXX
                 moduleSURFER.BLNLineColor = ColorFromArgb(IniSettings["BLNLineColor"]);
                 moduleSURFER.BLNIsPolyAlt = Convert.ToBoolean(IniSettings["BLNIsPolyAlt"]);
                 moduleSURFER.BLNIsLineAlt = Convert.ToBoolean(IniSettings["BLNIsLineAlt"]);
-                moduleSURFER.BLNStartWidth = VB.CSng(IniSettings["BLNStartWidth"]);
-                moduleSURFER.BLNEndWidth = VB.CSng(IniSettings["BLNEndWidth"]);
+                moduleSURFER.BLNStartWidth = Convert.ToDouble(IniSettings["BLNStartWidth"]);
+                moduleSURFER.BLNEndWidth = Convert.ToDouble(IniSettings["BLNEndWidth"]);
                 moduleSURFER.BLNLineFromPoly = Convert.ToBoolean(IniSettings["BLNLineFromPoly"]);
                 moduleSURFER.BLNExportAltitudes = Convert.ToBoolean(IniSettings["BLNExportAltitudes"]);
 
@@ -1031,7 +1031,7 @@ namespace SBuilderXX
                     file.WriteLine("Name=" + moduleLINES.Lines[N].Name);
                     file.WriteLine("Type=" + moduleLINES.Lines[N].Type);
                     file.WriteLine("Guid=" + moduleLINES.Lines[N].Guid);
-                    file.WriteLine("Color=" + ArgbFromColor(Color.FromArgb(moduleLINES.Lines[N].ColorArgb)));
+                    file.WriteLine("Color=" + ArgbFromColor(moduleLINES.Lines[N].Color));
                     file.WriteLine("NoOfPoints=" + moduleLINES.Lines[N].NoOfPoints.ToString());
                     int loopTo2 = moduleLINES.Lines[N].NoOfPoints;
                     for (M = 1; M <= loopTo2; M++)
@@ -1052,7 +1052,7 @@ namespace SBuilderXX
                     file.WriteLine("Name=" + modulePOLYS.Polys[N].Name);
                     file.WriteLine("Type=" + modulePOLYS.Polys[N].Type);
                     file.WriteLine("Guid=" + modulePOLYS.Polys[N].Guid);
-                    file.WriteLine("Color=" + ArgbFromColor(Color.FromArgb(modulePOLYS.Polys[N].ColorArgb)));
+                    file.WriteLine("Color=" + ArgbFromColor(modulePOLYS.Polys[N].Color));
                     file.WriteLine("NoOfChilds=" + modulePOLYS.Polys[N].NoOfChilds.ToString());
                     int loopTo4 = modulePOLYS.Polys[N].NoOfChilds;
                     for (M = 1; M <= loopTo4; M++)
@@ -1191,7 +1191,7 @@ namespace SBuilderXX
                     KEY = "[LWCI." + N.ToString().Trim() + "]";
                     file.WriteLine(KEY);
                     file.WriteLine("Text=" + moduleCLASSES.LWCIs[N].Text);
-                    file.WriteLine("Color=" + ArgbFromColor(Color.FromArgb(moduleCLASSES.LWCIs[N].ColorArgb)));
+                    file.WriteLine("Color=" + ArgbFromColor(moduleCLASSES.LWCIs[N].Color));
                 }
 
             }
@@ -1284,7 +1284,7 @@ namespace SBuilderXX
             moduleMAIN.CheckFolders();
             moduleMAIN.LatDispCenter = ReadIniDouble(Filename, "Main", "LatDispCenter");
             moduleMAIN.LonDispCenter = ReadIniDouble(Filename, "Main", "LonDispCenter");
-            moduleMAIN.Zoom = VB.CInt(ReadIniDouble(Filename, "Main", "Zoom"));
+            moduleMAIN.Zoom = (int)ReadIniDouble(Filename, "Main", "Zoom");
             if (moduleMAPS.NoOfMaps > 0)
                 moduleMAPS.Maps = new moduleMAPS.Map[moduleMAPS.NoOfMaps + 1];
             if (moduleLINES.NoOfLines > 0)
@@ -1335,14 +1335,14 @@ namespace SBuilderXX
                     moduleLINES.Lines[N].Guid = file.ReadLine().Substring(5);
                     if (Version == "SB301")
                     {
-                        moduleLINES.Lines[N].ColorArgb = Convert.ToInt32(file.ReadLine().Substring(6));
+                        moduleLINES.Lines[N].Color = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
                     }
                     else
                     {
-                        moduleLINES.Lines[N].ColorArgb = ColorFromArgb(file.ReadLine().Substring(6)).ToArgb();
+                        moduleLINES.Lines[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
                     }
 
-                    moduleLINES.Lines[N].NoOfPoints = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(11)));
+                    moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
                     if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
                         moduleLINES.Lines[N].Name = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_Imported_Line";
                     moduleLINES.Lines[N].GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[N].NoOfPoints + 1];
@@ -1398,14 +1398,14 @@ namespace SBuilderXX
                     modulePOLYS.Polys[N].Guid = file.ReadLine().Substring(5);
                     if (Version == "SB301")
                     {
-                        modulePOLYS.Polys[N].ColorArgb = Convert.ToInt32(file.ReadLine().Substring(6));
+                        modulePOLYS.Polys[N].Color = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
                     }
                     else
                     {
-                        modulePOLYS.Polys[N].ColorArgb = ColorFromArgb(file.ReadLine().Substring(6)).ToArgb();
+                        modulePOLYS.Polys[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
                     }
 
-                    J = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(11)));
+                    J = Convert.ToInt32(file.ReadLine().Substring(11));
                     modulePOLYS.Polys[N].NoOfChilds = J;
                     if (J > 0)
                     {
@@ -1432,10 +1432,10 @@ namespace SBuilderXX
                             J = 13;
                         if (M > 999999)
                             J = 14;
-                        modulePOLYS.Polys[N].Childs[M] = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(J - 1)));
+                        modulePOLYS.Polys[N].Childs[M] = (int)Convert.ToDouble(file.ReadLine().Substring(J - 1));
                     }
 
-                    modulePOLYS.Polys[N].NoOfPoints = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(11)));
+                    modulePOLYS.Polys[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
                     if (string.IsNullOrEmpty(modulePOLYS.Polys[N].Name))
                         modulePOLYS.Polys[N].Name = modulePOLYS.Polys[N].NoOfPoints.ToString() + "_Pts_Imported_Polygon";
                     modulePOLYS.Polys[N].GPoints = new modulePOINTS.GPoint[modulePOLYS.Polys[N].NoOfPoints + 1];
@@ -1489,18 +1489,18 @@ namespace SBuilderXX
                     {
                         KEY = "[LC_LOD5." + P + "]";
                         GoToThisKey(in file, KEY);
-                        J = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(2)));
-                        K = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(2)));
-                        L = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(10)));
+                        J = (int)Convert.ToDouble(file.ReadLine().Substring(2));
+                        K = (int)Convert.ToDouble(file.ReadLine().Substring(2));
+                        L = Convert.ToInt32(file.ReadLine().Substring(10));
                         moduleCLASSES.LL_XY[J, K].Pointer = P - 1;
                         moduleCLASSES.LL_XY[J, K].NoOfLWs = L;
                         int loopTo7 = L;
                         for (M = 1; M <= loopTo7; M++)
                         {
                             A = file.ReadLine();
-                            C = VB.CInt(Convert.ToDouble(A.Substring(1, 3)));
-                            R = VB.CInt(Convert.ToDouble(A.Substring(5, 3)));
-                            I = VB.CInt(Convert.ToDouble(A.Substring(9)));
+                            C = (int)Convert.ToDouble(A.Substring(1, 3));
+                            R = (int)Convert.ToDouble(A.Substring(5, 3));
+                            I = (int)Convert.ToDouble(A.Substring(9));
                             moduleCLASSES.LLands[C, R, P - 1] = moduleCLASSES.ILC[I];
                             N = N + 1;
                         }
@@ -1518,18 +1518,18 @@ namespace SBuilderXX
                     {
                         KEY = "[WC_LOD5." + P + "]";
                         GoToThisKey(in file, KEY);
-                        J = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(2)));
-                        K = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(2)));
-                        L = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(11)));
+                        J = (int)Convert.ToDouble(file.ReadLine().Substring(2));
+                        K = (int)Convert.ToDouble(file.ReadLine().Substring(2));
+                        L = Convert.ToInt32(file.ReadLine().Substring(11));
                         moduleCLASSES.WW_XY[J, K].Pointer = P - 1;
                         moduleCLASSES.WW_XY[J, K].NoOfLWs = L;
                         int loopTo9 = L;
                         for (M = 1; M <= loopTo9; M++)
                         {
                             A = file.ReadLine();
-                            C = VB.CInt(Convert.ToDouble(A.Substring(1, 3)));
-                            R = VB.CInt(Convert.ToDouble(A.Substring(5, 3)));
-                            I = VB.CInt(Convert.ToDouble(A.Substring(9)));
+                            C = (int)Convert.ToDouble(A.Substring(1, 3));
+                            R = (int)Convert.ToDouble(A.Substring(5, 3));
+                            I = (int)Convert.ToDouble(A.Substring(9));
                             moduleCLASSES.WWaters[C, R, P - 1] = moduleCLASSES.IWC[I];
                             N = N + 1;
                         }
@@ -1543,7 +1543,7 @@ namespace SBuilderXX
                 {
                     KEY = "[Exclude." + N.ToString().Trim() + "]";
                     GoToThisKey(in file, KEY);
-                    moduleEXCLUDES.Excludes[N].Flag = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(5)));
+                    moduleEXCLUDES.Excludes[N].Flag = Convert.ToInt32(file.ReadLine().Substring(5));
                     moduleEXCLUDES.Excludes[N].NLAT = Convert.ToDouble(file.ReadLine().Substring(5));
                     moduleEXCLUDES.Excludes[N].SLAT = Convert.ToDouble(file.ReadLine().Substring(5));
                     moduleEXCLUDES.Excludes[N].ELON = Convert.ToDouble(file.ReadLine().Substring(5));
@@ -1555,21 +1555,21 @@ namespace SBuilderXX
                 {
                     KEY = "[Object." + N.ToString().Trim() + "]";
                     GoToThisKey(in file, KEY);
-                    moduleOBJECTS.Objects[N].Type = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(5)));
+                    moduleOBJECTS.Objects[N].Type = Convert.ToInt32(file.ReadLine().Substring(5));
                     moduleOBJECTS.Objects[N].Description = file.ReadLine().Substring(12);
-                    moduleOBJECTS.Objects[N].Width = VB.CSng(Convert.ToDouble(file.ReadLine().Substring(6)));
-                    moduleOBJECTS.Objects[N].Length = VB.CSng(Convert.ToDouble(file.ReadLine().Substring(7)));
-                    moduleOBJECTS.Objects[N].Heading = VB.CSng(Convert.ToDouble(file.ReadLine().Substring(8)));
-                    moduleOBJECTS.Objects[N].Pitch = VB.CSng(Convert.ToDouble(file.ReadLine().Substring(6)));
-                    moduleOBJECTS.Objects[N].Bank = VB.CSng(Convert.ToDouble(file.ReadLine().Substring(5)));
-                    moduleOBJECTS.Objects[N].BiasX = VB.CSng(Convert.ToDouble(file.ReadLine().Substring(6)));
-                    moduleOBJECTS.Objects[N].BiasY = VB.CSng(Convert.ToDouble(file.ReadLine().Substring(6)));
-                    moduleOBJECTS.Objects[N].BiasZ = VB.CSng(Convert.ToDouble(file.ReadLine().Substring(6)));
+                    moduleOBJECTS.Objects[N].Width = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].Length = Convert.ToSingle(file.ReadLine().Substring(7));
+                    moduleOBJECTS.Objects[N].Heading = Convert.ToSingle(file.ReadLine().Substring(8));
+                    moduleOBJECTS.Objects[N].Pitch = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].Bank = Convert.ToSingle(file.ReadLine().Substring(5));
+                    moduleOBJECTS.Objects[N].BiasX = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].BiasY = Convert.ToSingle(file.ReadLine().Substring(6));
+                    moduleOBJECTS.Objects[N].BiasZ = Convert.ToSingle(file.ReadLine().Substring(6));
                     moduleOBJECTS.Objects[N].lat = Convert.ToDouble(file.ReadLine().Substring(4));
                     moduleOBJECTS.Objects[N].lon = Convert.ToDouble(file.ReadLine().Substring(4));
-                    moduleOBJECTS.Objects[N].Altitude = VB.CSng(Convert.ToDouble(file.ReadLine().Substring(9)));
-                    moduleOBJECTS.Objects[N].AGL = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(4)));
-                    moduleOBJECTS.Objects[N].Complexity = VB.CInt(Convert.ToDouble(file.ReadLine().Substring(11)));
+                    moduleOBJECTS.Objects[N].Altitude = Convert.ToSingle(file.ReadLine().Substring(9));
+                    moduleOBJECTS.Objects[N].AGL = Convert.ToInt32(file.ReadLine().Substring(4));
+                    moduleOBJECTS.Objects[N].Complexity = Convert.ToInt32(file.ReadLine().Substring(11));
                     moduleOBJECTS.AddLatLonToObjects(N);
                 }
 
@@ -1579,7 +1579,7 @@ namespace SBuilderXX
                     KEY = "[LWCI." + N.ToString().Trim() + "]";
                     GoToThisKey(in file, KEY);
                     moduleCLASSES.LWCIs[N].Text = file.ReadLine().Substring(5);
-                    moduleCLASSES.LWCIs[N].ColorArgb = ColorFromArgb(file.ReadLine().Substring(6)).ToArgb();
+                    moduleCLASSES.LWCIs[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
                 }
 
                 SetLWCIs();
@@ -1671,7 +1671,7 @@ namespace SBuilderXX
                     R = C.R;
                     G = C.G;
                     B = C.B;
-                    moduleLINES.Lines[N].ColorArgb = Color.FromArgb(B, G, R).ToArgb();
+                    moduleLINES.Lines[N].Color = Color.FromArgb(B, G, R);
                     moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
                     if (string.IsNullOrEmpty(moduleLINES.Lines[N].Name))
                         moduleLINES.Lines[N].Name = moduleLINES.Lines[N].NoOfPoints.ToString() + "_Pts_Imported_Line";
@@ -1732,7 +1732,7 @@ namespace SBuilderXX
                     R = C.R;
                     G = C.G;
                     B = C.B;
-                    modulePOLYS.Polys[N].ColorArgb = Color.FromArgb(B, G, R).ToArgb();
+                    modulePOLYS.Polys[N].Color = Color.FromArgb(B, G, R);
                     modulePOLYS.Polys[N].NoOfChilds = 0;
                     // ReDim Polys(N).Childs(Polys(N).NoOfChilds)
                     modulePOLYS.Polys[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
@@ -1954,11 +1954,11 @@ namespace SBuilderXX
                     moduleLINES.Lines[N].Guid = file.ReadLine().Substring(5);
                     if (Version == "SB301")
                     {
-                        moduleLINES.Lines[N].ColorArgb = Convert.ToInt32(file.ReadLine().Substring(6));
+                        moduleLINES.Lines[N].Color = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
                     }
                     else
                     {
-                        moduleLINES.Lines[N].ColorArgb = ColorFromArgb(file.ReadLine().Substring(6)).ToArgb();
+                        moduleLINES.Lines[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
                     }
 
                     moduleLINES.Lines[N].NoOfPoints = Convert.ToInt32(file.ReadLine().Substring(11));
@@ -2018,11 +2018,11 @@ namespace SBuilderXX
                     modulePOLYS.Polys[N].Guid = file.ReadLine().Substring(5);
                     if (Version == "SB301")
                     {
-                        modulePOLYS.Polys[N].ColorArgb = Convert.ToInt32(file.ReadLine().Substring(6));
+                        modulePOLYS.Polys[N].Color = Color.FromArgb(Convert.ToInt32(file.ReadLine().Substring(6)));
                     }
                     else
                     {
-                        modulePOLYS.Polys[N].ColorArgb = ColorFromArgb(file.ReadLine().Substring(6)).ToArgb();
+                        modulePOLYS.Polys[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
                     }
 
                     L = Convert.ToInt32(file.ReadLine().Substring(11));
@@ -2290,7 +2290,7 @@ namespace SBuilderXX
                     KEY = "[LWCI." + K.ToString().Trim() + "]";
                     GoToThisKey(in file, KEY);
                     moduleCLASSES.LWCIs[N].Text = file.ReadLine().Substring(5);
-                    moduleCLASSES.LWCIs[N].ColorArgb = ColorFromArgb(file.ReadLine().Substring(6)).ToArgb();
+                    moduleCLASSES.LWCIs[N].Color = ColorFromArgb(file.ReadLine().Substring(6));
                 }
 
             }
@@ -2303,7 +2303,7 @@ namespace SBuilderXX
             SetLWCIs();
             int loopTo13 = moduleCLASSES.NoOfLWCIs;
             for (K = 1; K <= loopTo13; K++)
-                MessageBox.Show(moduleCLASSES.LWCIs[2].ColorArgb.ToString() + " " + moduleCLASSES.LWCIs[2].IsLand.ToString() + " Text= " + moduleCLASSES.LWCIs[2].Text);
+                MessageBox.Show(moduleCLASSES.LWCIs[2].Color.ToString() + " " + moduleCLASSES.LWCIs[2].IsLand.ToString() + " Text= " + moduleCLASSES.LWCIs[2].Text);
             My.MyProject.Forms.FrmStart.SetMouseIcon();
         }
 

@@ -366,18 +366,18 @@ namespace SBuilderXX
 
                 if (ShapeLineColorField == 0)
                 {
-                    myLines[N].ColorArgb = ShapeLineColor.ToArgb();
+                    myLines[N].Color = ShapeLineColor;
                 }
                 else
                 {
                     A = DBF.Attribute(N, ShapeLineColorField - 1);
                     if (!string.IsNullOrEmpty(A))
                     {
-                        myLines[N].ColorArgb = VB.CInt(A);
+                        myLines[N].Color = Color.FromArgb(Convert.ToInt32(A));
                     }
                     else
                     {
-                        myLines[N].ColorArgb = ShapeLineColor.ToArgb();
+                        myLines[N].Color = ShapeLineColor;
                     }
                 }
 
@@ -665,7 +665,7 @@ namespace SBuilderXX
                     A = DBF.Attribute(N, ShapePolyColorField - 1);
                     if (!string.IsNullOrEmpty(A))  // '''
                     {
-                        myColors[N] = Color.FromArgb(VB.CInt(A));
+                        myColors[N] = Color.FromArgb(Convert.ToInt32(A));
                     }
                     else
                     {
@@ -743,7 +743,7 @@ namespace SBuilderXX
                     {
                         K = K + 1;
                         modulePOLYS.Polys[K].Name = myNames[N - 1];
-                        modulePOLYS.Polys[K].ColorArgb = myColors[N - 1].ToArgb();
+                        modulePOLYS.Polys[K].Color = myColors[N - 1];
                         modulePOLYS.Polys[K].Guid = myGuids[N - 1];
                         modulePOLYS.Polys[K].Type = myTypes[N - 1];
                         if (NP == 1)
@@ -894,7 +894,7 @@ namespace SBuilderXX
                 {
                     DBF.AddRecord(N, 1, moduleLINES.Lines[N].Name);
                     DBF.AddRecord(N, 2, moduleLINES.Lines[N].Type);
-                    DBF.AddRecord(N, 3, moduleLINES.Lines[N].ColorArgb.ToString());
+                    DBF.AddRecord(N, 3, moduleLINES.Lines[N].Color.ToArgb().ToString());
                     DBF.AddRecord(N, 4, moduleLINES.Lines[N].Guid);
                 }
 
@@ -950,7 +950,7 @@ namespace SBuilderXX
                         K = K + 1;
                         DBF.AddRecord(K, 1, modulePOLYS.Polys[N].Name);
                         DBF.AddRecord(K, 2, modulePOLYS.Polys[N].Type);
-                        DBF.AddRecord(K, 3, modulePOLYS.Polys[N].ColorArgb.ToString());
+                        DBF.AddRecord(K, 3, modulePOLYS.Polys[N].Color.ToArgb().ToString());
                         DBF.AddRecord(K, 4, modulePOLYS.Polys[N].Guid);
                     }
                 }
@@ -1032,7 +1032,7 @@ namespace SBuilderXX
                             // new record 
                             REC = REC + 1;
                             ptrBegin = (int)fs.Position;
-                            RecOffset[REC] = VB.CInt(ptrBegin / 2);
+                            RecOffset[REC] = (int)(ptrBegin / 2d);
                             nParts = modulePOLYS.Polys[N].NoOfChilds + 1;   // the childs plus the parent
                             P = new int[nParts + 1];
                             P[1] = 0;     // always zero!
@@ -1153,7 +1153,7 @@ namespace SBuilderXX
                             bw.Seek((nPoints + 1) * 8, SeekOrigin.Current);     // advance Mmin Mmax and nPoints M points
                             bw.Write(0d);    // go back 8 and write a double = O to terminate
                             ptrEnd = (int)fs.Position;
-                            recLen = VB.CInt((ptrEnd - ptrBegin) / 2);    // get the record lenght
+                            recLen = (int)((ptrEnd - ptrBegin) / 2d);    // get the record lenght
                             recLen = recLen - 4; // contents lenght of record is less by 8 bytes
                             RecLenght[REC] = recLen;
                             // go back and fill the record header
@@ -1181,7 +1181,8 @@ namespace SBuilderXX
                     }
                 }
 
-                recLen = VB.CInt(fs.Length / 2);    // recLen is free
+                recLen = (int)fs.Length;    // recLen is free
+                recLen = (int)(recLen / 2d);
                 // now complete  header
                 bw.Seek(24, SeekOrigin.Begin);
                 bw.Write(BigEndian(recLen));
@@ -1298,7 +1299,7 @@ namespace SBuilderXX
                         // new record 
                         REC = REC + 1;
                         ptrBegin = (int)fs.Position;
-                        RecOffset[REC] = VB.CInt(ptrBegin / 2);
+                        RecOffset[REC] = (int)(ptrBegin / 2d);
                         nPoints = moduleLINES.Lines[N].NoOfPoints;
                         // advance 4 + 4 + 4 + 4 x 8 = 44 ( recNum recLen ShapeType and box )
                         // plus 4 + 4 (nParts nPoints) + 4  for P(1) ; P(1)=0 
@@ -1356,7 +1357,7 @@ namespace SBuilderXX
                         bw.Seek((nPoints + 1) * 8, SeekOrigin.Current);     // advance Mmin Mmax and nPoints M points
                         bw.Write(0d);    // go back 8 and write a double = O to terminate
                         ptrEnd = (int)fs.Position;
-                        recLen = VB.CInt((ptrEnd - ptrBegin) / 2);    // get the record lenght
+                        recLen = (int)((ptrEnd - ptrBegin) / 2d);    // get the record lenght
                         recLen = recLen - 4; // contents lenght of record is less by 8 bytes
                         RecLenght[REC] = recLen;
                         // go back and fill the record header
@@ -1380,7 +1381,8 @@ namespace SBuilderXX
                     }
                 }
 
-                recLen = VB.CInt(fs.Length / 2);    // recLen is free
+                recLen = (int)fs.Length;    // recLen is free
+                recLen = (int)(recLen / 2d);
                 // now complete  header
                 bw.Seek(24, SeekOrigin.Begin);
                 bw.Write(BigEndian(recLen));

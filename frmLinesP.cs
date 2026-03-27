@@ -63,11 +63,11 @@ namespace SBuilderXX
         {
             if (ckThisColor.Checked)
             {
-                moduleLINES.Lines[N].ColorArgb = ckThisColor.BackColor.ToArgb();
+                moduleLINES.Lines[N].Color = ckThisColor.BackColor;
             }
             else
             {
-                moduleLINES.Lines[N].ColorArgb = labelVectorTexture.BackColor.ToArgb();
+                moduleLINES.Lines[N].Color = labelVectorTexture.BackColor;
             }
 
             moduleLINES.Lines[N].Guid = moduleLINES.LineTypes[ThisLineType].Guid;
@@ -93,7 +93,7 @@ namespace SBuilderXX
         {
             try
             {
-                moduleLINES.Lines[N].ColorArgb = ckThisColor.BackColor.ToArgb();
+                moduleLINES.Lines[N].Color = ckThisColor.BackColor;
                 moduleLINES.Lines[N].Name = CheckExtrusionLineName(N);
                 moduleLINES.Lines[N].Guid = labelProfile.Text;
                 moduleLINES.Lines[N].Type = "EXT|" + MaterialGuid + "|" + PylonGuid + "|" + Complexity.ToString() + "|" + ExtrusionWidth.ToString() + "|" + ExtrusionProbability.ToString() + "|" + SuppressPlatform.ToString();
@@ -140,7 +140,7 @@ namespace SBuilderXX
                     X = "FullTile";
                 A = A + X;
                 moduleLINES.Lines[N].Type = A;
-                moduleLINES.Lines[N].ColorArgb = ckThisColor.BackColor.ToArgb();
+                moduleLINES.Lines[N].Color = ckThisColor.BackColor;
                 moduleLINES.Lines[N].Name = CheckTexturedLineName(N);
                 return;
             }
@@ -157,7 +157,7 @@ namespace SBuilderXX
                 if (lstLib.SelectedIndex == -1)
                     return; // because unknown
                 int Complexity = cmbComplexity.SelectedIndex;
-                moduleLINES.Lines[N].ColorArgb = ckThisColor.BackColor.ToArgb();
+                moduleLINES.Lines[N].Color = ckThisColor.BackColor;
                 moduleLINES.Lines[N].Name = CheckLineOfObjectsName(N);
                 moduleLINES.Lines[N].Guid = labelLibID.Text;
                 moduleLINES.Lines[N].Type = "OBJ|" + ObjWidth.ToString().Trim() + "|" + ObjLength.ToString().Trim() + "|" + Complexity.ToString();
@@ -316,8 +316,8 @@ namespace SBuilderXX
             // or just one to show
             EnableName(true);
             txtName.Text = moduleLINES.Lines[modulePOPUP.POPIndex].Name;
-            ckThisColor.BackColor = Color.FromArgb(moduleLINES.Lines[modulePOPUP.POPIndex].ColorArgb);
-            ckThisColor.ForeColor = moduleMAIN.InvertColor(Color.FromArgb(moduleLINES.Lines[modulePOPUP.POPIndex].ColorArgb));
+            ckThisColor.BackColor = moduleLINES.Lines[modulePOPUP.POPIndex].Color;
+            ckThisColor.ForeColor = moduleMAIN.InvertColor(moduleLINES.Lines[modulePOPUP.POPIndex].Color);
             Guid = moduleLINES.Lines[modulePOPUP.POPIndex].Guid;
             LoadWidthAndAltitude();
             LoadListVector(Guid);
@@ -535,8 +535,8 @@ namespace SBuilderXX
                 optFull.Checked = true;
             }
 
-            ckThisColor.BackColor = Color.FromArgb(moduleLINES.Lines[K].ColorArgb);
-            ckThisColor.ForeColor = moduleMAIN.InvertColor(Color.FromArgb(moduleLINES.Lines[K].ColorArgb));
+            ckThisColor.BackColor = moduleLINES.Lines[K].Color;
+            ckThisColor.ForeColor = moduleMAIN.InvertColor(moduleLINES.Lines[K].Color);
         }
 
         private void LoadWidthAndAltitude()
@@ -635,8 +635,8 @@ namespace SBuilderXX
             ExtrusionProbability = Convert.ToDouble(A.Substring(0, J));
             A = A.Substring(J + 1);
             SuppressPlatform = Convert.ToBoolean(A);
-            ckThisColor.BackColor = Color.FromArgb(moduleLINES.Lines[N].ColorArgb);
-            ckThisColor.ForeColor = moduleMAIN.InvertColor(Color.FromArgb(moduleLINES.Lines[N].ColorArgb));
+            ckThisColor.BackColor = moduleLINES.Lines[N].Color;
+            ckThisColor.ForeColor = moduleMAIN.InvertColor(moduleLINES.Lines[N].Color);
         }
 
         private void GetLineOfObjects(int N)
@@ -656,8 +656,8 @@ namespace SBuilderXX
             for (J = 1; J <= loopTo; J++)
                 X = X + moduleLINES.Lines[N].GLPoints[J].wid;
             txtHeading.Text = (X / moduleLINES.Lines[N].NoOfPoints).ToString("0.00");
-            ckThisColor.BackColor = Color.FromArgb(moduleLINES.Lines[N].ColorArgb);
-            ckThisColor.ForeColor = moduleMAIN.InvertColor(Color.FromArgb(moduleLINES.Lines[N].ColorArgb));
+            ckThisColor.BackColor = moduleLINES.Lines[N].Color;
+            ckThisColor.ForeColor = moduleMAIN.InvertColor(moduleLINES.Lines[N].Color);
         }
 
         private void CheckIfFWX(int K)
@@ -1153,7 +1153,7 @@ namespace SBuilderXX
 
         private void OptVector_CheckedChanged(object sender, EventArgs e)
         {
-            if (sender is RadioButton rb && rb.Checked)
+            if (Convert.ToBoolean(sender.GetType().GetField("Checked")))
             {
                 if (Init)
                     return;
@@ -1168,7 +1168,7 @@ namespace SBuilderXX
 
         private void OptTexture_CheckedChanged(object sender, EventArgs e)
         {
-            if (sender is RadioButton rb && rb.Checked)
+            if (Convert.ToBoolean(sender.GetType().GetField("Checked")))
             {
                 if (Init)
                     return;
@@ -1183,7 +1183,7 @@ namespace SBuilderXX
 
         private void OptExtrusion_CheckedChanged(object sender, EventArgs e)
         {
-            if (sender is RadioButton rb && rb.Checked)
+            if (Convert.ToBoolean(sender.GetType().GetField("Checked")))
             {
                 if (Init)
                     return;
@@ -1199,7 +1199,7 @@ namespace SBuilderXX
 
         private void OptObjects_CheckedChanged(object sender, EventArgs e)
         {
-            if (sender is RadioButton rb && rb.Checked)
+            if (Convert.ToBoolean(sender.GetType().GetField("Checked")))
             {
                 if (Init)
                     return;

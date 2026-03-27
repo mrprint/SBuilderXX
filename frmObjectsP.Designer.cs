@@ -1386,7 +1386,7 @@ namespace SBuilderXX
             // 
             this._cmdGBDelete.BackColor = System.Drawing.SystemColors.Control;
             this._cmdGBDelete.Cursor = System.Windows.Forms.Cursors.Default;
-            this._cmdGBDelete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._cmdGBDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._cmdGBDelete.ForeColor = System.Drawing.SystemColors.ControlText;
             this._cmdGBDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._cmdGBDelete.Location = new System.Drawing.Point(414, 140);

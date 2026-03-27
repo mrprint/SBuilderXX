@@ -107,9 +107,11 @@ namespace SBuilderXX
             {
                 A = (moduleMAPS.Maps[N].Name.Length < 5) ? "" : moduleMAPS.Maps[N].Name.Substring(0, 5).ToUpper();
                 if (A != "CLASS")
-                    continue;
+                    goto NextMap;
                 moduleCLASSES.FillWater(N);
                 Flag = true;
+            NextMap:
+                ;
             }
 
             Cursor = Cursors.Arrow;

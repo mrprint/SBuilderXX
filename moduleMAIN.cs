@@ -1,11 +1,8 @@
-﻿using SkiaSharp;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using CompatDrawing = Drawing;
 
 namespace SBuilderXX
 {
@@ -162,31 +159,20 @@ namespace SBuilderXX
         internal static int DisplayHeight; // value in pixels
         internal static int DisplayCenterX; // value in pixels
         internal static int DisplayCenterY; // value in pixels
+        internal static Bitmap BitmapBuffer;
 
-        internal static Dictionary<string, CompatDrawing.Image> TextureCache = new();
-
-        internal static CompatDrawing.Image LoadTexture(string path)
+        internal static void RebuildDisplay()
         {
-            if (!TextureCache.TryGetValue(path, out var img))
-            {
-                img = CompatDrawing.Image.FromFile(path);
-                TextureCache[path] = img;
-            }
-            return img;
-        }
 
-        internal static void ClearTextureCache()
-        {
-            foreach (var img in TextureCache.Values)
-                img.Dispose();
-            TextureCache.Clear();
-        }
+            // builds the buffer
+            // copies the buffer to the display
 
-        internal static Action RebuildDisplayAction;
-
-        public static void RebuildDisplay()
-        {
-            RebuildDisplayAction?.Invoke();
+            if (WAIT)
+                return;
+            WAIT = true;
+            My.MyProject.Forms.FrmStart.BuildBitmapBuffer();
+            My.MyProject.Forms.FrmStart.UpdateDisplay();
+            WAIT = false;
         }
 
         internal static void SetDispCenter(int X, int Y)
@@ -251,7 +237,7 @@ namespace SBuilderXX
             if (LonDispEast > 180d)
             {
                 DX = LonDispEast - 180d;
-                LonDispWest = LonDispWest - DX;
+                LonDispEast = LonDispEast - DX;
                 LonDispEast = LonDispEast - DX;
                 LonDispCenter = LonDispCenter - DX;
             }
@@ -260,24 +246,22 @@ namespace SBuilderXX
         internal static bool IsCenterDisplay(int X, int Y)
         {
             bool IsCenterDisplayRet = default;
-            int X1, X2, Y1, Y2;
+            int X1, X2, Y1, Y2, YY;
             IsCenterDisplayRet = true;
-
-            X1 = VB.CInt(DisplayWidth * 0.05d);
-            if (X < X1) return IsCenterDisplayRet;
-
-            X2 = VB.CInt(DisplayWidth * 0.95d);
-            if (X > X2) return IsCenterDisplayRet;
-
-            // Canvas-relative: Y goes from 0 (top of canvas) to DisplayHeight
-            // StatusStrip is below the canvas so subtract its height from bottom
-            int statusH = My.MyProject.Forms.FrmStart.StatusStrip.Height;
-            Y1 = VB.CInt(DisplayHeight * 0.05d);
-            Y2 = DisplayHeight - statusH - VB.CInt(DisplayHeight * 0.05d);
-
-            if (Y < Y1) return IsCenterDisplayRet;
-            if (Y > Y2) return IsCenterDisplayRet;
-
+            X1 = (int)(DisplayWidth * 0.05d);
+            if (X < X1)
+                return IsCenterDisplayRet;
+            X2 = (int)(DisplayWidth * 0.95d);
+            if (X > X2)
+                return IsCenterDisplayRet;
+            YY = DisplayHeight - My.MyProject.Forms.FrmStart.MenuStrip.Height - My.MyProject.Forms.FrmStart.StatusStrip.Height - My.MyProject.Forms.FrmStart.ToolStrip.Height;
+            YY = (int)(0.05d * YY);
+            Y1 = YY + My.MyProject.Forms.FrmStart.MenuStrip.Height + My.MyProject.Forms.FrmStart.ToolStrip.Height;
+            if (Y < Y1)
+                return IsCenterDisplayRet;
+            Y2 = DisplayHeight - YY - My.MyProject.Forms.FrmStart.StatusStrip.Height;
+            if (Y > Y2)
+                return IsCenterDisplayRet;
             IsCenterDisplayRet = false;
             return IsCenterDisplayRet;
         }
@@ -648,7 +632,7 @@ namespace SBuilderXX
             {
                 if (DecimalDegrees)
                 {
-                    Str2LonRet = VB.CInt(lon);
+                    Str2LonRet = Convert.ToDouble(lon);
                 }
                 else
                 {
@@ -683,14 +667,14 @@ namespace SBuilderXX
                     N = lon.IndexOf(" ");
                     if (N == -1)
                     {
-                        Str2LonRet = VB.CInt(lon);
+                        Str2LonRet = Convert.ToDouble(lon);
                         if (Neg)
                             Str2LonRet = -1 * Str2LonRet;
                         return Str2LonRet;
                     }
 
                     a = lon.Substring(0, N);
-                    Str2LonRet = VB.CInt(a);
+                    Str2LonRet = Convert.ToDouble(a);
                     M = lon.IndexOf(" ", N + 1);
                     if (M == -1)
                     {
@@ -738,10 +722,10 @@ namespace SBuilderXX
                     a = "E";
                 }
 
-                N = VB.Fix(lon);
+                N = (int)lon;
                 Lon2StrRet = N.ToString();
                 X = (lon - N) * 60d;
-                N = VB.Fix(X);
+                N = (int)X;
                 Lon2StrRet = Lon2StrRet + '°' + " " + N.ToString("00");
                 X = (X - N) * 60d;
                 X = Math.Round(X, 4);
@@ -773,10 +757,10 @@ namespace SBuilderXX
                     b = "N";
                 }
 
-                N = VB.Fix(lat);
+                N = (int)lat;
                 Lat2StrRet = N.ToString();
                 X = (lat - N) * 60d;
-                N = VB.Fix(X);
+                N = (int)X;
                 Lat2StrRet = Lat2StrRet + '°' + " " + N.ToString("00");
                 X = (X - N) * 60d;
                 X = Math.Round(X, 4);

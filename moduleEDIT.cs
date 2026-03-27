@@ -480,7 +480,7 @@ namespace SBuilderXX
             moduleLINES.Lines[N].Name = ClipLine.Name;
             moduleLINES.Lines[N].Type = ClipLine.Type;
             moduleLINES.Lines[N].Guid = ClipLine.Guid;
-            moduleLINES.Lines[N].ColorArgb = ClipLine.ColorArgb;
+            moduleLINES.Lines[N].Color = ClipLine.Color;
             moduleLINES.Lines[N].Selected = ClipLine.Selected;
             moduleLINES.Lines[N].NoOfPoints = ClipLine.NoOfPoints;
             moduleLINES.Lines[N].GLPoints = new modulePOINTS.GLPoint[ClipLine.NoOfPoints + 1];
@@ -495,7 +495,7 @@ namespace SBuilderXX
             ClipLine.Name = moduleLINES.Lines[N].Name;
             ClipLine.Type = moduleLINES.Lines[N].Type;
             ClipLine.Guid = moduleLINES.Lines[N].Guid;
-            ClipLine.ColorArgb = moduleLINES.Lines[N].ColorArgb;
+            ClipLine.Color = moduleLINES.Lines[N].Color;
             ClipLine.Selected = moduleLINES.Lines[N].Selected;
             ClipLine.NoOfPoints = moduleLINES.Lines[N].NoOfPoints;
             ClipLine.GLPoints = new modulePOINTS.GLPoint[moduleLINES.Lines[N].NoOfPoints + 1];
@@ -512,7 +512,7 @@ namespace SBuilderXX
             modulePOLYS.Polys[N].Name = ClipPoly.Name;
             modulePOLYS.Polys[N].Type = ClipPoly.Type;
             modulePOLYS.Polys[N].Guid = ClipPoly.Guid;
-            modulePOLYS.Polys[N].ColorArgb = ClipPoly.ColorArgb;
+            modulePOLYS.Polys[N].Color = ClipPoly.Color;
             modulePOLYS.Polys[N].Selected = ClipPoly.Selected;
             modulePOLYS.Polys[N].NoOfChilds = 0;
             modulePOLYS.Polys[N].NoOfPoints = ClipPoly.NoOfPoints;
@@ -528,7 +528,7 @@ namespace SBuilderXX
             ClipPoly.Name = modulePOLYS.Polys[N].Name;
             ClipPoly.Type = modulePOLYS.Polys[N].Type;
             ClipPoly.Guid = modulePOLYS.Polys[N].Guid;
-            ClipPoly.ColorArgb = modulePOLYS.Polys[N].ColorArgb;
+            ClipPoly.Color = modulePOLYS.Polys[N].Color;
             ClipPoly.Selected = modulePOLYS.Polys[N].Selected;
             ClipPoly.NoOfChilds = 0;
             ClipPoly.NoOfPoints = modulePOLYS.Polys[N].NoOfPoints;

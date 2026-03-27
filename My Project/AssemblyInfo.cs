@@ -32,4 +32,3 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion("3.1.6.0")]
 [assembly: AssemblyFileVersion("3.3.3.0")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("SBuilderXX.Tests")]

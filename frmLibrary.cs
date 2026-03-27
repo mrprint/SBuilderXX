@@ -377,7 +377,7 @@ namespace SBuilderXX
                     B = RemovedObjs[N].ToString();
                     K = B.IndexOf(" ");
                     C = B.Substring(K + 1) + ".jpg";
-                    K = VB.CInt(B.Substring(0, K));
+                    K = Convert.ToInt32(B.Substring(0, K));
                     B = moduleOBJECTS.LibObjectsPath + @"\" + moduleOBJECTS.LibCategories[K].Name + @"\" + C;
                     if (My.MyProject.Computer.FileSystem.FileExists(B))
                     {

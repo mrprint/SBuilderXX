@@ -93,7 +93,7 @@ namespace SBuilderXX
                         K1 = A.IndexOf(BLNSeparator);
                         if (K1 != -1)
                         {
-                            N = VB.CInt(A.Substring(0, K1));
+                            N = Convert.ToInt32(A.Substring(0, K1));
                             B = (A.Length >= K1 + 3) ? A.Substring(K1 + 1, 2) : "";
                             if (B == ("0" + BLNSeparator ?? "") || B == ("1" + BLNSeparator ?? ""))
                             {
@@ -106,7 +106,7 @@ namespace SBuilderXX
                         }
                         else
                         {
-                            N = VB.CInt(A);
+                            N = Convert.ToInt32(A);
                         }
 
                         myLine.GLPoints = new modulePOINTS.GLPoint[N + 1];
@@ -179,7 +179,7 @@ namespace SBuilderXX
                                 modulePOLYS.Polys[NoP].Name = myLine.Name;
                             }
 
-                            modulePOLYS.Polys[NoP].ColorArgb = BLNPolyColor.ToArgb();
+                            modulePOLYS.Polys[NoP].Color = BLNPolyColor;
                             modulePOLYS.Polys[NoP].Type = BLNPolyType;
                             modulePOLYS.Polys[NoP].Guid = BLNPolyGuid;
                             modulePOLYS.Polys[NoP].NoOfPoints = N - 1;
@@ -251,7 +251,7 @@ namespace SBuilderXX
                                     moduleLINES.Lines[NoL].Name = myLine.Name;
                                 }
 
-                                moduleLINES.Lines[NoL].ColorArgb = BLNLineColor.ToArgb();
+                                moduleLINES.Lines[NoL].Color = BLNLineColor;
                                 moduleLINES.Lines[NoL].Type = BLNLineType;
                                 moduleLINES.Lines[NoL].Guid = BLNLineGuid;
                                 moduleLINES.Lines[NoL].NoOfPoints = N;
@@ -306,7 +306,7 @@ namespace SBuilderXX
                                 moduleLINES.Lines[NoL].Name = myLine.Name;
                             }
 
-                            moduleLINES.Lines[NoL].ColorArgb = BLNLineColor.ToArgb();
+                            moduleLINES.Lines[NoL].Color = BLNLineColor;
                             moduleLINES.Lines[NoL].Type = BLNLineType;
                             moduleLINES.Lines[NoL].Guid = BLNLineGuid;
                             moduleLINES.Lines[NoL].NoOfPoints = N;

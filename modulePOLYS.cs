@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using Drawing;
+using System.Drawing;
 using System.IO;
 using System.Media;
 using System.Text;
@@ -25,7 +25,7 @@ namespace SBuilderXX
             public string Name;
             public string Type;
             public string Guid;
-            public int ColorArgb;
+            public Color Color;
             public bool Selected;
             public int NoOfChilds;
             public int[] Childs;
@@ -242,7 +242,7 @@ namespace SBuilderXX
                 PtPolyCounter = 3;
                 NewPoly.GPoints = new modulePOINTS.GPoint[3];
                 NewPoly.NoOfPoints = 2;
-                NewPoly.ColorArgb = DefaultPolyColor.ToArgb();
+                NewPoly.Color = DefaultPolyColor;
                 NewPoly.Selected = false;
                 NewPoly.GPoints[1].lat = AuxLatPoly;
                 NewPoly.GPoints[1].lon = AuxLonPoly;
@@ -340,8 +340,8 @@ namespace SBuilderXX
         {
 
             // this is called upon mouse down when SelectParent is ON.
-            // it uses POPIndex which points to the polygon that we want
-            // to make a child. In April 2014, if there are also selected polygons
+            // it uses POPIndex which points to the polygon that we want 
+            // to make a child. In April 2014, if there are also selected polygons 
             // in Poly mode we will try to make childs of the chosed
             // parent polygon
 
@@ -397,7 +397,7 @@ namespace SBuilderXX
                 MakePolyAntiClockWise(K);
                 Polys[K].Guid = Polys[N].Guid;
                 Polys[K].Type = Polys[N].Type;
-                Polys[K].ColorArgb = Polys[N].ColorArgb;
+                Polys[K].Color = Polys[N].Color;
                 Polys[K].NoOfChilds = -N;
                 Array.Resize(ref Polys[N].Childs, Polys[N].NoOfChilds + 1 + 1);
                 Polys[N].NoOfChilds = Polys[N].NoOfChilds + 1;
@@ -436,7 +436,7 @@ namespace SBuilderXX
                             MakePolyAntiClockWise(K);
                             Polys[K].Guid = Polys[N].Guid;
                             Polys[K].Type = Polys[N].Type;
-                            Polys[K].ColorArgb = Polys[N].ColorArgb;
+                            Polys[K].Color = Polys[N].Color;
                             Polys[K].NoOfChilds = -N;
                             OK[K] = true;
                             NoOfOKs = NoOfOKs + 1;
@@ -506,7 +506,7 @@ namespace SBuilderXX
                     NoOfPolysSelected = NoOfPolysSelected - 1;
                     Polys[N].Selected = false;
                     // unselect points ?
-                    continue;
+                    goto Jump_Next;
                 }
                 else
                 {
@@ -522,11 +522,14 @@ namespace SBuilderXX
                     }
 
                     if (Flag)
-                        continue;
+                        goto Jump_Next;
                     NoOfPolysSelected = NoOfPolysSelected + 1;
                     moduleMAIN.SomeSelected = true;
                     Polys[N].Selected = true;
                 }
+
+            Jump_Next:
+                ;
             }
         }
 
@@ -635,7 +638,7 @@ namespace SBuilderXX
             int J, K, N, M, NC, NP;
             Pen myPen = new Pen(PolyColorBorder, PolyPenWidth);
             SolidBrush myBrush = new SolidBrush(Color.Yellow);
-            GraphicsPath path = new GraphicsPath();
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
             int P1, P2;  // to draw the points
             P1 = 2;
             if (PolyPenWidth == 2)
@@ -647,13 +650,13 @@ namespace SBuilderXX
                 if (!moduleMAIN.MoveON)
                     Polys[N].OnScreen = false;
                 if (Polys[N].NLAT < moduleMAIN.LatDispSouth)
-                    continue;
+                    goto skip_this_one;
                 if (Polys[N].SLAT > moduleMAIN.LatDispNorth)
-                    continue;
+                    goto skip_this_one;
                 if (Polys[N].WLON > moduleMAIN.LonDispEast)
-                    continue;
+                    goto skip_this_one;
                 if (Polys[N].ELON < moduleMAIN.LonDispWest)
-                    continue;
+                    goto skip_this_one;
                 Polys[N].OnScreen = true;
                 if (Polys[N].NoOfChilds < 0)
                     goto skip_fill;
@@ -669,8 +672,8 @@ namespace SBuilderXX
                 int loopTo1 = NP;
                 for (K = 1; K <= loopTo1; K++)
                 {
-                    PTS[K - 1].X = VB.CInt((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                    PTS[K - 1].Y = VB.CInt((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
+                    PTS[K - 1].X = (int)((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                    PTS[K - 1].Y = (int)((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
                 }
 
                 path.Reset();
@@ -688,8 +691,8 @@ namespace SBuilderXX
                         int loopTo3 = NC;
                         for (K = 1; K <= loopTo3; K++)
                         {
-                            PTS[K - 1].X = VB.CInt((Polys[M].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                            PTS[K - 1].Y = VB.CInt((moduleMAIN.LatDispNorth - Polys[M].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
+                            PTS[K - 1].X = (int)((Polys[M].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                            PTS[K - 1].Y = (int)((moduleMAIN.LatDispNorth - Polys[M].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
                         }
 
                         path.AddLines(PTS);
@@ -699,7 +702,7 @@ namespace SBuilderXX
 
                 if (PolyFILL)
                 {
-                    myBrush.Color = Color.FromArgb(Polys[N].ColorArgb);
+                    myBrush.Color = Polys[N].Color;
                     gr.FillPath(myBrush, path);
                 }
 
@@ -709,37 +712,45 @@ namespace SBuilderXX
                 NP = Polys[N].NoOfPoints;
                 if (Polys[N].Selected)
                 {
-                    var selColor = FrmStart.ToSKColor(moduleLINES.SelectedLineColor);
+                    myBrush.Color = moduleLINES.SelectedLineColor;
                     int loopTo4 = NP;
                     for (K = 1; K <= loopTo4; K++)
                     {
-                        X = VB.CInt((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                        Y = VB.CInt((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
-                        ContrastDraw.DotPoint(gr.Canvas, X, Y, selColor, radius: P1);
+                        X = (int)((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                        Y = (int)((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
+                        gr.FillRectangle(myBrush, X - P1, Y - P1, P2, P2);
                     }
                 }
                 else
                 {
-                    // ── REPLACE the unselected / PolyON vertex block ──────────────────────
                     Flag = false;
                     int loopTo5 = NP;
                     for (K = 1; K <= loopTo5; K++)
-                        if (Polys[N].GPoints[K].Selected) { Flag = true; break; }
+                    {
+                        if (Polys[N].GPoints[K].Selected)
+                        {
+                            Flag = true;
+                            break;
+                        }
+                    }
 
                     if (PolyON | Flag)
                     {
                         int loopTo6 = NP;
                         for (K = 1; K <= loopTo6; K++)
                         {
-                            var ptColor = Polys[N].GPoints[K].Selected
-                                ? FrmStart.ToSKColor(moduleLINES.SelectedLineColor)
-                                : FrmStart.ToSKColor(modulePOINTS.UnselectedPointColor);
-                            X = VB.CInt((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                            Y = VB.CInt((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
-                            ContrastDraw.DotPoint(gr.Canvas, X, Y, ptColor, radius: P1);
+                            myBrush.Color = modulePOINTS.UnselectedPointColor;
+                            if (Polys[N].GPoints[K].Selected)
+                                myBrush.Color = moduleLINES.SelectedLineColor;
+                            X = (int)((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                            Y = (int)((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
+                            gr.FillRectangle(myBrush, X - P1, Y - P1, P2, P2);
                         }
                     }
                 }
+
+            skip_this_one:
+                ;
             }
 
             gr.DrawPath(myPen, path);
@@ -747,7 +758,6 @@ namespace SBuilderXX
             myBrush.Dispose();
             path.Dispose();
         }
-
 
         internal static void DeletePointInPoly(int PL, int PT)
         {
@@ -1062,15 +1072,15 @@ namespace SBuilderXX
             for (N = 1; N <= loopTo; N++)
             {
                 if (Polys[N].Selected)
-                    continue;
+                    goto Jump_Next;
                 if (WLON < Polys[N].WLON)
-                    continue;
+                    goto Jump_Next;
                 if (ELON > Polys[N].ELON)
-                    continue;
+                    goto Jump_Next;
                 if (SLAT < Polys[N].SLAT)
-                    continue;
+                    goto Jump_Next;
                 if (NLAT > Polys[N].NLAT)
-                    continue;
+                    goto Jump_Next;
                 K = 1;
                 retval = false;
                 while (!(retval == true | K == Polys[N].NoOfPoints + 1))
@@ -1087,6 +1097,9 @@ namespace SBuilderXX
                     IsPointInPolyRet = true;
                     return IsPointInPolyRet;
                 }
+
+            Jump_Next:
+                ;
             }
 
             return IsPointInPolyRet;
@@ -1113,7 +1126,7 @@ namespace SBuilderXX
             for (N = 1; N <= loopTo; N++)
             {
                 if (Polys[N].OnScreen == false)
-                    continue;
+                    goto Jump_Next;
                 K = 2;
                 retval = false;
                 while (!(retval == true | K == Polys[N].NoOfPoints + 1))
@@ -1139,6 +1152,9 @@ namespace SBuilderXX
 
                     return IsMouseOnPolyRet;
                 }
+
+            Jump_Next:
+                ;
             }
 
             return IsMouseOnPolyRet;
@@ -1164,13 +1180,13 @@ namespace SBuilderXX
             for (N = 1; N <= loopTo; N++)
             {
                 if (WLON < Polys[N].WLON)
-                    continue;
+                    goto Jump_Next;
                 if (ELON > Polys[N].ELON)
-                    continue;
+                    goto Jump_Next;
                 if (SLAT < Polys[N].SLAT)
-                    continue;
+                    goto Jump_Next;
                 if (NLAT > Polys[N].NLAT)
-                    continue;
+                    goto Jump_Next;
                 K = Polys[N].NoOfPoints;
                 retval = modulePOINTS.IsPointInSegment(Polys[N].GPoints[1].lon, Polys[N].GPoints[1].lat, Polys[N].GPoints[K].lon, Polys[N].GPoints[K].lat, X, Y);
                 K = 2;
@@ -1196,6 +1212,9 @@ namespace SBuilderXX
                     IsPolySelectedRet = true;
                     return IsPolySelectedRet;
                 }
+
+            Jump_Next:
+                ;
             }
 
             return IsPolySelectedRet;
@@ -2216,7 +2235,7 @@ namespace SBuilderXX
             }
 
             L = NP + 1;
-            M = VB.Fix(L / 2d);
+            M = (int)(L / 2d);
             int loopTo1 = M;
             for (N = 1; N <= loopTo1; N++)
             {
@@ -2358,13 +2377,12 @@ namespace SBuilderXX
             int loopTo2 = NP;
             for (N = 1; N <= loopTo2; N++)
             {
-                K = VB.CInt(x * (Polys[P].GPoints[N].lon - LonMin));
+                K = (int)(x * (Polys[P].GPoints[N].lon - LonMin));
                 PolyTexString = PolyTexString + K.ToString() + ",";
-                K = VB.CInt(y * (Polys[P].GPoints[N].lat - LatMin));
+                K = (int)(y * (Polys[P].GPoints[N].lat - LatMin));
                 PolyTexString = PolyTexString + K.ToString() + "//";
             }
         }
-
 
         internal static void MakeBGLTexLines(bool CopyBGLs)
         {
@@ -2383,7 +2401,7 @@ namespace SBuilderXX
                 {
                     A = moduleLINES.Lines[N].Type;
                     if (string.IsNullOrEmpty(A))
-                        continue;
+                        goto next_N0;
                     B = (A.Length < 5) ? "" : A.Substring(0, 5);
                     if (B == "TEX|S")
                     {
@@ -2402,6 +2420,9 @@ namespace SBuilderXX
                             H_SLat = moduleLINES.Lines[N].SLAT;
                     }
                 }
+
+            next_N0:
+                ;
             }
 
             if (IsLying)
@@ -2894,14 +2915,14 @@ namespace SBuilderXX
             using (StreamWriter file = new StreamWriter(My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".scm"))
             {
                 A = "Header( 1 ";
-                A = A + VB.Fix(H_NLat + 1.5d).ToString() + " ";
-                A = A + VB.Fix(H_SLat - 0.5d).ToString() + " ";
-                A = A + VB.Fix(H_ELon + 1.5d).ToString() + " ";
-                A = A + VB.Fix(H_WLon - 0.5d).ToString() + " )";
+                A = A + ((int)(H_NLat + 1.5d)).ToString() + " ";
+                A = A + ((int)(H_SLat - 0.5d)).ToString() + " ";
+                A = A + ((int)(H_ELon + 1.5d)).ToString() + " ";
+                A = A + ((int)(H_WLon - 0.5d)).ToString() + " )";
                 file.WriteLine(A);
                 A = "LatRange( ";
-                A = A + VB.Fix(H_SLat - 0.5d).ToString() + " ";
-                A = A + VB.Fix(H_NLat + 1.5d).ToString() + " )";
+                A = A + ((int)(H_SLat - 0.5d)).ToString() + " ";
+                A = A + ((int)(H_NLat + 1.5d)).ToString() + " )";
                 file.WriteLine(A);
                 file.WriteLine();
                 int loopTo = moduleLINES.NoOfLines;
@@ -3117,7 +3138,7 @@ namespace SBuilderXX
             Polys[0].Name = "0";
             Polys[0].Guid = "0";
             Polys[0].NoOfChilds = 0;
-            Polys[0].ColorArgb = DefaultPolyColor.ToArgb();
+            Polys[0].Color = DefaultPolyColor;
             Polys[0].GPoints = new modulePOINTS.GPoint[2 * NP + 1];
             M = 1;
             int loopTo3 = NP;
@@ -3388,14 +3409,14 @@ namespace SBuilderXX
             using (StreamWriter file = new StreamWriter(My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".scm"))
             {
                 a = "Header( 1 ";
-                a = a + VB.Fix(H_NLat + 1.5d).ToString() + " ";
-                a = a + VB.Fix(H_SLat - 0.5d).ToString() + " ";
-                a = a + VB.Fix(H_ELon + 1.5d).ToString() + " ";
-                a = a + VB.Fix(H_WLon - 0.5d).ToString() + " )";
+                a = a + (int)(H_NLat + 1.5d) + " ";
+                a = a + (int)(H_SLat - 0.5d) + " ";
+                a = a + (int)(H_ELon + 1.5d) + " ";
+                a = a + (int)(H_WLon - 0.5d) + " )";
                 file.WriteLine(a);
                 a = "LatRange( ";
-                a = a + VB.Fix(H_SLat - 0.5d).ToString() + " ";
-                a = a + VB.Fix(H_NLat + 1.5d).ToString() + " )";
+                a = a + (int)(H_SLat - 0.5d) + " ";
+                a = a + (int)(H_NLat + 1.5d) + " )";
                 file.WriteLine(a);
                 file.WriteLine();
                 int loopTo1 = NoOfPolys;
@@ -3601,7 +3622,7 @@ namespace SBuilderXX
             string FillMaterialListRet = default;
             Color C;
             string a;
-            C = Color.FromArgb(Polys[P].ColorArgb);
+            C = Polys[P].Color;
             FillMaterialListRet = "MaterialList( 0   ";
             a = (C.R / 255d).ToString("0.000") + " ";
             a = a + (C.G / 255d).ToString("0.000") + " ";
@@ -3639,7 +3660,7 @@ namespace SBuilderXX
             if (MakePolyClockWise(P))
             {
                 L = NP + 1;
-                M = VB.Fix(L / 2d);
+                M = (int)(L / 2d);
                 int loopTo1 = M;
                 for (N = 1; N <= loopTo1; N++)
                 {
@@ -3665,8 +3686,8 @@ namespace SBuilderXX
                     a = a + Y.ToString("0000.0000") + " 0.0 1.0 0.0 ";
                 if (Y >= 0d)
                     a = a + Y.ToString(" 0000.0000") + " 0.0 1.0 0.0 ";
-                TX = VB.CSng(LP[N].X * TileX / 256d);
-                TY = VB.CSng(LP[N].Y * TileY / 256d);
+                TX = (float)(LP[N].X * TileX / 256d);
+                TY = (float)(LP[N].Y * TileY / 256d);
                 a = a + TX.ToString("00.000") + " " + TY.ToString("00.000");
                 a = a.Replace(",", ".");
                 a = a + " ; vertex #" + (N - 1).ToString("000");
