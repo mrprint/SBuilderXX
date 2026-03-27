@@ -108,9 +108,9 @@ namespace SBuilderXX
             for (int n = 1; n <= moduleLINES.NoOfLines; n++)
             {
                 var line = new XElement("Line",
-                    new XAttribute("name", moduleLINES.Lines[n].Name),
-                    new XAttribute("type", moduleLINES.Lines[n].Type),
-                    new XAttribute("guid", moduleLINES.Lines[n].Guid),
+                    new XAttribute("name", moduleLINES.Lines[n].Name ?? string.Empty),
+                    new XAttribute("type", moduleLINES.Lines[n].Type ?? string.Empty),
+                    new XAttribute("guid", moduleLINES.Lines[n].Guid ?? string.Empty),
                     new XAttribute("color", ArgbFromColor(moduleLINES.Lines[n].Color))
                 );
                 for (int m = 1; m <= moduleLINES.Lines[n].NoOfPoints; m++)
@@ -133,9 +133,9 @@ namespace SBuilderXX
             for (int n = 1; n <= modulePOLYS.NoOfPolys; n++)
             {
                 var poly = new XElement("Poly",
-                    new XAttribute("name", modulePOLYS.Polys[n].Name),
-                    new XAttribute("type", modulePOLYS.Polys[n].Type),
-                    new XAttribute("guid", modulePOLYS.Polys[n].Guid),
+                    new XAttribute("name", modulePOLYS.Polys[n].Name ?? string.Empty),
+                    new XAttribute("type", modulePOLYS.Polys[n].Type ?? string.Empty),
+                    new XAttribute("guid", modulePOLYS.Polys[n].Guid ?? string.Empty),
                     new XAttribute("color", ArgbFromColor(modulePOLYS.Polys[n].Color))
                 );
                 // child poly references
@@ -248,7 +248,7 @@ namespace SBuilderXX
             {
                 objs.Add(new XElement("Object",
                     new XAttribute("type", moduleOBJECTS.Objects[n].Type),
-                    new XAttribute("description", moduleOBJECTS.Objects[n].Description),
+                    new XAttribute("description", moduleOBJECTS.Objects[n].Description ?? string.Empty),
                     new XAttribute("width", F(moduleOBJECTS.Objects[n].Width)),
                     new XAttribute("length", F(moduleOBJECTS.Objects[n].Length)),
                     new XAttribute("heading", F(moduleOBJECTS.Objects[n].Heading)),
@@ -274,7 +274,7 @@ namespace SBuilderXX
             {
                 lwcis.Add(new XElement("LWCI",
                     new XAttribute("color", ArgbFromColor(moduleCLASSES.LWCIs[n].Color)),
-                    new XAttribute("text", moduleCLASSES.LWCIs[n].Text)
+                    new XAttribute("text", moduleCLASSES.LWCIs[n].Text ?? string.Empty)
                 ));
             }
             return lwcis;
@@ -555,7 +555,7 @@ namespace SBuilderXX
                         moduleOBJECTS.Objects[n].BiasZ = XfAttr(e, "biasZ");
                         moduleOBJECTS.Objects[n].lat = XdAttr(e, "lat");
                         moduleOBJECTS.Objects[n].lon = XdAttr(e, "lon");
-                        moduleOBJECTS.Objects[n].Altitude = XdAttr(e, "altitude");
+                        moduleOBJECTS.Objects[n].Altitude = XdAttr(e, "altitude");  // double — matches struct declaration
                         moduleOBJECTS.Objects[n].AGL = XiAttr(e, "agl");
                         moduleOBJECTS.Objects[n].Complexity = XiAttr(e, "complexity");
                         moduleOBJECTS.AddLatLonToObjects(n);
