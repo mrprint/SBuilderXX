@@ -251,7 +251,7 @@ namespace SBuilderXX
             if (LonDispEast > 180d)
             {
                 DX = LonDispEast - 180d;
-                LonDispEast = LonDispEast - DX;
+                LonDispWest = LonDispWest - DX;
                 LonDispEast = LonDispEast - DX;
                 LonDispCenter = LonDispCenter - DX;
             }
