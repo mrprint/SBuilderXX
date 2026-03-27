@@ -568,7 +568,7 @@ namespace SBuilderXX.Tests
 
             Assert.AreEqual(1, moduleCLASSES.NoOfLWCIs);
             Assert.AreEqual("LAND 11 11 11", moduleCLASSES.LWCIs[1].Text);
-            Assert.AreEqual(Color.Red, moduleCLASSES.LWCIs[1].Color);
+            Assert.AreEqual(Color.Red.ToArgb(), moduleCLASSES.LWCIs[1].Color.ToArgb());
         }
 
 
