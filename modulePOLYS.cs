@@ -340,8 +340,8 @@ namespace SBuilderXX
         {
 
             // this is called upon mouse down when SelectParent is ON.
-            // it uses POPIndex which points to the polygon that we want 
-            // to make a child. In April 2014, if there are also selected polygons 
+            // it uses POPIndex which points to the polygon that we want
+            // to make a child. In April 2014, if there are also selected polygons
             // in Poly mode we will try to make childs of the chosed
             // parent polygon
 
@@ -669,8 +669,8 @@ namespace SBuilderXX
                 int loopTo1 = NP;
                 for (K = 1; K <= loopTo1; K++)
                 {
-                    PTS[K - 1].X = (int)((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                    PTS[K - 1].Y = (int)((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
+                    PTS[K - 1].X = VB.CInt((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                    PTS[K - 1].Y = VB.CInt((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
                 }
 
                 path.Reset();
@@ -688,8 +688,8 @@ namespace SBuilderXX
                         int loopTo3 = NC;
                         for (K = 1; K <= loopTo3; K++)
                         {
-                            PTS[K - 1].X = (int)((Polys[M].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                            PTS[K - 1].Y = (int)((moduleMAIN.LatDispNorth - Polys[M].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
+                            PTS[K - 1].X = VB.CInt((Polys[M].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                            PTS[K - 1].Y = VB.CInt((moduleMAIN.LatDispNorth - Polys[M].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
                         }
 
                         path.AddLines(PTS);
@@ -713,8 +713,8 @@ namespace SBuilderXX
                     int loopTo4 = NP;
                     for (K = 1; K <= loopTo4; K++)
                     {
-                        X = (int)((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                        Y = (int)((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
+                        X = VB.CInt((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                        Y = VB.CInt((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
                         gr.FillRectangle(myBrush, X - P1, Y - P1, P2, P2);
                     }
                 }
@@ -739,8 +739,8 @@ namespace SBuilderXX
                             myBrush.Color = modulePOINTS.UnselectedPointColor;
                             if (Polys[N].GPoints[K].Selected)
                                 myBrush.Color = moduleLINES.SelectedLineColor;
-                            X = (int)((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                            Y = (int)((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
+                            X = VB.CInt((Polys[N].GPoints[K].lon - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                            Y = VB.CInt((moduleMAIN.LatDispNorth - Polys[N].GPoints[K].lat) * moduleMAIN.PixelsPerLatDeg);
                             gr.FillRectangle(myBrush, X - P1, Y - P1, P2, P2);
                         }
                     }
@@ -752,6 +752,7 @@ namespace SBuilderXX
             myBrush.Dispose();
             path.Dispose();
         }
+
 
         internal static void DeletePointInPoly(int PL, int PT)
         {
@@ -2220,7 +2221,7 @@ namespace SBuilderXX
             }
 
             L = NP + 1;
-            M = (int)(L / 2d);
+            M = VB.Fix(L / 2d);
             int loopTo1 = M;
             for (N = 1; N <= loopTo1; N++)
             {
@@ -2362,12 +2363,13 @@ namespace SBuilderXX
             int loopTo2 = NP;
             for (N = 1; N <= loopTo2; N++)
             {
-                K = (int)(x * (Polys[P].GPoints[N].lon - LonMin));
+                K = VB.CInt(x * (Polys[P].GPoints[N].lon - LonMin));
                 PolyTexString = PolyTexString + K.ToString() + ",";
-                K = (int)(y * (Polys[P].GPoints[N].lat - LatMin));
+                K = VB.CInt(y * (Polys[P].GPoints[N].lat - LatMin));
                 PolyTexString = PolyTexString + K.ToString() + "//";
             }
         }
+
 
         internal static void MakeBGLTexLines(bool CopyBGLs)
         {
@@ -2897,14 +2899,14 @@ namespace SBuilderXX
             using (StreamWriter file = new StreamWriter(My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".scm"))
             {
                 A = "Header( 1 ";
-                A = A + ((int)(H_NLat + 1.5d)).ToString() + " ";
-                A = A + ((int)(H_SLat - 0.5d)).ToString() + " ";
-                A = A + ((int)(H_ELon + 1.5d)).ToString() + " ";
-                A = A + ((int)(H_WLon - 0.5d)).ToString() + " )";
+                A = A + VB.Fix(H_NLat + 1.5d).ToString() + " ";
+                A = A + VB.Fix(H_SLat - 0.5d).ToString() + " ";
+                A = A + VB.Fix(H_ELon + 1.5d).ToString() + " ";
+                A = A + VB.Fix(H_WLon - 0.5d).ToString() + " )";
                 file.WriteLine(A);
                 A = "LatRange( ";
-                A = A + ((int)(H_SLat - 0.5d)).ToString() + " ";
-                A = A + ((int)(H_NLat + 1.5d)).ToString() + " )";
+                A = A + VB.Fix(H_SLat - 0.5d).ToString() + " ";
+                A = A + VB.Fix(H_NLat + 1.5d).ToString() + " )";
                 file.WriteLine(A);
                 file.WriteLine();
                 int loopTo = moduleLINES.NoOfLines;
@@ -3391,14 +3393,14 @@ namespace SBuilderXX
             using (StreamWriter file = new StreamWriter(My.MyProject.Application.Info.DirectoryPath + @"\tools\work\" + myFile + ".scm"))
             {
                 a = "Header( 1 ";
-                a = a + (int)(H_NLat + 1.5d) + " ";
-                a = a + (int)(H_SLat - 0.5d) + " ";
-                a = a + (int)(H_ELon + 1.5d) + " ";
-                a = a + (int)(H_WLon - 0.5d) + " )";
+                a = a + VB.Fix(H_NLat + 1.5d).ToString() + " ";
+                a = a + VB.Fix(H_SLat - 0.5d).ToString() + " ";
+                a = a + VB.Fix(H_ELon + 1.5d).ToString() + " ";
+                a = a + VB.Fix(H_WLon - 0.5d).ToString() + " )";
                 file.WriteLine(a);
                 a = "LatRange( ";
-                a = a + (int)(H_SLat - 0.5d) + " ";
-                a = a + (int)(H_NLat + 1.5d) + " )";
+                a = a + VB.Fix(H_SLat - 0.5d).ToString() + " ";
+                a = a + VB.Fix(H_NLat + 1.5d).ToString() + " )";
                 file.WriteLine(a);
                 file.WriteLine();
                 int loopTo1 = NoOfPolys;
@@ -3642,7 +3644,7 @@ namespace SBuilderXX
             if (MakePolyClockWise(P))
             {
                 L = NP + 1;
-                M = (int)(L / 2d);
+                M = VB.Fix(L / 2d);
                 int loopTo1 = M;
                 for (N = 1; N <= loopTo1; N++)
                 {
@@ -3668,8 +3670,8 @@ namespace SBuilderXX
                     a = a + Y.ToString("0000.0000") + " 0.0 1.0 0.0 ";
                 if (Y >= 0d)
                     a = a + Y.ToString(" 0000.0000") + " 0.0 1.0 0.0 ";
-                TX = (float)(LP[N].X * TileX / 256d);
-                TY = (float)(LP[N].Y * TileY / 256d);
+                TX = VB.CSng(LP[N].X * TileX / 256d);
+                TY = VB.CSng(LP[N].Y * TileY / 256d);
                 a = a + TX.ToString("00.000") + " " + TY.ToString("00.000");
                 a = a.Replace(",", ".");
                 a = a + " ; vertex #" + (N - 1).ToString("000");

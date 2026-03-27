@@ -63,8 +63,8 @@ namespace SBuilderXX
                 b = a.Substring(0, K);
                 a = a.Substring(K + 2);
                 K = b.IndexOf(",");
-                Pts[N].X = 2 * Convert.ToInt32(b.Substring(0, K));
-                Pts[N].Y = 512 - 2 * Convert.ToInt32(b.Substring(K + 1));
+                Pts[N].X = 2 * VB.CInt(b.Substring(0, K));
+                Pts[N].Y = 512 - 2 * VB.CInt(b.Substring(K + 1));
             }
         }
 
@@ -76,7 +76,7 @@ namespace SBuilderXX
         private void DoDD()
         {
             int N;
-            N = Convert.ToInt32(txtPY.Text);
+            N = VB.CInt(txtPY.Text);
             N = N - 1;
             if (N < 0)
                 N = 0;
@@ -101,7 +101,7 @@ namespace SBuilderXX
         private void DoLL()
         {
             int N;
-            N = Convert.ToInt32(txtPX.Text);
+            N = VB.CInt(txtPX.Text);
             N = N - 1;
             if (N < 0)
                 N = 0;
@@ -148,7 +148,7 @@ namespace SBuilderXX
         private void DoRR()
         {
             int N;
-            N = Convert.ToInt32(txtPX.Text);
+            N = VB.CInt(txtPX.Text);
             N = N + 1;
             if (N > 256)
                 N = 256;
@@ -160,7 +160,7 @@ namespace SBuilderXX
         private void DoUU()
         {
             int N;
-            N = Convert.ToInt32(txtPY.Text);
+            N = VB.CInt(txtPY.Text);
             N = N + 1;
             if (N > 256)
                 N = 256;
@@ -301,30 +301,22 @@ namespace SBuilderXX
 
         private int T2PX(int T)
         {
-            int T2PXRet = default;
-            T2PXRet = 2 * T;
-            return T2PXRet;
+            return 2 * T;
         }
 
         private int T2PY(int T)
         {
-            int T2PYRet = default;
-            T2PYRet = 512 - 2 * T;
-            return T2PYRet;
+            return 512 - 2 * T;
         }
 
         private int Pt2X(int PT)
         {
-            int Pt2XRet = default;
-            Pt2XRet = (int)(Pts[PT].X / 2d);
-            return Pt2XRet;
+            return VB.CInt(Pts[PT].X / 2d);
         }
 
         private int Pt2Y(int PT)
         {
-            int Pt2YRet = default;
-            Pt2YRet = (int)(512d - Pts[PT].Y / 2d);
-            return Pt2YRet;
+            return VB.CInt(512 - Pts[PT].Y / 2d);
         }
 
         private void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -342,7 +334,7 @@ namespace SBuilderXX
                 DoLL();
             if (MoveDir == 4)
                 DoUU();
-            Timer1.Interval = N;
+            Timer1.Interval = VB.CInt(N);
         }
 
         private void FrmTexPoly_Paint(object sender, PaintEventArgs e)
@@ -419,7 +411,7 @@ namespace SBuilderXX
 
             try
             {
-                N = Convert.ToInt32(txtPX.Text);
+                N = VB.CInt(txtPX.Text);
                 if (N > 256)
                     N = 256;
                 if (N < 0)
@@ -445,7 +437,7 @@ namespace SBuilderXX
 
             try
             {
-                N = Convert.ToInt32(txtPY.Text);
+                N = VB.CInt(txtPY.Text);
                 if (N > 256)
                     N = 256;
                 if (N < 0)

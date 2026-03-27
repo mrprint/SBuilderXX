@@ -76,7 +76,7 @@ namespace SBuilderXX
                 R = new string(reader.ReadChars(4));
                 if (R != "MDLH")
                     return ReadRet;
-                N = (int)reader.ReadUInt32();
+                N = VB.CInt(reader.ReadUInt32());
                 reader.ReadBytes(N);
                 do
                 {
@@ -91,14 +91,14 @@ namespace SBuilderXX
                     }
                     else if (R == "MDLN") // only happens in FSX
                     {
-                        N = (int)reader.ReadUInt32();
+                        N = VB.CInt(reader.ReadUInt32());
                         NameValue = new string(reader.ReadChars(N));
                         NameValue = NameValue.Substring(0, N - 1);
                         NameOK = true;
                     }
                     else if (R == "BBOX")
                     {
-                        N = (int)reader.ReadUInt32();
+                        N = VB.CInt(reader.ReadUInt32());
                         BBoxValue.Xmin = reader.ReadSingle();
                         BBoxValue.Ymin = reader.ReadSingle();
                         BBoxValue.Zmin = reader.ReadSingle();
@@ -112,7 +112,7 @@ namespace SBuilderXX
                     }
                     else
                     {
-                        N = (int)reader.ReadUInt32();
+                        N = VB.CInt(reader.ReadUInt32());
                         reader.ReadBytes(N);
                     }
 

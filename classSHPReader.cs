@@ -89,7 +89,7 @@ namespace SBuilderXX
                 string shxfile = Path.ChangeExtension(filename, ".shx");
                 shxbuffer = My.MyProject.Computer.FileSystem.ReadAllBytes(shxfile);
                 N = shxbuffer.Length - 100;    // total number of bytes - the 100 from the header
-                _recordCount = (int)(N / 8d);
+                _recordCount = VB.CInt(N / 8d);
                 RecInd = new int[_recordCount + 1];
                 int loopTo = _recordCount;
                 for (N = 1; N <= loopTo; N++)
@@ -135,7 +135,7 @@ namespace SBuilderXX
                 string shxfile = Path.ChangeExtension(filename, ".shx");
                 shxbuffer = My.MyProject.Computer.FileSystem.ReadAllBytes(shxfile);
                 N = shxbuffer.Length - 100;    // total number of bytes - the 100 from the header
-                _recordCount = (int)(N / 8d);
+                _recordCount = VB.CInt(N / 8d);
                 RecInd = new int[_recordCount + 1];
                 int loopTo = _recordCount;
                 for (N = 1; N <= loopTo; N++)

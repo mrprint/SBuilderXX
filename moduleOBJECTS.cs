@@ -832,7 +832,7 @@ namespace SBuilderXX
             int N;
             try
             {
-                BGLStr2LatRet = Convert.ToDouble(S);
+                BGLStr2LatRet = VB.CSng(S);
             }
             catch (FormatException)
             {
@@ -840,16 +840,14 @@ namespace SBuilderXX
                 if (A == "N")
                 {
                     N = S.IndexOf(" ");
-                    // Debug.Print(S.Substring(1, N - 2))
-                    // Debug.Print(S.Substring(N))
-                    BGLStr2LatRet = Convert.ToDouble(S.Substring(1, N - 1));
-                    BGLStr2LatRet = BGLStr2LatRet + Convert.ToDouble(S.Substring(N)) / 60d;
+                    BGLStr2LatRet = VB.CSng(S.Substring(1, N - 1));
+                    BGLStr2LatRet = BGLStr2LatRet + VB.CSng(S.Substring(N)) / 60d;
                 }
                 else if (A == "S")
                 {
                     N = S.IndexOf(" ");
-                    BGLStr2LatRet = Convert.ToDouble(S.Substring(1, N - 1));
-                    BGLStr2LatRet = -BGLStr2LatRet - Convert.ToDouble(S.Substring(N)) / 60d;
+                    BGLStr2LatRet = VB.CSng(S.Substring(1, N - 1));
+                    BGLStr2LatRet = -BGLStr2LatRet - VB.CSng(S.Substring(N)) / 60d;
                 }
             }
 
@@ -863,7 +861,7 @@ namespace SBuilderXX
             int N;
             try
             {
-                BGLStr2LonRet = Convert.ToDouble(S);
+                BGLStr2LonRet = VB.CSng(S);
             }
             catch (FormatException)
             {
@@ -871,16 +869,14 @@ namespace SBuilderXX
                 if (A == "E")
                 {
                     N = S.IndexOf(" ");
-                    // Debug.Print(S.Substring(1, N - 2))
-                    // Debug.Print(S.Substring(N))
-                    BGLStr2LonRet = Convert.ToDouble(S.Substring(1, N - 1));
-                    BGLStr2LonRet = BGLStr2LonRet + Convert.ToDouble(S.Substring(N)) / 60d;
+                    BGLStr2LonRet = VB.CSng(S.Substring(1, N - 1));
+                    BGLStr2LonRet = BGLStr2LonRet + VB.CSng(S.Substring(N)) / 60d;
                 }
                 else if (A == "W")
                 {
                     N = S.IndexOf(" ");
-                    BGLStr2LonRet = Convert.ToDouble(S.Substring(1, N - 2));
-                    BGLStr2LonRet = -BGLStr2LonRet - Convert.ToDouble(S.Substring(N)) / 60d;
+                    BGLStr2LonRet = -VB.CSng(S.Substring(1, N - 1));
+                    BGLStr2LonRet = BGLStr2LonRet - VB.CSng(S.Substring(N)) / 60d;
                 }
             }
 
@@ -892,7 +888,7 @@ namespace SBuilderXX
             double BGLStr2AltRet = default;
             int N = S.Length;
             S = S.Substring(0, N - 1);
-            BGLStr2AltRet = Convert.ToDouble(S);
+            BGLStr2AltRet = VB.CSng(S);
             return BGLStr2AltRet;
         }
 
@@ -1372,16 +1368,16 @@ namespace SBuilderXX
                     {
                         if (line.Substring(0, 1) == "2")
                         {
-                            GenBObjects[K].type = Convert.ToInt32(line.Substring(0, 3));
+                            GenBObjects[K].type = VB.CInt(line.Substring(0, 3));
                             N1 = 3;
                             N2 = line.IndexOf(" ", N1 + 1);
-                            GenBObjects[K].sizeX = Convert.ToSingle(line.Substring(N1 + 1, N2 - N1 - 1));
+                            GenBObjects[K].sizeX = VB.CSng(line.Substring(N1 + 1, N2 - N1 - 1));
                             N1 = N2;
                             N2 = line.IndexOf(" ", N1 + 1);
-                            GenBObjects[K].sizeZ = Convert.ToSingle(line.Substring(N1 + 1, N2 - N1 - 1));
+                            GenBObjects[K].sizeZ = VB.CSng(line.Substring(N1 + 1, N2 - N1 - 1));
                             N1 = N2;
                             N2 = line.IndexOf(" ", N1 + 1);
-                            GenBObjects[K].scale = Convert.ToSingle(line.Substring(N1 + 1, N2 - N1 - 1));
+                            GenBObjects[K].scale = VB.CSng(line.Substring(N1 + 1, N2 - N1 - 1));
                             N1 = N2;
                             N2 = line.IndexOf(" ", N1 + 1);
                             GenBObjects[K].textures = line.Substring(N1 + 1, N2 - N1 - 1);
@@ -1505,16 +1501,16 @@ namespace SBuilderXX
                             myLibObj.ID = a.Substring(M1, M2 - M1);
                             M1 = M2 + 1;
                             M2 = a.IndexOf(" ", M1);
-                            myLibObj.Type = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                            myLibObj.Type = VB.CInt(a.Substring(M1, M2 - M1));
                             M1 = M2 + 1;
                             M2 = a.IndexOf(" ", M1);
-                            myLibObj.Width = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                            myLibObj.Width = VB.CSng(a.Substring(M1, M2 - M1));
                             M1 = M2 + 1;
                             M2 = a.IndexOf(" ", M1);
-                            myLibObj.Length = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                            myLibObj.Length = VB.CSng(a.Substring(M1, M2 - M1));
                             M1 = M2 + 1;
                             M2 = a.IndexOf(" ", M1);
-                            myLibObj.Scaling = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                            myLibObj.Scaling = VB.CSng(a.Substring(M1, M2 - M1));
                             M1 = M2 + 1;
                             myLibObj.Name = a.Substring(M1);
                             LibCategories[J].Objs.Add(myLibObj);
@@ -1584,24 +1580,24 @@ namespace SBuilderXX
                     b = (M < 10) ? "" : a.Substring(0, 10);
                     if (b == "<obj name=")
                     {
-                        Rwy12Categories[NoOfRwy12Categories].NOB = K;
+                        Rwy12Categories[NoOfRwy12Categories].NOB = VB.CInt(K);
                         Array.Resize(ref Rwy12Categories[NoOfRwy12Categories].Rwy12Objects, K + 1);
                         L = a.IndexOf("\"", 11);
                         Rwy12Categories[NoOfRwy12Categories].Rwy12Objects[K].Name = a.Substring(11, L - 11);
-                        K = K + 1;
+                        K = VB.CInt(K) + 1;
                     }
 
                     b = (M < 5) ? "" : a.Substring(0, 5);
                     if (b == "guid=")
                     {
-                        Rwy12Categories[NoOfRwy12Categories].Rwy12Objects[K - 1].ID = a.Substring(6, 32);
+                        Rwy12Categories[NoOfRwy12Categories].Rwy12Objects[VB.CInt(K - 1)].ID = a.Substring(6, 32);
                     }
 
                     b = (M < 6) ? "" : a.Substring(0, 6);
                     if (b == "image=")
                     {
                         L = a.IndexOf("\"", 7);
-                        Rwy12Categories[NoOfRwy12Categories].Rwy12Objects[K - 1].Texture = a.Substring(7, L - 7);
+                        Rwy12Categories[NoOfRwy12Categories].Rwy12Objects[VB.CInt(K - 1)].Texture = a.Substring(7, L - 7);
                     }
                 }
             }
@@ -3305,58 +3301,58 @@ namespace SBuilderXX
             a = Objects[N].Description;
             M1 = 0;
             M2 = a.IndexOf("|", M1);
-            scale_gb = Convert.ToSingle(a.Substring(M1, M2 - M1));
+            scale_gb = VB.CSng(a.Substring(M1, M2 - M1));
             M1 = M2 + 1;
             M2 = a.IndexOf("|", M1);
-            bottomTexture = Convert.ToInt32(a.Substring(M1, M2 - M1));
+            bottomTexture = VB.CInt(a.Substring(M1, M2 - M1));
             M1 = M2 + 1;
             M2 = a.IndexOf("|", M1);
-            roofTexture = Convert.ToInt32(a.Substring(M1, M2 - M1));
+            roofTexture = VB.CInt(a.Substring(M1, M2 - M1));
             M1 = M2 + 1;
             M2 = a.IndexOf("|", M1);
-            topTexture = Convert.ToInt32(a.Substring(M1, M2 - M1));
+            topTexture = VB.CInt(a.Substring(M1, M2 - M1));
             M1 = M2 + 1;
             M2 = a.IndexOf("|", M1);
-            windowTexture = Convert.ToInt32(a.Substring(M1, M2 - M1));
+            windowTexture = VB.CInt(a.Substring(M1, M2 - M1));
             if (Objects[N].Type == 256 | Objects[N].Type == 257 | Objects[N].Type == 258 | Objects[N].Type == 259)
             // Rect flat
             {
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeBottomY = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeBottomY = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexBottomX = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexBottomX = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexBottomZ = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexBottomZ = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeWindowY = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeWindowY = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexWindowX = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexWindowX = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexWindowY = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexWindowY = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexWindowZ = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexWindowZ = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeTopY = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeTopY = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexTopX = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexTopX = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexTopZ = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexTopZ = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexRoofX = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexRoofX = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexRoofZ = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexRoofZ = VB.CInt(a.Substring(M1, M2 - M1));
             }
 
             if (Objects[N].Type == 256)  // Rect flat
@@ -3368,10 +3364,10 @@ namespace SBuilderXX
             {
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeRoofY = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeRoofY = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexRoofY = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexRoofY = VB.CInt(a.Substring(M1, M2 - M1));
                 ObjComment = a.Substring(M2 + 1);
             }
 
@@ -3379,16 +3375,16 @@ namespace SBuilderXX
             {
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeRoofY = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeRoofY = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                gableTexture = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                gableTexture = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexGableY = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexGableY = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexGableZ = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexGableZ = VB.CInt(a.Substring(M1, M2 - M1));
                 ObjComment = a.Substring(M2 + 1);
             }
 
@@ -3396,25 +3392,25 @@ namespace SBuilderXX
             {
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeRoofY = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeRoofY = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                gableTexture = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                gableTexture = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexGableY = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexGableY = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexGableZ = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexGableZ = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                faceTexture = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                faceTexture = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexFaceX = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexFaceX = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexFaceY = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexFaceY = VB.CInt(a.Substring(M1, M2 - M1));
                 ObjComment = a.Substring(M2 + 1);
             }
 
@@ -3422,46 +3418,46 @@ namespace SBuilderXX
             {
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeTopX = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeTopX = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeTopZ = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeTopZ = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeBottomY = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeBottomY = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexBottomX = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexBottomX = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexBottomZ = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexBottomZ = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeWindowY = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeWindowY = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexWindowX = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexWindowX = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexWindowY = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexWindowY = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexWindowZ = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexWindowZ = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeTopY = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeTopY = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexTopX = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexTopX = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexTopZ = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexTopZ = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexRoofX = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexRoofX = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexRoofZ = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexRoofZ = VB.CInt(a.Substring(M1, M2 - M1));
                 ObjComment = a.Substring(M2 + 1);
             }
 
@@ -3469,43 +3465,43 @@ namespace SBuilderXX
             {
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                buildingSides = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                buildingSides = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
                 smoothing = Convert.ToBoolean(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeBottomY = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeBottomY = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1); ;
-                textureIndexBottomX = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexBottomX = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeWindowY = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeWindowY = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexWindowX = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexWindowX = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexWindowY = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexWindowY = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeTopY = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeTopY = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexTopX = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexTopX = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                sizeRoofY = Convert.ToSingle(a.Substring(M1, M2 - M1));
+                sizeRoofY = VB.CSng(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexRoofX = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexRoofX = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexRoofY = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexRoofY = VB.CInt(a.Substring(M1, M2 - M1));
                 M1 = M2 + 1;
                 M2 = a.IndexOf("|", M1);
-                textureIndexRoofZ = Convert.ToInt32(a.Substring(M1, M2 - M1));
+                textureIndexRoofZ = VB.CInt(a.Substring(M1, M2 - M1));
                 ObjComment = a.Substring(M2 + 1);
             }
         }
