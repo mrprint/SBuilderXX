@@ -87,7 +87,7 @@ namespace SBuilderXX
                     IsLine = false;
                 }
 
-                // ShpPolyLineZ
+                // ShpPolyLineZ 
                 if (shpType == 13)    // line with Z
                 {
                     IsValid = true;
@@ -665,7 +665,7 @@ namespace SBuilderXX
                     A = DBF.Attribute(N, ShapePolyColorField - 1);
                     if (!string.IsNullOrEmpty(A))  // '''
                     {
-                        myColors[N] = Color.FromArgb(VB.CInt(A));
+                        myColors[N] = Color.FromArgb(Convert.ToInt32(A));
                     }
                     else
                     {
@@ -762,7 +762,7 @@ namespace SBuilderXX
                                 modulePOLYS.Polys[K].Childs[I] = K + I;
                             // N1 = 1
                             // N2 = P(1) - 2
-                            // to correct the triangle anomalities
+                            // to correct the triangle anomalities 
                             N1 = 1;
                             N2 = P[1] - 1;
                             JK = K;
@@ -773,7 +773,7 @@ namespace SBuilderXX
                             modulePOLYS.Polys[K].NoOfChilds = -JK;
                             // N1 = P(J - 1)
                             // N2 = NV - 1
-                            // to correct the triangle anomalities
+                            // to correct the triangle anomalities 
                             N1 = P[J - 1] + 1;
                             N2 = NV - 1;
                         }
@@ -783,7 +783,7 @@ namespace SBuilderXX
                             modulePOLYS.Polys[K].NoOfChilds = -JK;
                             // N1 = P(J - 1)
                             // N2 = P(J) - 2
-                            // to correct the triangle anomalities
+                            // to correct the triangle anomalities 
                             N1 = P[J - 1] + 1;
                             N2 = P[J] - 1;
                         }
@@ -1029,10 +1029,10 @@ namespace SBuilderXX
                     {
                         if (type == "ALL" | (type ?? "") == ((modulePOLYS.Polys[N].Type.Length >= 3) ? modulePOLYS.Polys[N].Type.Substring(0, 3) : ""))
                         {
-                            // new record
+                            // new record 
                             REC = REC + 1;
                             ptrBegin = (int)fs.Position;
-                            RecOffset[REC] = VB.CInt(ptrBegin / 2);
+                            RecOffset[REC] = (int)(ptrBegin / 2d);
                             nParts = modulePOLYS.Polys[N].NoOfChilds + 1;   // the childs plus the parent
                             P = new int[nParts + 1];
                             P[1] = 0;     // always zero!
@@ -1153,7 +1153,7 @@ namespace SBuilderXX
                             bw.Seek((nPoints + 1) * 8, SeekOrigin.Current);     // advance Mmin Mmax and nPoints M points
                             bw.Write(0d);    // go back 8 and write a double = O to terminate
                             ptrEnd = (int)fs.Position;
-                            recLen = VB.CInt((ptrEnd - ptrBegin) / 2);    // get the record lenght
+                            recLen = (int)((ptrEnd - ptrBegin) / 2d);    // get the record lenght
                             recLen = recLen - 4; // contents lenght of record is less by 8 bytes
                             RecLenght[REC] = recLen;
                             // go back and fill the record header
@@ -1167,7 +1167,7 @@ namespace SBuilderXX
                             bw.Write(Ymax);
                             bw.Write(nParts);
                             bw.Write(nPoints);    // total number of points
-                            bw.Write(P[1]);       // the index for the first point of the first part
+                            bw.Write(P[1]);       // the index for the first point of the first part 
                             int loopTo8 = nParts;
                             for (M = 2; M <= loopTo8; M++)
                                 bw.Write(P[M]);   // the index for the first point of part M
@@ -1181,7 +1181,8 @@ namespace SBuilderXX
                     }
                 }
 
-                recLen = VB.CInt(fs.Length / 2);    // recLen is free
+                recLen = (int)fs.Length;    // recLen is free
+                recLen = (int)(recLen / 2d);
                 // now complete  header
                 bw.Seek(24, SeekOrigin.Begin);
                 bw.Write(BigEndian(recLen));
@@ -1242,7 +1243,7 @@ namespace SBuilderXX
         {
             bool CreateShpAndShxFilesFromLinesRet = default;
 
-            // type can be ALL for exporting shape files or
+            // type can be ALL for exporting shape files or 
             // STX FWX RDX HLX RRX UTX for shp2vec
 
             CreateShpAndShxFilesFromLinesRet = false;
@@ -1295,14 +1296,14 @@ namespace SBuilderXX
                 {
                     if (type == "ALL" | (type ?? "") == ((moduleLINES.Lines[N].Type.Length >= 3) ? moduleLINES.Lines[N].Type.Substring(0, 3) : ""))
                     {
-                        // new record
+                        // new record 
                         REC = REC + 1;
                         ptrBegin = (int)fs.Position;
-                        RecOffset[REC] = VB.CInt(ptrBegin / 2);
+                        RecOffset[REC] = (int)(ptrBegin / 2d);
                         nPoints = moduleLINES.Lines[N].NoOfPoints;
                         // advance 4 + 4 + 4 + 4 x 8 = 44 ( recNum recLen ShapeType and box )
-                        // plus 4 + 4 (nParts nPoints) + 4  for P(1) ; P(1)=0
-                        // total = 52 + 4
+                        // plus 4 + 4 (nParts nPoints) + 4  for P(1) ; P(1)=0 
+                        // total = 52 + 4 
                         bw.Seek(56, SeekOrigin.Current);
                         // the XXXXXXXXXXXXXXXX and YYYYYYYYYYYYYYYYYYYY
                         Xmin = 180d;
@@ -1356,7 +1357,7 @@ namespace SBuilderXX
                         bw.Seek((nPoints + 1) * 8, SeekOrigin.Current);     // advance Mmin Mmax and nPoints M points
                         bw.Write(0d);    // go back 8 and write a double = O to terminate
                         ptrEnd = (int)fs.Position;
-                        recLen = VB.CInt((ptrEnd - ptrBegin) / 2);    // get the record lenght
+                        recLen = (int)((ptrEnd - ptrBegin) / 2d);    // get the record lenght
                         recLen = recLen - 4; // contents lenght of record is less by 8 bytes
                         RecLenght[REC] = recLen;
                         // go back and fill the record header
@@ -1380,7 +1381,8 @@ namespace SBuilderXX
                     }
                 }
 
-                recLen = VB.CInt(fs.Length / 2);    // recLen is free
+                recLen = (int)fs.Length;    // recLen is free
+                recLen = (int)(recLen / 2d);
                 // now complete  header
                 bw.Seek(24, SeekOrigin.Begin);
                 bw.Write(BigEndian(recLen));

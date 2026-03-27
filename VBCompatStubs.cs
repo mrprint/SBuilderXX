@@ -165,37 +165,3 @@ namespace SBuilderXX.My
         public Microsoft.Win32.RegistryKey CurrentConfig => Microsoft.Win32.Registry.CurrentConfig;
     }
 }
-
-namespace SBuilderXX
-{
-    static class VB
-    {
-        public static int CInt(double x)
-        {
-            return (int)Math.Round(x, MidpointRounding.ToEven);
-        }
-
-        public static int CInt(string s)
-        {
-            return (int)Math.Round(Convert.ToDouble(s), MidpointRounding.ToEven);
-        }
-
-        public static float CSng(double x)
-        {
-            return (float)Math.Round(x, MidpointRounding.ToEven);
-        }
-
-        public static float CSng(string s)
-        {
-            return (float)Math.Round(Convert.ToDouble(s), MidpointRounding.ToEven);
-        }
-
-        public static int Fix(double x)
-        {
-            if (x >= 0)
-                return (int)Math.Floor(x);
-            else
-                return (int)Math.Ceiling(x);
-        }
-    }
-}

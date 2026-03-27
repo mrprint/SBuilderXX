@@ -165,7 +165,7 @@ namespace SBuilderXX
             double dXY;
             dXY = moduleMAIN.PI / Math.Pow(2d, Z);
             lon = moduleMAIN.PI + lon * pi_180;
-            XTilesFromLonRet = VB.Fix(lon / dXY);
+            XTilesFromLonRet = (int)(lon / dXY);
             return XTilesFromLonRet;
         }
 
@@ -179,7 +179,7 @@ namespace SBuilderXX
             lat = Math.Tan(lat);
             lat = Math.Log(lat);
             lat = moduleMAIN.PI - lat;
-            YTilesFromLatRet = VB.Fix(lat / dXY);
+            YTilesFromLatRet = (int)(lat / dXY);
             return YTilesFromLatRet;
         }
 
@@ -431,33 +431,33 @@ namespace SBuilderXX
                 {
                     MapPixelsPerDegree = MapBackground.COLS / (MapBackground.ELON - MapBackground.WLON);
                     source.X = 0f;
-                    source.Width = VB.CSng((moduleMAIN.LonDispEast - MapBackground.WLON) * MapPixelsPerDegree);
-                    screen.X = VB.Fix((MapBackground.WLON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                    source.Width = (float)((moduleMAIN.LonDispEast - MapBackground.WLON) * MapPixelsPerDegree);
+                    screen.X = (int)((MapBackground.WLON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
                     screen.Width = moduleMAIN.DisplayWidth - screen.X;
                 }
                 else
                 {
                     source.X = 0f;
                     source.Width = MapBackground.COLS;
-                    screen.X = VB.Fix((MapBackground.WLON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                    screen.Width = VB.Fix((MapBackground.ELON - MapBackground.WLON) * moduleMAIN.PixelsPerLonDeg);
+                    screen.X = (int)((MapBackground.WLON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                    screen.Width = (int)((MapBackground.ELON - MapBackground.WLON) * moduleMAIN.PixelsPerLonDeg);
                 }
             }
             else if (MapBackground.ELON > moduleMAIN.LonDispEast)
             {
                 MapPixelsPerDegree = MapBackground.COLS / (MapBackground.ELON - MapBackground.WLON);
-                source.X = VB.CSng((moduleMAIN.LonDispWest - MapBackground.WLON) * MapPixelsPerDegree);
-                source.Width = VB.CSng((moduleMAIN.LonDispEast - moduleMAIN.LonDispWest) * MapPixelsPerDegree);
+                source.X = (float)((moduleMAIN.LonDispWest - MapBackground.WLON) * MapPixelsPerDegree);
+                source.Width = (float)((moduleMAIN.LonDispEast - moduleMAIN.LonDispWest) * MapPixelsPerDegree);
                 screen.X = 0;
                 screen.Width = moduleMAIN.DisplayWidth;
             }
             else
             {
                 MapPixelsPerDegree = MapBackground.COLS / (MapBackground.ELON - MapBackground.WLON);
-                source.X = VB.CSng((moduleMAIN.LonDispWest - MapBackground.WLON) * MapPixelsPerDegree);
-                source.Width = VB.CSng((MapBackground.ELON - moduleMAIN.LonDispWest) * MapPixelsPerDegree);
+                source.X = (float)((moduleMAIN.LonDispWest - MapBackground.WLON) * MapPixelsPerDegree);
+                source.Width = (float)((MapBackground.ELON - moduleMAIN.LonDispWest) * MapPixelsPerDegree);
                 screen.X = 0;
-                screen.Width = VB.Fix((MapBackground.ELON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                screen.Width = (int)((MapBackground.ELON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
             }
 
             if (MapBackground.SLAT > moduleMAIN.LatDispSouth)
@@ -465,24 +465,24 @@ namespace SBuilderXX
                 if (MapBackground.NLAT > moduleMAIN.LatDispNorth)
                 {
                     MapPixelsPerDegree = MapBackground.ROWS / (MapBackground.NLAT - MapBackground.SLAT);
-                    source.Y = VB.CSng((MapBackground.NLAT - moduleMAIN.LatDispNorth) * MapPixelsPerDegree);
-                    source.Height = VB.CSng((moduleMAIN.LatDispNorth - MapBackground.SLAT) * MapPixelsPerDegree);
+                    source.Y = (float)((MapBackground.NLAT - moduleMAIN.LatDispNorth) * MapPixelsPerDegree);
+                    source.Height = (float)((moduleMAIN.LatDispNorth - MapBackground.SLAT) * MapPixelsPerDegree);
                     screen.Y = 0;
-                    screen.Height = VB.Fix((moduleMAIN.LatDispNorth - MapBackground.SLAT) * moduleMAIN.PixelsPerLatDeg);
+                    screen.Height = (int)((moduleMAIN.LatDispNorth - MapBackground.SLAT) * moduleMAIN.PixelsPerLatDeg);
                 }
                 else
                 {
                     source.Y = 0f;
                     source.Height = MapBackground.ROWS;
-                    screen.Y = VB.Fix((moduleMAIN.LatDispNorth - MapBackground.NLAT) * moduleMAIN.PixelsPerLatDeg);
-                    screen.Height = VB.Fix((MapBackground.NLAT - MapBackground.SLAT) * moduleMAIN.PixelsPerLatDeg);
+                    screen.Y = (int)((moduleMAIN.LatDispNorth - MapBackground.NLAT) * moduleMAIN.PixelsPerLatDeg);
+                    screen.Height = (int)((MapBackground.NLAT - MapBackground.SLAT) * moduleMAIN.PixelsPerLatDeg);
                 }
             }
             else if (MapBackground.NLAT > moduleMAIN.LatDispNorth)
             {
                 MapPixelsPerDegree = MapBackground.ROWS / (MapBackground.NLAT - MapBackground.SLAT);
-                source.Y = VB.Fix((MapBackground.NLAT - moduleMAIN.LatDispNorth) * MapPixelsPerDegree);
-                source.Height = VB.Fix((moduleMAIN.LatDispNorth - moduleMAIN.LatDispSouth) * MapPixelsPerDegree);
+                source.Y = (int)((MapBackground.NLAT - moduleMAIN.LatDispNorth) * MapPixelsPerDegree);
+                source.Height = (int)((moduleMAIN.LatDispNorth - moduleMAIN.LatDispSouth) * MapPixelsPerDegree);
                 screen.Y = 0;
                 screen.Height = moduleMAIN.DisplayHeight;
             }
@@ -490,9 +490,9 @@ namespace SBuilderXX
             {
                 MapPixelsPerDegree = MapBackground.ROWS / (MapBackground.NLAT - MapBackground.SLAT);
                 source.Y = 0f;
-                source.Height = VB.Fix((MapBackground.NLAT - moduleMAIN.LatDispSouth) * MapPixelsPerDegree);
-                screen.Y = VB.Fix((moduleMAIN.LatDispNorth - MapBackground.NLAT) * moduleMAIN.PixelsPerLatDeg);
-                screen.Height = VB.Fix((MapBackground.NLAT - moduleMAIN.LatDispSouth) * moduleMAIN.PixelsPerLatDeg);
+                source.Height = (int)((MapBackground.NLAT - moduleMAIN.LatDispSouth) * MapPixelsPerDegree);
+                screen.Y = (int)((moduleMAIN.LatDispNorth - MapBackground.NLAT) * moduleMAIN.PixelsPerLatDeg);
+                screen.Height = (int)((MapBackground.NLAT - moduleMAIN.LatDispSouth) * moduleMAIN.PixelsPerLatDeg);
             }
 
             if (moduleMAIN.Zoom > GlobeOrTiles)

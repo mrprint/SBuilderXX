@@ -517,21 +517,21 @@ namespace SBuilderXX
                 case 2:
                     {
                         A = "1000 km";
-                        X = VB.CInt(1000000d * moduleMAIN.PixelsPerMeter);
+                        X = (int)(1000000d * moduleMAIN.PixelsPerMeter);
                         break;
                     }
 
                 case 1:
                     {
                         A = "2000 km";
-                        X = VB.CInt(2000000d * moduleMAIN.PixelsPerMeter);
+                        X = (int)(2000000d * moduleMAIN.PixelsPerMeter);
                         break;
                     }
 
                 case 0:
                     {
                         A = "4000 km";
-                        X = VB.CInt(4000000d * moduleMAIN.PixelsPerMeter);
+                        X = (int)(4000000d * moduleMAIN.PixelsPerMeter);
                         break;
                     }
             }
@@ -590,10 +590,10 @@ namespace SBuilderXX
                 return;
             }
 
-            LA1 = VB.CInt(LatSouth / LatDelta + 1d);
-            LA2 = VB.CInt(LatNorth / LatDelta);
-            LO1 = VB.CInt(LonWest / LonDelta + 1d);
-            LO2 = VB.CInt(LonEast / LonDelta);
+            LA1 = (int)(Convert.ToInt32(LatSouth / LatDelta) + 1d);
+            LA2 = Convert.ToInt32(LatNorth / LatDelta);
+            LO1 = (int)(Convert.ToInt32(LonWest / LonDelta) + 1d);
+            LO2 = Convert.ToInt32(LonEast / LonDelta);
             LatDelta = (LA1 * LatDelta - moduleMAIN.LatDispSouth) * moduleMAIN.PixelsPerLatDeg;
             if (G == 0)
             {
@@ -613,7 +613,7 @@ namespace SBuilderXX
             int loopTo = LA2;
             for (LA = LA1; LA <= loopTo; LA++)
             {
-                PY = VB.CInt(moduleMAIN.DisplayHeight - LatDelta);
+                PY = moduleMAIN.DisplayHeight - (int)LatDelta;
                 gr.DrawLine(p, X1, PY, X2, PY);
                 LatDelta = LatDelta + LatDeltaPix;
             }
@@ -621,7 +621,7 @@ namespace SBuilderXX
             int loopTo1 = LO2;
             for (LO = LO1; LO <= loopTo1; LO++)
             {
-                PX = VB.CInt(LonDelta);
+                PX = (int)LonDelta;
                 gr.DrawLine(p, PX, Y1, PX, Y2);
                 LonDelta = LonDelta + LonDeltaPix;
             }
@@ -3497,19 +3497,19 @@ namespace SBuilderXX
 
             X = Lon + 180d;
             Y = 90d - Lat;
-            J = VB.CInt(X / 30d);
-            K = VB.CInt(Y / 22.5d);
+            J = (int)(X / 30d);
+            K = (int)(Y / 22.5d);
             A = "Dir = " + J.ToString("00") + K.ToString("00") + "   File = ";
-            J = VB.CInt(X / 3.75d);
-            K = VB.CInt(Y / 2.825d);
+            J = (int)(X / 3.75d);
+            K = (int)(Y / 2.825d);
             A = A + J.ToString("00") + K.ToString("00");
             StatusDir.Text = A;
             StatusQMID.Text = "";
             if (moduleMAIN.QMIDLevel > 1)
             {
                 SetLatLonDeltas();
-                J = VB.CInt(X / LongitudeDelta);
-                K = VB.CInt(Y / LatitudeDelta);
+                J = (int)(X / LongitudeDelta);
+                K = (int)(Y / LatitudeDelta);
                 A = J.ToString("00") + K.ToString("00");
                 StatusQMID.Text = "QMID (L = " + moduleMAIN.QMIDLevel + "  U = " + J.ToString("00") + "  V = " + K.ToString("00") + ") ";
             }
@@ -5456,7 +5456,7 @@ namespace SBuilderXX
             // make bulk
             if (modulePOLYS.PolyON)
             {
-                modulePOLYS.Polys[modulePOPUP.POPIndex].Selected = true; // make sure POPIndex is selected
+                modulePOLYS.Polys[modulePOPUP.POPIndex].Selected = true; // make sure POPIndex is selected 
                 Flag = true;
                 int loopTo = modulePOLYS.NoOfPolys;
                 for (K = 1; K <= loopTo; K++)
@@ -6306,16 +6306,16 @@ namespace SBuilderXX
             LAS = modulePOLYS.Polys[Pl].SLAT;
             LOW = modulePOLYS.Polys[Pl].WLON;
             LOE = modulePOLYS.Polys[Pl].ELON;
-            N = VB.CInt(LAS / LatitudeDelta);
+            N = (int)(LAS / LatitudeDelta);
             LAS = (N + 1) * LatitudeDelta;
-            N = VB.CInt(LAN / LatitudeDelta);
+            N = (int)(LAN / LatitudeDelta);
             LA = LAN % LatitudeDelta;
             if (LA == 0d)
                 N = N - 1;
             LAN = N * LatitudeDelta;
-            N = VB.CInt(LOW / LongitudeDelta);
+            N = (int)(LOW / LongitudeDelta);
             LOW = (N + 1) * LongitudeDelta;
-            N = VB.CInt(LOE / LongitudeDelta);
+            N = (int)(LOE / LongitudeDelta);
             LO = LOE % LongitudeDelta;
             if (LO == 0d)
                 N = N - 1;
@@ -6364,16 +6364,16 @@ namespace SBuilderXX
             LAS = moduleLINES.Lines[Ln].SLAT;
             LOW = moduleLINES.Lines[Ln].WLON;
             LOE = moduleLINES.Lines[Ln].ELON;
-            N = VB.CInt(LAS / LatitudeDelta);
+            N = (int)(LAS / LatitudeDelta);
             LAS = (N + 1) * LatitudeDelta;
-            N = VB.CInt(LAN / LatitudeDelta);
+            N = (int)(LAN / LatitudeDelta);
             LA = LAN % LatitudeDelta;
             if (LA == 0d)
                 N = N - 1;
             LAN = N * LatitudeDelta;
-            N = VB.CInt(LOW / LongitudeDelta);
+            N = (int)(LOW / LongitudeDelta);
             LOW = (N + 1) * LongitudeDelta;
-            N = VB.CInt(LOE / LongitudeDelta);
+            N = (int)(LOE / LongitudeDelta);
             LO = LOE % LongitudeDelta;
             if (LO == 0d)
                 N = N - 1;
@@ -6492,16 +6492,16 @@ namespace SBuilderXX
             LAS = modulePOLYS.Polys[Pl].SLAT;
             LOW = modulePOLYS.Polys[Pl].WLON;
             LOE = modulePOLYS.Polys[Pl].ELON;
-            N = VB.CInt(LAS / LatitudeDelta);
+            N = (int)(LAS / LatitudeDelta);
             LAS = (N + 1) * LatitudeDelta;
-            N = VB.CInt(LAN / LatitudeDelta);
+            N = (int)(LAN / LatitudeDelta);
             LA = LAN % LatitudeDelta;
             if (LA == 0d)
                 N = N - 1;
             LAN = N * LatitudeDelta;
-            N = VB.CInt(LOW / LongitudeDelta);
+            N = (int)(LOW / LongitudeDelta);
             LOW = (N + 1) * LongitudeDelta;
-            N = VB.CInt(LOE / LongitudeDelta);
+            N = (int)(LOE / LongitudeDelta);
             LO = LOE % LongitudeDelta;
             if (LO == 0d)
                 N = N - 1;
@@ -7051,7 +7051,7 @@ namespace SBuilderXX
         private void EditMenuItem_Click(object sender, EventArgs e)
         {
 
-            // added this in October 2017 because of the cosmetic change on Enable Undo Redo!
+            // added this in October 2017 because of the cosmetic change on Enable Undo Redo! 
             EnableUndoRedoMenuItem.CheckState = CheckState.Unchecked;
             if (moduleEDIT.BackUpON)
             {

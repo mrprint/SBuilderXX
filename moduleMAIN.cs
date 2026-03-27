@@ -188,7 +188,7 @@ namespace SBuilderXX
             double NewLatDispCenter;
             double NewLonDispEast;
             double NewLonDispWest;
-            double DX, DY;  // shift
+            double DX, DY;  // shift 
             DY = 90.0d / Math.Pow(2.0d, Zoom);
             LatNorthLimit = 90.0d - DY;
             LatSouthLimit = -90.0d + DY;
@@ -248,14 +248,14 @@ namespace SBuilderXX
             bool IsCenterDisplayRet = default;
             int X1, X2, Y1, Y2, YY;
             IsCenterDisplayRet = true;
-            X1 = VB.CInt(DisplayWidth * 0.05d);
+            X1 = (int)(DisplayWidth * 0.05d);
             if (X < X1)
                 return IsCenterDisplayRet;
-            X2 = VB.CInt(DisplayWidth * 0.95d);
+            X2 = (int)(DisplayWidth * 0.95d);
             if (X > X2)
                 return IsCenterDisplayRet;
             YY = DisplayHeight - My.MyProject.Forms.FrmStart.MenuStrip.Height - My.MyProject.Forms.FrmStart.StatusStrip.Height - My.MyProject.Forms.FrmStart.ToolStrip.Height;
-            YY = VB.CInt(0.05d * YY);
+            YY = (int)(0.05d * YY);
             Y1 = YY + My.MyProject.Forms.FrmStart.MenuStrip.Height + My.MyProject.Forms.FrmStart.ToolStrip.Height;
             if (Y < Y1)
                 return IsCenterDisplayRet;
@@ -632,7 +632,7 @@ namespace SBuilderXX
             {
                 if (DecimalDegrees)
                 {
-                    Str2LonRet = VB.CInt(lon);
+                    Str2LonRet = Convert.ToDouble(lon);
                 }
                 else
                 {
@@ -667,14 +667,14 @@ namespace SBuilderXX
                     N = lon.IndexOf(" ");
                     if (N == -1)
                     {
-                        Str2LonRet = VB.CInt(lon);
+                        Str2LonRet = Convert.ToDouble(lon);
                         if (Neg)
                             Str2LonRet = -1 * Str2LonRet;
                         return Str2LonRet;
                     }
 
                     a = lon.Substring(0, N);
-                    Str2LonRet = VB.CInt(a);
+                    Str2LonRet = Convert.ToDouble(a);
                     M = lon.IndexOf(" ", N + 1);
                     if (M == -1)
                     {
@@ -722,10 +722,10 @@ namespace SBuilderXX
                     a = "E";
                 }
 
-                N = VB.Fix(lon);
+                N = (int)lon;
                 Lon2StrRet = N.ToString();
                 X = (lon - N) * 60d;
-                N = VB.Fix(X);
+                N = (int)X;
                 Lon2StrRet = Lon2StrRet + '°' + " " + N.ToString("00");
                 X = (X - N) * 60d;
                 X = Math.Round(X, 4);
@@ -757,10 +757,10 @@ namespace SBuilderXX
                     b = "N";
                 }
 
-                N = VB.Fix(lat);
+                N = (int)lat;
                 Lat2StrRet = N.ToString();
                 X = (lat - N) * 60d;
-                N = VB.Fix(X);
+                N = (int)X;
                 Lat2StrRet = Lat2StrRet + '°' + " " + N.ToString("00");
                 X = (X - N) * 60d;
                 X = Math.Round(X, 4);

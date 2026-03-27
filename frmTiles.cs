@@ -157,11 +157,12 @@ namespace SBuilderXX
             Graphics g = Graphics.FromImage(ImgBuffer);
             g.DrawImage(moduleTILES.ImageBackground, 0, 0, XW, YH);
             int Z = ZZZ - moduleMAIN.Zoom;
-            Z = VB.CInt(Math.Pow(2d, Z));
+            Z = (int)Math.Pow(2d, Z);
+            // Dim NY As Integer = Z * 5
             int NY = Z * 7;
             int Y;
             Y = moduleTILES.YTilesFromLat(moduleMAIN.LatDispCenter, ZZZ);
-            Y = Y - VB.CInt((double)NY / 2);
+            Y = Y - (int)(NY / 2d);
             H = new int[NY + 1];
             // PixelHeight240FromY(Y, H, NY, ZZZ)
             PixelHeight440FromY(Y, ref H, NY, ZZZ);
@@ -177,10 +178,12 @@ namespace SBuilderXX
             int DX, PX;
             int PY;
             int Z = ZZZ - moduleMAIN.Zoom;
-            Z = VB.CInt(Math.Pow(2d, Z));
+            Z = (int)Math.Pow(2d, Z);
+            // NX = Z * 7
+            // NY = Z * 5
             NX = Z * 11;
             NY = Z * 7;
-            DX = VB.CInt((double)XW / NX);
+            DX = (int)(XW / (double)NX);
             PX = DX;
             int loopTo = NX - 1;
             for (C = 1; C <= loopTo; C++)
@@ -370,7 +373,7 @@ namespace SBuilderXX
             NS = 491d / (X[0] - X[N]);
             int loopTo1 = N - 1;
             for (R = 0; R <= loopTo1; R++)
-                H[R] = VB.CInt((X[R] - X[R + 1]) * NS);
+                H[R] = (int)((X[R] - X[R + 1]) * NS);
         }
 
         private bool MakeImageFromTiles()

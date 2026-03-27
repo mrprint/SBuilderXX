@@ -517,7 +517,7 @@ namespace SBuilderXX
             int Base, LineWidth, pointN, pointK;
             int BytesPerPixel;
             Base = BitConverter.ToInt32(inp, 10);
-            BytesPerPixel = VB.CInt(BitConverter.ToInt16(inp, 28) / 8d);
+            BytesPerPixel = (int)(BitConverter.ToInt16(inp, 28) / 8d);
             LineWidth = cols * BytesPerPixel;
             // make LineWidth a multiple of 4
             N = (int)((LineWidth - 1) / 4d);
@@ -533,7 +533,7 @@ namespace SBuilderXX
                 merc = YMercFromLat(lat);
                 merc = merc - south_m;
                 merc = merc / dmerc;
-                K = VB.CInt(merc);   // round
+                K = (int)merc;   // round
                 if (N != K)
                 {
                     pointN = Base + (rows - N - 1) * LineWidth;
@@ -571,7 +571,7 @@ namespace SBuilderXX
         private static int XMPixFromLon(double lon, int Z)
         {
             int XMPixFromLonRet = default;
-            XMPixFromLonRet = VB.CInt(lon * x256_180 * Math.Pow(2d, Z));
+            XMPixFromLonRet = (int)(lon * x256_180 * Math.Pow(2d, Z));
             return XMPixFromLonRet;
         }
 
@@ -582,7 +582,7 @@ namespace SBuilderXX
             lat = lat + pi_4;
             lat = Math.Tan(lat);
             lat = Math.Log(lat);
-            YMPixFromLatRet = VB.CInt(lat * x256_pi * Math.Pow(2d, Z));
+            YMPixFromLatRet = (int)(lat * x256_pi * Math.Pow(2d, Z));
             return YMPixFromLatRet;
         }
 
@@ -802,33 +802,33 @@ namespace SBuilderXX
                         {
                             MapPixelsPerDegree = Maps[N].COLS / (Maps[N].ELON - Maps[N].WLON);
                             source.X = 0f;
-                            source.Width = VB.CSng((moduleMAIN.LonDispEast - Maps[N].WLON) * MapPixelsPerDegree);
-                            screen.X = VB.CInt((Maps[N].WLON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                            source.Width = (float)((moduleMAIN.LonDispEast - Maps[N].WLON) * MapPixelsPerDegree);
+                            screen.X = (int)((Maps[N].WLON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
                             screen.Width = moduleMAIN.DisplayWidth - screen.X;
                         }
                         else
                         {
                             source.X = 0f;
                             source.Width = Maps[N].COLS;
-                            screen.X = VB.CInt((Maps[N].WLON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
-                            screen.Width = VB.CInt((Maps[N].ELON - Maps[N].WLON) * moduleMAIN.PixelsPerLonDeg);
+                            screen.X = (int)((Maps[N].WLON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                            screen.Width = (int)((Maps[N].ELON - Maps[N].WLON) * moduleMAIN.PixelsPerLonDeg);
                         }
                     }
                     else if (Maps[N].ELON > moduleMAIN.LonDispEast)
                     {
                         MapPixelsPerDegree = Maps[N].COLS / (Maps[N].ELON - Maps[N].WLON);
-                        source.X = VB.CSng((moduleMAIN.LonDispWest - Maps[N].WLON) * MapPixelsPerDegree);
-                        source.Width = VB.CSng((moduleMAIN.LonDispEast - moduleMAIN.LonDispWest) * MapPixelsPerDegree);
+                        source.X = (float)((moduleMAIN.LonDispWest - Maps[N].WLON) * MapPixelsPerDegree);
+                        source.Width = (float)((moduleMAIN.LonDispEast - moduleMAIN.LonDispWest) * MapPixelsPerDegree);
                         screen.X = 0;
                         screen.Width = moduleMAIN.DisplayWidth;
                     }
                     else
                     {
                         MapPixelsPerDegree = Maps[N].COLS / (Maps[N].ELON - Maps[N].WLON);
-                        source.X = VB.CSng((moduleMAIN.LonDispWest - Maps[N].WLON) * MapPixelsPerDegree);
-                        source.Width = VB.CSng((Maps[N].ELON - moduleMAIN.LonDispWest) * MapPixelsPerDegree);
+                        source.X = (float)((moduleMAIN.LonDispWest - Maps[N].WLON) * MapPixelsPerDegree);
+                        source.Width = (float)((Maps[N].ELON - moduleMAIN.LonDispWest) * MapPixelsPerDegree);
                         screen.X = 0;
-                        screen.Width = VB.CInt((Maps[N].ELON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
+                        screen.Width = (int)((Maps[N].ELON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
                     }
 
                     if (Maps[N].SLAT > moduleMAIN.LatDispSouth)
@@ -836,24 +836,24 @@ namespace SBuilderXX
                         if (Maps[N].NLAT > moduleMAIN.LatDispNorth)
                         {
                             MapPixelsPerDegree = Maps[N].ROWS / (Maps[N].NLAT - Maps[N].SLAT);
-                            source.Y = VB.CSng((Maps[N].NLAT - moduleMAIN.LatDispNorth) * MapPixelsPerDegree);
-                            source.Height = VB.CSng((moduleMAIN.LatDispNorth - Maps[N].SLAT) * MapPixelsPerDegree);
+                            source.Y = (float)((Maps[N].NLAT - moduleMAIN.LatDispNorth) * MapPixelsPerDegree);
+                            source.Height = (float)((moduleMAIN.LatDispNorth - Maps[N].SLAT) * MapPixelsPerDegree);
                             screen.Y = 0;
-                            screen.Height = VB.CInt((moduleMAIN.LatDispNorth - Maps[N].SLAT) * moduleMAIN.PixelsPerLatDeg);
+                            screen.Height = (int)((moduleMAIN.LatDispNorth - Maps[N].SLAT) * moduleMAIN.PixelsPerLatDeg);
                         }
                         else
                         {
                             source.Y = 0f;
                             source.Height = Maps[N].ROWS;
-                            screen.Y = VB.CInt((moduleMAIN.LatDispNorth - Maps[N].NLAT) * moduleMAIN.PixelsPerLatDeg);
-                            screen.Height = VB.CInt((Maps[N].NLAT - Maps[N].SLAT) * moduleMAIN.PixelsPerLatDeg);
+                            screen.Y = (int)((moduleMAIN.LatDispNorth - Maps[N].NLAT) * moduleMAIN.PixelsPerLatDeg);
+                            screen.Height = (int)((Maps[N].NLAT - Maps[N].SLAT) * moduleMAIN.PixelsPerLatDeg);
                         }
                     }
                     else if (Maps[N].NLAT > moduleMAIN.LatDispNorth)
                     {
                         MapPixelsPerDegree = Maps[N].ROWS / (Maps[N].NLAT - Maps[N].SLAT);
-                        source.Y = VB.CSng((Maps[N].NLAT - moduleMAIN.LatDispNorth) * MapPixelsPerDegree);
-                        source.Height = VB.CSng((moduleMAIN.LatDispNorth - moduleMAIN.LatDispSouth) * MapPixelsPerDegree);
+                        source.Y = (int)((Maps[N].NLAT - moduleMAIN.LatDispNorth) * MapPixelsPerDegree);
+                        source.Height = (int)((moduleMAIN.LatDispNorth - moduleMAIN.LatDispSouth) * MapPixelsPerDegree);
                         screen.Y = 0;
                         screen.Height = moduleMAIN.DisplayHeight;
                     }
@@ -861,9 +861,9 @@ namespace SBuilderXX
                     {
                         MapPixelsPerDegree = Maps[N].ROWS / (Maps[N].NLAT - Maps[N].SLAT);
                         source.Y = 0f;
-                        source.Height = VB.CSng((Maps[N].NLAT - moduleMAIN.LatDispSouth) * MapPixelsPerDegree);
-                        screen.Y = VB.CInt((moduleMAIN.LatDispNorth - Maps[N].NLAT) * moduleMAIN.PixelsPerLatDeg);
-                        screen.Height = VB.CInt((Maps[N].NLAT - moduleMAIN.LatDispSouth) * moduleMAIN.PixelsPerLatDeg);
+                        source.Height = (int)((Maps[N].NLAT - moduleMAIN.LatDispSouth) * MapPixelsPerDegree);
+                        screen.Y = (int)((moduleMAIN.LatDispNorth - Maps[N].NLAT) * moduleMAIN.PixelsPerLatDeg);
+                        screen.Height = (int)((Maps[N].NLAT - moduleMAIN.LatDispSouth) * moduleMAIN.PixelsPerLatDeg);
                     }
 
                     if (ShowSimpleMaps)
@@ -1242,7 +1242,7 @@ namespace SBuilderXX
             F1 = false;
             F2 = false;
             N = arr.Length;
-            N = VB.CInt(8d * (int)(N / 8d) - 1d);
+            N = (long)(8d * (int)(N / 8d) - 1d);
             long loopTo = N;
             for (J = 8L; J <= loopTo; J += 8L)
             {
@@ -1271,7 +1271,8 @@ namespace SBuilderXX
         {
             int N, J;
             byte B0;
-            N = VB.CInt(8d * (int)(arr.Length / 8d) - 1d);
+            N = arr.Length;
+            N = (int)(8d * (int)(N / 8d) - 1d);
             int loopTo = N;
             for (J = 0; J <= loopTo; J += 8)
             {

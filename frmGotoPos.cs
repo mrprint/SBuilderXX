@@ -54,39 +54,41 @@ namespace SBuilderXX
 
             try
             {
-                L = (int)Convert.ToDouble(txtL.Text);
-
-                if (L < 0) Good = false;
-                if (L > 25) Good = false;
-
+                L = (int)Convert.ToSingle(txtL.Text);
+                if (L < 0)
+                    Good = false;
+                if (L > 25)
+                    Good = false;
                 Y = moduleMAIN.Str2Lat(txtLat.Text);
-                if (Y > 90) Good = false;
-                if (Y < -90) Good = false;
-
+                if (Y > 90d)
+                    Good = false;
+                if (Y < -90)
+                    Good = false;
                 X = moduleMAIN.Str2Lon(txtLon.Text);
-                if (X > 180) Good = false;
-                if (X < -180) Good = false;
-
+                if (X > 180d)
+                    Good = false;
+                if (X < -180)
+                    Good = false;
                 if (Good)
                 {
                     PU = (int)(3d * Math.Pow(2d, L));
                     PV = (int)(2d * Math.Pow(2d, L));
-
-                    U = VB.CInt(Math.Floor(PU * (X + 180.0d) / 360.0d));
-                    V = VB.CInt(Math.Floor(PV * (90.0d - Y) / 180.0d));
-
+                    U = (int)(PU * (X + 180d) / 360d);
+                    V = (int)(PV * (90d - Y) / 180d);
                     FillValues(X, Y, L, U, V);
                 }
                 else
                 {
                     FillValues(X0, Y0, L0, U0, V0);
-                    MessageBox.Show("Check your entry!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Check your entry!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+
+                return;
             }
-            catch
+            catch (Exception)
             {
                 FillValues(X0, Y0, L0, U0, V0);
-                MessageBox.Show("Check your entry!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Check your entry!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
