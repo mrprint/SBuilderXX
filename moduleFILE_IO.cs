@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace SBuilderXX
 {
-    static class moduleFILE_IO
+    static partial class moduleFILE_IO
     {
         private struct LegacyPoly
         {
