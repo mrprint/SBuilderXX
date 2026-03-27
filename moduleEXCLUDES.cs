@@ -318,14 +318,10 @@ namespace SBuilderXX
             int loopTo = NoOfExcludes;
             for (N = 1; N <= loopTo; N++)
             {
-                if (Excludes[N].NLAT < moduleMAIN.LatDispSouth)
-                    goto JumpHere;
-                if (Excludes[N].SLAT > moduleMAIN.LatDispNorth)
-                    goto JumpHere;
-                if (Excludes[N].WLON > moduleMAIN.LonDispEast)
-                    goto JumpHere;
-                if (Excludes[N].ELON < moduleMAIN.LonDispWest)
-                    goto JumpHere;
+                if (Excludes[N].NLAT < moduleMAIN.LatDispSouth) continue;
+                if (Excludes[N].SLAT > moduleMAIN.LatDispNorth) continue;
+                if (Excludes[N].WLON > moduleMAIN.LonDispEast)  continue;
+                if (Excludes[N].ELON < moduleMAIN.LonDispWest)  continue;
                 if (Excludes[N].Selected)
                 {
                     // myBrush.Color = Color.SpringGreen
@@ -356,7 +352,7 @@ namespace SBuilderXX
                         g.DrawRectangle(myPen, X - 3f, Y - 3f, 6f, 6f);
                     }
 
-                    goto JumpHere;
+                    continue;
                 }
 
                 P1.X = (float)((Excludes[N].WLON - moduleMAIN.LonDispWest) * moduleMAIN.PixelsPerLonDeg);
@@ -381,8 +377,6 @@ namespace SBuilderXX
                 g.DrawLine(myPen, P2, P3);
                 g.DrawLine(myPen, P3, P4);
                 g.DrawLine(myPen, P4, P1);
-            JumpHere:
-                ;
             }
 
             myBrush.Dispose();

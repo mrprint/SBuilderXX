@@ -183,7 +183,7 @@ namespace SBuilderXX
             }
 
 
-            // now we are 
+            // now we are
 
             PT = IsPointInLineUP(X, Y);
             if (PT.X > 0)
@@ -408,13 +408,13 @@ namespace SBuilderXX
                 for (N = 1; N <= loopTo; N++)
                 {
                     if (X1 < moduleLINES.Lines[N].WLON - DX)
-                        goto Jump_NextLN;
+                        continue;
                     if (X1 > moduleLINES.Lines[N].ELON + DX)
-                        goto Jump_NextLN;
+                        continue;
                     if (Y1 < moduleLINES.Lines[N].SLAT - DY)
-                        goto Jump_NextLN;
+                        continue;
                     if (Y1 > moduleLINES.Lines[N].NLAT + DY)
-                        goto Jump_NextLN;
+                        continue;
                     K = 1;
                     retval = false;
                     while (!(retval == true | K == moduleLINES.Lines[N].NoOfPoints + 1))
@@ -429,9 +429,6 @@ namespace SBuilderXX
                         IsPointInLineUPRet.Y = N;
                         return IsPointInLineUPRet;
                     }
-
-                Jump_NextLN:
-                    ;
                 }
             }
 
@@ -499,13 +496,13 @@ namespace SBuilderXX
             {
                 retval = false;
                 if (WLON < moduleLINES.Lines[N].WLON)
-                    goto Jump_NextLN;
+                    continue;
                 if (ELON > moduleLINES.Lines[N].ELON)
-                    goto Jump_NextLN;
+                    continue;
                 if (SLAT < moduleLINES.Lines[N].SLAT)
-                    goto Jump_NextLN;
+                    continue;
                 if (NLAT > moduleLINES.Lines[N].NLAT)
-                    goto Jump_NextLN;
+                    continue;
                 K = 2;
                 retval = false;
                 while (!(retval == true | K == moduleLINES.Lines[N].NoOfPoints + 1))
@@ -519,9 +516,6 @@ namespace SBuilderXX
                     IsLineUPRet = N;
                     return IsLineUPRet;
                 }
-
-            Jump_NextLN:
-                ;
             }
 
             return IsLineUPRet;

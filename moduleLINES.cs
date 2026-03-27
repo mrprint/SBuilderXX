@@ -1053,14 +1053,10 @@ namespace SBuilderXX
             {
                 if (!moduleMAIN.MoveON)
                     Lines[N].OnScreen = false;
-                if (Lines[N].NLAT < moduleMAIN.LatDispSouth)
-                    goto skip_this_one;
-                if (Lines[N].SLAT > moduleMAIN.LatDispNorth)
-                    goto skip_this_one;
-                if (Lines[N].WLON > moduleMAIN.LonDispEast)
-                    goto skip_this_one;
-                if (Lines[N].ELON < moduleMAIN.LonDispWest)
-                    goto skip_this_one;
+                if (Lines[N].NLAT < moduleMAIN.LatDispSouth) continue;
+                if (Lines[N].SLAT > moduleMAIN.LatDispNorth) continue;
+                if (Lines[N].WLON > moduleMAIN.LonDispEast)  continue;
+                if (Lines[N].ELON < moduleMAIN.LonDispWest)  continue;
                 NP = Lines[N].NoOfPoints;
                 bool IsExtrusion = false;
                 bool IsObjects = false;
@@ -1131,8 +1127,7 @@ namespace SBuilderXX
                     L1 = (int)(Lines[N].GLPoints[K].wid * moduleMAIN.PixelsPerMeter / 2d);
                     if (L1 < LinePenWidth)
                         L1 = LinePenWidth;
-                    if (SkipSegment)
-                        goto jump_next_segment;
+                    if (SkipSegment) continue;
                     if (L0 == LinePenWidth & L1 == LinePenWidth | IsObjects)
                     {
                         gr.DrawLine(myPen, PX0, PY0, PX1, PY1);
@@ -1177,8 +1172,6 @@ namespace SBuilderXX
                     }
 
                     Lines[N].OnScreen = true;
-                jump_next_segment:
-                    ;
                 }
                 // check if last point is outside the display
                 if (moduleMAIN.IsPtInDisplay(Lines[N].GLPoints[NP].lon, Lines[N].GLPoints[NP].lat))
@@ -1253,9 +1246,6 @@ namespace SBuilderXX
                         }
                     }
                 }
-
-            skip_this_one:
-                ;
             }
 
             myBrush.Dispose();

@@ -506,7 +506,7 @@ namespace SBuilderXX
                     NoOfPolysSelected = NoOfPolysSelected - 1;
                     Polys[N].Selected = false;
                     // unselect points ?
-                    goto Jump_Next;
+                    continue;
                 }
                 else
                 {
@@ -522,14 +522,11 @@ namespace SBuilderXX
                     }
 
                     if (Flag)
-                        goto Jump_Next;
+                        continue;
                     NoOfPolysSelected = NoOfPolysSelected + 1;
                     moduleMAIN.SomeSelected = true;
                     Polys[N].Selected = true;
                 }
-
-            Jump_Next:
-                ;
             }
         }
 
@@ -650,13 +647,13 @@ namespace SBuilderXX
                 if (!moduleMAIN.MoveON)
                     Polys[N].OnScreen = false;
                 if (Polys[N].NLAT < moduleMAIN.LatDispSouth)
-                    goto skip_this_one;
+                    continue;
                 if (Polys[N].SLAT > moduleMAIN.LatDispNorth)
-                    goto skip_this_one;
+                    continue;
                 if (Polys[N].WLON > moduleMAIN.LonDispEast)
-                    goto skip_this_one;
+                    continue;
                 if (Polys[N].ELON < moduleMAIN.LonDispWest)
-                    goto skip_this_one;
+                    continue;
                 Polys[N].OnScreen = true;
                 if (Polys[N].NoOfChilds < 0)
                     goto skip_fill;
@@ -748,9 +745,6 @@ namespace SBuilderXX
                         }
                     }
                 }
-
-            skip_this_one:
-                ;
             }
 
             gr.DrawPath(myPen, path);
@@ -1072,15 +1066,15 @@ namespace SBuilderXX
             for (N = 1; N <= loopTo; N++)
             {
                 if (Polys[N].Selected)
-                    goto Jump_Next;
+                    continue;
                 if (WLON < Polys[N].WLON)
-                    goto Jump_Next;
+                    continue;
                 if (ELON > Polys[N].ELON)
-                    goto Jump_Next;
+                    continue;
                 if (SLAT < Polys[N].SLAT)
-                    goto Jump_Next;
+                    continue;
                 if (NLAT > Polys[N].NLAT)
-                    goto Jump_Next;
+                    continue;
                 K = 1;
                 retval = false;
                 while (!(retval == true | K == Polys[N].NoOfPoints + 1))
@@ -1097,9 +1091,6 @@ namespace SBuilderXX
                     IsPointInPolyRet = true;
                     return IsPointInPolyRet;
                 }
-
-            Jump_Next:
-                ;
             }
 
             return IsPointInPolyRet;
@@ -1126,7 +1117,7 @@ namespace SBuilderXX
             for (N = 1; N <= loopTo; N++)
             {
                 if (Polys[N].OnScreen == false)
-                    goto Jump_Next;
+                    continue;
                 K = 2;
                 retval = false;
                 while (!(retval == true | K == Polys[N].NoOfPoints + 1))
@@ -1152,9 +1143,6 @@ namespace SBuilderXX
 
                     return IsMouseOnPolyRet;
                 }
-
-            Jump_Next:
-                ;
             }
 
             return IsMouseOnPolyRet;
@@ -1180,13 +1168,13 @@ namespace SBuilderXX
             for (N = 1; N <= loopTo; N++)
             {
                 if (WLON < Polys[N].WLON)
-                    goto Jump_Next;
+                    continue;
                 if (ELON > Polys[N].ELON)
-                    goto Jump_Next;
+                    continue;
                 if (SLAT < Polys[N].SLAT)
-                    goto Jump_Next;
+                    continue;
                 if (NLAT > Polys[N].NLAT)
-                    goto Jump_Next;
+                    continue;
                 K = Polys[N].NoOfPoints;
                 retval = modulePOINTS.IsPointInSegment(Polys[N].GPoints[1].lon, Polys[N].GPoints[1].lat, Polys[N].GPoints[K].lon, Polys[N].GPoints[K].lat, X, Y);
                 K = 2;
@@ -1212,9 +1200,6 @@ namespace SBuilderXX
                     IsPolySelectedRet = true;
                     return IsPolySelectedRet;
                 }
-
-            Jump_Next:
-                ;
             }
 
             return IsPolySelectedRet;
@@ -2401,7 +2386,7 @@ namespace SBuilderXX
                 {
                     A = moduleLINES.Lines[N].Type;
                     if (string.IsNullOrEmpty(A))
-                        goto next_N0;
+                        continue;
                     B = (A.Length < 5) ? "" : A.Substring(0, 5);
                     if (B == "TEX|S")
                     {
@@ -2420,9 +2405,6 @@ namespace SBuilderXX
                             H_SLat = moduleLINES.Lines[N].SLAT;
                     }
                 }
-
-            next_N0:
-                ;
             }
 
             if (IsLying)
